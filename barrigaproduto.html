@@ -158,7 +158,31 @@
     }).render('#paypal-button-container'); // Renderiza o botão no container
 </script>
         
-<p style="color: red; font-weight: bold;">Oferta válida apenas hoje!</p>
+<p style="color: red; font-weight: bold;"><div id="paypal-button-container"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggf34nl3xX9eqr6thnqQHrKsZKR-ATI&currency=BRL"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '49.90' // Substitua pelo valor do produto
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                window.location.href = "pagina-de-obrigado.html"; // Redirecione para sua página de obrigado
+            });
+        },
+        onError: function(err) {
+            alert('Erro ao processar pagamento. Por favor, tente novamente.');
+        }
+    }).render('#paypal-button-container'); // Renderiza o botão PayPal no local definido
+</script>
+        Oferta válida apenas hoje!</p>
         <!-- Trust Badges -->
         <div class="trust-badges">
             <img alt="Ícone de Certificação" src="https://i.ibb.co/R7Fn7F8/Logopit-1730811534550.png" alt="Logopit-1730811534550" border="0" style="; border: none; background: none; width: auto; height: 80px; display: inline-block;"></p>
