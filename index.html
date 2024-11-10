@@ -79,40 +79,24 @@
             box-shadow: 0 4px 10px rgba(255, 153, 204, 0.5);
         }
 
-        .cta {
-            margin-top: 40px;
-        }
+        <style>
+    .cta-button {
+        background: linear-gradient(90deg, #ff66b2, #ff0099);
+        color: white;
+        font-size: 20px;
+        padding: 15px 40px;
+        text-decoration: none;
+        border-radius: 30px;
+        display: inline-block;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .cta-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(255, 51, 153, 0.8);
+    }
 
-        .cta button {
-            background: linear-gradient(90deg, #ff66b2, #ff0099);
-            color: white;
-            font-size: 20px;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
-            }
-            100% {
-                box-shadow: 0 4px 30px rgba(255, 51, 153, 0.8);
-            }
-        }
-
-        .cta button:hover {
-            background: linear-gradient(90deg, #ff0099, #ff66b2);
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 14px;
-            color: #660066;
-        }
     </style>
 </head>
 <body>
@@ -132,7 +116,7 @@
             </div>
         </section>
         <div class="cta">
-            <a href="paginas/barriga2.html" class="cta-button">Descubra Agora</a>
+            <a href="barriga2.html" class="cta-button">Descubra Agora</a>
         </div>
         <footer>
             <p>© 2024. Transformando vidas com amor e cuidado.</p>
