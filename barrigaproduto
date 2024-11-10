@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receita Natural - Queime Gordura com Saúde</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            color: #4a004e;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d63384;
+        }
+
+        header p {
+            font-size: 16px;
+            color: #5c005c;
+            margin: 10px 0 30px;
+        }
+
+        .product-mockup img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .product-description h2 {
+            font-size: 20px;
+            color: #d63384;
+            margin-bottom: 10px;
+        }
+
+        .product-description p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #4a004e;
+        }
+
+        .trust-badges {
+            margin: 30px 0;
+        }
+
+        .trust-badges img {
+            width: 100%;
+            max-width: 250px;
+            margin: 10px 0;
+        }
+
+        .cta-button {
+            display: block;
+            background: linear-gradient(90deg, #ff66b2, #ff0099);
+            color: white;
+            font-size: 20px;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 300px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 51, 153, 0.8);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #660066;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Título do Produto -->
+        <header>
+            <h1>Receita Natural</h1>
+            <p>A Solução Definitiva Para Queimar Gordura com Saúde</p>
+        </header>
+
+        <!-- Mockup do Produto -->
+        <div class="product-mockup">
+            <img src="https://via.placeholder.com/500x300" alt="Mockup do Produto">
+        </div>
+
+        <!-- Descrição do Produto -->
+        <div class="product-description">
+            <h2>Por que Escolher Nossa Receita?</h2>
+            <p>
+                Descubra o segredo para eliminar gordura abdominal de forma natural, eficaz e sem dietas restritivas.
+                Esta receita foi especialmente desenvolvida para mulheres que desejam resultados reais e duradouros.
+                Com ingredientes 100% naturais, você transformará sua rotina de maneira simples e saudável!
+            </p>
+        </div>
+
+        <!-- Botão de Compra -->
+        <a href="#" class="cta-button">Comprar Agora - R$ 49,90</a>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <img src="https://via.placeholder.com/250x100" alt="Badge 1">
+            <img src="https://via.placeholder.com/250x100" alt="Badge 2">
+        </div>
+
+        <!-- Botão de Compra Repetido -->
+        <a href="#" class="cta-button">Comprar Agora - R$ 49,90</a>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>© 2024. Garantia de Qualidade e Satisfação.</p>
+        </footer>
+    </div>
+</body>
+</html>
