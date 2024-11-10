@@ -135,27 +135,25 @@
        <div id="paypal-button-container"></div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggf34nl3xX9eqr6thnqQHrKsZKR-ATI&currency=BRL"></script>
+
 <script>
     paypal.Buttons({
         createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '49.90' // Valor do produto
+                        value: '49.90'
                     }
                 }]
             });
         },
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
-                window.location.href = "pagina-de-obrigado.html"; // Página de obrigado
+                alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
+                window.location.href = "pagina-obrigado.html";
             });
-        },
-        onError: function(err) {
-            console.error(err);
-            alert("Erro ao processar o pagamento. Tente novamente.");
         }
-    }).render('#paypal-button-container'); // Renderiza o botão
+    }).render('#paypal-button-container');
 </script>
         
         Oferta válida apenas hoje!</p>
