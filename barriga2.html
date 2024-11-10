@@ -3,167 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transforme-se Hoje</title>
+    <title>A Receita - Natural Não Treme</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #ffe0f7, #ffffff);
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
             color: #4a004e;
-            overflow-x: hidden;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
         }
 
-        header {
-            background: linear-gradient(90deg, #ff85c0, #ff4081);
-            padding: 50px 20px;
-            border-radius: 10px;
-            color: white;
-            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.5);
-        }
-
         header h1 {
-            font-size: 2.5em;
-            margin: 0;
+            font-size: 32px;
             font-weight: bold;
+            color: #d63384;
         }
 
         header p {
-            margin-top: 15px;
-            font-size: 1.1em;
-        }
-
-        .hero {
-            margin-top: 30px;
-            background: url('https://github.com/KivaraShop/Sales-Pages/blob/main/1731243443201.jpeg?raw=true/600x300') no-repeat center center;
-            background-size: cover;
-            border-radius: 20px;
-            height: 300px;
-            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-            animation: pulse 3s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        section {
-            margin-top: 40px;
-        }
-
-        section h2 {
-            font-size: 1.8em;
-            color: #ff4081;
-        }
-
-        section p {
-            margin: 20px 0;
-            font-size: 1.1em;
-            color: #5c005c;
-            line-height: 1.6;
-        }
-
-        .steps {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .steps div {
-            width: 100%;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .steps div h3 {
-            font-size: 1.2em;
+            font-size: 18px;
             color: #4a004e;
-            margin: 0;
+            margin-bottom: 30px;
         }
 
-        .steps div p {
-            margin-top: 10px;
-            font-size: 1em;
-            color: #660066;
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
-        .cta {
-            margin-top: 40px;
-            padding: 20px;
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            overflow: hidden;
             text-align: center;
         }
 
-        .cta button {
+        .card img {
+            width: 100%;
+            border-bottom: 3px solid #d63384;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: #d63384;
+            margin: 15px 0;
+        }
+
+        .cta-button {
             background: linear-gradient(90deg, #ff66b2, #ff0099);
             color: white;
-            font-size: 1.2em;
+            font-size: 20px;
             padding: 15px 40px;
-            border: none;
+            text-decoration: none;
             border-radius: 30px;
+            display: inline-block;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .cta button:hover {
+        .cta-button:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(255, 51, 153, 0.8);
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 0.9em;
-            color: #660066;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Transforme-se Hoje</h1>
-            <p>A solução que você estava esperando para sentir-se poderosa e confiante.</p>
+            <h1>A Receita</h1>
+            <p>Natural Não Treme</p>
+            <p>Mais confiança com uma receita natural!</p>
         </header>
-        <div class="hero"></div>
-        <section>
-            <h2>Como Funciona?</h2>
-            <p>Essa receita simples e natural foi feita pensando no seu bem-estar. Em poucos passos, você verá resultados incríveis!</p>
-            <div class="steps">
-                <div>
-                    <h3>Passo 1</h3>
-                    <p>Descubra os ingredientes naturais que vão revolucionar sua rotina.</p>
-                </div>
-                <div>
-                    <h3>Passo 2</h3>
-                    <p>Prepare sua receita em poucos minutos e aproveite.</p>
-                </div>
-                <div>
-                    <h3>Passo 3</h3>
-                    <p>Sinta os resultados e transforme sua vida para melhor.</p>
-                </div>
+
+        <!-- Cards -->
+        <div class="cards">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200" alt="GIF 1">
+                <h2>Receita Natural 1</h2>
             </div>
-        </section>
-        <div class="cta">
-            <button onclick="window.location.href='#'">Quero Começar Agora</button>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200" alt="GIF 2">
+                <h2>Receita Natural 2</h2>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200" alt="GIF 3">
+                <h2>Receita Natural 3</h2>
+            </div>
         </div>
-        <footer>
-            <p>© 2024. Feito com carinho para você.</p>
-        </footer>
+
+        <!-- Botão de CTA -->
+        <a href="#" class="cta-button">Descubra Agora</a>
     </div>
 </body>
 </html>
