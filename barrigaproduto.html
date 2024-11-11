@@ -171,38 +171,10 @@
             });
         }
     }).render('#paypal-button-container');
-
-    
-    <div id="paypal-container">
-    <p id="loading-message" style="
-        font-family: Arial, sans-serif;
-        color: #d63384;
-        font-size: 14px;
-        text-align: center;
-        background-color: #ffe6f7;
-        padding: 8px;
-        border-radius: 5px;
-        margin: 10px auto;
-        width: fit-content;
-    ">
-        Carregando opções de pagamento, por favor aguarde...
-    </p>
-    <!-- Aqui deve estar o botão do PayPal que você já configurou -->
-</div>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const loadingMessage = document.getElementById('loading-message');
-        const checkButtonInterval = setInterval(() => {
-            const paypalButton = document.querySelector('#paypal-container iframe');
-            if (paypalButton) {
-                loadingMessage.style.display = 'none'; // Esconde a mensagem de carregamento
-                clearInterval(checkButtonInterval); // Para a verificação
-            }
-        }, 100); // Verifica a cada 100ms
-    });
-</script>
-<img alt="Ícone de Certificação" src="https://i.ibb.co/R7Fn7F8/Logopit-1730811534550.png" alt="Logopit-1730811534550" border="0" border="0" style="; border: none; background: none; width: auto; height: 30px; display: inline-block;"></p>
+    
+   
+<img alt="Ícone de Certificação" src="https://i.ibb.co/R7Fn7F8/Logopit-1730811534550.png" alt="Logopit-1730811534550" border="0" border="0" style="; border: none; background: none; width: auto; height: 40px; display: inline-block;"></p>
         <!-- Rodapé -->
         <footer>
             <p>© 2024. Garantia de Qualidade e Satisfação.</p>
