@@ -108,7 +108,72 @@
         <div class="product-mockup">
             <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0"/500x300" alt="Mockup do Produto">
         </div>
+<!-- Container do preço e botão de lista de desejos -->
+<div class="product-price-container">
+    <button id="wishlist-btn" class="wishlist-btn" onclick="toggleWishlist()">
+        <span id="wishlist-heart" class="heart">&#9829;</span>
+    </button>
+    <span class="product-price">R$ 49,90</span>
+</div>
 
+<style>
+    /* Estilo do container principal */
+    .product-price-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    /* Estilo do botão de lista de desejos */
+    .wishlist-btn {
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        position: absolute;
+        left: 10px; /* Define o canto esquerdo */
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+    }
+
+    /* Estilo do coração */
+    .heart {
+        font-size: 24px;
+        color: red; /* Vermelho por padrão */
+        transition: color 0.3s ease;
+    }
+
+    .heart.unselected {
+        color: gray; /* Cinza quando não selecionado */
+    }
+
+    /* Estilo do rótulo de preço */
+    .product-price {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4a004e;
+        text-align: center;
+    }
+</style>
+
+<script>
+    // Função para alternar o estado do coração
+    function toggleWishlist() {
+        const heart = document.getElementById('wishlist-heart');
+        if (heart.classList.contains('unselected')) {
+            heart.classList.remove('unselected');
+            heart.style.color = 'red';
+        } else {
+            heart.classList.add('unselected');
+            heart.style.color = 'gray';
+        }
+    }
+</script>
         <!-- Descrição do Produto -->
         <div class="product-description">
             <h1 style="font-size: 20px; text-align: center;">Perde Barriga ou seu Dinheiro de Volta</h1>
