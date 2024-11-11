@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Shopping Brasil</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            color: #4a004e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #d63384;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #4a004e;
+        }
+
+        form {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        form label {
+            font-size: 16px;
+            color: #4a004e;
+            display: block;
+            margin-top: 15px;
+        }
+
+        form input,
+        form textarea,
+        form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #d63384;
+            border-radius: 5px;
+        }
+
+        form button {
+            background: #d63384;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #c02273;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #660066;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Entre em Contato</h1>
+            <p>Estamos aqui para ajudar você! Preencha o formulário abaixo ou entre em contato diretamente conosco.</p>
+        </header>
+        <form action="https://formsubmit.co/info@kivara.shop" method="POST">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem aqui" required></textarea>
+
+            <button type="submit">Enviar Mensagem</button>
+        </form>
+        <footer>
+            <p>© 2024. Shopping Brasil Transformando vidas com estilo e confiança.</p>
+        </footer>
+    </div>
+</body>
+</html>
