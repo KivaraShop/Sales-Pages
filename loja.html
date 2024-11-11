@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kivara Shop - Loja de Infoprodutos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            color: #4a004e;
+        }
+
+        header {
+            background-color: #ff99cc;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #4a004e;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            font-size: 14px;
+            color: #660033;
+            margin: 5px 0;
+        }
+
+        nav {
+            background-color: #ff66b2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffccdd;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            color: #4a004e;
+            margin: 10px;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #660033;
+            margin: 10px;
+        }
+
+        .product-card button {
+            background: linear-gradient(90deg, #ff66b2, #ff0099);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .product-card button:hover {
+            background: linear-gradient(90deg, #ff0099, #ff66b2);
+        }
+
+        footer {
+            background-color: #4a004e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #ff99cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kivara Shop</h1>
+        <p>Biblioteca de Infoprodutos para Mulheres Modernas</p>
+    </header>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Sobre Nós</a>
+        <a href="#">Contato</a>
+    </nav>
+    <div class="container">
+        <h2>Explore nossos Infoprodutos</h2>
+        <div class="product-grid">
+            <!-- Produto 1 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Produto 1">
+                <h3>Receita Poderosa</h3>
+                <p>Descubra como eliminar gordura abdominal com esta receita natural.</p>
+                <button onclick="window.location.href='#'">Comprar Agora - R$ 49,90</button>
+            </div>
+            <!-- Produto 2 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Produto 2">
+                <h3>Guia de Beleza Natural</h3>
+                <p>Dicas exclusivas para manter sua pele saudável e radiante.</p>
+                <button onclick="window.location.href='#'">Comprar Agora - R$ 39,90</button>
+            </div>
+            <!-- Produto 3 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Produto 3">
+                <h3>Dicas para Dormir Melhor</h3>
+                <p>Aprenda como melhorar sua qualidade de sono naturalmente.</p>
+                <button onclick="window.location.href='#'">Comprar Agora - R$ 29,90</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 Kivara Shop - Todos os direitos reservados.</p>
+        <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a>
+    </footer>
+</body>
+</html>
