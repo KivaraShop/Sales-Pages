@@ -14,35 +14,35 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 90%;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
         }
 
         header {
-            padding: 50px 20px;
+            padding: 40px 20px;
         }
 
         header h1 {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: bold;
             color: #d63384;
             margin-bottom: 10px;
         }
 
         header p {
-            font-size: 18px;
+            font-size: 16px;
             color: #4a004e;
         }
 
         form {
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: left;
         }
 
         form label {
-            font-size: 16px;
+            font-size: 14px;
             color: #4a004e;
             display: block;
             margin-top: 15px;
@@ -56,6 +56,11 @@
             margin-top: 5px;
             border: 1px solid #d63384;
             border-radius: 5px;
+            font-size: 14px;
+        }
+
+        form textarea {
+            resize: none;
         }
 
         form button {
@@ -65,6 +70,7 @@
             font-weight: bold;
             margin-top: 20px;
             cursor: pointer;
+            transition: background 0.3s;
         }
 
         form button:hover {
@@ -72,9 +78,34 @@
         }
 
         footer {
-            margin-top: 50px;
-            font-size: 14px;
+            margin-top: 40px;
+            font-size: 12px;
             color: #660066;
+        }
+
+        /* Media queries para telas maiores */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            header p {
+                font-size: 18px;
+            }
+
+            form input,
+            form textarea,
+            form button {
+                font-size: 16px;
+            }
+
+            footer {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -97,7 +128,7 @@
             <button type="submit">Enviar Mensagem</button>
         </form>
         <footer>
-            <p>© 2024. Shopping Brasil Transformando vidas com estilo e confiança.</p>
+            <p>© 2024. Shopping Brasil. Transformando vidas com estilo e confiança.</p>
         </footer>
     </div>
 </body>
