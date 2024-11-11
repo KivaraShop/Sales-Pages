@@ -171,8 +171,7 @@
             });
         }
     }).render('#paypal-button-container');
-</script>
-   <div id="paypal-container">
+<div id="paypal-container">
     <p id="loading-message" style="
         font-family: Arial, sans-serif;
         color: #d63384;
@@ -186,17 +185,17 @@
     ">
         Carregando opções de pagamento, por favor aguarde...
     </p>
-    <!-- Aqui já está seu botão do PayPal que foi configurado -->
+    <!-- Aqui deve estar o botão do PayPal que você já configurou -->
 </div>
 
 <script>
-    // Esconde a mensagem "Carregando" após o botão PayPal ser carregado
     document.addEventListener('DOMContentLoaded', function() {
+        const loadingMessage = document.getElementById('loading-message');
         const checkButtonInterval = setInterval(() => {
             const paypalButton = document.querySelector('#paypal-container iframe');
             if (paypalButton) {
-                document.getElementById('loading-message').style.display = 'none';
-                clearInterval(checkButtonInterval);
+                loadingMessage.style.display = 'none'; // Esconde a mensagem de carregamento
+                clearInterval(checkButtonInterval); // Para a verificação
             }
         }, 100); // Verifica a cada 100ms
     });
