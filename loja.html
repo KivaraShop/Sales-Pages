@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt">
     <div style="width: 100%; overflow: hidden; margin-bottom: 10px;">
-    <div id="sliderBanner" style="white-space: nowrap; animation: slideBanner 4s infinite linear;">
-        <span style="display: inline-block; width: 100%; text-align: center; padding: 5px 0; background-color: #f8d7e6; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
-            Este é o seu momento
-        </span>
-        <span style="display: inline-block; width: 100%; text-align: center; padding: 5px 0; background-color: #fce4f2; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
-            Estamos em Promoção
-        </span>
+    <div style="text-align: center; font-family: 'Didot', serif; font-size: 14px; font-weight: 300; color: #4a004e; background-color: #f8d7e6; padding: 5px 0;">
+        <span id="bannerText" style="display: inline-block; white-space: nowrap;"></span>
     </div>
 </div>
 
 <h1 style="text-align: center; font-family: 'Georgia', serif; font-size: 24px; color: #4a004e; margin-top: 0;"></h1>
 
 <style>
-    @keyframes slideBanner {
-        0% { transform: translateX(100%); }
-        50% { transform: translateX(0%); }
-        100% { transform: translateX(-100%); }
+    @keyframes slideInOut {
+        0% { transform: translateX(-100%); opacity: 0; }
+        25% { transform: translateX(0); opacity: 1; }
+        75% { transform: translateX(0); opacity: 1; }
+        100% { transform: translateX(100%); opacity: 0; }
+    }
+
+    #bannerText {
+        animation: slideInOut 4s ease-in-out infinite;
     }
 </style>
+
+<script>
+    const messages = ["Este é o seu momento", "Estamos em Promoção"];
+    let currentMessageIndex = 0;
+
+    const bannerText = document.getElementById("bannerText");
+
+    function updateBannerText() {
+        bannerText.textContent = messages[currentMessageIndex];
+        currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+    }
+
+    updateBannerText(); // Set initial text
+    bannerText.addEventListener("animationiteration", updateBannerText);
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
