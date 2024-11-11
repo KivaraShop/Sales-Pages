@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <div style="width: 100%; overflow: hidden; margin-bottom: 20px;">
-    <div id="sliderBanner" style="display: flex; width: 200%; transition: transform 0.5s ease-in-out;">
-        <div style="width: 100%; text-align: center; padding: 20px; background-color: #f8d7e6; color: #4a004e; font-family: 'Georgia', serif; font-size: 20px; font-weight: bold;">
+    <div style="width: 100%; overflow: hidden; margin-bottom: 10px;">
+    <div id="sliderBanner" style="display: flex; width: 200%; height: 40px; transition: transform 0.5s ease-in-out; align-items: center;">
+        <div style="width: 100%; text-align: center; padding: 5px 0; background-color: #f8d7e6; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
             Este é o seu momento
         </div>
-        <div style="width: 100%; text-align: center; padding: 20px; background-color: #fce4f2; color: #4a004e; font-family: 'Georgia', serif; font-size: 20px; font-weight: bold;">
+        <div style="width: 100%; text-align: center; padding: 5px 0; background-color: #fce4f2; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
             Estamos em Promoção
         </div>
     </div>
 </div>
+
+<h1 style="text-align: center; font-family: 'Georgia', serif; font-size: 24px; color: #4a004e; margin-top: 0;">
+    SHOPPING BRAZIL
+</h1>
 
 <script>
     let currentIndex = 0;
@@ -21,18 +25,6 @@
     }
 
     setInterval(slideBanner, 2000); // Alterna a cada 2 segundos
-</script>
-
-<script>
-    const messages = ["Este é o seu momento", "Estamos em Promoção"];
-    let currentIndex = 0;
-
-    function rotateBanner() {
-        currentIndex = (currentIndex + 1) % messages.length;
-        document.getElementById("rotatingBanner").innerText = messages[currentIndex];
-    }
-
-    setInterval(rotateBanner, 1500); // Alterna a cada 1.5 segundos
 </script>
 <head>
     <meta charset="UTF-8">
