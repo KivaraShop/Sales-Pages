@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt">
+    <div style="background-color: #ff69b4; color: black; text-align: center; padding: 15px; font-size: 18px; font-weight: bold; border-radius: 5px; margin-bottom: 20px;" id="rotatingBanner">
+    Este é o seu momento
+</div>
+
+<script>
+    const messages = ["Este é o seu momento", "Estamos em Promoção"];
+    let currentIndex = 0;
+
+    function rotateBanner() {
+        currentIndex = (currentIndex + 1) % messages.length;
+        document.getElementById("rotatingBanner").innerText = messages[currentIndex];
+    }
+
+    setInterval(rotateBanner, 1500); // Alterna a cada 1.5 segundos
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
