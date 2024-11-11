@@ -172,7 +172,28 @@
         }
     }).render('#paypal-button-container');
 </script>
-        
+        <div id="paypal-button-container">
+    <p id="loading-message" style="
+        font-family: Arial, sans-serif;
+        color: #d63384;
+        font-size: 16px;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #d63384;
+        border-radius: 5px;
+        background-color: #ffe6f7;
+        margin: 10px auto;
+        width: fit-content;
+    ">
+        Carregando opções de pagamento, por favor aguarde...
+    </p>
+</div>
+
+<script>
+    paypal.Buttons().render('#paypal-button-container').then(function() {
+        document.getElementById('loading-message').style.display = 'none';
+    });
+</script>
         <!-- Trust Badges -->
         <div class="trust-badges">
             <img alt="Ícone de Certificação" src="https://i.ibb.co/R7Fn7F8/Logopit-1730811534550.png" alt="Logopit-1730811534550" border="0" style="; border: none; background: none; width: auto; height: 80px; display: inline-block;"></p>
