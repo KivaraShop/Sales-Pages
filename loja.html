@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt">
     <div style="width: 100%; overflow: hidden; margin-bottom: 10px;">
-    <div id="sliderBanner" style="display: flex; width: 200%; height: 40px; transition: transform 0.5s ease-in-out; align-items: center;">
-        <div style="width: 100%; text-align: center; padding: 5px 0; background-color: #f8d7e6; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
+    <div id="sliderBanner" style="white-space: nowrap; animation: slideBanner 4s infinite linear;">
+        <span style="display: inline-block; width: 100%; text-align: center; padding: 5px 0; background-color: #f8d7e6; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
             Este é o seu momento
-        </div>
-        <div style="width: 100%; text-align: center; padding: 5px 0; background-color: #fce4f2; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
+        </span>
+        <span style="display: inline-block; width: 100%; text-align: center; padding: 5px 0; background-color: #fce4f2; color: #4a004e; font-family: 'Didot', serif; font-size: 14px; font-weight: 300;">
             Estamos em Promoção
-        </div>
+        </span>
     </div>
 </div>
 
-<h1 style="text-align: center; font-family: 'Georgia', serif; font-size: 24px; color: #4a004e; margin-top: 0;">
-    SHOPPING BRAZIL
-</h1>
+<h1 style="text-align: center; font-family: 'Georgia', serif; font-size: 24px; color: #4a004e; margin-top: 0;"></h1>
 
-<script>
-    let currentIndex = 0;
-
-    function slideBanner() {
-        const banner = document.getElementById("sliderBanner");
-        currentIndex = (currentIndex + 1) % 2; // Alterna entre 0 e 1
-        banner.style.transform = `translateX(-${currentIndex * 100}%)`;
+<style>
+    @keyframes slideBanner {
+        0% { transform: translateX(100%); }
+        50% { transform: translateX(0%); }
+        100% { transform: translateX(-100%); }
     }
-
-    setInterval(slideBanner, 2000); // Alterna a cada 2 segundos
-</script>
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
