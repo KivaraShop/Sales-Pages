@@ -125,10 +125,32 @@ Checkout
             <p class="price">Total: R$ 49,90</p>
         </div>
         <div id="paypal-button-container">
-            <!-- Adicione o botão do PayPal aqui -->
+            <!-- Botão PayPal -->
+<div id="paypal-button-container" style="margin-top: 20px; text-align: center;"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '49.90'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
+                window.location.href = "Obrigado.html";
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
         </div>
         <footer>
-            <p>© 2024 Kivara Shop - Pagamento Seguro</p>
+            <p>© 2024 Shopping Brasil - Pagamento Seguro</p>
         </footer>
     </div>
 </body>
