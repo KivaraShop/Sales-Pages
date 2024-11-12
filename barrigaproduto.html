@@ -260,49 +260,28 @@
             <div style="margin-top: 40px;"></div>
            <p style="color: red; font-weight: bold; font-size: 13px; text-align: center; margin-top: 20px;">Oferta válida apenas hoje!</p>
 
-<!-- Exibição de preço -->
-<div class="minimal-price">
-    <span>Preço: <strong>R$ 49,90</strong></span>
-</div>
-
 <style>
-    .minimal-price {
+    .cta-checkout {
+        display: inline-block;
         text-align: center;
-        font-size: 22px;
+        background: linear-gradient(90deg, #ff66b2, #ff0099);
+        color: white;
+        font-size: 18px;
         font-weight: bold;
-        color: #4a004e;
+        padding: 15px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(255, 51, 153, 0.3);
         margin: 20px auto;
-        padding: 10px;
-        border: 2px solid #ff66b2;
-        border-radius: 10px;
-        max-width: 250px;
-        background-color: #ffe6f7;
+    }
+
+    .cta-checkout:hover {
+        background: linear-gradient(90deg, #ff0099, #ff66b2);
+        box-shadow: 0 6px 15px rgba(255, 51, 153, 0.5);
     }
 </style>
 
-<!-- Botão PayPal -->
-<div id="paypal-button-container" style="margin-top: 20px; text-align: center;"></div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
-<script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '49.90'
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
-                window.location.href = "Obrigado.html";
-            });
-        }
-    }).render('#paypal-button-container');
-</script>
+<a href="checkout.html" class="cta-checkout">Finalizar Compra</a>
 
 <!-- Ícone de certificação -->
              <div style="margin-top: 80px;"></div>
