@@ -161,7 +161,6 @@ Checkout
         </footer>
     </div>
 
-Checkout
 <!-- Spinner e mensagem -->
 <div id="loading-overlay">
     <div id="spinner"></div>
@@ -207,22 +206,22 @@ Checkout
 
 <!-- Script -->
 <script>
-    // Função para verificar se o PayPal foi carregado
+    // Função para verificar se os elementos do PayPal estão carregados
     function checkPayPalLoaded() {
         const paypalButton = document.querySelector("#paypal-button-container iframe");
         const paypalCreditCard = document.querySelector(".paypal-buttons-context-iframe");
 
-        // Verifica se o botão e a parte do cartão de crédito/débito estão presentes
-        if (paypalButton && paypalCreditCard) {
-            // Se os elementos do PayPal forem encontrados, remove o overlay
+        // Verifica se os dois elementos existem
+        if (paypalButton && paypalButton.offsetParent !== null && paypalCreditCard && paypalCreditCard.offsetParent !== null) {
+            // Remove o spinner quando os elementos estiverem disponíveis
             document.getElementById("loading-overlay").style.display = "none";
         } else {
-            // Se ainda não carregou, verifica novamente após 300ms
-            setTimeout(checkPayPalLoaded, 300);
+            // Continua tentando até que o PayPal carregue
+            setTimeout(checkPayPalLoaded, 500); // Ajuste para dispositivos móveis
         }
     }
 
-    // Aguarda o evento onload da janela para iniciar a verificação
+    // Aguarda o carregamento total da página antes de iniciar a verificação
     window.onload = function () {
         checkPayPalLoaded();
     };
