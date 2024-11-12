@@ -13,21 +13,28 @@
             padding: 0;
             background: linear-gradient(120deg, #ffe6f7, #fff3fc);
             color: #4a004e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Cabeçalho */
         header {
             background-color: #ff99cc;
-            padding: 20px;
+            padding: 15px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         /* Logo */
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             color: #4a004e;
             text-decoration: none;
@@ -36,7 +43,7 @@
         /* Ícone do carrinho */
         .cart-icon {
             color: #4a004e;
-            font-size: 24px;
+            font-size: 22px;
             text-decoration: none;
             position: relative;
         }
@@ -56,14 +63,15 @@
         nav {
             background-color: #ff66b2;
             padding: 10px;
+            width: 100%;
             text-align: center;
+            font-size: 16px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-size: 16px;
-            margin: 0 15px;
+            margin: 0 10px;
             transition: color 0.3s;
         }
 
@@ -74,29 +82,25 @@
         /* Container principal */
         .container {
             max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
+            width: 100%;
+            padding: 10px;
             text-align: center;
-        }
-
-        /* Animação ao rolar a página */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Grid de produtos */
         .product-grid {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+            flex-direction: column;
+            gap: 15px;
+            padding: 0 10px;
+        }
+
+        @media(min-width: 768px) {
+            .product-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
 
         /* Card de produto */
@@ -104,9 +108,11 @@
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             overflow: hidden;
             transition: transform 0.3s;
+            margin: 0 auto;
         }
 
         .product-card:hover {
@@ -120,7 +126,7 @@
         }
 
         .product-card h3 {
-            font-size: 20px;
+            font-size: 18px;
             color: #4a004e;
             margin: 10px;
         }
@@ -145,6 +151,27 @@
         .product-card button:hover {
             background: #ff66b2;
         }
+
+        /* Banner animado */
+        #bannerText {
+            font-family: 'Didot', serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #4a004e;
+            background-color: #f8d7e6;
+            padding: 5px;
+            text-align: center;
+            animation: slideInOut 4s ease-in-out infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes slideInOut {
+            0% { transform: translateX(-100%); opacity: 0; }
+            25% { transform: translateX(0); opacity: 1; }
+            75% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -158,73 +185,64 @@
         </a>
     </header>
 
-    <!-- Banner animado -->
-    <div style="width: 100%; overflow: hidden; margin-bottom: 10px;">
-        <div style="text-align: center; font-family: 'Didot', serif; font-size: 14px; font-weight: 300; color: #4a004e; background-color: #f8d7e6; padding: 5px 0;">
-            <span id="bannerText" style="display: inline-block; white-space: nowrap;"></span>
-        </div>
-    </div>
-
-    <script>
-        const messages = ["Este é o seu momento", "Estamos em Promoção"];
-        let currentMessageIndex = 0;
-        const bannerText = document.getElementById("bannerText");
-
-        function updateBannerText() {
-            bannerText.textContent = messages[currentMessageIndex];
-            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-        }
-
-        updateBannerText();
-        bannerText.addEventListener("animationiteration", updateBannerText);
-    </script>
-
-    <!-- Navegação -->
+    <!-- Menu de Navegação -->
     <nav>
         <a href="loja.html">Início</a>
-        <a href="#">Produtos</a>
-        <a href="sobrenos-html">Sobre Nós</a>
+        <a href="loja.html">Produtos</a>
+        <a href="Sobrenos.html">Sobre</a>
         <a href="contato.html">Contato</a>
     </nav>
 
+    <!-- Banner com animação de texto -->
+    <div id="bannerText">Este é o seu momento - Estamos em Promoção!</div>
+
     <!-- Conteúdo principal -->
     <div class="container">
-        <h1>Bem-vindo à Shopping Brasil</h1>
-        <p>Explore nossas ofertas exclusivas e descubra produtos que vão transformar seu dia a dia!</p>
+        <h2>Explore Nossos Produtos</h2>
 
-        <!-- Grade de produtos -->
         <div class="product-grid">
-            <div class="product-card fade-in">
+            <!-- Card de Produto 1 -->
+            <div class="product-card">
                 <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0" alt="Produto 1">
                 <h3>Produto 1</h3>
-                <p>Descrição breve do produto.</p>
-                <button>Comprar</button>
+                <p>Descrição breve do produto 1.</p>
+                <button>Comprar Agora</button>
             </div>
-            <div class="product-card fade-in">
+
+            <!-- Card de Produto 2 -->
+            <div class="product-card">
                 <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0" alt="Produto 2">
                 <h3>Produto 2</h3>
-                <p>Descrição breve do produto.</p>
-                <button>Comprar</button>
+                <p>Descrição breve do produto 2.</p>
+                <button>Comprar Agora</button>
             </div>
-            <!-- Adicione mais cards conforme necessário -->
+
+            <!-- Card de Produto 3 -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0" alt="Produto 3">
+                <h3>Produto 3</h3>
+                <p>Descrição breve do produto 3.</p>
+                <button>Comprar Agora</button>
+            </div>
         </div>
     </div>
 
+    <!-- Script para animações ao rolar a página -->
     <script>
-        // Animação ao rolar a página
-        const fadeInElements = document.querySelectorAll('.fade-in');
-
-        function handleScroll() {
-            fadeInElements.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100) {
-                    el.classList.add('visible');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
+        // Detecta rolagem e adiciona classe 'visible' para animações
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            const handleScroll = () => {
+                elements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Iniciar animações em elementos já visíveis
+        });
     </script>
 </body>
 </html>
