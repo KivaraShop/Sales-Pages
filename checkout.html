@@ -160,9 +160,7 @@ Checkout
             <p>© 2024 Shopping Brasil - Pagamento Seguro</p>
         </footer>
     </div>
-</body>
-</html>
-Checkout
+    Checkout
 <!-- Overlay de Carregamento -->
 <div id="loading-overlay">
     <div id="spinner"></div>
@@ -210,16 +208,20 @@ Checkout
 </style>
 
 <script>
+    // Função para verificar se o botão PayPal e o bloco de cartão foram carregados
     function checkPayPalElements() {
-        const paypalButton = document.querySelector('#paypal-button-container iframe');
-        const debitCreditBlock = document.querySelector('iframe[src*="card-fields"]');
-        return paypalButton && debitCreditBlock; // Verifica se ambos os elementos estão presentes
+        const paypalButton = document.querySelector('#paypal-button-container iframe'); // Botão PayPal
+        const debitCreditBlock = document.querySelector('iframe[src*="card-fields"]'); // Bloco de cartão
+        return paypalButton && debitCreditBlock; // Retorna verdadeiro apenas se ambos existirem
     }
 
+    // Intervalo para verificar continuamente
     const interval = setInterval(() => {
         if (checkPayPalElements()) {
             document.getElementById('loading-overlay').style.display = 'none'; // Esconde o overlay
-            clearInterval(interval); // Para de verificar
+            clearInterval(interval); // Para o intervalo
         }
     }, 500); // Verifica a cada 500ms
 </script>
+</body>
+</html>
