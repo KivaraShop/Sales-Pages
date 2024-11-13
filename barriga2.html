@@ -18,6 +18,7 @@
             margin: 0 auto;
             padding: 20px;
             text-align: center;
+            display: none; /* Oculta o conteúdo enquanto o coração está exibido */
         }
 
         header h1 {
@@ -77,10 +78,33 @@
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(255, 51, 153, 0.8);
         }
+
+        /* Estilo do Coração */
+        .loading-heart {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background-color: #ff66b2;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 82%, 18% 100%, 0% 35%);
+            animation: heartbeat 1s infinite ease-in-out;
+            z-index: 9999;
+        }
+
+        /* Animação de pulsação do coração */
+        @keyframes heartbeat {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Coração de Carregamento -->
+    <div class="loading-heart" id="loadingHeart"></div>
+
+    <div class="container" id="contentContainer">
         <header>
             <h1>A Receita</h1>
             <p>Natural Não Treme</p>
@@ -90,11 +114,11 @@
         <!-- Cards -->
         <div class="cards">
             <div class="card">
-                 <img src="https://i.ibb.co/ftdV7GT/pinterestdownloader-com-1731150306-571201-1.gif"/300x200" alt="GIF 1">
+                <img src="https://i.ibb.co/ftdV7GT/pinterestdownloader-com-1731150306-571201-1.gif" alt="GIF 1">
                 <h2>Receita Natural 1</h2>
             </div>
             <div class="card">
-                <img src="https://i.ibb.co/CHVSGT1/pinterestdownloader-com-1731150415-658871.gif"/300x200" alt="GIF 3">
+                <img src="https://i.ibb.co/CHVSGT1/pinterestdownloader-com-1731150415-658871.gif" alt="GIF 3">
                 <h2>Receita Natural 3</h2>
             </div>
         </div>
@@ -102,5 +126,22 @@
         <!-- Botão de CTA -->
         <a href="barrigaproduto.html" class="cta-button">Descubra Agora</a>
     </div>
+
+    <script>
+        // Verifica quando todos os GIFs foram carregados
+        const gifs = document.querySelectorAll('.card img');
+        let loadedGifs = 0;
+
+        gifs.forEach(gif => {
+            gif.onload = () => {
+                loadedGifs++;
+                // Se todos os GIFs foram carregados, exibe o conteúdo e oculta o coração
+                if (loadedGifs === gifs.length) {
+                    document.getElementById('loadingHeart').style.display = 'none';
+                    document.getElementById('contentContainer').style.display = 'block';
+                }
+            };
+        });
+    </script>
 </body>
 </html>
