@@ -1,44 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <div style="width: 100%; overflow: hidden; margin-bottom: 10px;">
-    <div style="text-align: center; font-family: 'Didot', serif; font-size: 14px; font-weight: 300; color: #4a004e; background-color: #f8d7e6; padding: 5px 0;">
-        <span id="bannerText" style="display: inline-block; white-space: nowrap;"></span>
-    </div>
-</div>
-
-<h1 style="text-align: center; font-family: 'Georgia', serif; font-size: 24px; color: #4a004e; margin-top: 0;"></h1>
-
-<style>
-    @keyframes slideInOut {
-        0% { transform: translateX(-100%); opacity: 0; }
-        25% { transform: translateX(0); opacity: 1; }
-        75% { transform: translateX(0); opacity: 1; }
-        100% { transform: translateX(100%); opacity: 0; }
-    }
-
-    #bannerText {
-        animation: slideInOut 4s ease-in-out infinite;
-    }
-</style>
-
-<script>
-    const messages = ["Este é o seu momento", "Estamos em Promoção"];
-    let currentMessageIndex = 0;
-
-    const bannerText = document.getElementById("bannerText");
-
-    function updateBannerText() {
-        bannerText.textContent = messages[currentMessageIndex];
-        currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-    }
-
-    updateBannerText(); // Set initial text
-    bannerText.addEventListener("animationiteration", updateBannerText);
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Shopping Brasil</title>
+    <title>Receita Natural - Queime Gordura com Saúde</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -46,164 +11,358 @@
             padding: 0;
             background: linear-gradient(120deg, #ffe6f7, #fff3fc);
             color: #4a004e;
-        }
-
-        header {
-            background-color: #ff99cc;
-            padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         header h1 {
-            color: #4a004e;
-            margin: 0;
             font-size: 28px;
+            font-weight: bold;
+            color: #d63384;
         }
 
         header p {
-            font-size: 14px;
-            color: #660033;
-            margin: 5px 0;
-        }
-
-        nav {
-            background-color: #ff66b2;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
             font-size: 16px;
-            margin: 0 15px;
-            transition: color 0.3s;
+            color: #5c005c;
+            margin: 10px 0 30px;
         }
 
-        nav a:hover {
-            color: #ffccdd;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-
-        .product-card img {
+        .product-mockup img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
         }
 
-        .product-card h3 {
+        .product-description {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .product-description h2 {
             font-size: 20px;
+            color: #d63384;
+            margin-bottom: 10px;
+        }
+
+        .product-description p {
+            font-size: 16px;
+            line-height: 1.6;
             color: #4a004e;
-            margin: 10px;
         }
 
-        .product-card p {
-            font-size: 14px;
-            color: #660033;
-            margin: 10px;
+        .trust-badges {
+            margin: 30px 0;
         }
 
-        .product-card button {
+        .trust-badges img {
+            width: 100%;
+            max-width: 250px;
+            margin: 10px 0;
+        }
+
+        .cta-button {
+            display: block;
             background: linear-gradient(90deg, #ff66b2, #ff0099);
             color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            margin: 10px;
-            cursor: pointer;
-            transition: background 0.3s;
+            font-size: 20px;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 300px;
         }
 
-        .product-card button:hover {
-            background: linear-gradient(90deg, #ff0099, #ff66b2);
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 51, 153, 0.8);
         }
 
         footer {
-            background-color: #4a004e;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        footer a {
-            color: #ff99cc;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #660066;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Shopping Brasil</h1>
-        <p>© 2024. Garantia de Qualidade e Satisfação </p>
-    </header>
-    <nav>
-        <a href="loja.html">Início</a>
-        <a href="sobrenos.html">Sobre Nós</a>
-        <a href="contato.html">Contato</a>
-    </nav>
     <div class="container">
-        <h2>Explore Nossos Produtos </h2>
-        <div class="product-grid">
-            <!-- Produto 1 -->
-            <div class="product-card">
-                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0/300x200" alt="Produto 1">
-                <h3>Receita Poderosa</h3>
-                <p>Descubra como eliminar gordura abdominal com esta receita natural.</p>
-                <button onclick="window.location.href='barrigaproduto.html'">Comprar Agora - R$ 49,90</button>
-            </div>
-            <!-- Produto 2 -->
-            <div class="product-card">
-                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0/300x200" alt="Produto 2">
-                <h3>Guia de Beleza Natural</h3>
-                <p>Dicas exclusivas para manter sua pele saudável e radiante.</p>
-                <button onclick="window.location.href='#'">Comprar Agora - R$ 39,90</button>
-            </div>
-            <!-- Produto 3 -->
-            <div class="product-card">
-                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0/300x200" alt="Produto 3">
-                <h3>Dicas para Dormir Melhor</h3>
-                <p>Aprenda como melhorar sua qualidade de sono naturalmente.</p>
-                <button onclick="window.location.href='#'">Comprar Agora - R$ 29,90</button>
-            </div>
+        <!-- Título do Produto -->
+        <header>
+            <h1>Receita Natural</h1>
+            <p>A Solução Definitiva Para Queimar Gordura com Saúde</p>
+        </header>
+<img alt="Ícone de Certificação" src="https://i.ibb.co/2N8sT3S/IMG-20241106-102247.png" alt="IMG-20241106-102247" border="0" style="; border: none; background: none; width: auto; height: 40px; display: inline-block;"></p>
+        <!-- Mockup do Produto -->
+        <div class="product-mockup">
+            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="IMG-20241110-021411" border="0/500x300" alt="Mockup do Produto">
+        </div>
+<!-- Container do preço e lista de desejos -->
+<div class="price-wishlist-table">
+    <table class="price-table">
+        <tr>
+            <td class="wishlist-cell">
+                <button id="wishlist-btn" class="wishlist-btn" onclick="toggleWishlist(event)">
+                    <span id="wishlist-heart" class="heart">&#9829;</span>
+                </button>
+                <span id="wishlist-message" class="wishlist-message">Adorei!</span>
+            </td>
+            <td class="price-cell">
+                <span class="product-price">R$ 49,90</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<style>
+    /* Estilo do container principal */
+    .price-wishlist-table {
+        width: 100%;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    /* Estilo da tabela */
+    .price-table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        background: #ffe6f7;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }
+
+    /* Células da tabela */
+    .wishlist-cell,
+    .price-cell {
+        padding: 10px 15px;
+        vertical-align: middle;
+        position: relative;
+    }
+
+    /* Estilo do botão de lista de desejos */
+    .wishlist-btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Estilo do coração */
+    .heart {
+        font-size: 20px;
+        color: gray;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    /* Estilo da mensagem "Adorei!" */
+    .wishlist-message {
+        font-size: 14px;
+        font-weight: bold;
+        color: #ff66b2;
+        position: absolute;
+        top: -30px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .wishlist-message.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Animação de bolhas */
+    .heart.bubble {
+        animation: bubble-animation 0.5s ease;
+    }
+
+    @keyframes bubble-animation {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Estilo do preço */
+    .product-price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #4a004e;
+    }
+</style>
+
+<script>
+    // Função para alternar o estado do coração com animação e mostrar "Adorei!"
+    function toggleWishlist(event) {
+        event.preventDefault(); // Previne comportamento padrão no celular
+        const heart = document.getElementById('wishlist-heart');
+        const message = document.getElementById('wishlist-message');
+
+        if (heart.style.color === 'red') {
+            heart.style.color = 'gray'; // Não selecionado
+        } else {
+            heart.style.color = 'red'; // Selecionado
+            heart.classList.add('bubble'); // Adiciona animação
+            message.classList.add('show'); // Mostra mensagem temporária
+
+            // Remove a mensagem após 2 segundos
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 1000);
+        }
+
+        // Remove a classe de animação após a execução
+        heart.addEventListener('animationend', () => {
+            heart.classList.remove('bubble');
+        });
+    }
+</script>
+          <div style="margin-top: 50px;"></div>
+        <!-- Descrição do Produto -->
+        <div class="product-description">
+            <h1 style="font-size: 20px; text-align: center;">Perde Barriga ou seu Dinheiro de Volta</h1>
+            <p>
+                Elimine gordura abdominal de forma natural e sem dietas restritivas.
+                Esta receita já está a dar de falar e já ajudou várias mulheres a se sentirem confiantes, principalmente com o verão aproximando.
+                A receita é orgânica e facil de preparar em casa, no serviço ou em qualquer lugar, ingredientes 100% naturais. <div style="margin-top: 20px;"></div>
+<div style="margin-top: 20px;"></div>
+                <p style="line-height: 1.8; margin-bottom: 15px;">
+                    💳 Compre com confiança e tranquilidade sabendo que sua segurança é nossa prioridade.
+                    <div style="margin-top: 20px;"></div>
+<div style="margin-top: 20px;"></div>
+                📩A receita será enviada automaticamente para o seu celular após a compra. </p>
+<div style="margin-top: 20px;"></div>
+<div style="margin-top: 20px;"></div>
+                A Nossa equipe técnica, <div style="margin-top: 20px;"></div>
+<div style="margin-top: 20px;"></div>
+                Kivara & Co.<div style="margin-top: 20px;"></div>
+<div style="margin-top: 20px;"></div>
+                Email: info@kivara.shop
+            <div style="margin-top: 40px;"></div>
+           <p style="color: red; font-weight: bold; font-size: 13px; text-align: center; margin-top: 20px;">Oferta válida apenas hoje!</p>
+
+
+<style>
+    .cta-checkout-container {
+        text-align: center; /* Centraliza o botão */
+        margin-top: 20px; /* Adiciona espaço acima */
+    }
+
+    .cta-checkout {
+        display: inline-block;
+        text-align: center;
+        background: linear-gradient(90deg, #ff66b2, #ff0099);
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 15px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(255, 51, 153, 0.3);
+        margin: 20px auto;
+    }
+
+    .cta-checkout:hover {
+        background: linear-gradient(90deg, #ff0099, #ff66b2);
+        box-shadow: 0 6px 15px rgba(255, 51, 153, 0.5);
+    }
+</style>
+
+<div class="cta-checkout-container">
+    <a href="checkout.html" class="cta-checkout">Comprar Agora</a>
+</div>
+
+<!-- Ícone de certificação -->
+             <div style="margin-top: 80px;"></div>
+<p style="text-align: center; margin-top: 20px;">
+    <img alt="Ícone de Certificação" src="https://i.ibb.co/R7Fn7F8/Logopit-1730811534550.png" style="border: none; width: auto; height: 60px;">
+</p>
+
+<!-- Rodapé -->
+<footer style="font-size: 12px; text-align: center; margin-top: 20px;">
+ <p style="color: black; font-size: 13px; text-align: center; margin-top: 20px;">© 2024. Garantia de Qualidade e Satisfação.</p>
+</footer>
+ <div style="margin-top: 80px;"></div>           
+<!-- Seção de Perguntas Frequentes (FAQ) e Informações da Empresa -->
+<div style="padding: 20px; margin-top: 30px; font-family: 'Arial', sans-serif; background-color: #ffe6f7; color: #4a004e; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 700px; margin: auto;">
+    <!-- Título da Seção FAQ -->
+    <h2 style="text-align: center; font-size: 24px; color: #4a004e; margin-bottom: 20px;">Perguntas Frequentes</h2>
+
+    <!-- Seção FAQ -->
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+        <div style="background-color: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+            <button onclick="toggleFAQ(this)" style="width: 100%; background: none; border: none; text-align: left; font-size: 16px; font-weight: bold; color: #4a004e; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                Como receberei a receita após a compra?
+                <span style="transform: rotate(0); transition: transform 0.3s;">&#9656;</span>
+            </button>
+            <p style="display: none; margin-top: 10px; color: #660033; font-size: 15px;">
+                Após a confirmação do pagamento, a receita será enviada automaticamente para o seu celular para baixar e usar.
+            </p>
+        </div>
+
+        <div style="background-color: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+            <button onclick="toggleFAQ(this)" style="width: 100%; background: none; border: none; text-align: left; font-size: 16px; font-weight: bold; color: #4a004e; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                Esta receita realmente ajuda a perder barriga?
+                <span style="transform: rotate(0); transition: transform 0.3s;">&#9656;</span>
+            </button>
+            <p style="display: none; margin-top: 10px; color: #660033; font-size: 15px;">
+                Sim! A receita foi especialmente desenvolvida com ingredientes naturais que ajudam na queima de gordura abdominal e a melhorar a digestão, promovendo resultados mais rápidos quando combinada com uma alimentação equilibrada e exercícios.
+            </p>
+        </div>
+
+        <div style="background-color: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+            <button onclick="toggleFAQ(this)" style="width: 100%; background: none; border: none; text-align: left; font-size: 16px; font-weight: bold; color: #4a004e; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                Em quanto tempo começarei a ver resultados?
+                <span style="transform: rotate(0); transition: transform 0.3s;">&#9656;</span>
+            </button>
+            <p style="display: none; margin-top: 10px; color: #660033; font-size: 15px;">
+                Os resultados podem variar de pessoa para pessoa, mas muitos dos nossos clientes começam a notar mudanças significativas em poucas semanas, desde que sigam a receita corretamente e mantenham hábitos saudáveis.
+            </p>
         </div>
     </div>
-    <footer>
-        <p>© 2024 Shopping Brasil - Todos os direitos reservados.</p>
-        <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a>
-    </footer>
-</body>
-</html>
+
+    <!-- Script para Expandir FAQ -->
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+                icon.style.transform = 'rotate(90deg)';
+            } else {
+                answer.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+
+    <!-- Seção de Informações da Empresa -->
+    <div style="padding: 20px; margin-top: 20px; font-family: 'Arial', sans-serif; background-color: #fff3fc; color: #4a004e; border-radius: 10px;">
+        <h2 style="text-align: center; font-size: 22px; color: #4a004e;">Informações da Empresa</h2>
+        <p style="text-align: center; margin-bottom: 10px;">Kivara & Co. é uma empresa dedicada a oferecer produtos de alta qualidade e satisfação garantida. Nosso compromisso é proporcionar a melhor experiência de compra para nossos clientes, com atendimento personalizado e segurança em cada transação.</p>
+        <p style="text-align: center; margin-bottom: 5px;"><strong>Email:</strong> info@kivara.shop</p>
+        <p style="text-align: center; margin-bottom: 5px;"><strong>Endereço:</strong> Rua dos Empreendedores, 123 - São Paulo, Brasil</p>
+        <p style="text-align: center;"><strong>Atendimento:</strong> Segunda a Sexta, das 9h às 18h</p>
+    </div>
+</div>
