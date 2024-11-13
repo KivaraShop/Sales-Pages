@@ -1,5 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt">
+
+<head>
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff99cc;
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4a004e;
+            text-decoration: none;
+        }
+
+        /* Ícone do carrinho */
+        .cart-icon {
+            color: #4a004e;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .cart-icon .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff66b2;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        /* Menu de navegação */
+        nav {
+            background-color: #ff66b2;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffccdd;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+
+
+        @media(min-width: 768px) {
+            .product-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+
+        /* Banner animado */
+        #bannerText {
+            font-family: 'Didot', serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #4a004e;
+            background-color: #f8d7e6;
+            padding: 5px;
+            text-align: center;
+            animation: slideInOut 4s ease-in-out infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes slideInOut {
+            0% { transform: translateX(-100%); opacity: 0; }
+            25% { transform: translateX(0); opacity: 1; }
+            75% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <a href="#" class="logo">Shopping Brasil</a>
+        <a href="#" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">0</span>
+        </a>
+    </header>
+
+    <!-- Menu de Navegação -->
+    <nav>
+        <a href="loja.html">Início</a>
+        <a href="loja.html">Produtos</a>
+        <a href="sobrenos.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+    </nav>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
