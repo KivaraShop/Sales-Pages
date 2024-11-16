@@ -12,6 +12,15 @@
             margin: 0;
             padding: 0;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
         }
 
         .container {
@@ -22,11 +31,13 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
         }
 
         .header {
-            text-align: center;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .header h1 {
@@ -86,7 +97,7 @@
             text-align: center;
         }
 
-        /* Estilo para o spinner de carregamento */
+        /* Spinner de carregamento */
         #loading-spinner {
             position: fixed;
             top: 50%;
@@ -98,7 +109,8 @@
             width: 50px;
             height: 50px;
             animation: spin 2s linear infinite;
-            display: none;
+            display: block;
+            z-index: 999;
         }
 
         @keyframes spin {
@@ -106,7 +118,7 @@
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* Media query para telas pequenas */
+        /* Ajustes para telas pequenas */
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -155,43 +167,39 @@
         <div id="paypal-button-container"></div>
 
         <div class="footer">
-            <p>2024 © あなたの会社名。すべての権利を保留します。</p>
+            <p>2024 © あなたの会社名。すべての著作権を保有します。</p>
         </div>
     </div>
 
-    <!-- Script PayPal -->
     <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
     <script>
+        // Mostra o spinner enquanto as opções de pagamento estão carregando
         paypal.Buttons({
             createOrder: function(data, actions) {
+                // Mostra o spinner enquanto o botão está sendo carregado
+                document.getElementById('loading-spinner').style.display = 'block';
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '2400'
+                            value: '2400'  // Valor ajustado para ¥2,400
                         }
                     }]
                 });
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('お支払いが完了しました ' + details.payer.name.given_name);
-                    window.location.href = "ありがとう.html";
+                    alert('支払いが完了しました: ' + details.payer.name.given_name);
+                    window.location.href = "Obrigado.html"; // Página de obrigado após o pagamento
                 });
             },
-            onStart: function() {
-                document.getElementById('loading-spinner').style.display = 'block'; // Mostrar o spinner ao iniciar o carregamento
+            onError: function(err) {
+                alert('支払いに失敗しました。');
             },
-            onCancel: function() {
-                document.getElementById('loading-spinner').style.display = 'none'; // Esconder o spinner se o processo for cancelado
+            onReady: function() {
+                // Oculta o spinner depois que o botão está completamente carregado
+                document.getElementById('loading-spinner').style.display = 'none';
             }
         }).render('#paypal-button-container');
-
-        // Esconder o spinner quando o botão e opções de pagamento estiverem totalmente carregados
-        paypal.Buttons().isEligible().then(function(isEligible) {
-            if (isEligible) {
-                document.getElementById('loading-spinner').style.display = 'none'; // Esconder o spinner
-            }
-        });
     </script>
 </body>
 </html>
