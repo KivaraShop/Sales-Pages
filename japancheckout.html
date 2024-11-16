@@ -32,6 +32,7 @@
         .header h1 {
             color: #4a90e2;
             font-size: 2em;
+            margin-bottom: 10px;
         }
 
         .header p {
@@ -60,7 +61,8 @@
         }
 
         .mockup img {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -83,6 +85,40 @@
         #paypal-button-container {
             margin-top: 20px;
             text-align: center;
+        }
+
+        /* Responsividade para dispositivos móveis */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .order-summary {
+                font-size: 1em;
+            }
+
+            .order-summary .price {
+                font-size: 1.3em;
+            }
+
+            .mockup img {
+                max-width: 90%;
+            }
+        }
+
+        /* Spinner */
+        .spinner {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            color: #4a90e2;
         }
     </style>
 </head>
@@ -108,6 +144,11 @@
             <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="IMG-20241116-194443" border="0" alt="Imagem do Produto">
         </div>
 
+        <!-- Spinner de Carregamento -->
+        <div class="spinner" id="spinner">
+            <p>読み込み中...</p>
+        </div>
+
         <!-- Botão PayPal -->
         <div id="paypal-button-container"></div>
 
@@ -121,6 +162,9 @@
     <script>
         paypal.Buttons({
             createOrder: function(data, actions) {
+                // Exibe o spinner de carregamento
+                document.getElementById('spinner').style.display = 'block';
+
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
@@ -131,75 +175,24 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('支払いが完了しました。 ' + details.payer.name.given_name + 'さん、ありがとうございます！');
-                    window.location.href = "ありがとう.html"; // Redireciona para a página de agradecimento
+                    // Remove o spinner quando o pagamento for aprovado
+                    document.getElementById('spinner').style.display = 'none';
+                    alert('支払いが完了しました: ' + details.payer.name.given_name);
+                    window.location.href = "Obrigado.html"; // Página de agradecimento
                 });
+            },
+            onCancel: function(data) {
+                // Remove o spinner se o pagamento for cancelado
+                document.getElementById('spinner').style.display = 'none';
+                alert('支払いがキャンセルされました');
+            },
+            onError: function(err) {
+                // Remove o spinner em caso de erro
+                document.getElementById('spinner').style.display = 'none';
+                alert('エラーが発生しました: ' + err.message);
             }
         }).render('#paypal-button-container');
     </script>
-<!-- Spinner e mensagem -->
-<div id="loading-overlay">
-    <div id="spinner"></div>
-    <p>Por favor, aguarde...</p>
-</div>
 
-<!-- Estilo do Spinner -->
-<style>
-    #loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #spinner {
-        border: 6px solid #f3f3f3;
-        border-top: 6px solid #ff66b2;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    #loading-overlay p {
-        margin-top: 15px;
-        font-size: 16px;
-        color: #4a004e;
-    }
-</style>
-
-<!-- Script -->
-<script>
-    // Função para verificar se os elementos do PayPal estão carregados
-    function checkPayPalLoaded() {
-        const paypalButton = document.querySelector("#paypal-button-container iframe");
-        const paypalCreditCard = document.querySelector(".paypal-buttons-context-iframe");
-
-        // Verifica se os dois elementos existem
-        if (paypalButton && paypalButton.offsetParent !== null && paypalCreditCard && paypalCreditCard.offsetParent !== null) {
-            // Remove o spinner quando os elementos estiverem disponíveis
-            document.getElementById("loading-overlay").style.display = "none";
-        } else {
-            // Continua tentando até que o PayPal carregue
-            setTimeout(checkPayPalLoaded, 500); // Ajuste para dispositivos móveis
-        }
-    }
-
-    // Aguarda o carregamento total da página antes de iniciar a verificação
-    window.onload = function () {
-        checkPayPalLoaded();
-    };
 </body>
 </html>
