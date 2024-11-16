@@ -3,191 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="日本のプロフェッショナル向け必須英語フレーズ集で英語を効率的に学ぼう！簡単で役立つフレーズをすぐに覚えられます。">
-    <title>必須英語フレーズ 日本のプロフェッショナル向け</title>
+    <meta name="description" content="安全で簡単なオンライン決済。PayPalを使って、購入を完了しましょう。">
+    <title>購入 | あなたの購入商品</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-        }
-        .header {
-            background-color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 2px solid #e1e1e1;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            color: #4a90e2;
-            margin: 0;
-        }
-        .header p {
-            font-size: 1.2em;
-            color: #777;
-        }
-        .cta-button {
-            background-color: #4a90e2;
-            color: #fff;
-            padding: 15px 25px;
-            font-size: 1.2em;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 15px;
-        }
-        .cta-button:hover {
-            background-color: #357ab7;
-        }
-        .section {
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .section h2 {
-            font-size: 2em;
             color: #333;
-        }
-        .section p {
-            font-size: 1.1em;
-            color: #666;
-            margin-top: 10px;
-        }
-        .features {
             display: flex;
             justify-content: center;
-            gap: 50px;
-            margin-top: 30px;
+            align-items: flex-start;
+            height: 100%;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;  /* Garante que a página scrolla para baixo */
         }
-        .feature {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 250px;
-        }
-        .feature h3 {
-            font-size: 1.5em;
-            color: #4a90e2;
-        }
-        .feature p {
-            font-size: 1em;
-            color: #555;
-        }
-        .mockup {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .mockup img {
-            width: 250px;
-            height: auto;
-            border-radius: 5px;
-        }
-        .what-is-in {
-            margin-top: 30px;
-            text-align: left;
-            padding: 0 20px;
-        }
-        .what-is-in ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .what-is-in li {
-            font-size: 1.1em;
-            margin: 10px 0;
-            color: #555;
-        }
-        .reviews {
-            background-color: #e9f7fa;
-            padding: 40px 20px;
-        }
-        .reviews h3 {
-            font-size: 2em;
-            color: #333;
-        }
-        .review {
-            font-style: italic;
-            font-size: 1.1em;
-            color: #444;
-            margin-top: 10px;
-        }
-        .price {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
+
+        .container {
+            width: 100%;
+            max-width: 700px;
             margin: 0 auto;
-            text-align: center;
-        }
-        .price h3 {
-            font-size: 2em;
-            color: #4a90e2;
-        }
-        .price p {
-            font-size: 1.5em;
-            color: #333;
-        }
-        .footer {
-            background-color: #333;
-            color: #fff;
             padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .header {
+            margin-bottom: 20px;
             text-align: center;
         }
+
+        .header h1 {
+            color: #4a90e2;
+            font-size: 2em;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .order-summary {
+            margin-top: 30px;
+            font-size: 1.1em;
+        }
+
+        .order-summary p {
+            margin: 10px 0;
+        }
+
+        .order-summary .price {
+            font-size: 1.5em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .mockup {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .mockup img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: #f1f1f1;
+            border-top: 1px solid #e1e1e1;
+        }
+
         .footer p {
             font-size: 1em;
-            color: #bbb;
+            color: #888;
+        }
+
+        #paypal-button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Ajustes para telas pequenas */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .order-summary p, .order-summary .price {
+                font-size: 1em;
+            }
+
+            .mockup img {
+                max-width: 80%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <h1>必須英語フレーズ 日本のプロフェッショナル向け</h1>
-        <p>これらのフレーズで英語をもっと早く学びましょう！</p>
-        <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
-    </header>
+    <div class="container">
+        <div class="header">
+            <h1>購入商品を支払う準備ができました！</h1>
+            <p>購入を確定する前に、支払い方法を選択してください。PayPalを使用して購入を完了しましょう。</p>
+        </div>
 
-    <section class="section">
-        <h2>なぜこの英語フレーズ集が必要なのか？</h2>
-        <p>このフレーズ集を使うことで、あなたのキャリアをよりスムーズに進めることができます。ビジネスシーンで使える必須英語フレーズを簡単に学べます。</p>
-    </section>
+        <!-- Resumo do Pedido -->
+        <div class="order-summary">
+            <h2>注文内容</h2>
+            <p>商品名: あなたの商品名</p>
+            <p>数量: 1</p>
+            <p class="price">価格: ¥2,400</p>
+        </div>
 
-    <section class="mockup">
-        <h2>携帯電話用のこの本で、会議やビジネスで最もよく使われる英語のフレーズを学びましょう。</h2>
-        <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="IMG-20241116-194443" border="0" alt="Essential English Phrases Ebook" />
-         <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
-    </section>
+        <!-- Mockup do Produto -->
+        <div class="mockup">
+            <h3>商品画像</h3>
+            <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="Imagem do Produto">
+        </div>
 
-    <section class="what-is-in">
-        <h2>この本に含まれる内容</h2>
-        <ul>
-            <li>ビジネス英会話に役立つ最も重要なフレーズ</li>
-            <li>電話、会議、Eメールで使える実践的なフレーズ</li>
-            <li>英語でスムーズにコミュニケーションを取るためのコツ</li>
-            <li>効果的に自己紹介をするためのフレーズ</li>
-            <li>異文化理解を深めるための英語表現</li>
-        </ul>
-    </section>
+        <!-- Botão PayPal -->
+        <div id="paypal-button-container"></div>
 
-    <section class="reviews">
-        <h3>お客様の声</h3>
-        <div class="review">"このフレーズ集を使って、英語がとても自信を持って使えるようになりました！"</div>
-        <div class="review">"ビジネスシーンで役立つフレーズがたくさん載っていて、すぐに使えるのが良かったです！"</div>
-    </section>
+        <div class="footer">
+            <p>2024 © あなたの会社名。すべての著作権が保護されています。</p>
+        </div>
+    </div>
 
-    <section class="price" id="purchase">
-        <h3>今すぐ購入</h3>
-        <p>価格: ¥2,400</p>
-         <p>購入後、コースは直接あなたの携帯電話に届きます。</p>
-          <p>自信を持ってコースを購入し、今日からプロフェッショナルな英語を話し始めましょう。  <p>
-        <a href="japancheckout.html" class="cta-button">購入する</a>
-    </section>
-  
-    <footer class="footer">
-        <p>&copy; 2024年、品質と満足の保証。すべての権利を保有します。</p>
-    </footer>
-
+    <!-- Script do PayPal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q..." ></script>
 </body>
 </html>
