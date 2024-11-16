@@ -18,6 +18,7 @@
             height: 100%;
             flex-direction: column;
             overflow-x: hidden;
+            overflow-y: auto;  /* Garante que a página scrolla para baixo */
         }
 
         .container {
@@ -29,6 +30,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: relative;
+            box-sizing: border-box;
         }
 
         .header {
@@ -118,6 +120,8 @@
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .header h1 {
@@ -130,6 +134,10 @@
 
             .order-summary p, .order-summary .price {
                 font-size: 1em;
+            }
+
+            .mockup img {
+                max-width: 80%;
             }
         }
     </style>
@@ -163,15 +171,13 @@
         <div id="paypal-button-container"></div>
 
         <div class="footer">
-            <p>2024 © あなたの会社名。全著作権所有。</p>
+            <p>2024 © あなたの会社名。すべての著作権が保護されています。</p>
         </div>
     </div>
 
+    <!-- Script do PayPal -->
     <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
     <script>
-        // Exibe o spinner enquanto os elementos de pagamento estão carregando
-        document.getElementById('loading-spinner').style.display = 'block';
-
         paypal.Buttons({
             createOrder: function(data, actions) {
                 return actions.order.create({
@@ -184,15 +190,18 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
+                    alert('支払いが完了しました: ' + details.payer.name.given_name);
                     window.location.href = "Obrigado.html";
                 });
-            },
-            onRender: function() {
-                // O spinner desaparece quando o botão PayPal é completamente carregado
-                document.getElementById('loading-spinner').style.display = 'none';
             }
         }).render('#paypal-button-container');
+
+        // Função para esconder o spinner quando o PayPal estiver carregado
+        paypal.Buttons().isEligible().then(function(result) {
+            if (result) {
+                document.getElementById('loading-spinner').style.display = 'none'; // Remove o spinner quando as opções de pagamento estiverem prontas
+            }
+        });
     </script>
 
 </body>
