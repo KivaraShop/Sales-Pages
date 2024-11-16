@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn essential English phrases for Japanese professionals to enhance your career. Quick and easy phrases for business settings.">
+    <title>Essential English Phrases for Japanese Professionals</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external stylesheet for layout and design -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #e1e1e1;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            color: #4a90e2;
+            margin: 0;
+        }
+        .header p {
+            font-size: 1.2em;
+            color: #777;
+        }
+        .cta-button {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .cta-button:hover {
+            background-color: #357ab7;
+        }
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .section h2 {
+            font-size: 2em;
+            color: #333;
+        }
+        .section p {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+        }
+        .feature {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+        }
+        .feature h3 {
+            font-size: 1.5em;
+            color: #4a90e2;
+        }
+        .feature p {
+            font-size: 1em;
+            color: #555;
+        }
+        .mockup {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .mockup img {
+            width: 250px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .what-is-in {
+            margin-top: 30px;
+            text-align: left;
+            padding: 0 20px;
+        }
+        .what-is-in ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .what-is-in li {
+            font-size: 1.1em;
+            margin: 10px 0;
+            color: #555;
+        }
+        .reviews {
+            background-color: #e9f7fa;
+            padding: 40px 20px;
+        }
+        .reviews h3 {
+            font-size: 2em;
+            color: #333;
+        }
+        .review {
+            font-style: italic;
+            font-size: 1.1em;
+            color: #444;
+            margin-top: 10px;
+        }
+        .price {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .price h3 {
+            font-size: 2em;
+            color: #4a90e2;
+        }
+        .price p {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 1em;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>必須英語フレーズ for 日本のプロフェッショナル</h1>
+        <p>これらのフレーズで英語をもっと早く学びましょう！</p>
+        <a href="#purchase" class="cta-button">今すぐ購入</a>
+    </header>
+
+    <section class="section">
+        <h2>なぜこの英語フレーズ集が必要なのか？</h2>
+        <p>このフレーズ集を使うことで、あなたのキャリアをよりスムーズに進めることができます。ビジネスシーンで使える必須英語フレーズを簡単に学べます。</p>
+    </section>
+
+    <section class="mockup">
+        <h2>このような形で英語フレーズが学べます</h2>
+        <img src="mockup.jpg" alt="Essential English Phrases eBook Mockup">
+    </section>
+
+    <section class="what-is-in">
+        <h2>このeBookに含まれているもの:</h2>
+        <ul>
+            <li>日常的に使えるビジネス英語フレーズ</li>
+            <li>会話でよく使う便利な英語表現</li>
+            <li>仕事でよく使われる語彙とその使い方</li>
+            <li>自己紹介や会議で使えるフレーズ</li>
+            <li>英語でのやり取りをスムーズにするためのコツ</li>
+        </ul>
+    </section>
+
+    <section class="price">
+        <h3>今すぐ購入</h3>
+        <p>たったの¥2,400で、今すぐビジネスで使える英語フレーズをマスター！</p>
+        <a href="#checkout" class="cta-button">購入する</a>
+    </section>
+
+    <section class="reviews">
+        <h3>お客様の声</h3>
+        <p class="review">「このeBookを使ってから、仕事での英語が格段にスムーズになりました！」 - 山田太郎さん</p>
+        <p class="review">「必須フレーズがまとまっていて、使いやすいです！」 - 佐藤花子さん</p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Essential English Phrases. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
