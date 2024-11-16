@@ -18,7 +18,7 @@
             height: 100%;
             flex-direction: column;
             overflow-x: hidden;
-            overflow-y: auto;  /* Garante que a página scrolla para baixo */
+            overflow-y: auto;
         }
 
         .container {
@@ -140,11 +140,11 @@
         <!-- Mockup do Produto -->
         <div class="mockup">
             <h3>商品画像</h3>
-            <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="Imagem do Produto">
+            <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="IMG-20241116-194443" border="0" alt="Imagem do Produto">
         </div>
 
         <!-- Botão PayPal -->
-        <div id="paypal-button-container"></div>
+        <div id="paypal-button-container" style="margin-top: 20px; text-align: center;"></div>
 
         <div class="footer">
             <p>2024 © あなたの会社名。すべての著作権が保護されています。</p>
@@ -152,6 +152,26 @@
     </div>
 
     <!-- Script do PayPal -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q..." ></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '2400' // Valor em ienes
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
+                    window.location.href = "Obrigado.html";
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+
 </body>
 </html>
