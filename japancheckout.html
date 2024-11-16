@@ -18,8 +18,8 @@
             height: 100%;
             flex-direction: column;
             overflow-x: hidden;
-            overflow-y: auto;  /* Garante que a página scrolla para baixo */
-            transition: filter 0.3s ease;  /* Suaviza a transição do desfoque */
+            overflow-y: auto; /* Garante que a página pode rolar */
+            transition: filter 0.3s ease; /* Transição para o desfoque */
         }
 
         /* Fundo desfocado */
@@ -117,6 +117,7 @@
             z-index: 999;
         }
 
+        /* Animação de rotação do spinner */
         @keyframes spin {
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
@@ -165,15 +166,16 @@
     <div id="loading-spinner"></div>
     <div class="spinner-message">しばらくお待ちください...</div> <!-- "Por favor, aguarde" em japonês -->
 
+    <!-- Conteúdo da página -->
     <div class="container">
         <div class="header">
-            <h1>購入商品を支払う準備ができました！</h1>
-            <p>購入を確定する前に、支払い方法を選択してください。PayPalを使用して購入を完了しましょう。</p>
+            <h1>購入商品を支払い</h1>
+            <p>ご注文内容をご確認ください。お支払いはPayPalを使用して完了します。</p>
         </div>
 
         <!-- Resumo do Pedido -->
         <div class="order-summary">
-            <h2>注文内容</h2>
+            <h2>注文明細</h2>
             <p>商品名: あなたの購入商品</p>
             <p>数量: 1</p>
             <p class="price">価格: ¥2,400</p>
@@ -189,47 +191,46 @@
         <div id="paypal-button-container"></div>
 
         <div class="footer">
-            <p>2024 © あなたの会社名。著作権は保護されています。</p>
+            <p>2024 © あなたの会社名。無断転載禁止。</p>
         </div>
     </div>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&components=buttons"></script>
     <script>
-        // Inicializa o botão PayPal (supondo que você já tenha o botão configurado)
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '2400'
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    console.log('Pagamento bem-sucedido', details);
-                });
-            },
-            onError: function(err) {
-                console.log('Erro no pagamento', err);
-            }
-        }).render('#paypal-button-container');
+        // Mostra o spinner e desfoca a página até o PayPal carregar
+        window.onload = function() {
+            document.body.classList.add('blurred');
+            loadPaypalButton();
+        };
 
-        // Monitorando a carga do botão PayPal
-        document.addEventListener("DOMContentLoaded", function() {
-            const paypalButton = document.querySelector('#paypal-button-container');
-           
-            // Simula o carregamento
-            setTimeout(function() {
-                // Assim que o PayPal e o botão estiverem carregados, removemos o spinner e desfazemos o desfoque
-                if (paypalButton) {
+        function loadPaypalButton() {
+            // Criando o botão PayPal com a função de callback
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: '2400'
+                            }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Pagamento completado!');
+                    });
+                },
+                onError: function(err) {
+                    alert('Erro ao processar pagamento!');
+                },
+                onReady: function() {
+                    // Aqui, depois que o PayPal estiver pronto, removeremos o spinner
                     document.getElementById('loading-spinner').style.display = 'none';
                     document.querySelector('.spinner-message').style.display = 'none';
-                    document.body.classList.remove('blurred');
+                    document.body.classList.remove('blurred'); // Remove o desfoque
                 }
-            }, 2000); // Ajuste o tempo conforme necessário
-        });
+            }).render('#paypal-button-container');
+        }
     </script>
 
 </body>
