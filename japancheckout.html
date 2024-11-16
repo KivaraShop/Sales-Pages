@@ -14,13 +14,10 @@
             color: #333;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
+            height: 100%;
             flex-direction: column;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
+            overflow-x: hidden;
         }
 
         .container {
@@ -32,7 +29,6 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: relative;
-            z-index: 10;
         }
 
         .header {
@@ -167,39 +163,37 @@
         <div id="paypal-button-container"></div>
 
         <div class="footer">
-            <p>2024 © あなたの会社名。すべての著作権を保有します。</p>
+            <p>2024 © あなたの会社名。全著作権所有。</p>
         </div>
     </div>
 
     <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
     <script>
-        // Mostra o spinner enquanto as opções de pagamento estão carregando
+        // Exibe o spinner enquanto os elementos de pagamento estão carregando
+        document.getElementById('loading-spinner').style.display = 'block';
+
         paypal.Buttons({
             createOrder: function(data, actions) {
-                // Mostra o spinner enquanto o botão está sendo carregado
-                document.getElementById('loading-spinner').style.display = 'block';
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '2400'  // Valor ajustado para ¥2,400
+                            value: '2400'  // Valor em JPY
                         }
                     }]
                 });
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('支払いが完了しました: ' + details.payer.name.given_name);
-                    window.location.href = "Obrigado.html"; // Página de obrigado após o pagamento
+                    alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
+                    window.location.href = "Obrigado.html";
                 });
             },
-            onError: function(err) {
-                alert('支払いに失敗しました。');
-            },
-            onReady: function() {
-                // Oculta o spinner depois que o botão está completamente carregado
+            onRender: function() {
+                // O spinner desaparece quando o botão PayPal é completamente carregado
                 document.getElementById('loading-spinner').style.display = 'none';
             }
         }).render('#paypal-button-container');
     </script>
+
 </body>
 </html>
