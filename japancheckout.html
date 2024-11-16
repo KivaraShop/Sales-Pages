@@ -3,128 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
+    <title>チェックアウトページ</title>
     <style>
-        /* Estilo do spinner circular */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Spinner no centro da página */
         .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #4a90e2; /* Cor azul do spinner */
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
             position: fixed;
             top: 50%;
             left: 50%;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: block;
+            z-index: 9999;
             transform: translate(-50%, -50%);
-            display: none; /* Inicialmente oculto */
         }
 
-        /* Animação do spinner */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* Estilo do checkout container */
-        .checkout-container {
+        /* Estilos para o resumo do pedido */
+        .order-summary {
             padding: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: center;
             background-color: #fff;
-            border-radius: 10px;
+            margin: 20px;
+            border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
+        }
+        .order-summary h3 {
+            font-size: 1.5em;
+            color: #4a90e2;
+        }
+        .order-summary p {
+            font-size: 1.2em;
+            color: #555;
         }
 
-        /* Estilo do mockup */
+        /* Mockup */
         .mockup {
-            margin-top: 20px;
             text-align: center;
+            margin-top: 30px;
         }
-
         .mockup img {
-            width: 200px;
+            max-width: 100%;
+            width: 300px;
             height: auto;
-            border-radius: 8px;
+            border-radius: 5px;
         }
 
         /* Botão PayPal */
         #paypal-button-container {
             margin-top: 20px;
+            text-align: center;
         }
 
-        /* Resumo do pedido */
-        .order-summary {
-            margin-top: 20px;
-            text-align: left;
-            font-size: 1.2em;
-        }
+        /* Responsividade para celular */
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
 
-        .order-summary p {
-            margin: 5px 0;
+            .order-summary {
+                padding: 15px;
+                margin: 10px 0;
+            }
+
+            .order-summary h3 {
+                font-size: 1.3em;
+            }
+
+            .order-summary p {
+                font-size: 1.1em;
+            }
+
+            .mockup img {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="checkout-container">
-    <h2>Resumo do Pedido</h2>
-   
-    <!-- Resumo do pedido -->
-    <div class="order-summary">
-        <p><strong>Produto:</strong> Curso de Inglês</p>
-        <p><strong>Preço:</strong> ¥2,400</p>
-    </div>
-   
-    <!-- Mockup da tela do produto (exemplo de imagem de mockup) -->
-    <div class="mockup">
-        <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="IMG-20241116-194443" border="0/200x300" alt="Curso de Inglês Mockup">
-    </div>
-
-    <!-- Spinner circular -->
+    <!-- Spinner (irá desaparecer após o carregamento das opções de pagamento) -->
     <div class="spinner" id="spinner"></div>
 
-    <!-- Botão PayPal -->
+    <!-- Resumo do Pedido -->
+    <div class="order-summary">
+        <h3>注文の概要</h3>
+        <p>製品名: 英語コース</p>
+        <p>価格: ¥2,400</p>
+    </div>
+
+    <!-- Mockup -->
+    <div class="mockup">
+        <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="IMG-20241116-194443" border="0" alt="Mockup do produto">
+    </div>
+
+    <!-- Container do PayPal -->
     <div id="paypal-button-container"></div>
-</div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
-<script>
-    // Mostrar o spinner enquanto o PayPal e as opções de pagamento estão carregando
-    window.onload = function() {
-        document.getElementById("spinner").style.display = "block"; // Exibe o spinner
-    };
+    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '2400'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('支払いが完了しました: ' + details.payer.name.given_name);
+                    window.location.href = "ありがとう.html";
+                });
+            },
+            onError: function(err) {
+                console.error("支払いエラー:", err);
+            }
+        }).render('#paypal-button-container');
 
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '2400' // Preço em JPY
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
-                window.location.href = "Obrigado.html";
-            });
-        },
-        onCancel: function(data) {
-            alert('Pagamento cancelado.');
-        },
-        onError: function(err) {
-            alert('Ocorreu um erro no pagamento.');
-        },
-        onRender: function() {
-            // Esconde o spinner assim que o PayPal e as opções de pagamento estiverem carregados
-            document.getElementById("spinner").style.display = "none"; // Esconde o spinner
-        }
-    }).render('#paypal-button-container');
-</script>
+        // Função para ocultar o spinner após o carregamento do PayPal
+        paypal.Buttons({
+            onInit: function() {
+                document.getElementById('spinner').style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>
