@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #f9f9f9;
             color: #333;
             margin: 0;
             padding: 0;
@@ -18,50 +18,52 @@
         /* Header */
         .header {
             background-color: #004f89;
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: white;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
         .header h1 {
             font-size: 3.5em;
             margin-bottom: 20px;
+            letter-spacing: 2px;
         }
         .header p {
-            font-size: 1.4em;
+            font-size: 1.6em;
             margin-bottom: 20px;
         }
         .cta-button {
             background-color: #ff5e00;
             color: white;
-            padding: 20px 40px;
-            font-size: 1.5em;
-            border-radius: 8px;
+            padding: 15px 35px;
+            font-size: 1.4em;
+            border-radius: 5px;
             text-decoration: none;
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 30px;
             transition: background-color 0.3s ease;
         }
         .cta-button:hover {
-            background-color: #ff4500;
+            background-color: #e55d00;
         }
         
         /* Main Content Section */
         .section {
             padding: 60px 20px;
             text-align: center;
-            background-color: #ffffff;
+            background-color: #fff;
         }
         .section h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 2.8em;
+            margin-bottom: 20px;
             color: #333;
         }
         .section p {
-            font-size: 1.3em;
+            font-size: 1.4em;
             color: #555;
             line-height: 1.6;
-            margin-bottom: 30px;
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
         
         /* Mockup Section */
@@ -91,8 +93,8 @@
             padding: 40px;
             width: 280px;
             text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
         .feature:hover {
@@ -111,58 +113,62 @@
         /* Customer Reviews */
         .reviews {
             background-color: #eef4fb;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
         .reviews h3 {
             font-size: 2.5em;
             color: #333;
             text-align: center;
+            margin-bottom: 40px;
         }
         .review {
             font-size: 1.3em;
             color: #444;
             margin-top: 15px;
             font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Pricing Section */
+        /* Price Section */
         .price {
             background-color: #ffffff;
             padding: 50px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             width: 350px;
             margin: 50px auto;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         .price h3 {
             font-size: 2.5em;
             color: #004f89;
+            margin-bottom: 20px;
         }
         .price p {
-            font-size: 1.8em;
+            font-size: 1.6em;
             color: #333;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         .price .cta-button {
             background-color: #ff5e00;
-            padding: 20px 40px;
+            padding: 20px 35px;
             font-size: 1.5em;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 5px;
             margin-top: 20px;
             display: inline-block;
             transition: background-color 0.3s ease;
         }
         .price .cta-button:hover {
-            background-color: #ff4500;
+            background-color: #e55d00;
         }
 
         /* Footer */
         .footer {
             background-color: #004f89;
             color: white;
-            padding: 20px;
+            padding: 30px;
             text-align: center;
         }
         .footer p {
@@ -174,11 +180,35 @@
         .trust-badges {
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 40px;
             margin-top: 60px;
         }
         .trust-badge img {
             width: 100px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.8em;
+            }
+            .header p {
+                font-size: 1.3em;
+            }
+            .section h2 {
+                font-size: 2.3em;
+            }
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                width: 90%;
+                margin-bottom: 40px;
+            }
+            .price {
+                width: 90%;
+            }
         }
     </style>
 </head>
