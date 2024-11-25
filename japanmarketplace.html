@@ -6,79 +6,157 @@
     <meta name="description" content="ビジネスで役立つ英語フレーズを簡単に学べる電子書籍。すぐに使えるフレーズを覚えて、スムーズに英語を話せるように！">
     <title>必須英語フレーズ 日本のプロフェッショナル向け</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5; color: #333; margin: 0; padding: 0; }
-
-        /* Header with Mega Menu */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Header */
         .header {
             background-color: #004f89;
+            padding: 60px 20px;
             color: white;
-            padding: 20px 20px;
             text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .header h1 {
-            font-size: 2em;
-            margin: 0;
+            font-size: 3.5em;
+            margin-bottom: 20px;
         }
-        .header nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.2em;
+        .header p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
         }
         .cta-button {
             background-color: #ff5e00;
             color: white;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .cta-button:hover { background-color: #ff4500; }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .product {
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 20px 40px;
+            font-size: 1.5em;
             border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #ff4500;
+        }
+        
+        /* Main Content Section */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .section p {
+            font-size: 1.3em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        /* Mockup Section */
+        .mockup {
+            margin-top: 40px;
             text-align: center;
         }
-        .product img { max-width: 100%; height: auto; border-radius: 8px; }
-        .product h3 { font-size: 1.6em; color: #004f89; margin: 10px 0; }
-        .product .price { font-size: 1.4em; color: #ff5e00; }
-        .product .ratings { margin: 10px 0; }
-        .product .ratings i { color: #ffb400; }
-
-        /* Reviews Section */
+        .mockup img {
+            width: 350px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .mockup img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        .feature {
+            background-color: #ffffff;
+            padding: 40px;
+            width: 280px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .feature h3 {
+            font-size: 1.8em;
+            color: #004f89;
+            margin-bottom: 15px;
+        }
+        .feature p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        
+        /* Customer Reviews */
         .reviews {
             background-color: #eef4fb;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
-        .reviews h3 { font-size: 2.5em; color: #333; text-align: center; }
+        .reviews h3 {
+            font-size: 2.5em;
+            color: #333;
+            text-align: center;
+        }
         .review {
-            font-size: 1.2em;
+            font-size: 1.3em;
             color: #444;
             margin-top: 15px;
             font-style: italic;
         }
 
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
+        /* Pricing Section */
+        .price {
+            background-color: #ffffff;
+            padding: 50px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            margin: 50px auto;
+            text-align: center;
+            border-radius: 8px;
         }
-        .trust-badge img { width: 80px; }
+        .price h3 {
+            font-size: 2.5em;
+            color: #004f89;
+        }
+        .price p {
+            font-size: 1.8em;
+            color: #333;
+            margin-top: 15px;
+        }
+        .price .cta-button {
+            background-color: #ff5e00;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .price .cta-button:hover {
+            background-color: #ff4500;
+        }
 
         /* Footer */
         .footer {
@@ -87,48 +165,84 @@
             padding: 20px;
             text-align: center;
         }
+        .footer p {
+            font-size: 1.1em;
+            color: #ccc;
+        }
+        
+        /* Trust badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+        }
+        .trust-badge img {
+            width: 100px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header with Mega Menu -->
+    <!-- Header -->
     <header class="header">
         <h1>必須英語フレーズ 日本のプロフェッショナル向け</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">eBooks</a>
-            <a href="#">Courses</a>
-            <a href="#">Contact</a>
-        </nav>
-        <a href="checkout.html" class="cta-button">今すぐ購入</a>
+        <p>英語でのコミュニケーションを素早く習得！</p>
+        <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
     </header>
 
-    <!-- Product Grid -->
-    <section class="product-grid">
-        <div class="product">
-            <img src="https://via.placeholder.com/250" alt="Essential English Phrases">
-            <h3>Essential English Phrases</h3>
-            <p class="price">¥2,400</p>
-            <div class="ratings">
-                <i>⭐⭐⭐⭐⭐</i>
-            </div>
-            <a href="checkout.html" class="cta-button">今すぐ購入</a>
-        </div>
-        <!-- Add more products here -->
+    <!-- Why It's Needed -->
+    <section class="section">
+        <h2>このフレーズ集があなたに必要な理由</h2>
+        <p>会議、Eメール、電話で使えるフレーズを学び、ビジネス英語を自信を持って話せるようになります。</p>
     </section>
 
-    <!-- Reviews Section -->
+    <!-- Mockup Image -->
+    <section class="mockup">
+        <h2>携帯で手軽に学べる！</h2>
+        <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="Essential English Phrases Ebook" />
+        <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <h2>この本の特徴</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>実践的なフレーズ</h3>
+                <p>すぐに使えるビジネス英語を学べます。</p>
+            </div>
+            <div class="feature">
+                <h3>異文化理解</h3>
+                <p>英語での自己紹介や適切な表現を学びましょう。</p>
+            </div>
+            <div class="feature">
+                <h3>モバイル対応</h3>
+                <p>携帯電話で簡単に学べるので、どこでも便利に使えます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
     <section class="reviews">
         <h3>お客様の声</h3>
         <div class="review">"このフレーズ集で英語に自信が持てました！仕事でもすぐに使えました！"</div>
         <div class="review">"ビジネスシーンで本当に役立つフレーズばかりで、今すぐ使えました！"</div>
     </section>
 
+    <!-- Price Section -->
+    <section class="price">
+        <h3>今すぐ購入</h3>
+        <p>価格: ¥2,400</p>
+        <p>購入後すぐに携帯で学べます。</p>
+        <a href="japancheckout.html" class="cta-button">購入する</a>
+    </section>
+
     <!-- Trust Badges -->
     <section class="trust-badges">
-        <div class="trust-badge"><img src="https://via.placeholder.com/80" alt="SSL Secure Payment"></div>
-        <div class="trust-badge"><img src="https://via.placeholder.com/80" alt="Customer Satisfaction Guarantee"></div>
-        <div class="trust-badge"><img src="https://via.placeholder.com/80" alt="Instant Download"></div>
+        <div class="trust-badge"><img src="https://via.placeholder.com/100" alt="SSL Secure Payment"></div>
+        <div class="trust-badge"><img src="https://via.placeholder.com/100" alt="Customer Satisfaction Guarantee"></div>
+        <div class="trust-badge"><img src="https://via.placeholder.com/100" alt="Instant Download"></div>
     </section>
 
     <!-- Footer -->
