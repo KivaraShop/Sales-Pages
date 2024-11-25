@@ -3,190 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="日本のプロフェッショナル向け必須英語フレーズ集で英語を効率的に学ぼう！簡単で役立つフレーズをすぐに覚えられます。">
+    <meta name="description" content="ビジネスで役立つ英語フレーズを簡単に学べる電子書籍。すぐに使えるフレーズを覚えて、スムーズに英語を話せるように！">
     <title>必須英語フレーズ 日本のプロフェッショナル向け</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            background-color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 2px solid #e1e1e1;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            color: #4a90e2;
-            margin: 0;
-        }
-        .header p {
-            font-size: 1.2em;
-            color: #777;
-        }
-        .cta-button {
-            background-color: #4a90e2;
-            color: #fff;
-            padding: 15px 25px;
-            font-size: 1.2em;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 15px;
-        }
-        .cta-button:hover {
-            background-color: #357ab7;
-        }
-        .section {
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .section h2 {
-            font-size: 2em;
-            color: #333;
-        }
-        .section p {
-            font-size: 1.1em;
-            color: #666;
-            margin-top: 10px;
-        }
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 30px;
-        }
-        .feature {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 250px;
-        }
-        .feature h3 {
-            font-size: 1.5em;
-            color: #4a90e2;
-        }
-        .feature p {
-            font-size: 1em;
-            color: #555;
-        }
-        .mockup {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .mockup img {
-            width: 250px;
-            height: auto;
-            border-radius: 5px;
-        }
-        .what-is-in {
-            margin-top: 30px;
-            text-align: left;
-            padding: 0 20px;
-        }
-        .what-is-in ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .what-is-in li {
-            font-size: 1.1em;
-            margin: 10px 0;
-            color: #555;
-        }
-        .reviews {
-            background-color: #e9f7fa;
-            padding: 40px 20px;
-        }
-        .reviews h3 {
-            font-size: 2em;
-            color: #333;
-        }
-        .review {
-            font-style: italic;
-            font-size: 1.1em;
-            color: #444;
-            margin-top: 10px;
-        }
-        .price {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .price h3 {
-            font-size: 2em;
-            color: #4a90e2;
-        }
-        .price p {
-            font-size: 1.5em;
-            color: #333;
-        }
-        .footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        .footer p {
-            font-size: 1em;
-            color: #bbb;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; color: #333; }
+        .header { background-color: #ffffff; padding: 20px 0; text-align: center; border-bottom: 2px solid #e1e1e1; }
+        .header h1 { font-size: 2.5em; color: #4a90e2; }
+        .header p { font-size: 1.2em; color: #777; }
+        .cta-button { background-color: #4a90e2; color: #fff; padding: 15px 25px; font-size: 1.2em; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 15px; }
+        .cta-button:hover { background-color: #357ab7; }
+        .section { padding: 40px 20px; text-align: center; }
+        .section h2 { font-size: 2em; color: #333; }
+        .section p { font-size: 1.1em; color: #666; margin-top: 10px; }
+        .mockup { text-align: center; }
+        .mockup img { width: 250px; border-radius: 5px; }
+        .what-is-in ul { list-style-type: none; padding: 0; text-align: left; }
+        .what-is-in li { font-size: 1.1em; color: #555; margin: 10px 0; }
+        .reviews { background-color: #e9f7fa; padding: 40px 20px; }
+        .reviews h3 { font-size: 2em; color: #333; }
+        .review { font-size: 1.1em; color: #444; font-style: italic; margin-top: 10px; }
+        .price { background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 300px; margin: 0 auto; text-align: center; }
+        .price h3 { font-size: 2em; color: #4a90e2; }
+        .price p { font-size: 1.5em; color: #333; }
+        .footer { background-color: #333; color: #fff; padding: 20px; text-align: center; }
     </style>
 </head>
 <body>
 
     <header class="header">
         <h1>必須英語フレーズ 日本のプロフェッショナル向け</h1>
-        <p>これらのフレーズで英語をもっと早く学びましょう！</p>
+        <p>ビジネスで使える英語を素早く覚えましょう！</p>
         <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
     </header>
 
     <section class="section">
-        <h2>なぜこの英語フレーズ集が必要なのか？</h2>
-        <p>このフレーズ集を使うことで、あなたのキャリアをよりスムーズに進めることができます。ビジネスシーンで使える必須英語フレーズを簡単に学べます。</p>
+        <h2>なぜこのフレーズ集が必要か？</h2>
+        <p>この電子書籍で、会議やビジネスで役立つ英語フレーズを簡単に学び、スムーズに英語でコミュニケーションができるようになります。</p>
     </section>
 
     <section class="mockup">
-        <h2>携帯電話用のこの本で、会議やビジネスで最もよく使われる英語のフレーズを学びましょう。</h2>
-        <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="IMG-20241116-194443" border="0" alt="Essential English Phrases Ebook" />
-         <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
+        <h2>携帯で便利に学習！</h2>
+        <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="Essential English Phrases Ebook" />
+        <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
     </section>
 
     <section class="what-is-in">
         <h2>この本に含まれる内容</h2>
         <ul>
-            <li>ビジネス英会話に役立つ最も重要なフレーズ</li>
-            <li>電話、会議、Eメールで使える実践的なフレーズ</li>
-            <li>英語でスムーズにコミュニケーションを取るためのコツ</li>
-            <li>効果的に自己紹介をするためのフレーズ</li>
-            <li>異文化理解を深めるための英語表現</li>
+            <li>実践的なビジネス英会話フレーズ</li>
+            <li>会話、会議、Eメールで使えるフレーズ</li>
+            <li>自信を持って英語で自己紹介する方法</li>
+            <li>異文化理解を深めるための表現</li>
         </ul>
     </section>
 
     <section class="reviews">
         <h3>お客様の声</h3>
-        <div class="review">"このフレーズ集を使って、英語がとても自信を持って使えるようになりました！"</div>
-        <div class="review">"ビジネスシーンで役立つフレーズがたくさん載っていて、すぐに使えるのが良かったです！"</div>
+        <div class="review">"英語に自信が持てるようになり、ビジネスの場面でも即実践できました！"</div>
+        <div class="review">"すぐに使えるフレーズがたくさんあり、仕事が効率的になりました！"</div>
     </section>
 
-    <section class="price" id="purchase">
+    <section class="price">
         <h3>今すぐ購入</h3>
         <p>価格: ¥2,400</p>
-         <p>購入後、コースは直接あなたの携帯電話に届きます。</p>
-          <p>自信を持ってコースを購入し、今日からプロフェッショナルな英語を話し始めましょう。  <p>
+        <p>購入後すぐに携帯で学べます。</p>
         <a href="japancheckout.html" class="cta-button">購入する</a>
     </section>
-  
+
     <footer class="footer">
-        <p>&copy; 2024年、品質と満足の保証。すべての権利を保有します。</p>
+        <p>&copy; 2024年、品質保証</p>
     </footer>
 
 </body>
