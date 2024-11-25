@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ビジネスで役立つ英語フレーズを簡単に学べる電子書籍とオンライン講座。">
+    <meta name="description" content="ビジネス英語を学べる電子書籍とオンライン講座。今すぐ購入して、英語スキルを向上させましょう！">
     <title>デジタル商品マーケット | ビジネス英語学習</title>
     <style>
+        /* General Styles */
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
@@ -14,6 +15,29 @@
             color: #333;
         }
 
+        /* Sticky Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: #004f89;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            background-color: #ff5e00;
+        }
+
+        /* Header */
         header {
             background-color: #004f89;
             color: white;
@@ -49,6 +73,10 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
         }
         .product-card img {
             width: 100%;
@@ -67,7 +95,22 @@
             color: #555;
             margin-bottom: 20px;
         }
-        .cta-button {
+        .product-card .price {
+            font-size: 1.4em;
+            color: #ff5e00;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-card .ratings {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .ratings span {
+            color: #ffcc00;
+            margin: 0 2px;
+        }
+        .product-card .cta-button {
             background-color: #ff5e00;
             color: white;
             padding: 18px 30px;
@@ -76,8 +119,20 @@
             text-decoration: none;
             display: inline-block;
         }
-        .cta-button:hover {
+        .product-card .cta-button:hover {
             background-color: #ff4500;
+        }
+
+        /* Special Offer Banner */
+        .special-offer {
+            background-color: #ff4500;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.6em;
+            border-radius: 8px;
+            font-weight: bold;
         }
 
         /* Trust Badges Section */
@@ -127,6 +182,15 @@
 </head>
 <body>
 
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#">ホーム</a>
+        <a href="#">商品一覧</a>
+        <a href="#">人気商品</a>
+        <a href="#">お客様の声</a>
+        <a href="#">カート</a>
+    </div>
+
     <!-- Header -->
     <header>
         <h1>デジタル商品マーケット</h1>
@@ -134,6 +198,11 @@
     </header>
 
     <div class="container">
+        <!-- Special Offer -->
+        <div class="special-offer">
+            限定オファー！今なら全商品20％OFF！お早めにどうぞ！
+        </div>
+
         <!-- Product Grid -->
         <section class="product-grid">
             <!-- Product 1 -->
@@ -141,7 +210,14 @@
                 <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="Essential English Phrases">
                 <h3>ビジネス英語フレーズ集</h3>
                 <p>会議、Eメール、電話で使える必須英語フレーズをすぐに習得できます。</p>
-                <p><strong>価格: ¥2,400</strong></p>
+                <p class="price">価格: ¥2,400</p>
+                <div class="ratings">
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>☆</span>
+                </div>
                 <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
             </div>
 
@@ -150,7 +226,14 @@
                 <img src="https://via.placeholder.com/350" alt="Business English Course">
                 <h3>オンラインビジネス英語講座</h3>
                 <p>動画と実践的な課題でビジネス英語を一から学べます。</p>
-                <p><strong>価格: ¥4,500</strong></p>
+                <p class="price">価格: ¥4,500</p>
+                <div class="ratings">
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                </div>
                 <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
             </div>
 
@@ -159,7 +242,14 @@
                 <img src="https://via.placeholder.com/350" alt="English Communication Skills">
                 <h3>英会話スキル向上ガイド</h3>
                 <p>実践的な英会話スキルを身につけて、流暢な英語を話せるようになります。</p>
-                <p><strong>価格: ¥3,000</strong></p>
+                <p class="price">価格: ¥3,000</p>
+                <div class="ratings">
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>☆</span>
+                </div>
                 <a href="japancheckout.html" class="cta-button">今すぐ購入</a>
             </div>
         </section>
