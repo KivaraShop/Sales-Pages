@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f6f9;
+            background-color: #f9e3f0; /* Soft pink background */
             color: #4a004e;
             text-align: center;
         }
@@ -20,66 +20,83 @@
             background-size: cover;
             background-position: center;
             color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            background-blur: 5px;
+            backdrop-filter: blur(5px); /* Soft focus effect */
         }
         .description {
             background-color: #fff;
-            padding: 30px;
-            margin-top: -40px;
-            border-radius: 10px;
+            padding: 40px;
+            margin-top: -30px;
+            border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: left;
-            max-width: 800px;
+            max-width: 850px;
             margin: 40px auto;
+            background: linear-gradient(120deg, #ffccf2, #ff99cc); /* Light pink gradient */
         }
         .description h2 {
-            font-size: 24px;
+            font-size: 28px;
             color: #d63384;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-family: 'Helvetica Neue', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .description p {
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #4a004e;
             margin-bottom: 20px;
+            font-weight: 300;
         }
         .cta-button {
             background: linear-gradient(90deg, #ff66b2, #ff0099);
             color: white;
             font-size: 20px;
-            padding: 15px 40px;
+            padding: 18px 45px;
             text-decoration: none;
             border-radius: 30px;
-            margin: 20px auto;
-            max-width: 250px;
+            margin: 25px auto;
+            max-width: 260px;
             display: inline-block;
             box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
             transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: bold;
         }
         .cta-button:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(255, 51, 153, 0.8);
         }
         footer {
-            font-size: 12px;
+            font-size: 14px;
             text-align: center;
             padding: 20px;
             background-color: #fff;
             margin-top: 40px;
             color: #660066;
         }
+        footer p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Hero Section (no text over image) -->
+    <!-- Hero Section -->
     <header>
-        <!-- Hero Image (empty, no text here) -->
+        <span>あなたの英語力を次のレベルへ</span>
     </header>
 
     <!-- Description Section -->
     <div class="description">
-        <h2>あなたの英語力を次のレベルへ</h2>
-        <p>ビジネス英語をマスターして、会議やメールで自信を持ちましょう。私たちのガイドは、忙しい日本のプロフェッショナル向けに特化した、最も効果的な英語表現を提供します。</p>
+        <h2>ビジネス英語をマスターしましょう</h2>
+        <p>会議やメールで自信を持ち、ビジネスシーンで活躍できる英語力を身につけましょう。私たちのガイドは、忙しい日本のプロフェッショナル向けに特化した、最も効果的な英語表現を提供します。</p>
         <p>このステップバイステップのガイドは、あなたのコミュニケーションスキルを向上させ、英語をビジネスで実践的に活用できるようにサポートします。</p>
         <p>今すぐ、あなたの英語力アップを始めましょう！</p>
         <a href="barrigaproduto.html" class="cta-button">今すぐ学ぶ</a>
