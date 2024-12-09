@@ -144,7 +144,26 @@
             }
         }
     </style>
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '2400'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Pagamento concluído com sucesso por ' + details.payer.name.given_name);
+                window.location.href = "Obrigado.html";
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
 </head>
 <body>
     <!-- Header Section -->
