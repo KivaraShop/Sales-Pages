@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Digital Menu</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff6347;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        #menu {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #menu h2 {
+            color: #ff6347;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .menu-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .menu-item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .menu-item p {
+            margin: 5px 0;
+        }
+
+        #qr-section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #qr-code {
+            margin: 20px auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #e55340;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Restaurant Digital Menu</h1>
+        <p>Explore our dishes below!</p>
+    </header>
+
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <div id="menu-container">
+            <!-- Menu items will be dynamically loaded -->
+        </div>
+    </section>
+
+    <section id="qr-section">
+        <h2>Share Our Menu</h2>
+        <div id="qr-code"></div>
+        <button id="download-qr">Download QR Code</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Restaurant Digital Menu. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>
+        // Sample Menu Data
+        const menuItems = [
+            { name: "Grilled Chicken", price: "200 MZN", image: "https://via.placeholder.com/300?text=Grilled+Chicken" },
+            { name: "Veggie Burger", price: "150 MZN", image: "https://via.placeholder.com/300?text=Veggie+Burger" },
+            { name: "Caesar Salad", price: "100 MZN", image: "https://via.placeholder.com/300?text=Caesar+Salad" },
+        ];
+
+        // Load Menu
+        const menuContainer = document.getElementById("menu-container");
+        menuItems.forEach(item => {
+            const menuItem = document.createElement("div");
+            menuItem.classList.add("menu-item");
+            menuItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>Price: ${item.price}</p>
+            `;
+            menuContainer.appendChild(menuItem);
+        });
+
+        // Generate QR Code
+        const qrCodeContainer = document.getElementById("qr-code");
+        const menuUrl = window.location.href;
+        QRCode.toCanvas(qrCodeContainer, menuUrl, function (error) {
+            if (error) console.error(error);
+        });
+
+        // Download QR Code
+        const downloadBtn = document.getElementById("download-qr");
+        downloadBtn.addEventListener("click", () => {
+            const canvas = qrCodeContainer.querySelector("canvas");
+            const link = document.createElement("a");
+            link.download = "menu-qr-code.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        });
+    </script>
+</body>
+</html>
