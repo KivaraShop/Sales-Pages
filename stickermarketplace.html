@@ -16,6 +16,7 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
+            line-height: 1.6;
         }
 
         header {
@@ -48,12 +49,13 @@
         }
 
         .shop {
-            padding: 50px;
+            padding: 30px 15px;
             text-align: center;
         }
 
         .product-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
         }
@@ -63,7 +65,8 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            width: 200px;
+            width: 100%;
+            max-width: 200px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -90,13 +93,40 @@
         }
 
         #cart {
-            padding: 50px;
+            padding: 30px 15px;
             text-align: center;
         }
 
-        #checkout-btn {
-            background-color: green;
-            padding: 10px 20px;
+        #cart-list {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-item p {
+            margin: 0;
+        }
+
+        .cart-item button {
+            background-color: red;
+            padding: 5px 10px;
+        }
+
+        #total {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 15px;
         }
 
         footer {
@@ -105,9 +135,16 @@
             background-color: #333;
             color: white;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
-    <!-- PayPal Script -->
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script> <!-- Replace with your PayPal client ID -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
 </head>
 <body>
     <!-- Header Section -->
@@ -130,22 +167,17 @@
     <!-- Shop Section -->
     <section id="shop" class="shop">
         <h2>Browse Stickers</h2>
-        <div class="product-container" id="product-list">
-            <!-- Stickers will be dynamically loaded here -->
-        </div>
+        <div class="product-container" id="product-list"></div>
     </section>
 
     <!-- Cart Section -->
     <section id="cart">
         <h2>Your Cart</h2>
-        <div id="cart-list"></div>
+        <div id="cart-list">
+            <p>Your cart is empty.</p>
+        </div>
+        <p id="total"></p>
         <button id="checkout-btn">Proceed to Checkout</button>
-    </section>
-
-    <!-- PayPal Checkout -->
-    <section id="paypal-checkout" style="display: none;">
-        <h3>PayPal Checkout</h3>
-        <div id="paypal-button-container"></div>
     </section>
 
     <footer>
@@ -153,7 +185,6 @@
     </footer>
 
     <script>
-        // Sample Sticker Data
         const stickers = [
             { id: 1, name: "Cute Cat Sticker", price: 240, image: "sticker1.jpg" },
             { id: 2, name: "Funny Dog Sticker", price: 200, image: "sticker2.jpg" },
@@ -163,83 +194,56 @@
 
         let cart = [];
 
-        // Display Products
         function displayProducts() {
             const productList = document.getElementById("product-list");
-            productList.innerHTML = ''; // Clear existing products
-
+            productList.innerHTML = '';
             stickers.forEach(sticker => {
-                const productElement = document.createElement('div');
-                productElement.classList.add('product');
-                productElement.innerHTML = `
+                const product = document.createElement('div');
+                product.classList.add('product');
+                product.innerHTML = `
                     <img src="${sticker.image}" alt="${sticker.name}">
                     <h3>${sticker.name}</h3>
                     <p>¥${sticker.price}</p>
                     <button onclick="addToCart(${sticker.id})">Add to Cart</button>
                 `;
-                productList.appendChild(productElement);
+                productList.appendChild(product);
             });
         }
 
-        // Add item to cart
         function addToCart(id) {
-            const sticker = stickers.find(sticker => sticker.id === id);
+            const sticker = stickers.find(item => item.id === id);
             cart.push(sticker);
             displayCart();
         }
 
-        // Display cart items
-        function displayCart() {
-            const cartList = document.getElementById("cart-list");
-            cartList.innerHTML = ''; // Clear existing cart items
-
-            cart.forEach(item => {
-                const cartItem = document.createElement('div');
-                cartItem.innerHTML = `
-                    <p>${item.name} - ¥${item.price}</p>
-                `;
-                cartList.appendChild(cartItem);
-            });
-
-            const totalPrice = cart.reduce((total, item) => total + item.price, 0);
-            cartList.innerHTML += `<h3>Total: ¥${totalPrice}</h3>`;
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            displayCart();
         }
 
-        // Checkout functionality
-        document.getElementById('checkout-btn').addEventListener('click', () => {
-            // Show PayPal button and hide the cart
-            document.getElementById('paypal-checkout').style.display = 'block';
-            document.getElementById('cart').style.display = 'none';
-            
-            // Create PayPal Button
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    const totalAmount = cart.reduce((total, item) => total + item.price, 0);
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: totalAmount / 100, // Convert to dollars
-                                currency_code: 'USD'
-                            },
-                            description: 'Sticker Purchase'
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert("Payment Successful! Thank you for your purchase.");
-                        // Optionally, you can handle the post-payment flow here
-                        cart = []; // Empty cart
-                        displayCart();
-                    });
-                },
-                onError: function(err) {
-                    alert("Payment failed! Please try again.");
-                }
-            }).render('#paypal-button-container');
-        });
+        function displayCart() {
+            const cartList = document.getElementById("cart-list");
+            const totalDisplay = document.getElementById("total");
+            cartList.innerHTML = '';
+            if (cart.length === 0) {
+                cartList.innerHTML = '<p>Your cart is empty.</p>';
+                totalDisplay.textContent = '';
+                return;
+            }
+            let total = 0;
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <p>${item.name} - ¥${item.price}</p>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartList.appendChild(cartItem);
+                total += item.price;
+            });
+            totalDisplay.textContent = `Total: ¥${total}`;
+        }
 
-        // Initial display of products and cart
         displayProducts();
     </script>
 </body>
