@@ -7,10 +7,10 @@
     <style>
         /* General Styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
             color: #333;
         }
 
@@ -27,35 +27,52 @@
 
         #menu {
             padding: 20px;
-            text-align: center;
         }
 
         #menu h2 {
+            text-align: center;
             color: #ff6347;
             margin-bottom: 20px;
         }
 
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            justify-content: center;
+            align-items: start;
+        }
+
         .menu-item {
-            background: white;
-            margin: 10px auto;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .menu-item img {
             width: 100%;
-            border-radius: 8px;
+            height: auto;
+            display: block;
         }
 
         .menu-item h3 {
             margin: 10px 0 5px;
+            font-size: 18px;
+            color: #333;
         }
 
         .menu-item p {
-            margin: 5px 0;
+            margin: 5px 0 15px;
+            font-size: 16px;
+            color: #555;
         }
 
         #qr-section {
@@ -69,7 +86,7 @@
 
         button {
             padding: 10px 20px;
-            background: #ff6347;
+            background-color: #ff6347;
             color: white;
             border: none;
             border-radius: 5px;
@@ -78,7 +95,7 @@
         }
 
         button:hover {
-            background: #e55340;
+            background-color: #e55340;
         }
 
         footer {
@@ -93,12 +110,12 @@
 <body>
     <header>
         <h1>Restaurant Digital Menu</h1>
-        <p>Explore our dishes below!</p>
+        <p>Explore our delicious dishes!</p>
     </header>
 
     <section id="menu">
         <h2>Our Menu</h2>
-        <div id="menu-container">
+        <div class="menu-grid" id="menu-container">
             <!-- Menu items will be dynamically loaded -->
         </div>
     </section>
@@ -120,6 +137,9 @@
             { name: "Grilled Chicken", price: "200 MZN", image: "https://via.placeholder.com/300?text=Grilled+Chicken" },
             { name: "Veggie Burger", price: "150 MZN", image: "https://via.placeholder.com/300?text=Veggie+Burger" },
             { name: "Caesar Salad", price: "100 MZN", image: "https://via.placeholder.com/300?text=Caesar+Salad" },
+            { name: "Seafood Pasta", price: "250 MZN", image: "https://via.placeholder.com/300?text=Seafood+Pasta" },
+            { name: "Steak Platter", price: "300 MZN", image: "https://via.placeholder.com/300?text=Steak+Platter" },
+            { name: "Chocolate Cake", price: "120 MZN", image: "https://via.placeholder.com/300?text=Chocolate+Cake" }
         ];
 
         // Load Menu
