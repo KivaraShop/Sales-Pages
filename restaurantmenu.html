@@ -15,7 +15,7 @@
         }
 
         header {
-            background-color: #f44336;
+            background-color: #FF5722; /* Deep Red */
             color: white;
             padding: 20px;
             text-align: center;
@@ -52,18 +52,63 @@
         }
 
         nav a:hover {
-            background-color: #f44336;
+            background-color: #FF5722; /* Deep Red */
         }
 
+        /* Search Bar */
+        .search-bar {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .search-bar input {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 400px;
+            border: 2px solid #4CAF50; /* Green border for search */
+            background-color: #fff;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #FF5722; /* Red border on focus */
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .filters button {
+            background-color: #4CAF50; /* Green filter button */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .filters button:hover {
+            background-color: #388E3C; /* Darker green for hover */
+        }
+
+        /* Menu Grid Layout */
         section {
-            padding: 20px;
+            padding: 30px 20px;
         }
 
         h2 {
             text-align: center;
-            color: #FF5722; /* A vibrant orange */
+            color: #FF5722; /* Contrasting Deep Red */
             margin-bottom: 20px;
-            font-size: 26px;
+            font-size: 28px;
         }
 
         .menu-grid {
@@ -74,13 +119,13 @@
         }
 
         .menu-item {
-            background-color: white;
+            background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            padding: 15px;
+            padding: 20px;
             background: #ffffff;
         }
 
@@ -118,83 +163,76 @@
         }
 
         .menu-item button {
-            background-color: #FF5722; /* A bright orange for a call-to-action */
+            background-color: #4CAF50; /* Green button */
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
         }
 
         .menu-item button:hover {
-            background-color: #D32F2F; /* Darker red */
+            background-color: #388E3C; /* Darker green for hover */
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            margin: auto;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF5722;
+        }
+
+        .modal-body {
+            font-size: 16px;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            float: right;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         footer {
             text-align: center;
-            padding: 15px;
+            padding: 20px;
             background-color: #333;
             color: white;
             margin-top: 30px;
-        }
-
-        .category-title {
-            font-size: 22px;
-            color: #FF5722;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Search and Filters */
-        .search-bar {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .search-bar input {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 400px;
-            border: 2px solid #4CAF50; /* Green border for search */
-        }
-
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .filters button {
-            background-color: #4CAF50; /* Green filter button */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .filters button:hover {
-            background-color: #388E3C; /* Darker green for hover */
-        }
-
-        /* Colorful Backgrounds for Each Category */
-        #bebidas {
-            background-color: #ffcc80; /* Light orange */
-        }
-
-        #comidas {
-            background-color: #c8e6c9; /* Light green */
-        }
-
-        #sobremesas {
-            background-color: #e1bee7; /* Light purple */
         }
 
     </style>
@@ -220,16 +258,16 @@
 
     <!-- Filters -->
     <div class="filters">
-        <button>Vegetariano</button>
-        <button>Sem Glúten</button>
-        <button>Novidades</button>
+        <button onclick="filterCategory('vegan')">Vegan</button>
+        <button onclick="filterCategory('gluten-free')">Sem Glúten</button>
+        <button onclick="filterCategory('low-calorie')">Baixas Calorias</button>
     </div>
 
     <!-- Bebidas Section -->
     <section id="bebidas">
         <h2>Bebidas</h2>
         <div class="menu-grid">
-            <!-- Add items here as in your original code -->
+            <!-- Add items dynamically here -->
         </div>
     </section>
 
@@ -237,7 +275,7 @@
     <section id="comidas">
         <h2>Comidas</h2>
         <div class="menu-grid">
-            <!-- Add items here as in your original code -->
+            <!-- Add items dynamically here -->
         </div>
     </section>
 
@@ -245,13 +283,51 @@
     <section id="sobremesas">
         <h2>Sobremesas</h2>
         <div class="menu-grid">
-            <!-- Add items here as in your original code -->
+            <!-- Add items dynamically here -->
         </div>
     </section>
+
+    <!-- Modal for Item Details -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">Item Details</div>
+            <div class="modal-body">
+                <!-- Item details will appear here -->
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 Menu Digital do Restaurante. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        // Function to filter menu items based on category
+        function filterCategory(category) {
+            alert('Filtrando por: ' + category);
+            // Implement filtering logic here
+        }
+
+        // Modal functionality
+        var modal = document.getElementById("itemModal");
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        function openModal(itemDetails) {
+            modal.style.display = "block";
+            document.querySelector(".modal-body").innerHTML = itemDetails;
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
