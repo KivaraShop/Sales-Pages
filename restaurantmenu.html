@@ -111,7 +111,6 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* Grid Setup: Ensuring Two Columns on All Screens */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* Two columns by default */
@@ -120,14 +119,6 @@
             padding-bottom: 40px;
         }
 
-        /* Responsive Design Fix for Small Screens */
-        @media (max-width: 768px) {
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr); /* Maintain two columns */
-            }
-        }
-
-        /* Menu Item Design */
         .menu-item {
             background-color: #f9f9f9;
             border-radius: 15px;
@@ -146,10 +137,9 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Make Image Square (Not Rectangular) */
         .menu-item img {
             width: 100%;
-            height: 100%; /* Ensure images are square */
+            height: 220px;
             object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s ease;
@@ -191,122 +181,4 @@
         }
 
         .menu-item button:hover {
-            background-color: #3b8c3a; /* Green button hover */
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            background-color: #3b8c3a;
-            color: white;
-        }
-
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Menu Digital do Restaurante</h1>
-        <p>Escolha o que você deseja e peça agora mesmo!</p>
-    </header>
-
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <input type="text" placeholder="Pesquisar..." />
-    </div>
-
-    <!-- Category Links -->
-    <div class="category-links">
-        <a href="#">Dieta</a>
-        <a href="#">Vegano</a>
-    </div>
-
-    <!-- Bebidas Section -->
-    <section>
-        <h2>Bebidas</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Suco+de+Laranja" alt="Suco de Laranja">
-                <h3>Suco de Laranja</h3>
-                <p>Preço: 50 MZN</p>
-                <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Coca-Cola+Gelada" alt="Coca-Cola Gelada">
-                <h3>Coca-Cola Gelada</h3>
-                <p>Preço: 40 MZN</p>
-                <div class="star-rating">★★★☆☆</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Água+Mineral" alt="Água Mineral">
-                <h3>Água Mineral</h3>
-                <p>Preço: 30 MZN</p>
-                <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Comidas Section -->
-    <section>
-        <h2>Comidas</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Frango+Grelhado" alt="Frango Grelhado">
-                <h3>Frango Grelhado</h3>
-                <p>Preço: 200 MZN</p>
-                <div class="star-rating">★★★★★</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Hambúrguer+Vegano" alt="Hambúrguer Vegano">
-                <h3>Hambúrguer Vegano</h3>
-                <p>Preço: 150 MZN</p>
-                <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Salada+Caesar" alt="Salada Caesar">
-                <h3>Salada Caesar</h3>
-                <p>Preço: 100 MZN</p>
-                <div class="star-rating">★★★☆☆</div>
-                <button>Pedir</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sobremesas Section -->
-    <section>
-        <h2>Sobremesas</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Bolo+de+Chocolate" alt="Bolo de Chocolate">
-                <h3>Bolo de Chocolate</h3>
-                <p>Preço: 120 MZN</p>
-                <div class="star-rating">★★★★★</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Salada+de+Frutas" alt="Salada de Frutas">
-                <h3>Salada de Frutas</h3>
-                <p>Preço: 90 MZN</p>
-                <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Sorvete" alt="Sorvete">
-                <h3>Sorvete</h3>
-                <p>Preço: 70 MZN</p>
-                <div class="star-rating">★★★☆☆</div>
-                <button>Pedir</button>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Menu Digital do Restaurante. Todos os direitos reservados.</p>
-    </footer>
-
-</body>
-</html>
+            background-color: #3b8c3a
