@@ -35,26 +35,6 @@
             font-weight: bold;
         }
 
-        nav {
-            background-color: #333;
-            color: white;
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-        }
-
-        nav a {
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #FF5722; /* Deep Red */
-        }
-
         /* Search Bar */
         .search-bar {
             text-align: center;
@@ -74,6 +54,27 @@
         .search-bar input:focus {
             outline: none;
             border-color: #FF5722; /* Red border on focus */
+        }
+
+        /* Category Links */
+        .category-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .category-links a {
+            color: #FF5722; /* Deep Red */
+            margin: 0 15px;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+        }
+
+        .category-links a:hover {
+            background-color: #FF5722; /* Deep Red background on hover */
+            color: white;
         }
 
         /* Menu Grid Layout */
@@ -155,54 +156,6 @@
             background-color: #388E3C; /* Darker green for hover */
         }
 
-        /* Modal Styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            padding: 20px;
-            margin: auto;
-            width: 50%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .modal-header {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FF5722;
-        }
-
-        .modal-body {
-            font-size: 16px;
-            color: #333;
-            margin: 15px 0;
-        }
-
-        .close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            float: right;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
         footer {
             text-align: center;
             padding: 20px;
@@ -210,7 +163,6 @@
             color: white;
             margin-top: 30px;
         }
-
     </style>
 </head>
 <body>
@@ -220,16 +172,16 @@
         <p>Escolha o que você deseja e peça agora mesmo!</p>
     </header>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="dieta.html">Dieta</a> <!-- Link to "Dieta" page -->
-        <a href="vegano.html">Vegano</a> <!-- Link to "Vegano" page -->
-        <a href="outras-opcoes.html">Outras Opções</a> <!-- Link to "Outras Opções" page -->
-    </nav>
-
     <!-- Search Bar -->
     <div class="search-bar">
         <input type="text" id="search" placeholder="Procurar por item...">
+    </div>
+
+    <!-- Category Links (Dieta, Vegano, Low Calorie) -->
+    <div class="category-links">
+        <a href="dieta.html" id="dietaLink">Dieta</a>
+        <a href="vegano.html" id="veganoLink">Vegano</a>
+        <a href="lowcalorie.html" id="lowCalorieLink">Baixas Calorias</a> <!-- Replaced "Outras Opções" with Low Calorie -->
     </div>
 
     <!-- Menu Grid Layout -->
@@ -256,41 +208,9 @@
         </div>
     </section>
 
-    <!-- Modal for Item Details -->
-    <div id="itemModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="modal-header">Item Details</div>
-            <div class="modal-body">
-                <!-- Item details will appear here -->
-            </div>
-        </div>
-    </div>
-
     <footer>
         <p>&copy; 2024 Menu Digital do Restaurante. Todos os direitos reservados.</p>
     </footer>
-
-    <script>
-        // Modal functionality
-        var modal = document.getElementById("itemModal");
-        var closeBtn = document.getElementsByClassName("close")[0];
-
-        function openModal(itemDetails) {
-            modal.style.display = "block";
-            document.querySelector(".modal-body").innerHTML = itemDetails;
-        }
-
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
 
 </body>
 </html>
