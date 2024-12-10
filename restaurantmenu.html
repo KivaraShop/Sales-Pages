@@ -20,12 +20,13 @@
             color: white;
             padding: 30px 20px;
             text-align: center;
-            position: sticky;
+            position: fixed; /* Fixed at the top */
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            /* Make sure the header stays fixed at the top when scrolling */
+            /* Make sure the header stays fixed at the top */
         }
 
         header h1 {
@@ -38,6 +39,11 @@
         header p {
             margin-top: 10px;
             font-size: 18px;
+        }
+
+        /* Adjust the body to make space for the fixed header */
+        body {
+            padding-top: 150px; /* This ensures content does not get hidden behind the fixed header */
         }
 
         /* Search Bar */
