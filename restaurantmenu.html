@@ -13,6 +13,7 @@
             padding: 0;
             background-color: #f8f4e3; /* Light, soft background color */
             color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         header {
@@ -110,6 +111,7 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        /* Grid Setup: Ensuring Two Columns on All Screens */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* Two columns by default */
@@ -118,6 +120,14 @@
             padding-bottom: 40px;
         }
 
+        /* Responsive Design Fix for Small Screens */
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr); /* Maintain two columns */
+            }
+        }
+
+        /* Menu Item Design */
         .menu-item {
             background-color: #f9f9f9;
             border-radius: 15px;
@@ -128,6 +138,7 @@
             overflow: hidden;
             position: relative;
             max-height: 500px;
+            width: 100%;
         }
 
         .menu-item:hover {
@@ -135,9 +146,10 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
+        /* Make Image Square (Not Rectangular) */
         .menu-item img {
             width: 100%;
-            height: 220px;
+            height: 100%; /* Ensure images are square */
             object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s ease;
@@ -187,39 +199,11 @@
             padding: 25px;
             background-color: #3b8c3a;
             color: white;
-            margin-top: 50px;
-        }
-
-        footer p {
-            font-size: 16px;
-        }
-
-        /* Mobile and Small Screen Adjustments */
-        @media (max-width: 600px) {
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
-            }
-
-            .category-links {
-                flex-wrap: wrap; /* Allow the category tabs to wrap on small screens */
-                justify-content: space-evenly;
-            }
-
-            .category-links a {
-                padding: 10px 15px; /* Smaller padding */
-                font-size: 16px; /* Smaller font size */
-                min-width: 100px; /* Make the tabs smaller */
-            }
-
-            .menu-item {
-                padding: 15px; /* Smaller padding on items */
-            }
         }
 
     </style>
 </head>
 <body>
-
     <header>
         <h1>Menu Digital do Restaurante</h1>
         <p>Escolha o que você deseja e peça agora mesmo!</p>
@@ -227,16 +211,16 @@
 
     <!-- Search Bar -->
     <div class="search-bar">
-        <input type="text" id="search" placeholder="Procurar por item...">
+        <input type="text" placeholder="Pesquisar..." />
     </div>
 
     <!-- Category Links -->
     <div class="category-links">
-        <a href="dieta.html">Dieta</a>
-        <a href="vegano.html">Vegano</a>
+        <a href="#">Dieta</a>
+        <a href="#">Vegano</a>
     </div>
 
-    <!-- Menu Section -->
+    <!-- Bebidas Section -->
     <section>
         <h2>Bebidas</h2>
         <div class="menu-grid">
@@ -286,6 +270,34 @@
                 <img src="https://via.placeholder.com/300?text=Salada+Caesar" alt="Salada Caesar">
                 <h3>Salada Caesar</h3>
                 <p>Preço: 100 MZN</p>
+                <div class="star-rating">★★★☆☆</div>
+                <button>Pedir</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobremesas Section -->
+    <section>
+        <h2>Sobremesas</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/300?text=Bolo+de+Chocolate" alt="Bolo de Chocolate">
+                <h3>Bolo de Chocolate</h3>
+                <p>Preço: 120 MZN</p>
+                <div class="star-rating">★★★★★</div>
+                <button>Pedir</button>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/300?text=Salada+de+Frutas" alt="Salada de Frutas">
+                <h3>Salada de Frutas</h3>
+                <p>Preço: 90 MZN</p>
+                <div class="star-rating">★★★★☆</div>
+                <button>Pedir</button>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/300?text=Sorvete" alt="Sorvete">
+                <h3>Sorvete</h3>
+                <p>Preço: 70 MZN</p>
                 <div class="star-rating">★★★☆☆</div>
                 <button>Pedir</button>
             </div>
