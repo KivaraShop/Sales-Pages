@@ -11,23 +11,22 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f4e3;
+            background-color: #f8f4e3; /* Light, soft background color */
             color: #333;
-            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         header {
-            background-color: #3b8c3a;
+            background-color: #3b8c3a; /* Deep green for header */
             color: white;
             padding: 30px 20px;
             text-align: center;
-            position: absolute;
+            position: absolute; /* Header starts as absolute */
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease; /* Add smooth transition */
         }
 
         header h1 {
@@ -42,10 +41,12 @@
             font-size: 18px;
         }
 
+        /* Adjust the body to make space for the fixed header */
         body {
-            padding-top: 150px; 
+            padding-top: 150px; /* This ensures content does not get hidden behind the header */
         }
 
+        /* Search Bar */
         .search-bar {
             text-align: center;
             margin-top: 30px;
@@ -64,10 +65,11 @@
 
         .search-bar input:focus {
             outline: none;
-            border-color: #f1a40d;
+            border-color: #f1a40d; /* Gold border on focus */
             box-shadow: 0 0 10px rgba(241, 164, 13, 0.5);
         }
 
+        /* Category Links */
         .category-links {
             display: flex;
             justify-content: center;
@@ -77,7 +79,7 @@
         }
 
         .category-links a {
-            background-color: #3b8c3a;
+            background-color: #3b8c3a; /* Deep green for buttons */
             color: white;
             font-size: 20px;
             text-decoration: none;
@@ -90,35 +92,30 @@
         }
 
         .category-links a:hover {
-            background-color: #f1a40d;
+            background-color: #f1a40d; /* Gold color on hover */
             box-shadow: 0 6px 20px rgba(241, 164, 13, 0.3);
         }
 
+        /* Menu Section */
         section {
             padding: 60px 20px;
-            background-color: #ffffff;
+            background-color: #ffffff; /* White background for sections */
         }
 
         h2 {
             text-align: center;
             font-size: 34px;
-            color: #3b8c3a;
+            color: #3b8c3a; /* Deep green */
             margin-bottom: 30px;
             font-family: 'Montserrat', sans-serif;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* Two columns by default */
             gap: 30px;
             justify-content: center;
             padding-bottom: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         .menu-item {
@@ -130,7 +127,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
             position: relative;
-            width: 100%;
+            max-height: 500px;
         }
 
         .menu-item:hover {
@@ -138,11 +135,9 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Ensure images are square */
         .menu-item img {
             width: 100%;
-            height: 0;
-            padding-bottom: 100%;
+            height: 220px;
             object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s ease;
@@ -171,7 +166,7 @@
         }
 
         .menu-item button {
-            background-color: #f1a40d;
+            background-color: #f1a40d; /* Gold button color */
             color: white;
             padding: 12px 30px;
             font-size: 18px;
@@ -184,7 +179,7 @@
         }
 
         .menu-item button:hover {
-            background-color: #3b8c3a;
+            background-color: #3b8c3a; /* Green button hover */
         }
 
         footer {
@@ -192,42 +187,56 @@
             padding: 25px;
             background-color: #3b8c3a;
             color: white;
+            margin-top: 50px;
         }
 
-        /* Fix for smaller screens */
+        footer p {
+            font-size: 16px;
+        }
+
+        /* Mobile and Small Screen Adjustments */
         @media (max-width: 600px) {
-            .category-links {
-                flex-direction: column;
-                align-items: center;
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
             }
 
-            .menu-item button {
-                width: auto;
+            .category-links {
+                flex-wrap: wrap; /* Allow the category tabs to wrap on small screens */
+                justify-content: space-evenly;
+            }
+
+            .category-links a {
+                padding: 10px 15px; /* Smaller padding */
+                font-size: 16px; /* Smaller font size */
+                min-width: 100px; /* Make the tabs smaller */
             }
 
             .menu-item {
-                padding: 15px;
+                padding: 15px; /* Smaller padding on items */
             }
         }
 
     </style>
 </head>
 <body>
+
     <header>
         <h1>Menu Digital do Restaurante</h1>
         <p>Escolha o que você deseja e peça agora mesmo!</p>
     </header>
 
+    <!-- Search Bar -->
     <div class="search-bar">
-        <input type="text" placeholder="Pesquisar..." />
+        <input type="text" id="search" placeholder="Procurar por item...">
     </div>
 
+    <!-- Category Links -->
     <div class="category-links">
-        <a href="#">Dieta</a>
-        <a href="#">Vegano</a>
-        <a href="#">Sem Glúten</a>
+        <a href="dieta.html">Dieta</a>
+        <a href="vegano.html">Vegano</a>
     </div>
 
+    <!-- Menu Section -->
     <section>
         <h2>Bebidas</h2>
         <div class="menu-grid">
@@ -245,9 +254,17 @@
                 <div class="star-rating">★★★☆☆</div>
                 <button>Pedir</button>
             </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/300?text=Água+Mineral" alt="Água Mineral">
+                <h3>Água Mineral</h3>
+                <p>Preço: 30 MZN</p>
+                <div class="star-rating">★★★★☆</div>
+                <button>Pedir</button>
+            </div>
         </div>
     </section>
 
+    <!-- Comidas Section -->
     <section>
         <h2>Comidas</h2>
         <div class="menu-grid">
@@ -263,6 +280,13 @@
                 <h3>Hambúrguer Vegano</h3>
                 <p>Preço: 150 MZN</p>
                 <div class="star-rating">★★★★☆</div>
+                <button>Pedir</button>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/300?text=Salada+Caesar" alt="Salada Caesar">
+                <h3>Salada Caesar</h3>
+                <p>Preço: 100 MZN</p>
+                <div class="star-rating">★★★☆☆</div>
                 <button>Pedir</button>
             </div>
         </div>
