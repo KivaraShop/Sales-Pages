@@ -65,9 +65,9 @@
         .category-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
             margin-top: 40px;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
         }
 
         .category-links a {
@@ -75,10 +75,12 @@
             color: white;
             font-size: 20px;
             text-decoration: none;
-            padding: 14px 30px;
+            padding: 10px 20px;
             border-radius: 30px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            min-width: 120px;
+            text-align: center;
         }
 
         .category-links a:hover {
@@ -196,8 +198,13 @@
             }
 
             .category-links a {
-                padding: 12px 20px; /* Smaller padding on small screens */
-                font-size: 16px;
+                padding: 10px 15px; /* Smaller padding */
+                font-size: 16px; /* Smaller font size */
+                min-width: 100px; /* Make the tabs smaller */
+            }
+
+            .menu-item {
+                padding: 15px; /* Smaller padding on items */
             }
         }
 
