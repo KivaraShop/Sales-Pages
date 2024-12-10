@@ -102,7 +102,7 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr); /* Two columns by default */
             gap: 30px;
             justify-content: center;
             padding-bottom: 40px;
@@ -183,6 +183,24 @@
         footer p {
             font-size: 16px;
         }
+
+        /* Mobile and Small Screen Adjustments */
+        @media (max-width: 600px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
+            }
+
+            .category-links {
+                flex-wrap: wrap; /* Allow the category tabs to wrap on small screens */
+                justify-content: space-evenly;
+            }
+
+            .category-links a {
+                padding: 12px 20px; /* Smaller padding on small screens */
+                font-size: 16px;
+            }
+        }
+
     </style>
 </head>
 <body>
