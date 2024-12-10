@@ -59,18 +59,23 @@
         /* Category Links */
         .category-links {
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin-top: 20px;
+            flex-wrap: nowrap; /* Prevent wrapping */
+            overflow-x: auto; /* Allow horizontal scrolling if needed */
         }
 
         .category-links a {
             color: white; /* White text */
             background-color: #4CAF50; /* Green background */
-            margin: 0 15px;
             padding: 12px 25px;
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap; /* Prevent text wrapping */
         }
 
         .category-links a:hover {
@@ -182,7 +187,7 @@
     <div class="category-links">
         <a href="dieta.html" id="dietaLink">Dieta</a>
         <a href="vegano.html" id="veganoLink">Vegano</a>
-        <a href="lowcalorie.html" id="lowCalorieLink">Baixas Calorias</a> <!-- Replaced "Outras Opções" with Low Calorie -->
+        <a href="lowcalorie.html" id="lowCalorieLink">Baixas Calorias</a>
     </div>
 
     <!-- Menu Grid Layout -->
