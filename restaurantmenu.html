@@ -194,6 +194,60 @@
             font-size: 16px;
         }
 
+        /* Pop-up Form */
+        .form-popup {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .form-container input {
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container button {
+            margin-top: 15px;
+            background-color: #3b8c3a;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #f1a40d;
+        }
+
+        .confirmation-message {
+            display: none; /* Initially hidden */
+            text-align: center;
+            font-size: 20px;
+            color: #3b8c3a;
+            margin-top: 20px;
+        }
+
         /* Mobile and Small Screen Adjustments */
         @media (max-width: 600px) {
             .menu-grid {
@@ -245,56 +299,69 @@
                 <h3>Suco de Laranja</h3>
                 <p>Preço: 50 MZN</p>
                 <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
+                <button class="order-btn">Pedir</button>
             </div>
             <div class="menu-item">
                 <img src="https://via.placeholder.com/300?text=Coca-Cola+Gelada" alt="Coca-Cola Gelada">
                 <h3>Coca-Cola Gelada</h3>
                 <p>Preço: 40 MZN</p>
                 <div class="star-rating">★★★☆☆</div>
-                <button>Pedir</button>
+                <button class="order-btn">Pedir</button>
             </div>
             <div class="menu-item">
                 <img src="https://via.placeholder.com/300?text=Água+Mineral" alt="Água Mineral">
                 <h3>Água Mineral</h3>
                 <p>Preço: 30 MZN</p>
                 <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
+                <button class="order-btn">Pedir</button>
             </div>
         </div>
     </section>
 
-    <!-- Comidas Section -->
-    <section>
-        <h2>Comidas</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Frango+Grelhado" alt="Frango Grelhado">
-                <h3>Frango Grelhado</h3>
-                <p>Preço: 200 MZN</p>
-                <div class="star-rating">★★★★★</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Hambúrguer+Vegano" alt="Hambúrguer Vegano">
-                <h3>Hambúrguer Vegano</h3>
-                <p>Preço: 150 MZN</p>
-                <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Salada+Caesar" alt="Salada Caesar">
-                <h3>Salada Caesar</h3>
-                <p>Preço: 100 MZN</p>
-                <div class="star-rating">★★★☆☆</div>
-                <button>Pedir</button>
-            </div>
+    <!-- Pop-up Form -->
+    <div class="form-popup" id="formPopup">
+        <div class="form-container">
+            <h3>Qual o seu número da mesa?</h3>
+            <input type="text" id="tableNumber" placeholder="Número da mesa">
+            <button onclick="submitOrder()">OK</button>
         </div>
-    </section>
+    </div>
+
+    <!-- Confirmation Message -->
+    <div class="confirmation-message" id="confirmationMessage">
+        Seu pedido está a ser preparado!
+    </div>
 
     <footer>
         <p>&copy; 2024 Menu Digital do Restaurante. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        // Show pop-up form when "Pedir" button is clicked
+        const orderButtons = document.querySelectorAll('.order-btn');
+        const formPopup = document.getElementById('formPopup');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+
+        orderButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                formPopup.style.display = 'flex'; // Show the pop-up form
+            });
+        });
+
+        // Submit the form and show confirmation message
+        function submitOrder() {
+            const tableNumber = document.getElementById('tableNumber').value;
+            if (tableNumber) {
+                formPopup.style.display = 'none'; // Hide the pop-up
+                confirmationMessage.style.display = 'block'; // Show confirmation message
+                setTimeout(() => {
+                    confirmationMessage.style.display = 'none'; // Hide confirmation after 3 seconds
+                }, 3000);
+            } else {
+                alert("Por favor, insira o número da mesa.");
+            }
+        }
+    </script>
 
 </body>
 </html>
