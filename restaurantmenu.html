@@ -20,13 +20,13 @@
             color: white;
             padding: 30px 20px;
             text-align: center;
-            position: fixed; /* Fixed at the top */
+            position: absolute; /* Header starts as absolute */
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            /* Make sure the header stays fixed at the top */
+            transition: transform 0.3s ease; /* Add smooth transition */
         }
 
         header h1 {
@@ -43,7 +43,7 @@
 
         /* Adjust the body to make space for the fixed header */
         body {
-            padding-top: 150px; /* This ensures content does not get hidden behind the fixed header */
+            padding-top: 150px; /* This ensures content does not get hidden behind the header */
         }
 
         /* Search Bar */
@@ -286,34 +286,6 @@
                 <img src="https://via.placeholder.com/300?text=Salada+Caesar" alt="Salada Caesar">
                 <h3>Salada Caesar</h3>
                 <p>Preço: 100 MZN</p>
-                <div class="star-rating">★★★☆☆</div>
-                <button>Pedir</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sobremesas Section -->
-    <section>
-        <h2>Sobremesas</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Bolo+de+Chocolate" alt="Bolo de Chocolate">
-                <h3>Bolo de Chocolate</h3>
-                <p>Preço: 120 MZN</p>
-                <div class="star-rating">★★★★★</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Salada+de+Frutas" alt="Salada de Frutas">
-                <h3>Salada de Frutas</h3>
-                <p>Preço: 90 MZN</p>
-                <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Sorvete" alt="Sorvete">
-                <h3>Sorvete</h3>
-                <p>Preço: 70 MZN</p>
                 <div class="star-rating">★★★☆☆</div>
                 <button>Pedir</button>
             </div>
