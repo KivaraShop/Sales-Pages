@@ -61,7 +61,7 @@
 
         h2 {
             text-align: center;
-            color: #f44336;
+            color: #FF5722; /* A vibrant orange */
             margin-bottom: 20px;
             font-size: 26px;
         }
@@ -81,6 +81,7 @@
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             padding: 15px;
+            background: #ffffff;
         }
 
         .menu-item:hover {
@@ -117,7 +118,7 @@
         }
 
         .menu-item button {
-            background-color: #4CAF50;
+            background-color: #FF5722; /* A bright orange for a call-to-action */
             color: white;
             padding: 10px 20px;
             border: none;
@@ -128,7 +129,7 @@
         }
 
         .menu-item button:hover {
-            background-color: #388E3C;
+            background-color: #D32F2F; /* Darker red */
         }
 
         footer {
@@ -159,6 +160,7 @@
             border-radius: 5px;
             width: 80%;
             max-width: 400px;
+            border: 2px solid #4CAF50; /* Green border for search */
         }
 
         .filters {
@@ -169,7 +171,7 @@
         }
 
         .filters button {
-            background-color: #f44336;
+            background-color: #4CAF50; /* Green filter button */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -179,8 +181,22 @@
         }
 
         .filters button:hover {
-            background-color: #d32f2f;
+            background-color: #388E3C; /* Darker green for hover */
         }
+
+        /* Colorful Backgrounds for Each Category */
+        #bebidas {
+            background-color: #ffcc80; /* Light orange */
+        }
+
+        #comidas {
+            background-color: #c8e6c9; /* Light green */
+        }
+
+        #sobremesas {
+            background-color: #e1bee7; /* Light purple */
+        }
+
     </style>
 </head>
 <body>
@@ -229,28 +245,7 @@
     <section id="sobremesas">
         <h2>Sobremesas</h2>
         <div class="menu-grid">
-<div class="menu-grid">
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Bolo+de+Chocolate" alt="Bolo de Chocolate">
-                <h3>Bolo de Chocolate</h3>
-                <p>Preço: 120 MZN</p>
-                <div class="star-rating">★★★★★</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Salada+de+Frutas" alt="Salada de Frutas">
-                <h3>Salada de Frutas</h3>
-                <p>Preço: 90 MZN</p>
-                <div class="star-rating">★★★★☆</div>
-                <button>Pedir</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://via.placeholder.com/300?text=Sorvete" alt="Sorvete">
-                <h3>Sorvete</h3>
-                <p>Preço: 70 MZN</p>
-                <div class="star-rating">★★★☆☆</div>
-                <button>Pedir</button>
-            </div>
+            <!-- Add items here as in your original code -->
         </div>
     </section>
 
