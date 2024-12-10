@@ -76,29 +76,6 @@
             border-color: #FF5722; /* Red border on focus */
         }
 
-        /* Filters */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .filters button {
-            background-color: #4CAF50; /* Green filter button */
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .filters button:hover {
-            background-color: #388E3C; /* Darker green for hover */
-        }
-
         /* Menu Grid Layout */
         section {
             padding: 30px 20px;
@@ -126,7 +103,6 @@
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             padding: 20px;
-            background: #ffffff;
         }
 
         .menu-item:hover {
@@ -246,9 +222,9 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <a href="#bebidas">Bebidas</a>
-        <a href="#comidas">Comidas</a>
-        <a href="#sobremesas">Sobremesas</a>
+        <a href="dieta.html">Dieta</a> <!-- Link to "Dieta" page -->
+        <a href="vegano.html">Vegano</a> <!-- Link to "Vegano" page -->
+        <a href="outras-opcoes.html">Outras Opções</a> <!-- Link to "Outras Opções" page -->
     </nav>
 
     <!-- Search Bar -->
@@ -256,15 +232,8 @@
         <input type="text" id="search" placeholder="Procurar por item...">
     </div>
 
-    <!-- Filters -->
-    <div class="filters">
-        <button onclick="filterCategory('vegan')">Vegan</button>
-        <button onclick="filterCategory('gluten-free')">Sem Glúten</button>
-        <button onclick="filterCategory('low-calorie')">Baixas Calorias</button>
-    </div>
-
-    <!-- Bebidas Section -->
-    <section id="bebidas">
+    <!-- Menu Grid Layout -->
+    <section>
         <h2>Bebidas</h2>
         <div class="menu-grid">
             <!-- Add items dynamically here -->
@@ -272,7 +241,7 @@
     </section>
 
     <!-- Comidas Section -->
-    <section id="comidas">
+    <section>
         <h2>Comidas</h2>
         <div class="menu-grid">
             <!-- Add items dynamically here -->
@@ -280,7 +249,7 @@
     </section>
 
     <!-- Sobremesas Section -->
-    <section id="sobremesas">
+    <section>
         <h2>Sobremesas</h2>
         <div class="menu-grid">
             <!-- Add items dynamically here -->
@@ -303,12 +272,6 @@
     </footer>
 
     <script>
-        // Function to filter menu items based on category
-        function filterCategory(category) {
-            alert('Filtrando por: ' + category);
-            // Implement filtering logic here
-        }
-
         // Modal functionality
         var modal = document.getElementById("itemModal");
         var closeBtn = document.getElementsByClassName("close")[0];
