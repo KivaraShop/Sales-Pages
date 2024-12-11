@@ -128,6 +128,9 @@
             overflow: hidden;
             position: relative;
             max-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensures the content is spaced properly */
         }
 
         .menu-item:hover {
@@ -253,7 +256,7 @@
         /* Mobile and Small Screen Adjustments */
         @media (max-width: 600px) {
             .menu-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
+                grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
             }
 
             .category-links {
