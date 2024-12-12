@@ -299,41 +299,46 @@
 
     <!-- EmailJS Integration -->
 <script>
-    emailjs.init("Z4w-4Pii9jsn-CnIG"); // Replace with your EmailJS user ID
+    emailjs.init("Z4w-4Pii9jsn-CnIG"); // Your EmailJS User ID
 
     document.querySelectorAll('.order-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const item = this.getAttribute('data-item'); // Item name
-            const price = this.getAttribute('data-price'); // Item price
+            const item = this.getAttribute('data-item'); // Get item name
+            const price = this.getAttribute('data-price'); // Get item price
 
-            // Collect customer details through prompts
+            // Collect customer details via prompts
             const name = prompt("Qual o seu nome?");
             const phone = prompt("Qual o seu número de telefone?");
             const table = prompt("Qual é o número da sua mesa?");
 
-            // Validate that all fields are filled in
+            // Check if all fields are filled in
             if (name && phone && table) {
-                // Prepare the simplified template parameters
+                // Prepare the email parameters
                 const templateParams = {
                     nome_cliente: name,        // Customer name
                     telefone_cliente: phone,   // Customer phone
                     numero_mesa: table,        // Table number
+                    item_nome: item,           // Item name
+                    item_preco: price,         // Item price
+                    detalhes_do_pedido: `${item} - ${price} MZN`, // Order details
                 };
 
-                console.log('Sending email with parameters:', templateParams); // Debugging log
+                console.log('Attempting to send email with parameters:', templateParams); // Debugging log
 
                 // Send email using EmailJS service and template
                 emailjs.send('service_x7r3xmv', 'template_bt9ljmd', templateParams)
                     .then(function (response) {
                         alert('Pedido enviado com sucesso!');
                         console.log('Email sent successfully:', response); // Success log
-                    }, function (error) {
+                    })
+                    .catch(function (error) {
                         alert('Falha ao enviar pedido, tente novamente.');
-                        console.error('Error sending email:', error);
-                        console.log('Error details:', error);
+                        console.error('Error sending email:', error); // Detailed error logging
                         console.log('Error message:', error.message);
                         console.log('Error text:', error.text);
+                        console.log('Error status:', error.status);
                         console.log('Error code:', error.code);
+                        console.log('Full error object:', error); // Full error object for debugging
                     });
             } else {
                 alert('Por favor, preencha todos os campos.');
@@ -341,6 +346,7 @@
         });
     });
 </script>
+
 
 </body>
 </html>
