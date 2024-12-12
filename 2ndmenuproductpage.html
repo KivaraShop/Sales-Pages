@@ -60,14 +60,21 @@
             gap: 10px;
             justify-content: center;
             overflow-x: auto;
+            margin-bottom: 20px;
         }
 
         .product-gallery img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             border-radius: 8px;
             cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.3s ease;
+        }
+
+        .product-gallery img:hover {
+            border: 2px solid #ff66b2;
         }
 
         /* Estilo para os detalhes do produto */
@@ -89,6 +96,10 @@
             color: #660033;
         }
 
+        .product-rating i {
+            color: #ffcc00;
+        }
+
         /* Botão de Adicionar ao Pedido */
         .add-to-order-btn {
             background: linear-gradient(90deg, #ff66b2, #ff99cc);
@@ -108,16 +119,16 @@
         /* Responsividade */
         @media(max-width: 768px) {
             .product-gallery img {
-                width: 80px;
-                height: 80px;
-            }
-
-            .product-details {
-                padding: 10px;
+                width: 70px;
+                height: 70px;
             }
 
             .product-image {
                 max-width: 100%;
+            }
+
+            .product-details {
+                padding: 10px;
             }
         }
 
