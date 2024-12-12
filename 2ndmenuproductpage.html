@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto</title>
+    <title>Detalhes do Produto - Shopping Brasil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Estilo global */
@@ -16,6 +16,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-sizing: border-box;
+            width: 100%;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         /* Cabeçalho */
@@ -39,99 +42,153 @@
             text-decoration: none;
         }
 
-        /* Container principal */
-        .container {
-            max-width: 1200px;
+        /* Menu de navegação */
+        nav {
+            background-color: #ff66b2;
+            padding: 10px;
             width: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffccdd;
+        }
+
+        /* Conteúdo principal */
+        .container {
+            width: 100%;
+            max-width: 1200px;
             padding: 10px;
             text-align: center;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
-        /* Imagem principal do produto */
-        .product-image {
-            width: 100%;
-            max-width: 600px;
-            margin: 20px 0;
-        }
-
-        /* Galeria de imagens do produto */
-        .product-gallery {
+        /* Detalhes do Produto */
+        .product-detail {
             display: flex;
-            gap: 10px;
-            justify-content: center;
-            overflow-x: auto;
-            margin-bottom: 20px;
-        }
-
-        .product-gallery img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border 0.3s ease;
-        }
-
-        .product-gallery img:hover {
-            border: 2px solid #ff66b2;
-        }
-
-        /* Estilo para os detalhes do produto */
-        .product-details {
-            text-align: left;
-            padding: 15px;
-            background-color: white;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background: white;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        .product-details h2 {
+        .product-detail img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-detail h2 {
             font-size: 24px;
             color: #4a004e;
+            margin: 10px 0;
         }
 
-        .product-details p {
-            font-size: 18px;
-            color: #660033;
+        .product-detail p.price {
+            font-size: 20px;
+            color: #ff66b2;
+            font-weight: bold;
         }
 
-        .product-rating i {
+        .stars {
             color: #ffcc00;
+            font-size: 20px;
         }
 
-        /* Botão de Adicionar ao Pedido */
-        .add-to-order-btn {
-            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+        .product-description {
+            font-size: 16px;
+            color: #660033;
+            margin: 10px 0;
+        }
+
+        .add-to-cart {
+            background: #ff66b2;
             border: none;
-            padding: 12px 30px;
+            padding: 10px 20px;
             color: white;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 8px;
             margin-top: 20px;
+            transition: background 0.3s;
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 10px;
         }
 
-        .add-to-order-btn:hover {
+        .add-to-cart:hover {
+            background: #ff99cc;
+        }
+
+        .back-button {
             background: #ff66b2;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .back-button:hover {
+            background: #ff99cc;
         }
 
         /* Responsividade */
-        @media(max-width: 768px) {
-            .product-gallery img {
-                width: 70px;
-                height: 70px;
+        @media (max-width: 768px) {
+            body {
+                padding: 0 10px;
             }
 
-            .product-image {
+            .product-detail {
+                padding: 15px;
+                width: 100%;
                 max-width: 100%;
+                margin: 10px 0;
             }
 
-            .product-details {
-                padding: 10px;
+            .product-detail img {
+                width: 100%;
+                height: auto;
+            }
+
+            .product-info {
+                text-align: center;
+            }
+
+            .stars {
+                font-size: 18px;
+            }
+
+            .product-description {
+                font-size: 14px;
+            }
+
+            .add-to-cart, .back-button {
+                width: 100%;
+                font-size: 18px;
+                padding: 12px;
+                margin-top: 20px;
             }
         }
-
     </style>
 </head>
 <body>
@@ -141,34 +198,41 @@
         <a href="#" class="logo">Shopping Brasil</a>
     </header>
 
+    <!-- Menu de Navegação -->
+    <nav>
+        <a href="loja.html">Início</a>
+        <a href="loja.html">Produtos</a>
+        <a href="Sobrenos.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+
     <!-- Conteúdo principal -->
     <div class="container">
-        <!-- Imagem principal do produto -->
-        <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
+        <!-- Detalhes do Produto -->
+        <div class="product-detail">
+            <!-- Imagem do produto -->
+            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
 
-        <!-- Galeria de imagens do produto -->
-        <div class="product-gallery">
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
-        </div>
+            <!-- Informações do Produto -->
+            <div class="product-info">
+                <h2>Produto 1</h2>
+                <p class="price">R$ 49,99</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="product-description">
+                    Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
+                </p>
 
-        <!-- Detalhes do produto -->
-        <div class="product-details">
-            <h2>Produto 1</h2>
-            <p>Preço: R$99,99</p>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <i class="far fa-star"></i>
+                <!-- Botões -->
+                <button class="add-to-cart">Adicionar ao Pedido</button>
+                <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
             </div>
         </div>
-
-        <!-- Botão Adicionar ao Pedido -->
-        <button class="add-to-order-btn">Adicionar ao Pedido</button>
     </div>
 
 </body>
