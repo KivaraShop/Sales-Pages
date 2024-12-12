@@ -298,24 +298,9 @@
     </footer>
 
     <!-- EmailJS Integration -->
-   <form id="pedidoForm">
-        <label for="nome_cliente">Seu Nome:</label>
-        <input type="text" id="nome_cliente" name="nome_cliente" required>
-
-        <label for="numero_mesa">Número da Mesa:</label>
-        <input type="number" id="numero_mesa" name="numero_mesa" required>
-
-        <label for="telefone_cliente">Telefone:</label>
-        <input type="tel" id="telefone_cliente" name="telefone_cliente" required>
-
-        <label for="detalhes_do_pedido">Detalhes do Pedido:</label>
-        <textarea id="detalhes_do_pedido" name="detalhes_do_pedido" rows="4" required></textarea>
-
-        <button type="submit">Enviar Pedido</button>
-    </form>
 
     <script>
-        emailjs.init("YOUR_USER_ID");
+        emailjs.init("8pBFbNqK7BxbgOCpP");
 
         const form = document.getElementById("pedidoForm");
         form.addEventListener("submit", function(event) {
@@ -333,7 +318,7 @@
                 detalhes_do_pedido: detalhesPedido
             };
 
-            emailjs.send("service_id", "template_id", templateParams)
+            emailjs.send("service_x7r3xmv", "template_bt9ljmd", templateParams)
                 .then(function(response) {
                     alert("Pedido enviado com sucesso! Obrigado.");
                 }, function(error) {
