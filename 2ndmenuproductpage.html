@@ -17,6 +17,7 @@
             flex-direction: column;
             align-items: center;
             padding: 0 10px;
+            box-sizing: border-box;
         }
 
         /* Cabeçalho */
@@ -80,6 +81,7 @@
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .product-detail img {
@@ -120,6 +122,9 @@
             cursor: pointer;
             margin-top: 20px;
             transition: background 0.3s;
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 10px;
         }
 
         .add-to-cart:hover {
@@ -135,6 +140,8 @@
             cursor: pointer;
             margin-top: 20px;
             transition: background 0.3s;
+            width: 100%;
+            max-width: 200px;
         }
 
         .back-button:hover {
@@ -145,16 +152,17 @@
         @media (max-width: 768px) {
             .product-detail {
                 padding: 15px;
+                width: 100%;
+                margin: 0 10px;
+                max-width: 100%;
             }
 
             .product-detail img {
                 width: 100%;
                 height: auto;
-                margin-bottom: 20px;
             }
 
             .product-info {
-                width: 100%;
                 text-align: center;
             }
 
@@ -170,6 +178,7 @@
                 width: 100%;
                 font-size: 18px;
                 padding: 12px;
+                margin-top: 20px;
             }
         }
 
@@ -195,7 +204,7 @@
         <!-- Detalhes do Produto -->
         <div class="product-detail">
             <!-- Imagem do produto -->
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Produto 1">
+            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
 
             <!-- Informações do Produto -->
             <div class="product-info">
