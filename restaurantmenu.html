@@ -298,38 +298,44 @@
     </footer>
 
     <!-- EmailJS Integration -->
-    <script>
-        emailjs.init("8pBFbNqK7BxbgOCpP"); // Substitua com seu user ID do EmailJS
+  <script>
+    emailjs.init("8pBFbNqK7BxbgOCpP"); // Replace with your EmailJS user ID
 
-        document.querySelectorAll('.order-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                const item = this.getAttribute('data-item');
-                const price = this.getAttribute('data-price');
+    document.querySelectorAll('.order-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const item = this.getAttribute('data-item'); // Item name
+            const price = this.getAttribute('data-price'); // Item price
 
-                const name = prompt("Qual o seu nome?");
-                const phone = prompt("Qual o seu número de telefone?");
-                const table = prompt("Qual é o número da sua mesa?");
+            // Collect customer details through prompts
+            const name = prompt("Qual o seu nome?");
+            const phone = prompt("Qual o seu número de telefone?");
+            const table = prompt("Qual é o número da sua mesa?");
 
-                if (name && phone && table) {
-                    const templateParams = {
-                        from_name: name,
-                        from_phone: phone,
-                        table_number: table,
-                        item_name: item,
-                        item_price: price,
-                        message: `${item} - ${price} MZN`
-                    };
+            // Validate that all fields are filled in
+            if (name && phone && table && item && price) {
+                // Prepare the template parameters
+                const templateParams = {
+                    nome_cliente: name,        // Customer name
+                    telefone_cliente: phone,   // Customer phone
+                    numero_mesa: table,        // Table number
+                    item_nome: item,           // Item name
+                    item_preco: price,         // Item price
+                    detalhes_do_pedido: `${item} - ${price} MZN` // Item details formatted for the order
+                };
 
-                    emailjs.send('service_x7r3xmv', 'template_14h39br', templateParams)
-                        .then(function (response) {
-                            alert('Pedido enviado com sucesso!');
-                        }, function (error) {
-                            alert('Falha ao enviar pedido, tente novamente.');
-                        });
-                }
-            });
+                // Send email using EmailJS service and template
+                emailjs.send('service_x7r3xmv', 'template_14h39br', templateParams)
+                    .then(function (response) {
+                        alert('Pedido enviado com sucesso!');
+                    }, function (error) {
+                        alert('Falha ao enviar pedido, tente novamente.');
+                        console.error('Error sending email:', error); // Log error for debugging
+                    });
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
         });
-    </script>
-
+    });
+</script>
 </body>
 </html>
