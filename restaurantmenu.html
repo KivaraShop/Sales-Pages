@@ -326,7 +326,7 @@ document.querySelectorAll('.order-btn').forEach(button => {
             console.log('Sending email with parameters:', templateParams); // Debugging log
 
             // Send email using EmailJS service and template
-            emailjs.send('service_x7r3xmv', 'template_bt9ljmd', templateParams)
+            emailjs.send('x7r3xmv', 'bt9ljmd', templateParams)
                 .then(function (response) {
                     alert('Pedido enviado com sucesso!');
                     console.log('Email sent successfully:', response); // Success log
