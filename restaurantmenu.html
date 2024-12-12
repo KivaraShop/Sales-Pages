@@ -299,32 +299,57 @@
 
     <!-- EmailJS Integration -->
 
-    <script>
-        emailjs.init("8pBFbNqK7BxbgOCpP");
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize EmailJS with your user ID
+        emailjs.init("YOUR_USER_ID");
 
-        const form = document.getElementById("pedidoForm");
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
+        // Function to collect data and send email
+        function collectAndSendEmail() {
+            // Use prompts to gather user input
+            const name = prompt("Digite seu nome:");
+            if (!name) return alert("Por favor, insira seu nome.");
 
-            const nomeCliente = document.getElementById("nome_cliente").value;
-            const numeroMesa = document.getElementById("numero_mesa").value;
-            const telefoneCliente = document.getElementById("telefone_cliente").value;
-            const detalhesPedido = document.getElementById("detalhes_do_pedido").value;
+            const email = prompt("Digite seu e-mail:");
+            if (!email) return alert("Por favor, insira seu e-mail.");
 
+            const message = prompt("Digite sua mensagem:");
+            if (!message) return alert("Por favor, insira sua mensagem.");
+
+            // Data to send via EmailJS
             const templateParams = {
-                nome_cliente: nomeCliente,
-                numero_mesa: numeroMesa,
-                telefone_cliente: telefoneCliente,
-                detalhes_do_pedido: detalhesPedido
+                name: name,
+                email: email,
+                message: message
             };
 
-            emailjs.send("service_x7r3xmv", "template_bt9ljmd", templateParams)
+            // Sending email
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
                 .then(function(response) {
-                    alert("Pedido enviado com sucesso! Obrigado.");
+                    alert("Mensagem enviada com sucesso! Obrigado por entrar em contato.");
                 }, function(error) {
-                    alert("Erro ao enviar pedido. Tente novamente.");
+                    alert("Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.");
+                    console.error("EmailJS Error:", error);
                 });
+        }
+
+        // Add event listener to a button to trigger the popup
+        const sendButton = document.getElementById("sendEmailButton");
+        if (sendButton) {
+            sendButton.addEventListener("click", collectAndSendEmail);
+        }
+    });
+
+      // Add event listeners to all "Pedir" buttons
+        const pedirButtons = document.querySelectorAll(".pedir-button"); // Assuming "Pedir" buttons have a class "pedir-button"
+        pedirButtons.forEach(button => {
+            button.addEventListener("click", collectAndSendEmail);
         });
-    </script>
+    });
+</script>
+
+<!-- Example Button to Trigger Email Sending -->
+<button id="sendEmailButton">Enviar Mensagem</button>
+
 </body>
 </html>
