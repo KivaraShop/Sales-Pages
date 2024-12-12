@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - Shopping Brasil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            color: #4a004e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff99cc;
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4a004e;
+            text-decoration: none;
+        }
+
+        /* Menu de navegação */
+        nav {
+            background-color: #ff66b2;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffccdd;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Detalhes do Produto */
+        .product-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .product-detail img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-detail h2 {
+            font-size: 24px;
+            color: #4a004e;
+            margin: 10px 0;
+        }
+
+        .product-detail p.price {
+            font-size: 20px;
+            color: #ff66b2;
+            font-weight: bold;
+        }
+
+        .stars {
+            color: #ffcc00;
+            font-size: 20px;
+        }
+
+        .product-description {
+            font-size: 16px;
+            color: #660033;
+            margin: 10px 0;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity input {
+            width: 60px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .quantity button {
+            background: #ff66b2;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .quantity button:hover {
+            background: #ff99cc;
+        }
+
+        .back-button {
+            background: #ff66b2;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #ff99cc;
+        }
+
+        /* Responsividade */
+        @media(min-width: 768px) {
+            .product-detail {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .product-detail img {
+                width: 45%;
+                height: auto;
+            }
+
+            .product-info {
+                width: 50%;
+                text-align: left;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <a href="#" class="logo">Shopping Brasil</a>
+    </header>
+
+    <!-- Menu de Navegação -->
+    <nav>
+        <a href="loja.html">Início</a>
+        <a href="loja.html">Produtos</a>
+        <a href="Sobrenos.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <!-- Detalhes do Produto -->
+        <div class="product-detail">
+            <!-- Imagem do produto -->
+            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
+
+            <!-- Informações do Produto -->
+            <div class="product-info">
+                <h2>Produto 1</h2>
+                <p class="price">R$ 49,99</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="product-description">
+                    Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
+                </p>
+
+                <!-- Quantidade e botão -->
+                <div class="quantity">
+                    <input type="number" value="1" min="1">
+                    <button>Adicionar ao Pedido</button>
+                </div>
+
+                <!-- Voltar ao menu -->
+                <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
