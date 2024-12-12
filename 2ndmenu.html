@@ -16,6 +16,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 0 10px;
         }
 
         /* Cabeçalho */
@@ -83,7 +84,7 @@
         .container {
             max-width: 1200px;
             width: 100%;
-            padding: 10px;
+            padding: 20px 10px;
             text-align: center;
         }
 
@@ -91,8 +92,9 @@
         .product-grid {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             padding: 0 10px;
+            justify-content: center;
         }
 
         @media(min-width: 768px) {
@@ -113,28 +115,36 @@
             overflow: hidden;
             transition: transform 0.3s;
             margin: 0 auto;
+            padding: 10px;
+            text-align: center;
         }
 
         .product-card:hover {
             transform: scale(1.05);
         }
 
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
         .product-card h3 {
             font-size: 18px;
             color: #4a004e;
-            margin: 10px;
+            margin: 10px 0;
         }
 
-        .product-card p {
-            font-size: 14px;
+        .product-card .price {
+            font-size: 16px;
             color: #660033;
-            margin: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        /* Estrelas de avaliação */
+        .stars {
+            font-size: 18px;
+            color: #ffcc00;
+            margin: 10px 0;
+        }
+
+        .stars i {
+            margin-right: 2px;
         }
 
         .product-card button {
@@ -146,6 +156,7 @@
             cursor: pointer;
             font-size: 16px;
             transition: background 0.3s;
+            margin-top: 10px;
         }
 
         .product-card button:hover {
@@ -205,33 +216,57 @@
         <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Prato Principal 1">
                 <h3>Prato Principal 1</h3>
-                <p>Descrição breve do prato principal 1.</p>
+                <div class="price">R$ 39,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
                 <button>Adicionar ao Pedido</button>
             </div>
 
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Prato Principal 2">
                 <h3>Prato Principal 2</h3>
-                <p>Descrição breve do prato principal 2.</p>
+                <div class="price">R$ 49,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
                 <button>Adicionar ao Pedido</button>
             </div>
 
             <!-- Card de Produto 3 (Sobremesa) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Sobremesa 1">
                 <h3>Sobremesa 1</h3>
-                <p>Descrição breve da sobremesa 1.</p>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
                 <button>Adicionar ao Pedido</button>
             </div>
 
             <!-- Card de Produto 4 (Bebida) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Bebida 1">
                 <h3>Bebida 1</h3>
-                <p>Descrição breve da bebida 1.</p>
+                <div class="price">R$ 9,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
                 <button>Adicionar ao Pedido</button>
             </div>
         </div>
