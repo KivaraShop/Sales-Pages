@@ -299,7 +299,7 @@
 
     <!-- EmailJS Integration -->
   <script>
- emailjs.init("8pBFbNqK7BxbgOCpP"); // Your EmailJS user ID
+ emailjs.init("Z4w-4Pii9jsn-CnIG"); // Your EmailJS user ID
 
 document.querySelectorAll('.order-btn').forEach(button => {
     button.addEventListener('click', function () {
@@ -326,7 +326,7 @@ document.querySelectorAll('.order-btn').forEach(button => {
             console.log('Sending email with parameters:', templateParams); // Debugging log
 
             // Send email using EmailJS service and template
-            emailjs.send('x7r3xmv', 'bt9ljmd', templateParams)
+            emailjs.send('service_w8552k5', 'template_n6rddp8', templateParams)
                 .then(function (response) {
                     alert('Pedido enviado com sucesso!');
                     console.log('Email sent successfully:', response); // Success log
