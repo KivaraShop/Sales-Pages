@@ -16,6 +16,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 0 10px;
         }
 
         /* Cabeçalho */
@@ -59,7 +60,7 @@
             color: #ffccdd;
         }
 
-        /* Container principal */
+        /* Conteúdo principal */
         .container {
             max-width: 1200px;
             width: 100%;
@@ -78,6 +79,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 800px;
+            margin: 0 auto;
         }
 
         .product-detail img {
@@ -109,29 +111,18 @@
             margin: 10px 0;
         }
 
-        .quantity {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .quantity input {
-            width: 60px;
-            padding: 5px;
-            font-size: 16px;
-        }
-
-        .quantity button {
+        .add-to-cart {
             background: #ff66b2;
             border: none;
+            padding: 10px 20px;
             color: white;
-            padding: 8px 15px;
-            cursor: pointer;
             font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
             transition: background 0.3s;
         }
 
-        .quantity button:hover {
+        .add-to-cart:hover {
             background: #ff99cc;
         }
 
@@ -151,20 +142,34 @@
         }
 
         /* Responsividade */
-        @media(min-width: 768px) {
+        @media (max-width: 768px) {
             .product-detail {
-                flex-direction: row;
-                justify-content: space-between;
+                padding: 15px;
             }
 
             .product-detail img {
-                width: 45%;
+                width: 100%;
                 height: auto;
+                margin-bottom: 20px;
             }
 
             .product-info {
-                width: 50%;
-                text-align: left;
+                width: 100%;
+                text-align: center;
+            }
+
+            .stars {
+                font-size: 18px;
+            }
+
+            .product-description {
+                font-size: 14px;
+            }
+
+            .add-to-cart, .back-button {
+                width: 100%;
+                font-size: 18px;
+                padding: 12px;
             }
         }
 
@@ -190,7 +195,7 @@
         <!-- Detalhes do Produto -->
         <div class="product-detail">
             <!-- Imagem do produto -->
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
+            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Produto 1">
 
             <!-- Informações do Produto -->
             <div class="product-info">
@@ -207,13 +212,8 @@
                     Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
                 </p>
 
-                <!-- Quantidade e botão -->
-                <div class="quantity">
-                    <input type="number" value="1" min="1">
-                    <button>Adicionar ao Pedido</button>
-                </div>
-
-                <!-- Voltar ao menu -->
+                <!-- Botões -->
+                <button class="add-to-cart">Adicionar ao Pedido</button>
                 <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
             </div>
         </div>
