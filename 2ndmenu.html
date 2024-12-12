@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Digital - Restaurante Brasil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            color: #4a004e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff99cc;
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4a004e;
+            text-decoration: none;
+        }
+
+        /* Ícone do carrinho */
+        .cart-icon {
+            color: #4a004e;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .cart-icon .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff66b2;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        /* Menu de navegação */
+        nav {
+            background-color: #ff66b2;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffccdd;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Grid de produtos (menu) */
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 0 10px;
+        }
+
+        @media(min-width: 768px) {
+            .product-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Card de produto */
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            margin: 0 auto;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            color: #4a004e;
+            margin: 10px;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #660033;
+            margin: 10px;
+        }
+
+        .product-card button {
+            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+            border: none;
+            padding: 10px;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .product-card button:hover {
+            background: #ff66b2;
+        }
+
+        /* Banner animado */
+        #bannerText {
+            font-family: 'Didot', serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #4a004e;
+            background-color: #f8d7e6;
+            padding: 5px;
+            text-align: center;
+            animation: slideInOut 4s ease-in-out infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes slideInOut {
+            0% { transform: translateX(-100%); opacity: 0; }
+            25% { transform: translateX(0); opacity: 1; }
+            75% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <a href="#" class="logo">Menu Digital - Restaurante Brasil</a>
+        <a href="#" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">0</span>
+        </a>
+    </header>
+
+    <!-- Menu de Navegação -->
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Pratos Principais</a>
+        <a href="#">Sobremesas</a>
+        <a href="#">Bebidas</a>
+        <a href="#">Sobre Nós</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <!-- Banner com animação de texto -->
+    <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <h2>Explore Nosso Menu</h2>
+
+        <div class="product-grid">
+            <!-- Card de Produto 1 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Prato Principal 1">
+                <h3>Prato Principal 1</h3>
+                <p>Descrição breve do prato principal 1.</p>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 2 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Prato Principal 2">
+                <h3>Prato Principal 2</h3>
+                <p>Descrição breve do prato principal 2.</p>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Sobremesa 1">
+                <h3>Sobremesa 1</h3>
+                <p>Descrição breve da sobremesa 1.</p>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 4 (Bebida) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Bebida 1">
+                <h3>Bebida 1</h3>
+                <p>Descrição breve da bebida 1.</p>
+                <button>Adicionar ao Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para animações ao rolar a página -->
+    <script>
+        // Detecta rolagem e adiciona classe 'visible' para animações
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            const handleScroll = () => {
+                elements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Iniciar animações em elementos já visíveis
+        });
+    </script>
+</body>
+</html>
