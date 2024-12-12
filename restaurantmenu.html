@@ -298,58 +298,38 @@
     </footer>
 
     <!-- EmailJS Integration -->
+    <script>
+        emailjs.init("8pBFbNqK7BxbgOCpP"); // Substitua com seu user ID do EmailJS
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Initialize EmailJS with your user ID
-        emailjs.init("YOUR_USER_ID");
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const item = this.getAttribute('data-item');
+                const price = this.getAttribute('data-price');
 
-        // Function to collect data and send email
-        function collectAndSendEmail() {
-            // Use prompts to gather user input
-            const name = prompt("Digite seu nome:");
-            if (!name) return alert("Por favor, insira seu nome.");
+                const name = prompt("Qual o seu nome?");
+                const phone = prompt("Qual o seu número de telefone?");
+                const table = prompt("Qual é o número da sua mesa?");
 
-            const email = prompt("Digite seu e-mail:");
-            if (!email) return alert("Por favor, insira seu e-mail.");
+                if (name && phone && table) {
+                    const templateParams = {
+                        from_name: name,
+                        from_phone: phone,
+                        table_number: table,
+                        item_name: item,
+                        item_price: price,
+                        message: `${item} - ${price} MZN`
+                    };
 
-            const message = prompt("Digite sua mensagem:");
-            if (!message) return alert("Por favor, insira sua mensagem.");
-
-            // Data to send via EmailJS
-            const templateParams = {
-                name: name,
-                email: email,
-                message: message
-            };
-
-            // Sending email
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
-                .then(function(response) {
-                    alert("Mensagem enviada com sucesso! Obrigado por entrar em contato.");
-                }, function(error) {
-                    alert("Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.");
-                    console.error("EmailJS Error:", error);
-                });
-        }
-
-        // Add event listener to a button to trigger the popup
-        const sendButton = document.getElementById("sendEmailButton");
-        if (sendButton) {
-            sendButton.addEventListener("click", collectAndSendEmail);
-        }
-    });
-
-      // Add event listeners to all "Pedir" buttons
-        const pedirButtons = document.querySelectorAll(".pedir-button"); // Assuming "Pedir" buttons have a class "pedir-button"
-        pedirButtons.forEach(button => {
-            button.addEventListener("click", collectAndSendEmail);
+                    emailjs.send('service_x7r3xmv', 'template_14h39br', templateParams)
+                        .then(function (response) {
+                            alert('Pedido enviado com sucesso!');
+                        }, function (error) {
+                            alert('Falha ao enviar pedido, tente novamente.');
+                        });
+                }
+            });
         });
-    });
-</script>
-
-<!-- Example Button to Trigger Email Sending -->
-<button id="sendEmailButton">Enviar Mensagem</button>
+    </script>
 
 </body>
 </html>
