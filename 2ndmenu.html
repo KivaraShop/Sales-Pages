@@ -88,19 +88,6 @@
             text-align: center;
         }
         
-<!-- Cart Icon -->
-<a href="#" class="cart-icon">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-badge">0</span>
-</a>
-
-<!-- Cart List (Initially hidden) -->
-<div class="cart-container" style="display:none;">
-    <h3>Your Cart</h3>
-    <ul class="cart-list">
-        <!-- Cart items will appear here -->
-    </ul>
-</div>
 
         /* Grid de produtos (menu) */
         .product-grid {
@@ -316,43 +303,64 @@
         });
     </script>
 
+<!-- Cart Icon -->
+<a href="#" class="cart-icon" id="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-badge">0</span>
+</a>
+
+<!-- Cart List (Initially hidden) -->
+<div class="cart-container" id="cart-container" style="display:none;">
+    <h3>Your Cart</h3>
+    <ul class="cart-list" id="cart-list">
+        <!-- Cart items will appear here -->
+    </ul>
+</div>
+
 <script>
+// Keep track of cart items
 let cartItems = [];
 
+// Function to update the cart display
 function updateCart() {
-    // Update the badge count
+    // Update the cart count badge
     document.querySelector('.cart-badge').textContent = cartItems.length;
-
-    // Show the list of items in the cart
-    const cartList = document.querySelector('.cart-list');
+    
+    // Show the cart container if there are items
+    const cartContainer = document.getElementById('cart-container');
+    cartContainer.style.display = cartItems.length > 0 ? 'block' : 'none';
+    
+    // Update the cart list
+    const cartList = document.getElementById('cart-list');
     cartList.innerHTML = '';
-    if (cartItems.length > 0) {
-        cartItems.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.textContent = item;
-            cartList.appendChild(listItem);
-        });
-    } else {
-        cartList.innerHTML = '<li>Your cart is empty</li>';
-    }
+    
+    cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        cartList.appendChild(li);
+    });
 }
 
-// Event listeners for all the "Adicionar ao Pedido" buttons
+// Add event listener to "Adicionar ao Pedido" buttons
 const addToCartButtons = document.querySelectorAll('.product-card button');
 addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
+        // Get product name from the card title (or any other product attribute)
         const productName = button.closest('.product-card').querySelector('h3').textContent;
-        cartItems.push(productName); // Add selected product to the cart
-        updateCart(); // Update cart display
+        
+        // Add product to cart
+        cartItems.push(productName);
+        
+        // Update the cart display
+        updateCart();
     });
 });
 
-// Toggle cart visibility when the cart icon is clicked
-document.querySelector('.cart-icon').addEventListener('click', () => {
-    const cartContainer = document.querySelector('.cart-container');
+// Toggle cart visibility on click of cart icon
+document.getElementById('cart-icon').addEventListener('click', () => {
+    const cartContainer = document.getElementById('cart-container');
     cartContainer.style.display = cartContainer.style.display === 'none' ? 'block' : 'none';
 });
-
 </script>
 
 
