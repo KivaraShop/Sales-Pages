@@ -303,31 +303,42 @@
     </script>
 
 <script>
-    let cartItems = 0;
+let cartItems = [];
 
-    // Function to update the cart badge
-    function updateCartBadge() {
-        const badge = document.querySelector('.cart-badge');
-        if (badge) {
-            badge.innerText = cartItems;
-        }
+function updateCart() {
+    // Update the badge count
+    document.querySelector('.cart-badge').textContent = cartItems.length;
+
+    // Show the list of items in the cart
+    const cartList = document.querySelector('.cart-list');
+    cartList.innerHTML = '';
+    if (cartItems.length > 0) {
+        cartItems.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item;
+            cartList.appendChild(listItem);
+        });
+    } else {
+        cartList.innerHTML = '<li>Your cart is empty</li>';
     }
+}
 
-    // Function to add an item to the cart
-    function addToCart() {
-        cartItems++;
-        updateCartBadge();
-    }
-
-    // Add event listener to each "Adicionar ao Pedido" button
-    document.querySelectorAll('.product-card button').forEach(button => {
-        button.addEventListener('click', addToCart);
+// Event listeners for all the "Adicionar ao Pedido" buttons
+const addToCartButtons = document.querySelectorAll('.product-card button');
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const productName = button.closest('.product-card').querySelector('h3').textContent;
+        cartItems.push(productName); // Add selected product to the cart
+        updateCart(); // Update cart display
     });
+});
 
-    // Event listener for the cart icon to show cart details
-    document.querySelector('.cart-icon').addEventListener('click', () => {
-        alert("Você tem " + cartItems + " item(s) no seu pedido.");
-    });
+// Toggle cart visibility when the cart icon is clicked
+document.querySelector('.cart-icon').addEventListener('click', () => {
+    const cartContainer = document.querySelector('.cart-container');
+    cartContainer.style.display = cartContainer.style.display === 'none' ? 'block' : 'none';
+});
+
 </script>
 
 
