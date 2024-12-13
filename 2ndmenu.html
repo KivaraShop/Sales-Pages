@@ -352,53 +352,61 @@
     </script>
 
 
-
 <script>
-let cartItems = [];
-
-document.querySelectorAll(".product-card button").forEach((button) => {
-    button.addEventListener("click", () => {
-        const productCard = button.closest(".product-card");
-        const productName = productCard.querySelector("h3").textContent;
-        const productPrice = productCard.querySelector(".price").textContent;
-        const productImage = productCard.querySelector("img").src;
-
-        // Add item to the cart array
-        cartItems.push({ name: productName, price: productPrice, image: productImage });
-
-        // Update cart badge count
-        document.querySelector(".cart-badge").textContent = cartItems.length;
-
-        // Update the cart popup content
-        updateCartPopup();
-    });
-});
-
-// Toggle cart popup visibility
-document.querySelector(".cart-icon").addEventListener("click", () => {
+document.addEventListener("DOMContentLoaded", function () {
+    const cartIcon = document.querySelector(".cart-icon");
     const cartPopup = document.querySelector(".cart-popup");
-    cartPopup.style.display = cartPopup.style.display === "block" ? "none" : "block";
-});
+    const cartList = document.querySelector(".cart-popup ul");
+    const cartBadge = document.querySelector(".cart-badge");
+    const addToCartButtons = document.querySelectorAll(".product-card button");
 
-// Update the content inside the cart popup
-function updateCartPopup() {
-    const cartList = document.querySelector(".cart-list");
-    cartList.innerHTML = ""; // Clear the previous items
+    let cartItems = [];
 
-    cartItems.forEach((item) => {
-        const cartItem = document.createElement("li");
-        cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
-            <div>
-                <p>${item.name}</p>
-                <p>${item.price}</p>
-            </div>
-        `;
-        cartList.appendChild(cartItem);
+    // Toggle cart popup visibility
+    cartIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        cartPopup.style.display = cartPopup.style.display === "none" ? "block" : "none";
     });
-}
 
+    // Add items to the cart
+    addToCartButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const productCard = this.closest(".product-card");
+            const productName = productCard.querySelector("h3").innerText;
+            const productImage = productCard.querySelector("img").src;
 
+            // Check if the item is already in the cart
+            const existingItem = cartItems.find((item) => item.name === productName);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({ name: productName, image: productImage, quantity: 1 });
+            }
+
+            updateCartUI();
+        });
+    });
+
+    // Update the cart UI
+    function updateCartUI() {
+        cartList.innerHTML = ""; // Clear current cart items
+        cartItems.forEach((item) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div>
+                    <p>${item.name}</p>
+                    <small>Quantidade: ${item.quantity}</small>
+                </div>
+            `;
+            cartList.appendChild(listItem);
+        });
+
+        // Update badge count
+        cartBadge.textContent = cartItems.reduce((total, item) => total + item.quantity, 0);
+    }
+});
 </script>
 
 
