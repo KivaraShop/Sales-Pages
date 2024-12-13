@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItems.forEach((item) => {
             const listItem = document.createElement("li");
             listItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
+                <img src="${item.image}" alt="${item.name}" style="width:40px; height:40px; margin-right:10px;">
                 <div>
                     <p>${item.name}</p>
                     <small>Quantidade: ${item.quantity}</small>
@@ -407,6 +407,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cartBadge.textContent = cartItems.reduce((total, item) => total + item.quantity, 0);
     }
 });
+
 </script>
 
 
