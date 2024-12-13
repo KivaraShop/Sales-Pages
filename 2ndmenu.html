@@ -59,6 +59,52 @@
             padding: 2px 6px;
             font-size: 12px;
         }
+        .cart-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 20px;
+    display: none;
+}
+
+.cart-popup-content {
+    padding: 20px;
+}
+
+.cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-popup li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-popup img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-popup button {
+    background-color: #ff66b2;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 
         /* Menu de navegação */
         nav {
@@ -87,9 +133,22 @@
             padding: 20px 10px;
             text-align: center;
         }
-        
 
-        /* Grid de produtos (menu) */
+        <!-- Cart Icon -->
+<a href="#" class="cart-icon" id="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-badge">0</span>
+</a>
+
+<!-- Cart List (Initially hidden) -->
+<div class="cart-container" id="cart-container" style="display:none;">
+    <h3>Your Cart</h3>
+    <ul class="cart-list" id="cart-list">
+        <!-- Cart items will appear here -->
+    </ul>
+</div>
+
+        /* Grid de Proud tos (menu) */
         .product-grid {
             display: flex;
             flex-direction: column;
@@ -303,64 +362,55 @@
         });
     </script>
 
-<!-- Cart Icon -->
-<a href="#" class="cart-icon" id="cart-icon">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-badge">0</span>
-</a>
 
-<!-- Cart List (Initially hidden) -->
-<div class="cart-container" id="cart-container" style="display:none;">
-    <h3>Your Cart</h3>
-    <ul class="cart-list" id="cart-list">
-        <!-- Cart items will appear here -->
-    </ul>
-</div>
 
 <script>
-// Keep track of cart items
+// Array to keep track of cart items with image and name
 let cartItems = [];
 
-// Function to update the cart display
+// Function to update the cart display with images
 function updateCart() {
-    // Update the cart count badge
     document.querySelector('.cart-badge').textContent = cartItems.length;
-    
-    // Show the cart container if there are items
-    const cartContainer = document.getElementById('cart-container');
-    cartContainer.style.display = cartItems.length > 0 ? 'block' : 'none';
-    
-    // Update the cart list
+
     const cartList = document.getElementById('cart-list');
-    cartList.innerHTML = '';
-    
+    cartList.innerHTML = ''; // Clear the current list
+
     cartItems.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = item;
+        const img = document.createElement('img');
+        img.src = item.image;
+        const text = document.createTextNode(item.name);
+        li.appendChild(img);
+        li.appendChild(text);
         cartList.appendChild(li);
     });
 }
 
-// Add event listener to "Adicionar ao Pedido" buttons
+// Add product to cart
 const addToCartButtons = document.querySelectorAll('.product-card button');
 addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
-        // Get product name from the card title (or any other product attribute)
         const productName = button.closest('.product-card').querySelector('h3').textContent;
+        const productImage = button.closest('.product-card').querySelector('img').src;
+
+        // Add product to cart with name and image
+        cartItems.push({ name: productName, image: productImage });
         
-        // Add product to cart
-        cartItems.push(productName);
-        
-        // Update the cart display
         updateCart();
     });
 });
 
-// Toggle cart visibility on click of cart icon
+// Toggle cart visibility and display popup
 document.getElementById('cart-icon').addEventListener('click', () => {
-    const cartContainer = document.getElementById('cart-container');
-    cartContainer.style.display = cartContainer.style.display === 'none' ? 'block' : 'none';
+    const cartPopup = document.getElementById('cart-popup');
+    cartPopup.style.display = cartPopup.style.display === 'none' || cartPopup.style.display === '' ? 'block' : 'none';
 });
+
+// Close the cart popup
+function closeCart() {
+    document.getElementById('cart-popup').style.display = 'none';
+}
+
 </script>
 
 
