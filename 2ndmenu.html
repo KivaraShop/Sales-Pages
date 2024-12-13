@@ -354,48 +354,49 @@
 
 
 <script>
-// Array to keep track of cart items with image and name
 let cartItems = [];
 
-// Function to update the cart display with images
-function updateCart() {
-    document.querySelector('.cart-badge').textContent = cartItems.length;
+document.querySelectorAll(".product-card button").forEach((button) => {
+    button.addEventListener("click", () => {
+        const productCard = button.closest(".product-card");
+        const productName = productCard.querySelector("h3").textContent;
+        const productPrice = productCard.querySelector(".price").textContent;
+        const productImage = productCard.querySelector("img").src;
 
-    const cartList = document.querySelector('.cart-list'); // Use existing cart list
-    cartList.innerHTML = ''; // Clear the current list
+        // Add item to the cart array
+        cartItems.push({ name: productName, price: productPrice, image: productImage });
 
-    cartItems.forEach(item => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = item.image;
-        img.style.width = '50px'; // Adjust image size for better display
-        img.style.height = '50px'; // Adjust image size for better display
-        const text = document.createTextNode(item.name);
-        li.appendChild(img);
-        li.appendChild(text);
-        cartList.appendChild(li);
+        // Update cart badge count
+        document.querySelector(".cart-badge").textContent = cartItems.length;
+
+        // Update the cart popup content
+        updateCartPopup();
+    });
+});
+
+// Toggle cart popup visibility
+document.querySelector(".cart-icon").addEventListener("click", () => {
+    const cartPopup = document.querySelector(".cart-popup");
+    cartPopup.style.display = cartPopup.style.display === "block" ? "none" : "block";
+});
+
+// Update the content inside the cart popup
+function updateCartPopup() {
+    const cartList = document.querySelector(".cart-list");
+    cartList.innerHTML = ""; // Clear the previous items
+
+    cartItems.forEach((item) => {
+        const cartItem = document.createElement("li");
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+            <div>
+                <p>${item.name}</p>
+                <p>${item.price}</p>
+            </div>
+        `;
+        cartList.appendChild(cartItem);
     });
 }
-
-// Add product to cart
-const addToCartButtons = document.querySelectorAll('.product-card button');
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const productName = button.closest('.product-card').querySelector('h3').textContent;
-        const productImage = button.closest('.product-card').querySelector('img').src;
-
-        // Add product to cart with name and image
-        cartItems.push({ name: productName, image: productImage });
-        
-        updateCart();
-    });
-});
-
-// Toggle cart visibility and display popup
-document.querySelector('.cart-icon').addEventListener('click', () => {
-    const cartPopup = document.querySelector('.cart-container');
-    cartPopup.style.display = cartPopup.style.display === 'none' || cartPopup.style.display === '' ? 'block' : 'none';
-});
 
 
 </script>
