@@ -356,7 +356,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const cartIcon = document.querySelector(".cart-icon");
     const cartPopup = document.querySelector(".cart-popup");
-    const cartList = document.querySelector(".cart-popup ul");
+    const cartList = cartPopup.querySelector("ul");
     const cartBadge = document.querySelector(".cart-badge");
     const addToCartButtons = document.querySelectorAll(".product-card button");
 
@@ -368,20 +368,23 @@ document.addEventListener("DOMContentLoaded", function () {
         cartPopup.style.display = cartPopup.style.display === "none" ? "block" : "none";
     });
 
-    // Add items to the cart
+    // Add to cart functionality
     addToCartButtons.forEach((button) => {
         button.addEventListener("click", function () {
             const productCard = this.closest(".product-card");
             const productName = productCard.querySelector("h3").innerText;
             const productImage = productCard.querySelector("img").src;
 
-            // Check if the item is already in the cart
             const existingItem = cartItems.find((item) => item.name === productName);
 
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cartItems.push({ name: productName, image: productImage, quantity: 1 });
+                cartItems.push({
+                    name: productName,
+                    image: productImage,
+                    quantity: 1,
+                });
             }
 
             updateCartUI();
@@ -390,21 +393,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update the cart UI
     function updateCartUI() {
-        cartList.innerHTML = ""; // Clear current cart items
+        cartList.innerHTML = ""; // Clear current list
         cartItems.forEach((item) => {
-            const listItem = document.createElement("li");
-            listItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" style="width:40px; height:40px; margin-right:10px;">
-                <div>
-                    <p>${item.name}</p>
-                    <small>Quantidade: ${item.quantity}</small>
-                </div>
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <span>${item.name}</span> 
+                <span>Qtd: ${item.quantity}</span>
             `;
-            cartList.appendChild(listItem);
+            cartList.appendChild(li);
         });
 
-        // Update badge count
-        cartBadge.textContent = cartItems.reduce((total, item) => total + item.quantity, 0);
+        const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.textContent = totalItems; // Update count
     }
 });
 
