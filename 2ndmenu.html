@@ -386,13 +386,15 @@ let cartItems = [];
 function updateCart() {
     document.querySelector('.cart-badge').textContent = cartItems.length;
 
-    const cartList = document.getElementById('cart-list');
+    const cartList = document.querySelector('.cart-list'); // Use existing cart list
     cartList.innerHTML = ''; // Clear the current list
 
     cartItems.forEach(item => {
         const li = document.createElement('li');
         const img = document.createElement('img');
         img.src = item.image;
+        img.style.width = '50px'; // Adjust image size for better display
+        img.style.height = '50px'; // Adjust image size for better display
         const text = document.createTextNode(item.name);
         li.appendChild(img);
         li.appendChild(text);
@@ -415,15 +417,11 @@ addToCartButtons.forEach(button => {
 });
 
 // Toggle cart visibility and display popup
-document.getElementById('cart-icon').addEventListener('click', () => {
-    const cartPopup = document.getElementById('cart-popup');
+document.querySelector('.cart-icon').addEventListener('click', () => {
+    const cartPopup = document.querySelector('.cart-container');
     cartPopup.style.display = cartPopup.style.display === 'none' || cartPopup.style.display === '' ? 'block' : 'none';
 });
 
-// Close the cart popup
-function closeCart() {
-    document.getElementById('cart-popup').style.display = 'none';
-}
 
 </script>
 
