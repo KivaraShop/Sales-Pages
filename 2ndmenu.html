@@ -134,19 +134,23 @@
             text-align: center;
         }
 
-        <!-- Cart Icon -->
+<!-- Cart Icon -->
 <a href="#" class="cart-icon" id="cart-icon">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-badge">0</span>
 </a>
 
-<!-- Cart List (Initially hidden) -->
-<div class="cart-container" id="cart-container" style="display:none;">
-    <h3>Your Cart</h3>
-    <ul class="cart-list" id="cart-list">
-        <!-- Cart items will appear here -->
-    </ul>
+<!-- Cart Popup (Initially hidden) -->
+<div id="cart-popup" class="cart-popup" style="display: none;">
+    <div class="cart-popup-content">
+        <h3>Your Cart</h3>
+        <ul id="cart-list">
+            <!-- Cart items will appear here -->
+        </ul>
+        <button onclick="closeCart()">Close</button>
+    </div>
 </div>
+
 
         /* Grid de Proud tos (menu) */
         .product-grid {
