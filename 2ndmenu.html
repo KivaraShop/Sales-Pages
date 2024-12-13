@@ -302,12 +302,15 @@
         });
     </script>
 
-    <script>
+<script>
     let cartItems = 0;
 
     // Function to update the cart badge
     function updateCartBadge() {
-        document.querySelector('.cart-badge').innerText = cartItems;
+        const badge = document.querySelector('.cart-badge');
+        if (badge) {
+            badge.innerText = cartItems;
+        }
     }
 
     // Function to add an item to the cart
@@ -316,8 +319,8 @@
         updateCartBadge();
     }
 
-    // Event listener for the "Adicionar ao Pedido" button
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    // Add event listener to each "Adicionar ao Pedido" button
+    document.querySelectorAll('.product-card button').forEach(button => {
         button.addEventListener('click', addToCart);
     });
 
@@ -326,6 +329,7 @@
         alert("Você tem " + cartItems + " item(s) no seu pedido.");
     });
 </script>
+
 
 </body>
 </html>
