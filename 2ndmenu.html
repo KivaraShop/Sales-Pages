@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt">
+
+        <!-- Cart Icon -->
+<a href="#" class="cart-icon" id="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-badge">0</span>
+</a>
+
+<!-- Cart Popup (Initially hidden) -->
+<div id="cart-popup" class="cart-popup" style="display: none;">
+    <div class="cart-popup-content">
+        <h3>Your Cart</h3>
+        <ul id="cart-list">
+            <!-- Cart items will appear here -->
+        </ul>
+        <button onclick="closeCart()">Close</button>
+    </div>
+</div>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Digital - Restaurante Brasil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         /* Estilo global */
         body {
@@ -133,23 +152,6 @@
             padding: 20px 10px;
             text-align: center;
         }
-
-<!-- Cart Icon -->
-<a href="#" class="cart-icon" id="cart-icon">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-badge">0</span>
-</a>
-
-<!-- Cart Popup (Initially hidden) -->
-<div id="cart-popup" class="cart-popup" style="display: none;">
-    <div class="cart-popup-content">
-        <h3>Your Cart</h3>
-        <ul id="cart-list">
-            <!-- Cart items will appear here -->
-        </ul>
-        <button onclick="closeCart()">Close</button>
-    </div>
-</div>
 
 
         /* Grid de Proud tos (menu) */
