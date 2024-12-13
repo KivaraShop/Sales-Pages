@@ -301,5 +301,31 @@
             handleScroll(); // Iniciar animações em elementos já visíveis
         });
     </script>
+
+    <script>
+    let cartItems = 0;
+
+    // Function to update the cart badge
+    function updateCartBadge() {
+        document.querySelector('.cart-badge').innerText = cartItems;
+    }
+
+    // Function to add an item to the cart
+    function addToCart() {
+        cartItems++;
+        updateCartBadge();
+    }
+
+    // Event listener for the "Adicionar ao Pedido" button
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', addToCart);
+    });
+
+    // Event listener for the cart icon to show cart details
+    document.querySelector('.cart-icon').addEventListener('click', () => {
+        alert("Você tem " + cartItems + " item(s) no seu pedido.");
+    });
+</script>
+
 </body>
 </html>
