@@ -420,25 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return total;
     }
 
-    // Animate total sum counting
-    function animateTotalSum() {
-        const total = calculateTotal();
-        let currentTotal = 0;
-        const increment = total / 100;
-        const totalElement = document.querySelector('.cart-total');
-
-        function updateTotal() {
-            currentTotal += increment;
-            if (currentTotal < total) {
-                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
-                requestAnimationFrame(updateTotal);
-            } else {
-                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-            }
-        }
-        updateTotal();
-    }
-
     // Render cart content
     function renderCart() {
         cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
@@ -482,13 +463,10 @@ document.addEventListener('DOMContentLoaded', () => {
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ 0.00`; // Start from 0.00
+        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
         cartPopupContent.appendChild(totalElement);
 
-        // Animate the total sum counting
-        animateTotalSum();
-
-        // "Fazer Pedido" button
+        // Add "Fazer Pedido" button
         const fazerPedidoButton = document.createElement('button');
         fazerPedidoButton.textContent = 'Fazer pedido';
         fazerPedidoButton.style.background = '#ff66b2';
@@ -499,19 +477,19 @@ document.addEventListener('DOMContentLoaded', () => {
         fazerPedidoButton.style.cursor = 'pointer';
         fazerPedidoButton.style.marginTop = '10px';
         fazerPedidoButton.addEventListener('click', () => {
-            showWaitingOptions();
+            showPaymentOptions();
         });
         cartPopupContent.appendChild(fazerPedidoButton);
 
-        // Close cart button
+        // Add "Fechar" button
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
         closeButton.style.background = '#ff66b2';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
-        closeButton.style.padding = '5px 10px';  // Reduced padding
-        closeButton.style.fontSize = '12px';     // Reduced font size
-        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.padding = '5px 10px';
+        closeButton.style.fontSize = '12px';
+        closeButton.style.width = 'auto';
         closeButton.style.cursor = 'pointer';
         closeButton.style.marginTop = '10px';
         closeButton.addEventListener('click', () => {
@@ -521,8 +499,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Show waiting options
-    function showWaitingOptions() {
+    // Show buttons for "Aguardar" and "Falar com atendente"
+    function showPaymentOptions() {
         // Clear previous content
         cartPopupContent.innerHTML = '';
 
@@ -534,43 +512,80 @@ document.addEventListener('DOMContentLoaded', () => {
         totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
         cartPopupContent.appendChild(totalElement);
 
-        // Add waiting buttons
-        const waitingOptions = document.createElement('div');
-        waitingOptions.innerHTML = `
-            <h3>Escolha a opção:</h3>
-            <button id="waitButton" style="background: #ffcc00; color: white; padding: 10px; width: 100%; cursor: pointer; margin-top: 10px;">Aguardar</button>
-            <button id="whatsappButton" style="background: #25d366; color: white; padding: 10px; width: 100%; cursor: pointer; margin-top: 10px;">Falar com atendente</button>
-        `;
-        cartPopupContent.appendChild(waitingOptions);
+        // Add "Aguardar" button (countdown)
+        const waitButton = document.createElement('button');
+        waitButton.textContent = 'Aguardar';
+        waitButton.style.background = '#4CAF50';
+        waitButton.style.color = 'white';
+        waitButton.style.border = 'none';
+        waitButton.style.padding = '10px';
+        waitButton.style.width = '100%';
+        waitButton.style.cursor = 'pointer';
+        waitButton.style.marginTop = '10px';
+        waitButton.addEventListener('click', () => {
+            startCountdown();
+        });
+        cartPopupContent.appendChild(waitButton);
 
-        document.getElementById('waitButton').addEventListener('click', startCountdown);
-        document.getElementById('whatsappButton').addEventListener('click', redirectToWhatsapp);
+        // Add "Falar com atendente" button
+        const chatButton = document.createElement('button');
+        chatButton.textContent = 'Falar com atendente';
+        chatButton.style.background = '#ff66b2';
+        chatButton.style.color = 'white';
+        chatButton.style.border = 'none';
+        chatButton.style.padding = '10px';
+        chatButton.style.width = '100%';
+        chatButton.style.cursor = 'pointer';
+        chatButton.style.marginTop = '10px';
+        chatButton.addEventListener('click', () => {
+            window.location.href = `https://wa.me/258852136558?text=Olá!%20Gostaria%20de%20realizar%20um%20pedido.%20Meu%20carrinho%20tem%20os%20seguintes%20itens:%20${encodeURIComponent(JSON.stringify(cart))}%20Total:%20R$${calculateTotal().toFixed(2)}`;
+        });
+        cartPopupContent.appendChild(chatButton);
     }
 
-    // Start countdown for "Aguardar" button
+    // Start countdown for "Aguardar"
     function startCountdown() {
-        let seconds = 120;  // 2 minutes
+        let countdown = 120; // 2 minutes in seconds
         const countdownElement = document.createElement('div');
-        countdownElement.innerHTML = `Aguarde por ${seconds} segundos...`;
+        countdownElement.style.fontWeight = 'bold';
+        countdownElement.style.marginTop = '20px';
+        countdownElement.innerHTML = `Aguarde: ${countdown}s`;
         cartPopupContent.appendChild(countdownElement);
 
-        const countdownInterval = setInterval(() => {
-            seconds--;
-            countdownElement.innerHTML = `Aguarde por ${seconds} segundos...`;
-            if (seconds <= 0) {
-                clearInterval(countdownInterval);
-                countdownElement.innerHTML = 'Tempo esgotado!';
+        const interval = setInterval(() => {
+            countdown--;
+            countdownElement.innerHTML = `Aguarde: ${countdown}s`;
+            if (countdown <= 0) {
+                clearInterval(interval);
+                countdownElement.innerHTML = 'Tempo esgotado.';
             }
         }, 1000);
     }
 
-    // Redirect to WhatsApp
-    function redirectToWhatsapp() {
-        const orderDetails = `Pedido: ${cart.map(item => item.name).join(', ')} | Total: R$ ${calculateTotal().toFixed(2)}`;
-        const whatsappLink = `https://wa.me/258852136558?text=${encodeURIComponent(orderDetails)}`;
-        window.open(whatsappLink, '_blank');
-    }
+    // Add products to cart
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price });
+            updateCartCount();
+        });
+    });
+
+    // Toggle cart popup visibility
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
 });
+
 </script>
 
 </body>
