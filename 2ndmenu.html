@@ -398,230 +398,173 @@
     </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const cart = [];
-    const cartIcon = document.querySelector('.cart-icon');
-    const cartBadge = cartIcon.querySelector('.cart-badge');
-    const cartPopup = document.querySelector('.cart-popup');
-    const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.product-card');
-    let selectedPaymentMethod = '';
+function renderCart() {
+    cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>';
+    const ul = document.createElement('ul');
+    ul.style.listStyleType = 'none';
+    ul.style.padding = '0';
 
-    // Update cart count
-    function updateCartCount() {
-        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
-    }
+    if (cart.length === 0) {
+        ul.innerHTML = '<li>O carrinho está vazio.</li>';
+    } else {
+        cart.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.style.display = 'flex';
+            li.style.alignItems = 'center';
+            li.style.marginBottom = '10px';
 
-    // Calculate total
-    function calculateTotal() {
-        return cart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0).toFixed(2);
-    }
-
-    // Render cart content with animation and product details
-    function renderCart() {
-        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
-        const ul = document.createElement('ul');
-        ul.style.listStyleType = 'none';
-        ul.style.padding = '0';
-
-        if (cart.length === 0) {
-            ul.innerHTML = '<li>O carrinho está vazio.</li>';
-        } else {
-            cart.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.style.display = 'flex';
-                li.style.alignItems = 'center';
-                li.style.marginBottom = '10px';
-
-                li.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
-                    <div>
-                        <p>${item.name}</p>
-                        <p class="price">${item.price}</p>
-                    </div>
-                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
-                `;
-
-                // Remove item from cart
-                li.querySelector('button').addEventListener('click', (e) => {
-                    const indexToRemove = e.target.getAttribute('data-index');
-                    cart.splice(indexToRemove, 1);
-                    updateCartCount();
-                    renderCart();
-                });
-
-                ul.appendChild(li);
+            li.innerHTML = `
+                <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                <div>
+                    <p>${item.name}</p>
+                    <p class="price">${item.price}</p>
+                </div>
+                <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+            `;
+            li.querySelector('button').addEventListener('click', (e) => {
+                const indexToRemove = e.target.getAttribute('data-index');
+                cart.splice(indexToRemove, 1);
+                updateCartCount();
+                renderCart();
             });
 
-            // Animated total sum
-            const totalElement = document.createElement('div');
-            totalElement.innerHTML = `<strong>Total: </strong>R$ <span id="total-price">0</span>`;
-            cartPopupContent.appendChild(totalElement);
-            animateTotal(calculateTotal());
-
-            // "Fazer Pedido" button
-            const fazerPedidoButton = document.createElement('button');
-            fazerPedidoButton.textContent = 'Fazer Pedido';
-            fazerPedidoButton.style.background = '#ff66b2';
-            fazerPedidoButton.style.color = 'white';
-            fazerPedidoButton.style.border = 'none';
-            fazerPedidoButton.style.padding = '10px';
-            fazerPedidoButton.style.cursor = 'pointer';
-            fazerPedidoButton.style.width = '100%';
-            fazerPedidoButton.style.marginTop = '10px';
-            fazerPedidoButton.addEventListener('click', () => {
-                showPaymentMethods();
-            });
-            cartPopupContent.appendChild(fazerPedidoButton);
-        }
-
-        // Close cart button
-        const closeButton = document.createElement('button');
-        closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#ff66b2';
-        closeButton.style.color = 'white';
-        closeButton.style.border = 'none';
-        closeButton.style.padding = '5px 10px';
-        closeButton.style.fontSize = '12px';
-        closeButton.style.width = 'auto';
-        closeButton.style.cursor = 'pointer';
-        closeButton.style.marginTop = '10px';
-        closeButton.addEventListener('click', () => {
-            cartPopup.style.display = 'none';
+            ul.appendChild(li);
         });
 
-        cartPopupContent.appendChild(closeButton);
-    }
+        // Animated total sum
+        const totalElement = document.createElement('div');
+        totalElement.innerHTML = `<strong>Total: </strong>R$ <span id="total-price">0</span>`;
+        cartPopupContent.appendChild(totalElement);
+        animateTotal(calculateTotal());
 
-    // Animate the total sum
-    function animateTotal(total) {
-        const totalElement = document.getElementById('total-price');
-        let currentValue = 0;
-        const targetValue = parseFloat(total);
-        const increment = targetValue / 100;
-
-        const interval = setInterval(() => {
-            if (currentValue < targetValue) {
-                currentValue += increment;
-                totalElement.textContent = currentValue.toFixed(2);
-            } else {
-                clearInterval(interval);
-                totalElement.textContent = targetValue.toFixed(2);
-            }
-        }, 10);
-    }
-
-    // Show payment methods after "Fazer Pedido"
-    function showPaymentMethods() {
-        const paymentMethodsContainer = document.createElement('div');
-        paymentMethodsContainer.innerHTML = `
-            <h3>Escolha o método de pagamento</h3>
-            <button class="payment-method" data-method="Credito ou Débito">Credito ou Débito</button>
-            <button class="payment-method" data-method="M-pesa">M-pesa</button>
-            <button class="payment-method" data-method="Numerário">Numerário</button>
-        `;
-        cartPopupContent.appendChild(paymentMethodsContainer);
-
-        // Add event listener to payment method buttons
-        const paymentButtons = document.querySelectorAll('.payment-method');
-        paymentButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                selectedPaymentMethod = button.getAttribute('data-method');
-                showFinalizeOrderButton();
-            });
+        // "Fazer Pedido" button
+        const fazerPedidoButton = document.createElement('button');
+        fazerPedidoButton.textContent = 'Fazer Pedido';
+        fazerPedidoButton.style.background = '#ff66b2';
+        fazerPedidoButton.style.color = 'white';
+        fazerPedidoButton.style.border = 'none';
+        fazerPedidoButton.style.padding = '10px';
+        fazerPedidoButton.style.cursor = 'pointer';
+        fazerPedidoButton.style.width = '100%';
+        fazerPedidoButton.style.marginTop = '10px';
+        fazerPedidoButton.addEventListener('click', () => {
+            showPaymentMethods();
         });
+        cartPopupContent.appendChild(fazerPedidoButton);
     }
 
-    // Show Finalize Order button
-    function showFinalizeOrderButton() {
-        const finalizeButton = document.createElement('button');
-        finalizeButton.textContent = 'Finalizar Pedido';
-        finalizeButton.style.background = '#ff66b2';
-        finalizeButton.style.color = 'white';
-        finalizeButton.style.border = 'none';
-        finalizeButton.style.padding = '10px';
-        finalizeButton.style.cursor = 'pointer';
-        finalizeButton.style.width = '100%';
-        finalizeButton.style.marginTop = '10px';
-        finalizeButton.addEventListener('click', () => {
-            showThankYouMessage();
-        });
-        cartPopupContent.appendChild(finalizeButton);
-    }
-
-    // Show Thank you message with animation
-    function showThankYouMessage() {
-        const thankYouMessage = document.createElement('div');
-        thankYouMessage.textContent = 'Obrigado pelo seu pedido!';
-        thankYouMessage.style.textAlign = 'center';
-        thankYouMessage.style.fontSize = '20px';
-        thankYouMessage.style.animation = 'fadeIn 2s';
-        cartPopupContent.innerHTML = '';  // Clear existing content
-        cartPopupContent.appendChild(thankYouMessage);
-        showFinalOptions();
-    }
-
-    // Show final options (Aguardar and Falar com atendente)
-    function showFinalOptions() {
-        const optionContainer = document.createElement('div');
-        optionContainer.innerHTML = `
-            <button id="aguardar-button">Aguardar</button>
-            <button id="falar-button">Falar com atendente</button>
-        `;
-        cartPopupContent.appendChild(optionContainer);
-
-        // Countdown for Aguardar button
-        document.getElementById('aguardar-button').addEventListener('click', startCountdown);
-
-        // WhatsApp redirect for Falar com atendente button
-        document.getElementById('falar-button').addEventListener('click', () => {
-            const orderDetails = `Total: R$ ${calculateTotal()} - Método de pagamento: ${selectedPaymentMethod}`;
-            window.location.href = `https://wa.me/258852136558?text=${encodeURIComponent(orderDetails)}`;
-        });
-    }
-
-    // Start countdown when Aguardar is clicked
-    function startCountdown() {
-        let countdown = 180; // 3 minutes
-        const countdownDisplay = document.createElement('div');
-        countdownDisplay.textContent = `Aguarde... ${Math.floor(countdown / 60)}:${countdown % 60}`;
-        cartPopupContent.appendChild(countdownDisplay);
-
-        const interval = setInterval(() => {
-            countdown--;
-            countdownDisplay.textContent = `Aguarde... ${Math.floor(countdown / 60)}:${countdown % 60}`;
-            if (countdown <= 0) {
-                clearInterval(interval);
-                countdownDisplay.textContent = 'O tempo acabou!';
-            }
-        }, 1000);
-    }
-
-    // Add product to cart
-    productCards.forEach(card => {
-        const button = card.querySelector('button');
-        button.addEventListener('click', () => {
-            const img = card.querySelector('img').src;
-            const name = card.querySelector('h3').textContent;
-            const price = card.querySelector('.price').textContent;
-
-            cart.push({ img, name, price });
-            updateCartCount();
-            renderCart();
-        });
+    // Close cart button
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Fechar';
+    closeButton.style.background = '#ff66b2';
+    closeButton.style.color = 'white';
+    closeButton.style.border = 'none';
+    closeButton.style.padding = '5px 10px';
+    closeButton.style.fontSize = '12px';
+    closeButton.style.width = 'auto';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.marginTop = '10px';
+    closeButton.addEventListener('click', () => {
+        cartPopup.style.display = 'none';
     });
 
-    // Toggle cart popup visibility
-    cartIcon.addEventListener('click', () => {
-        if (cartPopup.style.display === 'block') {
-            cartPopup.style.display = 'none';
-        } else {
-            renderCart();
-            cartPopup.style.display = 'block';
-        }
-    });
-});
+    cartPopupContent.appendChild(closeButton);
+}
 
+// Show payment methods after "Fazer Pedido"
+function showPaymentMethods() {
+    cartPopupContent.innerHTML = '';
+    const paymentMethods = document.createElement('div');
+    paymentMethods.innerHTML = `
+        <h2>Escolha o Método de Pagamento</h2>
+        <ul>
+            <li><button class="payment-method" data-method="Credit/Debit Card">Cartão de Crédito ou Débito</button></li>
+            <li><button class="payment-method" data-method="M-pesa">M-pesa</button></li>
+            <li><button class="payment-method" data-method="Numerário">Numerário</button></li>
+        </ul>
+    `;
+    cartPopupContent.appendChild(paymentMethods);
+
+    // Add event listeners for payment methods
+    document.querySelectorAll('.payment-method').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const selectedPaymentMethod = e.target.getAttribute('data-method');
+            showFinalizationButton(selectedPaymentMethod);
+        });
+    });
+}
+
+// Show the "Finalizar Pedido" button after a payment method is selected
+function showFinalizationButton(paymentMethod) {
+    const finalizationButton = document.createElement('button');
+    finalizationButton.textContent = 'Finalizar Pedido';
+    finalizationButton.style.background = '#ff66b2';
+    finalizationButton.style.color = 'white';
+    finalizationButton.style.border = 'none';
+    finalizationButton.style.padding = '10px';
+    finalizationButton.style.cursor = 'pointer';
+    finalizationButton.style.width = '100%';
+    finalizationButton.style.marginTop = '10px';
+    finalizationButton.addEventListener('click', () => {
+        showThankYouMessage(paymentMethod);
+    });
+
+    cartPopupContent.appendChild(finalizationButton);
+}
+
+// Show "Thank You" message and countdown timer
+function showThankYouMessage(paymentMethod) {
+    cartPopupContent.innerHTML = ''; // Clear cart content
+    const thankYouMessage = document.createElement('div');
+    thankYouMessage.innerHTML = '<h2>Obrigado pelo seu pedido!</h2>';
+    cartPopupContent.appendChild(thankYouMessage);
+
+    // Show countdown timer for "Aguardar" button
+    const countdownElement = document.createElement('div');
+    countdownElement.innerHTML = '<span id="countdown">3:00</span>';
+    cartPopupContent.appendChild(countdownElement);
+
+    // Start countdown
+    let countdown = 180; // 3 minutes in seconds
+    const interval = setInterval(() => {
+        countdown--;
+        const minutes = Math.floor(countdown / 60);
+        const seconds = countdown % 60;
+        document.getElementById('countdown').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (countdown <= 0) {
+            clearInterval(interval);
+        }
+    }, 1000);
+
+    // "Aguardar" button
+    const aguardButton = document.createElement('button');
+    aguardButton.textContent = 'Aguardar';
+    aguardButton.style.background = '#4CAF50';
+    aguardButton.style.color = 'white';
+    aguardButton.style.border = 'none';
+    aguardButton.style.padding = '10px';
+    aguardButton.style.cursor = 'pointer';
+    aguardButton.style.width = '100%';
+    aguardButton.style.marginTop = '10px';
+    cartPopupContent.appendChild(aguardButton);
+
+    // "Falar com atendente" button
+    const falarButton = document.createElement('button');
+    falarButton.textContent = 'Falar com atendente';
+    falarButton.style.background = '#f44336';
+    falarButton.style.color = 'white';
+    falarButton.style.border = 'none';
+    falarButton.style.padding = '10px';
+    falarButton.style.cursor = 'pointer';
+    falarButton.style.width = '100%';
+    falarButton.style.marginTop = '10px';
+    falarButton.addEventListener('click', () => {
+        window.location.href = `https://wa.me/258852136558?text=Pedido%20detalhado:%20${cart.map(item => `${item.name} - ${item.price}`).join('%20')}%20Total:%20${calculateTotal()}%20Método%20de%20Pagamento:%20${paymentMethod}`;
+    });
+
+    cartPopupContent.appendChild(falarButton);
+}
 
 </script>
 
