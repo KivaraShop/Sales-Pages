@@ -117,6 +117,11 @@
     font-size: 16px;
 }
 
+ /* Menu Toggle for mobile */
+        .menu-toggle {
+            display: none;
+        }
+
         /* Logo in the center */
         .logo {
             flex-grow: 1;
@@ -308,20 +313,27 @@
 <body>
 
    <!-- Cabeçalho -->
-<header>
-    <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
-    <div class="logo">
-        <img src="your-logo.png" alt="Logo">
+ <header>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i> <!-- Toggle icon -->
+        </div>
+        <a href="#" class="logo">
+            <img src="logo.png" alt="Logo" style="max-width: 150px;"> <!-- Replace with your logo image -->
+        </a>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">3</span>
+        </div>
+    </header>
+ <!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </div>
-</header>
-
-<div class="nav-menu" id="nav-menu">
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</div>
     
 <!-- Popup do Carrinho -->
 <div class="cart-popup">
@@ -431,12 +443,16 @@
         </div>
     </div>
 
-<script>
-    // JavaScript to toggle the menu
-    document.getElementById("menu-toggle").addEventListener("click", function() {
-        document.getElementById("nav-menu").classList.toggle("active");
-    });
-</script>
+ <script>
+        // Get the menu toggle button and the menu itself
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        // Add an event listener for the toggle button click
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active'); // Toggle the active class to show/hide the menu
+        });
+    </script>
     
     <!-- Script para animações ao rolar a página -->
     <script>
