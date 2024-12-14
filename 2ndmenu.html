@@ -421,15 +421,17 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(ul);
 
         // Close cart button
-        const closeButton = document.createElement('button');
-        closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#ff66b2';
-        closeButton.style.color = 'white';
-        closeButton.style.border = 'none';
-        closeButton.style.padding = '10px';
-        closeButton.style.width = '100%';
-        closeButton.style.cursor = 'pointer';
-        closeButton.style.marginTop = '10px';
+const closeButton = document.createElement('button');
+closeButton.textContent = 'Fechar';
+closeButton.style.background = '#ff66b2';
+closeButton.style.color = 'white';
+closeButton.style.border = 'none';
+closeButton.style.padding = '5px 10px';  // Reduced padding
+closeButton.style.fontSize = '12px';     // Reduced font size
+closeButton.style.width = 'auto';        // Set width to auto to fit the content
+closeButton.style.cursor = 'pointer';
+closeButton.style.marginTop = '10px';
+
 
         closeButton.addEventListener('click', () => {
             cartPopup.style.display = 'none';
