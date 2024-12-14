@@ -325,7 +325,16 @@
             <span class="cart-badge">3</span>
         </div>
     </header>
-
+ <!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    
 <!-- Popup do Carrinho -->
 <div class="cart-popup">
     <div class="cart-popup-content">
@@ -333,15 +342,6 @@
         <!-- Lista de itens do carrinho será gerada aqui -->
     </div>
 </div>
-
-    <!-- Menu de Navegação -->
-    <nav>
-        <a href="#">Pratos Principais</a>
-        <a href="#">Sobremesas</a>
-        <a href="#">Bebidas</a>
-        <a href="sobrenos.html">Sobre Nós</a>
-        <a href="#">Contato</a>
-    </nav>
 
     <!-- Banner com animação de texto -->
     <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
@@ -443,13 +443,14 @@
         </div>
     </div>
 
-<script>
-        // Toggle menu visibility on click
-        const toggleButton = document.querySelector('.menu-toggle');
+ <script>
+        // Get the menu toggle button and the menu itself
+        const menuToggle = document.querySelector('.menu-toggle');
         const navMenu = document.querySelector('.nav-menu');
 
-        toggleButton.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+        // Add an event listener for the toggle button click
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active'); // Toggle the active class to show/hide the menu
         });
     </script>
     
