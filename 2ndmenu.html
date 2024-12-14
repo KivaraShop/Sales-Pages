@@ -370,19 +370,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCart() {
         cartPopupContent.innerHTML = ''; // Clear the current content
         const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
 
         if (cart.length === 0) {
             ul.innerHTML = '<li>O carrinho está vazio.</li>';
         } else {
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
                 li.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}">
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                     <div>
                         <p>${item.name}</p>
                         <p class="price">${item.price}</p>
                     </div>
+                    <button style="margin-left: auto; background: red; color: white; border: none; padding: 5px; cursor: pointer;" data-index="${index}">Remover</button>
                 `;
+
+                // Remove item button
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1); // Remove from cart
+                    updateCartCount();
+                    renderCart(); // Re-render the cart
+                });
+
                 ul.appendChild(li);
             });
         }
@@ -390,9 +406,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
+        closeButton.style.background = '#ff66b2';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '10px';
+        closeButton.style.width = '100%';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.marginTop = '10px';
+
         closeButton.addEventListener('click', () => {
             cartPopup.style.display = 'none';
         });
+
         cartPopupContent.appendChild(closeButton);
     }
 
@@ -412,9 +437,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show cart popup when cart icon is clicked
     cartIcon.addEventListener('click', () => {
         renderCart();
-        cartPopup.style.display = 'block';
+        cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
     });
 });
+
 </script>
 
 
