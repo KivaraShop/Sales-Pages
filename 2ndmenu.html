@@ -136,7 +136,27 @@
         nav a:hover {
             color: #ffccdd;
         }
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .nav-menu ul {
+    display: none; /* Hide menu items on mobile */
+    width: 100%;
+    text-align: center;
+  }
 
+  .nav-menu.active ul {
+    display: block; /* Show menu items when active */
+  }
+
+  .nav-menu li {
+    display: block;
+    width: 100%;
+  }
+
+  .menu-toggle {
+    display: block; /* Show the toggle button */
+  }
+}
         /* Container principal */
         .container {
             max-width: 1200px;
@@ -379,6 +399,16 @@
         </div>
     </div>
 
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+});
+ </script>
     <!-- Script para animações ao rolar a página -->
     <script>
         // Detecta rolagem e adiciona classe 'visible' para animações
