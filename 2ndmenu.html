@@ -22,34 +22,41 @@
         }
 
         /* Cabeçalho */
-        header {
-            background-color: #ff99cc;
-            padding: 15px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+       .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: pink;
+}
 
-        /* Logo */
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #4a004e;
-            text-decoration: none;
-        }
+/* Menu toggle button */
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    flex: 1;
+    text-align: left;
+}
 
-        /* Ícone do carrinho */
-        .cart-icon {
-            color: #4a004e;
-            font-size: 22px;
-            text-decoration: none;
-            position: relative;
-        }
+/* Center logo */
+.logo-link {
+    flex: 2;
+    text-align: center;
+}
+
+.logo-img {
+    max-height: 50px; /* Adjust as needed */
+    object-fit: contain;
+}
+
+/* Cart icon styling */
+.cart-icon {
+    flex: 1;
+    text-align: right;
+    position: relative;
+}
 
         .cart-icon .cart-badge {
             position: absolute;
@@ -118,84 +125,78 @@
 }
 
         /* Menu de navegação */
-        nav {
-            background-color: #ff66b2;
-            padding: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 16px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #ffccdd;
-        }
-
-        /* Navigation Styles */
-        .menu-toggle {
-            display: none;
-            background: #333;
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            text-align: center;
-            border: none;
-            width: 100%;
-        }
-
         .nav-menu {
-            background-color: #333;
+            background-color: #ff66b2; /* Pink color */
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            transition: left 0.3s ease-in-out;
+            z-index: 10;
+        }
+
+        .nav-menu.active {
+            left: 0;
         }
 
         .nav-menu ul {
             list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
+            width: 100%;
+            padding-top: 60px;
         }
 
         .nav-menu li {
-            margin: 0;
+            width: 100%;
         }
 
         .nav-menu a {
             display: block;
-            padding: 15px 20px;
-            color: white;
             text-decoration: none;
+            color: white;
+            padding: 15px 20px;
+            width: 100%;
+            text-align: left;
         }
 
         .nav-menu a:hover {
-            background-color: #555;
+            background-color: #ff99c7; /* Lighter pink hover effect */
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
+        /* Media query for larger screens */
+        @media (min-width: 768px) {
+            .header {
+                justify-content: space-between;
+            }
+
             .menu-toggle {
-                display: block;
+                display: none;
+            }
+
+            .nav-menu {
+                position: static;
+                flex-direction: row;
+                height: auto;
+                width: auto;
+                display: flex;
+                align-items: center;
             }
 
             .nav-menu ul {
-                flex-direction: column;
-                display: none;
-                width: 100%;
+                display: flex;
+                padding: 0;
             }
 
-            .nav-menu.active ul {
-                display: flex;
+            .nav-menu li {
+                margin-right: 15px;
             }
 
             .nav-menu a {
                 text-align: center;
-                border-bottom: 1px solid #555;
             }
         }
     
@@ -316,13 +317,16 @@
 <body>
 
    <!-- Cabeçalho -->
-<header>
-    <a href="#" class="logo">Menu Digital - Restaurante Brasil</a>
-    <a href="#" class="cart-icon">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-badge">0</span>
+<header class="header">
+    <button id="menu-toggle" aria-label="Toggle menu" class="menu-btn">☰</button>
+    <a href="sobrenos.html" class="logo-link">
+        <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Restaurant Logo" class="logo-img">
     </a>
+    <div class="cart-icon">
+        <span class="cart-badge"></span>
+    </div>
 </header>
+
 
 <!-- Popup do Carrinho -->
 <div class="cart-popup">
@@ -444,7 +448,7 @@
     </div>
 
  <script>
-        // JavaScript for Menu Toggle
+        // JavaScript for toggle functionality
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.querySelector('.menu-toggle');
             const navMenu = document.querySelector('.nav-menu');
@@ -453,7 +457,7 @@
                 navMenu.classList.toggle('active');
             });
         });
-    </script>
+    </script>>
     
     <!-- Script para animações ao rolar a página -->
     <script>
