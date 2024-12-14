@@ -412,7 +412,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
     }
 
-    // Render cart content
+    // Calculate total
+    function calculateTotal() {
+        return cart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0).toFixed(2);
+    }
+
+    // Render cart content with animation and product details
     function renderCart() {
         cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
         const ul = document.createElement('ul');
@@ -448,7 +453,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 ul.appendChild(li);
             });
 
-            // Add the "Fazer pedido" button
+            // Animated total sum
+            const totalElement = document.createElement('div');
+            totalElement.innerHTML = `<strong>Total: </strong>R$ <span id="total-price">0</span>`;
+            cartPopupContent.appendChild(totalElement);
+            animateTotal(calculateTotal());
+
+            // "Fazer Pedido" button
             const fazerPedidoButton = document.createElement('button');
             fazerPedidoButton.textContent = 'Fazer Pedido';
             fazerPedidoButton.style.background = '#ff66b2';
@@ -470,9 +481,9 @@ document.addEventListener('DOMContentLoaded', () => {
         closeButton.style.background = '#ff66b2';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
-        closeButton.style.padding = '5px 10px';  // Reduced padding
-        closeButton.style.fontSize = '12px';     // Reduced font size
-        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.padding = '5px 10px';
+        closeButton.style.fontSize = '12px';
+        closeButton.style.width = 'auto';
         closeButton.style.cursor = 'pointer';
         closeButton.style.marginTop = '10px';
         closeButton.addEventListener('click', () => {
@@ -482,7 +493,25 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Show payment methods
+    // Animate the total sum
+    function animateTotal(total) {
+        const totalElement = document.getElementById('total-price');
+        let currentValue = 0;
+        const targetValue = parseFloat(total);
+        const increment = targetValue / 100;
+
+        const interval = setInterval(() => {
+            if (currentValue < targetValue) {
+                currentValue += increment;
+                totalElement.textContent = currentValue.toFixed(2);
+            } else {
+                clearInterval(interval);
+                totalElement.textContent = targetValue.toFixed(2);
+            }
+        }, 10);
+    }
+
+    // Show payment methods after "Fazer Pedido"
     function showPaymentMethods() {
         const paymentMethodsContainer = document.createElement('div');
         paymentMethodsContainer.innerHTML = `
@@ -526,68 +555,46 @@ document.addEventListener('DOMContentLoaded', () => {
         thankYouMessage.textContent = 'Obrigado pelo seu pedido!';
         thankYouMessage.style.textAlign = 'center';
         thankYouMessage.style.fontSize = '20px';
-        thankYouMessage.style.fontWeight = 'bold';
-        thankYouMessage.style.marginBottom = '10px';
+        thankYouMessage.style.animation = 'fadeIn 2s';
+        cartPopupContent.innerHTML = '';  // Clear existing content
         cartPopupContent.appendChild(thankYouMessage);
-
-        // Add animation
-        thankYouMessage.style.animation = 'fadeIn 2s ease-out';
-
-        setTimeout(() => {
-            showFinalOptions();
-        }, 2000);
+        showFinalOptions();
     }
 
-    // Show "Aguardar" and "Falar com atendente" buttons
+    // Show final options (Aguardar and Falar com atendente)
     function showFinalOptions() {
-        const waitButton = document.createElement('button');
-        waitButton.textContent = 'Aguardar';
-        waitButton.style.background = '#ff66b2';
-        waitButton.style.color = 'white';
-        waitButton.style.border = 'none';
-        waitButton.style.padding = '10px';
-        waitButton.style.cursor = 'pointer';
-        waitButton.style.width = '100%';
-        waitButton.style.marginTop = '10px';
+        const optionContainer = document.createElement('div');
+        optionContainer.innerHTML = `
+            <button id="aguardar-button">Aguardar</button>
+            <button id="falar-button">Falar com atendente</button>
+        `;
+        cartPopupContent.appendChild(optionContainer);
 
-        const chatButton = document.createElement('button');
-        chatButton.textContent = 'Falar com atendente';
-        chatButton.style.background = '#ff66b2';
-        chatButton.style.color = 'white';
-        chatButton.style.border = 'none';
-        chatButton.style.padding = '10px';
-        chatButton.style.cursor = 'pointer';
-        chatButton.style.width = '100%';
-        chatButton.style.marginTop = '10px';
+        // Countdown for Aguardar button
+        document.getElementById('aguardar-button').addEventListener('click', startCountdown);
 
-        cartPopupContent.appendChild(waitButton);
-        cartPopupContent.appendChild(chatButton);
-
-        // Wait button countdown logic
-        waitButton.addEventListener('click', () => {
-            let countdown = 180; // 3 minutes
-            const countdownInterval = setInterval(() => {
-                countdown--;
-                if (countdown <= 0) {
-                    clearInterval(countdownInterval);
-                }
-            }, 1000);
-        });
-
-        // Chat button redirect to WhatsApp
-        chatButton.addEventListener('click', () => {
-            const orderDetails = `Order: ${JSON.stringify(cart)}\nTotal: ${getTotalSum()} \nPayment: ${selectedPaymentMethod}`;
-            const encodedMessage = encodeURIComponent(orderDetails);
-            window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+        // WhatsApp redirect for Falar com atendente button
+        document.getElementById('falar-button').addEventListener('click', () => {
+            const orderDetails = `Total: R$ ${calculateTotal()} - Método de pagamento: ${selectedPaymentMethod}`;
+            window.location.href = `https://wa.me/258852136558?text=${encodeURIComponent(orderDetails)}`;
         });
     }
 
-    // Get the total sum of the cart
-    function getTotalSum() {
-        return cart.reduce((sum, item) => {
-            const price = parseFloat(item.price.replace('MT', '').trim()); // Assuming price is in MT
-            return sum + price;
-        }, 0).toFixed(2);
+    // Start countdown when Aguardar is clicked
+    function startCountdown() {
+        let countdown = 180; // 3 minutes
+        const countdownDisplay = document.createElement('div');
+        countdownDisplay.textContent = `Aguarde... ${Math.floor(countdown / 60)}:${countdown % 60}`;
+        cartPopupContent.appendChild(countdownDisplay);
+
+        const interval = setInterval(() => {
+            countdown--;
+            countdownDisplay.textContent = `Aguarde... ${Math.floor(countdown / 60)}:${countdown % 60}`;
+            if (countdown <= 0) {
+                clearInterval(interval);
+                countdownDisplay.textContent = 'O tempo acabou!';
+            }
+        }, 1000);
     }
 
     // Add product to cart
@@ -600,6 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cart.push({ img, name, price });
             updateCartCount();
+            renderCart();
         });
     });
 
@@ -613,6 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 
 </script>
 
