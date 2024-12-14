@@ -147,20 +147,14 @@
                 text-align: center;
             }
 
-            .nav-menu {
-                display: none; /* Hide menu items on mobile */
-                width: 100%;
-                text-align: center;
-            }
+          /* Initially hide the menu */
+        .nav-menu {
+            display: none;
+        }
 
-            .nav-menu.active {
-                display: block; /* Show menu items when active */
-            }
-
-            .nav-menu li {
-                display: block;
-                width: 100%;
-            }
+        /* Show the menu when active */
+        .nav-menu.active {
+            display: block;
         }
 
           /* Toggle button */
@@ -442,14 +436,6 @@
             </div>
         </div>
     </div>
-
- <script>
-document.getElementById("menu-toggle").addEventListener("click", function() {
-    var navMenu = document.getElementById("nav-menu");
-    navMenu.classList.toggle("active");
-});
-
-    </script>
     
     <!-- Script para animações ao rolar a página -->
     <script>
@@ -681,6 +667,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+
+   <script>
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const navMenu = document.getElementById("nav-menu");
+            navMenu.classList.toggle("active");
+        });
+    </script>
 
 </body>
 </html>
