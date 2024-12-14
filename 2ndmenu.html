@@ -117,7 +117,53 @@
     font-size: 16px;
 }
 
-        /* Menu de navegação */
+ /* Menu Toggle for mobile */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Logo in the center */
+        .logo {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        /* Mobile styles */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                font-size: 30px;
+                background: none;
+                border: none;
+                color: #4a004e;
+            }
+
+            .logo {
+                flex-grow: 1;
+                text-align: center;
+            }
+
+            .nav-menu ul {
+                display: none; /* Hide menu items on mobile */
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-menu.active ul {
+                display: block; /* Show menu items when active */
+            }
+
+            .nav-menu li {
+                display: block;
+                width: 100%;
+            }
+        }
+
+        /* Navigation Menu */
         nav {
             background-color: #ff66b2;
             padding: 10px;
@@ -136,27 +182,6 @@
         nav a:hover {
             color: #ffccdd;
         }
-/* Mobile styles */
-@media screen and (max-width: 768px) {
-  .nav-menu ul {
-    display: none; /* Hide menu items on mobile */
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-menu.active ul {
-    display: block; /* Show menu items when active */
-  }
-
-  .nav-menu li {
-    display: block;
-    width: 100%;
-  }
-
-  .menu-toggle {
-    display: block; /* Show the toggle button */
-  }
-}
         /* Container principal */
         .container {
             max-width: 1200px;
@@ -275,10 +300,12 @@
 
    <!-- Cabeçalho -->
 <header>
-    <a href="#" class="logo">Menu Digital - Restaurante Brasil</a>
-    <a href="#" class="cart-icon">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-badge">0</span>
+    <!-- Menu Toggle for mobile -->
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+    <!-- Logo in the center -->
+    <a href="sobrenos.html" class="logo">
+        <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Logo">
     </a>
 </header>
 
@@ -399,16 +426,15 @@
         </div>
     </div>
 
- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
 
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-});
- </script>
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+    
     <!-- Script para animações ao rolar a página -->
     <script>
         // Detecta rolagem e adiciona classe 'visible' para animações
