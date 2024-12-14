@@ -397,50 +397,66 @@
         });
     </script>
 
-  <script>
-function renderCart() {
-    cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
-    const ul = document.createElement('ul');
-    ul.style.listStyleType = 'none';
-    ul.style.padding = '0';
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = [];
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const cartPopup = document.querySelector('.cart-popup');
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card');
 
-    if (cart.length === 0) {
-        ul.innerHTML = '<li>O carrinho está vazio.</li>';
-    } else {
-        cart.forEach((item, index) => {
-            const li = document.createElement('li');
-            li.style.display = 'flex';
-            li.style.alignItems = 'center';
-            li.style.marginBottom = '10px';
+    // Update cart count
+    function updateCartCount() {
+        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
+    }
 
-            li.innerHTML = `
-                <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
-                <div>
-                    <p>${item.name}</p>
-                    <p class="price">${item.price}</p>
-                </div>
-                <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
-            `;
+    // Render cart content
+    function renderCart() {
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
+        const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
 
-            // Remove item from cart
-            li.querySelector('button').addEventListener('click', (e) => {
-                const indexToRemove = e.target.getAttribute('data-index');
-                cart.splice(indexToRemove, 1);
-                updateCartCount();
-                renderCart();
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
+        } else {
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <p>${item.name}</p>
+                        <p class="price">${item.price}</p>
+                    </div>
+                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+                `;
+
+                // Remove item from cart
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1);
+                    updateCartCount();
+                    renderCart();
+                });
+
+                ul.appendChild(li);
             });
+        }
 
-            ul.appendChild(li);
-        });
+        cartPopupContent.appendChild(ul);
 
         // Add total sum display
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = 'Total: R$ 0.00';
+        totalElement.innerHTML = `Total: R$ ${getTotal()}`;
         cartPopupContent.appendChild(totalElement);
-        updateTotal(); // Update the total sum with animation
 
         // "Fazer Pedido" button
         const fazerPedidoButton = document.createElement('button');
@@ -456,25 +472,69 @@ function renderCart() {
             showPaymentOptions();
         });
         cartPopupContent.appendChild(fazerPedidoButton);
+
+        // Close cart button
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Fechar';
+        closeButton.style.background = '#ff66b2';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '5px 10px';  // Reduced padding
+        closeButton.style.fontSize = '12px';     // Reduced font size
+        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', () => {
+            cartPopup.style.display = 'none';
+        });
+
+        cartPopupContent.appendChild(closeButton);
     }
 
-    // Close cart button
-    const closeButton = document.createElement('button');
-    closeButton.textContent = 'Fechar';
-    closeButton.style.background = '#ff66b2';
-    closeButton.style.color = 'white';
-    closeButton.style.border = 'none';
-    closeButton.style.padding = '5px 10px';  // Reduced padding
-    closeButton.style.fontSize = '12px';     // Reduced font size
-    closeButton.style.width = 'auto';        // Set width to auto to fit the content
-    closeButton.style.cursor = 'pointer';
-    closeButton.style.marginTop = '10px';
-    closeButton.addEventListener('click', () => {
-        cartPopup.style.display = 'none';
+    // Get total sum of cart
+    function getTotal() {
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price.replace('R$', '').trim());
+        });
+        return total.toFixed(2);
+    }
+
+    // Show payment options after "Fazer pedido" click
+    function showPaymentOptions() {
+        const paymentMethodsDiv = document.createElement('div');
+        paymentMethodsDiv.style.marginTop = '10px';
+        paymentMethodsDiv.innerHTML = `
+            <p><strong>Métodos de Pagamento</strong></p>
+            <p>1. Cartão de Crédito ou Débito</p>
+            <p>2. M-Pesa</p>
+        `;
+        cartPopupContent.appendChild(paymentMethodsDiv);
+    }
+
+    // Add product to cart
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price });
+            updateCartCount();
+        });
     });
 
-    cartPopupContent.appendChild(closeButton);
-}
+    // Toggle cart popup visibility
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
+});
 </script>
 
 </body>
