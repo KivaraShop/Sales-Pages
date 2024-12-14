@@ -147,46 +147,55 @@
                 text-align: center;
             }
 
-            /* Menu Toggle Button */
+            .nav-menu ul {
+                display: none; /* Hide menu items on mobile */
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-menu.active ul {
+                display: block; /* Show menu items when active */
+            }
+
+            .nav-menu li {
+                display: block;
+                width: 100%;
+            }
+        }
+
+          /* Toggle button */
         .menu-toggle {
-            font-size: 30px;
+            display: block;
+            font-size: 22px;
             cursor: pointer;
-            background: none;
-            border: none;
-            color: #4a004e;
-            padding: 10px;
+            position: absolute;
+            left: 20px;
         }
 
         /* Navigation Menu */
-        .nav-menu {
-            display: none;
+        nav {
             background-color: #ff66b2;
+            padding: 10px;
             width: 100%;
             text-align: center;
-            padding: 10px;
-        }
-
-        /* Active class for nav menu */
-        .nav-menu.active {
-            display: block;
-        }
-
-        .nav-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-menu li {
-            margin: 10px 0;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
             font-size: 16px;
         }
-            
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffccdd;
+        }
+
+        .menu-toggle {
+                display: block;
+            }
+        }
         /* Container principal */
         .container {
             max-width: 1200px;
