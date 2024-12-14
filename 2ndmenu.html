@@ -356,19 +356,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cart = [];
     const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
     const productCards = document.querySelectorAll('.product-card');
 
-    // Function to update cart count badge
+    // Update the cart badge
     function updateCartCount() {
-        const cartBadge = cartIcon.querySelector('.cart-badge');
         cartBadge.textContent = cart.length;
     }
 
-    // Function to render cart items
+    // Render cart items in the popup
     function renderCart() {
-        cartPopupContent.innerHTML = ''; // Clear the current content
+        cartPopupContent.innerHTML = ''; // Clear previous cart items
         const ul = document.createElement('ul');
         ul.style.listStyleType = 'none';
         ul.style.padding = '0';
@@ -391,12 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button style="margin-left: auto; background: red; color: white; border: none; padding: 5px; cursor: pointer;" data-index="${index}">Remover</button>
                 `;
 
-                // Remove item button
+                // Remove item from the cart
                 li.querySelector('button').addEventListener('click', (e) => {
                     const indexToRemove = e.target.getAttribute('data-index');
-                    cart.splice(indexToRemove, 1); // Remove from cart
+                    cart.splice(indexToRemove, 1);
                     updateCartCount();
-                    renderCart(); // Re-render the cart
+                    renderCart();
                 });
 
                 ul.appendChild(li);
@@ -404,6 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         cartPopupContent.appendChild(ul);
 
+        // Close button for the cart popup
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
         closeButton.style.background = '#ff66b2';
@@ -421,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Add event listeners to product buttons
+    // Add product to cart
     productCards.forEach(card => {
         const button = card.querySelector('button');
         button.addEventListener('click', () => {
@@ -434,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Show cart popup when cart icon is clicked
+    // Show/hide cart popup
     cartIcon.addEventListener('click', () => {
         renderCart();
         cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
