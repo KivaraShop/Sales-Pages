@@ -491,7 +491,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="payment-method" data-method="M-pesa">M-pesa</button>
             <button class="payment-method" data-method="Numerário">Numerário</button>
         `;
-
         cartPopupContent.appendChild(paymentMethodsContainer);
 
         // Add event listener to payment method buttons
@@ -518,7 +517,6 @@ document.addEventListener('DOMContentLoaded', () => {
         finalizeButton.addEventListener('click', () => {
             showThankYouMessage();
         });
-
         cartPopupContent.appendChild(finalizeButton);
     }
 
@@ -529,78 +527,66 @@ document.addEventListener('DOMContentLoaded', () => {
         thankYouMessage.style.textAlign = 'center';
         thankYouMessage.style.fontSize = '20px';
         thankYouMessage.style.fontWeight = 'bold';
-        thankYouMessage.style.marginBottom = '20px';
-        thankYouMessage.style.opacity = '0';
-
-        // Animation
+        thankYouMessage.style.marginBottom = '10px';
         cartPopupContent.appendChild(thankYouMessage);
-        setTimeout(() => {
-            thankYouMessage.style.transition = 'opacity 1s';
-            thankYouMessage.style.opacity = '1';
-        }, 100);
 
-        // Show options after animation
+        // Add animation
+        thankYouMessage.style.animation = 'fadeIn 2s ease-out';
+
         setTimeout(() => {
-            showOrderOptions();
-        }, 1500);
+            showFinalOptions();
+        }, 2000);
     }
 
-    // Show order options after thank you message
-    function showOrderOptions() {
-        const optionsContainer = document.createElement('div');
-        optionsContainer.innerHTML = `
-            <button id="waitButton" style="width: 100%; background-color: #ff66b2; color: white; padding: 10px;">Aguardar</button>
-            <button id="whatsappButton" style="width: 100%; background-color: #ff66b2; color: white; padding: 10px;">Falar com atendente</button>
-        `;
-        cartPopupContent.appendChild(optionsContainer);
+    // Show "Aguardar" and "Falar com atendente" buttons
+    function showFinalOptions() {
+        const waitButton = document.createElement('button');
+        waitButton.textContent = 'Aguardar';
+        waitButton.style.background = '#ff66b2';
+        waitButton.style.color = 'white';
+        waitButton.style.border = 'none';
+        waitButton.style.padding = '10px';
+        waitButton.style.cursor = 'pointer';
+        waitButton.style.width = '100%';
+        waitButton.style.marginTop = '10px';
 
-        // Wait button functionality (3-minute countdown)
-        document.getElementById('waitButton').addEventListener('click', startCountdown);
+        const chatButton = document.createElement('button');
+        chatButton.textContent = 'Falar com atendente';
+        chatButton.style.background = '#ff66b2';
+        chatButton.style.color = 'white';
+        chatButton.style.border = 'none';
+        chatButton.style.padding = '10px';
+        chatButton.style.cursor = 'pointer';
+        chatButton.style.width = '100%';
+        chatButton.style.marginTop = '10px';
 
-        // WhatsApp button functionality
-        document.getElementById('whatsappButton').addEventListener('click', () => {
-            redirectToWhatsApp();
+        cartPopupContent.appendChild(waitButton);
+        cartPopupContent.appendChild(chatButton);
+
+        // Wait button countdown logic
+        waitButton.addEventListener('click', () => {
+            let countdown = 180; // 3 minutes
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+        });
+
+        // Chat button redirect to WhatsApp
+        chatButton.addEventListener('click', () => {
+            const orderDetails = `Order: ${JSON.stringify(cart)}\nTotal: ${getTotalSum()} \nPayment: ${selectedPaymentMethod}`;
+            const encodedMessage = encodeURIComponent(orderDetails);
+            window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
         });
     }
 
-    // Start countdown (3 minutes)
-    function startCountdown() {
-        let countdown = 180; // 3 minutes in seconds
-        const waitButton = document.getElementById('waitButton');
-        waitButton.disabled = true;
-        waitButton.textContent = 'Aguarde...';
-
-        const countdownInterval = setInterval(() => {
-            const minutes = Math.floor(countdown / 60);
-            const seconds = countdown % 60;
-            waitButton.textContent = `Aguarde... ${minutes}:${seconds}`;
-            countdown--;
-
-            if (countdown < 0) {
-                clearInterval(countdownInterval);
-                waitButton.textContent = 'Tempo esgotado';
-                waitButton.disabled = false;
-            }
-        }, 1000);
-    }
-
-    // Redirect to WhatsApp with order info
-    function redirectToWhatsApp() {
-        const orderDetails = {
-            products: cart.map(item => item.name).join(', '),
-            total: getTotalSum(),
-            paymentMethod: selectedPaymentMethod,
-        };
-        const orderMessage = `Pedido: ${orderDetails.products}\nTotal: R$ ${orderDetails.total}\nMétodo de pagamento: ${orderDetails.paymentMethod}`;
-        const whatsappUrl = `https://wa.me/258852136558?text=${encodeURIComponent(orderMessage)}`;
-        window.open(whatsappUrl, '_blank');
-    }
-
-    // Calculate the total sum of the cart
+    // Get the total sum of the cart
     function getTotalSum() {
-        return cart.reduce((total, item) => {
-            const price = parseFloat(item.price.replace('R$', '').replace(',', '.'));
-            return total + price;
+        return cart.reduce((sum, item) => {
+            const price = parseFloat(item.price.replace('MT', '').trim()); // Assuming price is in MT
+            return sum + price;
         }, 0).toFixed(2);
     }
 
