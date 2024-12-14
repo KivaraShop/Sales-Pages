@@ -357,49 +357,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartIcon = document.querySelector(".cart-icon");
     const cartPopup = document.querySelector(".cart-popup");
     const cartList = document.querySelector(".cart-popup ul");
-    const cartBadge = document.querySelector(".cart-icon .cart-badge");
+    const cartBadge = document.querySelector(".cart-badge");
     const addToCartButtons = document.querySelectorAll(".product-card button");
 
     let cartItems = [];
 
-    // Toggle cart visibility
+    // Toggle Cart Visibility
     cartIcon.addEventListener("click", () => {
         cartPopup.style.display = cartPopup.style.display === "block" ? "none" : "block";
         renderCartList();
     });
 
-    // Add to cart functionality
+    // Add to Cart Functionality
     addToCartButtons.forEach(button => {
-        button.addEventListener("click", function () {
+        button.addEventListener("click", () => {
             const productCard = button.closest(".product-card");
             const productName = productCard.querySelector("h3").innerText;
             const productImage = productCard.querySelector("img").src;
 
-            // Check if item exists in the cart
             const existingItem = cartItems.find(item => item.name === productName);
             if (existingItem) {
                 existingItem.quantity++;
             } else {
-                cartItems.push({
-                    name: productName,
-                    image: productImage,
-                    quantity: 1
-                });
+                cartItems.push({ name: productName, image: productImage, quantity: 1 });
             }
 
             updateCartBadge();
         });
     });
 
-    // Update cart badge
+    // Update Cart Badge
     function updateCartBadge() {
         const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
         cartBadge.textContent = totalQuantity;
     }
 
-    // Render cart list
+    // Render Cart List
     function renderCartList() {
-        cartList.innerHTML = ""; // Clear previous list
+        cartList.innerHTML = ""; // Clear previous items
         if (cartItems.length === 0) {
             cartList.innerHTML = "<li>No items in the cart</li>";
             return;
@@ -416,14 +411,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Close cart when clicking outside
-    document.addEventListener("click", function (event) {
+    document.addEventListener("click", (event) => {
         if (!cartPopup.contains(event.target) && !cartIcon.contains(event.target)) {
             cartPopup.style.display = "none";
         }
     });
 });
 </script>
-
 
 
 </body>
