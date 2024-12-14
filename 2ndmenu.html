@@ -405,38 +405,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
     const productCards = document.querySelectorAll('.product-card');
+    let selectedPaymentMethod = '';
 
     // Update cart count
     function updateCartCount() {
         cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
-    }
-
-    // Calculate total price
-    function calculateTotal() {
-        let total = 0;
-        cart.forEach(item => {
-            total += parseFloat(item.price.replace('R$', '').trim());
-        });
-        return total;
-    }
-
-    // Animate total sum counting
-    function animateTotalSum() {
-        const total = calculateTotal();
-        let currentTotal = 0;
-        const increment = total / 100;
-        const totalElement = document.querySelector('.cart-total');
-
-        function updateTotal() {
-            currentTotal += increment;
-            if (currentTotal < total) {
-                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
-                requestAnimationFrame(updateTotal);
-            } else {
-                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-            }
-        }
-        updateTotal();
     }
 
     // Render cart content
@@ -474,34 +447,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ul.appendChild(li);
             });
+
+            // Add the "Fazer pedido" button
+            const fazerPedidoButton = document.createElement('button');
+            fazerPedidoButton.textContent = 'Fazer Pedido';
+            fazerPedidoButton.style.background = '#ff66b2';
+            fazerPedidoButton.style.color = 'white';
+            fazerPedidoButton.style.border = 'none';
+            fazerPedidoButton.style.padding = '10px';
+            fazerPedidoButton.style.cursor = 'pointer';
+            fazerPedidoButton.style.width = '100%';
+            fazerPedidoButton.style.marginTop = '10px';
+            fazerPedidoButton.addEventListener('click', () => {
+                showPaymentMethods();
+            });
+            cartPopupContent.appendChild(fazerPedidoButton);
         }
-        cartPopupContent.appendChild(ul);
-
-        // Add total sum display
-        const totalElement = document.createElement('div');
-        totalElement.classList.add('cart-total');
-        totalElement.style.fontWeight = 'bold';
-        totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ 0.00`; // Start from 0.00
-        cartPopupContent.appendChild(totalElement);
-
-        // Animate the total sum counting
-        animateTotalSum();
-
-        // "Fazer Pedido" button
-        const fazerPedidoButton = document.createElement('button');
-        fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#ff66b2';
-        fazerPedidoButton.style.color = 'white';
-        fazerPedidoButton.style.border = 'none';
-        fazerPedidoButton.style.padding = '10px';
-        fazerPedidoButton.style.width = '100%';
-        fazerPedidoButton.style.cursor = 'pointer';
-        fazerPedidoButton.style.marginTop = '10px';
-        fazerPedidoButton.addEventListener('click', () => {
-            showPaymentOptions();
-        });
-        cartPopupContent.appendChild(fazerPedidoButton);
 
         // Close cart button
         const closeButton = document.createElement('button');
@@ -521,27 +482,126 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Show payment options
-    function showPaymentOptions() {
-        // Clear previous content
-        cartPopupContent.innerHTML = '';
-
-        // Add total sum display
-        const totalElement = document.createElement('div');
-        totalElement.classList.add('cart-total');
-        totalElement.style.fontWeight = 'bold';
-        totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
-        cartPopupContent.appendChild(totalElement);
-
-        // Add payment options
-        const paymentOptions = document.createElement('div');
-        paymentOptions.innerHTML = `
-            <h3>Escolha o método de pagamento:</h3>
-            <button style="background: #ff66b2; color: white; padding: 10px; margin-top: 10px;">Cartão de Crédito ou Débito</button>
-            <button style="background: #ff66b2; color: white; padding: 10px; margin-top: 10px;">M-Pesa</button>
+    // Show payment methods
+    function showPaymentMethods() {
+        const paymentMethodsContainer = document.createElement('div');
+        paymentMethodsContainer.innerHTML = `
+            <h3>Escolha o método de pagamento</h3>
+            <button class="payment-method" data-method="Credito ou Débito">Credito ou Débito</button>
+            <button class="payment-method" data-method="M-pesa">M-pesa</button>
+            <button class="payment-method" data-method="Numerário">Numerário</button>
         `;
-        cartPopupContent.appendChild(paymentOptions);
+
+        cartPopupContent.appendChild(paymentMethodsContainer);
+
+        // Add event listener to payment method buttons
+        const paymentButtons = document.querySelectorAll('.payment-method');
+        paymentButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                selectedPaymentMethod = button.getAttribute('data-method');
+                showFinalizeOrderButton();
+            });
+        });
+    }
+
+    // Show Finalize Order button
+    function showFinalizeOrderButton() {
+        const finalizeButton = document.createElement('button');
+        finalizeButton.textContent = 'Finalizar Pedido';
+        finalizeButton.style.background = '#ff66b2';
+        finalizeButton.style.color = 'white';
+        finalizeButton.style.border = 'none';
+        finalizeButton.style.padding = '10px';
+        finalizeButton.style.cursor = 'pointer';
+        finalizeButton.style.width = '100%';
+        finalizeButton.style.marginTop = '10px';
+        finalizeButton.addEventListener('click', () => {
+            showThankYouMessage();
+        });
+
+        cartPopupContent.appendChild(finalizeButton);
+    }
+
+    // Show Thank you message with animation
+    function showThankYouMessage() {
+        const thankYouMessage = document.createElement('div');
+        thankYouMessage.textContent = 'Obrigado pelo seu pedido!';
+        thankYouMessage.style.textAlign = 'center';
+        thankYouMessage.style.fontSize = '20px';
+        thankYouMessage.style.fontWeight = 'bold';
+        thankYouMessage.style.marginBottom = '20px';
+        thankYouMessage.style.opacity = '0';
+
+        // Animation
+        cartPopupContent.appendChild(thankYouMessage);
+        setTimeout(() => {
+            thankYouMessage.style.transition = 'opacity 1s';
+            thankYouMessage.style.opacity = '1';
+        }, 100);
+
+        // Show options after animation
+        setTimeout(() => {
+            showOrderOptions();
+        }, 1500);
+    }
+
+    // Show order options after thank you message
+    function showOrderOptions() {
+        const optionsContainer = document.createElement('div');
+        optionsContainer.innerHTML = `
+            <button id="waitButton" style="width: 100%; background-color: #ff66b2; color: white; padding: 10px;">Aguardar</button>
+            <button id="whatsappButton" style="width: 100%; background-color: #ff66b2; color: white; padding: 10px;">Falar com atendente</button>
+        `;
+        cartPopupContent.appendChild(optionsContainer);
+
+        // Wait button functionality (3-minute countdown)
+        document.getElementById('waitButton').addEventListener('click', startCountdown);
+
+        // WhatsApp button functionality
+        document.getElementById('whatsappButton').addEventListener('click', () => {
+            redirectToWhatsApp();
+        });
+    }
+
+    // Start countdown (3 minutes)
+    function startCountdown() {
+        let countdown = 180; // 3 minutes in seconds
+        const waitButton = document.getElementById('waitButton');
+        waitButton.disabled = true;
+        waitButton.textContent = 'Aguarde...';
+
+        const countdownInterval = setInterval(() => {
+            const minutes = Math.floor(countdown / 60);
+            const seconds = countdown % 60;
+            waitButton.textContent = `Aguarde... ${minutes}:${seconds}`;
+            countdown--;
+
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                waitButton.textContent = 'Tempo esgotado';
+                waitButton.disabled = false;
+            }
+        }, 1000);
+    }
+
+    // Redirect to WhatsApp with order info
+    function redirectToWhatsApp() {
+        const orderDetails = {
+            products: cart.map(item => item.name).join(', '),
+            total: getTotalSum(),
+            paymentMethod: selectedPaymentMethod,
+        };
+        const orderMessage = `Pedido: ${orderDetails.products}\nTotal: R$ ${orderDetails.total}\nMétodo de pagamento: ${orderDetails.paymentMethod}`;
+        const whatsappUrl = `https://wa.me/258852136558?text=${encodeURIComponent(orderMessage)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+
+    // Calculate the total sum of the cart
+    function getTotalSum() {
+        return cart.reduce((total, item) => {
+            const price = parseFloat(item.price.replace('R$', '').replace(',', '.'));
+            return total + price;
+        }, 0).toFixed(2);
     }
 
     // Add product to cart
