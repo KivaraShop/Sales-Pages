@@ -381,55 +381,171 @@
 
     <!-- Script para animações ao rolar a página -->
     <script>
-// Function to update the total and animate the counting
-function updateTotal() {
-    const totalElement = document.querySelector('.cart-total');
-    let total = 0;
-    cart.forEach(item => {
-        total += item.price * item.quantity;
-    });
-    let currentTotal = 0;
-    const interval = setInterval(() => {
-        if (currentTotal < total) {
-            currentTotal += 0.5; // Increment value, adjust as needed for smoother animation
-            totalElement.textContent = `Total: R$ ${currentTotal.toFixed(2)}`;
+        // Detecta rolagem e adiciona classe 'visible' para animações
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            const handleScroll = () => {
+                elements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Iniciar animações em elementos já visíveis
+        });
+    </script>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const cart = [];
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const cartPopup = document.querySelector('.cart-popup');
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card');
+
+    // Update cart count
+    function updateCartCount() {
+        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
+    }
+
+    // Update total with animated count
+    function updateTotal() {
+        const totalElement = document.querySelector('.cart-total');
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price.replace('R$', '').trim());
+        });
+
+        let currentTotal = 0;
+        const interval = setInterval(() => {
+            if (currentTotal < total) {
+                currentTotal += 0.5;
+                totalElement.textContent = `Total: R$ ${currentTotal.toFixed(2)}`;
+            } else {
+                clearInterval(interval);
+                totalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
+            }
+        }, 10); // Adjust speed here
+    }
+
+    // Render cart content
+    function renderCart() {
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
+        const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
+
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
         } else {
-            clearInterval(interval);
-            totalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <p>${item.name}</p>
+                        <p class="price">${item.price}</p>
+                    </div>
+                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+                `;
+
+                // Remove item from cart
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1);
+                    updateCartCount();
+                    renderCart();
+                });
+
+                ul.appendChild(li);
+            });
+
+            // Add total sum display
+            const totalElement = document.createElement('div');
+            totalElement.classList.add('cart-total');
+            totalElement.style.fontWeight = 'bold';
+            totalElement.style.marginTop = '20px';
+            totalElement.innerHTML = 'Total: R$ 0.00';
+            cartPopupContent.appendChild(totalElement);
+            updateTotal(); // Update the total sum with animation
+
+            // "Fazer Pedido" button
+            const fazerPedidoButton = document.createElement('button');
+            fazerPedidoButton.textContent = 'Fazer pedido';
+            fazerPedidoButton.style.background = '#ff66b2';
+            fazerPedidoButton.style.color = 'white';
+            fazerPedidoButton.style.border = 'none';
+            fazerPedidoButton.style.padding = '10px';
+            fazerPedidoButton.style.width = '100%';
+            fazerPedidoButton.style.cursor = 'pointer';
+            fazerPedidoButton.style.marginTop = '10px';
+            fazerPedidoButton.addEventListener('click', () => {
+                showPaymentOptions();
+            });
+            cartPopupContent.appendChild(fazerPedidoButton);
         }
-    }, 5); // Adjust speed here
-}
 
-// Adding the "Fazer pedido" button
-const fazerPedidoButton = document.createElement('button');
-fazerPedidoButton.textContent = 'Fazer pedido';
-fazerPedidoButton.style.background = '#ff66b2';
-fazerPedidoButton.style.color = 'white';
-fazerPedidoButton.style.border = 'none';
-fazerPedidoButton.style.padding = '10px';
-fazerPedidoButton.style.width = '100%';
-fazerPedidoButton.style.cursor = 'pointer';
-fazerPedidoButton.style.marginTop = '10px';
-fazerPedidoButton.addEventListener('click', () => {
-    // Display payment options after clicking "Fazer pedido"
-    showPaymentOptions();
+        // Close cart button
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Fechar';
+        closeButton.style.background = '#ff66b2';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '5px 10px';  // Reduced padding
+        closeButton.style.fontSize = '12px';     // Reduced font size
+        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', () => {
+            cartPopup.style.display = 'none';
+        });
+
+        cartPopupContent.appendChild(closeButton);
+    }
+
+    // Show payment options after clicking "Fazer pedido"
+    function showPaymentOptions() {
+        const paymentOptions = document.createElement('div');
+        paymentOptions.innerHTML = `
+            <p>Escolha o método de pagamento:</p>
+            <button style="background-color: #ff66b2; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; margin-bottom: 10px;">Cartão de Crédito ou Débito</button>
+            <button style="background-color: #ff66b2; color: white; border: none; padding: 10px; cursor: pointer; width: 100%;">M-pesa</button>
+        `;
+        cartPopupContent.appendChild(paymentOptions);
+        updateTotal(); // Update total with animation when the options are shown
+    }
+
+    // Add product to cart
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price });
+            updateCartCount();
+        });
+    });
+
+    // Toggle cart popup visibility
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
 });
-cartPopupContent.appendChild(fazerPedidoButton);
-
-// Function to show payment options
-function showPaymentOptions() {
-    const paymentOptions = document.createElement('div');
-    paymentOptions.innerHTML = `
-        <p>Escolha o método de pagamento:</p>
-        <button style="background-color: #ff66b2; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; margin-bottom: 10px;">Cartão de Crédito ou Débito</button>
-        <button style="background-color: #ff66b2; color: white; border: none; padding: 10px; cursor: pointer; width: 100%;">M-pesa</button>
-    `;
-    cartPopupContent.appendChild(paymentOptions);
-    updateTotal(); // Update total with animation when the options are shown
-}
-
 </script>
-
 
 </body>
 </html>
