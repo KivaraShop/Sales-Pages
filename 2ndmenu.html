@@ -444,14 +444,10 @@
     </div>
 
  <script>
-        // Get the menu toggle button and the menu itself
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        // Add an event listener for the toggle button click
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active'); // Toggle the active class to show/hide the menu
-        });
+document.getElementById("menu-toggle").addEventListener("click", function() {
+    var navMenu = document.getElementById("nav-menu");
+    navMenu.classList.toggle("active");
+});
     </script>
     
     <!-- Script para animações ao rolar a página -->
