@@ -147,13 +147,13 @@
                 text-align: center;
             }
 
-            .nav-menu ul {
+            .nav-menu {
                 display: none; /* Hide menu items on mobile */
                 width: 100%;
                 text-align: center;
             }
 
-            .nav-menu.active ul {
+            .nav-menu.active {
                 display: block; /* Show menu items when active */
             }
 
@@ -325,15 +325,16 @@
             <span class="cart-badge">3</span>
         </div>
     </header>
- <!-- Hidden menu items, will toggle on click -->
-    <div class="nav-menu">
-        <ul>
-            <!-- Menu items moved here, they will be toggled by the button -->
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
+    
+ <button id="menu-toggle">☰</button>
+<div id="nav-menu" class="nav-menu">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+
     
 <!-- Popup do Carrinho -->
 <div class="cart-popup">
@@ -448,6 +449,7 @@ document.getElementById("menu-toggle").addEventListener("click", function() {
     var navMenu = document.getElementById("nav-menu");
     navMenu.classList.toggle("active");
 });
+
     </script>
     
     <!-- Script para animações ao rolar a página -->
