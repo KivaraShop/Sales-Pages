@@ -353,69 +353,68 @@
 
 
 <script>
-    // Variables to store cart items and state
-    let cartItems = [];
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = [];
     const cartIcon = document.querySelector('.cart-icon');
     const cartPopup = document.querySelector('.cart-popup');
-    const cartContent = document.querySelector('.cart-popup-content');
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card');
 
-    // Function to update the cart badge
-    function updateCartBadge() {
-        const badge = document.querySelector('.cart-icon .cart-badge');
-        badge.textContent = cartItems.length;
+    // Function to update cart count badge
+    function updateCartCount() {
+        const cartBadge = cartIcon.querySelector('.cart-badge');
+        cartBadge.textContent = cart.length;
     }
 
-    // Function to add an item to the cart
-    function addToCart(productName, productPrice, productImage) {
-        cartItems.push({ name: productName, price: productPrice, image: productImage });
-        updateCartBadge();
-        renderCartItems();
-    }
+    // Function to render cart items
+    function renderCart() {
+        cartPopupContent.innerHTML = ''; // Clear the current content
+        const ul = document.createElement('ul');
 
-    // Function to render cart items in the popup
-    function renderCartItems() {
-        const cartList = document.querySelector('.cart-popup ul');
-        cartList.innerHTML = ''; // Clear previous items
-        if (cartItems.length === 0) {
-            cartList.innerHTML = '<p>O carrinho está vazio.</p>';
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
         } else {
-            cartItems.forEach((item, index) => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" />
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
                     <div>
                         <p>${item.name}</p>
-                        <p>R$ ${item.price.toFixed(2)}</p>
+                        <p class="price">${item.price}</p>
                     </div>
-                    <button onclick="removeFromCart(${index})">Remover</button>
                 `;
-                cartList.appendChild(listItem);
+                ul.appendChild(li);
             });
         }
+        cartPopupContent.appendChild(ul);
+
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Fechar';
+        closeButton.addEventListener('click', () => {
+            cartPopup.style.display = 'none';
+        });
+        cartPopupContent.appendChild(closeButton);
     }
 
-    // Function to remove an item from the cart
-    function removeFromCart(index) {
-        cartItems.splice(index, 1); // Remove item from cart array
-        updateCartBadge();
-        renderCartItems();
-    }
-
-    // Event listener to toggle cart popup
-    cartIcon.addEventListener('click', () => {
-        cartPopup.style.display = cartPopup.style.display === 'none' || cartPopup.style.display === '' ? 'block' : 'none';
-    });
-
-    // Add items (example)
-    document.querySelectorAll('.add-to-cart').forEach(button => {
+    // Add event listeners to product buttons
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
         button.addEventListener('click', () => {
-            const card = button.closest('.product-card');
+            const img = card.querySelector('img').src;
             const name = card.querySelector('h3').textContent;
-            const price = parseFloat(card.querySelector('.price').textContent.replace('R$', ''));
-            const image = card.querySelector('img').src;
-            addToCart(name, price, image);
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price });
+            updateCartCount();
         });
     });
+
+    // Show cart popup when cart icon is clicked
+    cartIcon.addEventListener('click', () => {
+        renderCart();
+        cartPopup.style.display = 'block';
+    });
+});
 </script>
 
 
