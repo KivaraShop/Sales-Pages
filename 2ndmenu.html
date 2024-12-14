@@ -523,6 +523,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show payment options
     function showPaymentOptions() {
+        // Clear previous content
+        cartPopupContent.innerHTML = '';
+
+        // Add total sum display
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
+        cartPopupContent.appendChild(totalElement);
+
+        // Add payment options
         const paymentOptions = document.createElement('div');
         paymentOptions.innerHTML = `
             <h3>Escolha o método de pagamento:</h3>
@@ -555,7 +567,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
 
 </script>
 
