@@ -147,14 +147,21 @@
                 text-align: center;
             }
 
-          /* Initially hide the menu */
-        .nav-menu {
-            display: none;
-        }
+       
+            .nav-menu ul {
+                display: none; /* Hide menu items on mobile */
+                width: 100%;
+                text-align: center;
+            }
 
-        /* Show the menu when active */
-        .nav-menu.active {
-            display: block;
+            .nav-menu.active ul {
+                display: block; /* Show menu items when active */
+            }
+
+            .nav-menu li {
+                display: block;
+                width: 100%;
+            }
         }
 
           /* Toggle button */
