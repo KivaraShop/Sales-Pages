@@ -136,27 +136,69 @@
         nav a:hover {
             color: #ffccdd;
         }
-/* Mobile styles */
-@media screen and (max-width: 768px) {
-  .nav-menu ul {
-    display: none; /* Hide menu items on mobile */
-    width: 100%;
-    text-align: center;
-  }
 
-  .nav-menu.active ul {
-    display: block; /* Show menu items when active */
-  }
+        /* Navigation Styles */
+        .menu-toggle {
+            display: none;
+            background: #333;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            width: 100%;
+        }
 
-  .nav-menu li {
-    display: block;
-    width: 100%;
-  }
+        .nav-menu {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
 
-  .menu-toggle {
-    display: block; /* Show the toggle button */
-  }
-}
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu a:hover {
+            background-color: #555;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu ul {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+            }
+
+            .nav-menu.active ul {
+                display: flex;
+            }
+
+            .nav-menu a {
+                text-align: center;
+                border-bottom: 1px solid #555;
+            }
+        }
+    
         /* Container principal */
         .container {
             max-width: 1200px;
@@ -291,14 +333,16 @@
 </div>
 
     <!-- Menu de Navegação -->
-    <nav>
-        <a href="#">Pratos Principais</a>
-        <a href="#">Sobremesas</a>
-        <a href="#">Bebidas</a>
-        <a href="sobrenos.html">Sobre Nós</a>
-        <a href="#">Contato</a>
+   <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Bebidas</a></li>
+            <li><a href="#">Pratos</a></li>
+            <li><a href="#">Sobremesas</a></li>
+        </ul>
     </nav>
-
+    
     <!-- Banner com animação de texto -->
     <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
      
@@ -400,15 +444,17 @@
     </div>
 
  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
+        // JavaScript for Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
 
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-});
- </script>
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
+    
     <!-- Script para animações ao rolar a página -->
     <script>
         // Detecta rolagem e adiciona classe 'visible' para animações
