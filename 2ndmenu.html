@@ -523,37 +523,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const thankYouMessage = document.createElement('div');
         thankYouMessage.innerHTML = '<h2>Obrigado pelo seu pedido!</h2>';
         cartPopupContent.appendChild(thankYouMessage);
-
-        const countdownElement = document.createElement('div');
-        countdownElement.innerHTML = '<span id="countdown">3:00</span>';
-        cartPopupContent.appendChild(countdownElement);
-
-        let countdown = 180;
-        const interval = setInterval(() => {
-            countdown--;
-            const minutes = Math.floor(countdown / 60);
-            const seconds = countdown % 60;
-            document.getElementById('countdown').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-            if (countdown <= 0) {
-                clearInterval(interval);
-            }
-        }, 1000);
-
+        
         const waitButton = document.createElement('button');
         waitButton.textContent = 'Aguardar';
-        waitButton.style.background = '#ff66b2';
+        waitButton.style.background = '#4CAF50';
         waitButton.style.color = 'white';
         waitButton.style.border = 'none';
         waitButton.style.padding = '10px';
         waitButton.style.cursor = 'pointer';
         waitButton.style.width = '100%';
         waitButton.style.marginTop = '10px';
+        waitButton.addEventListener('click', startCountdown);
         cartPopupContent.appendChild(waitButton);
 
         const contactButton = document.createElement('button');
         contactButton.textContent = 'Falar com atendente';
-        contactButton.style.background = '#ff66b2';
+        contactButton.style.background = '#ff6600';
         contactButton.style.color = 'white';
         contactButton.style.border = 'none';
         contactButton.style.padding = '10px';
@@ -561,10 +546,38 @@ document.addEventListener('DOMContentLoaded', () => {
         contactButton.style.width = '100%';
         contactButton.style.marginTop = '10px';
         contactButton.addEventListener('click', () => {
-            const orderInfo = `Pedido: ${cart.map(item => `${item.name} - ${item.price}`).join(', ')}\nTotal: ${calculateTotal()}\nMétodo de Pagamento: ${paymentMethod}`;
-            window.open(`https://wa.me/+258852136558?text=${encodeURIComponent(orderInfo)}`, '_blank');
+            window.location.href = `https://wa.me/258852136558?text=Pedido%20detalhes:%0A${cart.map(item => `${item.name}: ${item.price}`).join('%0A')} %0ATotal: ${calculateTotal()}%0AMétodo de pagamento: ${paymentMethod}`;
         });
         cartPopupContent.appendChild(contactButton);
+    }
+
+    function startCountdown() {
+        let countdown = 180;
+        const interval = setInterval(() => {
+            if (countdown <= 0) {
+                clearInterval(interval);
+            }
+            const minutes = Math.floor(countdown / 60);
+            const seconds = countdown % 60;
+            document.querySelector('.countdown').textContent = `Tempo restante: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            countdown--;
+        }, 1000);
+    }
+
+    function calculateTotal() {
+        return cart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0).toFixed(2);
+    }
+
+    function animateTotal(total) {
+        let counter = 0;
+        const totalPriceElement = document.getElementById('total-price');
+        const interval = setInterval(() => {
+            if (counter >= total) {
+                clearInterval(interval);
+            }
+            totalPriceElement.textContent = counter.toFixed(2);
+            counter += total / 100;
+        }, 10);
     }
 
     productCards.forEach(card => {
@@ -588,6 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 
 </script>
 
