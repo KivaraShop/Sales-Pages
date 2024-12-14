@@ -163,6 +163,15 @@
             }
         }
 
+          /* Toggle button */
+        .menu-toggle {
+            display: block;
+            font-size: 22px;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+        }
+
         /* Navigation Menu */
         nav {
             background-color: #ff66b2;
@@ -181,6 +190,11 @@
 
         nav a:hover {
             color: #ffccdd;
+        }
+
+        .menu-toggle {
+                display: block;
+            }
         }
         /* Container principal */
         .container {
@@ -299,12 +313,12 @@
 <body>
 
    <!-- Cabeçalho -->
-<header>
+ <header>
         <div class="menu-toggle">
             <i class="fas fa-bars"></i> <!-- Toggle icon -->
         </div>
         <a href="#" class="logo">
-            <img src="logo.png" alt="Logo" style="max-width: 150px;"> <!-- Logo image, replace 'logo.png' with your logo file -->
+            <img src="logo.png" alt="Logo" style="max-width: 150px;"> <!-- Replace with your logo image -->
         </a>
         <div class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
@@ -430,13 +444,14 @@
     </div>
 
 <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+        // Toggle menu visibility on click
+        const toggleButton = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
 
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
-</script>
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
     
     <!-- Script para animações ao rolar a página -->
     <script>
