@@ -22,41 +22,34 @@
         }
 
         /* Cabeçalho */
-       .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-    background-color: pink;
-}
+        header {
+            background-color: #ff99cc;
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* Menu toggle button */
-.menu-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    flex: 1;
-    text-align: left;
-}
+        /* Logo */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4a004e;
+            text-decoration: none;
+        }
 
-/* Center logo */
-.logo-link {
-    flex: 2;
-    text-align: center;
-}
-
-.logo-img {
-    max-height: 50px; /* Adjust as needed */
-    object-fit: contain;
-}
-
-/* Cart icon styling */
-.cart-icon {
-    flex: 1;
-    text-align: right;
-    position: relative;
-}
+        /* Ícone do carrinho */
+        .cart-icon {
+            color: #4a004e;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+        }
 
         .cart-icon .cart-badge {
             position: absolute;
@@ -125,81 +118,45 @@
 }
 
         /* Menu de navegação */
-        .nav-menu {
-            background-color: #ff66b2; /* Pink color */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            transition: left 0.3s ease-in-out;
-            z-index: 10;
-        }
-
-        .nav-menu.active {
-            left: 0;
-        }
-
-        .nav-menu ul {
-            list-style: none;
+        nav {
+            background-color: #ff66b2;
+            padding: 10px;
             width: 100%;
-            padding-top: 60px;
+            text-align: center;
+            font-size: 16px;
         }
 
-        .nav-menu li {
-            width: 100%;
-        }
-
-        .nav-menu a {
-            display: block;
-            text-decoration: none;
+        nav a {
             color: white;
-            padding: 15px 20px;
-            width: 100%;
-            text-align: left;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
         }
 
-        .nav-menu a:hover {
-            background-color: #ff99c7; /* Lighter pink hover effect */
+        nav a:hover {
+            color: #ffccdd;
         }
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .nav-menu ul {
+    display: none; /* Hide menu items on mobile */
+    width: 100%;
+    text-align: center;
+  }
 
-        /* Media query for larger screens */
-        @media (min-width: 768px) {
-            .header {
-                justify-content: space-between;
-            }
+  .nav-menu.active ul {
+    display: block; /* Show menu items when active */
+  }
 
-            .menu-toggle {
-                display: none;
-            }
+  .nav-menu li {
+    display: block;
+    width: 100%;
+  }
 
-            .nav-menu {
-                position: static;
-                flex-direction: row;
-                height: auto;
-                width: auto;
-                display: flex;
-                align-items: center;
-            }
-
-            .nav-menu ul {
-                display: flex;
-                padding: 0;
-            }
-
-            .nav-menu li {
-                margin-right: 15px;
-            }
-
-            .nav-menu a {
-                text-align: center;
-            }
-        }
-    
+  .menu-toggle {
+    display: block; /* Show the toggle button */
+  }
+}
         /* Container principal */
         .container {
             max-width: 1200px;
@@ -317,16 +274,13 @@
 <body>
 
    <!-- Cabeçalho -->
-<header class="header">
-    <button id="menu-toggle" aria-label="Toggle menu" class="menu-btn">☰</button>
-    <a href="sobrenos.html" class="logo-link">
-        <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Restaurant Logo" class="logo-img">
+<header>
+    <a href="#" class="logo">Menu Digital - Restaurante Brasil</a>
+    <a href="#" class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">0</span>
     </a>
-    <div class="cart-icon">
-        <span class="cart-badge"></span>
-    </div>
 </header>
-
 
 <!-- Popup do Carrinho -->
 <div class="cart-popup">
@@ -337,16 +291,14 @@
 </div>
 
     <!-- Menu de Navegação -->
-   <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Bebidas</a></li>
-            <li><a href="#">Pratos</a></li>
-            <li><a href="#">Sobremesas</a></li>
-        </ul>
+    <nav>
+        <a href="#">Pratos Principais</a>
+        <a href="#">Sobremesas</a>
+        <a href="#">Bebidas</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+        <a href="#">Contato</a>
     </nav>
-    
+
     <!-- Banner com animação de texto -->
     <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
      
@@ -448,17 +400,15 @@
     </div>
 
  <script>
-        // JavaScript for toggle functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
+    document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
 
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-        });
-    </script>>
-    
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+});
+ </script>
     <!-- Script para animações ao rolar a página -->
     <script>
         // Detecta rolagem e adiciona classe 'visible' para animações
