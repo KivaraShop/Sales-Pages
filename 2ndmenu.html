@@ -362,25 +362,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let cartItems = [];
 
-    // Toggle cart popup visibility
+    // Toggle cart visibility
     cartIcon.addEventListener("click", () => {
-        if (cartItems.length === 0) {
-            cartList.innerHTML = "<li>No items in cart</li>";
-        }
         cartPopup.style.display = cartPopup.style.display === "block" ? "none" : "block";
+        renderCartList();
     });
 
-    // Add items to cart
+    // Add to cart functionality
     addToCartButtons.forEach(button => {
         button.addEventListener("click", function () {
             const productCard = button.closest(".product-card");
             const productName = productCard.querySelector("h3").innerText;
             const productImage = productCard.querySelector("img").src;
 
-            // Check if the item already exists in the cart
-            const existingItemIndex = cartItems.findIndex(item => item.name === productName);
-            if (existingItemIndex > -1) {
-                cartItems[existingItemIndex].quantity += 1;
+            // Check if item exists in the cart
+            const existingItem = cartItems.find(item => item.name === productName);
+            if (existingItem) {
+                existingItem.quantity++;
             } else {
                 cartItems.push({
                     name: productName,
@@ -389,45 +387,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
 
-            updateCart();
+            updateCartBadge();
         });
     });
 
-    // Update cart display and badge
-    function updateCart() {
-        // Update badge count
-        const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-        cartBadge.textContent = totalItems;
-
-        // Render the cart list
-        renderCartList();
+    // Update cart badge
+    function updateCartBadge() {
+        const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.textContent = totalQuantity;
     }
 
     // Render cart list
     function renderCartList() {
-        cartList.innerHTML = ""; // Clear the current list
+        cartList.innerHTML = ""; // Clear previous list
+        if (cartItems.length === 0) {
+            cartList.innerHTML = "<li>No items in the cart</li>";
+            return;
+        }
+
         cartItems.forEach(item => {
             const listItem = document.createElement("li");
-            listItem.style.display = "flex";
-            listItem.style.alignItems = "center";
-            listItem.style.marginBottom = "10px";
-
             listItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
-                <div style="flex-grow: 1;">
-                    <span>${item.name}</span>
-                    <div>Qty: ${item.quantity}</div>
-                </div>
+                <img src="${item.image}" alt="${item.name}" style="width: 40px; height: 40px; margin-right: 10px;">
+                <span>${item.name} - Qty: ${item.quantity}</span>
             `;
             cartList.appendChild(listItem);
         });
-
-        if (cartItems.length === 0) {
-            cartList.innerHTML = "<li>No items in cart</li>";
-        }
     }
 
-    // Close cart popup when clicking outside
+    // Close cart when clicking outside
     document.addEventListener("click", function (event) {
         if (!cartPopup.contains(event.target) && !cartIcon.contains(event.target)) {
             cartPopup.style.display = "none";
@@ -435,6 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
 
 
 </body>
