@@ -244,14 +244,22 @@
 </head>
 <body>
 
-    <!-- Cabeçalho -->
-    <header>
-        <a href="#" class="logo">Menu Digital - Restaurante Brasil</a>
-        <a href="#" class="cart-icon">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge">0</span>
-        </a>
-    </header>
+   <!-- Cabeçalho -->
+<header>
+    <a href="#" class="logo">Menu Digital - Restaurante Brasil</a>
+    <a href="#" class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">0</span>
+    </a>
+</header>
+
+<!-- Popup do Carrinho -->
+<div class="cart-popup">
+    <div class="cart-popup-content">
+        <h2>Seu Carrinho</h2>
+        <!-- Lista de itens do carrinho será gerada aqui -->
+    </div>
+</div>
 
     <!-- Menu de Navegação -->
     <nav>
@@ -368,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render cart content
     function renderCart() {
-        cartPopupContent.innerHTML = ''; // Clear previous cart items
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
         const ul = document.createElement('ul');
         ul.style.listStyleType = 'none';
         ul.style.padding = '0';
