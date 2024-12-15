@@ -182,16 +182,25 @@
 
 
         /* Grid de Proud tos (menu) */
-      .product-grid {
+    .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
-    gap: 16px; /* Adjust space between items */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    gap: 16px;
+}
+
+.product-card {
+    font-size: 14px; /* Smaller font size */
+    width: 100%; /* Ensure card width is 100% of its column */
 }
 
 @media (max-width: 768px) {
     .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile screens */
-        gap: 12px; /* Adjust space between items on mobile */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        gap: 12px;
+    }
+
+    .product-card {
+        font-size: 12px; /* Even smaller font size on mobile */
     }
 }
 
