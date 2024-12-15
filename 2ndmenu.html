@@ -580,30 +580,25 @@ function adjustProductGrid() {
     const productGrid = document.querySelector('.product-grid');
     const productCards = document.querySelectorAll('.product-card');
 
-    if (screenWidth <= 768) { // For mobile screens
+    if (screenWidth <= 768) { // For phone screens
         productGrid.style.display = 'grid';
         productGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        
-        // Reduce font size and adjust card size
         productCards.forEach(card => {
             card.style.fontSize = '12px';
             card.style.height = 'auto';
-            card.style.maxWidth = '100%';
+            card.style.padding = '10px';
         });
-    } else { // For desktop screens
+    } else { // For larger screens (Desktop)
         productGrid.style.display = 'grid';
         productGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-
-        // Reset to default for desktop
         productCards.forEach(card => {
             card.style.fontSize = '';
             card.style.height = '';
-            card.style.maxWidth = '';
+            card.style.padding = '';
         });
     }
 }
 
-// Run the function on page load to ensure correct layout
 adjustProductGrid();
 </script>
 
