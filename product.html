@@ -42,5 +42,16 @@
             document.querySelector(".product-container").innerHTML = "<h1>Product Not Found</h1>";
         }
     </script>
+
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const productName = params.get('name');
+    const productPrice = params.get('price');
+    const productDescription = params.get('description');
+
+    document.querySelector('h1').innerText = productName || 'Product Name';
+    document.querySelector('.price').innerText = `R$ ${productPrice || '0,00'}`;
+    document.querySelector('p').innerText = productDescription || 'Product description';
+</script>
 </body>
 </html>
