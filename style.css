@@ -1,0 +1,26 @@
+.product-page .product-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.product-page img {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.product-page h1 {
+    color: #ff69b4;
+    font-size: 32px;
+}
+
+.product-page p {
+    font-size: 18px;
+    color: #333;
+}
+
+.product-page .price {
+    color: #800080;
+    font-size: 24px;
+}
