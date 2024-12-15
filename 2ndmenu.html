@@ -283,6 +283,63 @@
             75% { transform: translateX(0); opacity: 1; }
             100% { transform: translateX(100%); opacity: 0; }
         }
+          .footer {
+        background-color: #ff99cc;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .footer-logo {
+        font-size: 22px;
+        font-weight: bold;
+        color: #4a004e;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links ul li {
+        margin: 10px 0;
+    }
+
+    .footer-links ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+        color: #4a004e;
+    }
+
+    .footer-social a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        margin: 0 10px;
+        transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+        color: #4a004e;
+    }
+
+    .footer-bottom {
+        font-size: 14px;
+        margin-top: 20px;
+    }
     </style>
 </head>
 <body>
@@ -417,6 +474,30 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <a href="#" class="logo">Your Logo</a>
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Instagram</a>
+            <a href="#" class="social-icon">Twitter</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+</footer>
 
 <script>
 const menuToggle = document.querySelector('.menu-toggle');
