@@ -182,15 +182,16 @@
 
 
         /* Grid de Proud tos (menu) */
-    .product-grid {
+   .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
     gap: 16px;
 }
 
 .product-card {
-    font-size: 14px; /* Smaller font size */
-    width: 100%; /* Ensure card width is 100% of its column */
+    font-size: 16px; /* Default font size */
+    width: 100%;
+    aspect-ratio: 1; /* Ensures the product card is square */
 }
 
 @media (max-width: 768px) {
@@ -200,7 +201,8 @@
     }
 
     .product-card {
-        font-size: 12px; /* Even smaller font size on mobile */
+        font-size: 12px; /* Smaller font size */
+        aspect-ratio: 1; /* Maintain square shape */
     }
 }
 
@@ -308,7 +310,7 @@
             100% { transform: translateX(100%); opacity: 0; }
         }
           .footer {
-    width: 100vw; 
+    width: 100%;
     position: relative;
     background-color: #ff99cc;
     padding: 20px;
