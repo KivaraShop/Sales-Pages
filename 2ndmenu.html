@@ -576,26 +576,21 @@
 window.addEventListener('resize', adjustProductGrid);
 
 function adjustProductGrid() {
-    const productCards = document.querySelectorAll('.product-card');
     const screenWidth = window.innerWidth;
+    const productGrid = document.querySelector('.product-grid');
 
-    if (screenWidth <= 768) {  // Check if the screen size is small (mobile)
-        productCards.forEach(card => {
-            card.style.width = '48%';  // Adjust the width to fit two columns
-            card.style.margin = '1%';  // Space between the cards
-            card.style.fontSize = '14px';  // Reduce the font size
-        });
-    } else {
-        productCards.forEach(card => {
-            card.style.width = '30%';  // Reset to a 3-column layout on larger screens
-            card.style.margin = '1.5%'; // Adjust margins
-            card.style.fontSize = '16px'; // Reset font size
-        });
+    if (screenWidth <= 768) { // For mobile screens
+        productGrid.style.display = 'grid';
+        productGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    } else { // For desktop screens
+        productGrid.style.display = 'grid';
+        productGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
     }
 }
 
-// Run the function initially to adjust on page load
+// Run the function on page load to ensure correct layout
 adjustProductGrid();
+
 </script>
 
  <script>
