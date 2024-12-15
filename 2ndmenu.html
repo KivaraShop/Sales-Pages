@@ -182,30 +182,21 @@
 
 
         /* Grid de Proud tos (menu) */
-   .product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
-    gap: 16px;
-}
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 10px;
+            justify-content: center;
+        }
 
-.product-card {
-    font-size: 16px; /* Default font size */
-    width: 100%;
-    aspect-ratio: 1; /* Ensures the product card is square */
-}
-
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-        gap: 12px;
-    }
-
-    .product-card {
-        font-size: 12px; /* Smaller font size */
-        aspect-ratio: 1; /* Maintain square shape */
-    }
-}
-
+        @media(min-width: 768px) {
+            .product-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
 
         .menu-section {
     padding: 30px;
@@ -310,15 +301,12 @@
             100% { transform: translateX(100%); opacity: 0; }
         }
           .footer {
-    width: 100%;
-    position: relative;
     background-color: #ff99cc;
-    padding: 20px;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    width: 100%;
     box-sizing: border-box;
-    margin-top: 20px;
-    left: 0;
-    right: 0;
-    display: block;
 }
 
 .footer-container {
