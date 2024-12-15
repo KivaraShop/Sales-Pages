@@ -197,6 +197,16 @@
             }
         }
 
+        .product-section {
+    padding: 30px;
+    background-color: #f9f9f9;
+}
+
+.product-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4a004e; /* Match your theme color */
+}
         /* Card de produto */
         .product-card {
             background: white;
@@ -235,7 +245,13 @@
             margin: 10px 0;
             font-weight: bold;
         }
-
+        
+/* Media query for phone screens */
+@media (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 10px); /* Two columns with a small gap */
+    }
+}
         /* Estrelas de avaliação */
         .stars {
             font-size: 18px;
