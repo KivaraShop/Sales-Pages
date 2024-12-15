@@ -581,18 +581,7 @@ function adjustProductGrid() {
     const productCards = document.querySelectorAll('.product-card');
 
     if (screenWidth <= 768) { // Mobile screens
-        productGrid.style.display = 'grid';
         productGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        productGrid.style.gap = '3px'; // Minimal gap
-
-        productCards.forEach(card => {
-            card.style.fontSize = '9px';
-            card.style.height = 'auto';
-            card.style.padding = '10px';
-            card.style.display = 'flex';
-            card.style.flexDirection = 'column';
-            card.style.alignItems = 'center';
-            card.style.justifyContent = 'space-between';
         });
     } else { // Desktop screens
         productGrid.style.display = 'grid';
