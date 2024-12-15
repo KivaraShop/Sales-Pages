@@ -444,16 +444,17 @@
         </div>
     </div>
 
- <script>
-        // Get the menu toggle button and the menu itself
+<script>
+    // Ensure this JavaScript runs after the document is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.querySelector('.menu-toggle');
         const navMenu = document.querySelector('.nav-menu');
 
-        // Add an event listener for the toggle button click
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active'); // Toggle the active class to show/hide the menu
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
         });
-    </script>
+    });
+</script>
     
     <!-- Script para animações ao rolar a página -->
     <script>
