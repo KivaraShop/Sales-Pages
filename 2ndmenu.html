@@ -247,6 +247,12 @@
             font-weight: bold;
         }
         
+/* Media query for phone screens */
+@media (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 10px); /* Two columns with a small gap */
+    }
+}
         /* Estrelas de avaliação */
         .stars {
             font-size: 18px;
@@ -355,13 +361,6 @@
         font-size: 14px;
         margin-top: 20px;
     }
-
-        /* Media query for phone screens */
-@media (max-width: 768px) {
-    .product-card {
-        width: calc(50% - 10px); /* Two columns with a small gap */
-    }
-
     </style>
 </head>
 <body>
@@ -572,7 +571,7 @@
     </div>
 </footer>
 
- <script>
+<script>
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
