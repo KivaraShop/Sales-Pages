@@ -31,7 +31,7 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            position: relative;
             top: 0;
             z-index: 1000;
         }
@@ -415,12 +415,16 @@
     </div>
 
 <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
 
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active'); // Toggles the menu
-    });
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
 </script>
     
     <!-- Script para animações ao rolar a página -->
