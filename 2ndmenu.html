@@ -566,6 +566,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateTotal() {
             currentTotal += increment;
+                const increment = 3; // Increase the value to speed up the update
+    currentTotal += increment;
             if (currentTotal < total) {
                 totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
                 requestAnimationFrame(updateTotal);
