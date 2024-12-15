@@ -573,34 +573,34 @@
 </footer>
 
  <script>
-    window.addEventListener('resize', adjustProductGrid);
+window.addEventListener('resize', adjustProductGrid);
 
 function adjustProductGrid() {
     const screenWidth = window.innerWidth;
     const productGrid = document.querySelector('.product-grid');
     const productCards = document.querySelectorAll('.product-card');
 
-    if (screenWidth <= 768) { // For mobile phones
+    if (screenWidth <= 768) { // Mobile screens
         productGrid.style.display = 'grid';
         productGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        productGrid.style.gap = '10px'; // Tighten the space
+        productGrid.style.gap = '5px'; // Minimal gap
 
         productCards.forEach(card => {
-            card.style.fontSize = '12px'; // Reduce font size
+            card.style.fontSize = '12px';
             card.style.height = 'auto';
-            card.style.padding = '10px'; // Adjust padding
+            card.style.padding = '10px';
             card.style.display = 'flex';
             card.style.flexDirection = 'column';
-            card.style.alignItems = 'center'; // Center content inside card
-            card.style.justifyContent = 'space-between'; // Adjust vertical content spacing
+            card.style.alignItems = 'center';
+            card.style.justifyContent = 'space-between';
         });
-    } else { // For desktop
+    } else { // Desktop screens
         productGrid.style.display = 'grid';
         productGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-        productGrid.style.gap = '20px'; // Maintain more space on desktop
+        productGrid.style.gap = '15px'; // Normal gap on desktop
 
         productCards.forEach(card => {
-            card.style.fontSize = ''; // Reset font size
+            card.style.fontSize = '';
             card.style.height = '';
             card.style.padding = '';
             card.style.display = 'block';
@@ -612,6 +612,7 @@ function adjustProductGrid() {
 }
 
 adjustProductGrid();
+
 
 </script>
 
