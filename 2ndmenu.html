@@ -573,38 +573,6 @@
 </footer>
 
  <script>
-window.addEventListener('resize', adjustProductGrid);
-
-function adjustProductGrid() {
-    const screenWidth = window.innerWidth;
-    const productGrid = document.querySelector('.product-grid');
-    const productCards = document.querySelectorAll('.product-card');
-
-    if (screenWidth <= 768) { // Mobile screens
-        productGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        });
-    } else { // Desktop screens
-        productGrid.style.display = 'grid';
-        productGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-        productGrid.style.gap = '15px'; // Normal gap on desktop
-
-        productCards.forEach(card => {
-            card.style.fontSize = '';
-            card.style.height = '';
-            card.style.padding = '';
-            card.style.display = 'block';
-            card.style.flexDirection = '';
-            card.style.alignItems = '';
-            card.style.justifyContent = '';
-        });
-    }
-}
-
-adjustProductGrid();
-
-</script>
-
- <script>
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
