@@ -34,7 +34,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
-            z-index: 990;
+            z-index: 1000;
         }
 
         /* Logo */
@@ -147,6 +147,8 @@
     height: 100vh;
     background-color: #ff99cc;
     padding: 15px 0;
+    margin-top: 0; /* Remove any negative margin */
+    padding-top: 0; /* Ensure no padding pushes it down */
     z-index: 1000;
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease; /* Smooth appearance */
