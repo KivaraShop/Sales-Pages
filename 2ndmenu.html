@@ -135,19 +135,20 @@
             cursor: pointer;
         }
 
-       .nav-menu {
+      .nav-menu {
     display: none; /* Initially hidden */
     flex-direction: column;
-    align-items: center;
-    position: fixed; /* Fixed ensures it stays aligned properly */
-    top: 0; /* Starts at the top of the page */
+    align-items: flex-start;
+    position: absolute;
+    top: 100%;
     left: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full-screen height for a drawer-like effect */
+    width: 250px; /* Adjust this width as needed */
+    height: auto; /* Ensures it doesn't occupy the full height */
     background-color: #ff99cc;
-    padding: 20px 0;
+    padding: 15px 0;
     z-index: 999;
-    justify-content: center; /* Centers menu items vertically */
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth appearance */
 }
 
         .nav-menu ul {
