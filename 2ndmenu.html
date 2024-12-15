@@ -135,18 +135,20 @@
             cursor: pointer;
         }
 
-        .nav-menu {
-            display: none; /* Initially hidden */
-            flex-direction: column;
-            align-items: center;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: #ff99cc;
-            padding: 15px 0;
-            z-index: 999;
-        }
+       .nav-menu {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+    position: fixed; /* Fixed ensures it stays aligned properly */
+    top: 0; /* Starts at the top of the page */
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full-screen height for a drawer-like effect */
+    background-color: #ff99cc;
+    padding: 20px 0;
+    z-index: 999;
+    justify-content: center; /* Centers menu items vertically */
+}
 
         .nav-menu ul {
             list-style-type: none;
