@@ -22,28 +22,6 @@
     </div>
 
     <script>
-        // Product Data (Simulated Database)
-        const products = {
-            1: { name: "Prato Principal 1", price: "R$ 39,90", description: "Delicious main course 1.", image: "product1.jpg" },
-            2: { name: "Prato Principal 2", price: "R$ 45,00", description: "Delicious main course 2.", image: "product2.jpg" }
-        };
-
-        // Get Product ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
-
-        // Populate Product Details
-        if (products[productId]) {
-            document.getElementById("product-name").innerText = products[productId].name;
-            document.getElementById("product-description").innerText = products[productId].description;
-            document.getElementById("product-price").innerText = products[productId].price;
-            document.getElementById("product-image").src = products[productId].image;
-        } else {
-            document.querySelector(".product-container").innerHTML = "<h1>Product Not Found</h1>";
-        }
-    </script>
-
-    <script>
     const params = new URLSearchParams(window.location.search);
     const productName = params.get('name');
     const productPrice = params.get('price');
