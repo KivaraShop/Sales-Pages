@@ -182,15 +182,16 @@
 
 
         /* Grid de Proud tos (menu) */
-       .product-grid {
+      .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on larger screens */
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
+    gap: 16px; /* Adjust space between items */
 }
 
 @media (max-width: 768px) {
     .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on phone screens */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile screens */
+        gap: 12px; /* Adjust space between items on mobile */
     }
 }
 
@@ -298,7 +299,7 @@
             100% { transform: translateX(100%); opacity: 0; }
         }
           .footer {
-    width: 100%
+    width: 100vw; 
     position: relative;
     background-color: #ff99cc;
     padding: 20px;
