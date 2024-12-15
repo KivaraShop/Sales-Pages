@@ -587,6 +587,7 @@ function adjustProductGrid() {
             card.style.fontSize = '12px';
             card.style.height = 'auto';
             card.style.padding = '10px';
+            card.style.aspectRatio = '1/1'; // Square shape
         });
     } else { // For larger screens (Desktop)
         productGrid.style.display = 'grid';
@@ -595,11 +596,13 @@ function adjustProductGrid() {
             card.style.fontSize = '';
             card.style.height = '';
             card.style.padding = '';
+            card.style.aspectRatio = ''; // Default
         });
     }
 }
 
 adjustProductGrid();
+
 </script>
 
  <script>
