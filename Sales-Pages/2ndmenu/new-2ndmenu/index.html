@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Digital - Restaurante Brasil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            color: #4a004e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+            padding-top: 75px;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff99cc;
+            padding: 15px 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box; 
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4a004e;
+            text-decoration: none;
+        }
+
+        /* Ícone do carrinho */
+        .cart-icon {
+            color: #4a004e;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .cart-icon .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff66b2;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+       .cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+  .cart-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 20px;
+    display: none;
+}
+
+.cart-popup-content {
+    padding: 20px;
+     margin-top: 20px; /* Adjust this value as needed */
+}
+        
+.cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-popup li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 10px; /* Reduced font size */
+}
+}
+
+.cart-popup img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-popup button {
+    background-color: #ff66b2;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+                .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
+
+        }
+
+        .logo img {
+            height: 40px;
+            padding: 0;
+            margin: 0;
+        }
+
+.menu-toggle {
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: #4a004e;
+            cursor: pointer;
+        }
+
+      .nav-menu {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 77px;
+    left: 0;
+    width: 250px; /* Adjust this width as needed */
+    height: 100vh;
+    background-color: #ff99cc;
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth appearance */
+}
+
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            margin: 10px 0;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-menu.active {
+            display: flex; /* Show when toggle is clicked */
+        }
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+
+        /* Grid de Proud tos (menu) */
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 10px;
+            justify-content: center;
+        }
+
+        @media(min-width: 768px) {
+            .product-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .menu-section {
+    padding: 30px;
+    background-color: #f9f9f9;
+}
+
+.menu-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4a004e; /* Match your theme color */
+}
+        /* Card de produto */
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            margin: 0 auto;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Imagem do produto */
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            color: #4a004e;
+            margin: 10px 0;
+        }
+
+        .product-card .price {
+            font-size: 16px;
+            color: #660033;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+/* Media query for phone screens */
+@media (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 10px); /* Two columns with a small gap */
+    }
+}
+        /* Estrelas de avaliação */
+        .stars {
+            font-size: 18px;
+            color: #ffcc00;
+            margin: 10px 0;
+        }
+
+        .stars i {
+            margin-right: 2px;
+        }
+
+        .product-card button {
+            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+            border: none;
+            padding: 10px;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background: #ff66b2;
+        }
+
+        /* Banner animado */
+        #bannerText {
+            font-family: 'Didot', serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #4a004e;
+            background-color: #f8d7e6;
+            padding: 5px;
+            text-align: center;
+            animation: slideInOut 4s ease-in-out infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes slideInOut {
+            0% { transform: translateX(-100%); opacity: 0; }
+            25% { transform: translateX(0); opacity: 1; }
+            75% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+          .footer {
+    background-color: #ff99cc;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+    .footer-logo {
+        font-size: 22px;
+        font-weight: bold;
+        color: #4a004e;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links ul li {
+        margin: 10px 0;
+    }
+
+    .footer-links ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+        color: #4a004e;
+    }
+
+    .footer-social a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        margin: 0 10px;
+        transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+        color: #4a004e;
+    }
+
+    .footer-bottom {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+
+   <!-- Cabeçalho -->
+ <header>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i> <!-- Toggle icon -->
+        </div>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png" alt="Logopit-1734339716315" border="0" style="max-width: 150px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">3</span>
+        </div>
+    </header>
+ <!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+            <li><a href="#">Home</a></li>
+            <li><a href="sobrenos.html">About</a></li>
+            <li><a href="contacto.html">Contact</a></li>
+        </ul>
+    </div>
+    
+<!-- Popup do Carrinho -->
+<div class="cart-popup">
+    <div class="cart-popup-content">
+        <h2>Seu Carrinho</h2>
+        <!-- Lista de itens do carrinho será gerada aqui -->
+    </div>
+</div>
+
+    <!-- Banner com animação de texto -->
+    <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
+     
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <h2>Explore Nosso Menu</h2>
+
+        <div class="product-grid">
+            <!-- Card de Produto 1 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/6J13R1j/IMG-20241216-093530.jpg" alt="IMG-20241216-093530" border="0">
+                <h3> Frango Grelhado</h3>
+                <div class="price">R$ 39,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 2 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="IMG-20241216-093518" border="0">
+                <h3> Hamburguer Vegano</h3>
+                <div class="price">R$ 49,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="IMG-20241216-093506" border="0">
+                <h3> Salada Caesar</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+            
+<!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/xDcXt8S/IMG-20241216-093553.jpg" alt="IMG-20241216-093553" border="0">
+                <h3>Suco De Laranja</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+            
+<!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/qM0L21B/IMG-20241216-093604.jpg" alt="IMG-20241216-093604" border="0">
+                <h3> Coca-cola Gelada </h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 4 (Bebida) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/zrJ9Tf5/IMG-20241216-093540.jpg" alt="IMG-20241216-093540" border="0">
+                <h3> Água Mineral </h3>
+                <div class="price">R$ 9,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+        </div>
+    </div>
+    
+        <!-- SECTION DEVIDER -->
+  <!-- Conteúdo principal -->
+    <div class="container">
+        <h2>Bebidas</h2>
+
+        <div class="product-grid">
+            <!-- Card de Produto 1 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/DwqNScr/IMG-20241216-101430.jpg" alt="IMG-20241216-101430" border="0">
+                <h3>Chá De Camomila</h3>
+                <div class="price">R$ 39,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 2 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/tzFfNpw/IMG-20241216-101418.jpg" alt="IMG-20241216-101418" border="0">
+                <h3>Chá De Limão</h3>
+                <div class="price">R$ 49,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+            <!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/17gPJjB/IMG-20241216-101342.jpg">
+                <h3>Café</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+    
+    <!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <a href="#" class="logo">Your Logo</a>
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="loja.html">Home</a></li>
+                <li><a href="sobrenos.html">About</a></li>
+                <li><a href="contato.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Instagram</a>
+            <a href="#" class="social-icon">Twitter</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Restaurante. Todos Direitos Reservados</p>
+    </div>
+</footer>
+
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+</script>
+    
+    <!-- Script para animações ao rolar a página -->
+    <script>
+        // Detecta rolagem e adiciona classe 'visible' para animações
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            const handleScroll = () => {
+                elements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Iniciar animações em elementos já visíveis
+        });
+    </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = [];
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const cartPopup = document.querySelector('.cart-popup');
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card');
+
+    // Update cart count
+    function updateCartCount() {
+        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
+    }
+
+    // Calculate total price
+    function calculateTotal() {
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price.replace('R$', '').trim());
+        });
+        return total;
+    }
+
+    // Animate total sum counting
+    function animateTotalSum() {
+        const total = calculateTotal();
+        let currentTotal = 0;
+        const increment = total / 100;
+        const totalElement = document.querySelector('.cart-total');
+
+        function updateTotal() {
+                const increment = 3; // Increase the value to speed up the update
+    currentTotal += increment;
+            if (currentTotal < total) {
+                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
+                requestAnimationFrame(updateTotal);
+            } else {
+                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+            }
+        }
+        updateTotal();
+    }
+
+    // Render cart content
+    function renderCart() {
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
+        const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
+
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
+        } else {
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <p>${item.name}</p>
+                        <p class="price">${item.price}</p>
+                    </div>
+                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+                `;
+
+                // Remove item from cart
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1);
+                    updateCartCount();
+                    renderCart();
+                });
+
+                ul.appendChild(li);
+            });
+        }
+        cartPopupContent.appendChild(ul);
+
+        // Add total sum display
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ 0.00`; // Start from 0.00
+        cartPopupContent.appendChild(totalElement);
+
+        // Animate the total sum counting
+        animateTotalSum();
+
+        // "Fazer Pedido" button
+        const fazerPedidoButton = document.createElement('button');
+        fazerPedidoButton.textContent = 'Fazer pedido';
+        fazerPedidoButton.style.background = '#ff66b2';
+        fazerPedidoButton.style.color = 'white';
+        fazerPedidoButton.style.border = 'none';
+        fazerPedidoButton.style.padding = '10px';
+        fazerPedidoButton.style.width = '100%';
+        fazerPedidoButton.style.cursor = 'pointer';
+        fazerPedidoButton.style.marginTop = '10px';
+        fazerPedidoButton.addEventListener('click', () => {
+            showNextButtons();
+        });
+        cartPopupContent.appendChild(fazerPedidoButton);
+
+        // Close cart button
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Fechar';
+        closeButton.style.background = '#ff66b2';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '5px 10px';  // Reduced padding
+        closeButton.style.fontSize = '12px';     // Reduced font size
+        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', () => {
+            cartPopup.style.display = 'none';
+        });
+
+        cartPopupContent.appendChild(closeButton);
+    }
+
+    // Show the next buttons after "Fazer Pedido"
+    function showNextButtons() {
+        // Clear previous content
+        cartPopupContent.innerHTML = '';
+
+        // Add total sum display
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
+        cartPopupContent.appendChild(totalElement);
+
+        // Add Aguardar and Falar com atendente buttons
+        const aguardarButton = document.createElement('button');
+        aguardarButton.textContent = 'Aguardar';
+        aguardarButton.style.background = '#4CAF50'; // Green
+        aguardarButton.style.color = 'white';
+        aguardarButton.style.border = 'none';
+        aguardarButton.style.padding = '10px';
+        aguardarButton.style.width = '100%';
+        aguardarButton.style.cursor = 'pointer';
+        aguardarButton.style.marginTop = '10px';
+        aguardarButton.addEventListener('click', () => startCountdown());
+        cartPopupContent.appendChild(aguardarButton);
+
+        const falarButton = document.createElement('button');
+        falarButton.textContent = 'Falar com atendente';
+        falarButton.style.background = '#ff66b2'; // Pink
+        falarButton.style.color = 'white';
+        falarButton.style.border = 'none';
+        falarButton.style.padding = '10px';
+        falarButton.style.width = '100%';
+        falarButton.style.cursor = 'pointer';
+        falarButton.style.marginTop = '10px';
+        falarButton.addEventListener('click', () => {
+            window.location.href = `https://wa.me/258852136558?text=Pedido%20de%20compra:%20Total%20R$${calculateTotal().toFixed(2)}`;
+        });
+        cartPopupContent.appendChild(falarButton);
+    }
+
+    // Countdown timer for the "Aguardar" button
+    function startCountdown() {
+        let timeRemaining = 120; // 2 minutes
+        const countdownElement = document.createElement('div');
+        countdownElement.classList.add('countdown');
+        countdownElement.style.marginTop = '20px';
+        cartPopupContent.appendChild(countdownElement);
+
+        function updateCountdown() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            countdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                countdownElement.innerHTML = 'Tempo esgotado!';
+            }
+        }
+        updateCountdown();
+    }
+
+    // Add product to cart
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price });
+            updateCartCount();
+            renderCart();
+        });
+    });
+
+    // Toggle cart popup visibility
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
