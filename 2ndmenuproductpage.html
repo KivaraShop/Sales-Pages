@@ -18,7 +18,7 @@
             align-items: center;
             box-sizing: border-box;
             width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
         }
 
         /* Cabeçalho */
@@ -89,9 +89,12 @@
         }
 
         .product-detail img.main-img {
-            width: 100%;
+            width: 90%;
+            max-width: 500px;
             height: auto;
             border-radius: 10px;
+            margin: 0 auto;
+            display: block;
         }
 
         /* Imagens em miniatura do carrossel */
@@ -169,6 +172,14 @@
             margin-left: 10px;
         }
 
+        .undo-ingredient {
+            color: #66cc66;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            display: none; /* Inicialmente escondido */
+        }
+
         .add-to-cart, .back-button {
             background: #ff66b2;
             border: none;
@@ -225,6 +236,21 @@
             font-size: 18px;
         }
 
+        .reactions {
+            display: flex;
+            gap: 10px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .reaction {
+            cursor: pointer;
+        }
+
+        .reaction span {
+            margin-left: 5px;
+        }
+
         /* Formulário de avaliação */
         .review-form {
             margin-top: 30px;
@@ -276,21 +302,9 @@
                 margin: 10px 0;
             }
 
-            .product-detail img.main-img {
-                width: 100%;
-                height: auto;
-            }
-
-            .product-info {
-                text-align: center;
-            }
-
-            .stars {
-                font-size: 18px;
-            }
-
-            .product-description {
-                font-size: 14px;
+            .image-carousel img {
+                width: 60px;
+                height: 60px;
             }
 
             .add-to-cart, .back-button {
@@ -298,11 +312,6 @@
                 font-size: 18px;
                 padding: 12px;
                 margin-top: 20px;
-            }
-
-            .image-carousel img {
-                width: 60px;
-                height: 60px;
             }
         }
     </style>
@@ -326,6 +335,7 @@
     <div class="container">
         <!-- Detalhes do Produto -->
         <div class="product-detail">
+            <!-- Imagem principal -->
             <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Imagem Principal" class="main-img">
 
             <!-- Carrossel de Imagens -->
@@ -358,10 +368,10 @@
         <div class="ingredients-section">
             <h3>Ingredientes</h3>
             <ul>
-                <li>Alface <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
-                <li>Tomate <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
-                <li>Picanha <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
-                <li>Queijo <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
+                <li>Alface <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Tomate <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Picanha <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Queijo <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
             </ul>
         </div>
 
@@ -382,6 +392,10 @@
                     </div>
                     <p>"Delicioso, amei!"</p>
                     <span>João</span>
+                    <div class="reactions">
+                        <span class="reaction">😊<span>3</span></span>
+                        <span class="reaction">😋<span>5</span></span>
+                    </div>
                 </div>
             </div>
 
@@ -398,6 +412,10 @@
                     </div>
                     <p>"Muito bom, mas poderia ser mais quente."</p>
                     <span>Maria</span>
+                    <div class="reactions">
+                        <span class="reaction">😐<span>2</span></span>
+                        <span class="reaction">😋<span>1</span></span>
+                    </div>
                 </div>
             </div>
 
@@ -414,6 +432,10 @@
                     </div>
                     <p>"Sabor incrível, com certeza vou pedir mais!"</p>
                     <span>Carlos</span>
+                    <div class="reactions">
+                        <span class="reaction">😊<span>10</span></span>
+                        <span class="reaction">😋<span>8</span></span>
+                    </div>
                 </div>
             </div>
 
@@ -437,7 +459,15 @@
         // Função para remover ingrediente
         function removeIngredient(element) {
             const ingredient = element.parentElement;
-            ingredient.remove();
+            ingredient.querySelector('.undo-ingredient').style.display = 'inline'; // Mostrar botão de desfazer
+            ingredient.querySelector('.remove-ingredient').style.display = 'none'; // Esconder botão de remover
+        }
+
+        // Função para colocar ingrediente de volta
+        function undoRemove(element) {
+            const ingredient = element.parentElement;
+            ingredient.querySelector('.remove-ingredient').style.display = 'inline'; // Mostrar botão de remover
+            ingredient.querySelector('.undo-ingredient').style.display = 'none'; // Esconder botão de desfazer
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
@@ -467,5 +497,6 @@
             });
         }
     </script>
+
 </body>
 </html>
