@@ -107,9 +107,13 @@
             height: 80px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid #ff66b2;
+            border: 2px solid transparent; /* Sem borda inicialmente */
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border 0.3s ease;
+        }
+
+        .image-carousel img.selected {
+            border: 2px solid #ff66b2; /* Borda visível quando selecionada */
         }
 
         .image-carousel img:hover {
@@ -322,10 +326,9 @@
     <div class="container">
         <!-- Detalhes do Produto -->
         <div class="product-detail">
-            <!-- Imagem do produto -->
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" class="main-img" alt="Produto 1">
+            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Imagem Principal" class="main-img">
 
-            <!-- Carrossel de imagens -->
+            <!-- Carrossel de Imagens -->
             <div class="image-carousel">
                 <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Imagem 1">
                 <img src="https://i.ibb.co/Jr9d7r2/IMG-20241110-021412.png" alt="Imagem 2">
@@ -444,6 +447,8 @@
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', function() {
                 mainImage.src = this.src;
+                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
+                this.classList.add('selected'); // Adiciona borda à miniatura clicada
             });
         });
 
