@@ -89,8 +89,8 @@
         }
 
         .product-detail img.main-img {
-            width: 90%;
-            max-width: 500px;
+            width: 80%;
+            max-width: 400px;
             height: auto;
             border-radius: 10px;
             margin: 0 auto;
@@ -106,17 +106,17 @@
         }
 
         .image-carousel img {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid transparent; /* Sem borda inicialmente */
+            border: 2px solid transparent;
             cursor: pointer;
             transition: transform 0.3s ease, border 0.3s ease;
         }
 
         .image-carousel img.selected {
-            border: 2px solid #ff66b2; /* Borda visível quando selecionada */
+            border: 2px solid #ff66b2;
         }
 
         .image-carousel img:hover {
@@ -177,7 +177,7 @@
             cursor: pointer;
             font-size: 14px;
             margin-left: 10px;
-            display: none; /* Inicialmente escondido */
+            display: none;
         }
 
         .add-to-cart, .back-button {
@@ -365,6 +365,7 @@
             </div>
         </div>
 
+        <!-- Avaliações -->
         <div class="reviews-section">
             <h3>Avaliações</h3>
 
@@ -412,6 +413,20 @@
                 </div>
             </div>
         </div>
+
+        <!-- Formulário de Avaliação -->
+        <div class="review-form">
+            <h4>Deixe sua Avaliação</h4>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <textarea placeholder="Deixe seu comentário..."></textarea>
+            <button class="add-to-cart">Enviar Avaliação</button>
+        </div>
     </div>
 
     <script>
@@ -420,20 +435,6 @@
             const reactionCount = reactionElement.querySelector("span");
             const currentCount = parseInt(reactionCount.textContent);
             reactionCount.textContent = currentCount + 1;
-        }
-
-        // Função para remover ingrediente
-        function removeIngredient(element) {
-            const ingredient = element.parentElement;
-            ingredient.querySelector('.undo-ingredient').style.display = 'inline'; // Mostrar botão de desfazer
-            ingredient.querySelector('.remove-ingredient').style.display = 'none'; // Esconder botão de remover
-        }
-
-        // Função para colocar ingrediente de volta
-        function undoRemove(element) {
-            const ingredient = element.parentElement;
-            ingredient.querySelector('.remove-ingredient').style.display = 'inline'; // Mostrar botão de remover
-            ingredient.querySelector('.undo-ingredient').style.display = 'none'; // Esconder botão de desfazer
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
