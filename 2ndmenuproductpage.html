@@ -379,7 +379,7 @@
         <div class="reviews-section">
             <h3>Avaliações</h3>
 
-          <!-- Avaliação 1 -->
+            <!-- Avaliação 1 -->
             <div class="review">
                 <img src="https://i.pravatar.cc/50?img=1" alt="Avatar 1">
                 <div class="review-content">
@@ -393,10 +393,8 @@
                     <p>"Delicioso, amei!"</p>
                     <span>João</span>
                     <div class="reactions">
-                        <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>3</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>5</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>2</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>1</span></span>
+                        <span class="reaction">😊<span>3</span></span>
+                        <span class="reaction">😋<span>5</span></span>
                     </div>
                 </div>
             </div>
@@ -415,23 +413,47 @@
                     <p>"Muito bom, mas poderia ser mais quente."</p>
                     <span>Maria</span>
                     <div class="reactions">
-                        <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>2</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>3</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>1</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>0</span></span>
+                        <span class="reaction">😐<span>2</span></span>
+                        <span class="reaction">😋<span>1</span></span>
                     </div>
                 </div>
             </div>
+
+            <!-- Avaliação 3 -->
+            <div class="review">
+                <img src="https://i.pravatar.cc/50?img=3" alt="Avatar 3">
+                <div class="review-content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Sabor incrível, com certeza vou pedir mais!"</p>
+                    <span>Carlos</span>
+                    <div class="reactions">
+                        <span class="reaction">😊<span>10</span></span>
+                        <span class="reaction">😋<span>8</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulário para deixar uma avaliação -->
+            <div class="review-form">
+                <h4>Deixe sua avaliação</h4>
+                <div class="rating">
+                    <i class="fas fa-star" onclick="rate(1)"></i>
+                    <i class="fas fa-star" onclick="rate(2)"></i>
+                    <i class="fas fa-star" onclick="rate(3)"></i>
+                    <i class="fas fa-star" onclick="rate(4)"></i>
+                    <i class="fas fa-star" onclick="rate(5)"></i>
+                </div>
+                <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
+                <button class="add-to-cart">Enviar Avaliação</button>
+            </div>
         </div>
     </div>
-
-    <script>
-        // Função para incrementar as reações
-        function incrementReaction(reactionElement, emojiIndex) {
-            const reactionCount = reactionElement.querySelector("span");
-            const currentCount = parseInt(reactionCount.textContent);
-            reactionCount.textContent = currentCount + 1;
-        }
 
     <script>
         // Função para remover ingrediente
