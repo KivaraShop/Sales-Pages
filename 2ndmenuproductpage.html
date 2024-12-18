@@ -88,10 +88,32 @@
             overflow: hidden;
         }
 
-        .product-detail img {
+        .product-detail img.main-img {
             width: 100%;
             height: auto;
             border-radius: 10px;
+        }
+
+        /* Imagens em miniatura do carrossel */
+        .image-carousel {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .image-carousel img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #ff66b2;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-carousel img:hover {
+            transform: scale(1.1);
         }
 
         .product-detail h2 {
@@ -117,7 +139,33 @@
             margin: 10px 0;
         }
 
-        .add-to-cart {
+        .ingredients-section, .reviews-section, .nutrition-section {
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .ingredients-section ul, .reviews-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredients-section li, .reviews-section li {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #660033;
+        }
+
+        .remove-ingredient {
+            color: #ff6666;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .add-to-cart, .back-button {
             background: #ff66b2;
             border: none;
             padding: 10px 20px;
@@ -131,24 +179,7 @@
             margin-bottom: 10px;
         }
 
-        .add-to-cart:hover {
-            background: #ff99cc;
-        }
-
-        .back-button {
-            background: #ff66b2;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        .back-button:hover {
+        .add-to-cart:hover, .back-button:hover {
             background: #ff99cc;
         }
 
@@ -165,7 +196,7 @@
                 margin: 10px 0;
             }
 
-            .product-detail img {
+            .product-detail img.main-img {
                 width: 100%;
                 height: auto;
             }
@@ -187,6 +218,11 @@
                 font-size: 18px;
                 padding: 12px;
                 margin-top: 20px;
+            }
+
+            .image-carousel img {
+                width: 60px;
+                height: 60px;
             }
         }
     </style>
@@ -211,7 +247,15 @@
         <!-- Detalhes do Produto -->
         <div class="product-detail">
             <!-- Imagem do produto -->
-            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png">
+            <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" class="main-img" alt="Produto 1">
+
+            <!-- Carrossel de imagens -->
+            <div class="image-carousel">
+                <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Imagem 1">
+                <img src="https://i.ibb.co/4v8K5yQ/IMG-20241110-021412.png" alt="Imagem 2">
+                <img src="https://i.ibb.co/L8VZXQy/IMG-20241110-021413.png" alt="Imagem 3">
+                <img src="https://i.ibb.co/F7dRkFz/IMG-20241110-021414.png" alt="Imagem 4">
+            </div>
 
             <!-- Informações do Produto -->
             <div class="product-info">
@@ -232,8 +276,58 @@
                 <button class="add-to-cart">Adicionar ao Pedido</button>
                 <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
             </div>
+
+            <!-- Informações Nutricionais -->
+            <div class="nutrition-section">
+                <h3>Informações Nutricionais</h3>
+                <ul>
+                    <li>Calorias: 350 Kcal</li>
+                    <li>Gordura Total: 12g</li>
+                    <li>Carboidratos: 45g</li>
+                    <li>Proteínas: 15g</li>
+                </ul>
+            </div>
+
+            <!-- Ingredientes -->
+            <div class="ingredients-section">
+                <h3>Ingredientes</h3>
+                <ul>
+                    <li>Alface <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
+                    <li>Tomate <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
+                    <li>Picanha <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
+                    <li>Queijo <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span></li>
+                </ul>
+            </div>
+
+            <!-- Avaliações -->
+            <div class="reviews-section">
+                <h3>Avaliações</h3>
+                <ul>
+                    <li>⭐⭐⭐⭐⭐ - "Delicioso, amei!" - João</li>
+                    <li>⭐⭐⭐⭐ - "Muito bom, mas poderia ser mais quente." - Maria</li>
+                    <li>⭐⭐⭐⭐⭐ - "Sabor incrível, com certeza vou pedir mais!" - Carlos</li>
+                </ul>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Função para remover ingrediente
+        function removeIngredient(element) {
+            const ingredient = element.parentElement;
+            ingredient.remove();
+        }
+
+        // Script para alterar imagem principal ao clicar nas miniaturas
+        const thumbnails = document.querySelectorAll('.image-carousel img');
+        const mainImage = document.querySelector('.main-img');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                mainImage.src = this.src;
+            });
+        });
+    </script>
 
 </body>
 </html>
