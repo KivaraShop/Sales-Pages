@@ -89,8 +89,8 @@
         }
 
         .product-detail img.main-img {
-            width: 80%;
-            max-width: 400px;
+            width: 90%;
+            max-width: 500px;
             height: auto;
             border-radius: 10px;
             margin: 0 auto;
@@ -106,17 +106,17 @@
         }
 
         .image-carousel img {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid transparent;
+            border: 2px solid transparent; /* Sem borda inicialmente */
             cursor: pointer;
             transition: transform 0.3s ease, border 0.3s ease;
         }
 
         .image-carousel img.selected {
-            border: 2px solid #ff66b2;
+            border: 2px solid #ff66b2; /* Borda visível quando selecionada */
         }
 
         .image-carousel img:hover {
@@ -177,7 +177,7 @@
             cursor: pointer;
             font-size: 14px;
             margin-left: 10px;
-            display: none;
+            display: none; /* Inicialmente escondido */
         }
 
         .add-to-cart, .back-button {
@@ -236,7 +236,6 @@
             font-size: 18px;
         }
 
-        /* Reações */
         .reactions {
             display: flex;
             gap: 10px;
@@ -246,17 +245,10 @@
 
         .reaction {
             cursor: pointer;
-            display: flex;
-            align-items: center;
         }
 
         .reaction span {
             margin-left: 5px;
-            font-size: 14px;
-        }
-
-        .reaction i {
-            font-size: 22px;
         }
 
         /* Formulário de avaliação */
@@ -326,10 +318,12 @@
 </head>
 <body>
 
+    <!-- Cabeçalho -->
     <header>
         <a href="#" class="logo">Shopping Brasil</a>
     </header>
 
+    <!-- Menu de Navegação -->
     <nav>
         <a href="loja.html">Início</a>
         <a href="loja.html">Produtos</a>
@@ -337,16 +331,21 @@
         <a href="contato.html">Contato</a>
     </nav>
 
+    <!-- Conteúdo principal -->
     <div class="container">
+        <!-- Detalhes do Produto -->
         <div class="product-detail">
+            <!-- Imagem principal -->
             <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Imagem Principal" class="main-img">
 
+            <!-- Carrossel de Imagens -->
             <div class="image-carousel">
                 <img src="https://i.ibb.co/HKNMqp9/IMG-20241110-021411.png" alt="Imagem 1">
                 <img src="https://i.ibb.co/Jr9d7r2/IMG-20241110-021412.png" alt="Imagem 2">
                 <img src="https://i.ibb.co/k5szYb9/IMG-20241110-021413.png" alt="Imagem 3">
             </div>
 
+            <!-- Informações do Produto -->
             <div class="product-info">
                 <h2>Produto 1</h2>
                 <p class="price">R$ 49,99</p>
@@ -363,6 +362,17 @@
                 <button class="add-to-cart">Adicionar ao Pedido</button>
                 <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
             </div>
+        </div>
+
+        <!-- Ingredientes -->
+        <div class="ingredients-section">
+            <h3>Ingredientes</h3>
+            <ul>
+                <li>Alface <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Tomate <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Picanha <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Queijo <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+            </ul>
         </div>
 
         <!-- Avaliações -->
@@ -383,10 +393,8 @@
                     <p>"Delicioso, amei!"</p>
                     <span>João</span>
                     <div class="reactions">
-                        <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>3</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>5</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>2</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>1</span></span>
+                        <span class="reaction">😊<span>3</span></span>
+                        <span class="reaction">😋<span>5</span></span>
                     </div>
                 </div>
             </div>
@@ -405,36 +413,61 @@
                     <p>"Muito bom, mas poderia ser mais quente."</p>
                     <span>Maria</span>
                     <div class="reactions">
-                        <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>2</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>3</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>1</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>0</span></span>
+                        <span class="reaction">😐<span>2</span></span>
+                        <span class="reaction">😋<span>1</span></span>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Formulário de Avaliação -->
-        <div class="review-form">
-            <h4>Deixe sua Avaliação</h4>
-            <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
+            <!-- Avaliação 3 -->
+            <div class="review">
+                <img src="https://i.pravatar.cc/50?img=3" alt="Avatar 3">
+                <div class="review-content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Sabor incrível, com certeza vou pedir mais!"</p>
+                    <span>Carlos</span>
+                    <div class="reactions">
+                        <span class="reaction">😊<span>10</span></span>
+                        <span class="reaction">😋<span>8</span></span>
+                    </div>
+                </div>
             </div>
-            <textarea placeholder="Deixe seu comentário..."></textarea>
-            <button class="add-to-cart">Enviar Avaliação</button>
+
+            <!-- Formulário para deixar uma avaliação -->
+            <div class="review-form">
+                <h4>Deixe sua avaliação</h4>
+                <div class="rating">
+                    <i class="fas fa-star" onclick="rate(1)"></i>
+                    <i class="fas fa-star" onclick="rate(2)"></i>
+                    <i class="fas fa-star" onclick="rate(3)"></i>
+                    <i class="fas fa-star" onclick="rate(4)"></i>
+                    <i class="fas fa-star" onclick="rate(5)"></i>
+                </div>
+                <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
+                <button class="add-to-cart">Enviar Avaliação</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Função para incrementar as reações
-        function incrementReaction(reactionElement, emojiIndex) {
-            const reactionCount = reactionElement.querySelector("span");
-            const currentCount = parseInt(reactionCount.textContent);
-            reactionCount.textContent = currentCount + 1;
+        // Função para remover ingrediente
+        function removeIngredient(element) {
+            const ingredient = element.parentElement;
+            ingredient.querySelector('.undo-ingredient').style.display = 'inline'; // Mostrar botão de desfazer
+            ingredient.querySelector('.remove-ingredient').style.display = 'none'; // Esconder botão de remover
+        }
+
+        // Função para colocar ingrediente de volta
+        function undoRemove(element) {
+            const ingredient = element.parentElement;
+            ingredient.querySelector('.remove-ingredient').style.display = 'inline'; // Mostrar botão de remover
+            ingredient.querySelector('.undo-ingredient').style.display = 'none'; // Esconder botão de desfazer
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
@@ -448,6 +481,21 @@
                 this.classList.add('selected'); // Adiciona borda à miniatura clicada
             });
         });
+
+        // Função de avaliação com estrelas
+        let currentRating = 0;
+
+        function rate(rating) {
+            currentRating = rating;
+            const stars = document.querySelectorAll('.review-form .rating i');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.style.color = "#ffcc00";
+                } else {
+                    star.style.color = "#ccc";
+                }
+            });
+        }
     </script>
 
 </body>
