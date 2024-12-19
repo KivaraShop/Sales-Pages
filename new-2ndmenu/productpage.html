@@ -98,36 +98,28 @@
         }
 
         /* Imagens em miniatura do carrossel */
-   .product-detail .image-carousel-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            width: 100%;
-        }
-
-        .product-detail .image-carousel {
+        .image-carousel {
             display: flex;
             gap: 10px;
             justify-content: center;
             margin-top: 10px;
         }
 
-        .product-detail .image-carousel img {
+        .image-carousel img {
             width: 80px;
             height: 80px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid transparent;
+            border: 2px solid transparent; /* Sem borda inicialmente */
             cursor: pointer;
             transition: transform 0.3s ease, border 0.3s ease;
         }
 
-        .product-detail .image-carousel img.selected {
-            border: 2px solid #ff66b2;
+        .image-carousel img.selected {
+            border: 2px solid #ff66b2; /* Borda visível quando selecionada */
         }
 
-        .product-detail .image-carousel img:hover {
+        .image-carousel img:hover {
             transform: scale(1.1);
         }
 
@@ -359,19 +351,18 @@
     </nav>
 
     <!-- Conteúdo principal -->
-  <div class="container">
+    <div class="container">
+        <!-- Detalhes do Produto -->
         <div class="product-detail">
-            <!-- Main image -->
-            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000/400" class="main-img" alt="Main Product Image">
+            <!-- Imagem principal -->
+            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/500">
 
-            <!-- Thumbnail images -->
+            <!-- Carrossel de Imagens -->
             <div class="image-carousel">
-                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000/150/FF0000" alt="Thumbnail 1">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00/150/00FF00" alt="Thumbnail 2">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00/150/0000FF" alt="Thumbnail 3">
+                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000" alt="Imagem 1">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00" alt="Imagem 2">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/0000FF" alt="Imagem 3">
             </div>
-        </div>
-    </div>
 
             <!-- Informações do Produto -->
             <div class="product-info">
@@ -530,23 +521,17 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-       document.addEventListener('DOMContentLoaded', () => {
-            const mainImage = document.querySelector('.product-detail .main-img');
-            const thumbnails = document.querySelectorAll('.product-detail .image-carousel img');
+        const thumbnails = document.querySelectorAll('.image-carousel img');
+        const mainImage = document.querySelector('.main-img');
 
-            if (!mainImage || thumbnails.length === 0) {
-                console.error("Main image or thumbnails not found. Check HTML structure.");
-                return;
-            }
-
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function () {
-                    mainImage.src = this.src;
-                    thumbnails.forEach(img => img.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                mainImage.src = this.src;
+                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
+                this.classList.add('selected'); // Adiciona borda à miniatura clicada
             });
         });
+
         // Função de avaliação com estrelas
         let currentRating = 0;
 
