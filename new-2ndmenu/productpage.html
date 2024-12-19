@@ -98,7 +98,15 @@
         }
 
         /* Imagens em miniatura do carrossel */
-  .product-detail .image-carousel {
+   .product-detail .image-carousel-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .product-detail .image-carousel {
             display: flex;
             gap: 10px;
             justify-content: center;
@@ -110,13 +118,13 @@
             height: 80px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid transparent; /* No border initially */
+            border: 2px solid transparent;
             cursor: pointer;
             transition: transform 0.3s ease, border 0.3s ease;
         }
 
         .product-detail .image-carousel img.selected {
-            border: 2px solid #ff66b2; /* Visible border when selected */
+            border: 2px solid #ff66b2;
         }
 
         .product-detail .image-carousel img:hover {
