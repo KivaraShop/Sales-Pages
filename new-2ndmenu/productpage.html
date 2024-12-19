@@ -520,33 +520,6 @@
             ingredient.querySelector('.undo-ingredient').style.display = 'none'; // Esconder botão de desfazer
         }
 
-        // Script para alterar imagem principal ao clicar nas miniaturas
-        document.addEventListener('DOMContentLoaded', () => {
-    // Select the main image and thumbnails
-    const mainImage = document.querySelector('.main-img');
-    const thumbnails = document.querySelectorAll('.image-carousel img');
-
-    // Ensure elements exist before proceeding
-    if (!mainImage || thumbnails.length === 0) {
-        console.error("Main image or thumbnails not found. Check your HTML structure.");
-        return;
-    }
-
-    // Add click event listener to each thumbnail
-    thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', function () {
-            // Update the main image source
-            mainImage.src = this.src;
-
-            // Remove the 'selected' class from all thumbnails
-            thumbnails.forEach(img => img.classList.remove('selected'));
-
-            // Add the 'selected' class to the clicked thumbnail
-            this.classList.add('selected');
-        });
-    });
-});
-
         // Função de avaliação com estrelas
         let currentRating = 0;
 
@@ -562,6 +535,28 @@
             });
         }
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mainImage = document.querySelector('.main-img');
+        const thumbnails = document.querySelectorAll('.image-carousel img');
+
+        if (!mainImage || thumbnails.length === 0) {
+            console.error("Main image or thumbnails not found. Check HTML structure.");
+            return;
+        }
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function () {
+                mainImage.src = this.src;
+                thumbnails.forEach(img => img.classList.remove('selected'));
+                this.classList.add('selected');
+                console.log("Main image updated to:", this.src); // Debugging log
+            });
+        });
+    });
+</script>
+
 
 </body>
 </html>
