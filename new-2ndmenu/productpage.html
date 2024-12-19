@@ -88,7 +88,7 @@
             overflow: hidden;
         }
 
-        .product-detail img.main-img {
+         .product-detail img.main-img {
             width: 90%;
             max-width: 500px;
             height: auto;
@@ -97,7 +97,6 @@
             display: block;
         }
 
-        /* Imagens em miniatura do carrossel */
         .image-carousel {
             display: flex;
             gap: 10px;
@@ -110,13 +109,13 @@
             height: 80px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid transparent; /* Sem borda inicialmente */
+            border: 2px solid transparent;
             cursor: pointer;
             transition: transform 0.3s ease, border 0.3s ease;
         }
 
         .image-carousel img.selected {
-            border: 2px solid #ff66b2; /* Borda visível quando selecionada */
+            border: 2px solid #ff66b2;
         }
 
         .image-carousel img:hover {
@@ -353,16 +352,17 @@
     <!-- Conteúdo principal -->
     <div class="container">
         <!-- Detalhes do Produto -->
-        <div class="product-detail">
-            <!-- Imagem principal -->
-            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg">
+       <div class="product-detail">
+        <!-- Main image -->
+        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Main Product Image">
 
-            <!-- Carrossel de Imagens -->
-            <div class="image-carousel">
-                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Imagem 1">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 2">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 3">
-            </div>
+        <!-- Thumbnail images -->
+        <div class="image-carousel">
+            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000" alt="Thumbnail 1">
+            <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00" alt="Thumbnail 2">
+            <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/0000FF" alt="Thumbnail 3">
+        </div>
+    </div>
 
             <!-- Informações do Produto -->
             <div class="product-info">
