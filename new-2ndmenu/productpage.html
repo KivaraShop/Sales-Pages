@@ -519,7 +519,19 @@
             ingredient.querySelector('.remove-ingredient').style.display = 'inline'; // Mostrar botão de remover
             ingredient.querySelector('.undo-ingredient').style.display = 'none'; // Esconder botão de desfazer
         }
+        
+ // Script para alterar imagem principal ao clicar nas miniaturas
+        const thumbnails = document.querySelectorAll('.image-carousel img');
+        const mainImage = document.querySelector('.main-img');
 
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                mainImage.src = this.src;
+                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
+                this.classList.add('selected'); // Adiciona borda à miniatura clicada
+            });
+        });
+        
         // Função de avaliação com estrelas
         let currentRating = 0;
 
@@ -535,28 +547,6 @@
             });
         }
     </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const mainImage = document.querySelector('.main-img');
-        const thumbnails = document.querySelectorAll('.image-carousel img');
-
-        if (!mainImage || thumbnails.length === 0) {
-            console.error("Main image or thumbnails not found. Check HTML structure.");
-            return;
-        }
-
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function () {
-                mainImage.src = this.src;
-                thumbnails.forEach(img => img.classList.remove('selected'));
-                this.classList.add('selected');
-                console.log("Main image updated to:", this.src); // Debugging log
-            });
-        });
-    });
-</script>
-
 
 </body>
 </html>
