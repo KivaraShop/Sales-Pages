@@ -352,9 +352,9 @@
     <!-- Conteúdo principal -->
     <div class="container">
         <!-- Detalhes do Produto -->
-            <div class="product-detail">
+        <div class="product-detail">
         <!-- Main image -->
-        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Main Product Image">
+        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Main Product Image">
 
         <!-- Thumbnail images -->
         <div class="image-carousel">
@@ -521,14 +521,22 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-        const thumbnails = document.querySelectorAll('.image-carousel img');
-        const mainImage = document.querySelector('.main-img');
+       document.addEventListener('DOMContentLoaded', () => {
+            const mainImage = document.querySelector('.main-img');
+            const thumbnails = document.querySelectorAll('.image-carousel img');
 
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                mainImage.src = this.src;
-                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
-                this.classList.add('selected'); // Adiciona borda à miniatura clicada
+            if (!mainImage || thumbnails.length === 0) {
+                console.error("Main image or thumbnails not found. Check HTML structure.");
+                return;
+            }
+
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function () {
+                    mainImage.src = this.src;
+                    thumbnails.forEach(img => img.classList.remove('selected'));
+                    this.classList.add('selected');
+                    console.log("Main image updated to:", this.src);
+                });
             });
         });
 
