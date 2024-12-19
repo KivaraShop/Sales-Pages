@@ -441,6 +441,15 @@
     </div>
 
     <script>
+        // Função para incrementar as reações
+        function incrementReaction(reactionElement, emojiIndex) {
+            const reactionCount = reactionElement.querySelector("span");
+            const currentCount = parseInt(reactionCount.textContent);
+            reactionCount.textContent = currentCount + 1;
+        }
+    </script>
+
+    <script>
         // Função para remover ingrediente
         function removeIngredient(element) {
             const ingredient = element.parentElement;
