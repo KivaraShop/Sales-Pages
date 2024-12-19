@@ -363,7 +363,6 @@
                 <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 2">
                 <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 3">
             </div>
-        </div>
 
             <!-- Informações do Produto -->
             <div class="product-info">
@@ -522,26 +521,17 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-            <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    const thumbnails = document.querySelectorAll('.image-carousel img');
-    const mainImage = document.querySelector('.main-img');
+        const thumbnails = document.querySelectorAll('.image-carousel img');
+        const mainImage = document.querySelector('.main-img');
 
-    if (thumbnails.length && mainImage) {
         thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function () {
+            thumbnail.addEventListener('click', function() {
                 mainImage.src = this.src;
-                thumbnails.forEach(img => img.classList.remove('selected')); // Remove the border from all
-                this.classList.add('selected'); // Add border to clicked thumbnail
+                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
+                this.classList.add('selected'); // Adiciona borda à miniatura clicada
             });
         });
-    } else {
-        console.error("Thumbnails or main image not found in the DOM.");
-    }
-});
-  </script>
 
-        <script>
         // Função de avaliação com estrelas
         let currentRating = 0;
 
