@@ -73,7 +73,7 @@
         }
 
         /* Detalhes do Produto */
-         .product-detail {
+        .product-detail {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -97,8 +97,8 @@
             display: block;
         }
 
-        /* Scoped Styles for the Image Carousel */
-        .product-detail .image-carousel {
+        /* Imagens em miniatura do carrossel */
+  .product-detail .image-carousel {
             display: flex;
             gap: 10px;
             justify-content: center;
@@ -123,7 +123,6 @@
             transform: scale(1.1);
         }
 
-        /* Additional styles for your existing sections can remain as-is */
         .product-detail h2 {
             font-size: 24px;
             color: #4a004e;
@@ -352,16 +351,16 @@
     </nav>
 
     <!-- Conteúdo principal -->
-   <div class="container">
+  <div class="container">
         <div class="product-detail">
             <!-- Main image -->
-            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Main Product Image">
+            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000/400" class="main-img" alt="Main Product Image">
 
             <!-- Thumbnail images -->
             <div class="image-carousel">
-                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000" alt="Thumbnail 1">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00" alt="Thumbnail 2">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/0000FF" alt="Thumbnail 3">
+                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000/150/FF0000" alt="Thumbnail 1">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00/150/00FF00" alt="Thumbnail 2">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00/150/0000FF" alt="Thumbnail 3">
             </div>
         </div>
     </div>
@@ -523,7 +522,7 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-      document.addEventListener('DOMContentLoaded', () => {
+       document.addEventListener('DOMContentLoaded', () => {
             const mainImage = document.querySelector('.product-detail .main-img');
             const thumbnails = document.querySelectorAll('.product-detail .image-carousel img');
 
@@ -540,7 +539,6 @@
                 });
             });
         });
-
         // Função de avaliação com estrelas
         let currentRating = 0;
 
