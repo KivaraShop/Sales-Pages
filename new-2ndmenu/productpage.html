@@ -86,44 +86,51 @@
             margin: 20px auto;
             box-sizing: border-box;
             overflow: hidden;
-            text-align: center; /* Center only the product section content */
- padding: 20px;
+        }
+
+   .product-container {
+    max-width: 600px; /* Limit container width */
+    margin: 40px auto; /* Center the container */
+    padding: 20px;
+    border: 1px solid #ddd; /* Optional border for isolation */
+    border-radius: 10px;
+    background: #fff; /* Ensure consistent background */
 }
-        }
 
-         .product-detail img.main-img {
-            width: 100%; /* Adjust width to be responsive */
-            max-width: 500px;
-            height: auto;
-            border-radius: 10px;
-            margin: 0 auto;
-            display: block;
-        }
+.product-container .product-detail img.main-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
 
-        .image-carousel {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 10px;
-        }
+.product-container .image-carousel {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
 
-        .image-carousel img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: transform 0.3s ease, border 0.3s ease;
-        }
+.product-container .image-carousel img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
 
-        .image-carousel img.selected {
-            border: 2px solid #ff66b2;
-        }
+.product-container .image-carousel img.selected {
+    border-color: #ff66b2;
+}
 
-        .image-carousel img:hover {
-            transform: scale(1.1);
-        }
+.product-container .image-carousel img:hover {
+    transform: scale(1.1);
+}
+
 
         .product-detail h2 {
             font-size: 24px;
@@ -355,17 +362,16 @@
     <!-- Conteúdo principal -->
     <div class="container">
         <!-- Detalhes do Produto -->
-       <div class="product-detail">
-        <!-- Main image -->
-        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Main Product Image">
+        <div class="product-detail">
+            <!-- Imagem principal -->
+            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg">
 
-        <!-- Thumbnail images -->
-        <div class="image-carousel">
-            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000" alt="Thumbnail 1">
-            <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00" alt="Thumbnail 2">
-            <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/0000FF" alt="Thumbnail 3">
-        </div>
-    </div>
+            <!-- Carrossel de Imagens -->
+            <div class="image-carousel">
+                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Imagem 1">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 2">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 3">
+            </div>
 
             <!-- Informações do Produto -->
             <div class="product-info">
@@ -522,8 +528,8 @@
             ingredient.querySelector('.remove-ingredient').style.display = 'inline'; // Mostrar botão de remover
             ingredient.querySelector('.undo-ingredient').style.display = 'none'; // Esconder botão de desfazer
         }
-        
- // Script para alterar imagem principal ao clicar nas miniaturas
+
+        // Script para alterar imagem principal ao clicar nas miniaturas
         const thumbnails = document.querySelectorAll('.image-carousel img');
         const mainImage = document.querySelector('.main-img');
 
@@ -534,7 +540,7 @@
                 this.classList.add('selected'); // Adiciona borda à miniatura clicada
             });
         });
-        
+
         // Função de avaliação com estrelas
         let currentRating = 0;
 
