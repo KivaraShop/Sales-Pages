@@ -521,16 +521,31 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-        const thumbnails = document.querySelectorAll('.image-carousel img');
-        const mainImage = document.querySelector('.main-img');
+        document.addEventListener('DOMContentLoaded', () => {
+    // Select the main image and thumbnails
+    const mainImage = document.querySelector('.main-img');
+    const thumbnails = document.querySelectorAll('.image-carousel img');
 
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                mainImage.src = this.src;
-                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
-                this.classList.add('selected'); // Adiciona borda à miniatura clicada
-            });
+    // Ensure elements exist before proceeding
+    if (!mainImage || thumbnails.length === 0) {
+        console.error("Main image or thumbnails not found. Check your HTML structure.");
+        return;
+    }
+
+    // Add click event listener to each thumbnail
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function () {
+            // Update the main image source
+            mainImage.src = this.src;
+
+            // Remove the 'selected' class from all thumbnails
+            thumbnails.forEach(img => img.classList.remove('selected'));
+
+            // Add the 'selected' class to the clicked thumbnail
+            this.classList.add('selected');
         });
+    });
+});
 
         // Função de avaliação com estrelas
         let currentRating = 0;
