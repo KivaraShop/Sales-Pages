@@ -74,13 +74,20 @@
 
         /* Detalhes do Produto */
          .product-detail {
-            display: block;
-            max-width: 100%;
-            text-align: center;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        /* Main image styling */
         .product-detail img.main-img {
             width: 90%;
             max-width: 500px;
@@ -88,10 +95,9 @@
             border-radius: 10px;
             margin: 0 auto;
             display: block;
-            transition: all 0.3s ease;
         }
 
-        /* Thumbnail container styling */
+        /* Scoped Styles for the Image Carousel */
         .product-detail .image-carousel {
             display: flex;
             gap: 10px;
@@ -99,27 +105,25 @@
             margin-top: 10px;
         }
 
-        /* Thumbnail styling */
         .product-detail .image-carousel img {
             width: 80px;
             height: 80px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid transparent;
+            border: 2px solid transparent; /* No border initially */
             cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border 0.3s ease;
         }
 
-        /* Active thumbnail styling */
         .product-detail .image-carousel img.selected {
-            border-color: #ff66b2;
+            border: 2px solid #ff66b2; /* Visible border when selected */
         }
 
-        /* Thumbnail hover effect */
         .product-detail .image-carousel img:hover {
             transform: scale(1.1);
         }
 
+        /* Additional styles for your existing sections can remain as-is */
         .product-detail h2 {
             font-size: 24px;
             color: #4a004e;
@@ -348,21 +352,21 @@
     </nav>
 
     <!-- Conteúdo principal -->
-    <div class="container">
-        <!-- Detalhes do Produto -->
+   <div class="container">
         <div class="product-detail">
-        <!-- Main image -->
-        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Main Product Image">
+            <!-- Main image -->
+            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Main Product Image">
 
-        <!-- Thumbnail images -->
-        <div class="image-carousel">
-            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000" alt="Thumbnail 1">
-            <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00" alt="Thumbnail 2">
-            <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/0000FF" alt="Thumbnail 3">
+            <!-- Thumbnail images -->
+            <div class="image-carousel">
+                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150/FF0000" alt="Thumbnail 1">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/00FF00" alt="Thumbnail 2">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150/0000FF" alt="Thumbnail 3">
+            </div>
         </div>
     </div>
 
-            <!-- Informações do Produtoo -->
+            <!-- Informações do Produto -->
             <div class="product-info">
                 <h2>Produto 1</h2>
                 <p class="price">R$ 49,99</p>
@@ -519,22 +523,14 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-       document.addEventListener('DOMContentLoaded', () => {
-            const mainImage = document.querySelector('.main-img');
-            const thumbnails = document.querySelectorAll('.image-carousel img');
+        const thumbnails = document.querySelectorAll('.image-carousel img');
+        const mainImage = document.querySelector('.main-img');
 
-            if (!mainImage || thumbnails.length === 0) {
-                console.error("Main image or thumbnails not found. Check HTML structure.");
-                return;
-            }
-
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function () {
-                    mainImage.src = this.src;
-                    thumbnails.forEach(img => img.classList.remove('selected'));
-                    this.classList.add('selected');
-                    console.log("Main image updated to:", this.src);
-                });
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                mainImage.src = this.src;
+                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
+                this.classList.add('selected'); // Adiciona borda à miniatura clicada
             });
         });
 
