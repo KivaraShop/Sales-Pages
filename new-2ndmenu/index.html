@@ -186,21 +186,21 @@
 
 
         /* Grid de Proud tos (menu) */
- .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two columns by default */
-            gap: 30px;
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 10px;
             justify-content: center;
-            padding-bottom: 40px;
         }
 
-
-
- /* Mobile and Small Screen Adjustments */
-        @media (max-width: 600px) {
+        @media(min-width: 768px) {
             .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
             }
+        }
 
         .menu-section {
     padding: 30px;
