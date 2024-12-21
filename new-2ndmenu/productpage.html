@@ -278,94 +278,35 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
-.reviews-container {
-    margin-top: 30px;
-}
 
-     .review-form h4 {
-    font-size: 18px;
-    color: #4a004e;
-    margin-bottom: 10px;
-}
+        .review-form h4 {
+            font-size: 18px;
+            color: #4a004e;
+            margin-bottom: 10px;
+        }
 
-.review-form textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    margin-bottom: 15px;
-    resize: none;
-}
+        .review-form textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            margin-bottom: 15px;
+            resize: none;
+        }
 
-.review-form .rating {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
+        .review-form .rating {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
 
-.review-form .rating i {
-    cursor: pointer;
-    font-size: 25px;
-    color: #ffcc00;
-}
-
-.reviews-container {
-    margin-top: 20px;
-}
-
-.review {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.review img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-}
-
-.review-content {
-    flex: 1;
-}
-
-.review-content .stars {
-    color: #ffcc00;
-}
-
-.review-content .reactions {
-    margin-top: 10px;
-}
-
-.reaction {
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.reaction span {
-    margin-left: 5px;
-}
-
-
-
-/* Ajuste de visualização do comentário */
-.review-form .add-to-cart {
-    background-color: #4a004e;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.review-form .add-to-cart:hover {
-    background-color: #60007d;
-}
+        .review-form .rating i {
+            cursor: pointer;
+            font-size: 25px;
+            color: #ffcc00;
+        }
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -537,23 +478,19 @@
 </div>
 
         
-<div class="review-form">
-    <h4>Deixe sua avaliação</h4>
-    <div class="rating">
-        <i class="fas fa-star" onclick="rate(1)"></i>
-        <i class="fas fa-star" onclick="rate(2)"></i>
-        <i class="fas fa-star" onclick="rate(3)"></i>
-        <i class="fas fa-star" onclick="rate(4)"></i>
-        <i class="fas fa-star" onclick="rate(5)"></i>
+                <!-- Formulário para Submissão de Avaliação -->
+    <div class="review-form">
+        <h4>Deixe sua avaliação</h4>
+        <div class="rating">
+            <i class="fas fa-star" onclick="rate(1)"></i>
+            <i class="fas fa-star" onclick="rate(2)"></i>
+            <i class="fas fa-star" onclick="rate(3)"></i>
+            <i class="fas fa-star" onclick="rate(4)"></i>
+            <i class="fas fa-star" onclick="rate(5)"></i>
+        </div>
+        <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
+        <button class="add-to-cart" onclick="submitReview()">Enviar Avaliação</button>
     </div>
-    <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
-    <button class="add-to-cart" onclick="submitReview()">Enviar Avaliação</button>
-</div>
-
-<div class="reviews-container">
-    <!-- Avaliações existentes vão aparecer aqui -->
-</div>
-
     </div>
 
     <script>
@@ -625,66 +562,56 @@ document.addEventListener('DOMContentLoaded', function () {
     </script>
     
     <script>
-let selectedRating = 0; // Variável para armazenar a classificação de estrelas
-
-// Função para selecionar a classificação por estrelas
-function rate(stars) {
-    selectedRating = stars;
-    const starsElements = document.querySelectorAll('.rating i');
+document.getElementById('form-avaliacao').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio do formulário e recarregamento da página
     
-    // Preenche as estrelas até a classificação selecionada
-    starsElements.forEach((star, index) => {
-        if (index < stars) {
-            star.style.color = '#ffcc00'; // Cor das estrelas selecionadas
+    // Pega os dados do formulário
+    var nome = document.getElementById('nome').value;
+    var comentario = document.getElementById('comentario').value;
+    var stars = document.getElementById('stars').value;
+
+    // Cria um novo item de avaliação
+    var novaAvaliacao = document.createElement('div');
+    novaAvaliacao.classList.add('review');
+
+    var estrelaHTML = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < stars) {
+            estrelaHTML += '<i class="fas fa-star"></i>';
         } else {
-            star.style.color = ''; // Cor das estrelas não selecionadas
+            estrelaHTML += '<i class="far fa-star"></i>';
         }
-    });
-}
-
-// Função para enviar a avaliação
-function submitReview() {
-    const reviewText = document.getElementById('review-comment').value;
-
-    // Verifica se a classificação e o comentário foram preenchidos
-    if (selectedRating === 0 || reviewText.trim() === '') {
-        alert("Por favor, selecione uma classificação e escreva um comentário.");
-        return;
     }
 
-    // Criação da nova avaliação
-    const reviewContainer = document.querySelector('.reviews-container');
-    const newReview = document.createElement('div');
-    newReview.classList.add('review');
-    
-    newReview.innerHTML = `
-        <img src="https://i.pravatar.cc/50?img=3" alt="Avatar">
+    novaAvaliacao.innerHTML = `
+        <img src="https://i.pravatar.cc/50?img=${Math.floor(Math.random() * 100)}" alt="Avatar">
         <div class="review-content">
-            <div class="stars">
-                ${'★'.repeat(selectedRating)}${'☆'.repeat(5 - selectedRating)}
-            </div>
-            <p>"${reviewText}"</p>
-            <span>Usuário</span>
+            <div class="stars">${estrelaHTML}</div>
+            <p>"${comentario}"</p>
+            <span>${nome}</span>
             <div class="reactions">
-                <span class="reaction">😊<span>0</span></span>
-                <span class="reaction">😋<span>0</span></span>
-                <span class="reaction">😐<span>0</span></span>
-                <span class="reaction">😞<span>0</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>0</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>0</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>0</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>0</span></span>
             </div>
         </div>
     `;
-    
-    // Adiciona a nova avaliação ao início da lista de avaliações
-    reviewContainer.prepend(newReview);
-    
-    // Limpa os campos do formulário após submissão
-    document.getElementById('review-comment').value = '';
-    selectedRating = 0;
-    document.querySelectorAll('.rating i').forEach(star => {
-        star.style.color = ''; // Reseta as estrelas
-    });
-}
 
+    // Adiciona a nova avaliação no container
+    document.getElementById('avaliacoes-container').appendChild(novaAvaliacao);
+
+    // Limpa os campos do formulário
+    document.getElementById('nome').value = '';
+    document.getElementById('comentario').value = '';
+    document.getElementById('stars').value = '5';
+});
+
+// Função para incrementar reações (Emojis)
+function incrementReaction(reactionElement, index) {
+    let span = reactionElement.querySelector('span');
+    span.textContent = parseInt(span.textContent) + 1;
+}
 
     </script>
     
