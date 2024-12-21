@@ -478,19 +478,22 @@
 </div>
 
         
-            <!-- Formulário para deixar uma avaliação -->
-            <div class="review-form">
-                <h4>Deixe sua avaliação</h4>
-                <div class="rating">
-                    <i class="fas fa-star" onclick="rate(1)"></i>
-                    <i class="fas fa-star" onclick="rate(2)"></i>
-                    <i class="fas fa-star" onclick="rate(3)"></i>
-                    <i class="fas fa-star" onclick="rate(4)"></i>
-                    <i class="fas fa-star" onclick="rate(5)"></i>
-                </div>
-                <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
-                <button class="add-to-cart">Enviar Avaliação</button>
-            </div>
+                <!-- Formulário para Submissão de Avaliação -->
+    <div class="review-form">
+        <h4>Deixe sua avaliação</h4>
+        <form id="review-form">
+            <label for="rating">Nota:</label>
+            <select id="rating" required>
+                <option value="1">1 estrela</option>
+                <option value="2">2 estrelas</option>
+                <option value="3">3 estrelas</option>
+                <option value="4">4 estrelas</option>
+                <option value="5">5 estrelas</option>
+            </select>
+            <label for="comment">Comentário:</label>
+            <textarea id="comment" required></textarea>
+            <button type="submit">Enviar Avaliação</button>
+        </form>
         </div>
     </div>
 
