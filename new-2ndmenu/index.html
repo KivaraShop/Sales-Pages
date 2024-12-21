@@ -311,7 +311,7 @@
     color: #0056b3; /* Match the icon hover color to the text */
 }
 
-.image-wrapper {
+        .image-wrapper {
     position: relative;
     display: inline-block;
 }
@@ -328,6 +328,13 @@
     height: 100%;
     background: transparent; /* Invisible overlay */
     z-index: 1; /* Overlay above image */
+}
+
+img {
+    -webkit-user-drag: none;     /* Prevent dragging in Webkit browsers */
+    user-select: none;            /* Disable text/image selection */
+    image-rendering: none;        /* Disable image recognition for visual search */
+    pointer-events: none;         /* Prevent interactions with the image */
 }
 
         /* Banner animado */
@@ -463,14 +470,11 @@
     <!-- Conteúdo principal -->
     <div class="container">
         <h2>Explore Nosso Menu</h2>
-<div class="image-wrapper">
-    <img src="your-image.jpg" alt="Menu Item">
-    <div class="image-overlay"></div> <!-- Transparent overlay -->
-</div>
+
         <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/6J13R1j/IMG-20241216-093530.jpg" alt="IMG-20241216-093530" border="0">
+                <img src="https://i.ibb.co/6J13R1j/IMG-20241216-093530.jpg" alt="IMG-20241216-093530" border="0" draggable="false">
                 <h3> Frango Grelhado</h3>
                 <div class="price">R$ 39,90</div>
                 <div class="stars">
@@ -490,7 +494,7 @@
 
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="IMG-20241216-093518" border="0">
+                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="IMG-20241216-093518" border="0" draggable="false">
                 <h3> Hamburguer Vegano</h3>
                 <div class="price">R$ 49,90</div>
                 <div class="stars">
@@ -509,7 +513,7 @@
 </div>
             <!-- Card de Produto 3 (Sobremesa) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="IMG-20241216-093506" border="0">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="IMG-20241216-093506" border="0" draggable="false">
                 <h3> Salada Caesar</h3>
                 <div class="price">R$ 19,90</div>
                 <div class="stars">
@@ -529,7 +533,7 @@
             
 <!-- Card de Produto 3 (Sobremesa) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/xDcXt8S/IMG-20241216-093553.jpg" alt="IMG-20241216-093553" border="0">
+                <img src="https://i.ibb.co/xDcXt8S/IMG-20241216-093553.jpg" alt="IMG-20241216-093553" border="0" draggable="false">
                 <h3>Suco De Laranja</h3>
                 <div class="price">R$ 19,90</div>
                 <div class="stars">
@@ -539,12 +543,17 @@
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
                 </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
             
 <!-- Card de Produto 3 (Sobremesa) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/qM0L21B/IMG-20241216-093604.jpg" alt="IMG-20241216-093604" border="0">
+                <img src="https://i.ibb.co/qM0L21B/IMG-20241216-093604.jpg" alt="IMG-20241216-093604" border="0" draggable="false">
                 <h3> Coca-cola Gelada </h3>
                 <div class="price">R$ 19,90</div>
                 <div class="stars">
@@ -553,15 +562,18 @@
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
-                </div>
-    <!-- Saber Mais button -->
-    <a href="productpage.html" class="more-info-button">Saber Mais</a>
+                 </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
     <button>Adicionar ao Pedido</button>
 </div>
 
             <!-- Card de Produto 4 (Bebida) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/zrJ9Tf5/IMG-20241216-093540.jpg" alt="IMG-20241216-093540" border="0">
+                <img src="https://i.ibb.co/zrJ9Tf5/IMG-20241216-093540.jpg" alt="IMG-20241216-093540" border="0" draggable="false">
                 <h3> Água Mineral </h3>
                 <div class="price">R$ 9,90</div>
                 <div class="stars">
@@ -570,9 +582,12 @@
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
-                 </div>
-    <!-- Saber Mais button -->
-    <a href="productpage.html" class="more-info-button">Saber Mais</a>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
     <button>Adicionar ao Pedido</button>
 </div>
         </div>
@@ -586,7 +601,7 @@
         <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/DwqNScr/IMG-20241216-101430.jpg" alt="IMG-20241216-101430" border="0">
+                <img src="https://i.ibb.co/DwqNScr/IMG-20241216-101430.jpg" alt="IMG-20241216-101430" border="0" draggable="false">
                 <h3>Chá De Camomila</h3>
                 <div class="price">R$ 39,90</div>
                 <div class="stars">
@@ -595,13 +610,17 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
-                </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
-
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
-                <img src="https://i.ibb.co/tzFfNpw/IMG-20241216-101418.jpg" alt="IMG-20241216-101418" border="0">
+                <img src="https://i.ibb.co/tzFfNpw/IMG-20241216-101418.jpg" alt="IMG-20241216-101418" border="0" draggable="false">
                 <h3>Chá De Limão</h3>
                 <div class="price">R$ 49,90</div>
                 <div class="stars">
@@ -610,10 +629,14 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
-
+                 </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
             <!-- Card de Produto 3 (Sobremesa) -->
             <div class="product-card">
                 <img src="https://i.ibb.co/17gPJjB/IMG-20241216-101342.jpg">
@@ -625,9 +648,14 @@
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
-                </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
     
     <!-- Footer -->
 <footer class="footer">
@@ -658,8 +686,7 @@
 <script>
 document.addEventListener("contextmenu", function (e) {
     if (e.target.tagName === "IMG") {
-        e.preventDefault(); // Disable right-click on images
-        alert("Download is disabled for this image."); // Optional alert
+        e.preventDefault();  // Prevent the right-click menu silently without alert
     }
 });
 </script>
