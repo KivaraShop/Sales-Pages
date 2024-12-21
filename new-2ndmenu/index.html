@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.product-card');
+    const productCards = document.querySelectorAll('.product-card'); // This will grab product cards from both pages
 
     // Update cart count
     function updateCartCount() {
@@ -748,7 +748,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotal();
     }
 
-    // Render cart content
+    // Render cart content for the second page
     function renderCart() {
         cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
         const ul = document.createElement('ul');
@@ -894,7 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCountdown();
     }
 
-    // Add product to cart
+    // Add product to cart (for both product structures)
     productCards.forEach(card => {
         const button = card.querySelector('button');
         button.addEventListener('click', () => {
@@ -927,6 +927,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize cart state
     updateCartCount();
 });
+
 
 </script>
 
