@@ -793,6 +793,23 @@ if (document.querySelector('.add-to-cart')) {
     });
 }
 </script>
+               <script>
+            // Função para recuperar o carrinho do localStorage
+function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
 
+// Função para salvar o carrinho no localStorage
+function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Função para atualizar o contador de itens no ícone do carrinho
+function updateCartBadge() {
+    const cart = getCart();
+    const cartBadge = document.querySelector('.cart-badge');
+    cartBadge.textContent = cart.length > 0 ? cart.length : '';
+}
+   </script>
 </body>
 </html>
