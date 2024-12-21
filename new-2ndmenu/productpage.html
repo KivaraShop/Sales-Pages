@@ -521,31 +521,30 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-       // Wait for the document to load
-        document.addEventListener('DOMContentLoaded', function () {
-            const mainImage = document.querySelector('.product-detail .main-img');
-            const thumbnails = document.querySelectorAll('.product-detail .image-carousel img');
+document.addEventListener('DOMContentLoaded', function () {
+    const mainImage = document.querySelector('.product-detail .main-img');
+    const thumbnails = document.querySelectorAll('.product-detail .image-carousel img');
 
-            // If main image or thumbnails are not found, log an error
-            if (!mainImage || thumbnails.length === 0) {
-                console.error("Main image or thumbnails not found.");
-                return;
-            }
+    // Se a imagem principal ou miniaturas não forem encontradas, logar erro
+    if (!mainImage || thumbnails.length === 0) {
+        console.error("Imagem principal ou miniaturas não encontradas.");
+        return;
+    }
 
-            // Add click event listeners to thumbnails
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function () {
-                    // Change the main image to the clicked thumbnail
-                    mainImage.src = this.src;
+    // Adicionar evento de clique nas miniaturas
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function () {
+            // Alterar a imagem principal para a miniatura clicada
+            mainImage.src = this.src;
 
-                    // Remove 'selected' class from all thumbnails
-                    thumbnails.forEach(img => img.classList.remove('selected'));
+            // Remover a classe 'selected' de todas as miniaturas
+            thumbnails.forEach(img => img.classList.remove('selected'));
 
-                    // Add 'selected' class to the clicked thumbnail
-                    this.classList.add('selected');
-                });
-            });
+            // Adicionar a classe 'selected' à miniatura clicada
+            this.classList.add('selected');
         });
+    });
+});
 
         // Função de avaliação com estrelas
         let currentRating = 0;
