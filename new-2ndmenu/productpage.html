@@ -295,68 +295,7 @@ form button {
     border-radius: 5px;
     cursor: pointer;
 }
-.cart-popup {
-    position: fixed;
-    top: 20%;
-    right: 0;
-    width: 300px;
-    background-color: #fff;
-    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding: 20px;
-    display: none;
-    border-radius: 8px;
-}
 
-.cart-popup.show {
-    display: block;
-}
-
-.cart-popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cart-popup-header h3 {
-    margin: 0;
-}
-
-.cart-popup .cart-items-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.cart-popup .cart-items-list li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.cart-popup .cart-items-list img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-}
-
-.cart-popup .checkout-btn {
-    background-color: #ff66b2;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-}
-
-.cart-popup .close-cart {
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-}
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -383,65 +322,58 @@ form button {
                 margin-top: 20px;
             }
         }
-
-    
     </style>
 </head>
 <body>
 
     <!-- Cabeçalho -->
-   <header>
-        <div class="cart-icon">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge">3</span>
-        </div>
+    <header>
+        <a href="#" class="logo">Shopping Brasil</a>
     </header>
 
-    <!-- Pop-up do Carrinho -->
-<div id="cart-popup" class="cart-popup">
-    <div class="cart-popup-header">
-        <h3>Carrinho</h3>
-        <button id="close-cart" class="close-cart">X</button>
+    <!-- Menu de Navegação -->
+    <nav>
+        <a href="loja.html">Início</a>
+        <a href="loja.html">Produtos</a>
+        <a href="Sobrenos.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+       <!-- Detalhes do Produto -->
+<div class="product-detail">
+    <!-- Imagem principal (tamanho alterado para /400) -->
+    <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Produto 1">
+
+    <!-- Carrossel de Imagens -->
+    <div class="image-carousel">
+        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150" alt="Imagem 1" class="thumbnail">
+        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 2" class="thumbnail">
+        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 3" class="thumbnail">
     </div>
-    <ul class="cart-items-list">
-        <!-- Itens do carrinho serão listados aqui -->
-    </ul>
-    <button class="checkout-btn">Finalizar Compra</button>
+
+            <!-- Informações do Produto -->
+    <div class="product-info">
+        <h2>Produto 1</h2>
+        <p class="price">R$ 49,99</p>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+        </div>
+        <p class="product-description">
+            Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
+        </p>
+        <button class="add-to-cart">Adicionar ao Carrinho</button>
+        <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
+    </div>
 </div>
-    
-
-    <!-- Conteúdo principal --> 
-<div class="container">
-   <!-- Detalhes do Produto -->
-   <div class="product-detail">
-      <!-- Imagem principal -->
-      <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Produto 1">
-
-      <!-- Carrossel de Imagens -->
-      <div class="image-carousel">
-          <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150" alt="Imagem 1" class="thumbnail">
-          <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 2" class="thumbnail">
-          <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 3" class="thumbnail">
-      </div>
-
-      <!-- Informações do Produto -->
-      <div class="product-info">
-          <h2>Produto 1</h2>
-          <p class="price">R$ 49,99</p>
-          <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-          </div>
-          <p class="product-description">
-              Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
-          </p>
-          <button class="add-to-cart">Adicionar ao Pedido</button>
-          <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
-      </div>
-   </div>
+<!-- Pop-up do Carrinho -->
+<div class="cart-popup" style="display: none;">
+    <div class="cart-popup-content"></div>
 </div>
 
   <!-- Informação Nutricional -->
@@ -456,9 +388,7 @@ form button {
         <li><strong>Fiber:</strong> 5 g</li>
     </ul>
 </div>
-    <div class="cart-popup" style="display: none;">
-    <div class="cart-popup-content"></div>
-</div>
+    
         <!-- Ingredientes -->
         <div class="ingredients-section">
             <h3>Ingredientes</h3>
@@ -688,103 +618,24 @@ function incrementReaction(reactionElement, index) {
 }
 
     </script>
-
     <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const addToCartButton = document.querySelector('.add-to-cart');
-    const productImage = document.querySelector('.main-img').src;
-    const productName = document.querySelector('.product-info h2').textContent;
-    const productPrice = document.querySelector('.product-info .price').textContent;
-
-    // Função para adicionar produto ao carrinho
-    function addToCart() {
-        // Recupera o carrinho armazenado no localStorage ou cria um novo caso não exista
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        // Verifica se o produto já está no carrinho
-        const existingProductIndex = cart.findIndex(item => item.name === productName);
-        if (existingProductIndex !== -1) {
-            // Se já existir, apenas incrementa a quantidade
-            cart[existingProductIndex].quantity += 1;
-        } else {
-            // Se não existir, adiciona o produto com quantidade inicial 1
-            cart.push({
-                img: productImage,
-                name: productName,
-                price: productPrice,
-                quantity: 1
-            });
-        }
-
-        // Atualiza o carrinho no localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Atualiza a contagem do carrinho
-        updateCartCount();
-    }
-
-    // Função para atualizar o contador no ícone do carrinho
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartBadge = document.querySelector('.cart-badge');
-        cartBadge.textContent = cart.length || '';  // Se o carrinho estiver vazio, esconde o badge
-    }
-
-    // Adiciona o evento de clique ao botão de adicionar ao carrinho
-    addToCartButton.addEventListener('click', () => {
-        addToCart();
-    });
-
-    // Atualiza a contagem do carrinho ao carregar a página
-    updateCartCount();
-});
-</script>
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const cart = [];
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.product-card');
 
-    // Update cart count
+    // Função para atualizar o contador de itens no carrinho
     function updateCartCount() {
-        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cartBadge.textContent = cart.length || '';  // Atualiza o número de itens
     }
 
-    // Calculate total price
-    function calculateTotal() {
-        let total = 0;
-        cart.forEach(item => {
-            total += parseFloat(item.price.replace('R$', '').trim());
-        });
-        return total;
-    }
-
-    // Animate total sum counting
-    function animateTotalSum() {
-        const total = calculateTotal();
-        let currentTotal = 0;
-        const increment = total / 100;
-        const totalElement = document.querySelector('.cart-total');
-
-        function updateTotal() {
-                const increment = 3; // Increase the value to speed up the update
-    currentTotal += increment;
-            if (currentTotal < total) {
-                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
-                requestAnimationFrame(updateTotal);
-            } else {
-                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-            }
-        }
-        updateTotal();
-    }
-
-    // Render cart content
+    // Função para renderizar o conteúdo do carrinho no pop-up
     function renderCart() {
-        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>';  // Resetando o conteúdo
+
         const ul = document.createElement('ul');
         ul.style.listStyleType = 'none';
         ul.style.padding = '0';
@@ -811,6 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.querySelector('button').addEventListener('click', (e) => {
                     const indexToRemove = e.target.getAttribute('data-index');
                     cart.splice(indexToRemove, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));  // Atualiza o carrinho no localStorage
                     updateCartCount();
                     renderCart();
                 });
@@ -820,41 +672,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         cartPopupContent.appendChild(ul);
 
-        // Add total sum display
+        // Exibe o total
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ 0.00`; // Start from 0.00
+        totalElement.innerHTML = `Total: R$ ${calculateTotal(cart).toFixed(2)}`;
         cartPopupContent.appendChild(totalElement);
 
-        // Animate the total sum counting
-        animateTotalSum();
-
-        // "Fazer Pedido" button
-        const fazerPedidoButton = document.createElement('button');
-        fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#ff66b2';
-        fazerPedidoButton.style.color = 'white';
-        fazerPedidoButton.style.border = 'none';
-        fazerPedidoButton.style.padding = '10px';
-        fazerPedidoButton.style.width = '100%';
-        fazerPedidoButton.style.cursor = 'pointer';
-        fazerPedidoButton.style.marginTop = '10px';
-        fazerPedidoButton.addEventListener('click', () => {
-            showNextButtons();
-        });
-        cartPopupContent.appendChild(fazerPedidoButton);
-
-        // Close cart button
+        // Botão "Fechar"
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
         closeButton.style.background = '#ff66b2';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
-        closeButton.style.padding = '5px 10px';  // Reduced padding
-        closeButton.style.fontSize = '12px';     // Reduced font size
-        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.padding = '5px 10px';  
+        closeButton.style.fontSize = '12px';
+        closeButton.style.width = 'auto';  
         closeButton.style.cursor = 'pointer';
         closeButton.style.marginTop = '10px';
         closeButton.addEventListener('click', () => {
@@ -864,84 +698,16 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Show the next buttons after "Fazer Pedido"
-    function showNextButtons() {
-        // Clear previous content
-        cartPopupContent.innerHTML = '';
-
-        // Add total sum display
-        const totalElement = document.createElement('div');
-        totalElement.classList.add('cart-total');
-        totalElement.style.fontWeight = 'bold';
-        totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
-        cartPopupContent.appendChild(totalElement);
-
-        // Add Aguardar and Falar com atendente buttons
-        const aguardarButton = document.createElement('button');
-        aguardarButton.textContent = 'Aguardar';
-        aguardarButton.style.background = '#4CAF50'; // Green
-        aguardarButton.style.color = 'white';
-        aguardarButton.style.border = 'none';
-        aguardarButton.style.padding = '10px';
-        aguardarButton.style.width = '100%';
-        aguardarButton.style.cursor = 'pointer';
-        aguardarButton.style.marginTop = '10px';
-        aguardarButton.addEventListener('click', () => startCountdown());
-        cartPopupContent.appendChild(aguardarButton);
-
-        const falarButton = document.createElement('button');
-        falarButton.textContent = 'Falar com atendente';
-        falarButton.style.background = '#ff66b2'; // Pink
-        falarButton.style.color = 'white';
-        falarButton.style.border = 'none';
-        falarButton.style.padding = '10px';
-        falarButton.style.width = '100%';
-        falarButton.style.cursor = 'pointer';
-        falarButton.style.marginTop = '10px';
-        falarButton.addEventListener('click', () => {
-            window.location.href = `https://wa.me/258852136558?text=Pedido%20de%20compra:%20Total%20R$${calculateTotal().toFixed(2)}`;
+    // Função para calcular o total
+    function calculateTotal(cart) {
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price.replace('R$', '').trim());
         });
-        cartPopupContent.appendChild(falarButton);
+        return total;
     }
 
-    // Countdown timer for the "Aguardar" button
-    function startCountdown() {
-        let timeRemaining = 120; // 2 minutes
-        const countdownElement = document.createElement('div');
-        countdownElement.classList.add('countdown');
-        countdownElement.style.marginTop = '20px';
-        cartPopupContent.appendChild(countdownElement);
-
-        function updateCountdown() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            countdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-            if (timeRemaining > 0) {
-                timeRemaining--;
-                setTimeout(updateCountdown, 1000);
-            } else {
-                countdownElement.innerHTML = 'Tempo esgotado!';
-            }
-        }
-        updateCountdown();
-    }
-
-    // Add product to cart
-    productCards.forEach(card => {
-        const button = card.querySelector('button');
-        button.addEventListener('click', () => {
-            const img = card.querySelector('img').src;
-            const name = card.querySelector('h3').textContent;
-            const price = card.querySelector('.price').textContent;
-
-            cart.push({ img, name, price });
-            updateCartCount();
-            renderCart();
-        });
-    });
-
-    // Toggle cart popup visibility
+    // Exibe o pop-up do carrinho
     cartIcon.addEventListener('click', () => {
         if (cartPopup.style.display === 'block') {
             cartPopup.style.display = 'none';
@@ -950,10 +716,32 @@ document.addEventListener('DOMContentLoaded', () => {
             cartPopup.style.display = 'block';
         }
     });
+
+    // Inicializa a contagem de itens ao carregar a página
+    updateCartCount();
 });
 </script>
-    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButton = document.querySelector('.add-to-cart');
 
+    addToCartButton.addEventListener('click', () => {
+        const img = document.querySelector('.main-img').src;
+        const name = document.querySelector('h2').textContent;
+        const price = document.querySelector('.price').textContent;
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        cart.push({ img, name, price });
+
+        // Armazena no localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Atualiza a contagem do carrinho
+        updateCartCount();
+    });
+});
+</script>
 
 </body>
 </html>
