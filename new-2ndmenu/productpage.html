@@ -481,20 +481,16 @@
                 <!-- Formulário para Submissão de Avaliação -->
     <div class="review-form">
         <h4>Deixe sua avaliação</h4>
-        <form id="review-form">
-            <label for="rating">Nota:</label>
-            <select id="rating" required>
-                <option value="1">1 estrela</option>
-                <option value="2">2 estrelas</option>
-                <option value="3">3 estrelas</option>
-                <option value="4">4 estrelas</option>
-                <option value="5">5 estrelas</option>
-            </select>
-            <label for="comment">Comentário:</label>
-            <textarea id="comment" required></textarea>
-            <button type="submit">Enviar Avaliação</button>
-        </form>
+        <div class="rating">
+            <i class="fas fa-star" onclick="rate(1)"></i>
+            <i class="fas fa-star" onclick="rate(2)"></i>
+            <i class="fas fa-star" onclick="rate(3)"></i>
+            <i class="fas fa-star" onclick="rate(4)"></i>
+            <i class="fas fa-star" onclick="rate(5)"></i>
         </div>
+        <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
+        <button class="add-to-cart" onclick="submitReview()">Enviar Avaliação</button>
+    </div>
     </div>
 
     <script>
@@ -567,15 +563,29 @@ document.addEventListener('DOMContentLoaded', function () {
     
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const reviewForm = document.getElementById('review-form');
-    const reviewList = document.getElementById('existing-reviews');
+    let ratingValue = 0;
 
-    reviewForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+    // Função para capturar a classificação
+    function rate(star) {
+        ratingValue = star;
+        const stars = document.querySelectorAll('.rating i');
+        stars.forEach((starElement, index) => {
+            if (index < star) {
+                starElement.classList.add('active');
+            } else {
+                starElement.classList.remove('active');
+            }
+        });
+    }
 
-        // Captura os valores do formulário
-        const rating = document.getElementById('rating').value;
-        const comment = document.getElementById('comment').value;
+    // Função para submeter a avaliação
+    window.submitReview = function() {
+        const comment = document.getElementById('review-comment').value;
+        
+        if (ratingValue === 0 || comment.trim() === "") {
+            alert("Por favor, selecione uma classificação e escreva um comentário.");
+            return;
+        }
 
         // Criação da nova avaliação
         const newReview = document.createElement('div');
@@ -595,7 +605,7 @@ document.addEventListener('DOMContentLoaded', function() {
         stars.classList.add('stars');
         for (let i = 0; i < 5; i++) {
             const star = document.createElement('i');
-            star.classList.add('fas', i < rating ? 'fa-star' : 'fa-star-half-alt');
+            star.classList.add('fas', i < ratingValue ? 'fa-star' : 'fa-star-half-alt');
             stars.appendChild(star);
         }
 
@@ -631,11 +641,13 @@ document.addEventListener('DOMContentLoaded', function() {
         newReview.appendChild(reviewContent);
 
         // Adicionar a nova avaliação à lista existente
-        reviewList.appendChild(newReview);
+        document.getElementById('existing-reviews').appendChild(newReview);
 
         // Limpar o formulário
-        reviewForm.reset();
-    });
+        document.getElementById('review-comment').value = '';
+        ratingValue = 0;
+        document.querySelectorAll('.rating i').forEach(star => star.classList.remove('active'));
+    };
 });
 
 // Função para incrementar as reações
@@ -643,6 +655,7 @@ function incrementReaction(element, reactionIndex) {
     const countElement = element.querySelector('span');
     countElement.textContent = parseInt(countElement.textContent) + 1;
 }
+
     </script>
     
 </body>
