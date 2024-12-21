@@ -366,69 +366,55 @@ img {
     box-sizing: border-box;
 }
 
-.footer-container {
+/* Estilo do rodapé */
+.footer {
+    background-color: #ff99cc;
+    color: white;
+    padding: 20px 50px;
+    text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
-    width: 100%;
     box-sizing: border-box;
 }
 
-    .footer-logo {
-    margin-right: auto;           /* Push the logo to the far left */
-}
-
 .footer-logo img {
-    width: 150px;                 /* Set the logo width */
-    height: auto;                 /* Maintain the aspect ratio */
-    display: block;               /* Avoid inline spacing issues */
+    width: 120px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
 }
 
-
- .footer-links {
-     display: inline;                /* Arrange links horizontally */
-    align-items: center;          /* Align links vertically with the logo */
-    gap: 20px;                    /* Space between links */
+.footer-slogan {
+    font-size: 18px;
+    color: #4a004e;
+    margin-top: 5px;
+    font-style: italic;
 }
 
-    .footer-links ul {
-        list-style: none;
-        padding: 0;
-    }
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
-    .footer-links ul li {
-        margin: 10px 0;
-    }
+.footer-info a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    margin: 5px 0;
+    transition: color 0.3s;
+}
 
-    .footer-links ul li a {
-        text-decoration: none;
-        color: white;
-        font-size: 16px;
-        transition: color 0.3s;
-    }
+.footer-info a:hover {
+    color: #4a004e;
+}
 
-    .footer-links ul li a:hover {
-        color: #4a004e;
-    }
+.footer-bottom {
+    font-size: 14px;
+    margin-top: 10px;
+    color: white;
+}
 
-    .footer-social a {
-        text-decoration: none;
-        color: white;
-        font-size: 18px;
-        margin: 0 10px;
-        transition: color 0.3s;
-    }
-
-    .footer-social a:hover {
-        color: #4a004e;
-    }
-
-    .footer-bottom {
-        font-size: 14px;
-        margin-top: 20px;
-    }
     </style>
 </head>
 <body>
@@ -657,27 +643,25 @@ img {
     <button>Adicionar ao Pedido</button>
 </div>
     
-    <!-- Footer -->
+   <!-- Rodapé -->
 <footer class="footer">
+    <!-- Logo -->
     <div class="footer-logo">
-        <div class="footer-logo img">
-            <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png" alt="Logopit-1734339716315" border="0" style="max-width: 150px; background: transparent;"> <!-- Replace with your logo image -->
-        </div>
-        <div class="footer-links">
-            <ul>
-                <li><a href="loja.html">Home</a></li>
-                <li><a href="sobrenos.html">About</a></li>
-                <li><a href="contato.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-social">
-            <a href="#" class="social-icon">Facebook</a>
-            <a href="#" class="social-icon">Instagram</a>
-            <a href="#" class="social-icon">Twitter</a>
-        </div>
+        <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png" alt="Logo">
+        <!-- Slogan abaixo da logo -->
+        <div class="footer-slogan">Sabores que encantam, momentos que ficam.</div>
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 Restaurante. Todos Direitos Reservados</p>
+
+    <!-- Informações -->
+    <div class="footer-info">
+        <a href="#">Sobre nós</a>
+        <a href="#">Termos e Condições</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Contate-nos</a>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Restaurante Brasil. Todos os direitos reservados.</p>
+        </div>
     </div>
 </footer>
 
