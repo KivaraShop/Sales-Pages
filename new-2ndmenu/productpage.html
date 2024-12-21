@@ -271,42 +271,28 @@
             margin-left: 5px;
         }
         /* Formulário de avaliação */
-       .review-form {
-            margin-top: 30px;
-            background: #f8f8f8;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+      form {
+    margin-top: 20px;
+}
 
-        .review-form h4 {
-            font-size: 18px;
-            color: #4a004e;
-            margin-bottom: 10px;
-        }
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-        .review-form textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            margin-bottom: 15px;
-            resize: none;
-        }
-
-        .review-form .rating {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .review-form .rating i {
-            cursor: pointer;
-            font-size: 25px;
-            color: #ffcc00;
-        }
+form button {
+    padding: 10px 20px;
+    background-color: #660033;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -478,19 +464,30 @@
 </div>
 
         
-                <!-- Formulário para Submissão de Avaliação -->
-    <div class="review-form">
-        <h4>Deixe sua avaliação</h4>
-        <div class="rating">
-            <i class="fas fa-star" onclick="rate(1)"></i>
-            <i class="fas fa-star" onclick="rate(2)"></i>
-            <i class="fas fa-star" onclick="rate(3)"></i>
-            <i class="fas fa-star" onclick="rate(4)"></i>
-            <i class="fas fa-star" onclick="rate(5)"></i>
-        </div>
-        <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
-        <button class="add-to-cart" onclick="submitReview()">Enviar Avaliação</button>
+                <div class="reviews">
+    <!-- Avaliações existentes vão aqui -->
+    <div id="avaliacoes-container">
+        <!-- Avaliações existentes aparecerão aqui -->
     </div>
+
+    <h3>Adicionar Avaliação</h3>
+    <form id="form-avaliacao">
+        <input type="text" id="nome" placeholder="Seu nome" required><br>
+        <textarea id="comentario" placeholder="Sua avaliação..." required></textarea><br>
+        <div>
+            <label for="stars">Avaliação (Estrelas):</label>
+            <select id="stars" required>
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            </select>
+        </div>
+        <button type="submit">Enviar Avaliação</button>
+    </form>
+</div>
+
     </div>
 
     <script>
