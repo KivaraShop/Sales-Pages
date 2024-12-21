@@ -35,13 +35,76 @@
             z-index: 1000;
         }
 
-        .logo {
+      .logo {
             font-size: 22px;
             font-weight: bold;
             color: #4a004e;
             text-decoration: none;
         }
 
+        /* Ícone de carrinho */
+        .cart-icon {
+            color: #4a004e;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-icon .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff66b2;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        /* Popup do Carrinho */
+        .cart-popup {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px;
+            display: none;
+        }
+
+        .cart-popup ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-popup li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-popup img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .cart-popup button {
+            background-color: #ff66b2;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
         /* Menu de navegação */
         nav {
             background-color: #ff66b2;
@@ -329,6 +392,11 @@ form button {
     <!-- Cabeçalho -->
     <header>
         <a href="#" class="logo">Shopping Brasil</a>
+        <!-- Ícone de carrinho com badge -->
+        <a href="#" class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">0</span>
+        </a>
     </header>
 
     <!-- Menu de Navegação -->
@@ -341,35 +409,40 @@ form button {
 
     <!-- Conteúdo principal -->
     <div class="container">
-       <!-- Detalhes do Produto -->
-<div class="product-detail">
-    <!-- Imagem principal (tamanho alterado para /400) -->
-    <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Produto 1">
-
-    <!-- Carrossel de Imagens -->
-    <div class="image-carousel">
-        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150" alt="Imagem 1" class="thumbnail">
-        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 2" class="thumbnail">
-        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 3" class="thumbnail">
-    </div>
+        <!-- Detalhes do Produto -->
+        <div class="product-detail">
+            <!-- Imagem principal -->
+            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Produto 1">
 
             <!-- Informações do Produto -->
-    <div class="product-info">
-        <h2>Produto 1</h2>
-        <p class="price">R$ 49,99</p>
-        <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
+            <div class="product-info">
+                <h2>Produto 1</h2>
+                <p class="price">R$ 49,99</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="product-description">
+                    Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
+                </p>
+                <button class="add-to-cart">Adicionar ao Pedido</button>
+                <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
+            </div>
         </div>
-        <p class="product-description">
-            Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
-        </p>
-        <button class="add-to-cart">Adicionar ao Pedido</button>
-        <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
     </div>
+
+    <!-- Popup do Carrinho -->
+    <div class="cart-popup" id="cartPopup">
+        <h2>Seu Carrinho</h2>
+        <ul id="cartItems">
+            <!-- Itens serão adicionados dinamicamente -->
+        </ul>
+        <button onclick="closeCart()">Fechar Carrinho</button>
+    </div>
+
 </div>
 
   <!-- Informação Nutricional -->
@@ -492,7 +565,32 @@ form button {
 </div>
 
     </div>
+  <script>
+        let cartCount = 0;
+        const cartItems = document.getElementById('cartItems');
 
+        // Exibir ou esconder o carrinho
+        function toggleCart() {
+            const cartPopup = document.getElementById('cartPopup');
+            cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Fechar o carrinho
+        function closeCart() {
+            document.getElementById('cartPopup').style.display = 'none';
+        }
+
+        // Adicionar item ao carrinho
+        document.querySelector('.add-to-cart').addEventListener('click', () => {
+            cartCount++;
+            document.querySelector('.cart-badge').textContent = cartCount;
+
+            const listItem = document.createElement('li');
+            listItem.textContent = `Produto 1 - R$ 49,99`;
+            cartItems.appendChild(listItem);
+        });
+    </script>
+    
     <script>
         // Função para incrementar as reações
         function incrementReaction(reactionElement, emojiIndex) {
