@@ -580,9 +580,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função para submeter a avaliação
     window.submitReview = function() {
-        const comment = document.getElementById('review-comment').value;
+        const comment = document.getElementById('review-comment').value.trim();
         
-        if (ratingValue === 0 || comment.trim() === "") {
+        // Verificando se o usuário selecionou uma classificação e escreveu um comentário
+        if (ratingValue === 0 || comment === "") {
             alert("Por favor, selecione uma classificação e escreva um comentário.");
             return;
         }
