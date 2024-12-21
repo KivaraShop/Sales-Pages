@@ -561,6 +561,86 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     </script>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const reviewForm = document.getElementById('review-form');
+    const reviewList = document.getElementById('existing-reviews');
 
+    reviewForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Captura os valores do formulário
+        const rating = document.getElementById('rating').value;
+        const comment = document.getElementById('comment').value;
+
+        // Criação da nova avaliação
+        const newReview = document.createElement('div');
+        newReview.classList.add('review');
+
+        // Avatar gerado aleatoriamente
+        const avatar = document.createElement('img');
+        avatar.src = `https://i.pravatar.cc/50?img=${Math.floor(Math.random() * 70) + 1}`;
+        avatar.alt = "Avatar";
+
+        // Conteúdo da avaliação
+        const reviewContent = document.createElement('div');
+        reviewContent.classList.add('review-content');
+
+        // Estrelas
+        const stars = document.createElement('div');
+        stars.classList.add('stars');
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement('i');
+            star.classList.add('fas', i < rating ? 'fa-star' : 'fa-star-half-alt');
+            stars.appendChild(star);
+        }
+
+        // Comentário
+        const reviewText = document.createElement('p');
+        reviewText.textContent = comment;
+
+        // Nome do autor fictício
+        const reviewAuthor = document.createElement('span');
+        reviewAuthor.textContent = "Usuário Anônimo";
+
+        // Reações com valores zerados
+        const reactions = document.createElement('div');
+        reactions.classList.add('reactions');
+
+        const reactionTypes = ['😊', '😋', '😐', '😞'];
+        reactionTypes.forEach((reaction, index) => {
+            const reactionElement = document.createElement('span');
+            reactionElement.classList.add('reaction');
+            reactionElement.innerHTML = `${reaction}<span>0</span>`;
+            reactionElement.setAttribute('onclick', `incrementReaction(this, ${index})`);
+            reactions.appendChild(reactionElement);
+        });
+
+        // Montagem da nova avaliação
+        reviewContent.appendChild(stars);
+        reviewContent.appendChild(reviewText);
+        reviewContent.appendChild(reviewAuthor);
+        reviewContent.appendChild(reactions);
+
+        // Adicionar à avaliação
+        newReview.appendChild(avatar);
+        newReview.appendChild(reviewContent);
+
+        // Adicionar a nova avaliação à lista existente
+        reviewList.appendChild(newReview);
+
+        // Limpar o formulário
+        reviewForm.reset();
+    });
+});
+
+// Função para incrementar as reações
+function incrementReaction(element, reactionIndex) {
+    const countElement = element.querySelector('span');
+    countElement.textContent = parseInt(countElement.textContent) + 1;
+}
+    </script>
+    
 </body>
 </html>
