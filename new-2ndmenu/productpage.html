@@ -613,6 +613,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <script>
 let selectedRating = 0;
 
+// Função para selecionar a classificação (estrela)
 const rate = (rating) => {
     selectedRating = rating;
     const stars = document.querySelectorAll('.review-form .rating i');
@@ -625,16 +626,17 @@ const rate = (rating) => {
     });
 };
 
+// Função para submeter a avaliação
 const submitReview = (event) => {
-    event.preventDefault();  // Impede o comportamento padrão de envio de formulário
-    
+    event.preventDefault(); // Impede o envio do formulário e o recarregamento da página
+
     const comment = document.getElementById('review-comment').value;
     if (selectedRating === 0 || !comment) {
         alert("Por favor, selecione uma classificação e escreva um comentário.");
-        return;
+        return; // Impede o envio se não estiver completo
     }
 
-    // Adicionar a nova avaliação na página
+    // Adicionar a nova avaliação
     const reviewsContainer = document.getElementById('reviews-container');
     const newReview = document.createElement('div');
     newReview.classList.add('review');
@@ -669,7 +671,7 @@ const incrementReaction = (element, index) => {
     span.innerText = parseInt(span.innerText) + 1;
 };
 
-// Adicionar o evento de clique no botão de envio
+// Adicionar evento de clique ao botão de envio
 document.querySelector('.review-form .add-to-cart').addEventListener('click', submitReview);
 
     </script>
