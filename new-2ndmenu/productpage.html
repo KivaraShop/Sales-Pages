@@ -799,19 +799,28 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Add product to cart when button clicked
+    // Add product to cart when button clicked (for both pages)
+    function addProductToCart(card) {
+        const img = card.querySelector('img').src;
+        const name = card.querySelector('h3').textContent;
+        const price = card.querySelector('.price').textContent;
+
+        // Add product to the cart array
+        cart.push({ img, name, price });
+        updateCartCount(); // Update cart count
+        renderCart(); // Re-render cart
+    }
+
+    // Loop over each product card and add event listeners for "Add to Cart"
     productCards.forEach(card => {
         const button = card.querySelector('button');
-        button.addEventListener('click', () => {
-            const img = card.querySelector('img').src;
-            const name = card.querySelector('h3').textContent;
-            const price = card.querySelector('.price').textContent;
-
-            // Add product to the cart array
-            cart.push({ img, name, price });
-            updateCartCount(); // Update cart count
-            renderCart(); // Re-render cart
-        });
+        if (button) { // Check if the button exists
+            button.addEventListener('click', () => {
+                addProductToCart(card); // Call function to add product to the cart
+            });
+        } else {
+            console.error('Add to Cart button not found for a product card.');
+        }
     });
 
     // Toggle cart popup visibility
