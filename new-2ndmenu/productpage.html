@@ -308,15 +308,6 @@
             color: #ffcc00;
         }
 
-        .rating i {
-    color: #ccc; /* Cor das estrelas desmarcadas */
-    cursor: pointer;
-}
-
-.rating i.filled {
-    color: gold; /* Cor das estrelas preenchidas */
-}
-
         /* Responsividade */
         @media (max-width: 768px) {
             body {
@@ -571,66 +562,100 @@ document.addEventListener('DOMContentLoaded', function () {
     </script>
     
     <script>
-// Variáveis globais para armazenar as estrelas selecionadas e o comentário
-let ratingValue = 0;
+document.addEventListener('DOMContentLoaded', function() {
+    let ratingValue = 0;
 
-// Função para atualizar a classificação quando o usuário clicar nas estrelas
-function rate(starIndex) {
-    // Atualiza a classificação
-    ratingValue = starIndex;
+    // Função para capturar a classificação
+    function rate(star) {
+        ratingValue = star;
+        const stars = document.querySelectorAll('.rating i');
+        stars.forEach((starElement, index) => {
+            if (index < star) {
+                starElement.classList.add('active');
+            } else {
+                starElement.classList.remove('active');
+            }
+        });
+    }
 
-    // Atualiza o visual das estrelas
-    const stars = document.querySelectorAll('.rating i');
-    stars.forEach((star, index) => {
-        if (index < starIndex) {
-            star.classList.add('filled'); // Preenche as estrelas até o índice selecionado
-        } else {
-            star.classList.remove('filled'); // Desmarca as outras estrelas
+    // Função para submeter a avaliação
+    window.submitReview = function() {
+        const comment = document.getElementById('review-comment').value.trim();
+        
+        // Verificando se o usuário selecionou uma classificação e escreveu um comentário
+        if (ratingValue === 0 || comment === "") {
+            alert("Por favor, selecione uma classificação e escreva um comentário.");
+            return;
         }
-    });
-}
 
-// Função para validar o formulário antes de enviar
-document.querySelector('.review-form button').addEventListener('click', function(event) {
-    event.preventDefault(); // Previne o envio do formulário
-    const comment = document.getElementById('review-comment').value.trim();
-    
-    // Valida se a classificação e o comentário foram preenchidos
-    if (ratingValue === 0 || comment === "") {
-        alert("Por favor, selecione uma classificação e escreva um comentário.");
-    } else {
-        // Cria a nova avaliação
+        // Criação da nova avaliação
         const newReview = document.createElement('div');
         newReview.classList.add('review');
-        
-        // Adiciona conteúdo à nova avaliação
-        newReview.innerHTML = `
-            <img src="https://i.pravatar.cc/50?img=3" alt="Avatar">
-            <div class="review-content">
-                <div class="stars">
-                    ${'★'.repeat(ratingValue)}${'☆'.repeat(5 - ratingValue)}
-                </div>
-                <p>"${comment}"</p>
-                <span>Você</span>
-                <div class="reactions">
-                    <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>0</span></span>
-                    <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>0</span></span>
-                    <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>0</span></span>
-                    <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>0</span></span>
-                </div>
-            </div>
-        `;
-        
-        // Adiciona a nova avaliação na lista
-        document.querySelector('.reviews').appendChild(newReview);
-        
-        // Limpa o formulário
-        ratingValue = 0;
-        document.querySelectorAll('.rating i').forEach(star => star.classList.remove('filled'));
+
+        // Avatar gerado aleatoriamente
+        const avatar = document.createElement('img');
+        avatar.src = `https://i.pravatar.cc/50?img=${Math.floor(Math.random() * 70) + 1}`;
+        avatar.alt = "Avatar";
+
+        // Conteúdo da avaliação
+        const reviewContent = document.createElement('div');
+        reviewContent.classList.add('review-content');
+
+        // Estrelas
+        const stars = document.createElement('div');
+        stars.classList.add('stars');
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement('i');
+            star.classList.add('fas', i < ratingValue ? 'fa-star' : 'fa-star-half-alt');
+            stars.appendChild(star);
+        }
+
+        // Comentário
+        const reviewText = document.createElement('p');
+        reviewText.textContent = comment;
+
+        // Nome do autor fictício
+        const reviewAuthor = document.createElement('span');
+        reviewAuthor.textContent = "Usuário Anônimo";
+
+        // Reações com valores zerados
+        const reactions = document.createElement('div');
+        reactions.classList.add('reactions');
+
+        const reactionTypes = ['😊', '😋', '😐', '😞'];
+        reactionTypes.forEach((reaction, index) => {
+            const reactionElement = document.createElement('span');
+            reactionElement.classList.add('reaction');
+            reactionElement.innerHTML = `${reaction}<span>0</span>`;
+            reactionElement.setAttribute('onclick', `incrementReaction(this, ${index})`);
+            reactions.appendChild(reactionElement);
+        });
+
+        // Montagem da nova avaliação
+        reviewContent.appendChild(stars);
+        reviewContent.appendChild(reviewText);
+        reviewContent.appendChild(reviewAuthor);
+        reviewContent.appendChild(reactions);
+
+        // Adicionar à avaliação
+        newReview.appendChild(avatar);
+        newReview.appendChild(reviewContent);
+
+        // Adicionar a nova avaliação à lista existente
+        document.getElementById('existing-reviews').appendChild(newReview);
+
+        // Limpar o formulário
         document.getElementById('review-comment').value = '';
-    }
+        ratingValue = 0;
+        document.querySelectorAll('.rating i').forEach(star => star.classList.remove('active'));
+    };
 });
 
+// Função para incrementar as reações
+function incrementReaction(element, reactionIndex) {
+    const countElement = element.querySelector('span');
+    countElement.textContent = parseInt(countElement.textContent) + 1;
+}
 
     </script>
     
