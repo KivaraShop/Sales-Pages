@@ -713,8 +713,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.product-card');  // Get all product cards
-
+    const productCards = document.querySelectorAll('.product-card');
+    
     // Update cart count
     function updateCartCount() {
         cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
@@ -727,25 +727,6 @@ document.addEventListener('DOMContentLoaded', () => {
             total += parseFloat(item.price.replace('R$', '').trim());
         });
         return total;
-    }
-
-    // Animate total sum counting
-    function animateTotalSum() {
-        const total = calculateTotal();
-        let currentTotal = 0;
-        const increment = total / 100;
-        const totalElement = document.querySelector('.cart-total');
-
-        function updateTotal() {
-            currentTotal += increment;
-            if (currentTotal < total) {
-                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
-                requestAnimationFrame(updateTotal);
-            } else {
-                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-            }
-        }
-        updateTotal();
     }
 
     // Render cart content
@@ -797,120 +778,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Animate the total sum counting
         animateTotalSum();
-
-        // "Fazer Pedido" button
-        const fazerPedidoButton = document.createElement('button');
-        fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#ff66b2';
-        fazerPedidoButton.style.color = 'white';
-        fazerPedidoButton.style.border = 'none';
-        fazerPedidoButton.style.padding = '10px';
-        fazerPedidoButton.style.width = '100%';
-        fazerPedidoButton.style.cursor = 'pointer';
-        fazerPedidoButton.style.marginTop = '10px';
-        fazerPedidoButton.addEventListener('click', () => {
-            showNextButtons();
-        });
-        cartPopupContent.appendChild(fazerPedidoButton);
-
-        // Close cart button
-        const closeButton = document.createElement('button');
-        closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#ff66b2';
-        closeButton.style.color = 'white';
-        closeButton.style.border = 'none';
-        closeButton.style.padding = '5px 10px';  // Reduced padding
-        closeButton.style.fontSize = '12px';     // Reduced font size
-        closeButton.style.width = 'auto';        // Set width to auto to fit the content
-        closeButton.style.cursor = 'pointer';
-        closeButton.style.marginTop = '10px';
-        closeButton.addEventListener('click', () => {
-            cartPopup.style.display = 'none';
-        });
-
-        cartPopupContent.appendChild(closeButton);
     }
 
-    // Show the next buttons after "Fazer Pedido"
-    function showNextButtons() {
-        // Clear previous content
-        cartPopupContent.innerHTML = '';
+    // Animate total sum counting
+    function animateTotalSum() {
+        const total = calculateTotal();
+        let currentTotal = 0;
+        const increment = total / 100;
+        const totalElement = document.querySelector('.cart-total');
 
-        // Add total sum display
-        const totalElement = document.createElement('div');
-        totalElement.classList.add('cart-total');
-        totalElement.style.fontWeight = 'bold';
-        totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
-        cartPopupContent.appendChild(totalElement);
-
-        // Add Aguardar and Falar com atendente buttons
-        const aguardarButton = document.createElement('button');
-        aguardarButton.textContent = 'Aguardar';
-        aguardarButton.style.background = '#4CAF50'; // Green
-        aguardarButton.style.color = 'white';
-        aguardarButton.style.border = 'none';
-        aguardarButton.style.padding = '10px';
-        aguardarButton.style.width = '100%';
-        aguardarButton.style.cursor = 'pointer';
-        aguardarButton.style.marginTop = '10px';
-        aguardarButton.addEventListener('click', () => startCountdown());
-        cartPopupContent.appendChild(aguardarButton);
-
-        const falarButton = document.createElement('button');
-        falarButton.textContent = 'Falar com atendente';
-        falarButton.style.background = '#ff66b2'; // Pink
-        falarButton.style.color = 'white';
-        falarButton.style.border = 'none';
-        falarButton.style.padding = '10px';
-        falarButton.style.width = '100%';
-        falarButton.style.cursor = 'pointer';
-        falarButton.style.marginTop = '10px';
-        falarButton.addEventListener('click', () => {
-            window.location.href = `https://wa.me/258852136558?text=Pedido%20de%20compra:%20Total%20R$${calculateTotal().toFixed(2)}`;
-        });
-        cartPopupContent.appendChild(falarButton);
-    }
-
-    // Countdown timer for the "Aguardar" button
-    function startCountdown() {
-        let timeRemaining = 120; // 2 minutes
-        const countdownElement = document.createElement('div');
-        countdownElement.classList.add('countdown');
-        countdownElement.style.marginTop = '20px';
-        cartPopupContent.appendChild(countdownElement);
-
-        function updateCountdown() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            countdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-            if (timeRemaining > 0) {
-                timeRemaining--;
-                setTimeout(updateCountdown, 1000);
+        function updateTotal() {
+            currentTotal += increment;
+            if (currentTotal < total) {
+                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
+                requestAnimationFrame(updateTotal);
             } else {
-                countdownElement.innerHTML = 'Tempo esgotado!';
+                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
             }
         }
-        updateCountdown();
+        updateTotal();
     }
 
-    // Add product to cart
+    // Add product to cart for both product list and product detail pages
+    function addToCart(img, name, price) {
+        cart.push({ img, name, price });
+        saveCart(); // Save cart to localStorage
+        updateCartCount();
+        renderCart();
+    }
+
+    // Product list page "Add to Cart" button
     productCards.forEach(card => {
         const button = card.querySelector('button');
         button.addEventListener('click', () => {
-            // Handle the case where the structure is different
-            const img = card.querySelector('img') ? card.querySelector('img').src : ''; // Ensure the image is selected
-            const name = card.querySelector('h3') ? card.querySelector('h3').textContent : ''; // Handle name
-            const price = card.querySelector('.price') ? card.querySelector('.price').textContent : ''; // Handle price
-
-            if (name && price) {
-                cart.push({ img, name, price });
-                saveCart(); // Save cart to localStorage
-                updateCartCount();
-                renderCart();
-            }
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+            addToCart(img, name, price); // Add item to cart
         });
     });
+
+    // Product detail page "Add to Cart" button
+    const addToCartButton = document.querySelector('.add-to-cart');
+    if (addToCartButton) {
+        addToCartButton.addEventListener('click', () => {
+            const img = document.querySelector('.main-img').src;
+            const name = document.querySelector('.product-info h2').textContent;
+            const price = document.querySelector('.price').textContent;
+            addToCart(img, name, price); // Add item to cart
+        });
+    }
 
     // Toggle cart popup visibility
     cartIcon.addEventListener('click', () => {
