@@ -705,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.product-card');
+    const productCards = document.querySelectorAll('.product-card');  // Get all product cards
 
     // Update cart count
     function updateCartCount() {
@@ -890,14 +890,17 @@ document.addEventListener('DOMContentLoaded', () => {
     productCards.forEach(card => {
         const button = card.querySelector('button');
         button.addEventListener('click', () => {
-            const img = card.querySelector('img').src;
-            const name = card.querySelector('h3').textContent;
-            const price = card.querySelector('.price').textContent;
+            // Handle the case where the structure is different
+            const img = card.querySelector('img') ? card.querySelector('img').src : ''; // Ensure the image is selected
+            const name = card.querySelector('h3') ? card.querySelector('h3').textContent : ''; // Handle name
+            const price = card.querySelector('.price') ? card.querySelector('.price').textContent : ''; // Handle price
 
-            cart.push({ img, name, price });
-            saveCart(); // Save cart to localStorage
-            updateCartCount();
-            renderCart();
+            if (name && price) {
+                cart.push({ img, name, price });
+                saveCart(); // Save cart to localStorage
+                updateCartCount();
+                renderCart();
+            }
         });
     });
 
