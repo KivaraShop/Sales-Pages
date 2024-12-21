@@ -278,6 +278,10 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+        
+.reviews-container {
+    margin-top: 30px;
+}
 
         .review-form h4 {
     font-size: 18px;
@@ -611,32 +615,32 @@ document.addEventListener('DOMContentLoaded', function () {
     </script>
     
     <script>
-let selectedRating = 0;
+let selectedRating = 0; // Armazenará a quantidade de estrelas selecionadas
 
 // Função para selecionar a classificação (estrela)
 const rate = (rating) => {
-    selectedRating = rating;
+    selectedRating = rating; // Atribui o valor da avaliação selecionada
     const stars = document.querySelectorAll('.review-form .rating i');
     stars.forEach((star, index) => {
         if (index < rating) {
-            star.classList.add('selected');
+            star.classList.add('selected'); // Marca as estrelas até a seleção
         } else {
-            star.classList.remove('selected');
+            star.classList.remove('selected'); // Remove a seleção nas estrelas posteriores
         }
     });
 };
 
 // Função para submeter a avaliação
 const submitReview = (event) => {
-    event.preventDefault(); // Impede o envio do formulário e o recarregamento da página
+    event.preventDefault(); // Impede a ação de submit tradicional
 
-    const comment = document.getElementById('review-comment').value;
+    const comment = document.getElementById('review-comment').value; // Pega o texto do comentário
     if (selectedRating === 0 || !comment) {
-        alert("Por favor, selecione uma classificação e escreva um comentário.");
-        return; // Impede o envio se não estiver completo
+        alert("Por favor, selecione uma classificação e escreva um comentário."); // Validação
+        return;
     }
 
-    // Adicionar a nova avaliação
+    // Cria a nova avaliação
     const reviewsContainer = document.getElementById('reviews-container');
     const newReview = document.createElement('div');
     newReview.classList.add('review');
@@ -644,7 +648,7 @@ const submitReview = (event) => {
         <img src="https://i.pravatar.cc/50?img=3" alt="Avatar" />
         <div class="review-content">
             <div class="stars">
-                ${[...Array(5)].map((_, i) => `<i class="fas fa-star ${i < selectedRating ? '' : 'inactive'}"></i>`).join('')}
+                ${[...Array(5)].map((_, i) => `<i class="fas fa-star ${i < selectedRating ? 'selected' : ''}"></i>`).join('')}
             </div>
             <p>"${comment}"</p>
             <span>Você</span>
@@ -656,13 +660,13 @@ const submitReview = (event) => {
             </div>
         </div>
     `;
-    reviewsContainer.prepend(newReview);
+    reviewsContainer.prepend(newReview); // Adiciona a avaliação no topo da lista
 
-    // Limpar o formulário
+    // Limpa o formulário após enviar
     document.getElementById('review-comment').value = '';
     selectedRating = 0;
     const stars = document.querySelectorAll('.review-form .rating i');
-    stars.forEach((star) => star.classList.remove('selected'));
+    stars.forEach((star) => star.classList.remove('selected')); // Remove a seleção de estrelas
 };
 
 // Função para incrementar as reações
