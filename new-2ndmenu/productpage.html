@@ -827,9 +827,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.querySelector('button').addEventListener('click', (e) => {
                     const indexToRemove = e.target.getAttribute('data-index');
                     cart.splice(indexToRemove, 1);
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    renderCart(); // Re-renderizar carrinho
-                    updateCartBadge(); // Atualizar contagem do carrinho
+                    localStorage.setItem('cart', JSON.stringify(cart)); // Atualiza o localStorage
+                    renderCart(); // Re-renderiza o carrinho
+                    updateCartBadge(); // Atualiza o ícone do carrinho
                 });
 
                 ul.appendChild(li);
@@ -871,5 +871,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart();
 });
 </script>
+    
 </body>
 </html>
