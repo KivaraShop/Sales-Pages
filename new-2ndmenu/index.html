@@ -919,102 +919,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+            
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("A página inicial foi carregada.");
 
-            <script>
-// Atualiza a contagem de itens no carrinho
-function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartBadge = document.querySelector('.cart-badge');
-    cartBadge.textContent = cart.length || ''; // Atualiza o contador do carrinho
-}
+    // Atualiza o ícone do carrinho
+    function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartBadge = document.querySelector('.cart-badge');
+        cartBadge.textContent = cart.length > 0 ? cart.length : '';
+    }
 
-// Adiciona um produto ao carrinho
-function addToCart(product) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart)); // Salva no localStorage
-    updateCartCount(); // Atualiza a contagem de itens
-}
+    // Adiciona produto ao carrinho
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const productCard = button.closest('.product-card');
+            const img = productCard.querySelector('img').src;
+            const name = productCard.querySelector('h3').textContent;
+            const price = productCard.querySelector('.price').textContent;
 
-// Renderiza os itens no pop-up do carrinho
-function renderCart() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartPopupContent = document.querySelector('.cart-popup-content');
-    cartPopupContent.innerHTML = ''; // Limpa o conteúdo do pop-up
+            const product = { img, name, price };
 
-    if (cart.length === 0) {
-        cartPopupContent.innerHTML = '<p>Seu carrinho está vazio.</p>';
-    } else {
-        const ul = document.createElement('ul');
-        cart.forEach((item, index) => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover;">
-                <p>${item.name}</p>
-                <p>${item.price}</p>
-                <button onclick="removeFromCart(${index})">Remover</button>
-            `;
-            ul.appendChild(li);
+            // Recupera o carrinho do localStorage ou cria um novo array vazio
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Adiciona o novo item ao carrinho
+            cart.push(product);
+
+            // Atualiza o localStorage com o carrinho modificado
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Atualiza a contagem do carrinho no ícone
+            updateCartBadge();
+
+            console.log("Produto adicionado ao carrinho:", product);
         });
-        cartPopupContent.appendChild(ul);
-    }
-
-    // Exibe o total
-    const total = calculateTotal(cart);
-    const totalElement = document.createElement('p');
-    totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-    cartPopupContent.appendChild(totalElement);
-
-    // Botão de fechar
-    const closeButton = document.createElement('button');
-    closeButton.textContent = 'Fechar';
-    closeButton.onclick = () => document.querySelector('.cart-popup').style.display = 'none';
-    cartPopupContent.appendChild(closeButton);
-}
-
-// Calcula o total do carrinho
-function calculateTotal(cart) {
-    return cart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0);
-}
-
-// Remove um item do carrinho
-function removeFromCart(index) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart)); // Atualiza o localStorage
-    renderCart(); // Re-renderiza o carrinho
-    updateCartCount(); // Atualiza a contagem
-}
-
-// Abre o pop-up do carrinho
-function toggleCartPopup() {
-    const cartPopup = document.querySelector('.cart-popup');
-    if (cartPopup.style.display === 'block') {
-        cartPopup.style.display = 'none';
-    } else {
-        renderCart();
-        cartPopup.style.display = 'block';
-    }
-}
-
-// Adiciona o evento ao ícone do carrinho
-document.querySelector('.cart-icon').addEventListener('click', toggleCartPopup);
-
-// Atualiza a contagem de itens ao carregar a página
-updateCartCount();
-
-// Adiciona o produto ao carrinho ao clicar no botão de adicionar
-if (document.querySelector('.add-to-cart')) {
-    document.querySelector('.add-to-cart').addEventListener('click', () => {
-        const product = {
-            img: 'https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg',  // Imagem do produto
-            name: 'Produto 1',  // Nome do produto
-            price: 'R$ 49,99'  // Preço do produto
-        };
-        addToCart(product);
     });
-}
-</script>
 
+    // Atualiza o carrinho no carregamento da página
+    updateCartBadge();
+});
+    </script>
+            
 </body>
 </html>
