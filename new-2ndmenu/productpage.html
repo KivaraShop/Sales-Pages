@@ -390,17 +390,35 @@ form button {
 <body>
 
     <!-- Cabeçalho -->
-    <header>
-        <a href="#" class="logo">Shopping Brasil</a>
+   <header>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i> <!-- Toggle icon -->
+        </div>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png" alt="Logopit-1734339716315" border="0" style="max-width: 150px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">3</span>
+        </div>
     </header>
-
-    <!-- Menu de Navegação -->
-    <nav>
-        <a href="loja.html">Início</a>
-        <a href="loja.html">Produtos</a>
-        <a href="Sobrenos.html">Sobre</a>
-        <a href="contato.html">Contato</a>
-    </nav>
+ <!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+            <li><a href="#">Home</a></li>
+            <li><a href="sobrenos.html">About</a></li>
+            <li><a href="contacto.html">Contact</a></li>
+        </ul>
+    </div>
+    
+<!-- Popup do Carrinho -->
+<div class="cart-popup">
+    <div class="cart-popup-content">
+        <h2>Seu Carrinho</h2>
+        <!-- Lista de itens do carrinho será gerada aqui -->
+    </div>
+</div>
 
     <!-- Conteúdo principal -->
     <div class="container">
