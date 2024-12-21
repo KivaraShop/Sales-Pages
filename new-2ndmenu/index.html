@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.product-card');
+    const productCards = document.querySelectorAll('.product-card'); // Select all product cards
 
     // Update cart count
     function updateCartCount() {
@@ -894,20 +894,22 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCountdown();
     }
 
-    // Add product to cart
-    productCards.forEach(card => {
-        const button = card.querySelector('button');
-        button.addEventListener('click', () => {
-            const img = card.querySelector('img').src;
-            const name = card.querySelector('h3').textContent;
-            const price = card.querySelector('.price').textContent;
+    // Add product to cart on the product page
+    if (productCards.length > 0) {
+        productCards.forEach(card => {
+            const button = card.querySelector('button');
+            button.addEventListener('click', () => {
+                const img = card.querySelector('img').src;
+                const name = card.querySelector('h3').textContent;
+                const price = card.querySelector('.price').textContent;
 
-            cart.push({ img, name, price });
-            saveCart(); // Save cart to localStorage
-            updateCartCount();
-            renderCart();
+                cart.push({ img, name, price });
+                saveCart(); // Save cart to localStorage
+                updateCartCount();
+                renderCart();
+            });
         });
-    });
+    }
 
     // Toggle cart popup visibility
     cartIcon.addEventListener('click', () => {
@@ -928,6 +930,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
 });
 </script>
+
 
 
 
