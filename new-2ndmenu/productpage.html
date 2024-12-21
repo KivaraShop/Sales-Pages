@@ -619,13 +619,16 @@ const rate = (rating) => {
     });
 };
 
-const submitReview = () => {
+const submitReview = (event) => {
+    event.preventDefault();  // Impede o comportamento padrão de envio de formulário
+    
     const comment = document.getElementById('review-comment').value;
     if (selectedRating === 0 || !comment) {
         alert("Por favor, selecione uma classificação e escreva um comentário.");
         return;
     }
 
+    // Adicionar a nova avaliação na página
     const reviewsContainer = document.getElementById('reviews-container');
     const newReview = document.createElement('div');
     newReview.classList.add('review');
@@ -646,6 +649,8 @@ const submitReview = () => {
         </div>
     `;
     reviewsContainer.prepend(newReview);
+
+    // Limpar o formulário
     document.getElementById('review-comment').value = '';
     selectedRating = 0;
     const stars = document.querySelectorAll('.review-form .rating i');
@@ -657,6 +662,9 @@ const incrementReaction = (element, index) => {
     const span = element.querySelector('span');
     span.innerText = parseInt(span.innerText) + 1;
 };
+
+// Adicionar o evento de clique no botão de envio
+document.querySelector('.review-form .add-to-cart').addEventListener('click', submitReview);
 
     </script>
     
