@@ -287,18 +287,28 @@
 .more-info-button {
     display: inline-block;
     margin-bottom: 10px;
-    padding: 10px 15px;
-    background: linear-gradient(90deg, #ff99cc, #ffccf2);
-    color: white;
+    padding: 8px 12px;
+    background-color: #4a004e; /* A rich purple color */
+    color: #ffffff;
     text-decoration: none;
     font-size: 14px;
-    border-radius: 5px;
-    transition: background 0.3s;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.more-info-button i {
+    font-size: 16px; /* Slightly larger icon */
 }
 
 .more-info-button:hover {
-    background: #ff66b2;
+    background-color: #660066; /* Slightly lighter purple for hover effect */
 }
+
 
         /* Banner animado */
         #bannerText {
