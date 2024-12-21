@@ -1010,6 +1010,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });            
+
+// Renderizar o carrinho no pop-up
+function renderCart() {
+    const cart = getCart();
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+
+    cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Limpar conteúdo anterior
+
+    const ul = document.createElement('ul');
+    ul.style.listStyleType = 'none';
+    ul.style.padding = '0';
+
+    if (cart.length === 0) {
+        ul.innerHTML = '<li>O carrinho está vazio.</li>';
+    } else {
+        cart.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.style.display = 'flex';
+            li.style.alignItems = 'center';
+            li.style.marginBottom = '10px';
+
+            li.innerHTML = `
+                <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                <div>
+                    <p>${item.name}</p>
+                    <p class="price">${item.price}</p>
+                </div>
+                <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+            `;
+
+            // Remover item do carrinho
+            li.querySelector('button').addEventListener('click', (e) => {
+                const indexToRemove = e.target.getAttribute('data-index');
+                cart.splice(indexToRemove, 1);
+                saveCart(cart);
+                updateCartBadge();
+                renderCart();
+            });
+
+            ul.appendChild(li);
+        });
+    }
+
+    cartPopupContent.appendChild(ul);
+}
    </script>
             
 </body>
