@@ -295,7 +295,68 @@ form button {
     border-radius: 5px;
     cursor: pointer;
 }
+.cart-popup {
+    position: fixed;
+    top: 20%;
+    right: 0;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+    display: none;
+    border-radius: 8px;
+}
 
+.cart-popup.show {
+    display: block;
+}
+
+.cart-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-popup-header h3 {
+    margin: 0;
+}
+
+.cart-popup .cart-items-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.cart-popup .cart-items-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-popup .cart-items-list img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.cart-popup .checkout-btn {
+    background-color: #ff66b2;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-popup .close-cart {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -322,6 +383,8 @@ form button {
                 margin-top: 20px;
             }
         }
+
+    
     </style>
 </head>
 <body>
@@ -614,6 +677,72 @@ function incrementReaction(reactionElement, index) {
 }
 
     </script>
+
+     <script>
+    // Função para adicionar um produto ao carrinho
+function addToCart(product) {
+    // Recupera o carrinho existente do localStorage ou cria um carrinho vazio
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Verifica se o produto já está no carrinho
+    const existingProduct = cart.find(item => item.id === product.id);
+    if (existingProduct) {
+        // Se já estiver no carrinho, aumenta a quantidade
+        existingProduct.quantity += 1;
+    } else {
+        // Se não estiver, adiciona o produto com quantidade 1
+        cart.push({...product, quantity: 1});
+    }
+
+    // Salva o carrinho atualizado no localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Atualiza a exibição do carrinho
+    updateCartDisplay();
+}
+
+// Função para exibir os itens do carrinho no pop-up
+function updateCartDisplay() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItemsList = document.querySelector('.cart-items-list');
+    
+    // Limpa a lista de itens do carrinho
+    cartItemsList.innerHTML = '';
+
+    // Exibe os itens no carrinho
+    if (cart.length === 0) {
+        cartItemsList.innerHTML = '<li>Seu carrinho está vazio.</li>';
+    } else {
+        cart.forEach(item => {
+            const cartItem = document.createElement('li');
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <span>${item.name} - ${item.quantity}x</span>
+                <span>R$ ${item.price * item.quantity}</span>
+            `;
+            cartItemsList.appendChild(cartItem);
+        });
+    }
+}
+
+// Função para exibir o pop-up do carrinho
+function showCartPopup() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Se o carrinho não estiver vazio, exibe o pop-up
+    if (cart.length > 0) {
+        document.getElementById('cart-popup').classList.add('show');
+    }
+}
+
+// Função para fechar o pop-up do carrinho
+document.getElementById('close-cart').addEventListener('click', function() {
+    document.getElementById('cart-popup').classList.remove('show');
+});
+
+// Chama a função para exibir o pop-up do carrinho quando a página carregar
+window.onload = showCartPopup;
+ </script>
     
     <!-- Pop-up do Carrinho -->
 <div id="cart-popup" class="cart-popup">
