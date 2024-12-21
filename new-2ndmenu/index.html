@@ -919,8 +919,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
-<script>
-// Adiciona item ao carrinho
+
+            <script>
+// Função para atualizar o ícone do carrinho
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartBadge = document.querySelector('.cart-badge');
+    cartBadge.textContent = cart.length > 0 ? cart.length : ''; // Exibe a quantidade de itens no ícone do carrinho
+}
+
+// Função para adicionar produto ao carrinho
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
         const productCard = button.closest('.product-card');
@@ -930,28 +938,24 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 
         const product = { img, name, price };
 
-        // Recupera o carrinho do localStorage ou cria um novo array
+        // Recupera o carrinho do localStorage ou cria um novo array vazio
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Adiciona o item ao carrinho
+        // Adiciona o novo item ao carrinho
         cart.push(product);
 
-        // Salva o carrinho atualizado no localStorage
+        // Atualiza o localStorage com o carrinho modificado
         localStorage.setItem('cart', JSON.stringify(cart));
 
-        // Atualiza o carrinho no ícone (opcional, se tiver a badge)
+        // Atualiza a contagem do carrinho no ícone
         updateCartBadge();
     });
 });
 
-// Atualiza a contagem do carrinho no ícone
-function updateCartBadge() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartBadge = document.querySelector('.cart-badge');
-    cartBadge.textContent = cart.length > 0 ? cart.length : '';
-}
-
-</script>
-
+// Atualiza a contagem do carrinho no ícone assim que a página for carregada
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+});
+        </script>
 </body>
 </html>
