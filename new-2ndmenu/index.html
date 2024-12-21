@@ -708,21 +708,27 @@ console.log('Menu found:', navMenu !== null);
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar o carrinho do localStorage ou criar um vazio
+    // Inicializa o carrinho do localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    // Seleciona elementos globais
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-    // Atualiza o número de itens no carrinho
+    // Função: Atualizar contagem do carrinho
     function updateCartCount() {
         cartBadge.textContent = cart.length > 0 ? cart.length : '';
     }
 
-    // Renderiza o carrinho no pop-up
+    // Função: Salvar o carrinho no localStorage
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Função: Renderizar os itens no carrinho pop-up
     function renderCart() {
         cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>';
         const ul = document.createElement('ul');
@@ -784,7 +790,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Adiciona item ao carrinho
+    // Função: Calcular o total do carrinho
+    function calculateTotal() {
+        return cart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0);
+    }
+
+    // Adicionar item ao carrinho
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
             const product = {
@@ -800,17 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Salva o carrinho no localStorage
-    function saveCart() {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    // Calcula o total do carrinho
-    function calculateTotal() {
-        return cart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0);
-    }
-
-    // Exibe ou oculta o pop-up do carrinho
+    // Mostrar ou ocultar o pop-up do carrinho
     cartIcon.addEventListener('click', () => {
         if (cartPopup.style.display === 'block') {
             cartPopup.style.display = 'none';
@@ -820,10 +821,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Inicialização
+    // Inicializar
     updateCartCount();
 });
 </script>
+
 
 
 </body>
