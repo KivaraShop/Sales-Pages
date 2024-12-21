@@ -225,72 +225,56 @@
             margin-bottom: 15px;
         }
 
-      /* Container para as avaliações */
-#avaliacoes-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+       .review {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-/* Estilo para cada avaliação */
-.review {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
-}
+        .review img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
 
-/* Estilo para a imagem do avatar */
-.review img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
+        .review-content {
+            flex: 1;
+        }
 
-/* Estilo do conteúdo da avaliação */
-.review-content {
-    flex: 1;
-}
+        .review-content p {
+            font-size: 14px;
+            color: #660033;
+        }
 
-/* Estilo para o comentário */
-.review-content p {
-    font-size: 14px;
-    color: #660033;
-    margin-top: 10px;
-}
+        .review-content .stars {
+            color: #ffcc00;
+            font-size: 18px;
+        }
 
-/* Estilo das estrelas */
-.review-content .stars {
-    color: #ffcc00;
-    font-size: 18px;
-}
+        .reactions {
+            display: flex;
+            gap: 10px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
 
-/* Estilo para as reações */
-.reactions {
-    display: flex;
-    gap: 15px;
-    font-size: 18px;
-    margin-top: 10px;
-}
+        .reaction {
+            cursor: pointer;
+        }
 
-.reaction {
-    cursor: pointer;
-}
-
-.reaction span {
-    margin-left: 5px;
-}
-
-/* Estilo para o formulário de avaliação */
-form {
+        .reaction span {
+            margin-left: 5px;
+        }
+        /* Formulário de avaliação */
+      form {
     margin-top: 20px;
 }
 
-/* Estilo para inputs, textarea e select */
 form input,
 form textarea,
 form select {
@@ -301,7 +285,6 @@ form select {
     border: 1px solid #ccc;
 }
 
-/* Estilo para o botão de envio */
 form button {
     padding: 10px 20px;
     background-color: #660033;
@@ -310,7 +293,6 @@ form button {
     border-radius: 5px;
     cursor: pointer;
 }
-
 
         /* Responsividade */
         @media (max-width: 768px) {
