@@ -810,6 +810,37 @@ function updateCartBadge() {
     const cartBadge = document.querySelector('.cart-badge');
     cartBadge.textContent = cart.length > 0 ? cart.length : '';
 }
+
+                   document.addEventListener('DOMContentLoaded', () => {
+    console.log("Página do produto carregada.");
+
+    // Atualizar contador do carrinho ao carregar a página
+    updateCartBadge();
+
+    // Adicionar o produto ao carrinho ao clicar no botão
+    document.querySelector('.add-to-cart').addEventListener('click', () => {
+        const mainImg = document.querySelector('.main-img').src;
+        const name = document.querySelector('.product-info h2').textContent;
+        const price = document.querySelector('.product-info .price').textContent;
+
+        const product = { img: mainImg, name, price };
+
+        // Recuperar carrinho existente
+        const cart = getCart();
+
+        // Adicionar o novo item
+        cart.push(product);
+
+        // Salvar no localStorage
+        saveCart(cart);
+
+        // Atualizar contador do carrinho
+        updateCartBadge();
+
+        console.log("Produto adicionado ao carrinho:", product);
+    });
+});
+
    </script>
 </body>
 </html>
