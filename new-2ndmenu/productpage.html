@@ -571,9 +571,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const stars = document.querySelectorAll('.rating i');
         stars.forEach((starElement, index) => {
             if (index < star) {
-                starElement.classList.add('active');
+                starElement.classList.add('active');  // Ativa a estrela
             } else {
-                starElement.classList.remove('active');
+                starElement.classList.remove('active');  // Desativa a estrela
             }
         });
     }
@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função para submeter a avaliação
     window.submitReview = function() {
         const comment = document.getElementById('review-comment').value.trim();
-        
+
         // Verificando se o usuário selecionou uma classificação e escreveu um comentário
         if (ratingValue === 0 || comment === "") {
             alert("Por favor, selecione uma classificação e escreva um comentário.");
