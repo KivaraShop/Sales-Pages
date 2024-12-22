@@ -704,7 +704,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
-    const cartPopupContent = document.querySelector('.cart-popup-content')
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card'); // This will grab product cards from both pages
+
     // Update cart count
     function updateCartCount() {
         cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
