@@ -428,7 +428,7 @@ form button {
     </div>
 
             <!-- Informações do Produto -->
-    <div class="product-info">
+    <div class="product-card">
         <h2>Produto 1</h2>
         <p class="price">R$ 49,99</p>
         <div class="stars">
@@ -705,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
     const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.container'); // This will grab product cards from both pages
+    const productCards = document.querySelectorAll('.product-card'); // This will grab product cards from both pages
 
     // Update cart count
     function updateCartCount() {
