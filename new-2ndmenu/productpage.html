@@ -923,16 +923,16 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 // Função para adicionar o produto ao carrinho
-function addToCart() {
-    // Definindo os dados do produto
+function addToCart(button) {
+    // Obtendo os dados do produto a partir dos atributos de dados
     const product = {
-        name: 'Produto 1',
-        price: 'R$ 49,99',
-        image: 'https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg',
-        quantity: 1
+        name: button.getAttribute('data-product-name'),
+        price: button.getAttribute('data-product-price'),
+        image: button.getAttribute('data-product-image'),
+        quantity: 1  // Quantidade inicial do produto
     };
 
-    // Obtendo o carrinho do localStorage ou criando um novo carrinho vazio
+    // Obtendo o carrinho do localStorage ou criando um carrinho vazio
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Verificando se o produto já existe no carrinho
@@ -968,9 +968,11 @@ function updateCartBadge() {
     }
 }
 
-// Evento para adicionar o produto ao carrinho ao clicar no botão "Adicionar ao Pedido"
-document.querySelector('.add-to-cart').addEventListener('click', function() {
-    addToCart();
+// Função para tratar o clique em qualquer botão de "Adicionar ao Pedido"
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+        addToCart(this);  // Passa o botão clicado como parâmetro para a função addToCart
+    });
 });
 
 // Atualizando o ícone do carrinho quando a página é carregada
