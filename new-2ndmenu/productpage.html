@@ -291,7 +291,21 @@
         .add-to-cart:hover, .back-button:hover {
             background: #ff99cc;
         }
+        .product-card button {
+            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+            border: none;
+            padding: 10px;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
 
+        .product-card button:hover {
+            background: #ff66b2;
+        }
         /* Seção de Avaliações */
         .reviews-section h3 {
             font-size: 22px;
@@ -441,7 +455,7 @@ form button {
         <p class="product-description">
             Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
         </p>
-   <button>Adicionar ao Pedido</button>
+      <button class="product-card button">Adicionar ao Pedido</button>
     </div>
 </div>
 <!-- Ícone do Carrinho -->
