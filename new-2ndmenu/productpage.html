@@ -923,32 +923,33 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 // Função para adicionar o produto ao carrinho
-function addToCart(button) {
-    // Pegando os dados do produto (nome, preço, imagem)
-    const productName = button.closest('.product-detail').querySelector('.product-name').textContent.trim();
-    const productPrice = button.closest('.product-detail').querySelector('.price').textContent.trim();
-    const productImage = button.closest('.product-detail').querySelector('.main-img').src;
-    const productDescription = button.closest('.product-detail').querySelector('.product-description').textContent.trim();
+function addToCart(productDetailElement) {
+    // Pegando os dados do produto (nome, preço, imagem e descrição)
+    const productName = productDetailElement.querySelector('.product-name').textContent.trim();
+    const productPrice = productDetailElement.querySelector('.price').textContent.trim();
+    const productImage = productDetailElement.querySelector('.main-img').src;
+    const productDescription = productDetailElement.querySelector('.product-description').textContent.trim();
 
+    // Criação do objeto de produto
     const product = {
         name: productName,
         price: productPrice,
         image: productImage,
         description: productDescription,
-        quantity: 1 // Inicia com uma unidade
+        quantity: 1 // Inicia com 1 unidade
     };
 
-    // Obtendo o carrinho do localStorage ou criando um carrinho vazio
+    // Obtendo o carrinho do localStorage (se houver)
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Verificando se o produto já existe no carrinho
     const existingProductIndex = cart.findIndex(item => item.name === product.name);
 
     if (existingProductIndex !== -1) {
-        // Se o produto já está no carrinho, incrementamos a quantidade
+        // Se o produto já existe no carrinho, aumenta a quantidade
         cart[existingProductIndex].quantity += 1;
     } else {
-        // Caso o produto não exista no carrinho, adicionamos ele
+        // Se o produto não existe no carrinho, adiciona
         cart.push(product);
     }
 
@@ -959,31 +960,33 @@ function addToCart(button) {
     updateCartBadge();
 }
 
-// Função para atualizar a quantidade do carrinho no ícone
+// Função para atualizar a quantidade de itens no carrinho
 function updateCartBadge() {
     // Obtendo o carrinho do localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-    // Selecionando o badge do carrinho e atualizando com o número de itens
+    // Selecionando o badge do carrinho
     const cartBadge = document.querySelector('.cart-badge');
     if (totalItems > 0) {
-        cartBadge.textContent = totalItems;  // Exibe a quantidade
+        cartBadge.textContent = totalItems;  // Exibe a quantidade de itens no carrinho
     } else {
-        cartBadge.textContent = '';  // Se o carrinho estiver vazio, remove o badge
+        cartBadge.textContent = '';  // Se o carrinho estiver vazio, não exibe nada
     }
 }
 
-// Função para tratar o clique em qualquer botão de "Adicionar ao Pedido"
+// Adicionando o evento de clique aos botões de "Adicionar ao Pedido"
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', function() {
-        addToCart(this);  // Passa o botão clicado como parâmetro para a função addToCart
+        // Encontrando o produto associado ao botão
+        const productDetailElement = this.closest('.product-detail');
+        addToCart(productDetailElement);
     });
 });
 
-// Atualizando o ícone do carrinho quando a página é carregada
+// Atualizando o ícone do carrinho quando a página for carregada
 window.addEventListener('load', function() {
-    updateCartBadge();
+    updateCartBadge();  // Atualiza o badge com a quantidade atual do carrinho
 });
 </script>
 
