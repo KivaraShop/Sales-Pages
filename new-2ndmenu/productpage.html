@@ -919,6 +919,119 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize cart state
     updateCartCount();
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // Load cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const cartPopup = document.querySelector('.cart-popup');
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card'); // Grab product cards
+
+    // Update cart count
+    function updateCartCount() {
+        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
+    }
+
+    // Save cart to localStorage
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Add product to cart
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price, ingredients: [] });  // Add product with empty ingredients list
+            saveCart();
+            updateCartCount();
+            renderCart();
+        });
+    });
+
+    // Function to render the cart
+    function renderCart() {
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
+        const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
+
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
+        } else {
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <p>${item.name}</p>
+                        <p class="price">${item.price}</p>
+                        <div class="ingredients-list">
+                            ${item.ingredients.map(ingredient => `
+                                <span class="ingredient">${ingredient}
+                                    <button class="remove-ingredient" onclick="removeIngredient(event, ${index}, '${ingredient}')">Remover</button>
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+                `;
+
+                // Remove item from cart
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1);
+                    saveCart(); // Save updated cart to localStorage
+                    updateCartCount();
+                    renderCart();
+                });
+
+                ul.appendChild(li);
+            });
+        }
+        cartPopupContent.appendChild(ul);
+        updateCartCount();
+    }
+
+    // Function to remove ingredient from cart
+    function removeIngredient(event, cartIndex, ingredient) {
+        // Find the product in the cart
+        const product = cart[cartIndex];
+
+        // Remove the ingredient from the product's ingredients list
+        const ingredientIndex = product.ingredients.indexOf(ingredient);
+        if (ingredientIndex !== -1) {
+            product.ingredients.splice(ingredientIndex, 1);
+        }
+
+        // Update the cart in localStorage
+        saveCart();
+
+        // Re-render the cart
+        renderCart();
+    }
+
+    // Toggle cart popup visibility
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
+
+    // Initialize cart state
+    updateCartCount();
+});
 
 </script>
 
