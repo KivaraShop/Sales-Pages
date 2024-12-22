@@ -953,85 +953,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Function to render the cart
-    function renderCart() {
-        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
-        const ul = document.createElement('ul');
-        ul.style.listStyleType = 'none';
-        ul.style.padding = '0';
-
-        if (cart.length === 0) {
-            ul.innerHTML = '<li>O carrinho está vazio.</li>';
-        } else {
-            cart.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.style.display = 'flex';
-                li.style.alignItems = 'center';
-                li.style.marginBottom = '10px';
-
-                li.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
-                    <div>
-                        <p>${item.name}</p>
-                        <p class="price">${item.price}</p>
-                        <div class="ingredients-list">
-                            ${item.ingredients.map(ingredient => `
-                                <span class="ingredient">${ingredient}
-                                    <button class="remove-ingredient" onclick="removeIngredient(event, ${index}, '${ingredient}')">Remover</button>
-                                </span>
-                            `).join('')}
-                        </div>
-                    </div>
-                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
-                `;
-
-                // Remove item from cart
-                li.querySelector('button').addEventListener('click', (e) => {
-                    const indexToRemove = e.target.getAttribute('data-index');
-                    cart.splice(indexToRemove, 1);
-                    saveCart(); // Save updated cart to localStorage
-                    updateCartCount();
-                    renderCart();
-                });
-
-                ul.appendChild(li);
-            });
-        }
-        cartPopupContent.appendChild(ul);
-        updateCartCount();
-    }
-
-    // Function to remove ingredient from cart
-    function removeIngredient(event, cartIndex, ingredient) {
-        // Find the product in the cart
-        const product = cart[cartIndex];
-
-        // Remove the ingredient from the product's ingredients list
-        const ingredientIndex = product.ingredients.indexOf(ingredient);
-        if (ingredientIndex !== -1) {
-            product.ingredients.splice(ingredientIndex, 1);
-        }
-
+  // Function to remove ingredient from a product in the cart
+function removeIngredient(event, cartIndex, ingredient) {
+    // Get the product from the cart
+    const product = cart[cartIndex];
+    
+    // Find the index of the ingredient in the product's ingredient list
+    const ingredientIndex = product.ingredients.indexOf(ingredient);
+    
+    if (ingredientIndex !== -1) {
+        // Remove the ingredient from the product's ingredients array
+        product.ingredients.splice(ingredientIndex, 1);
+        
         // Update the cart in localStorage
         saveCart();
-
-        // Re-render the cart
+        
+        // Optionally, update the UI or re-render the cart
         renderCart();
     }
+}
 
-    // Toggle cart popup visibility
-    cartIcon.addEventListener('click', () => {
-        if (cartPopup.style.display === 'block') {
-            cartPopup.style.display = 'none';
-        } else {
-            renderCart();
-            cartPopup.style.display = 'block';
-        }
+// Save the updated cart to localStorage
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Function to render the cart UI (this is the simplified part you need)
+function renderCart() {
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    cartPopupContent.innerHTML = '<h2>Your Cart</h2>';
+
+    // Create a list to display the cart contents
+    const ul = document.createElement('ul');
+    ul.style.listStyleType = 'none';
+    ul.style.padding = '0';
+
+    cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.style.display = 'flex';
+        li.style.alignItems = 'center';
+        li.style.marginBottom = '10px';
+
+        li.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+            <div>
+                <p>${item.name}</p>
+                <p class="price">${item.price}</p>
+                <div class="ingredients-list">
+                    ${item.ingredients.map(ingredient => `
+                        <span class="ingredient">${ingredient}
+                            <button class="remove-ingredient" onclick="removeIngredient(event, ${index}, '${ingredient}')">Remove</button>
+                        </span>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+        ul.appendChild(li);
     });
 
-    // Initialize cart state
-    updateCartCount();
+    cartPopupContent.appendChild(ul);
+}
+
+// Sample cart structure (you may already have this in your existing code)
+const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Example: Adding a product to the cart (to demonstrate the structure)
+cart.push({
+    img: 'https://example.com/product.jpg',
+    name: 'Product 1',
+    price: 'R$ 49,99',
+    ingredients: ['Lettuce', 'Tomato', 'Cheese']  // Ingredients list
 });
+
+// Save the cart after adding the product
+saveCart();
+
+// Render the cart UI
+renderCart();
+
 
 </script>
 
