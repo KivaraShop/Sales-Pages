@@ -924,12 +924,18 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 // Função para adicionar o produto ao carrinho
 function addToCart(button) {
-    // Obtendo os dados do produto a partir dos atributos de dados
+    // Pegando os dados do produto (nome, preço, imagem)
+    const productName = button.closest('.product-detail').querySelector('.product-name').textContent.trim();
+    const productPrice = button.closest('.product-detail').querySelector('.price').textContent.trim();
+    const productImage = button.closest('.product-detail').querySelector('.main-img').src;
+    const productDescription = button.closest('.product-detail').querySelector('.product-description').textContent.trim();
+
     const product = {
-        name: button.getAttribute('data-product-name'),
-        price: button.getAttribute('data-product-price'),
-        image: button.getAttribute('data-product-image'),
-        quantity: 1  // Quantidade inicial do produto
+        name: productName,
+        price: productPrice,
+        image: productImage,
+        description: productDescription,
+        quantity: 1 // Inicia com uma unidade
     };
 
     // Obtendo o carrinho do localStorage ou criando um carrinho vazio
@@ -980,7 +986,6 @@ window.addEventListener('load', function() {
     updateCartBadge();
 });
 </script>
-
 
 
 </body>
