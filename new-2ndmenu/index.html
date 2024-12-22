@@ -193,11 +193,10 @@
             justify-content: center;
         }
 
-        @media(min-width: 768px) {
+  /* Mobile and Small Screen Adjustments */
+        @media (max-width: 600px) {
             .product-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
+                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
             }
         }
 
