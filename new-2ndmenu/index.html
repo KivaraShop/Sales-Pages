@@ -193,12 +193,7 @@
             justify-content: center;
         }
 
-  /* Mobile and Small Screen Adjustments */
-        @media (max-width: 600px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
-            }
-        }
+
 
         .menu-section {
     padding: 30px;
@@ -248,13 +243,11 @@
             margin: 10px 0;
             font-weight: bold;
         }
-        
-/* Media query for phone screens */
-@media (max-width: 768px) {
-    .product-card {
-        width: calc(50% - 10px); /* Two columns with a small gap */
-    }
-}
+         /* Mobile and Small Screen Adjustments */
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns even on small screens */
+            }
         /* Estrelas de avaliação */
         .stars {
             font-size: 18px;
