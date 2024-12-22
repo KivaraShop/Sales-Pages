@@ -980,6 +980,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 
+    <script>
+// Função para adicionar o produto ao carrinho
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Verifica se o produto já está no carrinho
+    const existingProductIndex = cart.findIndex(item => item.name === product.name);
+    if (existingProductIndex !== -1) {
+        // Se o produto já estiver no carrinho, apenas atualiza a quantidade (se necessário)
+        cart[existingProductIndex].quantity += 1;
+    } else {
+        // Se o produto não estiver no carrinho, adiciona o produto
+        product.quantity = 1;  // Inicia a quantidade como 1
+        cart.push(product);
+    }
+
+    // Salva o carrinho no localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Atualiza o ícone do carrinho
+    updateCartBadge();
+}
+
+// Função para atualizar o número de itens no ícone do carrinho
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    const cartBadge = document.querySelector('.cart-badge');
+    cartBadge.textContent = totalItems > 0 ? totalItems : '';  // Exibe a quantidade ou remove o badge se estiver vazio
+}
+
+// Função para carregar os detalhes do produto ao clicar no botão "Adicionar ao Pedido"
+document.querySelector('.add-to-cart').addEventListener('click', function() {
+    const product = {
+        name: 'Produto 1',  // Nome do produto
+        price: 'R$ 49,99',  // Preço do produto
+        image: 'https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg',  // URL da imagem do produto
+    };
+
+    addToCart(product);
+});
+
+// Atualiza o ícone do carrinho ao carregar a página
+window.addEventListener('load', updateCartBadge);
+</script>
+
+
 
 
 </body>
