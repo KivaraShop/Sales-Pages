@@ -441,8 +441,7 @@ form button {
         <p class="product-description">
             Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
         </p>
-    <button class="add-to-cart">Adicionar ao Pedido</button>
-        <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
+   <button>Adicionar ao Pedido</button>
     </div>
 </div>
 <!-- Ícone do Carrinho -->
@@ -921,82 +920,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script>
-// Function to handle adding the product to the cart
-function addToCart(event) {
-    const productDetail = event.target.closest('.product-detail');
-    
-    if (!productDetail) return;
 
-    // Extract product details
-    const productName = productDetail.querySelector('h2').textContent.trim();  // Product name
-    const productPrice = productDetail.querySelector('.price').textContent.trim();  // Price
-    const productImage = productDetail.querySelector('.main-img').src;  // Image URL
-    const productDescription = productDetail.querySelector('.product-description').textContent.trim();  // Description
-
-    // Product object to add to cart
-    const product = {
-        name: productName,
-        price: productPrice,
-        image: productImage,
-        description: productDescription,
-        quantity: 1 // Initial quantity is 1
-    };
-
-    // Retrieve cart from localStorage or initialize an empty array if cart doesn't exist
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Check if the product is already in the cart
-    const existingProductIndex = cart.findIndex(item => item.name === product.name);
-
-    if (existingProductIndex !== -1) {
-        // If product already exists, increase the quantity
-        cart[existingProductIndex].quantity += 1;
-    } else {
-        // If product doesn't exist, add it to the cart
-        cart.push(product);
-    }
-
-    // Save the updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update the cart badge
-    updateCartBadge();
-}
-
-// Function to update the cart badge (number of items in the cart)
-function updateCartBadge() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-    const cartBadge = document.querySelector('.cart-badge');
-    if (cartBadge) {
-        // Update the cart badge with the total number of items
-        if (totalItems > 0) {
-            cartBadge.textContent = totalItems;
-        } else {
-            cartBadge.textContent = '';  // Hide the badge if the cart is empty
-        }
-    }
-}
-
-// Function to initialize the cart functionality
-function initializeCart() {
-    // Attach event listener to all 'Add to Cart' buttons
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', addToCart);
-    });
-
-    // Update the cart badge on page load
-    updateCartBadge();
-}
-
-// Initialize the cart when the document is fully loaded
-document.addEventListener('DOMContentLoaded', initializeCart);
-
-</script>
 
 
 </body>
