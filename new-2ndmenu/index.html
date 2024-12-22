@@ -243,7 +243,15 @@
             margin: 10px 0;
             font-weight: bold;
         }
-  
+       
+        @media(min-width: 768px) {
+            .product-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
 /* For screens smaller than 768px (usually mobile phones), hide the banner */
 @media (max-width: 768px) {
     #bannerText {
