@@ -922,72 +922,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 <script>
-// Função para adicionar o produto ao carrinho
-function addToCart(productDetailElement) {
-    // Pegando os dados do produto (nome, preço, imagem e descrição)
+// Function to handle adding the product to the cart
+function addToCart() {
+    // Get the closest product detail element
+    const productDetailElement = this.closest('.product-detail');
+    
+    // Retrieve product details
     const productName = productDetailElement.querySelector('.product-name').textContent.trim();
     const productPrice = productDetailElement.querySelector('.price').textContent.trim();
     const productImage = productDetailElement.querySelector('.main-img').src;
     const productDescription = productDetailElement.querySelector('.product-description').textContent.trim();
 
-    // Criação do objeto de produto
+    // Create product object
     const product = {
         name: productName,
         price: productPrice,
         image: productImage,
         description: productDescription,
-        quantity: 1 // Inicia com 1 unidade
+        quantity: 1 // Start with quantity 1
     };
 
-    // Obtendo o carrinho do localStorage (se houver)
+    // Get existing cart from localStorage, or initialize it as an empty array
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Verificando se o produto já existe no carrinho
+    // Check if product already exists in the cart
     const existingProductIndex = cart.findIndex(item => item.name === product.name);
 
     if (existingProductIndex !== -1) {
-        // Se o produto já existe no carrinho, aumenta a quantidade
+        // Product already in cart, increase quantity
         cart[existingProductIndex].quantity += 1;
     } else {
-        // Se o produto não existe no carrinho, adiciona
+        // Product not in cart, add it
         cart.push(product);
     }
 
-    // Salvando o carrinho no localStorage
+    // Save updated cart back to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Atualizando o ícone do carrinho
+    // Update the cart badge (number of items in the cart)
     updateCartBadge();
 }
 
-// Função para atualizar a quantidade de itens no carrinho
+// Function to update the cart badge (quantity of items in the cart)
 function updateCartBadge() {
-    // Obtendo o carrinho do localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-    // Selecionando o badge do carrinho
+    // Select the cart badge element
     const cartBadge = document.querySelector('.cart-badge');
-    if (totalItems > 0) {
-        cartBadge.textContent = totalItems;  // Exibe a quantidade de itens no carrinho
-    } else {
-        cartBadge.textContent = '';  // Se o carrinho estiver vazio, não exibe nada
+    
+    if (cartBadge) {
+        // Update the badge with the total number of items in the cart
+        if (totalItems > 0) {
+            cartBadge.textContent = totalItems;
+        } else {
+            cartBadge.textContent = ''; // Clear badge if no items
+        }
     }
 }
 
-// Adicionando o evento de clique aos botões de "Adicionar ao Pedido"
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function() {
-        // Encontrando o produto associado ao botão
-        const productDetailElement = this.closest('.product-detail');
-        addToCart(productDetailElement);
+// Function to initialize the cart functionality
+function initializeCart() {
+    // Add event listeners to all 'Add to Cart' buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', addToCart);
     });
-});
 
-// Atualizando o ícone do carrinho quando a página for carregada
-window.addEventListener('load', function() {
-    updateCartBadge();  // Atualiza o badge com a quantidade atual do carrinho
-});
+    // Update the cart badge on page load
+    updateCartBadge();
+}
+
+// Initialize the cart when the page loads
+document.addEventListener('DOMContentLoaded', initializeCart);
 </script>
 
 
