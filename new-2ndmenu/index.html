@@ -1,166 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-    <style>
-        /* Overall page style to ensure full-page cover */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-        }
-
-        /* The background overlay for the welcome event */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9); /* Transparent white for a smooth effect */
-            z-index: 999;
-            opacity: 1; /* Initially visible */
-            transition: opacity 1s ease-out; /* Smooth fade-out effect */
-        }
-
-        /* Welcome message container */
-        .welcome-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 1000;
-            display: none; /* Hidden initially */
-        }
-
-        /* Typing effect text style */
-        .typing-effect, .second-typing-effect {
-            font-size: 24px;
-            color: #4a004e;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 4px solid #4a004e;
-            display: inline-block;
-        }
-
-        /* Spinner animation */
-        .spinner {
-            margin: 0 auto;
-            margin-bottom: 20px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #4a004e;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-
-        /* Spinner animation */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Initially hiding the menu */
-        .menu {
-            display: none;
-            opacity: 0;
-            transition: opacity 1s;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- The background cover during the animation -->
-    <div class="background"></div>
-
-    <!-- The welcome message container -->
-    <div class="welcome-container">
-        <!-- Spinner to show loading -->
-        <div class="spinner"></div>
-        
-        <!-- Typing effect for the slogan -->
-        <div class="typing-effect"></div>
-        
-        <!-- Typing effect for "Bem-vindo" -->
-        <div class="second-typing-effect"></div>
-    </div>
-
-    <!-- Your menu content -->
-    <div class="menu">
-        <h1>Menu</h1>
-        <!-- Your menu content goes here -->
-    </div>
-
-    <!-- Insert the script at the end of the body tag -->
-    <script>
-        // Wait for the page to fully load
-        window.onload = function() {
-            // Show the welcome container
-            document.querySelector('.welcome-container').style.display = 'block';
-
-            // Slogan typing effect
-            const sloganElement = document.querySelector('.typing-effect');
-            const sloganText = "Sabores que encantam, momentos que ficam";
-            let i = 0;
-            const typingSpeed = 100; // 100ms for each character
-
-            function typeSlogan() {
-                if (i < sloganText.length) {
-                    sloganElement.innerHTML += sloganText.charAt(i);
-                    i++;
-                    setTimeout(typeSlogan, typingSpeed);
-                } else {
-                    setTimeout(showWelcomeText, 1000); // Wait before showing "Bem-vindo"
-                }
-            }
-
-            // Show "Bem-vindo" after slogan typing is finished
-            function showWelcomeText() {
-                const welcomeElement = document.querySelector('.second-typing-effect');
-                welcomeElement.innerHTML = "Bem-vindo";
-                let j = 0;
-                const welcomeText = welcomeElement.innerHTML;
-
-                function typeWelcome() {
-                    if (j < welcomeText.length) {
-                        welcomeElement.innerHTML += welcomeText.charAt(j);
-                        j++;
-                        setTimeout(typeWelcome, typingSpeed);
-                    }
-                }
-
-                typeWelcome();
-
-                // Hide the welcome container and the background after "Bem-vindo" for 2 seconds
-                setTimeout(function() {
-                    document.querySelector('.background').style.opacity = '0'; // Fade out background
-                    document.querySelector('.welcome-container').style.display = 'none';
-                    document.querySelector('.menu').style.display = 'block';
-                    document.querySelector('.menu').style.opacity = '1'; // Fade in menu
-                }, 5000); // 3 seconds for slogan + 2 seconds for "Bem-vindo"
-            }
-
-            // Start typing the slogan
-            typeSlogan();
-        };
-    </script>
-
-</body>
-</html>
-
 
 <!DOCTYPE html>
 <html lang="pt">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -610,11 +450,61 @@ img {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
         
+          /* Container para cobrir a tela inteira com o spinner */
+        .spinner-container {
+            position: fixed; /* Vai cobrir toda a tela */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparente */
+            z-index: 9999; /* Para garantir que o spinner fique acima de tudo */
+        }
+
+        /* Estilo do spinner rosa */
+        .spinner {
+            border: 4px solid #f3f3f3; /* Cor do fundo */
+            border-top: 4px solid #ff66b2; /* Cor rosa */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.5s linear infinite;
+            margin: 20px auto;
+        }
+
+        /* Animação de rotação do spinner */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estilo do slogan e "Bem-vindo" */
+        .message {
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            color: #4a004e;
+            margin-top: 10px;
+        }
+
+        /* Estilo para ocultar o conteúdo do menu */
+        .menu {
+            display: none;
+        }
     </style>
 </head>
 <body>
+  <div class="spinner-container">
+        <div class="spinner"></div>
+        <div class="message" id="message"></div>
+    </div>
 
-   <!-- Cabeçalho -->
+    <!-- Menu (vai ficar oculto durante a exibição do spinner) -->
+    <div class="menu">
+  <!-- Cabeçalho -->
  <header>
         <div class="menu-toggle">
             <i class="fas fa-bars"></i> <!-- Toggle icon -->
@@ -866,11 +756,46 @@ img {
         </div>
     </div>
 </footer>
+ 
+ 
         
 <!-- script para animaçao welcome -->
 <script>
+        // Função para escrever o texto letra por letra
+        function escreverTexto(elemento, texto, tempoPorLetra) {
+            let i = 0;
+            let interval = setInterval(function() {
+                elemento.innerHTML += texto[i];
+                i++;
+                if (i >= texto.length) {
+                    clearInterval(interval);
+                }
+            }, tempoPorLetra);
+        }
 
-</script>
+        // Função para trocar a mensagem após 4 segundos
+        function iniciarEvento() {
+            const slogan = "Sabores que encantam, momentos que ficam";
+            const mensagemFinal = "Bem-vindo";
+            const messageElement = document.getElementById("message");
+
+            // Começa o efeito de escrita para o slogan
+            escreverTexto(messageElement, slogan, 100); // 100ms por letra
+
+            // Após 4 segundos, muda para "Bem-vindo"
+            setTimeout(function() {
+                messageElement.innerHTML = ""; // Limpa o texto atual
+                escreverTexto(messageElement, mensagemFinal, 100); // 100ms por letra
+                // Exibe o menu após a troca de mensagem
+                document.querySelector(".menu").style.display = "block";
+                // Remove o spinner e a mensagem após 4 segundos
+                document.querySelector(".spinner-container").style.display = "none";
+            }, 4000); // 4 segundos para o slogan
+        }
+
+        // Inicia o evento após o carregamento da página
+        window.onload = iniciarEvento;
+    </script>
 
 
 <!-- script para bloquear imagens -->
