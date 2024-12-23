@@ -765,23 +765,14 @@ img {
     }
 
     // Limpa a flag quando a página for recarregada ou navegação entre páginas
-    window.addEventListener("pagehide", function() {
+    window.addEventListener("beforeunload", function() {
         sessionStorage.removeItem('spinnerShown');
     });
 
-    // Garantir que o spinner também não apareça em dispositivos móveis ao voltar da navegação
-    if (document.visibilityState === "hidden") {
-        sessionStorage.removeItem('spinnerShown');
-    }
-
-    // Detecta quando a página está sendo carregada
-    document.addEventListener("visibilitychange", function() {
-        if (document.visibilityState === "visible" && !sessionStorage.getItem('spinnerShown')) {
-            document.getElementById("loading-overlay").style.display = "flex";
-            setTimeout(function() {
-                document.getElementById("loading-overlay").style.display = "none";
-            }, 3000); // 3000ms = 3 segundos
-            sessionStorage.setItem('spinnerShown', 'true');
+    // Caso o usuário retorne à página inicial, garanta que o spinner não seja mostrado
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            sessionStorage.removeItem('spinnerShown');
         }
     });
 </script>
