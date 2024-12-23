@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Digital - Restaurante Brasil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Include Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <style>
         /* Estilo global */
         body {
@@ -196,7 +193,13 @@
             justify-content: center;
         }
 
-
+        @media(min-width: 768px) {
+            .product-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
 
         .menu-section {
     padding: 30px;
@@ -246,42 +249,13 @@
             margin: 10px 0;
             font-weight: bold;
         }
-       
-        @media(min-width: 768px) {
-            .product-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-/* For screens smaller than 768px (usually mobile phones), hide the banner */
+        
+/* Media query for phone screens */
 @media (max-width: 768px) {
-    #bannerText {
-        display: none;
+    .product-card {
+        width: calc(50% - 10px); /* Two columns with a small gap */
     }
 }
-.view-all-link {
-    color: #ff66b2; /* Soft pink color */
-    font-size: 13px;
-    text-decoration: none;
-    font-weight: normal;
-    margin-top: 10px;
-    display: inline-flex;
-    align-items: center; /* Vertically align text and icon */
-    gap: 5px; /* Space between the text and icon */
-}
-
-.view-all-link:hover {
-    color: #ff3399; /* Slightly darker pink on hover */
-    text-decoration: underline; /* Underline effect when hovered */
-}
-
-.view-all-link i {
-    font-size: 18px; /* Icon size */
-}
-
-            
         /* Estrelas de avaliação */
         .stars {
             font-size: 18px;
@@ -439,6 +413,31 @@ img {
     font-size: 14px;
     margin-top: 10px;
     color: white;
+}
+/* Ensure the wrapper div is properly aligned with the layout */
+.view-all-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    margin-top: 15px; /* Space above */
+}
+
+.view-all-link {
+    color: #ff66b2; /* Pink color */
+    font-size: 13px; /* Text size */
+    text-decoration: none; /* Remove underline */
+    display: flex;
+    align-items: center; /* Align the text and icon vertically */
+    gap: 5px; /* Space between text and icon */
+    font-weight: normal; /* Normal font weight */
+}
+
+.view-all-link:hover {
+    color: #ff3399; /* Hover color */
+    text-decoration: underline; /* Underline on hover */
+}
+
+.view-all-link i {
+    font-size: 18px; /* Icon size */
 }
 
     </style>
@@ -599,12 +598,14 @@ img {
     <div class="more-info">
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
-</div>
     </div>
     <button>Adicionar ao Pedido</button>
+</div>
         </div>
     </div>
-        </div>
+     <div class="view-all-wrapper">
+        <a href="all-products.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
+    </div>
         <!-- SECTION DEVIDER -->
   <!-- Conteúdo principal -->
     <div class="container">
