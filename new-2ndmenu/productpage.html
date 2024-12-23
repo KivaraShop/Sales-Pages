@@ -17,6 +17,7 @@
             flex-direction: column;
             align-items: center;
             box-sizing: border-box;
+            box-sizing: border-box;
             width: 100%;
             overflow-x: hidden;
         }
@@ -119,10 +120,12 @@
         /* Menu de navegação */
         nav {
             background-color: #ff66b2;
+            position: sticky;
             padding: 10px;
             width: 100%;
             text-align: center;
             font-size: 16px;
+            overflow: hidden;
         }
 
         nav a {
@@ -441,8 +444,7 @@ form button {
         <p class="product-description">
             Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
         </p>
-    <button class="add-to-cart">Adicionar ao Pedido</button>
-        <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
+        <button class="back-button" onclick="window.location.href='index.html'">Voltar aos Produtos</button>
     </div>
 </div>
 <!-- Ícone do Carrinho -->
@@ -473,10 +475,10 @@ form button {
         <div class="ingredients-section">
             <h3>Ingredientes</h3>
             <ul>
-                <li>Alface <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
-                <li>Tomate <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
-                <li>Picanha <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
-                <li>Queijo <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Alface 
+                <li>Tomate
+                <li>Picanha 
+                <li>Queijo
             </ul>
         </div>
 
