@@ -450,7 +450,7 @@ img {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
 
-    /* Smooth background color transition */
+   /* Smooth background color transition */
         .background {
             position: absolute;
             top: 0;
@@ -463,8 +463,11 @@ img {
 
         .welcome-container {
             display: none; /* Initially hidden */
-            position: relative;
             z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center content both horizontally and vertically */
         }
 
         /* Spinner */
@@ -485,7 +488,7 @@ img {
 
         /* Typing effect */
         .typing-effect, .second-typing-effect {
-            font-size: 1.8em;
+            font-size: 2em; /* More appropriate size */
             font-weight: bold;
             color: #fff;
             display: inline-block;
@@ -493,12 +496,12 @@ img {
             overflow: hidden;
             border-right: 2px solid #ff66b2;
             padding-right: 5px;
-            animation: typing 5s steps(40) 0.5s 1 normal both, blink 0.75s step-end infinite;
+            animation: typing 3s steps(40) 0.5s 1 normal both, blink 0.75s step-end infinite;
         }
 
         .second-typing-effect {
             display: none; /* Hidden until after slogan finishes */
-            animation: typing 3s steps(25) 6s 1 normal both, blink 0.75s step-end infinite;
+            animation: typing 2s steps(25) 3s 1 normal both, blink 0.75s step-end infinite;
         }
 
         @keyframes typing {
@@ -509,24 +512,15 @@ img {
         @keyframes blink {
             50% { border-color: transparent; }
         }
+
+        /* Hide the menu until the event ends */
+        .menu {
+            display: none;
+        }
         
     </style>
 </head>
 <body>
-  <!-- Smooth background color transition -->
-    <div class="background"></div>
-
-    <!-- Welcome container with the spinner and texts -->
-    <div class="welcome-container">
-        <!-- Spinner -->
-        <div class="spinner"></div>
-        
-        <!-- Typing Slogan -->
-        <div class="typing-effect">Sabores que encantam, momentos que ficam</div>
-        
-        <!-- Typing 'Bem-vindo' (replaces the slogan) -->
-        <div class="second-typing-effect">Bem-vindo</div>
-    </div>
 
    <!-- Cabeçalho -->
  <header>
@@ -561,7 +555,26 @@ img {
 
     <!-- Banner com animação de texto -->
     <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
-     
+      <!-- Smooth background color transition -->
+    <div class="background"></div>
+
+    <!-- Welcome container with the spinner and texts -->
+    <div class="welcome-container">
+        <!-- Spinner -->
+        <div class="spinner"></div>
+        
+        <!-- Typing Slogan -->
+        <div class="typing-effect">Sabores que encantam, momentos que ficam</div>
+        
+        <!-- Typing 'Bem-vindo' (replaces the slogan) -->
+        <div class="second-typing-effect">Bem-vindo</div>
+    </div>
+
+    <!-- Menu (Initially hidden) -->
+    <div class="menu">
+        <h1>Menu</h1>
+        <!-- Your menu content here -->
+    </div>
     <!-- Conteúdo principal -->
     <div class="container">
         <h2>Explore Nosso Menu</h2>
@@ -781,7 +794,7 @@ img {
         
 <!-- script para animaçao welcome -->
 <script>
-        window.onload = function() {
+       window.onload = function() {
             // Initially show the background and spinner
             document.querySelector('.background').style.backgroundColor = '#4a004e';  // Set background color
             document.querySelector('.welcome-container').style.display = 'block';  // Show welcome container
@@ -802,11 +815,11 @@ img {
                         // Hide the welcome container and reveal the menu
                         document.querySelector('.welcome-container').style.display = 'none';
                         document.querySelector('.background').style.backgroundColor = '#fff'; // Change background back
-                    }, 2500); // "Bem-vindo" disappears after 2 seconds (after typing effect finishes)
-                }, 4000); // Wait for the slogan to finish typing (3 seconds + 1 sec delay)
+                        document.querySelector('.menu').style.display = 'block'; // Show the menu
+                    }, 2000); // "Bem-vindo" stays for 2 seconds
+                }, 3000); // Wait for the slogan to finish typing (3 seconds)
             }, 3000); // Spinner disappears after 3 seconds
         };
-
 </script>
 
 
