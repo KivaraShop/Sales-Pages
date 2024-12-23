@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Digital - Restaurante Brasil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Include Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <style>
         /* Estilo global */
         body {
@@ -259,18 +262,23 @@
     }
 }
 .view-all-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #FF6600; /* Example color */
-    color: white;
+    color: #ff66b2; /* Soft pink color */
+    font-size: 16px;
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 15px;
-    text-align: center;
+    font-weight: normal;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center; /* Vertically align text and icon */
+    gap: 5px; /* Space between the text and icon */
 }
 
 .view-all-link:hover {
-    background-color: #FF5500; /* Hover effect */
+    color: #ff3399; /* Slightly darker pink on hover */
+    text-decoration: underline; /* Underline effect when hovered */
+}
+
+.view-all-link i {
+    font-size: 18px; /* Icon size */
 }
 
             
@@ -591,11 +599,11 @@ img {
     <div class="more-info">
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
-        <a href="all-products.html" class="view-all-link">Ver todos</a> <!-- This is the link to the All Products page -->
 </div>
     </div>
     <button>Adicionar ao Pedido</button>
-</div>
+        </div>
+        <a href="all-products.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a> <!-- This is the link to All Products -->
         </div>
     </div>
     
