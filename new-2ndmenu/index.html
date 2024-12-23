@@ -21,8 +21,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.9); /* Transparent white for a smooth effect */
             z-index: 999;
+            opacity: 1; /* Initially visible */
+            transition: opacity 1s ease-out; /* Smooth fade-out effect */
         }
 
         /* Welcome message container */
@@ -33,7 +35,7 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 1000;
-            display: none;
+            display: none; /* Hidden initially */
         }
 
         /* Typing effect text style */
@@ -47,6 +49,7 @@
             display: inline-block;
         }
 
+        /* Spinner animation */
         .spinner {
             margin: 0 auto;
             margin-bottom: 20px;
@@ -72,7 +75,6 @@
             padding: 20px;
             text-align: center;
         }
-        
     </style>
 </head>
 <body>
@@ -138,12 +140,12 @@
 
                 typeWelcome();
 
-                // Hide the welcome container after "Bem-vindo" for 2 seconds
+                // Hide the welcome container and the background after "Bem-vindo" for 2 seconds
                 setTimeout(function() {
+                    document.querySelector('.background').style.opacity = '0'; // Fade out background
                     document.querySelector('.welcome-container').style.display = 'none';
-                    document.querySelector('.background').style.display = 'none';
                     document.querySelector('.menu').style.display = 'block';
-                    document.querySelector('.menu').style.opacity = '1';
+                    document.querySelector('.menu').style.opacity = '1'; // Fade in menu
                 }, 5000); // 3 seconds for slogan + 2 seconds for "Bem-vindo"
             }
 
