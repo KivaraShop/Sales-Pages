@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="pt">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -449,62 +449,13 @@ img {
 .view-all-link i {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
-        
-          /* Container para cobrir a tela inteira com o spinner */
-        .spinner-container {
-            position: fixed; /* Vai cobrir toda a tela */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparente */
-            z-index: 9999; /* Para garantir que o spinner fique acima de tudo */
-        }
 
-        /* Estilo do spinner rosa */
-        .spinner {
-            border: 4px solid #f3f3f3; /* Cor do fundo */
-            border-top: 4px solid #ff66b2; /* Cor rosa */
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1.5s linear infinite;
-            margin: 20px auto;
-        }
 
-        /* Animação de rotação do spinner */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Estilo do slogan e "Bem-vindo" */
-        .message {
-            font-size: 20px;
-            font-family: Arial, sans-serif;
-            color: #4a004e;
-            margin-top: 10px;
-        }
-
-        /* Estilo para ocultar o conteúdo do menu */
-        .menu {
-            display: none;
-        }
     </style>
 </head>
 <body>
-  <div class="spinner-container">
-        <div class="spinner"></div>
-        <div class="message" id="message"></div>
-    </div>
 
-    <!-- Menu (vai ficar oculto durante a exibição do spinner) -->
-    <div class="menu">
-  <!-- Cabeçalho -->
+   <!-- Cabeçalho -->
  <header>
         <div class="menu-toggle">
             <i class="fas fa-bars"></i> <!-- Toggle icon -->
@@ -537,9 +488,7 @@ img {
 
     <!-- Banner com animação de texto -->
     <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
-      <!-- Smooth background color transition -->
-    <div class="background"></div>
-
+     
     <!-- Conteúdo principal -->
     <div class="container">
         <h2>Explore Nosso Menu</h2>
@@ -756,46 +705,6 @@ img {
         </div>
     </div>
 </footer>
- 
- 
-        
-<!-- script para animaçao welcome -->
-<script>
-        // Função para escrever o texto letra por letra
-        function escreverTexto(elemento, texto, tempoPorLetra) {
-            let i = 0;
-            let interval = setInterval(function() {
-                elemento.innerHTML += texto[i];
-                i++;
-                if (i >= texto.length) {
-                    clearInterval(interval);
-                }
-            }, tempoPorLetra);
-        }
-
-        // Função para trocar a mensagem após 4 segundos
-        function iniciarEvento() {
-            const slogan = "Sabores que encantam, momentos que ficam";
-            const mensagemFinal = "Bem-vindo";
-            const messageElement = document.getElementById("message");
-
-            // Começa o efeito de escrita para o slogan
-            escreverTexto(messageElement, slogan, 100); // 100ms por letra
-
-            // Após 4 segundos, muda para "Bem-vindo"
-            setTimeout(function() {
-                messageElement.innerHTML = ""; // Limpa o texto atual
-                escreverTexto(messageElement, mensagemFinal, 100); // 100ms por letra
-                // Exibe o menu após a troca de mensagem
-                document.querySelector(".menu").style.display = "block";
-                // Remove o spinner e a mensagem após 4 segundos
-                document.querySelector(".spinner-container").style.display = "none";
-            }, 4000); // 4 segundos para o slogan
-        }
-
-        // Inicia o evento após o carregamento da página
-        window.onload = iniciarEvento;
-    </script>
 
 
 <!-- script para bloquear imagens -->
