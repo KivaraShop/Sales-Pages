@@ -711,7 +711,7 @@ img {
     <div id="spinner"></div>
     <p>Bem-vindo !</p>
 </div>
-
+        
 <!-- Estilo do Spinner -->
 <style>
     #loading-overlay {
@@ -745,17 +745,30 @@ img {
     #loading-overlay p {
         margin-top: 15px;
         font-size: 16px;
-        font-weight: bold;
         color: #4a004e;
     }
 </style>
 
 <!-- Script -->
 <script>
-    // Exibe o spinner por 3 segundos
-    setTimeout(function() {
-        document.getElementById("loading-overlay").style.display = "none";
-    }, 3000); // 3000ms = 3 segundos
+    // Verifica se a página foi acessada a partir de outra página
+    if (!sessionStorage.getItem('visitedFromOtherPage')) {
+        // Exibe o spinner por 3 segundos quando a página inicial ou menu for acessada diretamente
+        document.getElementById("loading-overlay").style.display = "flex";
+
+        setTimeout(function() {
+            document.getElementById("loading-overlay").style.display = "none";
+        }, 3000); // 3000ms = 3 segundos
+
+        // Marca que a página foi acessada diretamente, para evitar exibição do spinner ao voltar
+        sessionStorage.setItem('visitedFromOtherPage', 'true');
+    }
+
+    // Detecta quando o usuário volta à página inicial ou menu a partir de outras páginas
+    window.onunload = function() {
+        // Limpa a marcação no sessionStorage quando sair da página
+        sessionStorage.removeItem('visitedFromOtherPage');
+    };
 </script>
 
 <!-- script para bloquear imagens -->
