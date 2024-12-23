@@ -421,9 +421,17 @@ img {
     margin-top: 15px; /* Space above */
 }
 
+/* Ensure the wrapper div is properly aligned with the layout */
+.view-all-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    margin-top: 15px; /* Space above */
+    width: 100%; /* Ensure it takes full width for alignment */
+}
+
 .view-all-link {
     color: #ff66b2; /* Pink color */
-    font-size: 13px; /* Text size */
+    font-size: 13px; /* Set the font size to 13px */
     text-decoration: none; /* Remove underline */
     display: flex;
     align-items: center; /* Align the text and icon vertically */
@@ -437,8 +445,9 @@ img {
 }
 
 .view-all-link i {
-    font-size: 18px; /* Icon size */
+    font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
+
 
     </style>
 </head>
@@ -669,7 +678,10 @@ img {
     </div>
     <button>Adicionar ao Pedido</button>
 </div>
-    
+        </div>
+     <div class="view-all-wrapper">
+        <a href="all-products.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
+    </div>
    <!-- Rodapé -->
 <footer class="footer">
     <!-- Logo -->
