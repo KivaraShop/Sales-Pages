@@ -711,7 +711,7 @@ img {
     <div id="spinner"></div>
     <p>Bem-vindo !</p>
 </div>
-        
+
 <!-- Estilo do Spinner -->
 <style>
     #loading-overlay {
@@ -751,23 +751,22 @@ img {
 
 <!-- Script -->
 <script>
-    // Verifica se a página foi acessada a partir de outra página
-    if (!sessionStorage.getItem('visitedFromOtherPage')) {
-        // Exibe o spinner por 3 segundos quando a página inicial ou menu for acessada diretamente
+    // Verifica se já foi exibido o spinner durante esta sessão
+    if (!sessionStorage.getItem('spinnerShown')) {
+        // Exibe o spinner por 3 segundos
         document.getElementById("loading-overlay").style.display = "flex";
 
         setTimeout(function() {
             document.getElementById("loading-overlay").style.display = "none";
         }, 3000); // 3000ms = 3 segundos
 
-        // Marca que a página foi acessada diretamente, para evitar exibição do spinner ao voltar
-        sessionStorage.setItem('visitedFromOtherPage', 'true');
+        // Marca que o spinner foi exibido durante esta sessão
+        sessionStorage.setItem('spinnerShown', 'true');
     }
 
-    // Detecta quando o usuário volta à página inicial ou menu a partir de outras páginas
-    window.onunload = function() {
-        // Limpa a marcação no sessionStorage quando sair da página
-        sessionStorage.removeItem('visitedFromOtherPage');
+    // Limpa a flag quando a página for recarregada ou navegação entre páginas
+    window.onbeforeunload = function() {
+        sessionStorage.removeItem('spinnerShown');
     };
 </script>
 
