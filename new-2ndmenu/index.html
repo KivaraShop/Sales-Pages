@@ -1,4 +1,162 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        /* Overall page style to ensure full-page cover */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        /* The background overlay for the welcome event */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 999;
+        }
+
+        /* Welcome message container */
+        .welcome-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        /* Typing effect text style */
+        .typing-effect, .second-typing-effect {
+            font-size: 24px;
+            color: #4a004e;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #4a004e;
+            display: inline-block;
+        }
+
+        .spinner {
+            margin: 0 auto;
+            margin-bottom: 20px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #4a004e;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Spinner animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Initially hiding the menu */
+        .menu {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s;
+            padding: 20px;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- The background cover during the animation -->
+    <div class="background"></div>
+
+    <!-- The welcome message container -->
+    <div class="welcome-container">
+        <!-- Spinner to show loading -->
+        <div class="spinner"></div>
+        
+        <!-- Typing effect for the slogan -->
+        <div class="typing-effect"></div>
+        
+        <!-- Typing effect for "Bem-vindo" -->
+        <div class="second-typing-effect"></div>
+    </div>
+
+    <!-- Your menu content -->
+    <div class="menu">
+        <h1>Menu</h1>
+        <!-- Your menu content goes here -->
+    </div>
+
+    <!-- Insert the script at the end of the body tag -->
+    <script>
+        // Wait for the page to fully load
+        window.onload = function() {
+            // Show the welcome container
+            document.querySelector('.welcome-container').style.display = 'block';
+
+            // Slogan typing effect
+            const sloganElement = document.querySelector('.typing-effect');
+            const sloganText = "Sabores que encantam, momentos que ficam";
+            let i = 0;
+            const typingSpeed = 100; // 100ms for each character
+
+            function typeSlogan() {
+                if (i < sloganText.length) {
+                    sloganElement.innerHTML += sloganText.charAt(i);
+                    i++;
+                    setTimeout(typeSlogan, typingSpeed);
+                } else {
+                    setTimeout(showWelcomeText, 1000); // Wait before showing "Bem-vindo"
+                }
+            }
+
+            // Show "Bem-vindo" after slogan typing is finished
+            function showWelcomeText() {
+                const welcomeElement = document.querySelector('.second-typing-effect');
+                welcomeElement.innerHTML = "Bem-vindo";
+                let j = 0;
+                const welcomeText = welcomeElement.innerHTML;
+
+                function typeWelcome() {
+                    if (j < welcomeText.length) {
+                        welcomeElement.innerHTML += welcomeText.charAt(j);
+                        j++;
+                        setTimeout(typeWelcome, typingSpeed);
+                    }
+                }
+
+                typeWelcome();
+
+                // Hide the welcome container after "Bem-vindo" for 2 seconds
+                setTimeout(function() {
+                    document.querySelector('.welcome-container').style.display = 'none';
+                    document.querySelector('.background').style.display = 'none';
+                    document.querySelector('.menu').style.display = 'block';
+                    document.querySelector('.menu').style.opacity = '1';
+                }, 5000); // 3 seconds for slogan + 2 seconds for "Bem-vindo"
+            }
+
+            // Start typing the slogan
+            typeSlogan();
+        };
+    </script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
 <html lang="pt">
     
 <head>
@@ -449,74 +607,6 @@ img {
 .view-all-link i {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
-
-   /* Smooth background color transition */
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #4a004e;
-            transition: background-color 1s ease;
-        }
-
-        .welcome-container {
-            display: none; /* Initially hidden */
-            z-index: 2;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Center content both horizontally and vertically */
-        }
-
-        /* Spinner */
-        .spinner {
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid #ff66b2;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 2s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Typing effect */
-        .typing-effect, .second-typing-effect {
-            font-size: 2em; /* More appropriate size */
-            font-weight: bold;
-            color: #fff;
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid #ff66b2;
-            padding-right: 5px;
-            animation: typing 3s steps(40) 0.5s 1 normal both, blink 0.75s step-end infinite;
-        }
-
-        .second-typing-effect {
-            display: none; /* Hidden until after slogan finishes */
-            animation: typing 2s steps(25) 3s 1 normal both, blink 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        /* Hide the menu until the event ends */
-        .menu {
-            display: none;
-        }
         
     </style>
 </head>
@@ -558,23 +648,6 @@ img {
       <!-- Smooth background color transition -->
     <div class="background"></div>
 
-    <!-- Welcome container with the spinner and texts -->
-    <div class="welcome-container">
-        <!-- Spinner -->
-        <div class="spinner"></div>
-        
-        <!-- Typing Slogan -->
-        <div class="typing-effect">Sabores que encantam, momentos que ficam</div>
-        
-        <!-- Typing 'Bem-vindo' (replaces the slogan) -->
-        <div class="second-typing-effect">Bem-vindo</div>
-    </div>
-
-    <!-- Menu (Initially hidden) -->
-    <div class="menu">
-        <h1>Menu</h1>
-        <!-- Your menu content here -->
-    </div>
     <!-- Conteúdo principal -->
     <div class="container">
         <h2>Explore Nosso Menu</h2>
@@ -794,32 +867,7 @@ img {
         
 <!-- script para animaçao welcome -->
 <script>
-       window.onload = function() {
-            // Initially show the background and spinner
-            document.querySelector('.background').style.backgroundColor = '#4a004e';  // Set background color
-            document.querySelector('.welcome-container').style.display = 'block';  // Show welcome container
 
-            // Step 1: Show spinner for 3 seconds
-            setTimeout(function() {
-                // Step 2: Show the slogan with typing effect after the spinner disappears
-                document.querySelector('.typing-effect').style.display = 'inline-block';
-
-                // After the slogan typing effect is finished, replace it with "Bem-vindo"
-                setTimeout(function() {
-                    // Step 3: Hide the slogan and show "Bem-vindo"
-                    document.querySelector('.typing-effect').style.display = 'none';
-                    document.querySelector('.second-typing-effect').style.display = 'inline-block';
-
-                    // After "Bem-vindo" typing effect is finished, hide everything and show the main menu
-                    setTimeout(function() {
-                        // Hide the welcome container and reveal the menu
-                        document.querySelector('.welcome-container').style.display = 'none';
-                        document.querySelector('.background').style.backgroundColor = '#fff'; // Change background back
-                        document.querySelector('.menu').style.display = 'block'; // Show the menu
-                    }, 2000); // "Bem-vindo" stays for 2 seconds
-                }, 3000); // Wait for the slogan to finish typing (3 seconds)
-            }, 3000); // Spinner disappears after 3 seconds
-        };
 </script>
 
 
