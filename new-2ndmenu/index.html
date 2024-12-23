@@ -450,17 +450,30 @@ img {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
 
-  .welcome-container {
-            text-align: center;
-            display: none; /* Initially hidden */
+    /* Smooth background color transition */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #4a004e;
+            transition: background-color 1s ease;
         }
 
+        .welcome-container {
+            display: none; /* Initially hidden */
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Spinner */
         .spinner {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #ff66b2;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #ff66b2;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             animation: spin 2s linear infinite;
             margin: 0 auto;
         }
@@ -470,40 +483,40 @@ img {
             100% { transform: rotate(360deg); }
         }
 
+        /* Typing effect */
         .typing-effect, .second-typing-effect {
-            font-size: 2em;
-            color: #4a004e;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #fff;
             display: inline-block;
             white-space: nowrap;
             overflow: hidden;
-            border-right: 3px solid #ff66b2;
+            border-right: 2px solid #ff66b2;
             padding-right: 5px;
-            animation: typing 4s steps(40) 0.5s 1 normal both, blink 0.75s step-end infinite;
+            animation: typing 5s steps(40) 0.5s 1 normal both, blink 0.75s step-end infinite;
         }
 
         .second-typing-effect {
-            animation: typing 3s steps(25) 5s 1 normal both, blink 0.75s step-end infinite;
+            display: none; /* Hidden until after slogan finishes */
+            animation: typing 3s steps(25) 6s 1 normal both, blink 0.75s step-end infinite;
         }
 
         @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
+            from { width: 0; }
+            to { width: 100%; }
         }
 
         @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
+            50% { border-color: transparent; }
         }
         
     </style>
 </head>
 <body>
-<!-- Welcome container -->
+  <!-- Smooth background color transition -->
+    <div class="background"></div>
+
+    <!-- Welcome container with the spinner and texts -->
     <div class="welcome-container">
         <!-- Spinner -->
         <div class="spinner"></div>
@@ -511,7 +524,7 @@ img {
         <!-- Typing Slogan -->
         <div class="typing-effect">Sabores que encantam, momentos que ficam</div>
         
-        <!-- Typing 'Bem-vindo' -->
+        <!-- Typing 'Bem-vindo' (replaces the slogan) -->
         <div class="second-typing-effect">Bem-vindo</div>
     </div>
 
@@ -768,25 +781,29 @@ img {
         
 <!-- script para animaçao welcome -->
 <script>
-      window.onload = function() {
-            // Initially hide the page content
-            document.querySelector('.welcome-container').style.display = 'block';
+        window.onload = function() {
+            // Initially show the background and spinner
+            document.querySelector('.background').style.backgroundColor = '#4a004e';  // Set background color
+            document.querySelector('.welcome-container').style.display = 'block';  // Show welcome container
 
             // Step 1: Show spinner for 3 seconds
             setTimeout(function() {
                 // Step 2: Show the slogan with typing effect after the spinner disappears
                 document.querySelector('.typing-effect').style.display = 'inline-block';
-                
-                // After the slogan typing effect is finished, show "Bem-vindo"
+
+                // After the slogan typing effect is finished, replace it with "Bem-vindo"
                 setTimeout(function() {
+                    // Step 3: Hide the slogan and show "Bem-vindo"
+                    document.querySelector('.typing-effect').style.display = 'none';
                     document.querySelector('.second-typing-effect').style.display = 'inline-block';
-                    
-                    // After "Bem-vindo", hide everything and show the main menu
+
+                    // After "Bem-vindo" typing effect is finished, hide everything and show the main menu
                     setTimeout(function() {
-                        // This step will hide the welcome container and show the rest of the page
+                        // Hide the welcome container and reveal the menu
                         document.querySelector('.welcome-container').style.display = 'none';
-                    }, 2500); // "Bem-vindo" disappears after 2 seconds
-                }, 4000); // After the slogan typing effect finishes (3 seconds + 1 sec delay)
+                        document.querySelector('.background').style.backgroundColor = '#fff'; // Change background back
+                    }, 2500); // "Bem-vindo" disappears after 2 seconds (after typing effect finishes)
+                }, 4000); // Wait for the slogan to finish typing (3 seconds + 1 sec delay)
             }, 3000); // Spinner disappears after 3 seconds
         };
 
