@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Digital - Restaurante Brasil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-       <link rel="stylesheet" href="styles.css">
     <style>
         /* Estilo global */
         body {
@@ -451,98 +450,54 @@ img {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
 
-/* Wine container */
-.wine-container {
-    position: relative;
-    width: 200px;
-    height: 300px;
-    margin-top: 50px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+.welcome-container {
+            text-align: center;
+            color: #4a004e;
+            font-size: 2em;
+            display: none;
+        }
 
-/* Wine Bottle */
-.wine-bottle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 120px;
-    background-color: #6d1f1c; /* A more refined burgundy color */
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: all 0.5s ease;
-}
+        .typing-effect {
+            display: inline;
+            border-right: 3px solid #ff66b2;
+            padding-right: 5px;
+            font-size: 1.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40) 1s 1 normal both, blink 0.75s step-end infinite;
+        }
 
-/* Wine Glass */
-.wine-glass {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 150px;
-    border-radius: 50% 50% 0 0;
-    border: 2px solid #333;
-    background-color: transparent;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for glass */
-}
+        .second-typing-effect {
+            display: inline;
+            border-right: 3px solid #ff66b2;
+            padding-right: 5px;
+            font-size: 1.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(20) 6s 1 normal both, blink 0.75s step-end infinite;
+        }
 
-/* Wine Fill */
-.wine-fill {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 100%;
-    height: 0; /* Start with empty glass */
-    background-color: #800000; /* Rich red wine color */
-    border-radius: 0 0 50% 50%;
-    transform: translateX(-50%);
-    transition: height 3s ease-in-out; /* Smooth pour transition */
-}
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
 
-/* Main content */
-.main-content {
-    display: none;
-    opacity: 0;
-    transition: opacity 2s;
-    margin-top: 20px;
-}
-
-.main-content h1 {
-    color: #4a004e;
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.main-content p {
-    font-size: 18px;
-    color: #333;
-}
-
-/* Show main content after pouring animation */
-.wine-container.wine-pouring + .main-content {
-    display: block;
-    opacity: 1;
-    transition: opacity 2s;
-}
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
         
     </style>
 </head>
 <body>
-<!-- Wine Pour Animation -->
-<div class="wine-container">
-    <div class="wine-bottle"></div>
-    <div class="wine-glass">
-        <div class="wine-fill"></div>
-    </div>
-        <!-- Welcome Message -->
-        <div id="welcome-message">
-            <h1>Welcome to Our Menu!</h1>
-        </div>
+  <div class="welcome-container">
+        <div class="typing-effect">Sabores que encantam, momentos que ficam</div>
+        <div class="second-typing-effect">Bem-vindo</div>
     </div>
     
    <!-- Cabeçalho -->
@@ -798,20 +753,11 @@ img {
         
 <!-- script para animaçao welcome -->
 <script>
-window.onload = () => {
-    const wineFill = document.querySelector('.wine-fill');
-    const mainContent = document.querySelector('.main-content');
-    
-    // Simulate the wine pouring animation (filling the glass)
-    setTimeout(() => {
-        wineFill.style.height = '80%'; // Adjust the height for a more realistic pour
-    }, 500); // Start pouring 0.5 seconds after page load
-    
-    // Once the pouring is done, show the main content
-    setTimeout(() => {
-        document.querySelector('.wine-container').classList.add('wine-pouring');
-    }, 3000); // Main content will show after 3 seconds (after pouring)
-};
+  window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.welcome-container').style.display = 'block';
+            }, 1000);  // Delay before showing the typing effect
+        };
 
 </script>
 
