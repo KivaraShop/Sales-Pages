@@ -705,6 +705,34 @@ img {
         </div>
     </div>
 </footer>
+<!-- Exemplo de HTML com o menu -->
+<ul id="menu">
+    <li><img src="imagem1.jpg" alt="Imagem 1" class="menu-img"></li>
+    <li><img src="imagem2.jpg" alt="Imagem 2" class="menu-img"></li>
+    <li><img src="imagem3.jpg" alt="Imagem 3" class="menu-img"></li>
+</ul>
+
+<script>
+// Função para forçar o carregamento de imagens no Chrome
+function forceImageLoad() {
+    const images = document.querySelectorAll('.menu-img');
+    images.forEach(img => {
+        // Defina uma imagem de fallback temporária enquanto carrega a original
+        img.src = img.src + '?' + new Date().getTime(); // Adiciona um parâmetro de timestamp para forçar o cache a recarregar
+        img.onload = function() {
+            console.log('Imagem carregada com sucesso: ' + img.src);
+        };
+        img.onerror = function() {
+            console.log('Erro ao carregar a imagem: ' + img.src);
+            // Caso o erro persista, define uma imagem padrão
+            img.src = 'fallback.jpg'; // Substitua 'fallback.jpg' por uma imagem padrão de sua escolha
+        };
+    });
+}
+
+// Chama a função após a página carregar completamente
+window.onload = forceImageLoad;
+</script>
 
 <!-- Spinner e mensagem -->
 <div id="loading-overlay">
