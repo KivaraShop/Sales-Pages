@@ -450,11 +450,102 @@ img {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
 
+.splash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background-color: white;
+}
 
+.color-splash {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: splash-animation 4s ease-out forwards;
+}
+
+.color-splash:nth-child(1) {
+    background-color: #ff66b2;
+    animation-delay: 0s;
+}
+
+.color-splash:nth-child(2) {
+    background-color: #66cc66;
+    animation-delay: 1s;
+}
+
+.color-splash:nth-child(3) {
+    background-color: #ffcc00;
+    animation-delay: 2s;
+}
+
+.color-splash:nth-child(4) {
+    background-color: #3399ff;
+    animation-delay: 3s;
+}
+
+#welcome-message {
+    color: #333;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1001;
+    animation: fade-in 4s ease-out;
+}
+
+@keyframes splash-animation {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(10);
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.content {
+    display: none; /* Hidden initially until splash is gone */
+    text-align: center;
+    padding: 50px;
+}
+
+.show-content {
+    display: block; /* Show content once splash is done */
+}
+        
     </style>
 </head>
 <body>
-
+<!-- Splash Screen -->
+    <div id="splash-screen" class="splash">
+        <div class="color-splash"></div>
+        <div class="color-splash"></div>
+        <div class="color-splash"></div>
+        <div class="color-splash"></div>
+        <!-- Welcome Message -->
+        <div id="welcome-message">
+            <h1>Welcome to Our Menu!</h1>
+        </div>
+    </div>
+    
    <!-- Cabeçalho -->
  <header>
         <div class="menu-toggle">
@@ -705,6 +796,17 @@ img {
         </div>
     </div>
 </footer>
+        
+<!-- script para animaçao welcome -->
+<script>
+window.onload = function() {
+    // Wait 4 seconds for the splash animation to end
+    setTimeout(function() {
+        document.getElementById('splash-screen').style.display = 'none'; // Hide splash screen
+        document.querySelector('.container').classList.add('show-content'); // Show the main content
+    }, 4000); // 4 seconds
+}
+</script>
 
 
 <!-- script para bloquear imagens -->
