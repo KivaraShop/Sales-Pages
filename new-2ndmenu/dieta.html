@@ -184,6 +184,25 @@
         .cart-popup button:hover {
             background-color: #2f6c32;
         }
+
+        .toggle-theme {
+            font-size: 24px;
+            cursor: pointer;
+            color: #4a004e; /* Cor diurna */
+        }
+
+        .dark-mode {
+            background-color: #121212; /* Cor noturna */
+            color: #ffffff; /* Cor noturna */
+        }
+
+        .dark-mode header {
+            background-color: #1e1e1e; /* Cor do cabeçalho noturno */
+        }
+
+        .dark-mode .toggle-theme {
+            color: #ff66b2; /* Cor do ícone no modo noturno */
+        }
     </style>
 </head>
 <body>
@@ -194,6 +213,7 @@
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-badge">3</span>
         </a>
+        <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
     </header>
 
     <!-- Pop-up do Carrinho -->
@@ -272,6 +292,22 @@
             </div>
         </div>
     </div>
+ <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.classList.replace('fa-moon', 'fa-sun'); // Alternar para o ícone de sol
+                toggleButton.title = "Alternar para Modo Diurno";
+            } else {
+                toggleButton.classList.replace('fa-sun', 'fa-moon'); // Alternar para o ícone de lua
+                toggleButton.title = "Alternar para Modo Noturno";
+            }
+        });
+    </script>
+    
     <script>
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
