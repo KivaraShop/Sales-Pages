@@ -450,7 +450,30 @@ img {
     font-size: 12px; /* Reduce the icon size to harmonize with font size */
 }
 
+.menu-categorias {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
 
+    .categoria-btn {
+        background-color: transparent;
+        color: #4a004e;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        margin: 0 15px;
+        border: 2px solid #4a004e;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .categoria-btn:hover {
+        background-color: #4a004e;
+        color: white;
+        transform: scale(1.05);
+    }
     </style>
 </head>
 <body>
@@ -492,7 +515,11 @@ img {
     <!-- Conteúdo principal -->
     <div class="container">
         <h2>Explore Nosso Menu</h2>
-
+<!-- Botões de Categoria -->
+<div class="menu-categorias">
+    <a href="dieta.html" class="categoria-btn">Dieta</a>
+    <a href="vegano.html" class="categoria-btn">Vegano</a>
+</div>
         <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
             <div class="product-card">
