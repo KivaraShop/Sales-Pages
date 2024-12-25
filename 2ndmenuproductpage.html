@@ -17,6 +17,7 @@
             flex-direction: column;
             align-items: center;
             box-sizing: border-box;
+            box-sizing: border-box;
             width: 100%;
             overflow-x: hidden;
         }
@@ -41,14 +42,90 @@
             color: #4a004e;
             text-decoration: none;
         }
+ /* Ícone do carrinho */
+        .cart-icon {
+            color: #4a004e;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .cart-icon .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff66b2;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+       .cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+  .cart-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 20px;
+    display: none;
+}
+
+.cart-popup-content {
+    padding: 20px;
+     margin-top: 20px; /* Adjust this value as needed */
+}
+        
+.cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-popup li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 10px; /* Reduced font size */
+}
+}
+
+.cart-popup img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-popup button {
+    background-color: #ff66b2;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
 
         /* Menu de navegação */
         nav {
             background-color: #ff66b2;
+            position: sticky;
             padding: 10px;
             width: 100%;
             text-align: center;
             font-size: 16px;
+            overflow: hidden;
         }
 
         nav a {
@@ -146,6 +223,26 @@
             margin: 10px 0;
         }
 
+    .nutrition-section {
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.nutrition-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nutrition-section li {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #660033;
+}
+
+
         .ingredients-section, .reviews-section, .nutrition-section {
             text-align: left;
             margin-top: 20px;
@@ -206,87 +303,76 @@
         }
 
        .review {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        .review img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
+.review img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
 
-        .review-content {
-            flex: 1;
-        }
+.review-content {
+    flex: 1;
+}
 
-        .review-content p {
-            font-size: 14px;
-            color: #660033;
-        }
+.review-content p {
+    font-size: 14px;
+    color: #660033;
+    margin-top: 10px;
+}
 
-        .review-content .stars {
-            color: #ffcc00;
-            font-size: 18px;
-        }
+.review-content .stars {
+    color: #ffcc00;
+    font-size: 18px;
+}
 
-        .reactions {
-            display: flex;
-            gap: 10px;
-            font-size: 18px;
-            margin-top: 10px;
-        }
+.reactions {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+    margin-top: 10px;
+}
 
-        .reaction {
-            cursor: pointer;
-        }
+.reaction {
+    cursor: pointer;
+}
 
-        .reaction span {
-            margin-left: 5px;
-        }
-        /* Formulário de avaliação */
-        .review-form {
-            margin-top: 30px;
-            background: #f8f8f8;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+.reaction span {
+    margin-left: 5px;
+}
 
-        .review-form h4 {
-            font-size: 18px;
-            color: #4a004e;
-            margin-bottom: 10px;
-        }
+/* Estilo para o formulário de avaliação */
+form {
+    margin-top: 20px;
+}
 
-        .review-form textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            margin-bottom: 15px;
-            resize: none;
-        }
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-        .review-form .rating {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-        }
+form button {
+    padding: 10px 20px;
+    background-color: #660033;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-        .review-form .rating i {
-            cursor: pointer;
-            font-size: 25px;
-            color: #ffcc00;
-        }
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -319,126 +405,186 @@
 
     <!-- Cabeçalho -->
     <header>
-        <a href="#" class="logo">Shopping Brasil</a>
+        <a href="#" class="logo">Wau!</a>
     </header>
 
     <!-- Menu de Navegação -->
     <nav>
-        <a href="loja.html">Início</a>
-        <a href="loja.html">Produtos</a>
-        <a href="Sobrenos.html">Sobre</a>
-        <a href="contato.html">Contato</a>
+        <a href="index.html">Início</a>
+        <a href="index.html">Produtos</a>
     </nav>
 
     <!-- Conteúdo principal -->
     <div class="container">
-        <!-- Detalhes do Produto -->
-        <div class="product-detail">
-            <!-- Imagem principal -->
-            <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg">
+       <!-- Detalhes do Produto -->
+<div class="product-detail">
+    <!-- Imagem principal (tamanho alterado para /400) -->
+    <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/400" class="main-img" alt="Produto 1">
 
-            <!-- Carrossel de Imagens -->
-            <div class="image-carousel">
-                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Imagem 1">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 2">
-                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 3">
-            </div>
+    <!-- Carrossel de Imagens -->
+    <div class="image-carousel">
+        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg/150" alt="Imagem 1" class="thumbnail">
+        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 2" class="thumbnail">
+        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg/150" alt="Imagem 3" class="thumbnail">
+    </div>
 
             <!-- Informações do Produto -->
-            <div class="product-info">
-                <h2>Produto 1</h2>
-                <p class="price">R$ 49,99</p>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <p class="product-description">
-                    Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
-                </p>
-                <button class="add-to-cart">Adicionar ao Pedido</button>
-                <button class="back-button" onclick="window.location.href='loja.html'">Voltar aos Produtos</button>
-            </div>
+    <div class="product-info">
+        <h2>Produto 1</h2>
+        <p class="price">R$ 49,99</p>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
+        <p class="product-description">
+            Produto 1 é uma descrição detalhada do produto. Ele possui características e vantagens que você vai adorar. Perfeito para quem busca qualidade e estilo!
+        </p>
+        <button class="back-button" onclick="window.location.href='index.html'">Voltar aos Produtos</button>
+    </div>
+</div>
+<!-- Ícone do Carrinho -->
+<a href="javascript:void(0);" class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-badge"></span>
+</a>
 
+<!-- Pop-up do Carrinho -->
+<div class="cart-popup" style="display: none;">
+    <div class="cart-popup-content"></div>
+</div>
+
+  <!-- Informação Nutricional -->
+<div class="nutrition-section">
+    <h3>Informação Nutricional</h3>
+    <ul>
+        <li><strong>Calories:</strong> 250 kcal</li>
+        <li><strong>Proteins:</strong> 8 g</li>
+        <li><strong>Carbohydrates:</strong> 35 g</li>
+        <li><strong>Fats:</strong> 10 g</li>
+        <li><strong>Sodium:</strong> 150 mg</li>
+        <li><strong>Fiber:</strong> 5 g</li>
+    </ul>
+</div>
+    
         <!-- Ingredientes -->
         <div class="ingredients-section">
             <h3>Ingredientes</h3>
             <ul>
-                <li>Alface <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
-                <li>Tomate <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
-                <li>Picanha <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
-                <li>Queijo <span class="remove-ingredient" onclick="removeIngredient(this)">Remover</span><span class="undo-ingredient" onclick="undoRemove(this)">Adicionar de Volta</span></li>
+                <li>Alface 
+                <li>Tomate
+                <li>Picanha 
+                <li>Queijo
             </ul>
         </div>
 
-        <div class="reviews-section">
-            <h3>Avaliações</h3>
+ <div class="reviews-section">
+    <h3>Avaliações</h3>
 
-            <!-- Avaliação 1 -->
-            <div class="review">
-                <img src="https://i.pravatar.cc/50?img=1" alt="Avatar 1">
-                <div class="review-content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>"Delicioso, amei!"</p>
-                    <span>João</span>
-                    <div class="reactions">
-                        <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>3</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>5</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>2</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>1</span></span>
-                    </div>
-                </div>
+    <!-- Avaliação 1 -->
+    <div class="review">
+        <img src="https://i.pravatar.cc/50?img=1" alt="Avatar 1">
+        <div class="review-content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
             </div>
-
-            <!-- Avaliação 2 -->
-            <div class="review">
-                <img src="https://i.pravatar.cc/50?img=2" alt="Avatar 2">
-                <div class="review-content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>"Muito bom, mas poderia ser mais quente."</p>
-                    <span>Maria</span>
-                    <div class="reactions">
-                        <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>2</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>3</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>1</span></span>
-                        <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>0</span></span>
-                    </div>
-                </div>
+            <p>"Delicioso, amei!"</p>
+            <span>João</span>
+            <div class="reactions">
+                <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>3</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>5</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>2</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>1</span></span>
             </div>
         </div>
     </div>
 
-
-            <!-- Formulário para deixar uma avaliação -->
-            <div class="review-form">
-                <h4>Deixe sua avaliação</h4>
-                <div class="rating">
-                    <i class="fas fa-star" onclick="rate(1)"></i>
-                    <i class="fas fa-star" onclick="rate(2)"></i>
-                    <i class="fas fa-star" onclick="rate(3)"></i>
-                    <i class="fas fa-star" onclick="rate(4)"></i>
-                    <i class="fas fa-star" onclick="rate(5)"></i>
-                </div>
-                <textarea placeholder="Deixe seu comentário aqui..." id="review-comment"></textarea>
-                <button class="add-to-cart">Enviar Avaliação</button>
+    <!-- Avaliação 2 -->
+    <div class="review">
+        <img src="https://i.pravatar.cc/50?img=2" alt="Avatar 2">
+        <div class="review-content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>"Muito bom, mas poderia ser mais quente."</p>
+            <span>Maria</span>
+            <div class="reactions">
+                <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>2</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>3</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>1</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>0</span></span>
             </div>
         </div>
     </div>
+
+    <!-- Avaliação 3 -->
+    <div class="review">
+        <img src="https://i.pravatar.cc/50?img=3" alt="Avatar 3">
+        <div class="review-content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <p>"Achei razoável, mas pode melhorar."</p>
+            <span>Carlos</span>
+            <div class="reactions">
+                <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>1</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>2</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>3</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>1</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+                <div class="reviews">
+    <!-- Avaliações existentes vão aqui -->
+    <div id="avaliacoes-container">
+        <!-- Avaliações existentes aparecerão aqui -->
+    </div>
+
+    <h3>Adicionar Avaliação</h3>
+    <form id="form-avaliacao">
+        <input type="text" id="nome" placeholder="Seu nome" required><br>
+        <textarea id="comentario" placeholder="Sua avaliação..." required></textarea><br>
+        <div>
+            <label for="stars">Avaliação (Estrelas):</label>
+            <select id="stars" required>
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            </select>
+        </div>
+        <button type="submit">Enviar Avaliação</button>
+    </form>
+</div>
+
+    </div>
+
+    <script>
+        // Função para incrementar as reações
+        function incrementReaction(reactionElement, emojiIndex) {
+            const reactionCount = reactionElement.querySelector("span");
+            const currentCount = parseInt(reactionCount.textContent);
+            reactionCount.textContent = currentCount + 1;
+        }
+    </script>
 
     <script>
         // Função para remover ingrediente
@@ -458,16 +604,30 @@
         }
 
         // Script para alterar imagem principal ao clicar nas miniaturas
-        const thumbnails = document.querySelectorAll('.image-carousel img');
-        const mainImage = document.querySelector('.main-img');
+document.addEventListener('DOMContentLoaded', function () {
+    const mainImage = document.querySelector('.product-detail .main-img');
+    const thumbnails = document.querySelectorAll('.product-detail .image-carousel img');
 
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                mainImage.src = this.src;
-                thumbnails.forEach(img => img.classList.remove('selected')); // Remove a borda de todas
-                this.classList.add('selected'); // Adiciona borda à miniatura clicada
-            });
+    // Se a imagem principal ou miniaturas não forem encontradas, logar erro
+    if (!mainImage || thumbnails.length === 0) {
+        console.error("Imagem principal ou miniaturas não encontradas.");
+        return;
+    }
+
+    // Adicionar evento de clique nas miniaturas
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function () {
+            // Alterar a imagem principal para a miniatura clicada
+            mainImage.src = this.src;
+
+            // Remover a classe 'selected' de todas as miniaturas
+            thumbnails.forEach(img => img.classList.remove('selected'));
+
+            // Adicionar a classe 'selected' à miniatura clicada
+            this.classList.add('selected');
         });
+    });
+});
 
         // Função de avaliação com estrelas
         let currentRating = 0;
@@ -484,6 +644,285 @@
             });
         }
     </script>
+    
+    <script>
+document.getElementById('form-avaliacao').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio do formulário e recarregamento da página
+    
+    // Pega os dados do formulário
+    var nome = document.getElementById('nome').value;
+    var comentario = document.getElementById('comentario').value;
+    var stars = document.getElementById('stars').value;
+
+    // Cria um novo item de avaliação
+    var novaAvaliacao = document.createElement('div');
+    novaAvaliacao.classList.add('review');
+
+    var estrelaHTML = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < stars) {
+            estrelaHTML += '<i class="fas fa-star"></i>';
+        } else {
+            estrelaHTML += '<i class="far fa-star"></i>';
+        }
+    }
+
+    novaAvaliacao.innerHTML = `
+        <img src="https://i.pravatar.cc/50?img=${Math.floor(Math.random() * 100)}" alt="Avatar">
+        <div class="review-content">
+            <div class="stars">${estrelaHTML}</div>
+            <p>"${comentario}"</p>
+            <span>${nome}</span>
+            <div class="reactions">
+                <span class="reaction" onclick="incrementReaction(this, 0)">😊<span>0</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 1)">😋<span>0</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 2)">😐<span>0</span></span>
+                <span class="reaction" onclick="incrementReaction(this, 3)">😞<span>0</span></span>
+            </div>
+        </div>
+    `;
+
+    // Adiciona a nova avaliação no container
+    document.getElementById('avaliacoes-container').appendChild(novaAvaliacao);
+
+    // Limpa os campos do formulário
+    document.getElementById('nome').value = '';
+    document.getElementById('comentario').value = '';
+    document.getElementById('stars').value = '5';
+});
+
+// Função para incrementar reações (Emojis)
+function incrementReaction(reactionElement, index) {
+    let span = reactionElement.querySelector('span');
+    span.textContent = parseInt(span.textContent) + 1;
+}
+
+    </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const cartPopup = document.querySelector('.cart-popup');
+    const cartPopupContent = document.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card'); // This will grab product cards from both pages
+
+    // Update cart count
+    function updateCartCount() {
+        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
+    }
+
+    // Calculate total price
+    function calculateTotal() {
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price.replace('R$', '').trim());
+        });
+        return total;
+    }
+
+    // Animate total sum counting
+    function animateTotalSum() {
+        const total = calculateTotal();
+        let currentTotal = 0;
+        const increment = total / 100;
+        const totalElement = document.querySelector('.cart-total');
+
+        function updateTotal() {
+            currentTotal += increment;
+            if (currentTotal < total) {
+                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
+                requestAnimationFrame(updateTotal);
+            } else {
+                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+            }
+        }
+        updateTotal();
+    }
+
+    // Render cart content for the second page
+    function renderCart() {
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
+        const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
+
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
+        } else {
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <p>${item.name}</p>
+                        <p class="price">${item.price}</p>
+                    </div>
+                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+                `;
+
+                // Remove item from cart
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1);
+                    saveCart(); // Save updated cart to localStorage
+                    updateCartCount();
+                    renderCart();
+                });
+
+                ul.appendChild(li);
+            });
+        }
+        cartPopupContent.appendChild(ul);
+
+        // Add total sum display
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ 0.00`; // Start from 0.00
+        cartPopupContent.appendChild(totalElement);
+
+        // Animate the total sum counting
+        animateTotalSum();
+
+        // "Fazer Pedido" button
+        const fazerPedidoButton = document.createElement('button');
+        fazerPedidoButton.textContent = 'Fazer pedido';
+        fazerPedidoButton.style.background = '#ff66b2';
+        fazerPedidoButton.style.color = 'white';
+        fazerPedidoButton.style.border = 'none';
+        fazerPedidoButton.style.padding = '10px';
+        fazerPedidoButton.style.width = '100%';
+        fazerPedidoButton.style.cursor = 'pointer';
+        fazerPedidoButton.style.marginTop = '10px';
+        fazerPedidoButton.addEventListener('click', () => {
+            showNextButtons();
+        });
+        cartPopupContent.appendChild(fazerPedidoButton);
+
+        // Close cart button
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Fechar';
+        closeButton.style.background = '#ff66b2';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '5px 10px';  // Reduced padding
+        closeButton.style.fontSize = '12px';     // Reduced font size
+        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', () => {
+            cartPopup.style.display = 'none';
+        });
+
+        cartPopupContent.appendChild(closeButton);
+    }
+
+    // Show the next buttons after "Fazer Pedido"
+    function showNextButtons() {
+        // Clear previous content
+        cartPopupContent.innerHTML = '';
+
+        // Add total sum display
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
+        cartPopupContent.appendChild(totalElement);
+
+        // Add Aguardar and Falar com atendente buttons
+        const aguardarButton = document.createElement('button');
+        aguardarButton.textContent = 'Aguardar';
+        aguardarButton.style.background = '#4CAF50'; // Green
+        aguardarButton.style.color = 'white';
+        aguardarButton.style.border = 'none';
+        aguardarButton.style.padding = '10px';
+        aguardarButton.style.width = '100%';
+        aguardarButton.style.cursor = 'pointer';
+        aguardarButton.style.marginTop = '10px';
+        aguardarButton.addEventListener('click', () => startCountdown());
+        cartPopupContent.appendChild(aguardarButton);
+
+        const falarButton = document.createElement('button');
+        falarButton.textContent = 'Falar com atendente';
+        falarButton.style.background = '#ff66b2'; // Pink
+        falarButton.style.color = 'white';
+        falarButton.style.border = 'none';
+        falarButton.style.padding = '10px';
+        falarButton.style.width = '100%';
+        falarButton.style.cursor = 'pointer';
+        falarButton.style.marginTop = '10px';
+        falarButton.addEventListener('click', () => {
+            window.location.href = `https://wa.me/258852136558?text=Pedido%20de%20compra:%20Total%20R$${calculateTotal().toFixed(2)}`;
+        });
+        cartPopupContent.appendChild(falarButton);
+    }
+
+    // Countdown timer for the "Aguardar" button
+    function startCountdown() {
+        let timeRemaining = 120; // 2 minutes
+        const countdownElement = document.createElement('div');
+        countdownElement.classList.add('countdown');
+        countdownElement.style.marginTop = '20px';
+        cartPopupContent.appendChild(countdownElement);
+
+        function updateCountdown() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            countdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                countdownElement.innerHTML = 'Tempo esgotado!';
+            }
+        }
+        updateCountdown();
+    }
+
+    // Add product to cart (for both product structures)
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price });
+            saveCart(); // Save cart to localStorage
+            updateCartCount();
+            renderCart();
+        });
+    });
+
+    // Toggle cart popup visibility
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
+
+    // Save cart to localStorage
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Initialize cart state
+    updateCartCount();
+});
+
+</script>
+
+
 
 </body>
 </html>
