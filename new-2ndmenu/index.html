@@ -194,12 +194,12 @@
             justify-content: center;
         }
 
-        @media(min-width: 768px) {
-            .product-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+     @media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+        gap: 15px; /* Adjust spacing as needed */
+    }
+}
         }
 
         .menu-section {
