@@ -413,6 +413,45 @@
             </div>
             
         </div>
+
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const maxProductsPerRow = 10; // Maximum products per row
+    const productGrid = document.querySelector(".product-grid");
+    const products = Array.from(productGrid.children); // Get all product cards
+
+    // Check if there are more products than the max allowed per row
+    if (products.length > maxProductsPerRow) {
+        // Create a new wrapper for rows
+        const container = productGrid.parentElement;
+        const rows = Math.ceil(products.length / maxProductsPerRow);
+
+        // Clear the grid container
+        productGrid.innerHTML = "";
+
+        // Split products into rows
+        for (let i = 0; i < rows; i++) {
+            const row = document.createElement("div");
+            row.classList.add("product-row");
+            row.style.display = "flex";
+            row.style.flexWrap = "wrap";
+            row.style.justifyContent = "space-between";
+            row.style.marginBottom = "20px";
+
+            // Append products to the row
+            const start = i * maxProductsPerRow;
+            const end = start + maxProductsPerRow;
+            const productsForRow = products.slice(start, end);
+
+            productsForRow.forEach(product => row.appendChild(product));
+
+            // Add the row to the container
+            container.appendChild(row);
+        }
+    }
+});
+</script>
+
     
     <script>
 document.addEventListener('DOMContentLoaded', () => {
