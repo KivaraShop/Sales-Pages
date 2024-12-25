@@ -414,41 +414,54 @@
             
         </div>
 
-        <script>
+       <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const maxProductsPerRow = 10; // Maximum products per row
+    const maxProductsPerPage = 10; // Maximum products per page
     const productGrid = document.querySelector(".product-grid");
     const products = Array.from(productGrid.children); // Get all product cards
+    const totalProducts = products.length;
+    const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
 
-    // Check if there are more products than the max allowed per row
-    if (products.length > maxProductsPerRow) {
-        // Create a new wrapper for rows
-        const container = productGrid.parentElement;
-        const rows = Math.ceil(products.length / maxProductsPerRow);
+    // Create a pagination container
+    const pagination = document.createElement("div");
+    pagination.classList.add("pagination");
+    pagination.style.textAlign = "center";
+    pagination.style.marginTop = "20px";
 
-        // Clear the grid container
+    // Function to render a specific page
+    function renderPage(page) {
+        // Clear the grid
         productGrid.innerHTML = "";
 
-        // Split products into rows
-        for (let i = 0; i < rows; i++) {
-            const row = document.createElement("div");
-            row.classList.add("product-row");
-            row.style.display = "flex";
-            row.style.flexWrap = "wrap";
-            row.style.justifyContent = "space-between";
-            row.style.marginBottom = "20px";
+        // Calculate start and end indices
+        const start = (page - 1) * maxProductsPerPage;
+        const end = start + maxProductsPerPage;
 
-            // Append products to the row
-            const start = i * maxProductsPerRow;
-            const end = start + maxProductsPerRow;
-            const productsForRow = products.slice(start, end);
+        // Append products for the current page
+        products.slice(start, end).forEach(product => productGrid.appendChild(product));
 
-            productsForRow.forEach(product => row.appendChild(product));
+        // Update pagination buttons
+        pagination.innerHTML = "";
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement("button");
+            button.textContent = i;
+            button.style.margin = "0 5px";
+            button.style.padding = "5px 10px";
+            button.style.cursor = "pointer";
+            button.style.border = "1px solid #ccc";
+            button.style.backgroundColor = i === page ? "#ff66b2" : "#fff";
+            button.style.color = i === page ? "#fff" : "#4a004e";
 
-            // Add the row to the container
-            container.appendChild(row);
+            button.addEventListener("click", () => renderPage(i));
+            pagination.appendChild(button);
         }
     }
+
+    // Render the first page
+    renderPage(1);
+
+    // Append pagination below the grid
+    productGrid.parentElement.appendChild(pagination);
 });
 </script>
 
