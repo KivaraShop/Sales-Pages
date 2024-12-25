@@ -187,11 +187,9 @@
 
         /* Grid de Proud tos (menu) */
         .product-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 0 10px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
 
 
