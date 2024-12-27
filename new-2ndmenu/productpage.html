@@ -223,44 +223,16 @@
             margin: 10px 0;
         }
 
-    .nutrition-section {
-    text-align: left;
-    margin-top: 20px;
-    padding: 10px;
-    background: #f8f8f8;
-    border-radius: 8px;
+  .nutrition-section, .ingredients-section {
+    display: inline-block; /* Ensures both sections can sit side by side */
+    vertical-align: top; /* Aligns them at the top */
+    width: 48%; /* Adjust width to make space for both */
+    margin-right: 2%; /* Adds spacing between them */
 }
 
-.nutrition-section ul {
-    list-style: none;
-    padding: 0;
+.ingredients-section {
+    margin-right: 0; /* Removes margin from the last item */
 }
-
-.nutrition-section li {
-    margin-bottom: 8px;
-    font-size: 16px;
-    color: #660033;
-}
-
-
-        .ingredients-section, .reviews-section, .nutrition-section {
-            text-align: left;
-            margin-top: 20px;
-            padding: 10px;
-            background: #f8f8f8;
-            border-radius: 8px;
-        }
-
-        .ingredients-section ul, .reviews-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .ingredients-section li, .reviews-section li {
-            margin-bottom: 8px;
-            font-size: 16px;
-            color: #660033;
-        }
 
         .remove-ingredient {
             color: #ff6666;
