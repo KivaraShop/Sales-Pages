@@ -223,19 +223,59 @@
             margin: 10px 0;
         }
 
-   .nutrition-section, .ingredients-section {
-    display: inline-block; /* Place sections side by side */
-    width: 48%; /* Ensure both fit within the container */
-    vertical-align: top; /* Align at the top */
+    .nutrition-section {
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 8px;
 }
 
-.nutrition-section {
-    text-align: left; /* Keep content left-aligned */
+.nutrition-section ul {
+    list-style: none;
+    padding: 0;
 }
 
-.ingredients-section {
-    text-align: right; /* Align content to the right */
+.nutrition-section li {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #660033;
 }
+
+
+        .ingredients-section, .reviews-section, .nutrition-section {
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .ingredients-section ul, .reviews-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredients-section li, .reviews-section li {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #660033;
+        }
+
+        .remove-ingredient {
+            color: #ff6666;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .undo-ingredient {
+            color: #66cc66;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            display: none; /* Inicialmente escondido */
+        }
 
         .add-to-cart, .back-button {
             background: #ff66b2;
