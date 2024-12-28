@@ -645,9 +645,7 @@
     <button>Adicionar ao Pedido</button>
 </div>
 
-        
-
-       <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
     const maxProductsPerPage = 12; // Maximum products per page
     const productGrid = document.querySelector(".product-grid");
@@ -655,34 +653,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalProducts = products.length;
     const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
 
-    // Carrinho (array para armazenar os itens do carrinho)
-    const cart = [];
+    // Create a pagination container
+    const pagination = document.createElement("div");
+    pagination.classList.add("pagination");
+    pagination.style.textAlign = "center";
+    pagination.style.marginTop = "20px";
 
-    // Função para adicionar produto ao carrinho
+    // Function to handle adding product to cart
     function addToCart(product) {
-        const productName = product.querySelector("h3").textContent;
-        const productPrice = product.querySelector(".price").textContent;
-        cart.push({ name: productName, price: productPrice });
-        console.log(cart); // Verifica os itens adicionados no console
-        alert(`Produto "${productName}" adicionado ao carrinho!`);
+        console.log("Produto Adicionado ao Carrinho: ", product.querySelector("h3").textContent);
+        // Aqui você pode adicionar lógica de armazenamento no carrinho (por exemplo, no localStorage)
     }
 
-    // Função para configurar eventos de clique nos botões "Adicionar ao Carrinho"
+    // Function to setup event listeners for "Add to Cart" buttons
     function setupAddToCartButtons() {
-        const addToCartButtons = document.querySelectorAll(".product-card button");
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
         addToCartButtons.forEach(button => {
-            button.removeEventListener("click", handleAddToCart); // Remove listener anterior, se existir
-            button.addEventListener("click", handleAddToCart); // Adiciona um novo listener
+            button.addEventListener("click", function () {
+                const productCard = button.closest(".product-card");
+                addToCart(productCard);
+            });
         });
     }
 
-    // Função para lidar com o clique no botão "Adicionar ao Carrinho"
-    function handleAddToCart(event) {
-        const product = event.target.closest(".product-card"); // Encontra o card do produto
-        addToCart(product);
-    }
-
-    // Função para renderizar uma página específica
+    // Function to render a specific page
     function renderPage(page) {
         // Clear the grid
         productGrid.innerHTML = "";
@@ -694,15 +688,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Append products for the current page
         products.slice(start, end).forEach(product => productGrid.appendChild(product));
 
-        // Atualiza a paginação e a reanexa ao DOM
-        updatePagination(page);
-
-        // Reatribui eventos "Adicionar ao Carrinho" após renderizar a página
-        setupAddToCartButtons();
-    }
-
-    // Função para atualizar a paginação
-    function updatePagination(currentPage) {
+        // Update pagination buttons
         pagination.innerHTML = "";
         for (let i = 1; i <= totalPages; i++) {
             const button = document.createElement("button");
@@ -711,29 +697,25 @@ document.addEventListener("DOMContentLoaded", function () {
             button.style.padding = "5px 10px";
             button.style.cursor = "pointer";
             button.style.border = "1px solid #ccc";
-            button.style.backgroundColor = i === currentPage ? "#ff66b2" : "#fff";
-            button.style.color = i === currentPage ? "#fff" : "#4a004e";
+            button.style.backgroundColor = i === page ? "#ff66b2" : "#fff";
+            button.style.color = i === page ? "#fff" : "#4a004e";
 
             button.addEventListener("click", () => renderPage(i));
             pagination.appendChild(button);
         }
 
-        // Garante que a paginação esteja sempre no final do contêiner pai
-        productGrid.parentElement.appendChild(pagination);
+        // Setup Add to Cart buttons after rendering page
+        setupAddToCartButtons();
     }
 
-    // Cria um contêiner de paginação
-    const pagination = document.createElement("div");
-    pagination.classList.add("pagination");
-    pagination.style.textAlign = "center";
-    pagination.style.marginTop = "20px";
-
-    // Renderiza a primeira página
+    // Render the first page
     renderPage(1);
+
+    // Append pagination below the grid
+    productGrid.parentElement.appendChild(pagination);
 });
 </script>
 
-    
     <script>
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
