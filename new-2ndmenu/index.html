@@ -538,21 +538,27 @@ img {
 .product-card {
     position: relative;
 }
-/* Estilo do ícone de informação */
+/* Style for the information icon */
 .info-icon {
-    font-size: 20px;
+    font-size: 18px;
     color: #007bff;
     cursor: pointer;
+    margin-top: 8px; /* Reduced space to align better */
+}
+
+/* Positioning of the info bubble */
+.info-container {
+    position: relative;
+    display: inline-block;
     margin-top: 10px;
 }
 
-/* Estilo da bolha informativa */
 .info-bubble {
-    display: none; /* Inicialmente oculta */
+    display: none; /* Initially hidden */
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 100%;
-    transform: translateY(-50%);
+    transform: translateX(10px); /* Adjusted for better spacing */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -562,18 +568,23 @@ img {
     font-size: 14px;
     color: #333;
     z-index: 10;
+    max-width: 250px; /* Ensure the bubble doesn’t overflow */
+    white-space: normal; /* Prevents text overflow */
 }
 
-/* Estilo quando a bolha estiver visível */
+/* Active bubble visibility */
 .info-icon.active + .info-bubble {
     display: block;
 }
 
-/* Ajuste de posição do ícone */
-.info-container {
-    position: relative;
-    display: inline-block;
-    margin-top: 10px;
+/* Tooltip arrow style */
+.info-bubble:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    border: 5px solid transparent;
+    border-right-color: #ccc;
 }
 
     </style>
@@ -635,7 +646,7 @@ img {
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                  </div>
-        <div class="info-container">
+   <div class="info-container">
         <i class="fas fa-info-circle info-icon"></i>
         <div class="info-bubble">
             <p><strong>Calorias:</strong> 350 kcal</p>
@@ -894,14 +905,19 @@ img {
 </footer>
 
 <script>
-// Seleciona todos os ícones de informação
+// Select all info icons
 const infoIcons = document.querySelectorAll('.info-icon');
 
-// Adiciona evento de clique para exibir/ocultar a bolha informativa
+// Add click event to toggle info bubble visibility
 infoIcons.forEach(icon => {
     icon.addEventListener('click', function() {
-        const bubble = icon.nextElementSibling; // Bolha informativa
-        bubble.style.display = bubble.style.display === 'block' ? 'none' : 'block';
+        const bubble = icon.nextElementSibling; // The info bubble
+        // Toggle visibility of the bubble
+        if (bubble.style.display === 'block') {
+            bubble.style.display = 'none';
+        } else {
+            bubble.style.display = 'block';
+        }
         icon.classList.toggle('active');
     });
 });
