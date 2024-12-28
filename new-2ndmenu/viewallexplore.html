@@ -683,11 +683,13 @@ document.addEventListener("DOMContentLoaded", function () {
             button.style.backgroundColor = i === page ? "#ff66b2" : "#fff";
             button.style.color = i === page ? "#fff" : "#4a004e";
 
-            button.addEventListener("click", () => renderPage(i));
+            button.addEventListener("click", function() {
+                renderPage(i); // Call renderPage to change to the clicked page
+            });
             pagination.appendChild(button);
         }
 
-        // Reattach the "Add to Cart" event listeners after rendering the page
+        // Re-attach the "Add to Cart" event listeners after rendering the page
         attachAddToCartEventListeners();
     }
 
@@ -701,7 +703,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function attachAddToCartEventListeners() {
         const addToCartButtons = document.querySelectorAll(".add-to-cart");
         addToCartButtons.forEach(button => {
-            button.addEventListener("click", function () {
+            button.addEventListener("click", function() {
                 const productCard = button.closest(".product-card");
                 addToCart(productCard);
             });
@@ -715,6 +717,7 @@ document.addEventListener("DOMContentLoaded", function () {
     productGrid.parentElement.appendChild(pagination);
 });
 </script>
+
 
 
 
