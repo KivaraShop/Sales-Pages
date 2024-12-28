@@ -683,13 +683,11 @@ document.addEventListener("DOMContentLoaded", function () {
             button.style.backgroundColor = i === page ? "#ff66b2" : "#fff";
             button.style.color = i === page ? "#fff" : "#4a004e";
 
-            button.addEventListener("click", function () {
-                renderPage(i);
-            });
+            button.addEventListener("click", () => renderPage(i));
             pagination.appendChild(button);
         }
 
-        // Re-attach the "Add to Cart" event listeners after rendering the page
+        // Reattach the "Add to Cart" event listeners after rendering the page
         attachAddToCartEventListeners();
     }
 
@@ -717,6 +715,7 @@ document.addEventListener("DOMContentLoaded", function () {
     productGrid.parentElement.appendChild(pagination);
 });
 </script>
+
 
 
     <script>
