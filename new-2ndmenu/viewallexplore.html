@@ -669,10 +669,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const end = start + maxProductsPerPage;
 
         // Append products for the current page
-        const pageProducts = products.slice(start, end);
-        pageProducts.forEach(product => {
-            productGrid.appendChild(product);
-        });
+        products.slice(start, end).forEach(product => productGrid.appendChild(product));
 
         // Update pagination buttons
         pagination.innerHTML = "";
@@ -720,7 +717,6 @@ document.addEventListener("DOMContentLoaded", function () {
     productGrid.parentElement.appendChild(pagination);
 });
 </script>
-
 
 
     <script>
