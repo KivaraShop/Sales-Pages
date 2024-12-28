@@ -662,18 +662,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to handle adding product to cart
     function addToCart(product) {
         console.log("Produto Adicionado ao Carrinho: ", product.querySelector("h3").textContent);
-        // Aqui você pode adicionar lógica de armazenamento no carrinho (por exemplo, no localStorage)
-    }
-
-    // Function to setup event listeners for "Add to Cart" buttons
-    function setupAddToCartButtons() {
-        const addToCartButtons = document.querySelectorAll(".add-to-cart");
-        addToCartButtons.forEach(button => {
-            button.addEventListener("click", function () {
-                const productCard = button.closest(".product-card");
-                addToCart(productCard);
-            });
-        });
+        // Aqui você pode adicionar lógica de armazenamento no carrinho (exemplo: localStorage)
     }
 
     // Function to render a specific page
@@ -686,7 +675,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const end = start + maxProductsPerPage;
 
         // Append products for the current page
-        products.slice(start, end).forEach(product => productGrid.appendChild(product));
+        const pageProducts = products.slice(start, end);
+        pageProducts.forEach(product => {
+            productGrid.appendChild(product);
+        });
+
+        // Setup Add to Cart buttons after rendering page
+        setupAddToCartButtons();
 
         // Update pagination buttons
         pagination.innerHTML = "";
@@ -703,9 +698,17 @@ document.addEventListener("DOMContentLoaded", function () {
             button.addEventListener("click", () => renderPage(i));
             pagination.appendChild(button);
         }
+    }
 
-        // Setup Add to Cart buttons after rendering page
-        setupAddToCartButtons();
+    // Function to setup event listeners for "Add to Cart" buttons
+    function setupAddToCartButtons() {
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+        addToCartButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const productCard = button.closest(".product-card");
+                addToCart(productCard);
+            });
+        });
     }
 
     // Render the first page
@@ -715,6 +718,7 @@ document.addEventListener("DOMContentLoaded", function () {
     productGrid.parentElement.appendChild(pagination);
 });
 </script>
+
 
     <script>
 document.addEventListener('DOMContentLoaded', () => {
