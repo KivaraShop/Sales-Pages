@@ -694,7 +694,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Append products for the current page
         products.slice(start, end).forEach(product => productGrid.appendChild(product));
 
-        // Update pagination buttons
+        // Atualiza a paginação e a reanexa ao DOM
+        updatePagination(page);
+
+        // Reatribui eventos "Adicionar ao Carrinho" após renderizar a página
+        setupAddToCartButtons();
+    }
+
+    // Função para atualizar a paginação
+    function updatePagination(currentPage) {
         pagination.innerHTML = "";
         for (let i = 1; i <= totalPages; i++) {
             const button = document.createElement("button");
@@ -703,22 +711,25 @@ document.addEventListener("DOMContentLoaded", function () {
             button.style.padding = "5px 10px";
             button.style.cursor = "pointer";
             button.style.border = "1px solid #ccc";
-            button.style.backgroundColor = i === page ? "#ff66b2" : "#fff";
-            button.style.color = i === page ? "#fff" : "#4a004e";
+            button.style.backgroundColor = i === currentPage ? "#ff66b2" : "#fff";
+            button.style.color = i === currentPage ? "#fff" : "#4a004e";
 
             button.addEventListener("click", () => renderPage(i));
             pagination.appendChild(button);
         }
 
-        // Reatribui eventos "Adicionar ao Carrinho" após renderizar a página
-        setupAddToCartButtons();
+        // Garante que a paginação esteja sempre no final do contêiner pai
+        productGrid.parentElement.appendChild(pagination);
     }
 
-    // Render the first page
-    renderPage(1);
+    // Cria um contêiner de paginação
+    const pagination = document.createElement("div");
+    pagination.classList.add("pagination");
+    pagination.style.textAlign = "center";
+    pagination.style.marginTop = "20px";
 
-    // Append pagination below the grid
-    productGrid.parentElement.appendChild(pagination);
+    // Renderiza a primeira página
+    renderPage(1);
 });
 </script>
 
