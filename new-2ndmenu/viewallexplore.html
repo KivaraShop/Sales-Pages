@@ -647,31 +647,31 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const maxProductsPerPage = 12; // Maximum products per page
+    const maxProductsPerPage = 12; // Número máximo de produtos por página
     const productGrid = document.querySelector(".product-grid");
-    const products = Array.from(productGrid.children); // Get all product cards
+    const products = Array.from(productGrid.children); // Todos os cards de produtos
     const totalProducts = products.length;
     const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
 
-    // Create a pagination container
+    // Criar um container para a paginação
     const pagination = document.createElement("div");
     pagination.classList.add("pagination");
     pagination.style.textAlign = "center";
     pagination.style.marginTop = "20px";
 
-    // Function to render a specific page
+    // Função para renderizar uma página específica
     function renderPage(page) {
-        // Clear the grid
+        // Limpar a grid
         productGrid.innerHTML = "";
 
-        // Calculate start and end indices
+        // Calcular os índices de início e fim
         const start = (page - 1) * maxProductsPerPage;
         const end = start + maxProductsPerPage;
 
-        // Append products for the current page
+        // Adicionar os produtos da página atual
         products.slice(start, end).forEach(product => productGrid.appendChild(product));
 
-        // Update pagination buttons
+        // Atualizar os botões de paginação
         pagination.innerHTML = "";
         for (let i = 1; i <= totalPages; i++) {
             const button = document.createElement("button");
@@ -684,39 +684,41 @@ document.addEventListener("DOMContentLoaded", function () {
             button.style.color = i === page ? "#fff" : "#4a004e";
 
             button.addEventListener("click", function() {
-                renderPage(i); // Call renderPage to change to the clicked page
+                renderPage(i); // Alterar para a página clicada
             });
             pagination.appendChild(button);
         }
 
-        // Re-attach the "Add to Cart" event listeners after rendering the page
+        // Re-associar os eventos "Adicionar ao Carrinho"
         attachAddToCartEventListeners();
     }
 
-    // Function to add a product to the cart (for testing)
+    // Função para adicionar produto ao carrinho
     function addToCart(product) {
-        console.log("Produto Adicionado ao Carrinho: ", product.querySelector("h3").textContent);
-        // Aqui você pode adicionar a lógica para armazenar no carrinho (exemplo: localStorage)
+        // Você pode substituir isso pela lógica do seu carrinho
+        console.log("Produto Adicionado ao Carrinho:", product.querySelector("h3").textContent);
+        alert("Produto Adicionado ao Carrinho!");
     }
 
-    // Function to attach "Add to Cart" event listeners to all product buttons
+    // Função para adicionar os ouvintes de evento aos botões "Adicionar ao Carrinho"
     function attachAddToCartEventListeners() {
         const addToCartButtons = document.querySelectorAll(".add-to-cart");
         addToCartButtons.forEach(button => {
-            button.addEventListener("click", function() {
+            button.addEventListener("click", function(e) {
                 const productCard = button.closest(".product-card");
                 addToCart(productCard);
             });
         });
     }
 
-    // Initial page render
+    // Renderizar a primeira página
     renderPage(1);
 
-    // Append pagination below the grid
+    // Adicionar a paginação abaixo da grid de produtos
     productGrid.parentElement.appendChild(pagination);
 });
 </script>
+
 
 
 
