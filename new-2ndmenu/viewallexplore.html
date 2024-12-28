@@ -692,18 +692,18 @@ document.addEventListener("DOMContentLoaded", function () {
             pagination.appendChild(button);
         }
 
-        // Re-attach the add to cart buttons after the page is rendered
-        setupAddToCartButtons();
+        // Re-attach the "Add to Cart" event listeners after rendering the page
+        attachAddToCartEventListeners();
     }
 
-    // Function to handle adding products to the cart
+    // Function to add a product to the cart (for testing)
     function addToCart(product) {
         console.log("Produto Adicionado ao Carrinho: ", product.querySelector("h3").textContent);
-        // Aqui você pode adicionar lógica de armazenamento no carrinho (exemplo: localStorage)
+        // Aqui você pode adicionar a lógica para armazenar no carrinho (exemplo: localStorage)
     }
 
-    // Function to set up "Add to Cart" buttons
-    function setupAddToCartButtons() {
+    // Function to attach "Add to Cart" event listeners to all product buttons
+    function attachAddToCartEventListeners() {
         const addToCartButtons = document.querySelectorAll(".add-to-cart");
         addToCartButtons.forEach(button => {
             button.addEventListener("click", function () {
@@ -713,13 +713,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Render the first page
+    // Initial page render
     renderPage(1);
 
     // Append pagination below the grid
     productGrid.parentElement.appendChild(pagination);
 });
 </script>
+
 
 
     <script>
