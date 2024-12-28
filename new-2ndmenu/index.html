@@ -538,37 +538,34 @@ img {
 .product-card {
     position: relative;
 }
-/* Style for the info icon */
-.info-container {
-    position: relative;
-    display: inline-block;
-    margin-top: 10px; /* Space between stars and info icon */
-}
-
+/* Info Icon */
 .info-icon {
     font-size: 18px;
     color: #007bff;
     cursor: pointer;
+    position: absolute;
+    top: 10px; /* Adjust this */
+    right: 10px; /* Align icon to top-right of card */
 }
 
-/* Tooltip Style */
+/* Tooltip Content (Hidden by default) */
 .tooltip-content {
-    display: none;  /* Hidden by default */
+    display: none;  /* Initially hidden */
     position: absolute;
-    top: 100%;  /* Position the tooltip just below the icon */
-    left: 0;
-    transform: translateY(10px);  /* Slight space below the icon */
+    top: 40px;  /* Position it below the info icon */
+    right: 10px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 180px;
+    width: 200px;
     font-size: 14px;
     color: #333;
+    z-index: 10;
 }
 
-/* Tooltip arrow */
+/* Tooltip Arrow */
 .tooltip-content:before {
     content: '';
     position: absolute;
@@ -638,16 +635,16 @@ img {
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                  </div>
-    <!-- Info Icon (placed below stars) -->
-    <div class="info-container">
-        <i class="fas fa-info-circle info-icon"></i>
-        <div class="tooltip-content">
-            <p><strong>Calorias:</strong> 350 kcal</p>
-            <p><strong>Ingredientes:</strong> Frango, alho, sal, pimenta</p>
-        </div>       
+    <!-- Info Icon (Click to toggle tooltip) -->
+    <i class="fas fa-info-circle info-icon"></i>      
     <button>Adicionar ao Pedido</button>
+    </div>
+    <!-- Tooltip (Hidden initially) -->
+    <div class="tooltip-content">
+        <p><strong>Calorias:</strong> 350 kcal</p>
+        <p><strong>Ingredientes:</strong> Frango, alho, sal, pimenta</p>
+    </div>
 </div>
-
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
                     <div class="product-labels">
@@ -897,19 +894,18 @@ img {
 </footer>
 
 <script>
-// Select all info icons
+// Get all the info icons on the page
 const infoIcons = document.querySelectorAll('.info-icon');
 
-// Add event listener to each info icon
+// Add event listeners to toggle the tooltip
 infoIcons.forEach(icon => {
     icon.addEventListener('click', function() {
-        const tooltip = icon.nextElementSibling;  // Get the sibling tooltip
+        const tooltip = icon.nextElementSibling;  // Tooltip is the next sibling of the icon
 
-        // Toggle visibility of the tooltip
+        // Toggle visibility of tooltip
         tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
     });
 });
-
 
 </script>
     
