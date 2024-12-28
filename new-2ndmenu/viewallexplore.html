@@ -567,7 +567,7 @@
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
     </div>
-<button class="add-to-cart">Adicionar ao Pedido</button>
+    <button>Adicionar ao Pedido</button>
 </div>
       <div class="product-card">
                 <img src="https://i.ibb.co/Sd2y5ZR/IMG-20241225-194407.jpg" border="0" draggable="false">
@@ -585,7 +585,7 @@
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
     </div>
-<button class="add-to-cart">Adicionar ao Pedido</button>
+    <button>Adicionar ao Pedido</button>
 </div>
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
@@ -604,7 +604,7 @@
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
     </div>
-<button class="add-to-cart">Adicionar ao Pedido</button>
+    <button>Adicionar ao Pedido</button>
 </div>
             <!-- Card de Produto 3 (Sobremesa) -->
             <div class="product-card">
@@ -623,7 +623,7 @@
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
     </div>
-  <button class="add-to-cart">Adicionar ao Pedido</button>
+    <button>Adicionar ao Pedido</button>
 </div>
    <!-- Card de Produto 3 (Sobremesa) -->
             <div class="product-card">
@@ -642,48 +642,39 @@
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
     </div>
-   <button class="add-to-cart">Adicionar ao Pedido</button>
+    <button>Adicionar ao Pedido</button>
 </div>
 
-<script>
+        
+
+       <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const maxProductsPerPage = 12; // Número de produtos por página
+    const maxProductsPerPage = 12; // Maximum products per page
     const productGrid = document.querySelector(".product-grid");
-    const products = Array.from(productGrid.children); // Obter todos os cards de produto
+    const products = Array.from(productGrid.children); // Get all product cards
     const totalProducts = products.length;
     const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
-    
-    let cart = []; // Carrinho de compras
 
-    // Criar a estrutura de paginação
+    // Create a pagination container
     const pagination = document.createElement("div");
     pagination.classList.add("pagination");
     pagination.style.textAlign = "center";
     pagination.style.marginTop = "20px";
 
-    // Função para renderizar a página
+    // Function to render a specific page
     function renderPage(page) {
-        // Limpar a grid de produtos
+        // Clear the grid
         productGrid.innerHTML = "";
-        
-        // Calcular os índices de início e fim dos produtos da página
+
+        // Calculate start and end indices
         const start = (page - 1) * maxProductsPerPage;
         const end = start + maxProductsPerPage;
 
-        // Adicionar os produtos da página
+        // Append products for the current page
         products.slice(start, end).forEach(product => productGrid.appendChild(product));
 
-        // Atualizar os botões de paginação
-        updatePaginationButtons(page);
-
-        // Re-associar os eventos de "Adicionar ao Carrinho" para os produtos da página
-        attachAddToCartEventListeners();
-    }
-
-    // Função para atualizar os botões de paginação
-    function updatePaginationButtons(currentPage) {
-        pagination.innerHTML = ""; // Limpar a paginação existente
-        
+        // Update pagination buttons
+        pagination.innerHTML = "";
         for (let i = 1; i <= totalPages; i++) {
             const button = document.createElement("button");
             button.textContent = i;
@@ -691,66 +682,23 @@ document.addEventListener("DOMContentLoaded", function () {
             button.style.padding = "5px 10px";
             button.style.cursor = "pointer";
             button.style.border = "1px solid #ccc";
-            button.style.backgroundColor = i === currentPage ? "#ff66b2" : "#fff";
-            button.style.color = i === currentPage ? "#fff" : "#4a004e";
+            button.style.backgroundColor = i === page ? "#ff66b2" : "#fff";
+            button.style.color = i === page ? "#fff" : "#4a004e";
 
-            button.addEventListener("click", function() {
-                renderPage(i); // Chama a renderização da página selecionada
-            });
+            button.addEventListener("click", () => renderPage(i));
             pagination.appendChild(button);
         }
     }
 
-    // Função para adicionar o produto ao carrinho
-    function addToCart(product) {
-        const productName = product.querySelector("h3").textContent;
-        const productPrice = product.querySelector(".price").textContent;
+    // Render the first page
+    renderPage(1);
 
-        // Adicionar o produto ao carrinho
-        cart.push({ name: productName, price: productPrice });
-        console.log("Carrinho Atualizado: ", cart);
-        alert(`${productName} foi adicionado ao carrinho!`);
-    }
-
-    // Função para associar os eventos "Adicionar ao Carrinho"
-    function attachAddToCartEventListeners() {
-        const addToCartButtons = document.querySelectorAll(".add-to-cart");
-        addToCartButtons.forEach(button => {
-            button.addEventListener("click", function(e) {
-                const productCard = button.closest(".product-card");
-                addToCart(productCard);
-            });
-        });
-    }
-
-    // Função para criar o botão "Adicionar ao Carrinho" dentro de cada card de produto
-    function createAddToCartButton(product) {
-        const button = document.createElement("button");
-        button.textContent = "Adicionar ao Carrinho";
-        button.classList.add("add-to-cart");
-        product.appendChild(button);
-    }
-
-    // Função para renderizar todos os produtos da primeira página
-    function initialize() {
-        // Criar o botão "Adicionar ao Carrinho" para cada produto
-        products.forEach(product => {
-            createAddToCartButton(product);
-        });
-
-        // Renderizar a primeira página
-        renderPage(1);
-
-        // Adicionar a páginação no final da grid
-        productGrid.parentElement.appendChild(pagination);
-    }
-
-    // Inicializar a página
-    initialize();
+    // Append pagination below the grid
+    productGrid.parentElement.appendChild(pagination);
 });
 </script>
 
-
+    
     <script>
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
