@@ -538,47 +538,40 @@ img {
 .product-card {
     position: relative;
 }
-/* Style for the information icon */
-.info-icon {
+/* Tooltip icon positioning */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.tooltip-icon {
     font-size: 18px;
     color: #007bff;
     cursor: pointer;
-    margin-top: 8px; /* Reduced space to align better */
+    margin-left: 10px;
 }
 
-/* Positioning of the info bubble */
-.info-container {
-    position: relative;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-.info-bubble {
-    display: none; /* Initially hidden */
+.tooltip-content {
+    display: none;  /* Hidden by default */
     position: absolute;
     top: 0;
     left: 100%;
-    transform: translateX(10px); /* Adjusted for better spacing */
+    transform: translateX(10px);  /* Keeps it a bit apart from the icon */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
-    width: 200px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
     font-size: 14px;
     color: #333;
     z-index: 10;
-    max-width: 250px; /* Ensure the bubble doesn’t overflow */
-    white-space: normal; /* Prevents text overflow */
+    white-space: normal;  /* Avoids overflow */
 }
 
-/* Active bubble visibility */
-.info-icon.active + .info-bubble {
-    display: block;
-}
-
-/* Tooltip arrow style */
-.info-bubble:before {
+/* Tooltip arrow */
+.tooltip-content:before {
     content: '';
     position: absolute;
     top: 10px;
@@ -586,6 +579,7 @@ img {
     border: 5px solid transparent;
     border-right-color: #ccc;
 }
+
 
     </style>
 </head>
@@ -646,11 +640,6 @@ img {
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                  </div>
-                        <i class="fas fa-info-circle info-icon"></i>
-        <div class="info-bubble">
-            <p><strong>Calorias:</strong> 350 kcal</p>
-            <p><strong>Ingredientes:</strong> Frango, alho, sal, pimenta</p>
-        </div>
   <!-- Saber Mais link -->
     <div class="more-info">
         <i class="fas fa-info-circle"></i>
@@ -659,7 +648,15 @@ img {
                 
     <button>Adicionar ao Pedido</button>
 </div>
-
+   <!-- Info Tooltip Icon and Bubble -->
+    <div class="tooltip-container">
+        <i class="fas fa-info-circle tooltip-icon"></i>
+        <div class="tooltip-content">
+            <p><strong>Calorias:</strong> 350 kcal</p>
+            <p><strong>Ingredientes:</strong> Frango, alho, sal, pimenta</p>
+        </div>
+    </div>
+</div>
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
                     <div class="product-labels">
@@ -909,22 +906,23 @@ img {
 </footer>
 
 <script>
-// Select all info icons
-const infoIcons = document.querySelectorAll('.info-icon');
+// Get all tooltip icons
+const infoIcons = document.querySelectorAll('.tooltip-icon');
 
-// Add click event to toggle info bubble visibility
+// Loop through all icons and add event listener
 infoIcons.forEach(icon => {
     icon.addEventListener('click', function() {
-        const bubble = icon.nextElementSibling; // The info bubble
-        // Toggle visibility of the bubble
-        if (bubble.style.display === 'block') {
-            bubble.style.display = 'none';
+        const tooltipContent = icon.nextElementSibling; // Get the sibling tooltip content
+
+        // Toggle visibility of the tooltip content
+        if (tooltipContent.style.display === 'block') {
+            tooltipContent.style.display = 'none';  // Hide if already visible
         } else {
-            bubble.style.display = 'block';
+            tooltipContent.style.display = 'block'; // Show if hidden
         }
-        icon.classList.toggle('active');
     });
 });
+
 </script>
     
 <script>
