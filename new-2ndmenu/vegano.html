@@ -211,6 +211,55 @@
     }
 }
 
+/* Container de Rótulos */
+.product-labels {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+/* Estilo Base dos Rótulos */
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #660033;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo Específico para Cada Rótulo */
+.label.spicy {
+    background-color: #ff5733; /* Vermelho picante */
+}
+
+.label.organic {
+    background-color: #28a745; /* Verde orgânico */
+}
+
+.label.highlight {
+    background-color: #ffc107; /* Amarelo destaque */
+}
+
+.label.sugar-free {
+    background-color: #6f42c1; /* Roxo Zero Açúcar */
+}
+
+.label.loved {
+    background-color: #ff66b2; /* Rosa Mais Amado */
+}
+
+/* Ajuste de Posição no Card */
+.product-card {
+    position: relative;
+}
+
     </style>
 </head>
 <body>
@@ -246,6 +295,9 @@
         <div class="product-grid">
             <!-- Exemplo de produto -->
           <div class="product-card">
+                       <div class="product-labels">
+        <span class="label organic">100% Orgânico</span>
+    </div>
                 <img src="https://i.ibb.co/pzC0p1f/IMG-20241225-163233.jpg">
                 <h3>Frango Grelhado</h3>
                 <div class="price">R$ 39,90</div>
@@ -264,6 +316,9 @@
             </div>
 
       <div class="product-card">
+            <div class="product-labels">
+        <span class="label organic">100% Orgânico</span>
+    </div>
                 <img src="https://i.ibb.co/FbsnCzB/IMG-20241225-163218.jpg">
                 <h3>Frango Grelhado</h3>
                 <div class="price">R$ 39,90</div>
@@ -282,6 +337,9 @@
             </div>
 
               <div class="product-card">
+                    <div class="product-labels">
+        <span class="label spicy">Picante</span>
+    </div>
                 <img src="https://i.ibb.co/BtR6mmS/IMG-20241225-163306.jpg">
                 <h3>Frango Grelhado</h3>
                 <div class="price">R$ 39,90</div>
@@ -300,6 +358,9 @@
             </div>
             
                  <div class="product-card">
+                       <div class="product-labels">
+        <span class="label highlight">Destaque</span>
+    </div>
                 <img src="https://i.ibb.co/TbFkVLS/IMG-20241225-163646.jpg">
                 <h3>Frango Grelhado</h3>
                 <div class="price">R$ 39,90</div>
@@ -336,6 +397,9 @@
             </div>
 
               <div class="product-card">
+                    <div class="product-labels">
+        <span class="label loved">Amado</span>
+    </div>
                 <img src="https://i.ibb.co/D9JPcSz/IMG-20241225-163443.jpg">
                 <h3>Frango Grelhado</h3>
                 <div class="price">R$ 39,90</div>
