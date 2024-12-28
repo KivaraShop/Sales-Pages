@@ -538,46 +538,44 @@ img {
 .product-card {
     position: relative;
 }
-/* Tooltip icon positioning */
-.tooltip-container {
+/* Style for the info icon */
+.info-container {
     position: relative;
     display: inline-block;
-    margin-top: 8px;
+    margin-top: 10px; /* Space between stars and info icon */
 }
 
-.tooltip-icon {
+.info-icon {
     font-size: 18px;
     color: #007bff;
     cursor: pointer;
-    margin-left: 10px;
 }
 
+/* Tooltip Style */
 .tooltip-content {
     display: none;  /* Hidden by default */
     position: absolute;
-    top: 0;
-    left: 100%;
-    transform: translateX(10px);  /* Keeps it a bit apart from the icon */
+    top: 100%;  /* Position the tooltip just below the icon */
+    left: 0;
+    transform: translateY(10px);  /* Slight space below the icon */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    width: 180px;
     font-size: 14px;
     color: #333;
-    z-index: 10;
-    white-space: normal;  /* Avoids overflow */
 }
 
 /* Tooltip arrow */
 .tooltip-content:before {
     content: '';
     position: absolute;
-    top: 10px;
-    left: -10px;
+    top: -5px;
+    left: 10px;
     border: 5px solid transparent;
-    border-right-color: #ccc;
+    border-bottom-color: #ccc;
 }
 
 
@@ -640,23 +638,16 @@ img {
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                  </div>
-  <!-- Saber Mais link -->
-    <div class="more-info">
-        <i class="fas fa-info-circle"></i>
-        <a href="productpage.html" class="more-info-link">Saber Mais</a>
-    </div>
-                
-    <button>Adicionar ao Pedido</button>
-</div>
-   <!-- Info Tooltip Icon and Bubble -->
-    <div class="tooltip-container">
-        <i class="fas fa-info-circle tooltip-icon"></i>
+    <!-- Info Icon (placed below stars) -->
+    <div class="info-container">
+        <i class="fas fa-info-circle info-icon"></i>
         <div class="tooltip-content">
             <p><strong>Calorias:</strong> 350 kcal</p>
             <p><strong>Ingredientes:</strong> Frango, alho, sal, pimenta</p>
-        </div>
-    </div>
+        </div>       
+    <button>Adicionar ao Pedido</button>
 </div>
+
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
                     <div class="product-labels">
@@ -906,22 +897,19 @@ img {
 </footer>
 
 <script>
-// Get all tooltip icons
-const infoIcons = document.querySelectorAll('.tooltip-icon');
+// Select all info icons
+const infoIcons = document.querySelectorAll('.info-icon');
 
-// Loop through all icons and add event listener
+// Add event listener to each info icon
 infoIcons.forEach(icon => {
     icon.addEventListener('click', function() {
-        const tooltipContent = icon.nextElementSibling; // Get the sibling tooltip content
+        const tooltip = icon.nextElementSibling;  // Get the sibling tooltip
 
-        // Toggle visibility of the tooltip content
-        if (tooltipContent.style.display === 'block') {
-            tooltipContent.style.display = 'none';  // Hide if already visible
-        } else {
-            tooltipContent.style.display = 'block'; // Show if hidden
-        }
+        // Toggle visibility of the tooltip
+        tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
     });
 });
+
 
 </script>
     
