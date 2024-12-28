@@ -538,34 +538,6 @@ img {
 .product-card {
     position: relative;
 }
-/* Tooltip Content */
-.tooltip-content {
-    display: none;  /* Hidden by default */
-    position: absolute;
-    top: 60px;  /* Position below the product card content */
-    left: 10px;  /* Align with left edge */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    font-size: 14px;
-    color: #333;
-    z-index: 10;
-}
-
-/* Tooltip Arrow */
-.tooltip-content:before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 10px;
-    border: 5px solid transparent;
-    border-bottom-color: #ccc;
-}
-
-
     </style>
 </head>
 <body>
@@ -625,20 +597,13 @@ img {
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                  </div>
- <!-- Saber Mais link -->
+    <!-- Saber Mais link -->
     <div class="more-info">
         <i class="fas fa-info-circle"></i>
-        <a href="javascript:void(0)" class="more-info-link">Saber Mais</a>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
     </div>
-
-    <!-- Tooltip Content (hidden initially) -->
-    <div class="tooltip-content">
-        <p><strong>Calorias:</strong> 350 kcal</p>
-        <p><strong>Ingredientes:</strong> Pão, soja, alface, tomate, cebola, ketchup</p>
-    </div>  
-                
     <button>Adicionar ao Pedido</button>
-    </div>
+</div>
 
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
@@ -888,20 +853,6 @@ img {
     </div>
 </footer>
 
-<script>
-// Get all "Saber Mais" links on the page
-const moreInfoLinks = document.querySelectorAll('.more-info-link');
-
-// Add event listener to toggle tooltip visibility on click
-moreInfoLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();  // Prevent page navigation
-        const tooltip = this.closest('.product-card').querySelector('.tooltip-content');  // Find the tooltip in the same card
-        tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';  // Toggle visibility
-    });
-});
-
-</script>
     
 <script>
 document.addEventListener('DOMContentLoaded', () => {
