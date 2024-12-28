@@ -538,6 +538,43 @@ img {
 .product-card {
     position: relative;
 }
+/* Estilo do ícone de informação */
+.info-icon {
+    font-size: 20px;
+    color: #007bff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Estilo da bolha informativa */
+.info-bubble {
+    display: none; /* Inicialmente oculta */
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #333;
+    z-index: 10;
+}
+
+/* Estilo quando a bolha estiver visível */
+.info-icon.active + .info-bubble {
+    display: block;
+}
+
+/* Ajuste de posição do ícone */
+.info-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
 
     </style>
 </head>
@@ -603,6 +640,10 @@ img {
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
     </div>
+          <div class="info-bubble">
+            <p><strong>Calorias:</strong> 350 kcal</p>
+            <p><strong>Ingredientes:</strong> Frango, alho, sal, pimenta</p>
+        </div>
     <button>Adicionar ao Pedido</button>
 </div>
 
@@ -853,8 +894,22 @@ img {
         </div>
     </div>
 </footer>
-        
-         <script>  
+
+<script>
+// Seleciona todos os ícones de informação
+const infoIcons = document.querySelectorAll('.info-icon');
+
+// Adiciona evento de clique para exibir/ocultar a bolha informativa
+infoIcons.forEach(icon => {
+    icon.addEventListener('click', function() {
+        const bubble = icon.nextElementSibling; // Bolha informativa
+        bubble.style.display = bubble.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('active');
+    });
+});
+</script>
+    
+<script>
 document.addEventListener('DOMContentLoaded', () => {
     const productsPerPage = 8; // Max 8 products per page
 
