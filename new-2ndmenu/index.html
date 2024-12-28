@@ -538,23 +538,12 @@ img {
 .product-card {
     position: relative;
 }
-/* Info Icon */
-.info-icon {
-    font-size: 18px;
-    color: #007bff;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;  /* Adjust top position */
-    right: 10px;  /* Adjust right position */
-    z-index: 5;  /* Ensure the icon is on top */
-}
-
 /* Tooltip Content */
 .tooltip-content {
     display: none;  /* Hidden by default */
     position: absolute;
-    top: 40px;  /* Position below the icon */
-    right: 10px;  /* Align with icon */
+    top: 60px;  /* Position below the product card content */
+    left: 10px;  /* Align with left edge */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -575,6 +564,7 @@ img {
     border: 5px solid transparent;
     border-bottom-color: #ccc;
 }
+
 
     </style>
 </head>
@@ -635,18 +625,17 @@ img {
                     <i class="fas fa-star-half-alt"></i>
                     <i class="far fa-star"></i>
                  </div>
-                    <!-- Saber Mais link -->
+ <!-- Saber Mais link -->
     <div class="more-info">
         <i class="fas fa-info-circle"></i>
-        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+        <a href="javascript:void(0)" class="more-info-link">Saber Mais</a>
     </div>
- <!-- Info Icon -->
-    <i class="fas fa-info-circle info-icon"></i>
-    <!-- Tooltip (hidden initially) -->
+
+    <!-- Tooltip Content (hidden initially) -->
     <div class="tooltip-content">
         <p><strong>Calorias:</strong> 350 kcal</p>
-        <p><strong>Ingredientes:</strong> Frango, alho, sal, pimenta</p>
-    </div>    
+        <p><strong>Ingredientes:</strong> Pão, soja, alface, tomate, cebola, ketchup</p>
+    </div>  
                 
     <button>Adicionar ao Pedido</button>
     </div>
@@ -900,18 +889,18 @@ img {
 </footer>
 
 <script>
-// Get all the info icons on the page
-const infoIcons = document.querySelectorAll('.info-icon');
+// Get all "Saber Mais" links on the page
+const moreInfoLinks = document.querySelectorAll('.more-info-link');
 
-// Add event listeners to toggle the tooltip
-infoIcons.forEach(icon => {
-    icon.addEventListener('click', function() {
-        const tooltip = icon.nextElementSibling;  // Tooltip is the next sibling of the icon
-        
-        // Toggle visibility of tooltip
-        tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
+// Add event listener to toggle tooltip visibility on click
+moreInfoLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();  // Prevent page navigation
+        const tooltip = this.closest('.product-card').querySelector('.tooltip-content');  // Find the tooltip in the same card
+        tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';  // Toggle visibility
     });
 });
+
 </script>
     
 <script>
