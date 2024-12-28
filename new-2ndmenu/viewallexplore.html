@@ -655,25 +655,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalProducts = products.length;
     const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
 
-    // Create a pagination container
-    const pagination = document.createElement("div");
-    pagination.classList.add("pagination");
-    pagination.style.textAlign = "center";
-    pagination.style.marginTop = "20px";
+    // Carrinho (array para armazenar os itens do carrinho)
+    const cart = [];
 
-    // Function to handle "Add to Cart" button clicks
+    // Função para adicionar produto ao carrinho
+    function addToCart(product) {
+        const productName = product.querySelector("h3").textContent;
+        const productPrice = product.querySelector(".price").textContent;
+        cart.push({ name: productName, price: productPrice });
+        console.log(cart); // Verifica os itens adicionados no console
+        alert(`Produto "${productName}" adicionado ao carrinho!`);
+    }
+
+    // Função para configurar eventos de clique nos botões "Adicionar ao Carrinho"
     function setupAddToCartButtons() {
         const addToCartButtons = document.querySelectorAll(".product-card button");
         addToCartButtons.forEach(button => {
-            button.addEventListener("click", function () {
-                const productName = this.parentElement.querySelector("h3").textContent;
-                alert(`Produto "${productName}" adicionado ao carrinho!`);
-                // Aqui você pode adicionar a lógica do carrinho real
-            });
+            button.removeEventListener("click", handleAddToCart); // Remove listener anterior, se existir
+            button.addEventListener("click", handleAddToCart); // Adiciona um novo listener
         });
     }
 
-    // Function to render a specific page
+    // Função para lidar com o clique no botão "Adicionar ao Carrinho"
+    function handleAddToCart(event) {
+        const product = event.target.closest(".product-card"); // Encontra o card do produto
+        addToCart(product);
+    }
+
+    // Função para renderizar uma página específica
     function renderPage(page) {
         // Clear the grid
         productGrid.innerHTML = "";
@@ -701,7 +710,7 @@ document.addEventListener("DOMContentLoaded", function () {
             pagination.appendChild(button);
         }
 
-        // Reassign "Add to Cart" button events after rendering the page
+        // Reatribui eventos "Adicionar ao Carrinho" após renderizar a página
         setupAddToCartButtons();
     }
 
