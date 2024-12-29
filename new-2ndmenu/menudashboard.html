@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Vendas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .dashboard-header {
+            background-color: #ff66b2;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .dashboard-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1400px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background-color: #ff66b2;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 24%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .stat-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .stat-card p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .chart-container canvas {
+            width: 100%;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .btn {
+            background-color: #ff66b2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #e5008e;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            Dashboard de Vendas
+        </div>
+        <div class="dashboard-content">
+            <!-- Estatísticas -->
+            <div class="stat-card">
+                <h3>Produtos Vendidos</h3>
+                <p id="products-sold">100</p>
+            </div>
+            <div class="stat-card">
+                <h3>Vendas Totais</h3>
+                <p id="total-sales">R$ 5000,00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Produto Mais Vendido</h3>
+                <p id="top-product">Produto X</p>
+            </div>
+            <div class="stat-card">
+                <h3>Quantidade Vendida</h3>
+                <p id="quantity-sold">300</p>
+            </div>
+            <div class="stat-card">
+                <h3>Descontos Totais</h3>
+                <p id="total-discounts">R$ 200,00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Margem de Lucro Média</h3>
+                <p id="profit-margin">R$ 50,00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Estoque Atual</h3>
+                <p id="stock-available">500</p>
+            </div>
+            <div class="stat-card">
+                <h3>Tendências de Vendas</h3>
+                <p id="sales-trends">Produto Y</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="discountsChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <div class="button-container">
+            <button class="btn" onclick="downloadReport()">Baixar Relatório</button>
+        </div>
+    </div>
+
+    <script>
+        // Dados fictícios para gráficos circulares
+        const salesData = {
+            labels: ['Produto A', 'Produto B', 'Produto C', 'Produto D'],
+            datasets: [{
+                data: [200, 150, 50, 100],
+                backgroundColor: ['#ff66b2', '#ff3399', '#e5008e', '#cc0066'],
+                hoverBackgroundColor: ['#ff4d94', '#ff1a80', '#cc0052', '#99004d']
+            }]
+        };
+
+        const discountsData = {
+            labels: ['Desconto 10%', 'Desconto 20%', 'Desconto 30%'],
+            datasets: [{
+                data: [50, 30, 20],
+                backgroundColor: ['#ffccff', '#ff99ff', '#ff66cc'],
+                hoverBackgroundColor: ['#ff80ff', '#ff66cc', '#ff3399']
+            }]
+        };
+
+        const profitData = {
+            labels: ['Lucro Alto', 'Lucro Médio', 'Lucro Baixo'],
+            datasets: [{
+                data: [60, 30, 10],
+                backgroundColor: ['#ff1a80', '#ff66b2', '#e5008e'],
+                hoverBackgroundColor: ['#ff3399', '#ff4d94', '#cc0066']
+            }]
+        };
+
+        // Configuração do gráfico de vendas (gráfico circular)
+        const salesChartConfig = {
+            type: 'pie',
+            data: salesData,
+        };
+
+        // Configuração do gráfico de descontos (gráfico circular)
+        const discountsChartConfig = {
+            type: 'pie',
+            data: discountsData,
+        };
+
+        // Configuração do gráfico de lucro (gráfico circular)
+        const profitChartConfig = {
+            type: 'pie',
+            data: profitData,
+        };
+
+        // Inicializando os gráficos circulares
+        const salesChart = new Chart(document.getElementById('salesChart'), salesChartConfig);
+        const discountsChart = new Chart(document.getElementById('discountsChart'), discountsChartConfig);
+        const profitChart = new Chart(document.getElementById('profitChart'), profitChartConfig);
+
+        // Função para baixar o relatório
+        function downloadReport() {
+            alert('Relatório baixado!');
+        }
+
+        // Atualiza os dados no dashboard
+        document.getElementById('products-sold').textContent = '200';
+        document.getElementById('total-sales').textContent = 'R$ 12000,00';
+        document.getElementById('top-product').textContent = 'Produto Y';
+        document.getElementById('quantity-sold').textContent = '500';
+        document.getElementById('total-discounts').textContent = 'R$ 1000,00';
+        document.getElementById('profit-margin').textContent = 'R$ 120,00';
+        document.getElementById('stock-available').textContent = '1200';
+        document.getElementById('sales-trends').textContent = 'Produto Z';
+    </script>
+</body>
+</html>
