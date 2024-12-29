@@ -126,6 +126,70 @@
             font-size: 24px;
             color: #4CAF50;
         }
+
+        /* Visão Geral - Stats */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.stat-box {
+    width: 30%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-box h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.stat-box p {
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+/* Gráficos */
+.charts-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.chart {
+    width: 45%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Alertas */
+.alerts {
+    margin-top: 40px;
+}
+
+.alert-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 5px solid #f39c12;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.alert-box h3 {
+    color: #f39c12;
+    margin-bottom: 10px;
+}
+
+.alert-box p {
+    color: #333;
+}
     </style>
 </head>
 <body>
@@ -141,13 +205,55 @@
 
     <!-- Content Section -->
     <div class="content">
-        <!-- Overview Section -->
-        <div id="overview" class="section active-section">
-            <div class="dashboard-header">
-                <h1>Dashboard de Vendas</h1>
-                <p>Visualize as estatísticas essenciais para o seu menu e as vendas realizadas.</p>
-            </div>
+       <!-- Visão Geral Section -->
+<div id="overview" class="section active-section">
+    <div class="dashboard-header">
+        <h1>Visão Geral</h1>
+        <p>Resumo executivo das principais métricas do seu negócio.</p>
+    </div>
+
+    <!-- Summary Stats (Total de vendas, pedidos e lucro) -->
+    <div class="stats">
+        <div class="stat-box">
+            <h3>Total de Vendas</h3>
+            <p>R$ 50.000,00</p>
         </div>
+        <div class="stat-box">
+            <h3>Total de Pedidos</h3>
+            <p>1200</p>
+        </div>
+        <div class="stat-box">
+            <h3>Lucro Líquido</h3>
+            <p>R$ 15.000,00</p>
+        </div>
+    </div>
+
+    <!-- Últimas Tendências de Vendas -->
+    <div class="charts-container">
+        <div class="chart">
+            <h3>Vendas Diárias (Últimos 7 Dias)</h3>
+            <canvas id="dailySalesChart"></canvas>
+        </div>
+        <div class="chart">
+            <h3>Produtos Mais Vendidos (Últimos 30 Dias)</h3>
+            <canvas id="topProductsChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Alertas de Tendências -->
+    <div class="alerts">
+        <h2>Alertas de Tendências</h2>
+        <div class="alert-box">
+            <h3>Venda em Crescimento</h3>
+            <p>As vendas aumentaram 15% nos últimos 7 dias. Projete mais estoque para atender à demanda.</p>
+        </div>
+        <div class="alert-box">
+            <h3>Produto em Alta</h3>
+            <p>O Hambúrguer de Carne tem sido o produto mais vendido no último mês. Considere promoções ou combos.</p>
+        </div>
+    </div>
+</div>
+
 
         <!-- Sales Section -->
         <div id="sales" class="section">
@@ -215,6 +321,77 @@
         </div>
     </div>
 
+    <script>
+// Gráfico de Vendas Diárias (Últimos 7 Dias)
+const dailySalesChart = new Chart(document.getElementById('dailySalesChart'), {
+    type: 'line',
+    data: {
+        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        datasets: [{
+            label: 'Vendas Diárias',
+            data: [1000, 1500, 1200, 1700, 1600, 1800, 2000],
+            borderColor: '#4CAF50',
+            backgroundColor: 'rgba(76, 175, 80, 0.2)',
+            fill: true,
+            tension: 0.4,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return 'R$ ' + tooltipItem.raw.toFixed(2);
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return 'R$ ' + value.toFixed(2);
+                    }
+                }
+            }
+        }
+    }
+});
+
+// Gráfico de Produtos Mais Vendidos (Últimos 30 Dias)
+const topProductsChart = new Chart(document.getElementById('topProductsChart'), {
+    type: 'pie',
+    data: {
+        labels: ['Pizza', 'Hambúrguer', 'Frango', 'Sobremesas', 'Bebidas'],
+        datasets: [{
+            data: [4000, 3000, 1500, 500, 1200],
+            backgroundColor: ['#ff99cc', '#ff6666', '#ffcc99', '#99ff99', '#66b3ff'],
+            hoverBackgroundColor: ['#ff66b2', '#ff3333', '#ff9966', '#66cc66', '#3399ff']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return tooltipItem.label + ': ' + tooltipItem.raw + ' unidades';
+                    }
+                }
+            }
+        }
+    }
+});
+</script>
+    
 <script>
     // Função para mostrar as seções do dashboard
     function showSection(sectionId) {
