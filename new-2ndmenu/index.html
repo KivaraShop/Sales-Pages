@@ -1339,11 +1339,22 @@ document.addEventListener('DOMContentLoaded', () => {
         falarButton.style.cursor = 'pointer';
         falarButton.style.marginTop = '10px';
         falarButton.addEventListener('click', () => {
-          const message = generateWhatsappMessage();
+         const message = generateWhatsappMessage();
     const encodedMessage = encodeURIComponent(message);
     window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
 });
 cartPopupContent.appendChild(falarButton);
+
+// Function to generate the message for WhatsApp
+function generateWhatsappMessage() {
+    let message = 'Pedido de compra:\n\n';
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price}\n`;
+    });
+    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+    message += 'Aguardo confirmação do pedido.';
+    return message;
+}
 
 // M-Pesa payment option with effects and no duplication
 function showMpesapayOption() {
