@@ -539,10 +539,6 @@ img {
     position: relative;
 }
 
-        .m-pesa-image {
-    transition: opacity 0.5s ease;
-    cursor: pointer;
-}
 
     </style>
 </head>
@@ -1354,25 +1350,30 @@ function showMpesapayOption() {
     const mpesaContainer = document.createElement('div');
     cartPopupContent.appendChild(mpesaContainer);
 
-    // Create the M-Pesa clickable image
-    const mpesaImage = document.createElement('img');
-    mpesaImage.src = 'https://i.ibb.co/zbKskTR/IMG-20241229-160034.jpg'; // Replace with your M-Pesa image path
-    mpesaImage.alt = 'M-Pesa Payment';
-    mpesaImage.style.width = '100%'; // Full width
-    mpesaImage.style.cursor = 'pointer'; // Indicates it's clickable
-    mpesaContainer.appendChild(mpesaImage);
+    // Create the M-Pesa payment button
+    const mpesaButton = document.createElement('button');
+    mpesaButton.textContent = 'Pagamento M-Pesa';
+    mpesaButton.style.backgroundColor = '#ff0000'; // Red background
+    mpesaButton.style.color = 'white'; // White text
+    mpesaButton.style.border = 'none';
+    mpesaButton.style.padding = '10px';
+    mpesaButton.style.fontSize = '16px';
+    mpesaButton.style.cursor = 'pointer';
+    mpesaButton.style.width = '100%';
+    mpesaButton.style.marginTop = '10px'; // Add some spacing
+    mpesaContainer.appendChild(mpesaButton);
 
-    // Add event listener for the M-Pesa image click
-    mpesaImage.addEventListener('click', () => {
-        // Hide the image when clicked
-        mpesaImage.style.display = 'none';
+    // Add event listener for the M-Pesa button click
+    mpesaButton.addEventListener('click', () => {
+        // Hide the button when clicked
+        mpesaButton.style.display = 'none';
 
         // Show the M-Pesa transfer number
         const mpesaNumber = document.createElement('div');
-        mpesaNumber.textContent = '853147567'; // Number to display
+        mpesaNumber.textContent = '852136558'; // Number to display
         mpesaNumber.style.fontSize = '18px';
         mpesaNumber.style.fontWeight = 'bold';
-        mpesaNumber.style.marginTop = '10px'; // Add spacing
+        mpesaNumber.style.marginTop = '10px'; // Add some spacing
         mpesaContainer.appendChild(mpesaNumber);
     });
 }
