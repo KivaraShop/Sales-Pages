@@ -433,21 +433,20 @@
         });
     </script>
     
-    <script>
+<script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
     const cartPopup = document.querySelector('.cart-popup');
-    const cartPopupContent = document.querySelector('.cart-popup-content');
-    const productCards = document.querySelectorAll('.product-card'); // This will grab product cards from both pages
+    const cartPopupContent = cartPopup.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card');
 
-    // Update cart count
     function updateCartCount() {
-        cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
+        cartBadge.textContent = cart.length || '';
     }
 
-    // Calculate total price
     function calculateTotal() {
         let total = 0;
         cart.forEach(item => {
@@ -456,7 +455,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return total;
     }
 
-    // Animate total sum counting
     function animateTotalSum() {
         const total = calculateTotal();
         let currentTotal = 0;
@@ -475,9 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotal();
     }
 
-    // Render cart content for the second page
     function renderCart() {
-        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>'; // Reset content
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>';
         const ul = document.createElement('ul');
         ul.style.listStyleType = 'none';
         ul.style.padding = '0';
@@ -500,11 +497,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
                 `;
 
-                // Remove item from cart
                 li.querySelector('button').addEventListener('click', (e) => {
                     const indexToRemove = e.target.getAttribute('data-index');
                     cart.splice(indexToRemove, 1);
-                    saveCart(); // Save updated cart to localStorage
+                    saveCart();
                     updateCartCount();
                     renderCart();
                 });
@@ -514,21 +510,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         cartPopupContent.appendChild(ul);
 
-        // Add total sum display
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ 0.00`; // Start from 0.00
+        totalElement.innerHTML = `Total: R$ 0.00`;
         cartPopupContent.appendChild(totalElement);
 
-        // Animate the total sum counting
         animateTotalSum();
 
-        // "Fazer Pedido" button
         const fazerPedidoButton = document.createElement('button');
         fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#3c8d3f';
+        fazerPedidoButton.style.background = '##3c8d3f';
         fazerPedidoButton.style.color = 'white';
         fazerPedidoButton.style.border = 'none';
         fazerPedidoButton.style.padding = '10px';
@@ -540,41 +533,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         cartPopupContent.appendChild(fazerPedidoButton);
 
-        // Close cart button
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#3c8d3f';
+        closeButton.style.background = '##3c8d3f';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
-        closeButton.style.padding = '5px 10px';  // Reduced padding
-        closeButton.style.fontSize = '12px';     // Reduced font size
-        closeButton.style.width = 'auto';        // Set width to auto to fit the content
+        closeButton.style.padding = '5px 10px';
+        closeButton.style.fontSize = '12px';
+        closeButton.style.width = 'auto';
         closeButton.style.cursor = 'pointer';
         closeButton.style.marginTop = '10px';
         closeButton.addEventListener('click', () => {
             cartPopup.style.display = 'none';
         });
-
         cartPopupContent.appendChild(closeButton);
     }
 
-    // Show the next buttons after "Fazer Pedido"
     function showNextButtons() {
-        // Clear previous content
         cartPopupContent.innerHTML = '';
 
-        // Add total sum display
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`; // Display correct total
+        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`;
         cartPopupContent.appendChild(totalElement);
 
-        // Add Aguardar and Falar com atendente buttons
         const aguardarButton = document.createElement('button');
         aguardarButton.textContent = 'Aguardar';
-        aguardarButton.style.background = '#4CAF50'; // Green
+        aguardarButton.style.background = '#4CAF50';
         aguardarButton.style.color = 'white';
         aguardarButton.style.border = 'none';
         aguardarButton.style.padding = '10px';
@@ -586,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const falarButton = document.createElement('button');
         falarButton.textContent = 'Falar com atendente';
-        falarButton.style.background = '#000000'; // 
+        falarButton.style.background = '#ff66b2';
         falarButton.style.color = 'white';
         falarButton.style.border = 'none';
         falarButton.style.padding = '10px';
@@ -594,34 +581,97 @@ document.addEventListener('DOMContentLoaded', () => {
         falarButton.style.cursor = 'pointer';
         falarButton.style.marginTop = '10px';
         falarButton.addEventListener('click', () => {
-            window.location.href = `https://wa.me/258852136558?text=Pedido%20de%20compra:%20Total%20R$${calculateTotal().toFixed(2)}`;
+          const message = generateWhatsappMessage();
+    const encodedMessage = encodeURIComponent(message);
+    window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+});
+cartPopupContent.appendChild(falarButton);
+
+// Function to generate the message for WhatsApp
+function generateWhatsappMessage() {
+    let message = 'Pedido de compra:\n\n';
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price}\n`;
+    });
+    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+    message += 'Aguardo confirmação do pedido.';
+    return message;
+}
+        const pagarButton = document.createElement('button');
+        pagarButton.textContent = 'Pagar Conta';
+        pagarButton.style.background = '#0070ba';
+        pagarButton.style.color = 'white';
+        pagarButton.style.border = 'none';
+        pagarButton.style.padding = '10px';
+        pagarButton.style.width = '100%';
+        pagarButton.style.cursor = 'pointer';
+        pagarButton.style.marginTop = '10px';
+        pagarButton.addEventListener('click', () => {
+            showPaypalButton();
         });
-        cartPopupContent.appendChild(falarButton);
+        cartPopupContent.appendChild(pagarButton);
     }
 
-    // Countdown timer for the "Aguardar" button
+    function showPaypalButton() {
+        const existingPaypalButton = document.querySelector('.paypal-button-container');
+        if (existingPaypalButton) {
+            return; // Do not add another PayPal button if one already exists
+        }
+
+        const paypalButtonContainer = document.createElement('div');
+        paypalButtonContainer.classList.add('paypal-button-container');
+        cartPopupContent.appendChild(paypalButtonContainer);
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: calculateTotal().toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    window.location.href = 'checkout.html';
+                });
+            },
+            onError: function(err) {
+                console.error("Payment Error: ", err);
+            }
+        }).render(paypalButtonContainer);
+    }
+
+    let countdownInterval;
     function startCountdown() {
         let timeRemaining = 120; // 2 minutes
-        const countdownElement = document.createElement('div');
-        countdownElement.classList.add('countdown');
-        countdownElement.style.marginTop = '20px';
-        cartPopupContent.appendChild(countdownElement);
+        const countdownElement = document.querySelector('.countdown');
+        
+        if (countdownElement) {
+            countdownElement.remove(); // Remove previous countdown if it exists
+        }
+
+        const newCountdownElement = document.createElement('div');
+        newCountdownElement.classList.add('countdown');
+        newCountdownElement.style.marginTop = '20px';
+        cartPopupContent.appendChild(newCountdownElement);
 
         function updateCountdown() {
             const minutes = Math.floor(timeRemaining / 60);
             const seconds = timeRemaining % 60;
-            countdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            newCountdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
             if (timeRemaining > 0) {
                 timeRemaining--;
                 setTimeout(updateCountdown, 1000);
             } else {
-                countdownElement.innerHTML = 'Tempo esgotado!';
+                newCountdownElement.innerHTML = 'Tempo esgotado!';
+                setTimeout(startCountdown, 1000); // Restart countdown
             }
         }
         updateCountdown();
     }
 
-    // Add product to cart (for both product structures)
     productCards.forEach(card => {
         const button = card.querySelector('button');
         button.addEventListener('click', () => {
@@ -630,13 +680,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const price = card.querySelector('.price').textContent;
 
             cart.push({ img, name, price });
-            saveCart(); // Save cart to localStorage
+            saveCart();
             updateCartCount();
             renderCart();
         });
     });
 
-    // Toggle cart popup visibility
     cartIcon.addEventListener('click', () => {
         if (cartPopup.style.display === 'block') {
             cartPopup.style.display = 'none';
@@ -646,15 +695,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Save cart to localStorage
     function saveCart() {
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // Initialize cart state
     updateCartCount();
 });
-
 </script>
+
 </body>
 </html>
