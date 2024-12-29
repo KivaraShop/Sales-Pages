@@ -1327,7 +1327,7 @@ document.addEventListener('DOMContentLoaded', () => {
         aguardarButton.addEventListener('click', () => startCountdown());
         cartPopupContent.appendChild(aguardarButton);
 
-        const falarButton = document.createElement('button');
+       const falarButton = document.createElement('button');
         falarButton.textContent = 'Falar com atendente';
         falarButton.style.background = '#ff66b2';
         falarButton.style.color = 'white';
@@ -1343,6 +1343,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 cartPopupContent.appendChild(falarButton);
 
+// Function to generate the message for WhatsApp
+function generateWhatsappMessage() {
+    let message = 'Pedido de compra:\n\n';
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price}\n`;
+    });
+    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+    message += 'Aguardo confirmação do pedido.';
+    return message;
+}
 // M-Pesa payment option
 function showMpesapayOption() {
     const mpesaContainer = document.createElement('div');
