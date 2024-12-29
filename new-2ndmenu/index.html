@@ -8,61 +8,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Estilo global */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
-            color: #4a004e;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-            padding: 0 10px;
-            padding-top: 75px;
-        }
+     body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #f5f5dc, #fffaf0); /* Tons de creme */
+    color: #4a004e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 10px;
+    padding-top: 75px;
+}
 
-        /* Cabeçalho */
-        header {
-            background-color: #ff99cc;
-            padding: 15px 20px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            box-sizing: border-box; 
-            justify-content: space-between;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
+/* Cabeçalho */
+header {
+    background-color: #f0e6d6; /* Tom claro de creme */
+    padding: 15px 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box; 
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
 
-        /* Logo */
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #4a004e;
-            text-decoration: none;
-        }
+/* Logo */
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4a004e;
+    text-decoration: none;
+}
 
-        /* Ícone do carrinho */
-        .cart-icon {
-            color: #4a004e;
-            font-size: 22px;
-            text-decoration: none;
-            position: relative;
-        }
+     /* Ícone do carrinho */
+.cart-icon {
+    color: #4a004e;
+    font-size: 22px;
+    text-decoration: none;
+    position: relative;
+}
 
-        .cart-icon .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff66b2;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-        }
+.cart-icon .cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #8b7355; /* Contraste creme escuro */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
        .cart-popup ul {
     list-style-type: none;
     padding: 0;
@@ -71,13 +71,13 @@
     flex-direction: column;
 }
 
-  .cart-popup {
+.cart-popup {
     position: fixed;
     top: 0;
     right: 0;
     width: 300px;
     height: 100%;
-    background-color: #fff;
+    background-color: #fffaf0; /* Fundo creme claro */
     box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
     z-index: 999;
     overflow-y: auto;
@@ -111,15 +111,18 @@
 }
 
 .cart-popup button {
-    background-color: #ff66b2;
+    background-color: #d2b48c; /* Bege para botões */
     border: none;
     padding: 10px;
     width: 100%;
-    color: white;
+    color: #4a004e;
     cursor: pointer;
     font-size: 16px;
 }
 
+.cart-popup button:hover {
+    background-color: #b2967d; /* Tom mais escuro no hover */
+}
                 .logo {
             flex-grow: 1;
             text-align: center;
@@ -141,22 +144,22 @@
             cursor: pointer;
         }
 
-      .nav-menu {
+    /* Nav menu */
+.nav-menu {
     display: none; /* Initially hidden */
     flex-direction: column;
     align-items: flex-start;
     position: fixed;
     top: 77px;
     left: 0;
-    width: 250px; /* Adjust this width as needed */
+    width: 250px;
     height: 100vh;
-    background-color: #ff99cc;
+    background-color: #f0e6d6; /* Creme claro */
     padding: 15px 0;
     z-index: 1000;
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease; /* Smooth appearance */
 }
-
         .nav-menu ul {
             list-style-type: none;
             padding: 0;
@@ -168,11 +171,14 @@
         }
 
         .nav-menu ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-        }
-
+    text-decoration: none;
+    color: #4a004e;
+    font-size: 18px;
+}
+        
+.nav-menu ul li a:hover {
+    color: #8b7355; /* Bege escuro no hover */
+}
         .nav-menu.active {
             display: flex; /* Show when toggle is clicked */
         }
@@ -193,27 +199,28 @@
         }
 
 
-        .menu-section {
+ .menu-section {
     padding: 30px;
-    background-color: #f9f9f9;
+    background-color: #f5f5dc; /* Fundo creme claro */
 }
 
 .menu-section h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #4a004e; /* Match your theme color */
+    color: #4a004e; /* Tom contrastante */
 }
+
         /* Card de produto */
-        .product-card {
-            background-color: #ffffff;
-            border: 1px solid #d3e0d3;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            margin: 0 auto;
-            padding: 15px;
-            text-align: center;
-        }
+   .product-card {
+    background-color: #fffaf0; /* Fundo creme claro */
+    border: 1px solid #d3c6a5;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+}
 
         .product-card:hover {
             transform: scale(1.05);
@@ -226,19 +233,19 @@
             border-radius: 5px;
         }
 
-        .product-card h3 {
-            font-size: 18px;
-            color: #4a004e;
-            margin: 10px 0;
-        }
+      .product-card h3 {
+    font-size: 18px;
+    color: #4a004e;
+    margin: 10px 0;
+}
 
-        .product-card .price {
-            font-size: 16px;
-            color: #660033;
-            margin: 10px;
-            font-weight: bold;
-        }
-        
+.product-card .price {
+    font-size: 16px;
+    color: #8b7355;
+    margin: 10px;
+    font-weight: bold;
+}
+
 
         @media (max-width: 768px) { /* Target screens 768px wide or smaller */
     #bannerText {
@@ -257,21 +264,21 @@
             margin-right: 2px;
         }
 
-        .product-card button {
-            background: linear-gradient(90deg, #ff66b2, #ff99cc);
-            border: none;
-            padding: 10px;
-            width: 100%;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-            margin-top: 10px;
-        }
+       .product-card button {
+    background: linear-gradient(90deg, #d2b48c, #e6ccb3); /* Gradiente bege */
+    border: none;
+    padding: 10px;
+    width: 100%;
+    color: #4a004e;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
 
-        .product-card button:hover {
-            background: #ff66b2;
-        }
+.product-card button:hover {
+    background: #b2967d; /* Tom mais escuro no hover */
+}
         
 .more-info {
     display: flex;
@@ -281,24 +288,25 @@
 
 .more-info i {
     font-size: 16px; /* Icon size */
-    color: #007bff; /* Matches the text color */
+    color: #998877; /* Matches the text color */
     margin-right: 6px; /* Spacing between icon and text */
 }
+
 
 .more-info-link {
     font-size: 14px;
     font-weight: bold;
-    color: #007bff; /* Blue color for clickable text */
+    color: #998877; /* Creamy color for clickable text */
     text-decoration: none; /* Removes underline */
     cursor: pointer;
 }
 
 .more-info-link:hover {
-    color: #0056b3; /* Slightly darker blue for hover effect */
+    color: #776655; /* Slightly darker shade for hover effect */
 }
 
 .more-info:hover i {
-    color: #0056b3; /* Match the icon hover color to the text */
+    color: #776655; /* Match the icon hover color to the text */
 }
 
         .image-wrapper {
@@ -328,18 +336,19 @@ img {
 }
 
         /* Banner animado */
-        #bannerText {
-            font-family: 'Didot', serif;
-            font-size: 14px;
-            font-weight: 300;
-            color: #4a004e;
-            background-color: #f8d7e6;
-            padding: 5px;
-            text-align: center;
-            animation: slideInOut 4s ease-in-out infinite;
-            white-space: nowrap;
-            overflow: hidden;
-        }
+      /* Banner animado */
+#bannerText {
+    font-family: 'Didot', serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #4a4a2e;
+    background-color: #ede4d5;
+    padding: 5px;
+    text-align: center;
+    animation: slideInOut 4s ease-in-out infinite;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
         @keyframes slideInOut {
             0% { transform: translateX(-100%); opacity: 0; }
@@ -358,8 +367,8 @@ img {
 
 /* Estilo do rodapé */
 .footer {
-    background-color: #ff99cc;
-    color: white;
+    background-color: #f0e6d6;
+    color: #4a004e;
     padding: 20px 50px;
     text-align: left;
     display: flex;
@@ -369,6 +378,7 @@ img {
     box-sizing: border-box;
 }
 
+
 .footer-logo img {
     width: 120px; /* Ajuste o tamanho conforme necessário */
     height: auto;
@@ -376,34 +386,30 @@ img {
 
 .footer-slogan {
     font-size: 18px;
-    color: #4a004e;
+    color: #8b7355;
     margin-top: 5px;
     font-style: italic;
 }
 
-.footer-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
 .footer-info a {
     text-decoration: none;
-    color: white;
+    color: #4a004e;
     font-size: 16px;
     margin: 5px 0;
     transition: color 0.3s;
 }
 
+
 .footer-info a:hover {
-    color: #4a004e;
+    color: #8b7355;
 }
 
 .footer-bottom {
     font-size: 14px;
     margin-top: 10px;
-    color: white;
+    color: #4a004e;
 }
+
 /* Ensure the wrapper div is properly aligned with the layout */
 .view-all-wrapper {
     display: flex;
