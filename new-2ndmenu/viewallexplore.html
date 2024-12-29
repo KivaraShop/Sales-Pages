@@ -754,7 +754,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.style.alignItems = 'center';
                 li.style.marginBottom = '10px';
 
-                li.innerHTML = `
+                li.innerHTML = ` 
                     <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                     <div>
                         <p>${item.name}</p>
@@ -787,7 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const fazerPedidoButton = document.createElement('button');
         fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#ff66b2';
+        fazerPedidoButton.style.background = '#3c8d3f';
         fazerPedidoButton.style.color = 'white';
         fazerPedidoButton.style.border = 'none';
         fazerPedidoButton.style.padding = '10px';
@@ -801,7 +801,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#ff66b2';
+        closeButton.style.background = '#3c8d3f';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
         closeButton.style.padding = '5px 10px';
@@ -839,7 +839,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const falarButton = document.createElement('button');
         falarButton.textContent = 'Falar com atendente';
-        falarButton.style.background = '#ff66b2';
+        falarButton.style.background = '#000000';
         falarButton.style.color = 'white';
         falarButton.style.border = 'none';
         falarButton.style.padding = '10px';
@@ -847,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
         falarButton.style.cursor = 'pointer';
         falarButton.style.marginTop = '10px';
         falarButton.addEventListener('click', () => {
-          const message = generateWhatsappMessage();
+         const message = generateWhatsappMessage();
     const encodedMessage = encodeURIComponent(message);
     window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
 });
@@ -863,19 +863,69 @@ function generateWhatsappMessage() {
     message += 'Aguardo confirmação do pedido.';
     return message;
 }
-        const pagarButton = document.createElement('button');
-        pagarButton.textContent = 'Pagar Conta';
-        pagarButton.style.background = '#ff66b2';
-        pagarButton.style.color = 'white';
-        pagarButton.style.border = 'none';
-        pagarButton.style.padding = '10px';
-        pagarButton.style.width = '100%';
-        pagarButton.style.cursor = 'pointer';
-        pagarButton.style.marginTop = '10px';
-        pagarButton.addEventListener('click', () => {
-            showPaypalButton();
-        });
-        cartPopupContent.appendChild(pagarButton);
+
+// M-Pesa payment option with effects and no duplication
+function showMpesapayOption() {
+    const mpesaContainer = document.createElement('div');
+    cartPopupContent.appendChild(mpesaContainer);
+
+    // Check if the M-Pesa number has already been displayed to avoid duplication
+    const existingMpesaNumber = document.querySelector('.mpesa-number');
+    if (existingMpesaNumber) return; // Exit the function if the number already exists
+
+    // Create the M-Pesa payment button
+    const mpesaButton = document.createElement('button');
+    mpesaButton.textContent = 'Pagamento M-Pesa';
+    mpesaButton.style.backgroundColor = '#8B0000'; // Darker red background
+    mpesaButton.style.color = 'white'; // White text
+    mpesaButton.style.border = 'none';
+    mpesaButton.style.padding = '10px';
+    mpesaButton.style.fontSize = '16px';
+    mpesaButton.style.cursor = 'pointer';
+    mpesaButton.style.width = '100%';
+    mpesaButton.style.marginTop = '10px'; // Add some spacing
+    mpesaButton.style.transition = 'opacity 0.5s ease'; // Add fade-out transition
+    mpesaContainer.appendChild(mpesaButton);
+
+    // Add event listener for the M-Pesa button click
+    mpesaButton.addEventListener('click', () => {
+        // Fade out the button
+        mpesaButton.style.opacity = '0';
+
+        // Wait for the fade-out effect to finish, then replace the button with the number
+        setTimeout(() => {
+            mpesaButton.style.display = 'none'; // Hide the button after fade-out
+
+            // Show the M-Pesa transfer number
+            const mpesaNumber = document.createElement('div');
+            mpesaNumber.textContent = '852136558'; // Number to display
+            mpesaNumber.style.fontSize = '18px';
+            mpesaNumber.style.fontWeight = 'bold';
+            mpesaNumber.style.marginTop = '10px'; // Maintain spacing
+            mpesaNumber.style.textAlign = 'center'; // Center the number
+            mpesaNumber.classList.add('mpesa-number'); // Add a class to easily check if number already exists
+            mpesaContainer.appendChild(mpesaNumber);
+        }, 500); // Match the transition duration
+    });
+}
+
+
+// Pagar Conta button logic
+const pagarButton = document.createElement('button');
+pagarButton.textContent = 'Pagar Conta';
+pagarButton.style.background = '#0070ba';
+pagarButton.style.color = 'white';
+pagarButton.style.border = 'none';
+pagarButton.style.padding = '10px';
+pagarButton.style.width = '100%';
+pagarButton.style.cursor = 'pointer';
+pagarButton.style.marginTop = '10px';
+pagarButton.addEventListener('click', () => {
+    showPaypalButton();
+    showMpesapayOption(); // Show M-Pesa payment option below PayPal
+});
+cartPopupContent.appendChild(pagarButton);
+
     }
 
     function showPaypalButton() {
