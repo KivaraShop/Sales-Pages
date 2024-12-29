@@ -1372,26 +1372,26 @@ function showMpesapayOption() {
     mpesaImage.style.height = 'auto';
     mpesaImage.style.cursor = 'pointer';
     mpesaImage.style.marginTop = '10px'; // Add some spacing
-    mpesaImage.style.transition = 'opacity 0.5s ease'; // Add transition for fading
+    mpesaImage.style.transition = 'opacity 0.5s ease'; // Ensure smooth fading
     mpesaContainer.appendChild(mpesaImage);
 
     // Add event listener for the M-Pesa image click
     mpesaImage.addEventListener('click', () => {
-        // Start the fade-out effect
+        // Fade out the image
         mpesaImage.style.opacity = '0';
 
-        // After the fade-out effect, hide the image and show the M-Pesa number
+        // After 500ms (the fade duration), hide the image and show the transfer number
         setTimeout(() => {
-            mpesaImage.style.display = 'none'; // Hide the image after fading out
-            
+            mpesaImage.style.display = 'none'; // Hide the image
+
             // Create the M-Pesa number text element
             const mpesaNumber = document.createElement('div');
             mpesaNumber.textContent = 'M-Pesa Transfer: 852136558';
             mpesaNumber.style.fontSize = '18px';
             mpesaNumber.style.fontWeight = 'bold';
-            mpesaNumber.style.marginTop = '10px'; // Add some spacing
-            mpesaContainer.appendChild(mpesaNumber); // Add the number to the container
-        }, 500); // 500ms corresponds to the fade duration
+            mpesaNumber.style.marginTop = '10px'; // Add spacing
+            mpesaContainer.appendChild(mpesaNumber); // Append the number to the container
+        }, 500); // Timeout should match the fade-out duration
     });
 }
 
