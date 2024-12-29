@@ -1250,7 +1250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.style.alignItems = 'center';
                 li.style.marginBottom = '10px';
 
-                li.innerHTML = ` 
+                li.innerHTML = `
                     <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                     <div>
                         <p>${item.name}</p>
@@ -1291,9 +1291,22 @@ document.addEventListener('DOMContentLoaded', () => {
         fazerPedidoButton.style.cursor = 'pointer';
         fazerPedidoButton.style.marginTop = '10px';
         fazerPedidoButton.addEventListener('click', () => {
-            showNextButtons();
-        });
-        cartPopupContent.appendChild(fazerPedidoButton);
+        const message = generateWhatsappMessage();
+    const encodedMessage = encodeURIComponent(message);
+    window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+});
+cartPopupContent.appendChild(falarButton);
+
+// Function to generate the message for WhatsApp
+function generateWhatsappMessage() {
+    let message = 'Pedido de compra:\n\n';
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price}\n`;
+    });
+    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+    message += 'Aguardo confirmação do pedido.';
+    return message;
+}
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
@@ -1333,7 +1346,7 @@ document.addEventListener('DOMContentLoaded', () => {
         aguardarButton.addEventListener('click', () => startCountdown());
         cartPopupContent.appendChild(aguardarButton);
 
-       const falarButton = document.createElement('button');
+        const falarButton = document.createElement('button');
         falarButton.textContent = 'Falar com atendente';
         falarButton.style.background = '#ff66b2';
         falarButton.style.color = 'white';
@@ -1343,152 +1356,66 @@ document.addEventListener('DOMContentLoaded', () => {
         falarButton.style.cursor = 'pointer';
         falarButton.style.marginTop = '10px';
         falarButton.addEventListener('click', () => {
-          const message = generateWhatsappMessage();
-    const encodedMessage = encodeURIComponent(message);
-    window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
-});
-cartPopupContent.appendChild(falarButton);
+            const message = generateWhatsappMessage();
+            const encodedMessage = encodeURIComponent(message);
+            window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+        });
+        cartPopupContent.appendChild(falarButton);
 
-// Function to generate the message for WhatsApp
-function generateWhatsappMessage() {
-    let message = 'Pedido de compra:\n\n';
-    cart.forEach(item => {
-        message += `${item.name} - ${item.price}\n`;
-    });
-    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
-    message += 'Aguardo confirmação do pedido.';
-    return message;
-}
-// M-Pesa payment option
-function showMpesapayOption() {
-    const mpesaContainer = document.createElement('div');
-    cartPopupContent.appendChild(mpesaContainer);
-
-    // M-Pesa payment option
-function showMpesapayOption() {
-    const mpesaContainer = document.createElement('div');
-    cartPopupContent.appendChild(mpesaContainer);
+        const pagarButton = document.createElement('button');
+        pagarButton.textContent = 'Pagar Conta';
+        pagarButton.style.background = '#ff66b2';
+        pagarButton.style.color = 'white';
+        pagarButton.style.border = 'none';
+        pagarButton.style.padding = '10px';
+        pagarButton.style.width = '100%';
+        pagarButton.style.cursor = 'pointer';
+        pagarButton.style.marginTop = '10px';
+        pagarButton.addEventListener('click', () => {
+            showPaypalButton();
+            showMpesapayOption();
+        });
+        cartPopupContent.appendChild(pagarButton);
+    }
 
     function showMpesapayOption() {
-    // Create a container for the M-Pesa payment
-    const mpesaContainer = document.createElement('div');
-    mpesaContainer.style.marginTop = '20px'; // Add some spacing
-    cartPopupContent.appendChild(mpesaContainer);
+        const mpesaContainer = document.createElement('div');
+        mpesaContainer.style.marginTop = '20px';
+        cartPopupContent.appendChild(mpesaContainer);
 
-    // Create the M-Pesa clickable image
-    const mpesaImage = document.createElement('img');
-    mpesaImage.src = 'https://i.ibb.co/zbKskTR/IMG-20241229-160034.jpg';  // Replace with your M-Pesa image path
-    mpesaImage.alt = 'M-Pesa Payment';
-    mpesaImage.style.width = '100%';
-    mpesaImage.style.height = 'auto';
-    mpesaImage.style.cursor = 'pointer';
-    mpesaImage.style.transition = 'opacity 0.5s ease'; // Fade transition
-    mpesaContainer.appendChild(mpesaImage);
+        const mpesaImage = document.createElement('img');
+        mpesaImage.src = 'https://i.ibb.co/zbKskTR/IMG-20241229-160034.jpg';
+        mpesaImage.alt = 'M-Pesa Payment';
+        mpesaImage.style.width = '100%';
+        mpesaImage.style.cursor = 'pointer';
+        mpesaImage.style.transition = 'opacity 0.5s ease';
+        mpesaContainer.appendChild(mpesaImage);
 
-    // Add event listener for the M-Pesa image click
-    mpesaImage.addEventListener('click', () => {
-        console.log('M-Pesa image clicked'); // Debugging: Ensure the event fires
-        mpesaImage.style.opacity = '0'; // Fade out the image
-
-        setTimeout(() => {
-            mpesaImage.style.display = 'none'; // Hide the image after fade-out
-            const mpesaNumber = document.createElement('div');
-            mpesaNumber.textContent = 'M-Pesa Transfer: 852136558';
-            mpesaNumber.style.fontSize = '18px';
-            mpesaNumber.style.fontWeight = 'bold';
-            mpesaNumber.style.marginTop = '10px';
-            mpesaContainer.appendChild(mpesaNumber); // Show transfer number
-        }, 500); // Match fade-out duration
-    });
-}
-
-
-
-// Pagar Conta button logic
-const pagarButton = document.createElement('button');
-pagarButton.textContent = 'Pagar Conta';
-pagarButton.style.background = '#ff66b2';
-pagarButton.style.color = 'white';
-pagarButton.style.border = 'none';
-pagarButton.style.padding = '10px';
-pagarButton.style.width = '100%';
-pagarButton.style.cursor = 'pointer';
-pagarButton.style.marginTop = '10px';
-pagarButton.addEventListener('click', () => {
-    showPaypalButton();
-    showMpesapayOption(); // Show M-Pesa payment option below PayPal
-});
-cartPopupContent.appendChild(pagarButton);
-
+        mpesaImage.addEventListener('click', () => {
+            mpesaImage.style.opacity = '0';
+            setTimeout(() => {
+                mpesaImage.style.display = 'none';
+                const mpesaNumber = document.createElement('p');
+                mpesaNumber.textContent = 'M-Pesa Transfer: 852136558';
+                mpesaNumber.style.fontSize = '18px';
+                mpesaNumber.style.fontWeight = 'bold';
+                mpesaNumber.style.marginTop = '10px';
+                mpesaContainer.appendChild(mpesaNumber);
+            }, 500);
+        });
     }
 
-    function showPaypalButton() {
-        const existingPaypalButton = document.querySelector('.paypal-button-container');
-        if (existingPaypalButton) {
-            return; // Do not add another PayPal button if one already exists
-        }
-
-        const paypalButtonContainer = document.createElement('div');
-        paypalButtonContainer.classList.add('paypal-button-container');
-        cartPopupContent.appendChild(paypalButtonContainer);
-
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: calculateTotal().toFixed(2)
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    window.location.href = 'checkout.html';
-                });
-            },
-            onError: function(err) {
-                console.error("Payment Error: ", err);
-            }
-        }).render(paypalButtonContainer);
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    let countdownInterval;
-    function startCountdown() {
-        let timeRemaining = 120; // 2 minutes
-        const countdownElement = document.querySelector('.countdown');
-        
-        if (countdownElement) {
-            countdownElement.remove(); // Remove previous countdown if it exists
-        }
-
-        const newCountdownElement = document.createElement('div');
-        newCountdownElement.classList.add('countdown');
-        newCountdownElement.style.marginTop = '20px';
-        cartPopupContent.appendChild(newCountdownElement);
-
-        function updateCountdown() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            newCountdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-            if (timeRemaining > 0) {
-                timeRemaining--;
-                setTimeout(updateCountdown, 1000);
-            } else {
-                newCountdownElement.innerHTML = 'Tempo esgotado!';
-                setTimeout(startCountdown, 1000); // Restart countdown
-            }
-        }
-        updateCountdown();
-    }
-
+    updateCartCount();
     productCards.forEach(card => {
         const button = card.querySelector('button');
         button.addEventListener('click', () => {
             const img = card.querySelector('img').src;
             const name = card.querySelector('h3').textContent;
             const price = card.querySelector('.price').textContent;
-
             cart.push({ img, name, price });
             saveCart();
             updateCartCount();
@@ -1504,14 +1431,9 @@ cartPopupContent.appendChild(pagarButton);
             cartPopup.style.display = 'block';
         }
     });
-
-    function saveCart() {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    updateCartCount();
 });
 </script>
+
 
 
 
