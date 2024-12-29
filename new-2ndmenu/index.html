@@ -1190,6 +1190,7 @@ console.log('Menu found:', navMenu !== null);
     </script>
         
                 
+<script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
@@ -1354,6 +1355,48 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = `https://wa.me/258852136558?text=Pedido%20de%20compra:%20Total%20R$${calculateTotal().toFixed(2)}`;
         });
         cartPopupContent.appendChild(falarButton);
+
+        // Pagar Conta button
+        const pagarButton = document.createElement('button');
+        pagarButton.textContent = 'Pagar Conta';
+        pagarButton.style.background = '#ff66b2'; // Pink
+        pagarButton.style.color = 'white';
+        pagarButton.style.border = 'none';
+        pagarButton.style.padding = '10px';
+        pagarButton.style.width = '100%';
+        pagarButton.style.cursor = 'pointer';
+        pagarButton.style.marginTop = '10px';
+        pagarButton.addEventListener('click', () => {
+            showPaypalButton();
+        });
+        cartPopupContent.appendChild(pagarButton);
+    }
+
+    // Display PayPal button
+    function showPaypalButton() {
+        const paypalButtonContainer = document.createElement('div');
+        cartPopupContent.appendChild(paypalButtonContainer);
+
+        // PayPal button integration
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: calculateTotal().toFixed(2) // Use the calculated total
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    window.location.href = 'checkout.html'; // Redirect to thank you page
+                });
+            },
+            onError: function(err) {
+                console.error("Payment Error: ", err);
+            }
+        }).render(paypalButtonContainer); // Render PayPal button
     }
 
     // Countdown timer for the "Aguardar" button
@@ -1411,9 +1454,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize cart state
     updateCartCount();
 });
-
-
 </script>
+
 
 
 
