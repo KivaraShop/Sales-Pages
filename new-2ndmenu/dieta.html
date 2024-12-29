@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.style.alignItems = 'center';
                 li.style.marginBottom = '10px';
 
-                li.innerHTML = `
+                li.innerHTML = ` 
                     <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                     <div>
                         <p>${item.name}</p>
@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const fazerPedidoButton = document.createElement('button');
         fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '##3c8d3f';
+        fazerPedidoButton.style.background = '#3c8d3f';
         fazerPedidoButton.style.color = 'white';
         fazerPedidoButton.style.border = 'none';
         fazerPedidoButton.style.padding = '10px';
@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
-        closeButton.style.background = '##3c8d3f';
+        closeButton.style.background = '#3c8d3f';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
         closeButton.style.padding = '5px 10px';
@@ -573,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
         falarButton.style.cursor = 'pointer';
         falarButton.style.marginTop = '10px';
         falarButton.addEventListener('click', () => {
-            const message = generateWhatsappMessage();
+         const message = generateWhatsappMessage();
     const encodedMessage = encodeURIComponent(message);
     window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
 });
@@ -634,19 +634,24 @@ function showMpesapayOption() {
         }, 500); // Match the transition duration
     });
 }
-        const pagarButton = document.createElement('button');
-        pagarButton.textContent = 'Pagar Conta';
-        pagarButton.style.background = '#0070ba';
-        pagarButton.style.color = 'white';
-        pagarButton.style.border = 'none';
-        pagarButton.style.padding = '10px';
-        pagarButton.style.width = '100%';
-        pagarButton.style.cursor = 'pointer';
-        pagarButton.style.marginTop = '10px';
-        pagarButton.addEventListener('click', () => {
-            showPaypalButton();
-        });
-        cartPopupContent.appendChild(pagarButton);
+
+
+// Pagar Conta button logic
+const pagarButton = document.createElement('button');
+pagarButton.textContent = 'Pagar Conta';
+pagarButton.style.background = '#0070ba';
+pagarButton.style.color = 'white';
+pagarButton.style.border = 'none';
+pagarButton.style.padding = '10px';
+pagarButton.style.width = '100%';
+pagarButton.style.cursor = 'pointer';
+pagarButton.style.marginTop = '10px';
+pagarButton.addEventListener('click', () => {
+    showPaypalButton();
+    showMpesapayOption(); // Show M-Pesa payment option below PayPal
+});
+cartPopupContent.appendChild(pagarButton);
+
     }
 
     function showPaypalButton() {
@@ -739,6 +744,7 @@ function showMpesapayOption() {
     updateCartCount();
 });
 </script>
+
 
 </body>
 </html>
