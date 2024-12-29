@@ -1189,7 +1189,7 @@ console.log('Menu found:', navMenu !== null);
         });
     </script>
         
- <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>               
+ <script src="https://www.paypal.com/sdk/js?client-id=&currency=BRL"></script>               
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
@@ -1395,31 +1395,39 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCountdown();
     }
 
-    // Add PayPal button dynamically
-    function showPaypalButton() {
-        if (paypalButtonCreated) return; // Prevent multiple PayPal buttons
+  // Add PayPal button dynamically
+function showPaypalButton() {
+    if (paypalButtonCreated) return; // Prevent multiple PayPal buttons
 
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: calculateTotal().toFixed(2)
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    window.location.href = 'checkout.html'; // Redirect to thank you page
-                });
-            },
-            onError: function(err) {
-                console.log("Error with PayPal: ", err);
-            }
-        }).render('#paypal-button-container'); // This renders the PayPal button in the container
-        paypalButtonCreated = true; // Mark PayPal button as created
-    }
+    // Create a container for the PayPal button
+    const paypalContainer = document.createElement('div');
+    paypalContainer.id = 'paypal-button-container'; // Set the container id
+    paypalContainer.style.marginTop = '20px'; // Add some margin for spacing
+    cartPopupContent.appendChild(paypalContainer);
+
+    // Render the PayPal button inside the created container
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: calculateTotal().toFixed(2)
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                window.location.href = 'checkout.html'; // Redirect to thank you page
+            });
+        },
+        onError: function(err) {
+            console.log("Error with PayPal: ", err);
+        }
+    }).render('#paypal-button-container'); // Render the PayPal button in the container
+
+    paypalButtonCreated = true; // Mark PayPal button as created
+}
 
     // Add product to cart
     productCards.forEach(card => {
