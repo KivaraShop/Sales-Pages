@@ -1200,6 +1200,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartPopupContent = document.querySelector('.cart-popup-content');
     const productCards = document.querySelectorAll('.product-card'); // This will grab product cards from both pages
 
+    let countdownTimer;
+    let countdownActive = false; // Prevent multiple countdowns
+
     // Update cart count
     function updateCartCount() {
         cartBadge.textContent = cart.length || ''; // If cart is empty, hide badge
@@ -1339,7 +1342,11 @@ document.addEventListener('DOMContentLoaded', () => {
         aguardarButton.style.width = '100%';
         aguardarButton.style.cursor = 'pointer';
         aguardarButton.style.marginTop = '10px';
-        aguardarButton.addEventListener('click', () => startCountdown());
+        aguardarButton.addEventListener('click', () => {
+            if (!countdownActive) {
+                startCountdown();
+            }
+        });
         cartPopupContent.appendChild(aguardarButton);
 
         const falarButton = document.createElement('button');
@@ -1356,51 +1363,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         cartPopupContent.appendChild(falarButton);
 
-        // Pagar Conta button
-        const pagarButton = document.createElement('button');
-        pagarButton.textContent = 'Pagar Conta';
-        pagarButton.style.background = '#ff66b2'; // Pink
-        pagarButton.style.color = 'white';
-        pagarButton.style.border = 'none';
-        pagarButton.style.padding = '10px';
-        pagarButton.style.width = '100%';
-        pagarButton.style.cursor = 'pointer';
-        pagarButton.style.marginTop = '10px';
-        pagarButton.addEventListener('click', () => {
-            showPaypalButton();
-        });
-        cartPopupContent.appendChild(pagarButton);
-    }
+        // Add Pagar conta button (only if it's not already there)
+        const pagarContaButton = document.createElement('button');
+        pagarContaButton.textContent = 'Pagar conta';
+        pagarContaButton.style.background = '#4CAF50'; // Green
+        pagarContaButton.style.color = 'white';
+        pagarContaButton.style.border = 'none';
+        pagarContaButton.style.padding = '10px';
+        pagarContaButton.style.width = '100%';
+        pagarContaButton.style.cursor = 'pointer';
+        pagarContaButton.style.marginTop = '10px';
+        pagarContaButton.style.marginBottom = '20px'; // Add margin below the button
+        pagarContaButton.style.display = 'block'; // Ensure it's visible
 
-    // Display PayPal button
-    function showPaypalButton() {
-        const paypalButtonContainer = document.createElement('div');
-        cartPopupContent.appendChild(paypalButtonContainer);
-
-        // PayPal button integration
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: calculateTotal().toFixed(2) // Use the calculated total
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    window.location.href = 'checkout.html'; // Redirect to thank you page
-                });
-            },
-            onError: function(err) {
-                console.error("Payment Error: ", err);
-            }
-        }).render(paypalButtonContainer); // Render PayPal button
+        // Prevent adding multiple PayPal buttons
+        if (!document.getElementById('paypal-button-container')) {
+            pagarContaButton.addEventListener('click', () => {
+                document.getElementById('paypal-button-container').style.display = 'block';
+            });
+            cartPopupContent.appendChild(pagarContaButton);
+        }
     }
 
     // Countdown timer for the "Aguardar" button
     function startCountdown() {
+        countdownActive = true;
         let timeRemaining = 120; // 2 minutes
         const countdownElement = document.createElement('div');
         countdownElement.classList.add('countdown');
@@ -1416,6 +1403,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(updateCountdown, 1000);
             } else {
                 countdownElement.innerHTML = 'Tempo esgotado!';
+                countdownActive = false;
+                setTimeout(startCountdown, 1000); // Restart countdown after it ends
             }
         }
         updateCountdown();
@@ -1455,7 +1444,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
 });
 </script>
-
 
 
 
