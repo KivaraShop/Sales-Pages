@@ -1345,10 +1345,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 cartPopupContent.appendChild(falarButton);
 
-// M-Pesa payment option with effects
+// M-Pesa payment option with effects and no duplication
 function showMpesapayOption() {
     const mpesaContainer = document.createElement('div');
     cartPopupContent.appendChild(mpesaContainer);
+
+    // Check if the M-Pesa number has already been displayed to avoid duplication
+    const existingMpesaNumber = document.querySelector('.mpesa-number');
+    if (existingMpesaNumber) return; // Exit the function if the number already exists
 
     // Create the M-Pesa payment button
     const mpesaButton = document.createElement('button');
@@ -1380,10 +1384,12 @@ function showMpesapayOption() {
             mpesaNumber.style.fontWeight = 'bold';
             mpesaNumber.style.marginTop = '10px'; // Maintain spacing
             mpesaNumber.style.textAlign = 'center'; // Center the number
+            mpesaNumber.classList.add('mpesa-number'); // Add a class to easily check if number already exists
             mpesaContainer.appendChild(mpesaNumber);
         }, 500); // Match the transition duration
     });
 }
+
 
 // Pagar Conta button logic
 const pagarButton = document.createElement('button');
