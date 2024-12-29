@@ -7,8 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
         }
@@ -16,72 +16,92 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
         .dashboard-header {
-            background-color: #ff66b2;
+            background-color: #ff1f5d;
             color: white;
-            padding: 15px;
+            padding: 20px;
             width: 100%;
             text-align: center;
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 28px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
         .dashboard-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            margin-top: 40px;
             width: 100%;
-            max-width: 1400px;
-            margin-top: 20px;
         }
         .stat-card {
-            background-color: #ff66b2;
-            color: white;
-            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            padding: 25px;
             border-radius: 10px;
-            width: 24%;
+            width: 23%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
         .stat-card h3 {
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 500;
         }
         .stat-card p {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 30px;
+            font-weight: 700;
         }
         .chart-container {
             width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
+            max-width: 700px;
+            margin-top: 30px;
         }
         .chart-container canvas {
             width: 100%;
+            height: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
         }
         .button-container {
-            margin-top: 30px;
+            margin-top: 40px;
         }
         .btn {
-            background-color: #ff66b2;
+            background-color: #ff1f5d;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
         .btn:hover {
-            background-color: #e5008e;
+            background-color: #e50052;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 1200px) {
+            .stat-card {
+                width: 48%;
+            }
+        }
+        @media (max-width: 800px) {
+            .stat-card {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="dashboard-container">
         <div class="dashboard-header">
-            Dashboard de Vendas
+            Dashboard de Vendas - Visão Geral
         </div>
         <div class="dashboard-content">
             <!-- Estatísticas -->
@@ -169,18 +189,51 @@
         const salesChartConfig = {
             type: 'pie',
             data: salesData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    }
+                }
+            }
         };
 
         // Configuração do gráfico de descontos (gráfico circular)
         const discountsChartConfig = {
             type: 'pie',
             data: discountsData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    }
+                }
+            }
         };
 
         // Configuração do gráfico de lucro (gráfico circular)
         const profitChartConfig = {
             type: 'pie',
             data: profitData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    }
+                }
+            }
         };
 
         // Inicializando os gráficos circulares
