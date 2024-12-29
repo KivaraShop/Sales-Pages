@@ -1338,10 +1338,12 @@ document.addEventListener('DOMContentLoaded', () => {
         falarButton.style.cursor = 'pointer';
         falarButton.style.marginTop = '10px';
         falarButton.addEventListener('click', () => {
-            window.location.href = `https://wa.me/258852136558?text=Pedido%20de%20compra:%20Total%20R$${calculateTotal().toFixed(2)}`;
-        });
-        cartPopupContent.appendChild(falarButton);
-        
+          const message = generateWhatsappMessage();
+    const encodedMessage = encodeURIComponent(message);
+    window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+});
+cartPopupContent.appendChild(falarButton);
+
 // Function to generate the message for WhatsApp
 function generateWhatsappMessage() {
     let message = 'Pedido de compra:\n\n';
