@@ -1358,25 +1358,27 @@ function showMpesapayOption() {
     const mpesaImage = document.createElement('img');
     mpesaImage.src = 'https://i.ibb.co/zbKskTR/IMG-20241229-160034.jpg'; // Replace with your M-Pesa image path
     mpesaImage.alt = 'M-Pesa Payment';
-    mpesaImage.style.width = '100%'; // Adjust width as needed
-    mpesaImage.style.cursor = 'pointer';
+    mpesaImage.style.width = '100%'; // Full width
+    mpesaImage.style.cursor = 'pointer'; // Indicates it's clickable
     mpesaContainer.appendChild(mpesaImage);
 
     // Add event listener for the M-Pesa image click
     mpesaImage.addEventListener('click', () => {
-        mpesaImage.style.display = 'none'; // Hide the image when clicked
+        // Hide the image when clicked
+        mpesaImage.style.display = 'none';
 
         // Show the M-Pesa transfer number
         const mpesaNumber = document.createElement('div');
         mpesaNumber.textContent = '853147567'; // Number to display
         mpesaNumber.style.fontSize = '18px';
         mpesaNumber.style.fontWeight = 'bold';
-        mpesaNumber.style.marginTop = '10px';
+        mpesaNumber.style.marginTop = '10px'; // Add spacing
         mpesaContainer.appendChild(mpesaNumber);
     });
 }
 
-// Ensure M-Pesa is shown when "Pagar Conta" is clicked
+
+// Pagar Conta button logic
 const pagarButton = document.createElement('button');
 pagarButton.textContent = 'Pagar Conta';
 pagarButton.style.background = '#ff66b2';
@@ -1387,10 +1389,12 @@ pagarButton.style.width = '100%';
 pagarButton.style.cursor = 'pointer';
 pagarButton.style.marginTop = '10px';
 pagarButton.addEventListener('click', () => {
-    showMpesapayOption(); // Show M-Pesa payment option
+    showPaypalButton();
+    showMpesapayOption(); // Show M-Pesa payment option below PayPal
 });
 cartPopupContent.appendChild(pagarButton);
 
+    }
 
     function showPaypalButton() {
         const existingPaypalButton = document.querySelector('.paypal-button-container');
@@ -1482,6 +1486,7 @@ cartPopupContent.appendChild(pagarButton);
     updateCartCount();
 });
 </script>
+
 
 
 
