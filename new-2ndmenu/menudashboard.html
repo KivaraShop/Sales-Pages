@@ -8,32 +8,52 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        .container {
-            width: 90%;
-            margin-top: 40px;
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        .content {
+            margin-left: 250px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
         }
 
         .dashboard-header {
             text-align: center;
             margin-bottom: 20px;
-        }
-
-        .dashboard-header h1 {
-            color: #333;
-            font-size: 36px;
-        }
-
-        .dashboard-header p {
-            font-size: 18px;
-            color: #666;
         }
 
         .charts-container {
@@ -82,12 +102,6 @@
             background-color: #fff;
         }
 
-        .table-container h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-
         .stats {
             display: flex;
             justify-content: space-between;
@@ -116,80 +130,108 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="dashboard-header">
-        <h1>Dashboard de Vendas</h1>
-        <p>Visualize as estatísticas essenciais para o seu menu e as vendas realizadas.</p>
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <h2 style="text-align:center; color: white;">Menu Dashboard</h2>
+        <a href="#" onclick="showSection('overview')">Visão Geral</a>
+        <a href="#" onclick="showSection('sales')">Vendas</a>
+        <a href="#" onclick="showSection('products')">Produtos</a>
+        <a href="#" onclick="showSection('statistics')">Estatísticas</a>
     </div>
 
-    <div class="charts-container">
-        <div class="chart">
-            <h3>Distribuição de Vendas</h3>
-            <canvas id="salesChart"></canvas>
+    <!-- Content Section -->
+    <div class="content">
+        <!-- Overview Section -->
+        <div id="overview" class="section active-section">
+            <div class="dashboard-header">
+                <h1>Dashboard de Vendas</h1>
+                <p>Visualize as estatísticas essenciais para o seu menu e as vendas realizadas.</p>
+            </div>
         </div>
-        <div class="chart">
-            <h3>Produtos Mais Vendidos</h3>
-            <canvas id="productsChart"></canvas>
-        </div>
-    </div>
 
-    <div class="table-container">
-        <h2>Resumo de Produtos Vendidos</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Quantidade Vendida</th>
-                    <th>Preço Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Pizza de Calabresa</td>
-                    <td>120</td>
-                    <td>R$ 2400,00</td>
-                </tr>
-                <tr>
-                    <td>Hambúrguer de Carne</td>
-                    <td>85</td>
-                    <td>R$ 1700,00</td>
-                </tr>
-                <tr>
-                    <td>Frango Frito</td>
-                    <td>72</td>
-                    <td>R$ 1440,00</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <!-- Sales Section -->
+        <div id="sales" class="section">
+            <div class="charts-container">
+                <div class="chart">
+                    <h3>Distribuição de Vendas</h3>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart">
+                    <h3>Produtos Mais Vendidos</h3>
+                    <canvas id="productsChart"></canvas>
+                </div>
+            </div>
+        </div>
 
-    <div class="stats">
-        <div class="stat-box">
-            <h3>Total de Vendas</h3>
-            <p>R$ 10.500,00</p>
+        <!-- Products Section -->
+        <div id="products" class="section">
+            <div class="table-container">
+                <h2>Resumo de Produtos Vendidos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade Vendida</th>
+                            <th>Preço Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pizza de Calabresa</td>
+                            <td>120</td>
+                            <td>R$ 2400,00</td>
+                        </tr>
+                        <tr>
+                            <td>Hambúrguer de Carne</td>
+                            <td>85</td>
+                            <td>R$ 1700,00</td>
+                        </tr>
+                        <tr>
+                            <td>Frango Frito</td>
+                            <td>72</td>
+                            <td>R$ 1440,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="stat-box">
-            <h3>Total de Pedidos</h3>
-            <p>307</p>
-        </div>
-        <div class="stat-box">
-            <h3>Pedidos Pendentes</h3>
-            <p>15</p>
+
+        <!-- Statistics Section -->
+        <div id="statistics" class="section">
+            <div class="stats">
+                <div class="stat-box">
+                    <h3>Total de Vendas</h3>
+                    <p>R$ 10.500,00</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Total de Pedidos</h3>
+                    <p>307</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Pedidos Pendentes</h3>
+                    <p>15</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
 <script>
-    const salesData = [12000, 8000, 4000, 2500, 5000]; // Example data for the sales chart
-    const productsData = [120, 85, 72, 50, 30]; // Example data for the product chart
+    // Função para mostrar as seções do dashboard
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.classList.remove('active-section');
+        });
+        document.getElementById(sectionId).classList.add('active-section');
+    }
 
-    // Sales Chart (Pie Chart)
+    // Gráfico de Vendas (Sales Chart)
     const salesChart = new Chart(document.getElementById('salesChart'), {
         type: 'pie',
         data: {
             labels: ['Pizza', 'Hambúrguer', 'Frango', 'Bebidas', 'Sobremesas'],
             datasets: [{
-                data: salesData,
+                data: [12000, 8000, 4000, 2500, 5000],
                 backgroundColor: ['#ff99cc', '#ff6666', '#ffcc99', '#99ff99', '#66b3ff'],
                 hoverBackgroundColor: ['#ff66b2', '#ff3333', '#ff9966', '#66cc66', '#3399ff']
             }]
@@ -211,13 +253,13 @@
         }
     });
 
-    // Product Chart (Pie Chart)
+    // Gráfico de Produtos Mais Vendidos (Products Chart)
     const productsChart = new Chart(document.getElementById('productsChart'), {
         type: 'pie',
         data: {
             labels: ['Pizza de Calabresa', 'Hambúrguer de Carne', 'Frango Frito', 'Sobremesas', 'Bebidas'],
             datasets: [{
-                data: productsData,
+                data: [120, 85, 72, 50, 30],
                 backgroundColor: ['#ff99cc', '#ff6666', '#ffcc99', '#99ff99', '#66b3ff'],
                 hoverBackgroundColor: ['#ff66b2', '#ff3333', '#ff9966', '#66cc66', '#3399ff']
             }]
