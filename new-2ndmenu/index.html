@@ -1364,23 +1364,31 @@ function showMpesapayOption() {
     const mpesaContainer = document.createElement('div');
     cartPopupContent.appendChild(mpesaContainer);
 
+    // M-Pesa payment option
+function showMpesapayOption() {
+    const mpesaContainer = document.createElement('div');
+    cartPopupContent.appendChild(mpesaContainer);
+
     // Create the M-Pesa clickable image
     const mpesaImage = document.createElement('img');
     mpesaImage.src = 'https://i.ibb.co/zbKskTR/IMG-20241229-160034.jpg';  // Replace with your M-Pesa image path
     mpesaImage.alt = 'M-Pesa Payment';
     mpesaImage.style.width = '100%'; // Same size as PayPal button
     mpesaImage.style.height = 'auto';
-    mpesaImage.style.cursor = 'pointer';
+    mpesaImage.style.cursor = 'pointer'; // Make sure the image is clickable
     mpesaImage.style.marginTop = '10px'; // Add some spacing
-    mpesaImage.style.transition = 'opacity 0.5s ease'; // Ensure smooth fading
+    mpesaImage.style.transition = 'opacity 0.5s ease'; // Fade transition
+    mpesaImage.style.opacity = '1'; // Initial opacity
     mpesaContainer.appendChild(mpesaImage);
 
     // Add event listener for the M-Pesa image click
     mpesaImage.addEventListener('click', () => {
-        // Fade out the image
+        console.log('Image clicked');  // Debugging line: Check if click event is firing
+
+        // Fade out the image by changing opacity
         mpesaImage.style.opacity = '0';
 
-        // After 500ms (the fade duration), hide the image and show the transfer number
+        // After the fade effect (500ms), hide the image and show the transfer number
         setTimeout(() => {
             mpesaImage.style.display = 'none'; // Hide the image
 
@@ -1391,9 +1399,10 @@ function showMpesapayOption() {
             mpesaNumber.style.fontWeight = 'bold';
             mpesaNumber.style.marginTop = '10px'; // Add spacing
             mpesaContainer.appendChild(mpesaNumber); // Append the number to the container
-        }, 500); // Timeout should match the fade-out duration
+        }, 500); // Timeout duration should match the opacity transition duration
     });
 }
+
 
 // Pagar Conta button logic
 const pagarButton = document.createElement('button');
