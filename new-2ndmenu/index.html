@@ -1250,7 +1250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.style.alignItems = 'center';
                 li.style.marginBottom = '10px';
 
-                li.innerHTML = `
+                li.innerHTML = ` 
                     <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                     <div>
                         <p>${item.name}</p>
@@ -1349,29 +1349,51 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 cartPopupContent.appendChild(falarButton);
 
-// Function to generate the message for WhatsApp
-function generateWhatsappMessage() {
-    let message = 'Pedido de compra:\n\n';
-    cart.forEach(item => {
-        message += `${item.name} - ${item.price}\n`;
+// M-Pesa payment option
+function showMpesapayOption() {
+    const mpesaContainer = document.createElement('div');
+    cartPopupContent.appendChild(mpesaContainer);
+
+    // Create the M-Pesa clickable image
+    const mpesaImage = document.createElement('img');
+    mpesaImage.src = 'path_to_your_mpesa_image.png';  // Replace with your M-Pesa image path
+    mpesaImage.alt = 'M-Pesa Payment';
+    mpesaImage.style.width = '100%'; // Same size as PayPal button
+    mpesaImage.style.height = 'auto';
+    mpesaImage.style.cursor = 'pointer';
+    mpesaImage.style.marginTop = '10px'; // Add some spacing
+    mpesaContainer.appendChild(mpesaImage);
+
+    // Add event listener for the M-Pesa image click
+    mpesaImage.addEventListener('click', () => {
+        mpesaImage.style.display = 'none'; // Hide the image when clicked
+
+        // Show the M-Pesa transfer number
+        const mpesaNumber = document.createElement('div');
+        mpesaNumber.textContent = 'M-Pesa Transfer: 852136558';
+        mpesaNumber.style.fontSize = '18px';
+        mpesaNumber.style.fontWeight = 'bold';
+        mpesaNumber.style.marginTop = '10px'; // Add some spacing
+        mpesaContainer.appendChild(mpesaNumber);
     });
-    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
-    message += 'Aguardo confirmação do pedido.';
-    return message;
 }
-        const pagarButton = document.createElement('button');
-        pagarButton.textContent = 'Pagar Conta';
-        pagarButton.style.background = '#ff66b2';
-        pagarButton.style.color = 'white';
-        pagarButton.style.border = 'none';
-        pagarButton.style.padding = '10px';
-        pagarButton.style.width = '100%';
-        pagarButton.style.cursor = 'pointer';
-        pagarButton.style.marginTop = '10px';
-        pagarButton.addEventListener('click', () => {
-            showPaypalButton();
-        });
-        cartPopupContent.appendChild(pagarButton);
+
+// Pagar Conta button logic
+const pagarButton = document.createElement('button');
+pagarButton.textContent = 'Pagar Conta';
+pagarButton.style.background = '#ff66b2';
+pagarButton.style.color = 'white';
+pagarButton.style.border = 'none';
+pagarButton.style.padding = '10px';
+pagarButton.style.width = '100%';
+pagarButton.style.cursor = 'pointer';
+pagarButton.style.marginTop = '10px';
+pagarButton.addEventListener('click', () => {
+    showPaypalButton();
+    showMpesapayOption(); // Show M-Pesa payment option below PayPal
+});
+cartPopupContent.appendChild(pagarButton);
+
     }
 
     function showPaypalButton() {
@@ -1404,42 +1426,6 @@ function generateWhatsappMessage() {
             }
         }).render(paypalButtonContainer);
     }
-
-// M-Pesa payment option
-function showMpesapayOption() {
-    const mpesaContainer = document.createElement('div');
-    cartPopupContent.appendChild(mpesaContainer);
-
-    // Create the M-Pesa clickable image
-    const mpesaImage = document.createElement('img');
-    mpesaImage.src = 'https://i.ibb.co/zbKskTR/IMG-20241229-160034.jpg';  // Replace with your M-Pesa image path
-    mpesaImage.alt = 'M-Pesa Payment';
-    mpesaImage.style.width = '100%'; // Same size as PayPal button
-    mpesaImage.style.height = 'auto';
-    mpesaImage.style.cursor = 'pointer';
-    mpesaImage.style.marginTop = '10px'; // Add some spacing
-    mpesaImage.style.transition = 'opacity 0.5s ease'; // Fade transition
-    mpesaContainer.appendChild(mpesaImage);
-
-    // Add event listener for the M-Pesa image click
-    mpesaImage.addEventListener('click', () => {
-        // Fade out the image by changing opacity
-        mpesaImage.style.opacity = '0';
-
-        // After the fade effect (500ms), hide the image and show the transfer number
-        setTimeout(() => {
-            mpesaImage.style.display = 'none'; // Hide the image
-
-            // Create the M-Pesa number text element
-            const mpesaNumber = document.createElement('div');
-            mpesaNumber.textContent = 'M-Pesa Transfer: 852136558';
-            mpesaNumber.style.fontSize = '18px';
-            mpesaNumber.style.fontWeight = 'bold';
-            mpesaNumber.style.marginTop = '10px'; // Add spacing
-            mpesaContainer.appendChild(mpesaNumber); // Append the number to the container
-        }, 500); // Timeout duration should match the opacity transition duration
-    });
-}
 
     let countdownInterval;
     function startCountdown() {
@@ -1500,6 +1486,7 @@ function showMpesapayOption() {
     updateCartCount();
 });
 </script>
+
 
 
 
