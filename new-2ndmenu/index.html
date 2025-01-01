@@ -1514,7 +1514,7 @@ cartPopupContent.appendChild(pagarButton);
 // Detectar o idioma do navegador
 const userLang = navigator.language || "en";
 
-// Função para traduzir o conteúdo
+// Função para traduzir todo o conteúdo
 async function translatePage(targetLang) {
     const elements = document.body.getElementsByTagName("*");
 
@@ -1522,7 +1522,7 @@ async function translatePage(targetLang) {
         if (element.childNodes.length === 1 && element.childNodes[0].nodeType === Node.TEXT_NODE) {
             const text = element.innerText.trim();
             if (text) {
-                const translatedText = await fetchTranslation(text, targetLang);
+                const translatedText = await fetchTranslation(text, "pt", targetLang); // Sempre traduzindo de Português
                 if (translatedText) {
                     element.innerText = translatedText;
                 }
@@ -1531,11 +1531,11 @@ async function translatePage(targetLang) {
     }
 }
 
-// Chamar a API de tradução (simulação)
-async function fetchTranslation(text, targetLang) {
+// Chamar a API de tradução (idioma fixo de origem)
+async function fetchTranslation(text, sourceLang, targetLang) {
     const encodedText = encodeURIComponent(text);
     const response = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodedText}&langpair=auto|${targetLang}`
+        `https://api.mymemory.translated.net/get?q=${encodedText}&langpair=${sourceLang}|${targetLang}`
     );
     const data = await response.json();
     return data.responseData.translatedText;
