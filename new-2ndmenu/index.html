@@ -541,6 +541,7 @@ img {
 
 
     </style>
+ <script src="https://unpkg.com/i18next@21.6.0/i18next.min.js"></script>
 </head>
 <body>
 
@@ -1511,40 +1512,38 @@ cartPopupContent.appendChild(pagarButton);
 </script>
     
 <script>
-// Detectar o idioma do navegador
-const userLang = navigator.language.slice(0, 2) || "en";
-
-// Função para traduzir todo o conteúdo
-async function translatePage(targetLang) {
-    if (targetLang === "pt") return; // Evita traduzir para o mesmo idioma
-
-    const elements = document.body.getElementsByTagName("*");
-
-    for (let element of elements) {
-        if (element.childNodes.length === 1 && element.childNodes[0].nodeType === Node.TEXT_NODE) {
-            const text = element.innerText.trim();
-            if (text) {
-                const translatedText = await fetchTranslation(text, "pt", targetLang);
-                if (translatedText) {
-                    element.innerText = translatedText;
+// Definir as traduções para cada idioma (incluindo pt como idioma de origem)
+        const resources = {
+            pt: {
+                translation: {
+                    "welcome-message": "Bem-vindo ao nosso site!",
+                    "description": "Este é um exemplo de tradução automática."
+                }
+            },
+            en: {
+                translation: {
+                    "welcome-message": "Welcome to our website!",
+                    "description": "This is an example of automatic translation."
+                }
+            },
+            es: {
+                translation: {
+                    "welcome-message": "¡Bienvenido a nuestro sitio web!",
+                    "description": "Este es un ejemplo de traducción automática."
                 }
             }
-        }
-    }
-}
+        };
 
-// Chamar a API de tradução (idioma fixo de origem)
-async function fetchTranslation(text, sourceLang, targetLang) {
-    const encodedText = encodeURIComponent(text);
-    const response = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodedText}&langpair=${sourceLang}|${targetLang}`
-    );
-    const data = await response.json();
-    return data.responseData.translatedText;
-}
-
-// Executar a tradução para o idioma do navegador
-translatePage(userLang);
+        // Inicializar o i18next
+        i18next.init({
+            lng: navigator.language || navigator.userLanguage,  // Detectar o idioma do navegador
+            fallbackLng: 'pt',  // Caso o idioma do navegador não seja suportado, usa o português como padrão
+            resources: resources
+        }, function(err, t) {
+            // Atualizar os elementos da página com as traduções
+            document.getElementById('welcome-message').innerText = i18next.t('welcome-message');
+            document.getElementById('description').innerText = i18next.t('description');
+        });
 </script>
 
 
