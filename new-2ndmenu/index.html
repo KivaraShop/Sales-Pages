@@ -1510,43 +1510,6 @@ cartPopupContent.appendChild(pagarButton);
 });
 </script>
 
- <script src="https://unpkg.com/i18next@21.6.0/i18next.min.js"></script>
-<script>
-// Definir as traduções para cada idioma (incluindo pt como idioma de origem)
-        const resources = {
-            pt: {
-                translation: {
-                    "welcome-message": "Bem-vindo ao nosso site!",
-                    "description": "Este é um exemplo de tradução automática."
-                }
-            },
-            en: {
-                translation: {
-                    "welcome-message": "Welcome to our website!",
-                    "description": "This is an example of automatic translation."
-                }
-            },
-            es: {
-                translation: {
-                    "welcome-message": "¡Bienvenido a nuestro sitio web!",
-                    "description": "Este es un ejemplo de traducción automática."
-                }
-            }
-        };
-
-        // Inicializar o i18next
-        i18next.init({
-            lng: navigator.language || navigator.userLanguage,  // Detectar o idioma do navegador
-            fallbackLng: 'pt',  // Caso o idioma do navegador não seja suportado, usa o português como padrão
-            resources: resources
-        }, function(err, t) {
-            // Atualizar os elementos da página com as traduções
-            document.getElementById('welcome-message').innerText = i18next.t('welcome-message');
-            document.getElementById('description').innerText = i18next.t('description');
-        });
-</script>
-
-
 
 
 </body>
