@@ -1512,17 +1512,19 @@ cartPopupContent.appendChild(pagarButton);
     
 <script>
 // Detectar o idioma do navegador
-const userLang = navigator.language || "en";
+const userLang = navigator.language.slice(0, 2) || "en";
 
 // Função para traduzir todo o conteúdo
 async function translatePage(targetLang) {
+    if (targetLang === "pt") return; // Evita traduzir para o mesmo idioma
+
     const elements = document.body.getElementsByTagName("*");
 
     for (let element of elements) {
         if (element.childNodes.length === 1 && element.childNodes[0].nodeType === Node.TEXT_NODE) {
             const text = element.innerText.trim();
             if (text) {
-                const translatedText = await fetchTranslation(text, "pt", targetLang); // Sempre traduzindo de Português
+                const translatedText = await fetchTranslation(text, "pt", targetLang);
                 if (translatedText) {
                     element.innerText = translatedText;
                 }
@@ -1542,7 +1544,7 @@ async function fetchTranslation(text, sourceLang, targetLang) {
 }
 
 // Executar a tradução para o idioma do navegador
-translatePage(userLang.slice(0, 2));
+translatePage(userLang);
 </script>
 
 
