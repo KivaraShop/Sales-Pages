@@ -1539,7 +1539,7 @@ cartPopupContent.appendChild(pagarButton);
 </script>
 
    <script>
-    const sheetUrl = 'https://script.google.com/macros/s/AKfycbzCPAEMqjSYuFH88X5cMvAL_XcMS1fx6gbuLthY9YoHtJcSPASn3um3XGQvz4ZL_sLPFA/exec';  // Substitua com a URL do seu Web App
+    const sheetUrl = 'AKfycbzCPAEMqjSYuFH88X5cMvAL_XcMS1fx6gbuLthY9YoHtJcSPASn3um3XGQvz4ZL_sLPFA';  // Substitua com a URL do seu Web App
 
     // Função para buscar dados do Google Sheets
     function fetchMenuData() {
@@ -1578,6 +1578,19 @@ cartPopupContent.appendChild(pagarButton);
     document.getElementById('show-menu-btn').addEventListener('click', () => {
       fetchMenuData();  // Chama a função para carregar e exibir os dados
     });
+       // Função que envia os dados do item para o Google Apps Script
+function addItemToOrder(item) {
+  google.script.run
+    .withSuccessHandler(function(response) {
+      console.log("Produto adicionado com sucesso:", response);
+      alert("Produto adicionado com sucesso!");
+    })
+    .withFailureHandler(function(error) {
+      console.error("Erro ao adicionar produto:", error);
+      alert("Erro ao adicionar o produto.");
+    })
+    .addItemToOrderScript(item);  // Chama a função no Google Apps Script
+}
   </script>
 
 </body>
