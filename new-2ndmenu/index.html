@@ -549,15 +549,33 @@ img {
       margin: 0;
       font-size: 18px;
     }
-  /* Estilo específico para o botão "Exibir Vendas" */
-#exibir-vendas {
-  background-color: #4a004e;  /* Cor diferente para distinguir os botões */
-}
+ #btn-exibir-vendas {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        /* Estilos para a tabela */
+        #tabela-vendas {
+            display: none;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-/* Efeito de hover específico para o botão "Exibir Vendas" */
-#exibir-vendas:hover {
-  background-color: #800080;
-}
+        #tabela-vendas th, #tabela-vendas td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #tabela-vendas th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -599,10 +617,24 @@ img {
     <!-- Conteúdo principal -->
     <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
-<!-- Botão para exibir os dados -->
-<button onclick="exibirVendas()">Exibir Vendas</button>
-
-<div id="vendas"></div>
+<!-- Botão para exibir as vendas -->
+    <button id="btn-exibir-vendas">Exibir Vendas</button>
+    
+    <!-- Tabela para exibir as vendas -->
+    <table id="tabela-vendas">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Total</th>
+                <th>Data da Venda</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os dados serão inseridos aqui -->
+        </tbody>
+    </table>
         
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
@@ -1621,5 +1653,41 @@ function addItemToOrder() {
     .addItemToOrder(item);  // Chama a função no Google Apps Script
 }
 </script>
+
+    <script>
+        $(document).ready(function() {
+            // URL do Web App
+            const webAppUrl = "URL_DO_SEU_WEB_APP"; // Substitua com a URL do seu Web App
+            
+            // Função para exibir os dados das vendas
+            $('#btn-exibir-vendas').click(function() {
+                $.get(webAppUrl, function(data) {
+                    // Converter os dados JSON para um formato utilizável
+                    const vendas = JSON.parse(data);
+                    
+                    // Limpar os dados existentes da tabela
+                    $('#tabela-vendas tbody').empty();
+
+                    // Preencher a tabela com os dados
+                    vendas.forEach(function(venda) {
+                        const linha = `<tr>
+                            <td>${venda[0]}</td>
+                            <td>${venda[1]}</td>
+                            <td>${venda[2]}</td>
+                            <td>${venda[3]}</td>
+                            <td>${venda[4]}</td>
+                        </tr>`;
+                        $('#tabela-vendas tbody').append(linha);
+                    });
+
+                    // Exibir a tabela
+                    $('#tabela-vendas').show();
+                }).fail(function() {
+                    alert("Erro ao carregar os dados.");
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>
