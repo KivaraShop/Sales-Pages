@@ -549,33 +549,40 @@ img {
       margin: 0;
       font-size: 18px;
     }
- #btn-exibir-vendas {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 20px 0;
-        }
-        
-        /* Estilos para a tabela */
-        #tabela-vendas {
-            display: none;
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+#btn-exibir-vendas {
+  background-color: #ff66b2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
 
-        #tabela-vendas th, #tabela-vendas td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
+#btn-exibir-vendas:hover {
+  background-color: #ff3385;
+}
 
-        #tabela-vendas th {
-            background-color: #f2f2f2;
-        }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+
     </style>
 </head>
 <body>
@@ -617,20 +624,12 @@ img {
     <!-- Conteúdo principal -->
     <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
- <!-- Tabela de Vendas -->
-    <div id="vendas-container" style="display:none;">
-        <h2>Histórico de Vendas</h2>
-        <table id="tabela-vendas" border="1">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço Unitário</th>
-                    <th>Total</th>
-                    <th>Data da Venda</th>
-                </tr>
-            </thead>
-            <tbody>  
+<button id="btn-exibir-vendas">Exibir Vendas</button>
+
+<div id="vendas">
+  <!-- A tabela de vendas será inserida aqui -->
+</div>
+
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
     <a href="dieta.html" class="categoria-btn">Dieta</a>
