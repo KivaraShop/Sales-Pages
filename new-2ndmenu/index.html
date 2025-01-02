@@ -1558,23 +1558,23 @@ cartPopupContent.appendChild(pagarButton);
 });
 </script>
 <script>
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbwu4OqigRFbN5kW1sud6ysSEsdxVjqnergU6wm04TiqwGGY_d56NNe5NJvAs3nnKJJ3/exec'; // Substitua com o URL gerado do seu Web App
+
 function addItemToOrder() {
   const item = {
-    nome: "Produto Exemplo",      // Nome do produto
-    quantidade: 2,                // Quantidade do produto
-    preco: 50,                    // Preço unitário
-    total: 100                    // Preço total (preço * quantidade)
+    nome: "Produto Exemplo",
+    quantidade: 2,
+    preco: 50,
+    total: 100
   };
 
-  fetch('https://script.google.com/macros/s/AKfycbwu4OqigRFbN5kW1sud6ysSEsdxVjqnergU6wm04TiqwGGY_d56NNe5NJvAs3nnKJJ3/exec', {
+  // Chama o Google Apps Script Web App para adicionar o item à planilha
+  fetch(webAppUrl + "?action=addItem", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      action: "addItem",
-      item: item
-    })
+    body: JSON.stringify(item)
   })
   .then(response => response.json())
   .then(data => {
@@ -1585,6 +1585,43 @@ function addItemToOrder() {
     alert("Erro ao adicionar item.");
   });
 }
+
+function exibirVendas() {
+  fetch(webAppUrl + "?action=getVendas", {
+    method: "GET"
+  })
+  .then(response => response.json())
+  .then(data => {
+    const vendasContainer = document.getElementById('vendas');
+    vendasContainer.innerHTML = "";  // Limpa a área antes de preencher
+
+    const tabela = document.createElement('table');
+    const cabecalho = tabela.createTHead();
+    const linhaCabecalho = cabecalho.insertRow();
+    linhaCabecalho.insertCell().textContent = "Produto";
+    linhaCabecalho.insertCell().textContent = "Quantidade";
+    linhaCabecalho.insertCell().textContent = "Preço Unitário";
+    linhaCabecalho.insertCell().textContent = "Total";
+    linhaCabecalho.insertCell().textContent = "Data da Venda";
+    
+    const corpoTabela = tabela.createTBody();
+    data.forEach(function(venda) {
+      const linha = corpoTabela.insertRow();
+      linha.insertCell().textContent = venda.nome;
+      linha.insertCell().textContent = venda.quantidade;
+      linha.insertCell().textContent = venda.preco;
+      linha.insertCell().textContent = venda.total;
+      linha.insertCell().textContent = venda.data;
+    });
+
+    vendasContainer.appendChild(tabela);
+  })
+  .catch(error => {
+    console.error("Erro ao exibir vendas:", error);
+    alert("Erro ao exibir as vendas.");
+  });
+}
+
 </script>
 
 
