@@ -539,7 +539,28 @@ img {
     position: relative;
 }
 
-
+ .menu-item {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+    }
+    h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    /* Estilo do botão de exibir dados */
+    #show-menu-btn {
+      padding: 10px 20px;
+      background-color: #ff66b2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    #show-menu-btn:hover {
+      background-color: #e55a99;
+    }
     </style>
 </head>
 <body>
@@ -581,7 +602,10 @@ img {
     <!-- Conteúdo principal -->
     <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
-         <!-- Container onde os dados do menu serão exibidos -->
+      <!-- Botão para exibir os dados -->
+  <button id="show-menu-btn">Exibir Menu</button>
+
+  <!-- Container onde os dados do menu serão exibidos -->
   <div id="menu-container">
     <!-- Itens do menu serão inseridos aqui dinamicamente -->
   </div>
@@ -1514,42 +1538,47 @@ cartPopupContent.appendChild(pagarButton);
 });
 </script>
 
-    <script>
-const sheetUrl = 'https://script.google.com/macros/s/AKfycbzCPAEMqjSYuFH88X5cMvAL_XcMS1fx6gbuLthY9YoHtJcSPASn3um3XGQvz4ZL_sLPFA/exec
-';  // Substitua com a URL do seu Web App
+   <script>
+    const sheetUrl = 'URL_DO_SEU_WEB_APP';  // Substitua com a URL do seu Web App
 
-// Função para buscar dados do Google Sheets
-function fetchMenuData() {
-  fetch(sheetUrl)
-    .then(response => response.json())
-    .then(data => {
-      // Exibir os dados do menu
-      displayMenu(data);
-    })
-    .catch(error => console.error('Erro ao buscar dados:', error));
-}
+    // Função para buscar dados do Google Sheets
+    function fetchMenuData() {
+      fetch(sheetUrl)
+        .then(response => response.json())
+        .then(data => {
+          // Exibir os dados do menu
+          displayMenu(data);
+        })
+        .catch(error => console.error('Erro ao buscar dados:', error));
+    }
 
-// Função para exibir os dados do menu no HTML
-function displayMenu(data) {
-  const menuContainer = document.getElementById('menu-container'); // Onde os dados serão exibidos
+    // Função para exibir os dados do menu no HTML
+    function displayMenu(data) {
+      const menuContainer = document.getElementById('menu-container'); // Onde os dados serão exibidos
 
-  data.forEach(item => {
-    const productElement = document.createElement('div');
-    productElement.classList.add('menu-item');
-    productElement.innerHTML = `
-      <h3>Produto: ${item.produto}</h3>
-      <p>Quantidade: ${item.quantidade}</p>
-      <p>Preço Unitário: ${item.precoUnitario}</p>
-      <p>Total: ${item.total}</p>
-      <p>Data da Venda: ${item.dataVenda}</p>
-    `;
-    menuContainer.appendChild(productElement);
-  });
-}
+      // Limpar o conteúdo existente
+      menuContainer.innerHTML = '';
 
-// Chamar a função para carregar os dados do menu
-fetchMenuData();
-</script>
+      // Para cada item retornado do Google Sheets, criamos um bloco de HTML
+      data.forEach(item => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('menu-item');
+        productElement.innerHTML = `
+          <h3>Produto: ${item.produto}</h3>
+          <p>Quantidade: ${item.quantidade}</p>
+          <p>Preço Unitário: ${item.precoUnitario}</p>
+          <p>Total: ${item.total}</p>
+          <p>Data da Venda: ${item.dataVenda}</p>
+        `;
+        menuContainer.appendChild(productElement);  // Adiciona o item ao container
+      });
+    }
+
+    // Adiciona evento ao botão de exibição do menu
+    document.getElementById('show-menu-btn').addEventListener('click', () => {
+      fetchMenuData();  // Chama a função para carregar e exibir os dados
+    });
+  </script>
 
 </body>
 </html>
