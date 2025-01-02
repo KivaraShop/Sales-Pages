@@ -1558,70 +1558,31 @@ cartPopupContent.appendChild(pagarButton);
 });
 </script>
 <script>
-// URL do seu Web App (substitua pelo seu URL real)
-const webAppUrl = 'https://script.google.com/macros/s/AKfycbwu4OqigRFbN5kW1sud6ysSEsdxVjqnergU6wm04TiqwGGY_d56NNe5NJvAs3nnKJJ3/exec';
-
-// Função para adicionar item ao pedido e enviar para o Google Sheets
-function addItemToOrder(nome, preco, quantidade) {
+function addItemToOrder() {
   const item = {
-    nome: nome,
-    quantidade: quantidade,
-    preco: preco,
-    total: preco * quantidade
+    nome: "Produto Exemplo",      // Nome do produto
+    quantidade: 2,                // Quantidade do produto
+    preco: 50,                    // Preço unitário
+    total: 100                    // Preço total (preço * quantidade)
   };
 
-  // Envia o item para o Google Apps Script
-  fetch(webAppUrl + "?action=addItem", {
+  fetch('https://script.google.com/macros/s/AKfycbwu4OqigRFbN5kW1sud6ysSEsdxVjqnergU6wm04TiqwGGY_d56NNe5NJvAs3nnKJJ3/exec', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(item)
+    body: JSON.stringify({
+      action: "addItem",
+      item: item
+    })
   })
   .then(response => response.json())
   .then(data => {
-    alert(data.message); // Mostra a resposta do Apps Script
+    alert(data.message);  // Exibe a resposta do Apps Script
   })
   .catch(error => {
     console.error("Erro ao adicionar item:", error);
     alert("Erro ao adicionar item.");
-  });
-}
-
-// Função para exibir as vendas na interface
-function exibirVendas() {
-  fetch(webAppUrl + "?action=getVendas", {
-    method: "GET"
-  })
-  .then(response => response.json())
-  .then(data => {
-    const vendasContainer = document.getElementById('vendas');
-    vendasContainer.innerHTML = "";  // Limpa a área antes de preencher
-
-    const tabela = document.createElement('table');
-    const cabecalho = tabela.createTHead();
-    const linhaCabecalho = cabecalho.insertRow();
-    linhaCabecalho.insertCell().textContent = "Produto";
-    linhaCabecalho.insertCell().textContent = "Quantidade";
-    linhaCabecalho.insertCell().textContent = "Preço Unitário";
-    linhaCabecalho.insertCell().textContent = "Total";
-    linhaCabecalho.insertCell().textContent = "Data da Venda";
-    
-    const corpoTabela = tabela.createTBody();
-    data.forEach(function(venda) {
-      const linha = corpoTabela.insertRow();
-      linha.insertCell().textContent = venda.nome;
-      linha.insertCell().textContent = venda.quantidade;
-      linha.insertCell().textContent = venda.preco;
-      linha.insertCell().textContent = venda.total;
-      linha.insertCell().textContent = venda.data;
-    });
-
-    vendasContainer.appendChild(tabela);
-  })
-  .catch(error => {
-    console.error("Erro ao exibir vendas:", error);
-    alert("Erro ao exibir as vendas.");
   });
 }
 </script>
