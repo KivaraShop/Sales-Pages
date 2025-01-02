@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Agradecimento</title>
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            color: #4a004e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff99cc;
+            padding: 15px 20px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4a004e;
+            text-decoration: none;
+        }
+
+        /* Conteúdo principal */
+        .thank-you-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #d3e0d3;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .thank-you-container h1 {
+            font-size: 26px;
+            color: #4a004e;
+            margin-bottom: 15px;
+        }
+
+        .thank-you-container p {
+            font-size: 16px;
+            color: #660033;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-container button {
+            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .thank-you-container button:hover {
+            background: #ff66b2;
+        }
+
+        .thank-you-container img {
+            width: 100px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #ff99cc;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Meu Restaurante</a>
+    </header>
+
+    <main class="thank-you-container">
+        <h1>Obrigado por seu pedido!</h1>
+        <p>Seu pedido foi recebido com sucesso. Estamos preparando tudo para que você tenha a melhor experiência!</p>
+        <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
+        <img src="https://via.placeholder.com/100" alt="Logo">
+    </main>
+
+    <footer>
+        &copy; 2025 Restaurante. Todos os direitos reservados.
+    </footer>
+</body>
+</html>
