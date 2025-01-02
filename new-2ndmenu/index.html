@@ -617,24 +617,8 @@ img {
     <!-- Conteúdo principal -->
     <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
-<!-- Botão para exibir as vendas -->
-    <button id="btn-exibir-vendas">Exibir Vendas</button>
-    
-    <!-- Tabela para exibir as vendas -->
-    <table id="tabela-vendas">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Preço Unitário</th>
-                <th>Total</th>
-                <th>Data da Venda</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Os dados serão inseridos aqui -->
-        </tbody>
-    </table>
+<button onclick="exibirVendas()">Exibir Vendas</button>
+<div id="tabela-vendas"></div>
         
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
@@ -1688,6 +1672,16 @@ function addItemToOrder() {
             });
         });
     </script>
-    
+    <script>
+  function exibirVendas() {
+    var url = 'https://script.google.com/macros/s/AKfycbyzhOOyx1EVsB919_Hhb2vXZyGbGa46BHrcG8y32yAUXMyS9tn-s-QcAQAVBiVr1PVV3A/exec'; // Substitua com a URL do seu Web App
+    fetch(url)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('tabela-vendas').innerHTML = data;
+      })
+      .catch(error => console.error('Erro ao carregar vendas: ', error));
+  }
+</script>
 </body>
 </html>
