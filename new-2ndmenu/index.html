@@ -549,38 +549,6 @@ img {
       margin: 0;
       font-size: 18px;
     }
-#btn-exibir-vendas {
-  background-color: #ff66b2;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-#btn-exibir-vendas:hover {
-  background-color: #ff3385;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-table, th, td {
-  border: 1px solid #ddd;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #f4f4f4;
-}
 
 
     </style>
@@ -624,12 +592,6 @@ th {
     <!-- Conteúdo principal -->
     <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
-<button id="btn-exibir-vendas">Exibir Vendas</button>
-
-<div id="vendas">
-  <!-- A tabela de vendas será inserida aqui -->
-</div>
-
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
     <a href="dieta.html" class="categoria-btn">Dieta</a>
@@ -655,9 +617,9 @@ th {
     <div class="more-info">
         <i class="fas fa-info-circle"></i>
         <a href="productpage.html" class="more-info-link">Saber Mais</a>
-  </div>
-        <button onclick="addItemToOrder('Salada Caesar', 19.90, 1)">Adicionar ao Pedido</button>
     </div>
+    <button>Adicionar ao Pedido</button>
+</div>
             <!-- Card de Produto 2 (Prato Principal) -->
             <div class="product-card">
                     <div class="product-labels">
@@ -1556,72 +1518,6 @@ cartPopupContent.appendChild(pagarButton);
 
     updateCartCount();
 });
-</script>
-<script>
-const webAppUrl = 'https://script.google.com/macros/s/AKfycbwu4OqigRFbN5kW1sud6ysSEsdxVjqnergU6wm04TiqwGGY_d56NNe5NJvAs3nnKJJ3/exec'; // Substitua com o URL gerado do seu Web App
-
-function addItemToOrder() {
-  const item = {
-    nome: "Produto Exemplo",
-    quantidade: 2,
-    preco: 50,
-    total: 100
-  };
-
-  // Chama o Google Apps Script Web App para adicionar o item à planilha
-  fetch(webAppUrl + "?action=addItem", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(item)
-  })
-  .then(response => response.json())
-  .then(data => {
-    alert(data.message);  // Exibe a resposta do Apps Script
-  })
-  .catch(error => {
-    console.error("Erro ao adicionar item:", error);
-    alert("Erro ao adicionar item.");
-  });
-}
-
-function exibirVendas() {
-  fetch(webAppUrl + "?action=getVendas", {
-    method: "GET"
-  })
-  .then(response => response.json())
-  .then(data => {
-    const vendasContainer = document.getElementById('vendas');
-    vendasContainer.innerHTML = "";  // Limpa a área antes de preencher
-
-    const tabela = document.createElement('table');
-    const cabecalho = tabela.createTHead();
-    const linhaCabecalho = cabecalho.insertRow();
-    linhaCabecalho.insertCell().textContent = "Produto";
-    linhaCabecalho.insertCell().textContent = "Quantidade";
-    linhaCabecalho.insertCell().textContent = "Preço Unitário";
-    linhaCabecalho.insertCell().textContent = "Total";
-    linhaCabecalho.insertCell().textContent = "Data da Venda";
-    
-    const corpoTabela = tabela.createTBody();
-    data.forEach(function(venda) {
-      const linha = corpoTabela.insertRow();
-      linha.insertCell().textContent = venda.nome;
-      linha.insertCell().textContent = venda.quantidade;
-      linha.insertCell().textContent = venda.preco;
-      linha.insertCell().textContent = venda.total;
-      linha.insertCell().textContent = venda.data;
-    });
-
-    vendasContainer.appendChild(tabela);
-  })
-  .catch(error => {
-    console.error("Erro ao exibir vendas:", error);
-    alert("Erro ao exibir as vendas.");
-  });
-}
-
 </script>
 
 
