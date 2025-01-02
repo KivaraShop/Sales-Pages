@@ -581,6 +581,10 @@ img {
     <!-- Conteúdo principal -->
     <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
+         <!-- Container onde os dados do menu serão exibidos -->
+  <div id="menu-container">
+    <!-- Itens do menu serão inseridos aqui dinamicamente -->
+  </div>
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
     <a href="dieta.html" class="categoria-btn">Dieta</a>
@@ -1510,7 +1514,42 @@ cartPopupContent.appendChild(pagarButton);
 });
 </script>
 
+    <script>
+const sheetUrl = 'https://script.google.com/macros/s/AKfycbzCPAEMqjSYuFH88X5cMvAL_XcMS1fx6gbuLthY9YoHtJcSPASn3um3XGQvz4ZL_sLPFA/exec
+';  // Substitua com a URL do seu Web App
 
+// Função para buscar dados do Google Sheets
+function fetchMenuData() {
+  fetch(sheetUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Exibir os dados do menu
+      displayMenu(data);
+    })
+    .catch(error => console.error('Erro ao buscar dados:', error));
+}
+
+// Função para exibir os dados do menu no HTML
+function displayMenu(data) {
+  const menuContainer = document.getElementById('menu-container'); // Onde os dados serão exibidos
+
+  data.forEach(item => {
+    const productElement = document.createElement('div');
+    productElement.classList.add('menu-item');
+    productElement.innerHTML = `
+      <h3>Produto: ${item.produto}</h3>
+      <p>Quantidade: ${item.quantidade}</p>
+      <p>Preço Unitário: ${item.precoUnitario}</p>
+      <p>Total: ${item.total}</p>
+      <p>Data da Venda: ${item.dataVenda}</p>
+    `;
+    menuContainer.appendChild(productElement);
+  });
+}
+
+// Chamar a função para carregar os dados do menu
+fetchMenuData();
+</script>
 
 </body>
 </html>
