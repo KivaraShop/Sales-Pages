@@ -3,108 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Agradecimento</title>
+    <title>Obrigado pelo Pedido</title>
     <style>
-        /* Estilo global */
+        /* Estilo Global */
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
-            color: #4a004e;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #f8f8f8);
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
-            box-sizing: border-box;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
         }
 
-        /* Cabeçalho */
-        header {
-            background-color: #ff99cc;
-            padding: 15px 20px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        header .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #4a004e;
-            text-decoration: none;
-        }
-
-        /* Conteúdo principal */
+        /* Container Principal */
         .thank-you-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #d3e0d3;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 500px;
+            width: 100%;
         }
 
         .thank-you-container h1 {
-            font-size: 26px;
+            font-size: 28px;
             color: #4a004e;
-            margin-bottom: 15px;
-        }
-
-        .thank-you-container p {
-            font-size: 16px;
-            color: #660033;
             margin-bottom: 20px;
         }
 
+        .thank-you-container p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
         .thank-you-container button {
-            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+            background: #ff66b2;
+            color: #ffffff;
             border: none;
-            padding: 10px 20px;
-            color: white;
+            border-radius: 8px;
+            padding: 12px 20px;
             font-size: 16px;
-            border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
+            font-weight: bold;
         }
 
         .thank-you-container button:hover {
-            background: #ff66b2;
+            background: #e055a0;
         }
 
         .thank-you-container img {
             width: 100px;
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
         footer {
-            background-color: #ff99cc;
-            padding: 15px;
-            width: 100%;
-            text-align: center;
-            color: white;
-            position: absolute;
-            bottom: 0;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
-    <header>
-        <a href="#" class="logo">Meu Restaurante</a>
-    </header>
-
-    <main class="thank-you-container">
-        <h1>Obrigado por seu pedido!</h1>
-        <p>Seu pedido foi recebido com sucesso. Estamos preparando tudo para que você tenha a melhor experiência!</p>
-        <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
-        <img src="https://via.placeholder.com/100" alt="Logo">
-    </main>
-
-    <footer>
-        &copy; 2025 Restaurante. Todos os direitos reservados.
-    </footer>
+    <div class="thank-you-container">
+        <img src="https://via.placeholder.com/100" alt="Logo do Restaurante">
+        <h1>Obrigado pelo seu pedido!</h1>
+        <p>
+            Seu pedido foi recebido com sucesso e está sendo preparado com muito carinho. <br>
+            Em breve estará pronto para você aproveitar!
+        </p>
+        <button onclick="window.location.href='menu.html'">Voltar ao Menu</button>
+        <footer>&copy; 2025  Restaurante. Todos os direitos reservados.</footer>
+    </div>
 </body>
 </html>
