@@ -587,42 +587,45 @@ img {
             font-weight: normal;
         }
 
-        .auth-buttons {
+   .auth-buttons {
     display: flex;
-    gap: 10px; /* Espaço entre os botões */
+    gap: 8px; /* Espaço entre os botões */
 }
 
 .btn-login,
 .btn-register {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500; /* Peso do texto moderado */
+    border-radius: 4px; /* Cantos levemente arredondados */
     text-decoration: none;
     text-align: center;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 .btn-login {
-    background-color: #ffffff; /* Branco */
-    color: #ff007f; /* Rosa vibrante */
-    border: 2px solid #ff007f; /* Borda rosa */
+    background-color: #f8f9fa; /* Cinza claro */
+    color: #ff6f91; /* Rosa suave */
+    border: 1px solid #ff6f91; /* Borda rosa suave */
 }
 
 .btn-login:hover {
-    background-color: #ff007f;
+    background-color: #ff6f91;
     color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover */
 }
 
 .btn-register {
-    background-color: #ff007f; /* Rosa vibrante */
+    background-color: #ff6f91; /* Rosa suave */
     color: #ffffff; /* Branco */
-    border: 2px solid #ff007f;
+    border: 1px solid #ff6f91;
 }
 
 .btn-register:hover {
-    background-color: #ffffff;
-    color: #ff007f;
+    background-color: #f8f9fa;
+    color: #ff6f91;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover */
 }
 
     </style>
