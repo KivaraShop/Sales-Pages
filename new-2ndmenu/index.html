@@ -550,45 +550,41 @@ img {
       font-size: 18px;
     }
      .parcerias-section {
-            margin-top: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, #fff, #f9f9f9);
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
             text-align: center;
-        }
-
-        .parcerias-section h2 {
-            font-size: 1.8rem;
-            color: #4a004e;
-            margin-bottom: 20px;
-        }
-
-        .parcerias-logos {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
         }
 
         .parceria-logo {
-            width: 120px;
-            height: 120px;
-            background-color: #e0e0e0;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            color: #777;
-            font-weight: bold;
+            width: 80px;
+            height: 80px;
+            display: block;
+            border-radius: 8px;
+            overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .parceria-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .parceria-logo:hover {
-            background-color: #ff66b2;
-            color: white;
-            transition: 0.3s;
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .parcerias-section h2 {
+            width: 100%;
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 10px;
+            font-weight: normal;
         }
 
     </style>
@@ -1008,14 +1004,21 @@ img {
     </div>
 
     
-      <div class="parcerias-section">
-            <h2>Nossos Parceiros</h2>
-            <div class="parcerias-logos">
-                <div class="parceria-logo">Parceiro 1</div>
-                <div class="parceria-logo">Parceiro 2</div>
-                <div class="parceria-logo">Parceiro 3</div>
-                <div class="parceria-logo">Parceiro 4</div>
-            </div>
+        <!-- Seção de Parcerias -->
+        <div class="parcerias-section">
+            <h2>Parceiros</h2>
+            <a href="#" class="parceria-logo">
+                <img src="https://via.placeholder.com/80x80.png?text=Logo+1" alt="Parceiro 1">
+            </a>
+            <a href="#" class="parceria-logo">
+                <img src="https://via.placeholder.com/80x80.png?text=Logo+2" alt="Parceiro 2">
+            </a>
+            <a href="#" class="parceria-logo">
+                <img src="https://via.placeholder.com/80x80.png?text=Logo+3" alt="Parceiro 3">
+            </a>
+            <a href="#" class="parceria-logo">
+                <img src="https://via.placeholder.com/80x80.png?text=Logo+4" alt="Parceiro 4">
+            </a>
         </div>
     </div>
     
