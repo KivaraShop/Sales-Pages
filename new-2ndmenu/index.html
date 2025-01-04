@@ -1079,19 +1079,10 @@ img {
         <a href="privacidade.html">Política de Privacidade</a>
         <a href="contato.html">Contate-nos</a>
 
- <div class="auth-buttons">
-            <?php
-            session_start();
-            if (isset($_SESSION['user_id'])) {
-                // Se o usuário estiver logado, mostrar o link para o perfil
-                echo '<a href="profile.php" class="btn-profile">Perfil</a>';
-            } else {
-                // Caso contrário, mostrar os botões de login e registro
-                echo '<a href="https://kivarashop.infy.uk/login.php" class="btn-login">Entrar</a>';
-                echo '<a href="https://kivarashop.infy.uk/register.php" class="btn-register">Registrar</a>';
-            }
-            ?>
-        </div>
+<div class="auth-buttons">
+    <a href="https://kivarashop.infy.uk/login.php" class="btn-login">Entrar</a>
+    <a href="https://kivarashop.infy.uk/register.php" class="btn-register">Registrar</a>
+</div>
         <div class="footer-bottom">
             <p>&copy; 2024 Restaurante Brasil. Todos os direitos reservados.</p>
         </div>
