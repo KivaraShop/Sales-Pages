@@ -1622,28 +1622,6 @@ cartPopupContent.appendChild(pagarButton);
     updateCartCount();
 });
 </script>
-
-<?php
-session_start();
-if (isset($_SESSION['user_id'])) {
-    // Se o usuário estiver logado, mostrar o link para o perfil
-    echo '<a href="profile.php" class="btn-profile">Perfil</a>';
-} else {
-    // Caso contrário, mostrar os botões de login e registro
-    echo '<a href="login.php" class="btn-login">Entrar</a>';
-    echo '<a href="register.php" class="btn-register">Registrar</a>';
-}
-?>
-
-<?php
-session_start();
-session_unset(); // Remove todas as variáveis da sessão
-session_destroy(); // Destrói a sessão
-header("Location: index.php"); // Redireciona para a página inicial
-exit();
-?>
-    
-
     
 </body>
 </html>
