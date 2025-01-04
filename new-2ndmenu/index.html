@@ -587,6 +587,44 @@ img {
             font-weight: normal;
         }
 
+        .auth-buttons {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+}
+
+.btn-login,
+.btn-register {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login {
+    background-color: #ffffff; /* Branco */
+    color: #ff007f; /* Rosa vibrante */
+    border: 2px solid #ff007f; /* Borda rosa */
+}
+
+.btn-login:hover {
+    background-color: #ff007f;
+    color: #ffffff;
+}
+
+.btn-register {
+    background-color: #ff007f; /* Rosa vibrante */
+    color: #ffffff; /* Branco */
+    border: 2px solid #ff007f;
+}
+
+.btn-register:hover {
+    background-color: #ffffff;
+    color: #ff007f;
+}
+
     </style>
 </head>
 <body>
@@ -1038,6 +1076,10 @@ img {
         <a href="privacidade.html">Política de Privacidade</a>
         <a href="contato.html">Contate-nos</a>
 
+<div class="auth-buttons">
+    <a href="https://kivarashop.infy.uk/login.php" class="btn-login">Entrar</a>
+    <a href="https://kivarashop.infy.uk/register.php" class="btn-register">Registrar</a>
+</div>
         <div class="footer-bottom">
             <p>&copy; 2024 Restaurante Brasil. Todos os direitos reservados.</p>
         </div>
