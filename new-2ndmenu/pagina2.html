@@ -480,45 +480,25 @@
                 <button>Adicionar ao Pedido</button>
             </div>
     
-<div class="pagination" style="margin-top: 20px; display: flex; justify-content: center; align-items: center; width: 100%;">
-    <a href="viewallexplore.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">1</a>
-    <a href="pagina2.html" class="active" style="margin: 0 5px; padding: 5px 10px; background-color: #ff66b2; color: #fff; text-decoration: none; border: 1px solid #ccc;">2</a>
+<div class="pagination" style="text-align: center; margin-top: 20px;">
+    <a href="pagina1.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">1</a>
+    <a href="pagina2.html" style="margin: 0 5px; padding: 5px 10px; background-color: #ff66b2; color: #fff; text-decoration: none; border: 1px solid #ccc;">2</a>
     <a href="pagina3.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">3</a>
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const pagination = document.querySelector(".pagination");
-        
-        if (pagination) {
-            // Centraliza a paginação
-            pagination.style.display = "flex";
-            pagination.style.justifyContent = "center";
-            pagination.style.alignItems = "center";
-            pagination.style.marginTop = "20px";
-            pagination.style.width = "100%";
+document.addEventListener("DOMContentLoaded", function () {
+    const pagination = document.querySelector(".pagination");
 
-            // Aplica bordas arredondadas e estilo aos links da paginação
-            const links = pagination.querySelectorAll("a");
-            links.forEach(link => {
-                link.style.borderRadius = "4px"; // Bordas arredondadas
-                link.style.margin = "0 5px";
-                link.style.padding = "5px 10px";
-                link.style.textDecoration = "none";
-                link.style.border = "1px solid #ccc";
-                link.style.backgroundColor = "#fff";
-                link.style.color = "#4a004e";
-
-                // Verifica qual página está ativa e aplica a classe active
-                if (link.href === window.location.href) {
-                    link.style.backgroundColor = "#ff66b2"; // Cor de fundo da página ativa
-                    link.style.color = "#fff"; // Cor do texto da página ativa
-                    link.style.borderColor = "#ff66b2"; // Cor da borda da página ativa
-                }
-            });
-        }
-    });
+    if (pagination) {
+        pagination.style.display = "flex";
+        pagination.style.justifyContent = "center"; // Centraliza horizontalmente
+        pagination.style.alignItems = "center"; // Centraliza verticalmente, se necessário
+        pagination.style.marginTop = "20px";
+        pagination.style.width = "100%";
+    }
+});
 </script>
 
     
