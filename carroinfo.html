@@ -212,20 +212,20 @@
     </footer>
 
     <script>
-        // Função para alterar a imagem principal e adicionar a borda na miniatura ativa
-        function changeImage(thumbnail, imageSrc) {
-            // Mudar a imagem principal
-            document.getElementById("main-car-image").src = imageSrc;
+       function changeImage(thumbnail) {
+    // Mudar a imagem principal para o src da miniatura clicada
+    document.getElementById("main-car-image").src = thumbnail.src;
 
-            // Remover a classe 'active' de todas as miniaturas
-            let thumbnails = document.querySelectorAll('.thumbnail');
-            thumbnails.forEach(function(thumb) {
-                thumb.classList.remove('active');
-            });
+    // Remover a classe 'active' de todas as miniaturas
+    let thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach(function(thumb) {
+        thumb.classList.remove('active');
+    });
 
-            // Adicionar a classe 'active' à miniatura clicada
-            thumbnail.classList.add('active');
-        }
+    // Adicionar a classe 'active' à miniatura clicada
+    thumbnail.classList.add('active');
+}
+
 
         // Função para animar as barras
         window.onload = function() {
