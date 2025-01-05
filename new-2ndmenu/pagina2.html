@@ -487,56 +487,6 @@
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const maxProductsPerPage = 12; // Máximo de produtos por página
-    const productGrid = document.querySelector(".product-grid");
-    const products = Array.from(productGrid.children); // Obter todos os produtos
-    const totalProducts = products.length;
-    const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
-
-    // Obter o número da página atual a partir do URL
-    const currentPage = window.location.href.includes("pagina2.html") ? 2 : 1; // A página 2 estará no URL
-    const start = (currentPage - 1) * maxProductsPerPage;
-    const end = start + maxProductsPerPage;
-
-    // Renderizar os produtos da página atual
-    productGrid.innerHTML = "";
-    products.slice(start, end).forEach(product => productGrid.appendChild(product));
-
-    // Criar o container de paginação
-    const pagination = document.createElement("div");
-    pagination.classList.add("pagination");
-    pagination.style.textAlign = "center";
-    pagination.style.marginTop = "20px";
-
-    // Criar botões de paginação com links
-    for (let i = 1; i <= totalPages; i++) {
-        const link = document.createElement("a");
-        link.textContent = i;
-        link.href = i === 1 ? "viewallexplore.html" : `pagina${i}.html`;
-        link.style.margin = "0 5px";
-        link.style.padding = "5px 10px";
-        link.style.cursor = "pointer";
-        link.style.border = "1px solid #ccc";
-        link.style.backgroundColor = "#fff";
-        link.style.color = "#4a004e";
-        link.style.textDecoration = "none";
-
-        // Destacar o link da página atual
-        if (i === currentPage) {
-            link.style.backgroundColor = "#ff66b2";
-            link.style.color = "#fff";
-        }
-
-        pagination.appendChild(link);
-    }
-
-    // Adicionar a paginação abaixo da grid
-    productGrid.parentElement.appendChild(pagination);
-});
-</script>
-
             
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
