@@ -1257,11 +1257,10 @@ window.onload = function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // Desabilitar clique direito em todas as imagens
     const allImages = document.querySelectorAll("img");
     
     allImages.forEach(img => {
-        // Impede o clique direito (context menu) em todas as imagens
+        // Desabilita o clique direito (context menu) em todas as imagens
         img.addEventListener("contextmenu", function (e) {
             e.preventDefault();  // Previne o menu de contexto
         });
@@ -1274,22 +1273,30 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();  // Previne o arrasto
         });
 
-        // Bloqueia o download da imagem através de qualquer link direto
+        // Bloqueia o download através do botão do meio do mouse (clicando com o botão do meio)
         img.addEventListener("mousedown", function (e) {
-            if (e.button === 1) {  // Previne o clique com o botão do meio do mouse (que pode abrir em nova aba)
+            if (e.button === 1) {  // Previne o clique com o botão do meio do mouse
                 e.preventDefault();
             }
         });
 
-        // Bloqueia a possibilidade de abrir a imagem em uma nova aba (desabilitando o link)
+        // Bloqueia qualquer clique direto para abrir imagem em uma nova aba (desabilita links)
         img.addEventListener("click", function (e) {
             if (e.target.tagName === "IMG" && e.target.parentElement.tagName === "A") {
                 e.preventDefault();  // Previne o clique no link da imagem
             }
         });
     });
+
+    // Bloqueio adicional para dispositivos móveis
+    document.addEventListener("touchstart", function (e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault();  // Previne toque na imagem em dispositivos móveis
+        }
+    });
 });
 </script>
+
 
 
 <script>
