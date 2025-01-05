@@ -129,6 +129,16 @@
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
+
+        @media (max-width: 768px) { /* Ajuste para telas menores */
+    .card img {
+        width: 100%;
+        aspect-ratio: 9 / 16; /* Proporção 9:16 */
+        object-fit: cover; /* Ajusta o conteúdo para manter a proporção */
+        border-bottom: 3px solid #0288d1; /* Mantém o estilo original */
+    }
+}
+
     </style>
 </head>
 <body>
