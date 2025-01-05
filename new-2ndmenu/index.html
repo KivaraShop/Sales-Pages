@@ -1268,9 +1268,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Define draggable=false para todas as imagens
         img.setAttribute("draggable", "false");
+
+        // Previne o comportamento de arrastar a imagem
+        img.addEventListener("dragstart", function (e) {
+            e.preventDefault();  // Previne o arrasto
+        });
+
+        // Bloqueia o download da imagem através de qualquer link direto
+        img.addEventListener("mousedown", function (e) {
+            if (e.button === 1) {  // Previne o clique com o botão do meio do mouse (que pode abrir em nova aba)
+                e.preventDefault();
+            }
+        });
+
+        // Bloqueia a possibilidade de abrir a imagem em uma nova aba (desabilitando o link)
+        img.addEventListener("click", function (e) {
+            if (e.target.tagName === "IMG" && e.target.parentElement.tagName === "A") {
+                e.preventDefault();  // Previne o clique no link da imagem
+            }
+        });
     });
 });
 </script>
+
 
 <script>
 const menuToggle = document.querySelector('.menu-toggle');
