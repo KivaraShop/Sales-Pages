@@ -487,6 +487,59 @@
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const maxProductsPerPage = 12; // Máximo de produtos por página
+    const productGrid = document.querySelector(".product-grid");
+    const products = Array.from(productGrid.children); // Obter todos os produtos
+    const totalProducts = products.length;
+    const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
+
+    // Renderizar apenas os produtos da página 1
+    const start = 0;
+    const end = maxProductsPerPage;
+    productGrid.innerHTML = "";
+    products.slice(start, end).forEach(product => productGrid.appendChild(product));
+
+    // Criar o container de paginação
+    const pagination = document.createElement("div");
+    pagination.classList.add("pagination");
+    pagination.style.textAlign = "center";
+    pagination.style.marginTop = "20px";
+
+    // Criar botões de paginação com links
+    for (let i = 1; i <= totalPages; i++) { // Criar links de 1 até o número total de páginas
+        const link = document.createElement("a");
+        link.textContent = i;
+        link.href = i === 1 ? "viewallexplore.html" : `pagina${i}.html`;
+        link.style.margin = "0 5px";
+        link.style.padding = "5px 10px";
+        link.style.cursor = "pointer";
+        link.style.border = "1px solid #ccc";
+        link.style.backgroundColor = "#fff";
+        link.style.color = "#4a004e";
+        link.style.textDecoration = "none";
+
+        // Estilizar o botão da página atual
+        if (i === 1) {
+            link.style.backgroundColor = "#ff66b2";
+            link.style.color = "#fff";
+        }
+
+        pagination.appendChild(link);
+    }
+
+    // Adicionar a paginação abaixo da grid
+    productGrid.parentElement.appendChild(pagination);
+
+    // Garantir que a paginação fique centralizada para todas as páginas
+    const paginationContainer = productGrid.parentElement.querySelector(".pagination");
+    if (paginationContainer) {
+        paginationContainer.style.display = "flex";
+        paginationContainer.style.justifyContent = "center"; // Centralizar a paginação
+    }
+});
+</script>
             
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
