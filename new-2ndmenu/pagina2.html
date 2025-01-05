@@ -230,18 +230,11 @@
 .product-card {
     position: relative;
 }
-   .pagination {
-            display: flex;
-            justify-content: center; /* Centraliza os itens */
-            margin-top: 20px;
-        }
-       .pagination {
-    display: flex;
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza verticalmente, se necessário */
-    text-align: center; /* Garante que o conteúdo seja centralizado */
-    margin-top: 20px;
-    width: 100%; /* Ocupa toda a largura do container pai */
+  .pagination {
+    display: inline-block; /* Permite centralização do conteúdo */
+    text-align: center;
+    margin: 20px auto; /* Adiciona margem superior e inferior, e centraliza horizontalmente */
+    width: auto; /* Ajusta ao tamanho do conteúdo */
 }
 
 .pagination a {
@@ -251,6 +244,7 @@
     border: 1px solid #ccc;
     background-color: #fff;
     color: #4a004e;
+    border-radius: 4px;
 }
 
 .pagination a.active {
