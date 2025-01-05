@@ -77,13 +77,13 @@
         }
 
         .state-bar {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .state-bar span {
             font-weight: bold;
-            margin-bottom: 5px;
             display: block;
+            margin-bottom: 5px;
         }
 
         .bar-container {
@@ -98,6 +98,13 @@
             background-color: #00aaff;
             height: 100%;
             border-radius: 5px;
+            transition: width 1s ease-out;
+        }
+
+        .bar-label {
+            margin-top: 5px;
+            text-align: center;
+            font-size: 14px;
         }
 
         footer {
@@ -139,20 +146,23 @@
                     <div class="state-bar">
                         <span>Quilometragem</span>
                         <div class="bar-container">
-                            <div class="bar" style="width: 60%;"></div>
+                            <div class="bar" id="km-bar"></div>
                         </div>
+                        <p class="bar-label" id="km-label">60.000 km</p>
                     </div>
                     <div class="state-bar">
                         <span>Condição</span>
                         <div class="bar-container">
-                            <div class="bar" style="width: 80%;"></div>
+                            <div class="bar" id="condition-bar"></div>
                         </div>
+                        <p class="bar-label" id="condition-label">80% de boa condição</p>
                     </div>
                     <div class="state-bar">
                         <span>Combustível</span>
                         <div class="bar-container">
-                            <div class="bar" style="width: 40%;"></div>
+                            <div class="bar" id="fuel-bar"></div>
                         </div>
+                        <p class="bar-label" id="fuel-label">40% restante</p>
                     </div>
                 </div>
             </div>
@@ -164,8 +174,26 @@
     </footer>
 
     <script>
+        // Função para alterar a imagem principal do carro
         function changeImage(image) {
             document.getElementById("main-car-image").src = image;
+        }
+
+        // Função para animar as barras
+        window.onload = function() {
+            animateBar('km-bar', 60, 'km-label', '60.000 km');
+            animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
+            animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
+        }
+
+        function animateBar(barId, percentage, labelId, labelText) {
+            let bar = document.getElementById(barId);
+            let label = document.getElementById(labelId);
+            bar.style.width = '0%';
+            setTimeout(function() {
+                bar.style.width = percentage + '%';
+                label.textContent = labelText;
+            }, 500);
         }
     </script>
 </body>
