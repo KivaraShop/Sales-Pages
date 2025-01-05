@@ -625,6 +625,26 @@ img {
     color: #ff6f91;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover */
 }
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+    pointer-events: none;  /* Impede interações diretas com a imagem */
+}
+
+.image-wrapper img {
+    pointer-events: auto;  /* Permite interações com a imagem, mas não diretamente na imagem */
+}
+
+.image-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);  /* Um overlay semitransparente para bloquear interação */
+    pointer-events: all;  /* Permite a interação com o overlay */
+}
 
     </style>
 </head>
@@ -1044,19 +1064,24 @@ img {
 
     
         <!-- Seção de Parcerias -->
-        <div class="parcerias-section">
-            <h2>Parceiros</h2>
-            <a href="#" class="parceria-logo">
-                <img src="https://i.ibb.co/KxvWrbR/Logopit-1734337615013.png/80x80.png?text=Logo+1" alt="Parceiro 1" draggable="false">
-            </a>
-            <a href="#" class="parceria-logo">
-                <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png/80x80.png?text=Logo+2" alt="Parceiro 2" draggable="false" >
-            </a>
-            <a href="#" class="parceria-logo">
-                <img src="https://i.ibb.co/KxvWrbR/Logopit-1734337615013.png/80x80.png?text=Logo+3" alt="Parceiro 3" draggable="false">
-            </a>
-        
+    <div class="parcerias-section">
+    <h2>Parceiros</h2>
+    <a href="#" class="parceria-logo">
+        <div class="image-wrapper">
+            <img src="https://i.ibb.co/KxvWrbR/Logopit-1734337615013.png/80x80.png?text=Logo+1" alt="Parceiro 1" draggable="false">
         </div>
+    </a>
+    <a href="#" class="parceria-logo">
+        <div class="image-wrapper">
+            <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png/80x80.png?text=Logo+2" alt="Parceiro 2" draggable="false">
+        </div>
+    </a>
+    <a href="#" class="parceria-logo">
+        <div class="image-wrapper">
+            <img src="https://i.ibb.co/KxvWrbR/Logopit-1734337615013.png/80x80.png?text=Logo+3" alt="Parceiro 3" draggable="false">
+        </div>
+    </a>
+</div>
     </div>
     
    <!-- Rodapé -->
@@ -1085,6 +1110,32 @@ img {
     </div>
 </footer>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Bloqueia o menu de contexto (clique direito)
+    document.addEventListener("contextmenu", function (e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault(); // Impede o menu de contexto de aparecer
+        }
+    });
+
+    // Bloqueia o toque e segurar nas imagens para prevenir download em dispositivos móveis
+    document.addEventListener("touchstart", function (e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault(); // Impede ações como o menu de opções no toque
+        }
+    });
+
+    // Impede que as imagens sejam arrastadas
+    const images = document.querySelectorAll("img");
+    images.forEach(img => {
+        img.setAttribute("draggable", "false"); // Impede o arrasto da imagem
+        img.addEventListener("mousedown", function (e) {
+            e.preventDefault(); // Impede o arrasto da imagem
+        });
+    });
+});
+</script>
     
 <script>
 document.addEventListener('DOMContentLoaded', () => {
