@@ -487,32 +487,6 @@
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
 
-   <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const maxProductsPerPage = 12; // Máximo de produtos por página
-    const productGrid = document.querySelector(".product-grid");
-    const products = Array.from(productGrid.children); // Obter todos os produtos
-    const totalProducts = products.length;
-    const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
-
-    // Renderizar apenas os produtos da página 1
-    const start = 0;
-    const end = maxProductsPerPage;
-    productGrid.innerHTML = "";
-    products.slice(start, end).forEach(product => productGrid.appendChild(product));
-
-    // Criar o container de paginação
-    const pagination = document.createElement("div");
-    pagination.classList.add("pagination");
-    pagination.style.textAlign = "center";
-    pagination.style.marginTop = "20px";
-
-    // Adicionar a paginação abaixo da grid
-    productGrid.parentElement.appendChild(pagination);
-});
-</script>
-
-
     
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
