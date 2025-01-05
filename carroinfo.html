@@ -127,50 +127,46 @@
     </header>
 
     <main>
-        <div class="container">
-            <div class="car-details">
-                <!-- Galeria de Imagens -->
-                <div class="car-gallery">
-                    <div class="main-image">
-                        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Imagem principal do carro" id="main-img">
-                    </div>
-
-                    <!-- Carrossel de miniaturas -->
-                    <div class="thumbnail-carousel">
-                        <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Imagem 1" class="thumbnail" onclick="changeImage('https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg')">
-                        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 2" class="thumbnail" onclick="changeImage('https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg')">
-                        <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Imagem 3" class="thumbnail" onclick="changeImage('https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg')">
-                    </div>
+        <section class="car-details">
+            <div class="car-gallery">
+                <div class="main-image">
+                    <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
+                <div class="thumbnail-carousel">
+                    <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage('car1.jpg')">
+                    <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage('car2.jpg')">
+                    <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage('car3.jpg')">
+                </div>
+            </div>
+            <div class="car-info">
+                <h1>Carro Exemplo</h1>
+                <p class="description">Descrição detalhada do veículo, incluindo as características, condições e especificações.</p>
 
-                <!-- Informações do carro -->
-                <div class="car-info">
-                    <h1>Carro Exemplo</h1>
-                    <div class="description">
-                        <p>Descrição do veículo. Um carro em excelente estado, com baixa quilometragem e manutenção em dia.</p>
+                <div class="car-state">
+                    <div class="state-bar">
+                        <span>Quilometragem</span>
+                        <div class="bar-container">
+                            <div class="bar" id="km-bar"></div>
+                        </div>
+                        <p class="bar-label" id="km-label">60.000 km</p>
                     </div>
-
-                    <!-- Estado do carro -->
-                    <div class="car-state">
-                        <div class="state-bar">
-                            <span>Kilometragem</span>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 80%;" id="km-bar"></div>
-                            </div>
-                            <div class="bar-label">80,000 km</div>
+                    <div class="state-bar">
+                        <span>Condição</span>
+                        <div class="bar-container">
+                            <div class="bar" id="condition-bar"></div>
                         </div>
-
-                        <div class="state-bar">
-                            <span>Vida útil restante</span>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 60%;" id="life-bar"></div>
-                            </div>
-                            <div class="bar-label">60% de vida útil</div>
+                        <p class="bar-label" id="condition-label">80% de boa condição</p>
+                    </div>
+                    <div class="state-bar">
+                        <span>Combustível</span>
+                        <div class="bar-container">
+                            <div class="bar" id="fuel-bar"></div>
                         </div>
+                        <p class="bar-label" id="fuel-label">40% restante</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -178,6 +174,10 @@
     </footer>
 
     <script>
+        // Função para alterar a imagem principal do carro
+        function changeImage(image) {
+            document.getElementById("main-car-image").src = image;
+        }
 
         // Função para animar as barras
         window.onload = function() {
@@ -195,26 +195,6 @@
                 label.textContent = labelText;
             }, 500);
         }
-    </script>
-
-      <script>
-        // Função para alterar a imagem principal do carro
-        function changeImage(image) {
-            document.getElementById("main-img").src = image;
-        }
-
-        // Função para animar a barra de estado (kilometragem, vida útil, etc.)
-        function animateBar(id, percentage) {
-            const bar = document.getElementById(id);
-            bar.style.transition = 'width 1s ease-out';
-            bar.style.width = percentage + '%';
-        }
-
-        // Animação inicial
-        window.onload = function() {
-            animateBar('km-bar', 80);
-            animateBar('life-bar', 60);
-        };
     </script>
 </body>
 </html>
