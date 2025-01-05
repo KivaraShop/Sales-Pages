@@ -1255,12 +1255,20 @@ window.onload = function() {
 </script>
 
 
-<!-- script para bloquear imagens -->
 <script>
-document.addEventListener("contextmenu", function (e) {
-    if (e.target.tagName === "IMG") {
-        e.preventDefault();  // Prevent the right-click menu silently without alert
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    // Desabilitar clique direito em todas as imagens
+    const allImages = document.querySelectorAll("img");
+    
+    allImages.forEach(img => {
+        // Impede o clique direito (context menu) em todas as imagens
+        img.addEventListener("contextmenu", function (e) {
+            e.preventDefault();  // Previne o menu de contexto
+        });
+
+        // Define draggable=false para todas as imagens
+        img.setAttribute("draggable", "false");
+    });
 });
 </script>
 
