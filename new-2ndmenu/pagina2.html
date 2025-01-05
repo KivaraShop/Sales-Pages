@@ -230,7 +230,24 @@
 .product-card {
     position: relative;
 }
-
+   .pagination {
+            display: flex;
+            justify-content: center; /* Centraliza os itens */
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: #4a004e;
+            border-radius: 4px; /* Cantos arredondados (opcional) */
+        }
+        .pagination a.active {
+            background-color: #ff66b2;
+            color: white;
+        }
         
     </style>
 </head>
