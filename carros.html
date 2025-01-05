@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda de Automóveis - Qualidade e Estilo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #e1f5fe, #ffffff);
+            color: #004d40;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            display: none; /* Oculta o conteúdo enquanto o ícone de carregamento está visível */
+        }
+
+        header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #004d40;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            border-bottom: 3px solid #00796b;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: #00796b;
+            margin: 15px 0;
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, #26a69a, #00796b);
+            color: white;
+            font-size: 20px;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(38, 166, 154, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(38, 166, 154, 0.8);
+        }
+
+        /* Estilo do ícone de carregamento */
+        .loading-wheel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e0f2f1;
+            border-top: 5px solid #00796b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 9999;
+        }
+
+        /* Animação de rotação */
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ícone de Carregamento -->
+    <div class="loading-wheel" id="loadingWheel"></div>
+
+    <div class="container" id="contentContainer">
+        <header>
+            <h1>Venda de Automóveis</h1>
+            <p>Encontre o carro dos seus sonhos com qualidade e estilo!</p>
+        </header>
+
+        <!-- Cards de Automóveis -->
+        <div class="cards">
+            <div class="card">
+                <img src="https://i.ibb.co/7jmFZsY/car1.gif" alt="Carro 1">
+                <h2>Modelo Luxuoso 2025</h2>
+            </div>
+            <div class="card">
+                <img src="https://i.ibb.co/n0yRVyw/car2.gif" alt="Carro 2">
+                <h2>SUV Potente</h2>
+            </div>
+            <div class="card">
+                <img src="https://i.ibb.co/27KhZ5r/car3.gif" alt="Carro 3">
+                <h2>Compacto Moderno</h2>
+            </div>
+        </div>
+
+        <!-- Botão de CTA -->
+        <a href="detalhesautomoveis.html" class="cta-button">Descubra Mais</a>
+    </div>
+
+    <script>
+        // Verifica quando todos os GIFs foram carregados
+        const gifs = document.querySelectorAll('.card img');
+        let loadedGifs = 0;
+
+        gifs.forEach(gif => {
+            gif.onload = () => {
+                loadedGifs++;
+                // Se todos os GIFs foram carregados, exibe o conteúdo e oculta o ícone de carregamento
+                if (loadedGifs === gifs.length) {
+                    document.getElementById('loadingWheel').style.display = 'none';
+                    document.getElementById('contentContainer').style.display = 'block';
+                }
+            };
+        });
+    </script>
+</body>
+</html>
