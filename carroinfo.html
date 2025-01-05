@@ -5,119 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venda de Carros</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-        }
-
-        header {
-            background-color: #00aaff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header .logo img {
-            width: 150px;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        .car-details {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .car-gallery {
-            width: 60%;
-        }
-
-       .main-image img {
-    width: 70%; /* Ajuste o valor conforme necessário */
-    height: auto;
-    max-width: 600px; /* Limite máximo de largura para a imagem */
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
 }
 
-        .thumbnail-carousel {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
+header {
+    background-color: #00aaff;
+    padding: 20px;
+    text-align: center;
+}
 
-        .thumbnail {
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            border-radius: 5px;
-            object-fit: cover;
-            transition: opacity 0.3s;
-        }
+header .logo img {
+    width: 150px;
+}
 
-        .thumbnail:hover {
-            opacity: 0.7;
-        }
+main {
+    padding: 20px;
+}
 
-        .car-info {
-            width: 35%;
-        }
+.car-details {
+    display: flex;
+    flex-direction: column; /* Faz as seções ficarem empilhadas em todos os dispositivos */
+    align-items: center; /* Centraliza as seções */
+}
 
-        .car-info h1 {
-            color: #00aaff;
-        }
+.car-gallery {
+    width: 100%;
+    text-align: center; /* Centraliza a galeria */
+}
 
-        .description {
-            margin-top: 10px;
-            font-size: 14px;
-        }
+.main-image img {
+    width: 100%;
+    max-width: 600px; /* Limita a largura máxima da imagem */
+    height: auto;
+}
 
-        .car-state {
-            margin-top: 20px;
-        }
+.thumbnail-carousel {
+    display: flex;
+    justify-content: center; /* Centraliza as miniaturas */
+    margin-top: 10px;
+    gap: 10px; /* Adiciona espaçamento entre as miniaturas */
+}
 
-        .state-bar {
-            margin-bottom: 15px;
-        }
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
 
-        .state-bar span {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
+.thumbnail:hover {
+    opacity: 0.7;
+}
 
-        .bar-container {
-            background-color: #ddd;
-            border-radius: 5px;
-            width: 100%;
-            height: 20px;
-            position: relative;
-        }
+.car-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
 
-        .bar {
-            background-color: #00aaff;
-            height: 100%;
-            border-radius: 5px;
-            transition: width 1s ease-out;
-        }
+.car-info h1 {
+    color: #00aaff;
+}
 
-        .bar-label {
-            margin-top: 5px;
-            text-align: center;
-            font-size: 14px;
-        }
+.description {
+    margin-top: 10px;
+    font-size: 14px;
+}
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+.car-state {
+    margin-top: 20px;
+}
 
-        footer p {
-            margin: 0;
-        }
+.state-bar {
+    margin-bottom: 15px;
+}
+
+.state-bar span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.bar-container {
+    background-color: #ddd;
+    border-radius: 5px;
+    width: 100%;
+    height: 20px;
+    position: relative;
+}
+
+.bar {
+    background-color: #00aaff;
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1s ease-out;
+}
+
+.bar-label {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+footer p {
+    margin: 0;
+}
+
     </style>
 </head>
 <body>
