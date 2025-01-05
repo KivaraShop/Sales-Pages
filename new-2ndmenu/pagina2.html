@@ -486,7 +486,20 @@
     <a href="pagina3.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">3</a>
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
+ <script>           
+document.addEventListener("DOMContentLoaded", function () {
+    const pagination = document.querySelector(".pagination");
 
+    // Garantir que o container de paginação seja centralizado
+    const productGrid = document.querySelector(".product-grid");
+
+    if (productGrid) {
+        const gridContainer = productGrid.parentElement;
+        gridContainer.style.textAlign = "center";  // Centraliza a paginação
+        pagination.style.display = "inline-block"; // Garante que a paginação será centralizada
+    }
+});
+ </script>
             
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
