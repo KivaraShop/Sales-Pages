@@ -230,28 +230,6 @@
 .product-card {
     position: relative;
 }
-.pagination {
-    display: flex; /* Flexbox para centralizar os itens */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    margin-top: 20px; /* Espaço superior */
-    width: 100%; /* Ocupa a largura total */
-}
-
-.pagination a {
-    margin: 0 5px; /* Espaçamento entre os links */
-    padding: 5px 10px; /* Espaçamento interno dos botões */
-    text-decoration: none; /* Remove o sublinhado */
-    border: 1px solid #ccc; /* Borda ao redor dos botões */
-    background-color: #fff; /* Cor de fundo */
-    color: #4a004e; /* Cor do texto */
-    border-radius: 4px; /* Bordas arredondadas */
-}
-
-.pagination a.active {
-    background-color: #ff66b2; /* Cor de fundo ativa */
-    color: white; /* Cor do texto ativo */
-}
         
     </style>
 </head>
@@ -502,13 +480,46 @@
                 <button>Adicionar ao Pedido</button>
             </div>
     
- <div class="pagination" style="margin-top: 20px; display: flex; justify-content: center; align-items: center; width: 100%;">
+<div class="pagination" style="margin-top: 20px; display: flex; justify-content: center; align-items: center; width: 100%;">
     <a href="viewallexplore.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">1</a>
-    <a href="pagina2.html" style="margin: 0 5px; padding: 5px 10px; background-color: #ff66b2; color: #fff; text-decoration: none; border: 1px solid #ccc;">2</a>
+    <a href="pagina2.html" class="active" style="margin: 0 5px; padding: 5px 10px; background-color: #ff66b2; color: #fff; text-decoration: none; border: 1px solid #ccc;">2</a>
     <a href="pagina3.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">3</a>
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const pagination = document.querySelector(".pagination");
+        
+        if (pagination) {
+            // Centraliza a paginação
+            pagination.style.display = "flex";
+            pagination.style.justifyContent = "center";
+            pagination.style.alignItems = "center";
+            pagination.style.marginTop = "20px";
+            pagination.style.width = "100%";
+
+            // Aplica bordas arredondadas e estilo aos links da paginação
+            const links = pagination.querySelectorAll("a");
+            links.forEach(link => {
+                link.style.borderRadius = "4px"; // Bordas arredondadas
+                link.style.margin = "0 5px";
+                link.style.padding = "5px 10px";
+                link.style.textDecoration = "none";
+                link.style.border = "1px solid #ccc";
+                link.style.backgroundColor = "#fff";
+                link.style.color = "#4a004e";
+
+                // Verifica qual página está ativa e aplica a classe active
+                if (link.href === window.location.href) {
+                    link.style.backgroundColor = "#ff66b2"; // Cor de fundo da página ativa
+                    link.style.color = "#fff"; // Cor do texto da página ativa
+                    link.style.borderColor = "#ff66b2"; // Cor da borda da página ativa
+                }
+            });
+        }
+    });
+</script>
 
     
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
