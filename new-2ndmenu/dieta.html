@@ -409,6 +409,35 @@
                 <button>Adicionar ao Pedido</button>
             </div>
     </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Bloquear o menu de contexto (clique direito)
+    document.addEventListener("contextmenu", function (e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault(); // Impede o menu de contexto de aparecer
+        }
+    });
+
+    // Bloquear o toque e segurar nas imagens para prevenir download em dispositivos móveis
+    document.addEventListener("touchstart", function (e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault(); // Impede ações como o menu de opções no toque
+        }
+    });
+
+    // Bloquear o drag e download
+    const images = document.querySelectorAll("img");
+    images.forEach(img => {
+        img.setAttribute("draggable", "false"); // Impede o arrasto da imagem
+        img.addEventListener("mousedown", function (e) {
+            e.preventDefault(); // Impede o arrasto da imagem
+        });
+    });
+});
+
+</script>
+        
  <script>
         const toggleButton = document.getElementById('theme-toggle');
         const body = document.body;
