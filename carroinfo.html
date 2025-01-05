@@ -5,125 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venda de Carros</title>
     <style>
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+        }
 
-header {
-    background-color: #00aaff;
-    padding: 20px;
-    text-align: center;
-}
+        header {
+            background-color: #00aaff;
+            padding: 20px;
+            text-align: center;
+        }
 
-header .logo img {
-    width: 150px;
-}
+        header .logo img {
+            width: 150px;
+        }
 
-main {
-    padding: 20px;
-}
+        main {
+            padding: 20px;
+        }
 
-.car-details {
-    display: flex;
-    flex-direction: column; /* Faz as seções ficarem empilhadas em todos os dispositivos */
-    align-items: center; /* Centraliza as seções */
-}
+        .car-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.car-gallery {
-    width: 100%;
-    text-align: center; /* Centraliza a galeria */
-}
+        .car-gallery {
+            width: 100%;
+            text-align: center;
+        }
 
-.main-image img {
-    width: 100%;
-    max-width: 600px; /* Limita a largura máxima da imagem */
-    height: auto;
-}
+        .main-image img {
+            width: 70%;
+            max-width: 600px; /* Limita a largura máxima da imagem */
+            height: auto;
+        }
 
-.thumbnail-carousel {
-    display: flex;
-    justify-content: center; /* Centraliza as miniaturas */
-    margin-top: 10px;
-    gap: 10px; /* Adiciona espaçamento entre as miniaturas */
-}
+        .thumbnail-carousel {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
 
-.thumbnail {
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    border-radius: 5px;
-    object-fit: cover;
-    transition: opacity 0.3s;
-}
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            border-radius: 5px;
+            object-fit: cover;
+            transition: opacity 0.3s, border 0.3s;
+            border: 2px solid transparent; /* Sem borda por padrão */
+        }
 
-.thumbnail:hover {
-    opacity: 0.7;
-}
+        .thumbnail:hover {
+            opacity: 0.7;
+        }
 
-.car-info {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-}
+        .thumbnail.active {
+            border: 2px solid #00aaff; /* Borda azul para a miniatura ativa */
+        }
 
-.car-info h1 {
-    color: #00aaff;
-}
+        .car-info {
+            width: 60%; /* Ajusta a largura da seção */
+            text-align: left; /* Alinha o texto à esquerda */
+            margin-top: 20px;
+        }
 
-.description {
-    margin-top: 10px;
-    font-size: 14px;
-}
+        .car-info h1 {
+            color: #00aaff;
+        }
 
-.car-state {
-    margin-top: 20px;
-}
+        .description {
+            margin-top: 10px;
+            font-size: 14px;
+        }
 
-.state-bar {
-    margin-bottom: 15px;
-}
+        .car-state {
+            margin-top: 20px;
+        }
 
-.state-bar span {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
+        .state-bar {
+            margin-bottom: 15px;
+        }
 
-.bar-container {
-    background-color: #ddd;
-    border-radius: 5px;
-    width: 100%;
-    height: 20px;
-    position: relative;
-}
+        .state-bar span {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-.bar {
-    background-color: #00aaff;
-    height: 100%;
-    border-radius: 5px;
-    transition: width 1s ease-out;
-}
+        .bar-container {
+            background-color: #ddd;
+            border-radius: 5px;
+            width: 100%;
+            height: 20px;
+            position: relative;
+        }
 
-.bar-label {
-    margin-top: 5px;
-    text-align: center;
-    font-size: 14px;
-}
+        .bar {
+            background-color: #00aaff;
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-out;
+        }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
+        .bar-label {
+            margin-top: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
 
-footer p {
-    margin: 0;
-}
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
 
+        footer p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -140,9 +144,9 @@ footer p {
                     <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
                 <div class="thumbnail-carousel">
-                    <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage('car1.jpg')">
-                    <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage('car2.jpg')">
-                    <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage('car3.jpg')">
+                    <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this, 'https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg')">
+                    <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this, 'https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg')">
+                    <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this, 'https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg')">
                 </div>
             </div>
             <div class="car-info">
@@ -181,9 +185,19 @@ footer p {
     </footer>
 
     <script>
-        // Função para alterar a imagem principal do carro
-        function changeImage(image) {
-            document.getElementById("main-car-image").src = image;
+        // Função para alterar a imagem principal e adicionar a borda na miniatura ativa
+        function changeImage(thumbnail, imageSrc) {
+            // Mudar a imagem principal
+            document.getElementById("main-car-image").src = imageSrc;
+
+            // Remover a classe 'active' de todas as miniaturas
+            let thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(function(thumb) {
+                thumb.classList.remove('active');
+            });
+
+            // Adicionar a classe 'active' à miniatura clicada
+            thumbnail.classList.add('active');
         }
 
         // Função para animar as barras
