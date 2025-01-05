@@ -487,17 +487,15 @@
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
             <script>
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleciona o elemento da paginação
     const pagination = document.querySelector(".pagination");
 
-    if (pagination) {
-        pagination.style.display = "flex";            // Transformando a div em um flex container
-        pagination.style.justifyContent = "center";   // Centraliza os itens horizontalmente
-        pagination.style.alignItems = "center";       // Alinha os itens verticalmente
-        pagination.style.margin = "0 auto";           // Garante que a div fique centralizada
-        pagination.style.width = "fit-content";       // Ajusta a largura da div conforme o conteúdo
-    }
+    // Aplica a justificação do texto
+    pagination.style.textAlign = "justify";  // Justifica o texto dentro da div
+    pagination.style.marginTop = "20px";  // Margem superior, se necessário
 });
+
 </script>
     
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
