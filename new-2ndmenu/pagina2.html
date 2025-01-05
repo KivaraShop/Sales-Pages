@@ -495,9 +495,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalProducts = products.length;
     const totalPages = Math.ceil(totalProducts / maxProductsPerPage);
 
-    // Renderizar apenas os produtos da página 1
-    const start = 0;
-    const end = maxProductsPerPage;
+    // Obter o número da página atual a partir do URL
+    const currentPage = window.location.href.includes("pagina2.html") ? 2 : 1; // A página 2 estará no URL
+    const start = (currentPage - 1) * maxProductsPerPage;
+    const end = start + maxProductsPerPage;
+
+    // Renderizar os produtos da página atual
     productGrid.innerHTML = "";
     products.slice(start, end).forEach(product => productGrid.appendChild(product));
 
@@ -508,7 +511,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pagination.style.marginTop = "20px";
 
     // Criar botões de paginação com links
-    for (let i = 1; i <= totalPages; i++) { // Criar links de 1 até o número total de páginas
+    for (let i = 1; i <= totalPages; i++) {
         const link = document.createElement("a");
         link.textContent = i;
         link.href = i === 1 ? "viewallexplore.html" : `pagina${i}.html`;
@@ -520,8 +523,8 @@ document.addEventListener("DOMContentLoaded", function () {
         link.style.color = "#4a004e";
         link.style.textDecoration = "none";
 
-        // Estilizar o botão da página atual
-        if (i === 1) {
+        // Destacar o link da página atual
+        if (i === currentPage) {
             link.style.backgroundColor = "#ff66b2";
             link.style.color = "#fff";
         }
@@ -531,15 +534,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Adicionar a paginação abaixo da grid
     productGrid.parentElement.appendChild(pagination);
-
-    // Garantir que a paginação fique centralizada para todas as páginas
-    const paginationContainer = productGrid.parentElement.querySelector(".pagination");
-    if (paginationContainer) {
-        paginationContainer.style.display = "flex";
-        paginationContainer.style.justifyContent = "center"; // Centralizar a paginação
-    }
 });
 </script>
+
             
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
