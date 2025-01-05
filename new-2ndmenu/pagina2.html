@@ -480,31 +480,13 @@
                 <button>Adicionar ao Pedido</button>
             </div>
     
-<div class="pagination" style="text-align: center; margin-top: 20px;">
+<div class="pagination" style="display: flex; justify-content: center; margin-top: 20px;">
     <a href="viewallexplore.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">1</a>
     <a href="pagina2.html" style="margin: 0 5px; padding: 5px 10px; background-color: #ff66b2; color: #fff; text-decoration: none; border: 1px solid #ccc;">2</a>
     <a href="pagina3.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">3</a>
     <a href="pagina4.html" style="margin: 0 5px; padding: 5px 10px; background-color: #fff; color: #4a004e; text-decoration: none; border: 1px solid #ccc;">4</a>
 </div>
- <script>           
-document.addEventListener("DOMContentLoaded", function () {
-    const pagination = document.querySelector(".pagination");
 
-    if (pagination) {
-        const productGrid = document.querySelector(".product-grid");
-        const gridContainer = productGrid ? productGrid.parentElement : null;
-
-        if (gridContainer) {
-            // Centraliza a paginação abaixo da grid de produtos
-            pagination.style.display = "flex";
-            pagination.style.justifyContent = "center";
-            pagination.style.marginTop = "20px"; // Ajuste conforme necessário
-            gridContainer.appendChild(pagination);
-        }
-    }
-});
-
- </script>
             
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
