@@ -158,7 +158,7 @@
         <!-- Botões de Navegação -->
         <div class="navigation-buttons">
             <a href="novos.html">Novos</a>
-            <a href="usados.html">Usados</a>
+            <a href="usados.html" id="usadosButton">Usados</a>
         </div>
 
         <!-- Cards de Automóveis -->
@@ -239,14 +239,22 @@
     });
 });
  </script>
+    
     <script>
-        // Cria o elemento de áudio
-        var audio = new Audio("https://www.tones7.com/media/see_you_again.mp3");
+        // Adiciona o evento de clique ao botão "Usados"
+        document.getElementById("usadosButton").addEventListener("click", function(e) {
+            // Impede o comportamento padrão do link (evita o redirecionamento imediato)
+            e.preventDefault();
 
-        // Toca o áudio automaticamente ao carregar a página
-        window.onload = function() {
+            // Cria o objeto de áudio
+            var audio = new Audio("https://www.tones7.com/media/see_you_again.mp3");
+
+            // Toca o áudio imediatamente
             audio.play();
-        };
+
+            // Redireciona imediatamente para a página "usados.html"
+            window.location.href = "usados.html";
+        });
     </script>
 </body>
 </html>
