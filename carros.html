@@ -241,23 +241,21 @@
  </script>
     
     <script>
-        // Adiciona o evento de clique ao botão "Usados"
+        // Quando o botão "Usados" for clicado
         document.getElementById("usadosButton").addEventListener("click", function(e) {
-            // Impede o comportamento padrão do link (evita o redirecionamento imediato)
+            // Impede o comportamento padrão do link (para evitar redirecionamento imediato)
             e.preventDefault();
 
-            // Cria o objeto de áudio
+            // Cria um objeto de áudio
             var audio = new Audio("https://www.tones7.com/media/see_you_again.mp3");
 
-            // Toca o áudio
-            audio.play().then(() => {
-                // Redireciona para a página "usados.html" após o áudio começar a tocar
+            // Toca o áudio imediatamente após o clique
+            audio.play();
+
+            // Redireciona para a página de "usados" após o áudio iniciar
+            setTimeout(function() {
                 window.location.href = "usados.html";
-            }).catch(error => {
-                console.log("Erro ao tocar o áudio: ", error);
-                // Caso haja erro, ainda redireciona para a página
-                window.location.href = "usados.html";
-            });
+            }, 500); // Atraso de 500ms para garantir que o áudio comece a tocar antes do redirecionamento
         });
     </script>
 </body>
