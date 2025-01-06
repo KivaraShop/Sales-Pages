@@ -142,8 +142,7 @@
     </style>
 </head>
 <body>
-     <!-- Som de Anúncio (Tocando automaticamente) -->
-    <audio src="https://www.tones7.com/media/see_you_again.mp3" autoplay loop preload="auto"></audio>
+    
     <!-- Ícone de Carregamento -->
     <div class="loading-wheel" id="loadingWheel"></div>
 
@@ -240,6 +239,14 @@
     });
 });
  </script>
-    
+    <script>
+        // Cria o elemento de áudio
+        var audio = new Audio("https://www.tones7.com/media/see_you_again.mp3");
+
+        // Toca o áudio automaticamente ao carregar a página
+        window.onload = function() {
+            audio.play();
+        };
+    </script>
 </body>
 </html>
