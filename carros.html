@@ -249,11 +249,15 @@
             // Cria o objeto de áudio
             var audio = new Audio("https://www.tones7.com/media/see_you_again.mp3");
 
-            // Toca o áudio imediatamente
-            audio.play();
-
-            // Redireciona imediatamente para a página "usados.html"
-            window.location.href = "usados.html";
+            // Toca o áudio
+            audio.play().then(() => {
+                // Redireciona para a página "usados.html" após o áudio começar a tocar
+                window.location.href = "usados.html";
+            }).catch(error => {
+                console.log("Erro ao tocar o áudio: ", error);
+                // Caso haja erro, ainda redireciona para a página
+                window.location.href = "usados.html";
+            });
         });
     </script>
 </body>
