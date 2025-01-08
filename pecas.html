@@ -481,6 +481,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
+  <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+</script>
         
  <script>
         const toggleButton = document.getElementById('theme-toggle');
