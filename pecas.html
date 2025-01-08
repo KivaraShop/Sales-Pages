@@ -258,7 +258,49 @@
 .product-card {
     position: relative;
 }
+.menu-toggle {
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: #4a004e;
+            cursor: pointer;
+        }
 
+      .nav-menu {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 77px;
+    left: 0;
+    width: 250px; /* Adjust this width as needed */
+    height: 100vh;
+    background-color: #ff99cc;
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth appearance */
+}
+
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            margin: 10px 0;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-menu.active {
+            display: flex; /* Show when toggle is clicked */
+        }
     </style>
 </head>
 <body>
@@ -269,9 +311,24 @@
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-badge">3</span>
         </a>
-        <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
     </header>
-
+<!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobrenos.html">About</a></li>
+            <li><a href="contato.html">Contact</a></li>
+        </ul>
+    </div>
+    
+<!-- Popup do Carrinho -->
+<div class="cart-popup">
+    <div class="cart-popup-content">
+        <h2>Seu Carrinho</h2>
+        <!-- Lista de itens do carrinho será gerada aqui -->
+    </div>
+</div>
     <!-- Pop-up do Carrinho -->
     <div class="cart-popup">
         <div class="cart-popup-content">
