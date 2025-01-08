@@ -150,22 +150,7 @@
         footer p {
             margin: 0;
         }
-
-        @media (max-width: 600px) {
-            .not-found {
-                padding: 15px;
-            }
-
-            .not-found textarea {
-                height: 60px;
-            }
-
-            .add-to-order, .not-found button {
-                font-size: 12px;
-                padding: 8px;
-            }
-        }
-          /* Popup do Carrinho */
+ /* Popup do Carrinho */
         .cart-popup {
             position: fixed;
             top: 0;
@@ -220,11 +205,26 @@
         .cart-popup button:hover {
             background-color: #2f6c32;
         }
+        
+        @media (max-width: 600px) {
+            .not-found {
+                padding: 15px;
+            }
+
+            .not-found textarea {
+                height: 60px;
+            }
+
+            .add-to-order, .not-found button {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+    
     </style>
 </head>
 <body>
     <header>
-
 <a href="#" class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-badge">3</span>
@@ -240,7 +240,9 @@
     <!-- Pop-up do Carrinho -->
     <div class="cart-popup">
         <div class="cart-popup-content">
+            
     <main>
+        
         <h1>Faróis Disponíveis</h1>
         <p>Encontre o modelo ideal para o seu veículo na tabela abaixo:</p>
 
