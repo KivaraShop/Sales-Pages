@@ -14,13 +14,22 @@
             color: #333;
         }
 
+       /* Cabeçalho */
         header {
-            background-color: #1e90ff;
-            color: white;
+            background-color: #4fc3f7; /* Azul claro */
             padding: 15px 20px;
-            text-align: center;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
-         header .cart-icon {
+
+        header .cart-icon {
             color: white;
             font-size: 22px;
             text-decoration: none;
@@ -215,6 +224,7 @@
 </head>
 <body>
     <header>
+
 <a href="#" class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-badge">3</span>
