@@ -66,6 +66,50 @@
             background-color: #4682b4;
         }
 
+        .not-found {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e6f7ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .not-found h2 {
+            color: #1e90ff;
+            margin-bottom: 10px;
+        }
+
+        .not-found label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .not-found textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .not-found button {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .not-found button:hover {
+            background-color: #4682b4;
+        }
+
         footer {
             background-color: #1e90ff;
             color: white;
@@ -119,10 +163,30 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="not-found">
+            <h2>Não encontrou o modelo que procura?</h2>
+            <label for="message">Qual a peça que procura?</label>
+            <textarea id="message" placeholder="Descreva a peça aqui..."></textarea>
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2025 Minha Loja de Peças Automotivas. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            if (message.trim() !== "") {
+                const whatsappNumber = '+258852136558';
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+            } else {
+                alert('Por favor, descreva a peça antes de enviar.');
+            }
+        }
+    </script>
 </body>
 </html>
