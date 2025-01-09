@@ -522,17 +522,6 @@ function adjustFilteredProductSize() {
     });
   }
 }
- // Garantir que o botão "Adicionar ao Pedido" não ultrapasse o card
-      if (button) {
-        const productHeight = productCard.offsetHeight;
-        const buttonHeight = button.offsetHeight;
-
-        // Definir altura fixa para os cards filtrados para evitar o zoom excessivo
-        productCard.style.height = `${productHeight - buttonHeight - 10}px`; // Subtrai o tamanho do botão e um pequeno espaço
-      }
-    }
-  });
-}
 // Função para restaurar o layout original dos produtos
 function restoreOriginalProductLayout() {
   const allProducts = document.querySelectorAll('.product-card');
