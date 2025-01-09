@@ -508,15 +508,31 @@
 function adjustFilteredProductSize() {
   const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
 
-  filteredProducts.forEach(product => {
-    // Verificar se é uma tela de computador (largura maior que 768px)
-    if (window.innerWidth > 768) {
-      // Garantir que o tamanho do card não seja alterado
-      product.style.transform = 'none';  // Remove qualquer efeito de zoom
-      product.style.width = ''; // Restaura a largura original do card
-      product.style.height = ''; // Restaura a altura original do card
+  // Verificar se é uma tela de computador (largura maior que 768px)
+  if (window.innerWidth > 768) {
+    filteredProducts.forEach(product => {
+      product.style.width = '250px'; // Define largura fixa
+      product.style.height = '350px'; // Define altura fixa
+    });
+
+    // Garantir que o botão "Adicionar ao Pedido" não ultrapasse o card
+      if (button) {
+        const productHeight = productCard.offsetHeight;
+        const buttonHeight = button.offsetHeight;
+
+        // Definir altura fixa para os cards filtrados para evitar o zoom excessivo
+        productCard.style.height = `${productHeight - buttonHeight - 10}px`; // Subtrai o tamanho do botão e um pequeno espaço
+      }
     }
   });
+}
+  } else {
+    // Remove os ajustes para dispositivos móveis
+    filteredProducts.forEach(product => {
+      product.style.width = ''; // Restaura valores padrão
+      product.style.height = '';
+    });
+  }
 }
 
 // Função para restaurar o layout original dos produtos
@@ -524,16 +540,15 @@ function restoreOriginalProductLayout() {
   const allProducts = document.querySelectorAll('.product-card');
 
   allProducts.forEach(product => {
-    product.style.transform = '';  // Remove qualquer transformação aplicada
-    product.style.width = ''; // Restaura a largura original do card
-    product.style.height = ''; // Restaura a altura original do card
+    product.style.width = ''; // Restaura valores de largura para o layout original
+    product.style.height = ''; // Restaura valores de altura para o layout original
   });
 }
 
 // Adicionar evento para ajustar os tamanhos após a pesquisa
 document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
 
-// Ajustar o tamanho ao digitar na barra de pesquisa
+// Também ajustar tamanho em tempo real enquanto o cliente digita
 document.getElementById('search-input').addEventListener('input', function() {
   adjustFilteredProductSize();
 
@@ -543,9 +558,8 @@ document.getElementById('search-input').addEventListener('input', function() {
   }
 });
 
-// Ajustar o tamanho ao redimensionar a janela
+// Ajustar tamanho ao redimensionar a janela
 window.addEventListener('resize', adjustFilteredProductSize);
-
 
 </script>
         
