@@ -514,8 +514,15 @@ function adjustFilteredProductSize() {
       product.style.width = '250px'; // Define largura fixa
       product.style.height = '350px'; // Define altura fixa
     });
-
-    // Garantir que o botão "Adicionar ao Pedido" não ultrapasse o card
+  } else {
+    // Remove os ajustes para dispositivos móveis
+    filteredProducts.forEach(product => {
+      product.style.width = ''; // Restaura valores padrão
+      product.style.height = '';
+    });
+  }
+}
+ // Garantir que o botão "Adicionar ao Pedido" não ultrapasse o card
       if (button) {
         const productHeight = productCard.offsetHeight;
         const buttonHeight = button.offsetHeight;
@@ -526,15 +533,6 @@ function adjustFilteredProductSize() {
     }
   });
 }
-  } else {
-    // Remove os ajustes para dispositivos móveis
-    filteredProducts.forEach(product => {
-      product.style.width = ''; // Restaura valores padrão
-      product.style.height = '';
-    });
-  }
-}
-
 // Função para restaurar o layout original dos produtos
 function restoreOriginalProductLayout() {
   const allProducts = document.querySelectorAll('.product-card');
