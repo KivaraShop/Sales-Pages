@@ -504,7 +504,7 @@
     </div>
         
         <script>
- // Função para ajustar o tamanho dos produtos filtrados
+// Função para ajustar o tamanho dos produtos filtrados
 function adjustFilteredProductSize() {
   const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
 
@@ -519,9 +519,12 @@ function adjustFilteredProductSize() {
         const productHeight = productCard.offsetHeight;
         const buttonHeight = button.offsetHeight;
 
-        // Definir altura fixa para os cards filtrados para evitar o zoom excessivo
+        // Ajustar a altura do card sem alterar o tamanho original
         productCard.style.height = `${productHeight - buttonHeight - 10}px`; // Subtrai o tamanho do botão e um pequeno espaço
       }
+
+      // Garantir que os produtos filtrados não fiquem com zoom
+      product.style.transform = 'none'; // Remove qualquer efeito de zoom aplicado
     }
   });
 }
@@ -532,6 +535,7 @@ function restoreOriginalProductLayout() {
 
   allProducts.forEach(product => {
     product.style.height = ''; // Restaura a altura original do card
+    product.style.transform = ''; // Restaura o estilo de transform (zoom) original
   });
 }
 
