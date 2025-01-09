@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Peças</title>
     <style>
         body {
@@ -303,6 +304,32 @@
         .nav-menu.active {
             display: flex; /* Show when toggle is clicked */
         }
+
+        /* Barra de Pesquisa */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+#search-btn {
+  background-color: #4a90e2; /* Azul claro */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
+}
     </style>
 </head>
 <body>
@@ -361,6 +388,19 @@
 
     <div class="container">
         <h2>Peças</h2>
+
+          <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquise a peça que procura..." 
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+        
         <div class="product-grid">
             <!-- Exemplo de produto -->
           <div class="product-card">
@@ -462,7 +502,23 @@
                 <button>Adicionar ao Pedido</button>
             </div>
     </div>
+  <script src="script.js"></script>
+<script>
+function filterProducts(searchTerm) {
+  const search = searchTerm.toLowerCase();
+  const productCards = document.querySelectorAll(".product-card");
 
+  productCards.forEach(card => {
+    const productName = card.querySelector("h3").textContent.toLowerCase();
+    if (productName.includes(search)) {
+      card.style.display = "block"; // Mostra o card
+    } else {
+      card.style.display = "none"; // Esconde o card
+    }
+  });
+}
+</script>
+        
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     // Bloquear o menu de contexto (clique direito)
