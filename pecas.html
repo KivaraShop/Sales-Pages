@@ -504,7 +504,7 @@
     </div>
         
         <script>
-     // Função para ajustar o tamanho dos produtos filtrados
+   // Função para ajustar os tamanhos dos produtos filtrados e corrigir o botão
 function adjustFilteredProductSize() {
   const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
 
@@ -513,12 +513,26 @@ function adjustFilteredProductSize() {
     filteredProducts.forEach(product => {
       product.style.width = '250px'; // Define largura fixa
       product.style.height = '350px'; // Define altura fixa
+
+      // Ajustar o botão para não ultrapassar o card
+      const button = product.querySelector('button');
+      if (button) {
+        button.style.position = 'relative'; // Garantir que o botão não saia do card
+        button.style.marginTop = 'auto'; // Empurra o botão para o fundo do card
+      }
     });
   } else {
     // Remove os ajustes para dispositivos móveis
     filteredProducts.forEach(product => {
       product.style.width = ''; // Restaura valores padrão
       product.style.height = '';
+
+      // Restaura o layout do botão nos dispositivos móveis
+      const button = product.querySelector('button');
+      if (button) {
+        button.style.position = '';
+        button.style.marginTop = '';
+      }
     });
   }
 }
@@ -530,6 +544,13 @@ function restoreOriginalProductLayout() {
   allProducts.forEach(product => {
     product.style.width = ''; // Restaura valores de largura para o layout original
     product.style.height = ''; // Restaura valores de altura para o layout original
+
+    // Restaura o layout do botão
+    const button = product.querySelector('button');
+    if (button) {
+      button.style.position = '';
+      button.style.marginTop = '';
+    }
   });
 }
 
@@ -548,6 +569,7 @@ document.getElementById('search-input').addEventListener('input', function() {
 
 // Ajustar tamanho ao redimensionar a janela
 window.addEventListener('resize', adjustFilteredProductSize);
+
 </script>
         
   <script src="script.js"></script>
