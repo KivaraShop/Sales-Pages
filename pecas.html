@@ -504,7 +504,7 @@
     </div>
         
         <script>
-        // Ajustar tamanhos para produtos filtrados no computador
+     // Função para ajustar o tamanho dos produtos filtrados
 function adjustFilteredProductSize() {
   const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
 
@@ -523,11 +523,28 @@ function adjustFilteredProductSize() {
   }
 }
 
-// Adicionar evento para ajustar os tamanhos após pesquisa
+// Função para restaurar o layout original dos produtos
+function restoreOriginalProductLayout() {
+  const allProducts = document.querySelectorAll('.product-card');
+
+  allProducts.forEach(product => {
+    product.style.width = ''; // Restaura valores de largura para o layout original
+    product.style.height = ''; // Restaura valores de altura para o layout original
+  });
+}
+
+// Adicionar evento para ajustar os tamanhos após a pesquisa
 document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
 
 // Também ajustar tamanho em tempo real enquanto o cliente digita
-document.getElementById('search-input').addEventListener('input', adjustFilteredProductSize);
+document.getElementById('search-input').addEventListener('input', function() {
+  adjustFilteredProductSize();
+
+  // Se o campo de pesquisa for apagado, restaura o layout original
+  if (this.value === '') {
+    restoreOriginalProductLayout();
+  }
+});
 
 // Ajustar tamanho ao redimensionar a janela
 window.addEventListener('resize', adjustFilteredProductSize);
