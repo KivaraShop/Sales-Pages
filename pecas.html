@@ -504,37 +504,23 @@
     </div>
         
         <script>
- // Função para ajustar o tamanho dos produtos filtrados e garantir que o botão esteja dentro do card
+ // Função para ajustar o tamanho dos produtos filtrados
 function adjustFilteredProductSize() {
   const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
 
   filteredProducts.forEach(product => {
     // Verificar se é uma tela de computador (largura maior que 768px)
     if (window.innerWidth > 768) {
-      const productHeight = product.offsetHeight; // Altura atual do card
+      const productCard = product;
       const button = product.querySelector('button');
-
-      // Garantir que o botão não ultrapasse o card
+      
+      // Garantir que o botão "Adicionar ao Pedido" não ultrapasse o card
       if (button) {
-        // Ajusta o tamanho do card e o botão para se alinhar corretamente
-        const productBody = product.querySelector('.product-card-body');
+        const productHeight = productCard.offsetHeight;
         const buttonHeight = button.offsetHeight;
 
-        const newHeight = productHeight - buttonHeight - 10; // Subtrai altura do botão + margem
-
-        product.style.height = `${newHeight}px`; // Ajusta a altura do card
-        button.style.position = 'absolute';
-        button.style.bottom = '10px'; // Ajusta o botão para a parte inferior do card
-        button.style.width = '100%'; // Garante que o botão ocupe toda a largura do card
-      }
-    } else {
-      // Para dispositivos móveis, restaurar o layout original sem modificar a altura
-      product.style.height = '';
-      const button = product.querySelector('button');
-      if (button) {
-        button.style.position = '';
-        button.style.bottom = '';
-        button.style.width = '';
+        // Definir altura fixa para os cards filtrados para evitar o zoom excessivo
+        productCard.style.height = `${productHeight - buttonHeight - 10}px`; // Subtrai o tamanho do botão e um pequeno espaço
       }
     }
   });
@@ -545,21 +531,14 @@ function restoreOriginalProductLayout() {
   const allProducts = document.querySelectorAll('.product-card');
 
   allProducts.forEach(product => {
-    product.style.height = ''; // Restaura valores de altura para o layout original
-
-    const button = product.querySelector('button');
-    if (button) {
-      button.style.position = '';
-      button.style.bottom = '';
-      button.style.width = '';
-    }
+    product.style.height = ''; // Restaura a altura original do card
   });
 }
 
 // Adicionar evento para ajustar os tamanhos após a pesquisa
 document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
 
-// Também ajustar tamanho em tempo real enquanto o cliente digita
+// Ajustar o tamanho ao digitar na barra de pesquisa
 document.getElementById('search-input').addEventListener('input', function() {
   adjustFilteredProductSize();
 
@@ -569,7 +548,7 @@ document.getElementById('search-input').addEventListener('input', function() {
   }
 });
 
-// Ajustar tamanho ao redimensionar a janela
+// Ajustar o tamanho ao redimensionar a janela
 window.addEventListener('resize', adjustFilteredProductSize);
 
 </script>
