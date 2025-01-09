@@ -511,20 +511,10 @@ function adjustFilteredProductSize() {
   filteredProducts.forEach(product => {
     // Verificar se é uma tela de computador (largura maior que 768px)
     if (window.innerWidth > 768) {
-      const productCard = product;
-      const button = product.querySelector('button');
-      
-      // Garantir que o botão "Adicionar ao Pedido" não ultrapasse o card
-      if (button) {
-        const productHeight = productCard.offsetHeight;
-        const buttonHeight = button.offsetHeight;
-
-        // Ajustar a altura do card sem alterar o tamanho original
-        productCard.style.height = `${productHeight - buttonHeight - 10}px`; // Subtrai o tamanho do botão e um pequeno espaço
-      }
-
-      // Garantir que os produtos filtrados não fiquem com zoom
-      product.style.transform = 'none'; // Remove qualquer efeito de zoom aplicado
+      // Garantir que o tamanho do card não seja alterado
+      product.style.transform = 'none';  // Remove qualquer efeito de zoom
+      product.style.width = ''; // Restaura a largura original do card
+      product.style.height = ''; // Restaura a altura original do card
     }
   });
 }
@@ -534,8 +524,9 @@ function restoreOriginalProductLayout() {
   const allProducts = document.querySelectorAll('.product-card');
 
   allProducts.forEach(product => {
+    product.style.transform = '';  // Remove qualquer transformação aplicada
+    product.style.width = ''; // Restaura a largura original do card
     product.style.height = ''; // Restaura a altura original do card
-    product.style.transform = ''; // Restaura o estilo de transform (zoom) original
   });
 }
 
@@ -554,6 +545,7 @@ document.getElementById('search-input').addEventListener('input', function() {
 
 // Ajustar o tamanho ao redimensionar a janela
 window.addEventListener('resize', adjustFilteredProductSize);
+
 
 </script>
         
