@@ -12,7 +12,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
+            background: e0f7fa;
             color: #4a004e;
             display: flex;
             flex-direction: column;
@@ -24,7 +24,7 @@
 
         /* Cabeçalho */
         header {
-            background-color: #ff99cc;
+            background-color: #4fc3f7;
             padding: 15px 20px;
             width: 100%;
             display: flex;
@@ -258,7 +258,7 @@
         }
 
         .product-card button {
-            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+            background: 0288d1;
             border: none;
             padding: 10px;
             width: 100%;
@@ -358,7 +358,7 @@ img {
 
 /* Estilo do rodapé */
 .footer {
-    background-color: #ff99cc;
+    background-color: #4fc3f7;
     color: white;
     padding: 20px 50px;
     text-align: left;
@@ -626,6 +626,32 @@ img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover */
 }
 
+
+        /* Barra de Pesquisa */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+#search-btn {
+  background-color: #4a90e2; /* Azul claro */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
+}
     </style>
 </head>
 <body>
@@ -667,6 +693,17 @@ img {
     <!-- Conteúdo principal -->
     <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
+           <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquise a peça que procura..." 
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
     <a href="dieta.html" class="categoria-btn">Dieta</a>
@@ -1085,6 +1122,69 @@ img {
     </div>
 </footer>
 
+      <script>
+// Função para ajustar o tamanho dos produtos filtrados
+function adjustFilteredProductSize() {
+  const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
+
+  // Verificar se é uma tela de computador (largura maior que 768px)
+  if (window.innerWidth > 768) {
+    filteredProducts.forEach(product => {
+      product.style.width = '250px'; // Define largura fixa
+      product.style.height = '350px'; // Define altura fixa
+    });
+  } else {
+    // Remove os ajustes para dispositivos móveis
+    filteredProducts.forEach(product => {
+      product.style.width = ''; // Restaura valores padrão
+      product.style.height = '';
+    });
+  }
+}
+// Função para restaurar o layout original dos produtos
+function restoreOriginalProductLayout() {
+  const allProducts = document.querySelectorAll('.product-card');
+
+  allProducts.forEach(product => {
+    product.style.width = ''; // Restaura valores de largura para o layout original
+    product.style.height = ''; // Restaura valores de altura para o layout original
+  });
+}
+
+// Adicionar evento para ajustar os tamanhos após a pesquisa
+document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
+
+// Também ajustar tamanho em tempo real enquanto o cliente digita
+document.getElementById('search-input').addEventListener('input', function() {
+  adjustFilteredProductSize();
+
+  // Se o campo de pesquisa for apagado, restaura o layout original
+  if (this.value === '') {
+    restoreOriginalProductLayout();
+  }
+});
+
+// Ajustar tamanho ao redimensionar a janela
+window.addEventListener('resize', adjustFilteredProductSize);
+
+</script>
+        
+  <script src="script.js"></script>
+<script>
+function filterProducts(searchTerm) {
+  const search = searchTerm.toLowerCase();
+  const productCards = document.querySelectorAll(".product-card");
+
+  productCards.forEach(card => {
+    const productName = card.querySelector("h3").textContent.toLowerCase();
+    if (productName.includes(search)) {
+      card.style.display = "block"; // Mostra o card
+    } else {
+      card.style.display = "none"; // Esconde o card
+    }
+  });
+}
+</script>
     
 <script>
 document.addEventListener('DOMContentLoaded', () => {
