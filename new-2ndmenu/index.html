@@ -1790,38 +1790,57 @@ addToOrderButtons.forEach(button => {
 
      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
 
-<script>
-// Substitua com as informações da sua conta Supabase
-const supabaseUrl = 'https://jlnqjyhoihauvqiavyrw.supabase.co'; // Substitua pelo seu URL do Supabase
+
+<script type="module">
+  // Supabase credentials
+ const supabaseUrl = 'https://jlnqjyhoihauvqiavyrw.supabase.co'; // Substitua pelo seu URL do Supabase
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbnFqeWhvaWhhdXZxaWF2eXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2MDM4NjMsImV4cCI6MjA1MjE3OTg2M30.tqAwsIK22zUXez7sg_hYBhUdwx62WBfiGGO6oq8_Ric'; // Substitua pela sua chave do Supabase
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  // Function to handle adding a product to the Supabase table
+  async function addToSupabase(product) {
+    const { nome_produto, preco_unitario } = product;
+
+    try {
+      const { data, error } = await supabase
+        .from("Vendas table") // Replace with your exact table name
+        .insert([
+          {
+            nome_produto: nome_produto,
+            preco_unitario: preco_unitario,
+            valor_vendido: preco_unitario, // Assuming valor_vendido = preco_unitario for now
+          },
+        ])
+        .select();
+
+      if (error) {
+        console.error("Error inserting into Supabase:", error);
+      } else {
+        console.log("Inserted into Supabase:", data);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  }
+
+  // Attach event listeners to all "Adicionar ao Pedido" buttons
+  document.querySelectorAll(".add-to-order-btn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const productCard = event.target.closest(".product-card");
+
+      if (productCard) {
+        const product = {
+          nome_produto: productCard.dataset.nome,
+          preco_unitario: parseFloat(productCard.dataset.preco),
+        };
+
+        // Call the function to insert the product into Supabase
+        addToSupabase(product);
+      }
+    });
+  });
 </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-  const order = JSON.parse(localStorage.getItem('order'));
-  
-  if (order && order.length > 0) {
-    const { data, error } = await supabase
-      .from('vendas') // Nome da sua tabela
-      .insert(order.map(item => ({
-        nome_produto: item.nome_produto,
-        preco_unitario: item.preco_unitario,
-        valor_vendido: item.valor_vendido,
-        created_at: new Date().toISOString(), // Adicionando data de venda
-      })));
-    
-    if (error) {
-      console.error('Erro ao salvar a venda:', error);
-    } else {
-      console.log('Venda registrada com sucesso:', data);
-      localStorage.removeItem('order'); // Limpar pedido após envio
-    }
-  } else {
-    console.log('Nenhum item no pedido.');
-  }
-});
-</script>
     
 </body>
 </html>
