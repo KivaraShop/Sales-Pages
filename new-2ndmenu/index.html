@@ -1764,93 +1764,44 @@ cartPopupContent.appendChild(pagarButton);
 </script>
     
 <script>
-    const addToOrderButtons = document.querySelectorAll('.add-to-order-btn');
-
-addToOrderButtons.forEach(button => {
-  button.addEventListener('click', (e) => {
-    const productCard = e.target.closest('.product-card');
-    const produtoNome = productCard.getAttribute('data-nome');  // Pega o nome do produto
-    const produtoPreco = productCard.getAttribute('data-preco'); // Pega o preço do produto
-    
-    // Armazenar no localStorage
-    let currentOrder = JSON.parse(localStorage.getItem('order')) || [];
-    currentOrder.push({
-      nome_produto: produtoNome,
-      preco_unitario: produtoPreco,
-      valor_vendido: produtoPreco, // Pode ser ajustado para quantidade, se necessário
-    });
-    
-    localStorage.setItem('order', JSON.stringify(currentOrder));
-    
-    alert("Produto adicionado ao pedido!");
-  });
-});
+ // Initialize Supabase client
+const { createClient } = supabase;
+const supabaseUrl = 'https://rolidpshdbhpwdvdzcsy.supabase.co'; // Replace with your Supabase URL
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvbGlkcHNoZGJocHdkdmR6Y3N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2MjE2MDAsImV4cCI6MjA1MjE5NzYwMH0.x-N4oBJDhrGf9BHgduUs9yan-kIkiuEcWVMiwGNhvaU'; // Replace with your public Supabase key
+const supabase = createClient(supabaseUrl, supabaseKey);
 </script>
-
 
    
 <script>
-// Ensure the library is loaded
-import { createClient } from '@supabase/supabase-js';
-
-// Initialize Supabase client
-const supabaseUrl = 'https://jlnqjyhoihauvqiavyrw.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbnFqeWhvaWhhdXZxaWF2eXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2MDM4NjMsImV4cCI6MjA1MjE3OTg2M30.tqAwsIK22zUXez7sg_hYBhUdwx62WBfiGGO6oq8_Ric';
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-// Test connection by fetching data
-(async () => {
-    const { data, error } = await supabase.from('vendas').select('*');
-    if (error) {
-        console.error('Error fetching data:', error.message);
-    } else {
-        console.log('Fetched data:', data);
-    }
-})();
-    
-  // Add event listeners
-  document.querySelectorAll(".add-to-order-btn").forEach((button) => {
-    button.addEventListener("click", async (event) => {
-      const productCard = event.target.closest(".product-card");
-      const nome_produto = productCard.dataset.nome;
-      const preco_unitario = parseFloat(productCard.dataset.preco);
-      const valor_vendido = preco_unitario;
-
-      console.log("Inserting:", { nome_produto, preco_unitario, valor_vendido });
-
-      const { data, error } = await supabase
-        .from("vendas")
-        .insert([{ nome_produto, preco_unitario, valor_vendido }])
-        .select();
-
-      if (error) {
-        console.error("Supabase Error:", error.message);
-      } else {
-        console.log("Data inserted:", data);
-      }
+document.querySelectorAll('.add-to-order-btn').forEach(button => {
+    button.addEventListener('click', async (event) => {
+        // Get product details from the clicked product card
+        const productCard = event.target.closest('.product-card');
+        const nome_produto = productCard.getAttribute('data-nome');
+        const preco_unitario = parseFloat(productCard.getAttribute('data-preco'));
+        
+        // Insert the product data into the vendas2 table
+        const { data, error } = await supabase
+            .from('vendas2')
+            .insert([
+                {
+                    nome_produto: nome_produto,
+                    preco_unitario: preco_unitario,
+                    valor_vendido: preco_unitario // Assuming the value sold is the same as unit price for now
+                }
+            ]);
+        
+        if (error) {
+            console.error('Error inserting data:', error);
+        } else {
+            console.log('Data inserted successfully:', data);
+        }
     });
-  });
-</script>
-    <script>
-// Assuming you have the necessary Supabase client set up
-const { data, error } = await supabase
-  .from('vendas')
-  .insert([
-    {
-      nome_produto: 'Salada Caesar', 
-      preco_unitario: 19.90, 
-      valor_vendido: 19.90 // This could be the same value, or a different value for total sale
-    }
-  ])
-  .select(); // This retrieves the inserted row(s)
+});
 
-if (error) {
-  console.error('Error inserting data:', error);
-} else {
-  console.log('Data inserted successfully:', data);
-}
 </script>
+    
+
     
 </body>
 </html>
