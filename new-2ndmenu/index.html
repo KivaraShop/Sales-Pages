@@ -1786,5 +1786,42 @@ addToOrderButtons.forEach(button => {
   });
 });
 </script>
+
+
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
+
+<script>
+// Substitua com as informações da sua conta Supabase
+const supabaseUrl = 'https://jlnqjyhoihauvqiavyrw.supabase.co'; // Substitua pelo seu URL do Supabase
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbnFqeWhvaWhhdXZxaWF2eXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2MDM4NjMsImV4cCI6MjA1MjE3OTg2M30.tqAwsIK22zUXez7sg_hYBhUdwx62WBfiGGO6oq8_Ric'; // Substitua pela sua chave do Supabase
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+  const order = JSON.parse(localStorage.getItem('order'));
+  
+  if (order && order.length > 0) {
+    const { data, error } = await supabase
+      .from('Vendas table') // Nome da sua tabela
+      .insert(order.map(item => ({
+        nome_produto: item.nome_produto,
+        preco_unitario: item.preco_unitario,
+        valor_vendido: item.valor_vendido,
+        created_at: new Date().toISOString(), // Adicionando data de venda
+      })));
+    
+    if (error) {
+      console.error('Erro ao salvar a venda:', error);
+    } else {
+      console.log('Venda registrada com sucesso:', data);
+      localStorage.removeItem('order'); // Limpar pedido após envio
+    }
+  } else {
+    console.log('Nenhum item no pedido.');
+  }
+});
+</script>
+    
 </body>
 </html>
