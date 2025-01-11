@@ -81,5 +81,31 @@
         <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
         <footer>&copy; 2025  Restaurante. Todos os direitos reservados.</footer>
     </div>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+  const order = JSON.parse(localStorage.getItem('order'));
+  
+  if (order && order.length > 0) {
+    const { data, error } = await supabase
+      .from('Vendas table') // Nome da sua tabela
+      .insert(order.map(item => ({
+        nome_produto: item.nome_produto,
+        preco_unitario: item.preco_unitario,
+        valor_vendido: item.valor_vendido,
+        created_at: new Date().toISOString(), // Adicionando data de venda
+      })));
+    
+    if (error) {
+      console.error('Erro ao salvar a venda:', error);
+    } else {
+      console.log('Venda registrada com sucesso:', data);
+      localStorage.removeItem('order'); // Limpar pedido após envio
+    }
+  } else {
+    console.log('Nenhum item no pedido.');
+  }
+});
+</script>
 </body>
 </html>
