@@ -1819,7 +1819,25 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
     });
   });
 </script>
+    <script>
+// Assuming you have the necessary Supabase client set up
+const { data, error } = await supabase
+  .from('vendas')
+  .insert([
+    {
+      nome_produto: 'Salada Caesar', 
+      preco_unitario: 19.90, 
+      valor_vendido: 19.90 // This could be the same value, or a different value for total sale
+    }
+  ])
+  .select(); // This retrieves the inserted row(s)
 
+if (error) {
+  console.error('Error inserting data:', error);
+} else {
+  console.log('Data inserted successfully:', data);
+}
+</script>
     
 </body>
 </html>
