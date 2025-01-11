@@ -1762,7 +1762,29 @@ cartPopupContent.appendChild(pagarButton);
     updateCartCount();
 });
 </script>
-
     
+<script>
+    const addToOrderButtons = document.querySelectorAll('.add-to-order-btn');
+
+addToOrderButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    const productCard = e.target.closest('.product-card');
+    const produtoNome = productCard.getAttribute('data-nome');  // Pega o nome do produto
+    const produtoPreco = productCard.getAttribute('data-preco'); // Pega o preço do produto
+    
+    // Armazenar no localStorage
+    let currentOrder = JSON.parse(localStorage.getItem('order')) || [];
+    currentOrder.push({
+      nome_produto: produtoNome,
+      preco_unitario: produtoPreco,
+      valor_vendido: produtoPreco, // Pode ser ajustado para quantidade, se necessário
+    });
+    
+    localStorage.setItem('order', JSON.stringify(currentOrder));
+    
+    alert("Produto adicionado ao pedido!");
+  });
+});
+</script>
 </body>
 </html>
