@@ -1803,7 +1803,7 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
   
   if (order && order.length > 0) {
     const { data, error } = await supabase
-      .from('Vendas table') // Nome da sua tabela
+      .from('vendas') // Nome da sua tabela
       .insert(order.map(item => ({
         nome_produto: item.nome_produto,
         preco_unitario: item.preco_unitario,
