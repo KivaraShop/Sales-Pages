@@ -1775,10 +1775,12 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 <script>
 document.querySelectorAll('.add-to-order-btn').forEach(button => {
     button.addEventListener('click', async (event) => {
-        // Get product details from the clicked product card
         const productCard = event.target.closest('.product-card');
         const nome_produto = productCard.getAttribute('data-nome');
         const preco_unitario = parseFloat(productCard.getAttribute('data-preco'));
+        
+        // Confirm the values are being correctly retrieved
+        alert(`Nome: ${nome_produto}, Preço: ${preco_unitario}`);
         
         // Insert the product data into the vendas2 table
         const { data, error } = await supabase
@@ -1790,11 +1792,13 @@ document.querySelectorAll('.add-to-order-btn').forEach(button => {
                     valor_vendido: preco_unitario // Assuming the value sold is the same as unit price for now
                 }
             ]);
-        
+
         if (error) {
             console.error('Error inserting data:', error);
+            alert('Error: ' + error.message);
         } else {
             console.log('Data inserted successfully:', data);
+            alert('Data inserted successfully!');
         }
     });
 });
