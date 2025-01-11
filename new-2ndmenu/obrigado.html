@@ -82,6 +82,15 @@
         <footer>&copy; 2025  Restaurante. Todos os direitos reservados.</footer>
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
+
+<script>
+// Substitua com as informações da sua conta Supabase
+const supabaseUrl = 'https://<SEU_SUPABASE_URL>.supabase.co'; // Substitua pelo seu URL do Supabase
+const supabaseKey = '<SEU_SUPABASE_KEY>'; // Substitua pela sua chave do Supabase
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
   const order = JSON.parse(localStorage.getItem('order'));
