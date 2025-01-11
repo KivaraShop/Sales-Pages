@@ -1790,55 +1790,46 @@ addToOrderButtons.forEach(button => {
 
      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
 
-
-<script type="module">
+<script>
   // Supabase credentials
  const supabaseUrl = 'https://jlnqjyhoihauvqiavyrw.supabase.co'; // Substitua pelo seu URL do Supabase
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbnFqeWhvaWhhdXZxaWF2eXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2MDM4NjMsImV4cCI6MjA1MjE3OTg2M30.tqAwsIK22zUXez7sg_hYBhUdwx62WBfiGGO6oq8_Ric'; // Substitua pela sua chave do Supabase
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-  // Function to handle adding a product to the Supabase table
-  async function addToSupabase(product) {
-    const { nome_produto, preco_unitario } = product;
+// Add an event listener for the "Adicionar ao Pedido" button
+document.querySelectorAll(".add-to-order-btn").forEach((button) => {
+  button.addEventListener("click", async (event) => {
+    const productCard = event.target.closest(".product-card");
 
-    try {
-      const { data, error } = await supabase
-        .from("Vendas table") // Replace with your exact table name
-        .insert([
-          {
-            nome_produto: nome_produto,
-            preco_unitario: preco_unitario,
-            valor_vendido: preco_unitario, // Assuming valor_vendido = preco_unitario for now
-          },
-        ])
-        .select();
+    // Extract product details from data attributes
+    const nome_produto = productCard.dataset.nome;
+    const preco_unitario = parseFloat(productCard.dataset.preco);
+    const valor_vendido = preco_unitario; // Adjust as necessary
 
-      if (error) {
-        console.error("Error inserting into Supabase:", error);
-      } else {
-        console.log("Inserted into Supabase:", data);
-      }
-    } catch (err) {
-      console.error("Unexpected error:", err);
+    // Prepare the data to insert
+    const productData = {
+      nome_produto: nome_produto,
+      preco_unitario: preco_unitario,
+      valor_vendido: valor_vendido,
+    };
+
+    console.log("Inserting product data:", productData);
+
+    // Insert into Supabase
+    const { data, error } = await supabase
+      .from("vendas")
+      .insert([productData]) // Insert an array with a single object
+      .select();
+
+    if (error) {
+      console.error("Error inserting into Supabase:", error.message);
+      alert("Erro ao adicionar produto. Tente novamente.");
+    } else {
+      console.log("Product added to Supabase:", data);
+      alert("Produto adicionado com sucesso!");
     }
-  }
-
-  // Attach event listeners to all "Adicionar ao Pedido" buttons
-  document.querySelectorAll(".add-to-order-btn").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const productCard = event.target.closest(".product-card");
-
-      if (productCard) {
-        const product = {
-          nome_produto: productCard.dataset.nome,
-          preco_unitario: parseFloat(productCard.dataset.preco),
-        };
-
-        // Call the function to insert the product into Supabase
-        addToSupabase(product);
-      }
-    });
   });
+});
 </script>
 
     
