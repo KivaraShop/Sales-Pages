@@ -1511,7 +1511,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const fazerPedidoButton = document.createElement('button');
         fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#ff66b2';
+        fazerPedidoButton.style.background = '#0288d1';
         fazerPedidoButton.style.color = 'white';
         fazerPedidoButton.style.border = 'none';
         fazerPedidoButton.style.padding = '10px';
@@ -1525,7 +1525,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#ff66b2';
+        closeButton.style.background = '#0288d1';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
         closeButton.style.padding = '5px 10px';
@@ -1563,7 +1563,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const falarButton = document.createElement('button');
         falarButton.textContent = 'Falar com atendente';
-        falarButton.style.background = '#ff66b2';
+        falarButton.style.background = '#000000';
         falarButton.style.color = 'white';
         falarButton.style.border = 'none';
         falarButton.style.padding = '10px';
@@ -1637,7 +1637,7 @@ function showMpesapayOption() {
 // Pagar Conta button logic
 const pagarButton = document.createElement('button');
 pagarButton.textContent = 'Pagar Conta';
-pagarButton.style.background = '#ff66b2';
+pagarButton.style.background = '#0288d1';
 pagarButton.style.color = 'white';
 pagarButton.style.border = 'none';
 pagarButton.style.padding = '10px';
@@ -1663,22 +1663,18 @@ cartPopupContent.appendChild(pagarButton);
         cartPopupContent.appendChild(paypalButtonContainer);
 
         paypal.Buttons({
-          createOrder: function(data, actions) {
-    const productNames = cart.map(item => item.name).join(', '); // Coletar os nomes dos produtos
-    const totalValue = calculateTotal().toFixed(2);
-
-    return actions.order.create({
-        purchase_units: [{
-            amount: {
-                value: totalValue
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: calculateTotal().toFixed(2)
+                        }
+                    }]
+                });
             },
-            description: `Produtos: ${productNames}` // Adicionar nomes dos produtos aqui
-        }]
-    });
-},
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    window.location.href = 'checkout.html';
+                    window.location.href = 'obrigado.html';
                 });
             },
             onError: function(err) {
@@ -1746,6 +1742,7 @@ cartPopupContent.appendChild(pagarButton);
     updateCartCount();
 });
 </script>
+
     
 </body>
 </html>
