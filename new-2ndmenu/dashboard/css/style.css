@@ -1,11 +1,10 @@
 /********** Template CSS **********/
 :root {
-    --primary-color: #007BFF; /* Azul claro mais vibrante */
-    --secondary-color: #B3DAF1; /* Azul claro mais suave */
-    --text-color: #1A1A1A; /* Cor do texto mais escura */
-    --light: #F7F9FC; /* Tons claros */
-    --dark: #002B5C; /* Azul escuro para contraste */
+    --primary-color: #4a90e2; /* Azul claro principal */
+    --secondary-color: #4fc3f7; /* Azul claro mais suave */
+    --text-color: #333; /* Cor do texto */
 }
+
 
 .back-to-top {
     position: fixed;
@@ -14,6 +13,7 @@
     bottom: 45px;
     z-index: 99;
 }
+
 
 /*** Spinner ***/
 #spinner {
@@ -28,6 +28,7 @@
     visibility: visible;
     opacity: 1;
 }
+
 
 /*** Button ***/
 .btn {
@@ -60,6 +61,7 @@
     border-radius: 50px;
 }
 
+
 /*** Layout ***/
 .sidebar {
     position: fixed;
@@ -69,7 +71,7 @@
     width: 250px;
     height: 100vh;
     overflow-y: auto;
-    background: var(--secondary-color);
+    background: var(--secondary);
     transition: 0.5s;
     z-index: 999;
 }
@@ -77,7 +79,7 @@
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: var(--light);
+    background: var(--dark);
     transition: 0.5s;
 }
 
@@ -115,21 +117,22 @@
     }
 }
 
+
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
     color: var(--light);
     font-weight: 500;
-    border-left: 3px solid var(--secondary-color);
+    border-left: 3px solid var(--secondary);
     border-radius: 0 30px 30px 0;
     outline: none;
 }
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: var(--primary-color);
+    color: var(--primary);
     background: var(--dark);
-    border-color: var(--primary-color);
+    border-color: var(--primary);
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -144,8 +147,122 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover i,
 .sidebar .navbar .navbar-nav .nav-link.active i {
-    background: var(--secondary-color);
+    background: var(--secondary);
 }
+
+.sidebar .navbar .dropdown-toggle::after {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    transition: .5s;
+}
+
+.sidebar .navbar .dropdown-toggle[aria-expanded=true]::after {
+    transform: rotate(-180deg);
+}
+
+.sidebar .navbar .dropdown-item {
+    padding-left: 25px;
+    border-radius: 0 30px 30px 0;
+    color: var(--light);
+}
+
+.sidebar .navbar .dropdown-item:hover,
+.sidebar .navbar .dropdown-item.active {
+    background: var(--dark);
+}
+
+.content .navbar .navbar-nav .nav-link {
+    margin-left: 25px;
+    padding: 12px 0;
+    color: var(--light);
+    outline: none;
+}
+
+.content .navbar .navbar-nav .nav-link:hover,
+.content .navbar .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+.content .navbar .sidebar-toggler,
+.content .navbar .navbar-nav .nav-link i {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
+    border-radius: 40px;
+}
+
+.content .navbar .dropdown-item {
+    color: var(--light);
+}
+
+.content .navbar .dropdown-item:hover,
+.content .navbar .dropdown-item.active {
+    background: var(--dark);
+}
+
+.content .navbar .dropdown-toggle::after {
+    margin-left: 6px;
+    vertical-align: middle;
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    transition: .5s;
+}
+
+.content .navbar .dropdown-toggle[aria-expanded=true]::after {
+    transform: rotate(-180deg);
+}
+
+@media (max-width: 575.98px) {
+    .content .navbar .navbar-nav .nav-link {
+        margin-left: 15px;
+    }
+}
+
+
+/*** Date Picker ***/
+.bootstrap-datetimepicker-widget.bottom {
+    top: auto !important;
+}
+
+.bootstrap-datetimepicker-widget .table * {
+    border-bottom-width: 0px;
+}
+
+.bootstrap-datetimepicker-widget .table th {
+    font-weight: 500;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+    background: var(--primary);
+}
+
+.bootstrap-datetimepicker-widget table td.today::before {
+    border-bottom-color: var(--primary);
+}
+
+
+/*** Testimonial ***/
+.progress .progress-bar {
+    width: 0px;
+    transition: 2s;
+}
+
 
 /*** Testimonial ***/
 .testimonial-carousel .owl-dots {
@@ -161,12 +278,12 @@
     margin: 0 5px;
     width: 15px;
     height: 15px;
-    border: 5px solid var(--primary-color);
+    border: 5px solid var(--primary);
     border-radius: 15px;
     transition: .5s;
 }
 
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
-    border-color: var(--primary-color);
+    border-color: var(--primary);
 }
