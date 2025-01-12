@@ -1764,64 +1764,40 @@ cartPopupContent.appendChild(pagarButton);
 });
 </script>
     
-<script>
-    document.querySelectorAll('.add-to-order-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            // Obtém o cartão do produto associado
-            const productCard = this.closest('.product-card');
-            
-            // Pega as informações do produto
-            const productId = productCard.getAttribute('data-id');
-            const productName = productCard.getAttribute('data-nome');
-            const productPrice = productCard.getAttribute('data-preco');
-            const date = new Date().toISOString().split('T')[0]; // Data atual no formato YYYY-MM-DD
-            
-            // Chama a função para adicionar o pedido à planilha Zoho
-            adicionarPedidoZoho(date, productName, productPrice);
-        });
-    });
+    <script>
+const oAuthToken = '1000.c5e6f93ed3773f819c58fee757e59641.a9c3ce70567734824deec3ce51452564'; // Substitua com o seu token
+const resourceId = 'onq343e378a104b8b4942b23eac76e83874df'; // Substitua com seu resourceId
 
-    function adicionarPedidoZoho(dataPedido, nomeProduto, precoProduto) {
-        const zohoAccessToken = 'Zoho-oauthtoken 1000.c5e6f93ed3773f819c58fee757e59641.a9c3ce70567734824deec3ce51452564';
-        const resourceId = 'onq343e378a104b8b4942b23eac76e83874df'; // Sua URL do recurso específico
-        const worksheetName = "Vendas"; // Nome da planilha
+// Dados para enviar - a parte json_data com os dados do pedido
+const jsonData = [
+  {
+    "Data do Pedido": "2025-01-12", // Aqui você pode pegar a data atual ou qualquer outra dinâmica
+    "Nome do Produto": "Salada Caesar", // Pega o nome do produto dinamicamente
+    "Preço": "19.90" // Pega o preço dinamicamente
+  }
+];
 
-        // Prepare the JSON data similar to the Java example
-        const jsonData = [
-            {
-                "Data": dataPedido,
-                "Descrição": nomeProduto,
-                "Valor": precoProduto
-            }
-        ];
-
-        const params = new URLSearchParams();
-        params.append("method", "worksheet.records.add");
-        params.append("worksheet_name", worksheetName);
-        params.append("header_row", "1"); // Linha de cabeçalho
-        params.append("json_data", JSON.stringify(jsonData)); // Dados no formato JSON
-
-        const apiUrl = `https://sheet.zoho.com/api/v2/${resourceId}`;
-
-        // Envio da requisição POST para adicionar o pedido à planilha
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Authorization': zohoAccessToken,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: params.toString(),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Pedido adicionado com sucesso:', data);
-        })
-        .catch(error => {
-            console.error('Erro ao adicionar o pedido:', error);
-        });
-    }
+fetch(`https://sheet.zoho.com/api/v2/${resourceId}`, {
+  method: 'POST',
+  headers: {
+    'Authorization': `Zoho-oauthtoken ${oAuthToken}`,
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: new URLSearchParams({
+    'method': 'worksheet.records.add',
+    'worksheet_name': 'Sheet1', // Substitua com o nome da sua planilha
+    'header_row': '1', // O número da linha do cabeçalho
+    'json_data': JSON.stringify(jsonData)
+  })
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Sucesso:', data);
+})
+.catch(error => {
+  console.error('Erro:', error);
+});
 </script>
-
     
 </body>
 </html>
