@@ -1695,7 +1695,7 @@ cartPopupContent.appendChild(pagarButton);
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    window.location.href = 'obrigado.html';
+                    window.location.href = 'https://kivarashop.github.io/Sales-Pages/new-2ndmenu/obrigado';
                 });
             },
             onError: function(err) {
@@ -1764,52 +1764,6 @@ cartPopupContent.appendChild(pagarButton);
 });
 </script>
     
-    <script>
-// Obtenção dos dados do produto
-const addToOrderBtn = document.querySelectorAll('.add-to-order-btn');
-
-addToOrderBtn.forEach(button => {
-  button.addEventListener('click', (e) => {
-    const productCard = e.target.closest('.product-card');
-    const productName = productCard.getAttribute('data-nome');
-    const productPrice = productCard.getAttribute('data-preco');
-    const orderDate = new Date().toLocaleString(); // Data do pedido
-
-    // Monta os dados em formato JSON
-    const orderData = {
-      "Data": orderDate,
-      "Descrição": productName,
-      "Valor": productPrice
-    };
-
-    // Envia a requisição para o Zoho Sheets
-    const apiUrl = 'https://sheet.zoho.com/api/v2/<resourceId>';
-    const oAuthToken = 'Zoho-oauthtoken <seu_oauth_token>';
-    
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Authorization': oAuthToken,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: new URLSearchParams({
-        'method': 'worksheet.records.add',
-        'worksheet_name': 'Vendas', // Nome da sua planilha
-        'header_row': '1',
-        'json_data': JSON.stringify([orderData])
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Dados enviados com sucesso:', data);
-    })
-    .catch(error => {
-      console.error('Erro ao enviar dados:', error);
-    });
-  });
-});
-
-</script>
-    
+  
 </body>
 </html>
