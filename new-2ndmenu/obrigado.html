@@ -75,11 +75,37 @@
         <h1>Pagamento Efetuado com Sucesso!</h1>
         <p>Seu pagamento foi processado com sucesso. Agradecemos pela sua compra! :)</p>
         
-        <a href="https://wa.me/258852136558?text=Confirmação%20de%20pagamento%20nr%204367" class="button">Confirmar ao Atendente</a>
+        <a href="#" id="whatsappButton" class="button">Confirmar ao Atendente</a>
 
         <div class="footer">
             <p>Se tiver alguma dúvida, entre em contato conosco.</p>
         </div>
     </div>
+
+<script>
+        // Função para calcular o total (substitua com seu próprio cálculo)
+        function calculateTotal() {
+            // Aqui você vai fazer o cálculo do total com base nos produtos do carrinho
+            return 0; // Altere para o cálculo real
+        }
+
+        // Função para gerar a mensagem do WhatsApp
+        function generateWhatsappMessage() {
+            let message = 'Confirmaçâo de Pagamento nr 4367:\n\n';
+
+            // Aqui você vai percorrer os itens do carrinho e gerar a mensagem
+            // Exemplo: cart.forEach(item => {
+            //     message += `${item.name} - MZN ${item.price.toFixed(2)}\n`;
+            // });
+
+            message += `\nTotal: MZN ${calculateTotal().toFixed(2)}\n\n`;
+            message += 'Aguardo confirmação do pedido.';
+            return message;
+        }
+
+        // Atualiza o link do WhatsApp com a mensagem gerada
+        document.getElementById("whatsappButton").href = `https://wa.me/258852136558?text=${encodeURIComponent(generateWhatsappMessage())}`;
+    </script>
+    
 </body>
 </html>
