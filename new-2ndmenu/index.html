@@ -1784,21 +1784,24 @@ cartPopupContent.appendChild(pagarButton);
     function adicionarPedidoZoho(dataPedido, nomeProduto, precoProduto) {
         const zohoAccessToken = 'Zoho-oauthtoken 1000.c5e6f93ed3773f819c58fee757e59641.a9c3ce70567734824deec3ce51452564';
         const resourceId = 'onq343e378a104b8b4942b23eac76e83874df'; // Sua URL do recurso específico
-        const apiUrl = `https://sheet.zoho.com/api/v2/${resourceId}`;
+        const worksheetName = "Vendas"; // Nome da planilha
 
         // Prepare the JSON data similar to the Java example
-        const data = {
-            method: "worksheet.records.add",
-            worksheet_name: "Sheet1", // Nome da planilha
-            header_row: 1, // O número da linha de cabeçalho
-            json_data: [
-                {
-                    Data: dataPedido,
-                    Descrição: nomeProduto,
-                    Valor: precoProduto
-                }
-            ]
-        };
+        const jsonData = [
+            {
+                "Data": dataPedido,
+                "Descrição": nomeProduto,
+                "Valor": precoProduto
+            }
+        ];
+
+        const params = new URLSearchParams();
+        params.append("method", "worksheet.records.add");
+        params.append("worksheet_name", worksheetName);
+        params.append("header_row", "1"); // Linha de cabeçalho
+        params.append("json_data", JSON.stringify(jsonData)); // Dados no formato JSON
+
+        const apiUrl = `https://sheet.zoho.com/api/v2/${resourceId}`;
 
         // Envio da requisição POST para adicionar o pedido à planilha
         fetch(apiUrl, {
@@ -1807,7 +1810,7 @@ cartPopupContent.appendChild(pagarButton);
                 'Authorization': zohoAccessToken,
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: new URLSearchParams(data),
+            body: params.toString(),
         })
         .then(response => response.json())
         .then(data => {
@@ -1818,7 +1821,7 @@ cartPopupContent.appendChild(pagarButton);
         });
     }
 </script>
-    
+
     
 </body>
 </html>
