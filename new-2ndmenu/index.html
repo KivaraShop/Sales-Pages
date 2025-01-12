@@ -1783,35 +1783,42 @@ cartPopupContent.appendChild(pagarButton);
 
     function adicionarPedidoZoho(dataPedido, nomeProduto, precoProduto) {
         const zohoAccessToken = 'Zoho-oauthtoken 1000.c5e6f93ed3773f819c58fee757e59641.a9c3ce70567734824deec3ce51452564';
-        const apiUrl = 'https://sheet.zoho.com/api/v2/onq343e378a104b8b4942b23eac76e83874df';
-        
-        fetch(`${apiUrl}/rows`, {
+        const resourceId = 'onq343e378a104b8b4942b23eac76e83874df'; // Sua URL do recurso específico
+        const apiUrl = `https://sheet.zoho.com/api/v2/${resourceId}`;
+
+        // Prepare the JSON data similar to the Java example
+        const data = {
+            method: "worksheet.records.add",
+            worksheet_name: "Sheet1", // Nome da planilha
+            header_row: 1, // O número da linha de cabeçalho
+            json_data: [
+                {
+                    Data: dataPedido,
+                    Descrição: nomeProduto,
+                    Valor: precoProduto
+                }
+            ]
+        };
+
+        // Envio da requisição POST para adicionar o pedido à planilha
+        fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Authorization': zohoAccessToken,
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({
-                data: [
-                    {
-                        Data: dataPedido,
-                        Descrição: nomeProduto,
-                        Valor: precoProduto,
-                    },
-                ],
-            }),
+            body: new URLSearchParams(data),
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Pedido adicionado com sucesso:', data);
-            })
-            .catch(error => {
-                console.error('Erro ao adicionar o pedido:', error);
-            });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Pedido adicionado com sucesso:', data);
+        })
+        .catch(error => {
+            console.error('Erro ao adicionar o pedido:', error);
+        });
     }
 </script>
     
-
     
 </body>
 </html>
