@@ -1765,45 +1765,50 @@ cartPopupContent.appendChild(pagarButton);
 </script>
     
 <script>
- // Initialize Supabase client
-const { createClient } = supabase;
-const supabaseUrl = 'https://rolidpshdbhpwdvdzcsy.supabase.co'; // Replace with your Supabase URL
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvbGlkcHNoZGJocHdkdmR6Y3N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2MjE2MDAsImV4cCI6MjA1MjE5NzYwMH0.x-N4oBJDhrGf9BHgduUs9yan-kIkiuEcWVMiwGNhvaU'; // Replace with your public Supabase key
-const supabase = createClient(supabaseUrl, supabaseKey);
-</script>
-
-   
-<script>
-document.querySelectorAll('.add-to-order-btn').forEach(button => {
-    button.addEventListener('click', async (event) => {
-        const productCard = event.target.closest('.product-card');
-        const nome_produto = productCard.getAttribute('data-nome');
-        const preco_unitario = parseFloat(productCard.getAttribute('data-preco'));
-        
-        // Confirm the values are being correctly retrieved
-        alert(`Nome: ${nome_produto}, Preço: ${preco_unitario}`);
-        
-        // Insert the product data into the vendas2 table
-        const { data, error } = await supabase
-            .from('vendas2')
-            .insert([
-                {
-                    nome_produto: nome_produto,
-                    preco_unitario: preco_unitario,
-                    valor_vendido: preco_unitario // Assuming the value sold is the same as unit price for now
-                }
-            ]);
-
-        if (error) {
-            console.error('Error inserting data:', error);
-            alert('Error: ' + error.message);
-        } else {
-            console.log('Data inserted successfully:', data);
-            alert('Data inserted successfully!');
-        }
+    document.querySelectorAll('.add-to-order-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            // Obtém o cartão do produto associado
+            const productCard = this.closest('.product-card');
+            
+            // Pega as informações do produto
+            const productId = productCard.getAttribute('data-id');
+            const productName = productCard.getAttribute('data-nome');
+            const productPrice = productCard.getAttribute('data-preco');
+            const date = new Date().toISOString().split('T')[0]; // Data atual no formato YYYY-MM-DD
+            
+            // Chama a função para adicionar o pedido à planilha Zoho
+            adicionarPedidoZoho(date, productName, productPrice);
+        });
     });
-});
 
+    function adicionarPedidoZoho(dataPedido, nomeProduto, precoProduto) {
+        const zohoAccessToken = 'Zoho-oauthtoken 1000.c5e6f93ed3773f819c58fee757e59641.a9c3ce70567734824deec3ce51452564';
+        const apiUrl = 'https://sheet.zoho.com/api/v2/onq343e378a104b8b4942b23eac76e83874df';
+        
+        fetch(`${apiUrl}/rows`, {
+            method: 'POST',
+            headers: {
+                'Authorization': zohoAccessToken,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                data: [
+                    {
+                        Data: dataPedido,
+                        Descrição: nomeProduto,
+                        Valor: precoProduto,
+                    },
+                ],
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Pedido adicionado com sucesso:', data);
+            })
+            .catch(error => {
+                console.error('Erro ao adicionar o pedido:', error);
+            });
+    }
 </script>
     
 
