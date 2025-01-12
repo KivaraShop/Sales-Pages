@@ -1,120 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obrigado pelo Pedido</title>
+    <title>Obrigado - Pagamento Efetuado</title>
+    <!-- Usando o link correto para o Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Ícones FontAwesome -->
     <style>
-        /* Estilo Global */
         body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Tom de azul claro */
+            color: #005c73; /* Texto em azul escuro */
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ffffff, #f8f8f8);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            color: #333;
-        }
-
-        /* Container Principal */
-        .thank-you-container {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            height: 100vh;
             text-align: center;
-            max-width: 500px;
-            width: 100%;
         }
 
-        .thank-you-container h1 {
-            font-size: 28px;
-            color: #4a004e;
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #00796b; /* Azul médio */
             margin-bottom: 20px;
         }
 
-        .thank-you-container p {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 30px;
-            line-height: 1.5;
+        .icon {
+            font-size: 50px;
+            color: #28a745; /* Cor verde para o ícone de "certo" */
+            margin-bottom: 20px;
         }
 
-        .thank-you-container button {
-            background: #ff66b2;
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            background-color: #00796b; /* Azul médio */
             color: #ffffff;
+            padding: 12px 30px;
+            font-size: 18px;
             border: none;
             border-radius: 8px;
-            padding: 12px 20px;
-            font-size: 16px;
             cursor: pointer;
-            transition: background 0.3s;
-            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .thank-you-container button:hover {
-            background: #e055a0;
+        .button:hover {
+            background-color: #004d40; /* Azul mais escuro */
         }
 
-        .thank-you-container img {
-            width: 100px;
-            margin: 20px 0;
-        }
-
-        footer {
-            margin-top: 20px;
+        .footer {
+            margin-top: 30px;
             font-size: 14px;
-            color: #aaa;
+            color: #00796b;
         }
     </style>
 </head>
 <body>
-    <div class="thank-you-container">
-        <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png/100" alt="Logo do Restaurante">
-        <h1>Obrigado pelo seu pedido!</h1>
-        <p>
-            Seu pedido foi recebido com sucesso e está sendo preparado com muito carinho. <br>
-            Em breve estará pronto para você aproveitar!
-        </p>
-        <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
-        <footer>&copy; 2025  Restaurante. Todos os direitos reservados.</footer>
+    <div class="container">
+        <!-- Ícone de "certo" -->
+        <i class="fas fa-check-circle icon"></i>
+        <h1>Pagamento Efetuado com Sucesso!</h1>
+        <p>Seu pagamento foi processado com sucesso. Agradecemos pela sua compra! :)</p>
+        
+        <a href="https://wa.me/258852136558?text=Confirmação%20de%20pagamento%20nr%204367" class="button">Confirmar ao Atendente</a>
+
+        <div class="footer">
+            <p>Se tiver alguma dúvida, entre em contato conosco.</p>
+        </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
-
-<script>
-// Substitua com as informações da sua conta Supabase
-const supabaseUrl = 'https://jlnqjyhoihauvqiavyrw.supabase.co'; // Substitua pelo seu URL do Supabase
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbnFqeWhvaWhhdXZxaWF2eXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2MDM4NjMsImV4cCI6MjA1MjE3OTg2M30.tqAwsIK22zUXez7sg_hYBhUdwx62WBfiGGO6oq8_Ric'; // Substitua pela sua chave do Supabase
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-  const order = JSON.parse(localStorage.getItem('order'));
-  
-  if (order && order.length > 0) {
-    const { data, error } = await supabase
-      .from('Vendas table') // Nome da sua tabela
-      .insert(order.map(item => ({
-        nome_produto: item.nome_produto,
-        preco_unitario: item.preco_unitario,
-        valor_vendido: item.valor_vendido,
-        created_at: new Date().toISOString(), // Adicionando data de venda
-      })));
-    
-    if (error) {
-      console.error('Erro ao salvar a venda:', error);
-    } else {
-      console.log('Venda registrada com sucesso:', data);
-      localStorage.removeItem('order'); // Limpar pedido após envio
-    }
-  } else {
-    console.log('Nenhum item no pedido.');
-  }
-});
-</script>
 </body>
 </html>
