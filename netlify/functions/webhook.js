@@ -1,4 +1,5 @@
-exports.handler = async (event, context) => {
+<script>
+  exports.handler = async (event, context) => {
   if (event.httpMethod === 'POST') {
     const webhookEvent = JSON.parse(event.body);
 
@@ -19,3 +20,4 @@ exports.handler = async (event, context) => {
     body: 'Método não permitido',
   };
 };
+</script>
