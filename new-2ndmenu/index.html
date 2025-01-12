@@ -1765,38 +1765,66 @@ cartPopupContent.appendChild(pagarButton);
 </script>
     
     <script>
-const oAuthToken = '1000.c5e6f93ed3773f819c58fee757e59641.a9c3ce70567734824deec3ce51452564'; // Substitua com o seu token
-const resourceId = 'onq343e378a104b8b4942b23eac76e83874df'; // Substitua com seu resourceId
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-// Dados para enviar - a parte json_data com os dados do pedido
-const jsonData = [
-  {
-    "Data do Pedido": "2025-01-12", // Aqui você pode pegar a data atual ou qualquer outra dinâmica
-    "Nome do Produto": "Salada Caesar", // Pega o nome do produto dinamicamente
-    "Preço": "19.90" // Pega o preço dinamicamente
-  }
-];
+public class Example {
+    public static void main(String args[]) throws IOException {
+        // Definindo o token de autorização e o resourceId da sua planilha Zoho
+        String oauthtoken = "1000.c5e6f93ed3773f819c58fee757e59641.a9c3ce70567734824deec3ce51452564"; // Substitua pelo seu token
+        String resourceId = "onq343e378a104b8b4942b23eac76e83874df"; // Substitua pelo seu resourceId (ou URL)
+        
+        // URL da API Zoho
+        URL url = new URL("https://sheet.zoho.com/api/v2/" + onq343e378a104b8b4942b23eac76e83874df);
 
-fetch(`https://sheet.zoho.com/api/v2/${resourceId}`, {
-  method: 'POST',
-  headers: {
-    'Authorization': `Zoho-oauthtoken ${oAuthToken}`,
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: new URLSearchParams({
-    'method': 'worksheet.records.add',
-    'worksheet_name': 'Sheet1', // Substitua com o nome da sua planilha
-    'header_row': '1', // O número da linha do cabeçalho
-    'json_data': JSON.stringify(jsonData)
-  })
-})
-.then(response => response.json())
-.then(data => {
-  console.log('Sucesso:', data);
-})
-.catch(error => {
-  console.error('Erro:', error);
-});
+        // Capturando os dados do card de produto
+        String productName = "Salada Caesar"; // Nome do produto (extraído do card)
+        String productPrice = "19.90"; // Preço do produto (extraído do card)
+        
+        // Formatar a data atual para inserção na coluna "Data"
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = sdf.format(new Date()); // Data do pedido (hoje)
+
+        // Criando o JSON para inserção dos dados
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Data", currentDate); // Coluna Data
+        jsonObject.put("Descrição", productName); // Coluna Descrição (nome do produto)
+        jsonObject.put("Valor", productPrice); // Coluna Valor (preço do produto)
+        jsonArray.add(jsonObject);
+        
+        // Montando os parâmetros para a requisição POST para adicionar dados
+        StringBuilder postDataAdd = new StringBuilder();
+        postDataAdd.append("method").append("=").append("worksheet.records.add").append("&");
+        postDataAdd.append("worksheet_name").append("=").append("Vendas").append("&"); // Nome da planilha
+        postDataAdd.append("header_row").append("=").append("1").append("&"); // Linha de cabeçalho
+        postDataAdd.append("json_data").append("=").append(jsonArray);
+
+        // Conectando e enviando a requisição para adicionar registros
+        HttpURLConnection httpConnAdd = (HttpURLConnection) url.openConnection();
+        httpConnAdd.setRequestMethod("POST");
+        httpConnAdd.setDoOutput(true);
+        httpConnAdd.setRequestProperty("Authorization", "Zoho-oauthtoken " + oauthtoken);
+        httpConnAdd.getOutputStream().write(postDataAdd.toString().getBytes("UTF-8"));
+        
+        // Lendo a resposta da requisição
+        InputStreamReader irAdd = new InputStreamReader(httpConnAdd.getInputStream());
+        int inputLine;
+        String responseAdd = "";
+        while ((inputLine = irAdd.read()) != -1) {
+            responseAdd += (char) inputLine;
+        }
+        System.out.println("Resposta da inserção: " + responseAdd);
+
+        // Para atualização, você pode adicionar lógica similar aqui com a função 'worksheet.records.update'
+    }
+}
 </script>
     
 </body>
