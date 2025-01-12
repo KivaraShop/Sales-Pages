@@ -26,7 +26,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
         }
 
         h1 {
@@ -66,6 +66,27 @@
             font-size: 14px;
             color: #00796b;
         }
+
+        .products-list {
+            text-align: left;
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+        .products-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .products-list li {
+            margin-bottom: 15px;
+        }
+
+        .total {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -75,11 +96,61 @@
         <h1>Pagamento Efetuado com Sucesso!</h1>
         <p>Seu pagamento foi processado com sucesso. Agradecemos pela sua compra! :)</p>
         
+        <!-- Informações do carrinho -->
+        <div class="products-list">
+            <h2>Produtos Selecionados</h2>
+            <ul id="cart-items">
+                <!-- Os itens do carrinho serão inseridos aqui pelo JavaScript -->
+            </ul>
+            <div class="total">
+                <p>Total: <span id="total-price">R$ 0,00</span></p>
+            </div>
+        </div>
+
         <a href="https://wa.me/258852136558?text=Confirmação%20de%20pagamento%20nr%204367" class="button">Confirmar ao Atendente</a>
 
         <div class="footer">
             <p>Se tiver alguma dúvida, entre em contato conosco.</p>
         </div>
     </div>
+
+    <script>
+        // Função para pegar os dados do carrinho do localStorage
+        function getCartFromLocalStorage() {
+            // Recupera o carrinho do localStorage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            return cart;
+        }
+
+        // Função para gerar a lista de produtos dinamicamente
+        function displayCartItems(cart) {
+            const cartItemsContainer = document.getElementById('cart-items');
+            let total = 0;
+
+            // Limpa a lista antes de adicionar os itens
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<li>Nenhum produto foi adicionado ao carrinho.</li>';
+                document.getElementById('total-price').textContent = 'R$ 0,00';
+                return;
+            }
+
+            // Adiciona cada item do carrinho
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+                cartItemsContainer.appendChild(li);
+                total += item.preco;
+            });
+
+            // Exibe o total calculado
+            document.getElementById('total-price').textContent = `R$ ${total.toFixed(2)}`;
+        }
+
+        // Carrega os itens do carrinho do localStorage e exibe
+        const cart = getCartFromLocalStorage();
+        displayCartItems(cart);
+    </script>
 </body>
 </html>
