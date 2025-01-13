@@ -26,6 +26,7 @@ header {
     background-color: #80c0ff;
     padding: 15px;
     width: 100%;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -373,9 +374,13 @@ nav a:hover {
     margin-left: 5px;
 }
 
+
 /* Estilo para o formulário de avaliação */
 form {
     margin-top: 20px;
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima do formulário */
+    padding: 0 15px; /* Adiciona um pequeno padding nas laterais para evitar que o conteúdo "encoste" nas bordas */
 }
 
 form input,
@@ -386,6 +391,7 @@ form select {
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    box-sizing: border-box; /* Inclui padding e border dentro da largura */
 }
 
 form button {
