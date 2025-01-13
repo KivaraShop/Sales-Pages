@@ -26,8 +26,9 @@
 header {
     background-color: #80c0ff;
     padding: 15px;
-    width: 100%;
-    max-width: 100%;
+    width: 100%; /* Garantir que o cabeçalho ocupe toda a largura da tela */
+    max-width: 100%; /* Garante que o cabeçalho não ultrapasse a largura da tela */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura do cabeçalho */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,8 +36,10 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    margin: 0; /* Remove qualquer margem extra que possa estar causando o estouro */
+    padding-left: 0; /* Remove qualquer preenchimento indesejado nas laterais */
+    padding-right: 0; /* Remove qualquer preenchimento indesejado nas laterais */
 }
-
 
 /* Ícone do carrinho */
 .cart-icon {
