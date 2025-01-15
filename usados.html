@@ -188,44 +188,19 @@
         }
  
      
-     .banner {
+  .banner {
             width: 100%;
-            background: linear-gradient(to right, #007bff, #00c6ff);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 200px; /* Altura do banner */
             position: relative;
-            border-top-right-radius: 50% 30%; /* Curvando o canto superior direito */
-            border-bottom-right-radius: 50% 30%; /* Curvando o canto inferior direito */
-            padding-right: 400px; /* Espaço para o gif */
-            height: 180px; /* Ajuste de altura */
-        }
-
-        .banner-text-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            z-index: 1;
-        }
-
-        .banner-text {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 0;
-            text-align: left;
+            overflow: hidden;
         }
 
         .gift-container {
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            width: 250px; /* Tamanho maior do gif */
-            height: auto;
-            overflow: hidden;
-            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .gift-container img {
@@ -255,11 +230,7 @@
         <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
     </header>
 
-      <div class="banner">
-        <div class="banner-text-container">
-            <div class="banner-text">Entrega gratuita para Maputo!</div>
-            <div class="banner-text">Garantia de 12 meses inclusa!</div>
-        </div>
+    <div class="banner">
         <div class="gift-container">
             <img src="https://i.ibb.co/y8vPD40/giphy-4.gif" alt="Carro a correr">
         </div>
