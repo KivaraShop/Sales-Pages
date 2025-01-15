@@ -6,18 +6,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Usados</title>
     <style>
-       body {
+     
+      body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     box-sizing: border-box;
-    background-color: #f5f5f5; /* Fundo claro para contraste suave */
+    background-color: #f5f5f5; /* Fundo suave e neutro */
 }
 
 /* Cabeçalho */
 header {
-    background-color: #1E2A3A; /* Azul escuro e sofisticado */
+    background-color: #2c3e50; /* Azul escuro sofisticado */
     padding: 15px;
     width: 100%;
     display: flex;
@@ -46,27 +47,28 @@ header .toggle-theme {
 h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #0288d1; /* Azul mais escuro */
+    color: #1e2a3a; /* Azul escuro suave */
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
 }
 
 .product-card {
     background-color: #ffffff;
-    border: 1px solid #c6e2f3; /* Azul mais claro para o contorno */
+    border: 1px solid #dddfe1; /* Borda sutil e sofisticada */
     border-radius: 8px;
     padding: 15px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Efeito de destaque mais suave */
 }
 
 .product-card img {
@@ -77,14 +79,14 @@ h2 {
 
 .product-card h3 {
     font-size: 18px;
-    color: #1E2A3A; /* Azul escuro para título */
+    color: #2c3e50; /* Cor mais sóbria e elegante */
     margin: 10px 0;
 }
 
 .product-card .price {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    color: #0288d1; /* Azul escuro para destaque de preço */
+    color: #0277bd; /* Azul para destaque de preço */
     margin: 10px 0;
 }
 
@@ -94,12 +96,12 @@ h2 {
 
 .more-info a {
     text-decoration: none;
-    color: #0288d1; /* Azul para links */
+    color: #0277bd; /* Azul mais forte para links */
     font-size: 14px;
 }
 
 button {
-    background-color: #0288d1; /* Azul para botão */
+    background-color: #0277bd; /* Azul refinado */
     border: none;
     color: white;
     padding: 10px 15px;
@@ -110,7 +112,7 @@ button {
 }
 
 button:hover {
-    background-color: #0277bd; /* Azul mais escuro ao passar o mouse */
+    background-color: #01579b; /* Azul mais escuro para efeito hover */
 }
 
 /* Popup do Modo Noturno */
@@ -150,7 +152,7 @@ button:hover {
     font-size: 12px;
     font-weight: bold;
     color: white;
-    background-color: #660033; /* Rótulos com fundo mais sofisticado */
+    background-color: #34495e; /* Rótulos com cor de fundo sóbria */
     padding: 5px 10px;
     border-radius: 4px;
     text-transform: uppercase;
@@ -159,33 +161,34 @@ button:hover {
 
 /* Estilo Específico para Cada Rótulo */
 .label.spicy {
-    background-color: #ff5733; /* Laranja vibrante */
+    background-color: #e74c3c; /* Vermelho mais elegante */
 }
 
 .label.organic {
-    background-color: #28a745; /* Verde sofisticado */
+    background-color: #2ecc71; /* Verde sofisticado */
 }
 
 .label.highlight {
-    background-color: #ffc107; /* Amarelo dourado */
+    background-color: #f39c12; /* Dourado, mas não exagerado */
 }
 
 .label.sugar-free {
-    background-color: #6f42c1; /* Roxo elegante */
+    background-color: #8e44ad; /* Roxo sutil */
 }
 
 .label.loved {
-    background-color: #ff66b2; /* Rosa suave */
+    background-color: #ff66b2; /* Rosa suave e elegante */
 }
 
 .label.sold {
-    background-color: #ff1744; /* Vermelho intenso */
+    background-color: #e74c3c; /* Vermelho mais vibrante para "vendido" */
 }
 
 /* Ajuste de Posição no Card */
 .product-card {
     position: relative;
 }
+
     </style>
 </head>
 <body>
