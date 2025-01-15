@@ -189,35 +189,43 @@
  
      
        
-        .banner {
+       .banner {
             width: 100%;
             background: linear-gradient(to right, #007bff, #00c6ff);
             color: white;
             display: flex;
             justify-content: flex-start;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
-            border-bottom-right-radius: 50% 40%; /* Curvando o canto direito do banner */
-            padding-right: 150px; /* Ajuste para dar espaço para o gif */
+            border-top-right-radius: 50% 30%; /* Curvando o canto direito do banner */
+            border-bottom-right-radius: 50% 30%; /* Curvando a parte de baixo */
+            padding-right: 300px; /* Ajuste para dar espaço ao gif */
+            flex-direction: column;
+        }
+
+        .banner-text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .banner-text {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            flex: 1;
+            margin: 5px 0;
         }
 
         .gift-container {
-            width: 250px;
+            width: 350px; /* Aumentando o tamanho do gif */
             height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
             position: absolute;
             right: 20px;
-            bottom: 10px;
+            bottom: 20px;
             border-radius: 20px;
             overflow: hidden;
         }
