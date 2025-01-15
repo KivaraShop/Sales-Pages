@@ -186,7 +186,51 @@
         .product-card {
             position: relative;
         }
+ .banner {
+            width: 100%;
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
 
+        .banner-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .gift-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .gift-container img {
+            width: 100%;
+            height: auto;
+            animation: drive 2s linear infinite;
+        }
+
+        @keyframes drive {
+            0% {
+                transform: translateX(-10px);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+            100% {
+                transform: translateX(-10px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -195,6 +239,13 @@
     <header>
         <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
     </header>
+
+       <div class="banner">
+        <div class="banner-text">Entrega gratuita para Maputo! Garantia de 12 meses inclusa!</div>
+        <div class="gift-container">
+            <img src="https://i.gifer.com/3kz3.gif" alt="Carro a correr">
+        </div>
+    </div>
 
     <div class="container">
         <h2>Carros Usados</h2>
