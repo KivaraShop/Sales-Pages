@@ -187,51 +187,66 @@
             position: relative;
         }
  
-   .banner {
-            width: 100%;
-            background: linear-gradient(to right, #007bff, #00c6ff);
-            color: white;
+ .banner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .banner-text {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .gift-container {
-            position: relative;
-            width: 160px;
-            height: 100px;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(90deg, #1e90ff, #87cefa);
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
             overflow: hidden;
-            clip-path: path('M0,0 H160 V80 Q80,100 0,80 Z');
+      padding-top: 20px;
         }
 
-        .gift-container img {
-            width: 100%;
-            height: auto;
-            animation: drive 2s linear infinite;
+        .banner h1 {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .banner span {
+            display: block;
+            font-size: 16px;
+            color: #fdfdfd;
+            margin-top: 5px;
+        }
+
+        .car-gif-container {
+            position: absolute;
+            right: -50px;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .car-gif-container img {
+            max-height: 100%;
+            max-width: 100%;
+            animation: drive 5s linear infinite;
         }
 
         @keyframes drive {
-            0% {
-                transform: translateX(-10px);
+            from {
+                transform: translateX(-100%);
             }
-            50% {
-                transform: translateX(10px);
+            to {
+                transform: translateX(100%);
             }
-            100% {
-                transform: translateX(-10px);
-            }
+        }
+
+        .curved-frame {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.3);
+            clip-path: ellipse(100% 50% at 50% 50%);
         }
         }
     </style>
