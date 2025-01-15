@@ -188,46 +188,44 @@
         }
  
      
-       
-       .banner {
+     .banner {
             width: 100%;
             background: linear-gradient(to right, #007bff, #00c6ff);
             color: white;
             display: flex;
+            align-items: center;
             justify-content: flex-start;
-            align-items: flex-start;
             padding: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
-            border-top-right-radius: 50% 30%; /* Curvando o canto direito do banner */
-            border-bottom-right-radius: 50% 30%; /* Curvando a parte de baixo */
-            padding-right: 300px; /* Ajuste para dar espaço ao gif */
-            flex-direction: column;
+            border-top-right-radius: 50% 30%; /* Curvando o canto superior direito */
+            border-bottom-right-radius: 50% 30%; /* Curvando o canto inferior direito */
+            padding-right: 400px; /* Espaço para o gif */
+            height: 180px; /* Ajuste de altura */
         }
 
         .banner-text-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            z-index: 1;
         }
 
         .banner-text {
             font-size: 1.8rem;
             font-weight: bold;
-            margin: 5px 0;
+            margin: 0;
+            text-align: left;
         }
 
         .gift-container {
-            width: 350px; /* Aumentando o tamanho do gif */
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: absolute;
-            right: 20px;
-            bottom: 20px;
-            border-radius: 20px;
+            right: 10px;
+            bottom: 10px;
+            width: 250px; /* Tamanho maior do gif */
+            height: auto;
             overflow: hidden;
+            border-radius: 20px;
         }
 
         .gift-container img {
@@ -257,10 +255,13 @@
         <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
     </header>
 
-       <div class="banner">
-        <div class="banner-text">Entrega gratuita para Maputo! Garantia de 12 meses inclusa!</div>
+      <div class="banner">
+        <div class="banner-text-container">
+            <div class="banner-text">Entrega gratuita para Maputo!</div>
+            <div class="banner-text">Garantia de 12 meses inclusa!</div>
+        </div>
         <div class="gift-container">
-            <img src="https://i.ibb.co/y8vPD40/giphy-4.gif" alt="Carro a correr">
+            <img src="https://i.gifer.com/3kz3.gif" alt="Carro a correr">
         </div>
     </div>
 
