@@ -188,31 +188,37 @@
         }
  
      
+       
         .banner {
             width: 100%;
             background: linear-gradient(to right, #007bff, #00c6ff);
             color: white;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
+            border-bottom-right-radius: 50% 40%; /* Curvando o canto direito do banner */
+            padding-right: 150px; /* Ajuste para dar espaço para o gif */
         }
 
         .banner-text {
-            font-size: 2rem; /* Tamanho ajustado do texto */
+            font-size: 2rem;
             font-weight: bold;
-            flex: 2; /* Permitindo que o texto ocupe mais espaço */
-            padding-right: 30px; /* Espaço entre o texto e o gif */
+            flex: 1;
         }
 
         .gift-container {
-            width: 250px; /* Aumentando o tamanho do gif */
+            width: 250px;
             height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            border-radius: 20px;
             overflow: hidden;
         }
 
@@ -232,6 +238,7 @@
             100% {
                 transform: translateX(-10px);
             }
+        }
         }
     </style>
 </head>
