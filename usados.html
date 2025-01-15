@@ -186,7 +186,8 @@
         .product-card {
             position: relative;
         }
-  .banner {
+ 
+        .banner {
             width: 100%;
             background: linear-gradient(to right, #007bff, #00c6ff);
             color: white;
@@ -195,24 +196,28 @@
             align-items: center;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .banner-text {
-            font-size: 1.8rem;
+            font-size: 2rem; /* Aumentando o tamanho do texto */
             font-weight: bold;
+            flex: 1; /* Faz o texto ocupar o máximo de espaço disponível */
+            padding-right: 20px; /* Espaço entre o texto e o gif */
+            text-align: left; /* Alinhando o texto à esquerda */
         }
 
         .gift-container {
-            position: relative;
-            width: 160px;
-            height: 100px;
-            background: white;
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            width: 250px; /* Aumentando o tamanho do gif */
+            height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            clip-path: path('M0,0 H160 V80 Q80,100 0,80 Z');
+            clip-path: path('M0,0 H250 V150 Q125,170 0,150 Z');
         }
 
         .gift-container img {
