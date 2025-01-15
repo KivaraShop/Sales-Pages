@@ -187,38 +187,33 @@
             position: relative;
         }
  
-     
-      .banner {
+   .banner {
             width: 100%;
             background: linear-gradient(to right, #007bff, #00c6ff);
             color: white;
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            border-bottom-right-radius: 50% 40%; /* Curvando o canto direito do banner */
-            padding-right: 150px; /* Ajuste para dar espaço para o gif */
         }
 
         .banner-text {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            flex: 1;
         }
 
         .gift-container {
-            width: 250px;
-            height: auto;
+            position: relative;
+            width: 160px;
+            height: 100px;
+            background: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
-            right: 20px;
-            bottom: 10px;
-            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            clip-path: path('M0,0 H160 V80 Q80,100 0,80 Z');
         }
 
         .gift-container img {
@@ -239,7 +234,6 @@
             }
         }
         }
-        }
     </style>
 </head>
 <body>
@@ -249,8 +243,7 @@
         <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
     </header>
          </div>
-    
-      <div class="banner">
+     <div class="banner">
         <div class="banner-text">Entrega gratuita para Maputo! Garantia de 12 meses inclusa!</div>
         <div class="gift-container">
             <img src="https://i.ibb.co/y8vPD40/giphy-4.gif" alt="Carro a correr">
