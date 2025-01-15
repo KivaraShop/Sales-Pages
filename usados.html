@@ -186,7 +186,7 @@
         .product-card {
             position: relative;
         }
- .banner {
+  .banner {
             width: 100%;
             background: linear-gradient(to right, #007bff, #00c6ff);
             color: white;
@@ -194,24 +194,26 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .banner-text {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
         }
 
         .gift-container {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 160px;
+            height: 100px;
             background: white;
-            border-radius: 50%;
+            border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
         }
 
         .gift-container img {
@@ -230,6 +232,7 @@
             100% {
                 transform: translateX(-10px);
             }
+        }
         }
     </style>
 </head>
