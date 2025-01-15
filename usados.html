@@ -187,6 +187,7 @@
             position: relative;
         }
  
+     
         .banner {
             width: 100%;
             background: linear-gradient(to right, #007bff, #00c6ff);
@@ -200,24 +201,19 @@
         }
 
         .banner-text {
-            font-size: 2rem; /* Aumentando o tamanho do texto */
+            font-size: 2rem; /* Tamanho ajustado do texto */
             font-weight: bold;
-            flex: 1; /* Faz o texto ocupar o máximo de espaço disponível */
-            padding-right: 20px; /* Espaço entre o texto e o gif */
-            text-align: left; /* Alinhando o texto à esquerda */
+            flex: 2; /* Permitindo que o texto ocupe mais espaço */
+            padding-right: 30px; /* Espaço entre o texto e o gif */
         }
 
         .gift-container {
-            position: absolute;
-            right: 20px;
-            bottom: 10px;
             width: 250px; /* Aumentando o tamanho do gif */
             height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            clip-path: path('M0,0 H250 V150 Q125,170 0,150 Z');
         }
 
         .gift-container img {
@@ -236,7 +232,6 @@
             100% {
                 transform: translateX(-10px);
             }
-        }
         }
     </style>
 </head>
