@@ -336,42 +336,29 @@
   font-size: 18px;
 }
         
- .banner {
-      position: relative;
-      width: 200px; /* Largura do elemento principal */
-      height: 200px; /* Altura do elemento principal */
-      background-color: #f5f5f5; /* Fundo para simulação */
-      overflow: hidden;
-    }
- /* Estilo da fita no canto */
-    .ribbon {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 150px;
-      height: 40px;
-      background-color: #e3342f; /* Cor da fita */
+    .banner {
+      background: linear-gradient(90deg, #ffcc00, #ff3300);
       color: white;
-      font-size: 14px;
-      font-weight: bold;
       text-align: center;
-      line-height: 40px;
-      transform: rotate(-45deg); /* Inclinação da fita */
-      transform-origin: top left;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+      padding: 20px;
+      position: relative;
     }
 
-    /* Triângulo que aparece na ponta da fita */
-    .ribbon::after {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 20px 20px 0 0;
-      border-color: #c12929 transparent transparent transparent;
+    .banner .promo-ribbon {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 15px;
+      display: inline-block;
+      border-radius: 8px;
+    }
+
+    .banner .promo-ribbon h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    .banner .promo-ribbon p {
+      font-size: 18px;
+      margin: 5px 0 0 0;
     }
     </style>
 </head>
@@ -379,9 +366,6 @@
 
     <!-- Cabeçalho -->
     <header>
-      <div class="banner">
-    <div class="ribbon">20% OFF</div>
-  </div>
         <div class="menu-toggle">
             <i class="fas fa-bars"></i> <!-- Toggle icon -->
         </div>
@@ -390,6 +374,12 @@
             <span class="cart-badge">3</span>
         </a>
     </header>
+
+     <div class="banner">
+    <div class="promo-ribbon">
+      <h1>Descontos Especiais!</h1>
+      <p>Aproveite até 50% de desconto hoje mesmo!</p>
+    </div>
 <!-- Hidden menu items, will toggle on click -->
     <div class="nav-menu">
         <ul>
