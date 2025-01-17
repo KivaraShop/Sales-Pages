@@ -297,32 +297,32 @@
         <p>&copy; 2024 Menu Digital do Restaurante. Todos os direitos reservados.</p>
     </footer>
 
- <script>
-    // Função para adicionar um parâmetro de versão aos arquivos
-function addCacheBustingParam() {
-  const version = new Date().getTime(); // Timestamp baseado na data e hora atual
-
-  // Adiciona um parâmetro de versão aos links de imagens, CSS e JS
-  const resources = document.querySelectorAll('img, link[rel="stylesheet"], script');
-  
-  resources.forEach(function(resource) {
-    let src = resource.src || resource.href; // Obtém a URL do recurso
-    
-    if (src) {
-      if (src.indexOf('?') === -1) {
-        // Se o recurso não tiver parâmetros, adiciona o parâmetro de versão
-        resource.src = src + '?v=' + version;
-      } else {
-        // Se já tiver parâmetros, apenas adiciona o novo parâmetro
-        resource.src = src + '&v=' + version;
-      }
+  <script>
+    // Função para garantir que as imagens sejam carregadas corretamente
+    function forceImageLoading() {
+      // Seleciona todas as imagens da página
+      const images = document.querySelectorAll('img');
+      
+      // Para cada imagem na página
+      images.forEach((img) => {
+        // Se a imagem não foi carregada corretamente, tenta forçar o recarregamento
+        if (!img.complete || img.naturalWidth === 0) {
+          // Recarrega a imagem atribuindo o mesmo 'src' novamente
+          const currentSrc = img.src;
+          img.src = ''; // Limpa o src
+          img.src = currentSrc; // Reatribui o src original para forçar o recarregamento
+        }
+        
+        // Para imagens que não carregaram corretamente após a tentativa de recarregar
+        img.onerror = function() {
+          img.src = img.src;  // Força o recarregamento da imagem
+        };
+      });
     }
-  });
-}
-    
-// Chama a função quando o site for carregado
-window.onload = addCacheBustingParam;
- </script>
+
+    // Chama a função ao carregar a página
+    window.onload = forceImageLoading;
+  </script>
     
     <!-- EmailJS Integration -->
  <script>
