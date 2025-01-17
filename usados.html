@@ -309,7 +309,19 @@ button:hover {
         .nav-menu.active {
             display: flex; /* Show when toggle is clicked */
         }
-  
+  /* Ajuste para telas menores */
+@media (max-width: 768px) {
+  .banner-table {
+    display: block;
+  }
+
+  .promo-image, .promo-gif {
+    width: 100%; /* As colunas ocupam 100% da largura em telas pequenas */
+  }
+
+  .promo-image img, .promo-gif img {
+    height: 120px; /* Reduz a altura para ajustar o banner em telas menores */
+  }
     </style>
 </head>
 <body>
