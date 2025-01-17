@@ -363,8 +363,8 @@
 
   .promo-image img {
     width: 100%;
-    height: auto;
-    max-height: 300px; /* Altura máxima para reduzir a dimensão */
+    height: 150px; /* Altura fixa menor para reduzir o banner */
+    object-fit: cover; /* Garante que a imagem se ajuste sem deformar */
     display: block;
   }
 
@@ -375,9 +375,8 @@
 
   .promo-gif img {
     width: 100%;
-    height: auto;
-    max-height: 300px; /* Define uma altura máxima para o GIF */
-    object-fit: cover;
+    height: 150px; /* Altura fixa igual à imagem promocional */
+    object-fit: cover; /* Garante proporção sem deformar */
     display: block;
   }
   
