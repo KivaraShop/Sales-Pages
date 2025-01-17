@@ -309,19 +309,23 @@ button:hover {
         .nav-menu.active {
             display: flex; /* Show when toggle is clicked */
         }
-  /* Ajuste para telas menores */
+        
+/* Ajuste para telas menores (celulares) */
 @media (max-width: 768px) {
   .banner-table {
-    display: block;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se ajustem automaticamente */
   }
 
   .promo-image, .promo-gif {
-    width: 100%; /* As colunas ocupam 100% da largura em telas pequenas */
+    width: 50%; /* Cada coluna ocupa 50% da largura para ajustar em celulares */
   }
 
   .promo-image img, .promo-gif img {
     height: 120px; /* Reduz a altura para ajustar o banner em telas menores */
   }
+}
     </style>
 </head>
 <body>
