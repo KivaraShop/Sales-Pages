@@ -309,19 +309,31 @@ button:hover {
         .nav-menu.active {
             display: flex; /* Show when toggle is clicked */
         }
-  /* Ajuste para telas menores */
+ /* Ajuste para telas menores (celulares) */
 @media (max-width: 768px) {
   .banner-table {
-    display: block;
+    width: 100%;
+    display: block; /* Alterei para block para controlar o layout */
   }
 
   .promo-image, .promo-gif {
-    width: 100%; /* As colunas ocupam 100% da largura em telas pequenas */
+    width: 100%; /* Cada coluna ocupa 100% da largura em celulares */
+    height: auto; /* Ajuste de altura automático */
   }
 
   .promo-image img, .promo-gif img {
-    height: 120px; /* Reduz a altura para ajustar o banner em telas menores */
+    object-fit: cover; /* Garante que as imagens se ajustem sem deformar */
   }
+
+  .promo-image::before, .promo-gif::before {
+    padding-top: 56.25%; /* Mantém proporções 16:9 e 1:1 no celular */
+  }
+
+  /* Forçando o banner a ser mais fino */
+  .promo-image, .promo-gif {
+    height: 80px; /* Força a altura a ser fina nos celulares */
+  }
+}
     </style>
 </head>
 <body>
