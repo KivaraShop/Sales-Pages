@@ -335,43 +335,51 @@
   color: white;
   font-size: 18px;
 }
- /* Banner styles */
-/* Tabela básica */
-  /* Tabela básica */
-    .banner-table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
+ /* Container do banner */
+  .banner-container {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza o banner */
+    overflow: hidden;
+  }
 
-    .banner-table td {
-      padding: 0;
-      margin: 0;
-      vertical-align: top;
-    }
+  /* Tabela do banner */
+  .banner-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
 
-    /* Coluna da imagem (16:9) */
-    .promo-image {
-      width: 70%; /* Define a largura da coluna */
-    }
+  .banner-table td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+  }
 
-    .promo-image img {
-      width: 100%;
-      height: auto; /* Mantém a proporção 16:9 */
-      display: block;
-    }
+  /* Coluna da imagem promocional (16:9 reduzida) */
+  .promo-image {
+    width: 70%;
+  }
 
-    /* Coluna do GIF (1:1) */
-    .promo-gif {
-      width: 30%; /* Define a largura da coluna */
-    }
+  .promo-image img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Altura máxima para reduzir a dimensão */
+    display: block;
+  }
 
-    .promo-gif img {
-      width: 100%;
-      aspect-ratio: 1 / 1; /* Garante proporção 1:1 */
-      object-fit: cover; /* Preenche a célula completamente */
-      display: block;
-    }   
+  /* Coluna do GIF (1:1 reduzida) */
+  .promo-gif {
+    width: 30%;
+  }
+
+  .promo-gif img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Define uma altura máxima para o GIF */
+    object-fit: cover;
+    display: block;
+  }
   
     </style>
 </head>
