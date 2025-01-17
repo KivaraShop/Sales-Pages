@@ -189,6 +189,33 @@ button:hover {
 .product-card {
     position: relative;
 }
+
+       /* Barra de Pesquisa */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+#search-btn {
+  background-color: #4a90e2; /* Azul claro */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
+}
+        
  /* Container do banner */
   .banner-container {
     width: 100%;
@@ -242,23 +269,20 @@ button:hover {
     <!-- Cabeçalho -->
     <header>
         <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
+          <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquise a peça que procura..." 
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
     </header>
        
-<div style="display: flex; justify-content: space-between; align-items: center; background-color: #1E2A3A; color: white; padding: 15px 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); font-family: 'Helvetica Neue', sans-serif; max-width: 100%; margin: 0 auto;">
-  <!-- Texto Informativo -->
-  <div style="flex: 1; font-size: 16px; font-weight: 600;">
-    <h2 style="font-size: 24px; margin-bottom: 10px; font-weight: 700; color: #F1C40F;">SHABE MOTORS</h2>
-    <p style="margin: 0;">Escolha o melhor. Garantia de 2 anos, veículos inspecionados e financiamento facilitado.</p>
-  </div>
 
-  <!-- Logo da Empresa -->
-  <div style="flex: 0 0 auto;">
-    <img src="https://i.ibb.co/y8vPD40/giphy-4.gif" alt="Logo da Empresa" style="max-height: 60px; object-fit: contain;">
-  </div>
-</div>
-
-
-</div>
 
     <div class="container">
         <h2>Carros Usados</h2>
