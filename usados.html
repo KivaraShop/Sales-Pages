@@ -314,16 +314,25 @@ button:hover {
 @media (max-width: 768px) {
   .banner-table {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens se ajustem automaticamente */
+    display: block; /* Alterei para block para controlar o layout */
   }
 
   .promo-image, .promo-gif {
-    width: 50%; /* Cada coluna ocupa 50% da largura para ajustar em celulares */
+    width: 100%; /* Cada coluna ocupa 100% da largura em celulares */
+    height: auto; /* Ajuste de altura automático */
   }
 
   .promo-image img, .promo-gif img {
-    height: 120px; /* Reduz a altura para ajustar o banner em telas menores */
+    object-fit: cover; /* Garante que as imagens se ajustem sem deformar */
+  }
+
+  .promo-image::before, .promo-gif::before {
+    padding-top: 56.25%; /* Mantém proporções 16:9 e 1:1 no celular */
+  }
+
+  /* Forçando o banner a ser mais fino */
+  .promo-image, .promo-gif {
+    height: 90px; /* Força a altura a ser fina nos celulares */
   }
 }
     </style>
