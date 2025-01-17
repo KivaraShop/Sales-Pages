@@ -335,7 +335,58 @@
   color: white;
   font-size: 18px;
 }
-        
+ /* Banner styles */
+    .banner-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .banner-table td {
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Left side for the image */
+    .promo-image {
+      width: 65%; /* Adjust this percentage if needed */
+      height: auto;
+      position: relative;
+    }
+
+    .promo-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Right side for the GIF */
+    .promo-gif {
+      width: 35%; /* Adjust ratio accordingly */
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f0f0f0; /* Optional background color for contrast */
+    }
+
+    .promo-gif img {
+      width: 100%;
+      max-width: 300px; /* Ensures a good size for the GIF */
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .promo-image, .promo-gif {
+        width: 100%;
+        display: block;
+      }
+
+      .banner-table {
+        display: block;
+      }
+    }        
   
     </style>
 </head>
@@ -396,7 +447,20 @@
 
     <div class="container">
         <h2>Peças</h2>
+<!-- Table Banner -->
+<table class="banner-table">
+  <tr>
+    <!-- Left side for promotional image -->
+    <td class="promo-image">
+      <img src="your-promotional-image.jpg" alt="Promotional Image">
+    </td>
 
+    <!-- Right side for GIF -->
+    <td class="promo-gif">
+      <img src="https://i.ibb.co/qk6PmL1/giphy-6.gif?cache-force=0.7303015398305581" alt="Car Running GIF">
+    </td>
+  </tr>
+</table>
           <div class="search-bar">
     <input 
       type="text" 
