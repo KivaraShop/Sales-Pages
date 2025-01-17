@@ -260,7 +260,55 @@ button:hover {
     object-fit: cover; /* Garante proporção sem deformar */
     display: block;
   }
-  
+  .menu-toggle {
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: #4a004e;
+            cursor: pointer;
+        }
+
+      .nav-menu {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 61px;
+    left: 0;
+    width: 250px; /* Adjust this width as needed */
+    height: 100vh;
+    background-color: #4fc3f7;
+    padding: 15px 0;
+    padding-left: 10px;
+    z-index: 1000;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth appearance */
+}
+
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            margin: 10px 0;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+/* Hover effect */
+.nav-menu ul li a:hover {
+    color: #4fc3f7; /* Change text color on hover */
+    background-color: white; /* Change background color on hover */
+    padding-left: 10px; /* Optional: adds a small left padding when hovered */
+}
+        .nav-menu.active {
+            display: flex; /* Show when toggle is clicked */
+        }
   
     </style>
 </head>
@@ -268,10 +316,29 @@ button:hover {
 
     <!-- Cabeçalho -->
     <header>
-        <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
+    <div class="menu-toggle">
+    <i class="fas fa-bars"></i> <!-- Toggle icon -->
+     </div>
+ <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
     </header>
        
-
+<!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+            <li><a href="index.html">Carroceria</a></li>
+            <li><a href="sobrenos.html">Interior e Conforto</a></li>
+            <li><a href="contato.html">Mecânica e Motor</a></li>
+             <li><a href="index.html">Transmissão e Direção</a></li>
+            <li><a href="sobrenos.html">Exaustão e Escape</a></li>
+            <li><a href="contato.html">Suspensão</a></li>
+                <li><a href="contato.html">Freios</a></li>
+             <li><a href="index.html">Acessórios</a></li>
+            <li><a href="sobrenos.html">Segurança</a></li>
+            <li><a href="contato.html">Ferramentas e Equipamentos</a></li>
+            <li><a href="sobrenos.html">Ofertas e Novidades</a></li>
+        </ul>
+    </div>
 
     <div class="container">
         <h2>Carros Usados</h2>
