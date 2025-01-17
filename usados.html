@@ -531,6 +531,35 @@ button:hover {
             <!-- Mais produtos podem ser adicionados aqui -->
         </div>
     </div>
+
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+</script>
+        
+ <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.classList.replace('fa-moon', 'fa-sun'); // Alternar para o ícone de sol
+                toggleButton.title = "Alternar para Modo Diurno";
+            } else {
+                toggleButton.classList.replace('fa-sun', 'fa-moon'); // Alternar para o ícone de lua
+                toggleButton.title = "Alternar para Modo Noturno";
+            }
+        });
+    </script>
        <script>
 // Função para ajustar o tamanho dos produtos filtrados
 function adjustFilteredProductSize() {
