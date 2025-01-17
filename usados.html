@@ -269,17 +269,6 @@ button:hover {
     <!-- Cabeçalho -->
     <header>
         <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
-          <div class="search-bar">
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Pesquise a peça que procura..." 
-      oninput="filterProducts(this.value)" 
-    />
-    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
-      🔍
-    </button>
-  </div>
     </header>
        
 
@@ -301,6 +290,19 @@ button:hover {
   </tr>
 </table
      </div>
+    
+      <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquise a peça que procura..." 
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+    
         <div class="product-grid">
             <!-- Exemplo de produto -->
             <div class="product-card">
