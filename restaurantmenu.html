@@ -297,6 +297,33 @@
         <p>&copy; 2024 Menu Digital do Restaurante. Todos os direitos reservados.</p>
     </footer>
 
+ <script>
+    // Função para adicionar um parâmetro de versão aos arquivos
+function addCacheBustingParam() {
+  const version = new Date().getTime(); // Timestamp baseado na data e hora atual
+
+  // Adiciona um parâmetro de versão aos links de imagens, CSS e JS
+  const resources = document.querySelectorAll('img, link[rel="stylesheet"], script');
+  
+  resources.forEach(function(resource) {
+    let src = resource.src || resource.href; // Obtém a URL do recurso
+    
+    if (src) {
+      if (src.indexOf('?') === -1) {
+        // Se o recurso não tiver parâmetros, adiciona o parâmetro de versão
+        resource.src = src + '?v=' + version;
+      } else {
+        // Se já tiver parâmetros, apenas adiciona o novo parâmetro
+        resource.src = src + '&v=' + version;
+      }
+    }
+  });
+}
+    
+// Chama a função quando o site for carregado
+window.onload = addCacheBustingParam;
+ </script>
+    
     <!-- EmailJS Integration -->
  <script>
         // Replace with your EmailJS User ID
