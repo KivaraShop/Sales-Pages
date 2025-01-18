@@ -376,7 +376,9 @@ button:hover {
 .navigation-buttons a:hover {
     background: #012063; /* Tom mais escuro de azul */
 }
-
+.hide-elements {
+    display: none; /* Classe que oculta elementos */
+}
     </style>
 </head>
 <body>
@@ -464,7 +466,7 @@ button:hover {
 <!-- Mensagem de "Sem Resultados" -->
 <div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
   <p>Sem resultados, diga-nos qual viatura está a procura no botão abaixo.</p>
-  <button id="order-car-btn" style="background-color: #4a90e2; border: none; padding: 10px 20px; color: white; font-size: 16px; cursor: pointer; border-radius: 4px;">Encomendar viatura</button>
+  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'" style="background-color: #4a90e2; border: none; padding: 10px 20px; color: white; font-size: 16px; cursor: pointer; border-radius: 4px;">Encomendar viatura</button>
 </div>
   </div>
     
@@ -689,11 +691,14 @@ console.log('Menu found:', navMenu !== null);
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
+  const footer = document.getElementById('footer');
+  const navigationButtons = document.getElementById('navigation-buttons');
   let resultsFound = false; // Flag para verificar se encontrou resultados
 
-  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
+  // Inicialmente, esconder a mensagem "Sem resultados", o botão e os botões de navegação
   const noResultsMessage = document.getElementById('no-results-message');
   noResultsMessage.style.display = 'none';  // Esconder a mensagem e o botão ao iniciar
+  navigationButtons.style.display = 'block'; // Garantir que a navegação esteja visível ao carregar
 
   // Filtra os produtos
   productCards.forEach(card => {
@@ -709,6 +714,11 @@ function filterProducts(searchTerm) {
   // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem e o botão
+    footer.classList.add('hide-elements'); // Oculta o rodapé
+    navigationButtons.classList.add('hide-elements'); // Oculta os botões de navegação
+  } else {
+    footer.classList.remove('hide-elements'); // Exibe o rodapé quando há resultados
+    navigationButtons.classList.remove('hide-elements'); // Exibe os botões de navegação quando há resultados
   }
 }
 
