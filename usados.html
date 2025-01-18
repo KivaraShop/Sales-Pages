@@ -328,6 +328,26 @@ button:hover {
   .promo-image img, .promo-gif img {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
+
+                .navigation-buttons {
+            margin-bottom: 30px;
+        }
+
+        .navigation-buttons a {
+            background: #0288d1; /* Azul claro */
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            margin: 0 10px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .navigation-buttons a:hover {
+            background: #01579b; /* Tom mais escuro de azul */
+        }
     </style>
 </head>
 <body>
@@ -387,6 +407,11 @@ button:hover {
       🔍
     </button>
   </div>
+      <!-- Botões de Navegação -->
+        <div class="navigation-buttons">
+            <a href="novos.html">Novos</a>
+            <a href="usados.html" id="usadosButton">Usados</a>
+        </div>
     
         <div class="product-grid">
             <!-- Exemplo de produto -->
