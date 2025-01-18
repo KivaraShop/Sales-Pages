@@ -691,23 +691,23 @@ function filterProducts(searchTerm) {
   const productCards = document.querySelectorAll(".product-card");
   let resultsFound = false; // Flag para verificar se encontrou resultados
 
-  // Esconde a mensagem "Sem resultados"
+  // Esconde a mensagem "Sem resultados" e o botão de encomendar
   const noResultsMessage = document.getElementById('no-results-message');
   noResultsMessage.style.display = 'none';  // Garantir que a mensagem comece oculta
 
+  // Filtra os produtos
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
-    // Verifica se o nome do produto inclui o termo de pesquisa
     if (productName.includes(search)) {
       card.style.display = "block"; // Mostra o card
-      resultsFound = true; // Se encontrou, marca como encontrado
+      resultsFound = true; // Marcar que encontrou pelo menos um produto
     } else {
       card.style.display = "none"; // Esconde o card
     }
   });
 
-  // Se nenhum produto for encontrado, exibe a mensagem
-  if (!resultsFound) {
+  // Se não encontrou resultados, exibe a mensagem "Sem resultados"
+  if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block'; // Exibe "Sem resultados"
   }
 }
