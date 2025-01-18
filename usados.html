@@ -692,9 +692,9 @@ function filterProducts(searchTerm) {
   const productCards = document.querySelectorAll(".product-card");
   let resultsFound = false; // Flag para verificar se encontrou resultados
 
-  // Esconde a mensagem "Sem resultados" e o botão de encomendar
+  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
   const noResultsMessage = document.getElementById('no-results-message');
-  noResultsMessage.style.display = 'none';  // Garantir que a mensagem comece oculta
+  noResultsMessage.style.display = 'none';  // Garantir que a mensagem e o botão comecem ocultos
 
   // Filtra os produtos
   productCards.forEach(card => {
@@ -707,9 +707,9 @@ function filterProducts(searchTerm) {
     }
   });
 
-  // Se não encontrou resultados, exibe a mensagem "Sem resultados"
+  // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
   if (!resultsFound && searchTerm !== '') {
-    noResultsMessage.style.display = 'block'; // Exibe "Sem resultados"
+    noResultsMessage.style.display = 'block'; // Exibe a mensagem e o botão
   }
 }
 
