@@ -631,30 +631,29 @@ button:hover {
 </div>
   </div>
       <script>
-  // Função para filtrar os produtos com base na pesquisa
-function filterProducts(searchTerm) {
-  var searchTerm = searchTerm.toLowerCase();
-  var productCards = document.querySelectorAll('.product-card');
-  var noResultsMessage = document.getElementById('no-results-message');
-  var resultsFound = false;
+ function filterProducts(searchTerm) {
+  var searchTerm = searchTerm.toLowerCase();  // Tornar a pesquisa insensível a maiúsculas/minúsculas
+  var productCards = document.querySelectorAll('.product-card'); // Selecionar todos os cards
+  var noResultsMessage = document.getElementById('no-results-message'); // Selecionar a mensagem de sem resultados
+  var resultsFound = false; // Variável para controlar se encontrou resultados
   
-  // Limpar a mensagem de "Sem resultados"
+  // Esconder a mensagem de "Sem Resultados" inicialmente
   noResultsMessage.style.display = 'none';
 
-  // Loop através de todos os cards de produtos
+  // Loop por todos os cards de produtos
   productCards.forEach(function(card) {
-    var productName = card.querySelector('h3').textContent.toLowerCase();
+    var productName = card.querySelector('h3').textContent.toLowerCase(); // Pegar o nome do produto em minúsculas
     
-    // Verifica se o nome do produto corresponde ao termo de pesquisa
+    // Verificar se o nome do produto contém o termo da pesquisa
     if (productName.includes(searchTerm)) {
-      card.style.display = 'block'; // Exibe o card se houver correspondência
-      resultsFound = true;
+      card.style.display = 'block'; // Exibir o card se corresponder
+      resultsFound = true; // Marcar que encontrou resultados
     } else {
-      card.style.display = 'none'; // Esconde o card se não houver correspondência
+      card.style.display = 'none'; // Esconder o card se não corresponder
     }
   });
   
-  // Se nenhum produto corresponder, exibe a mensagem de "Sem resultados"
+  // Se nenhum produto foi encontrado, exibir a mensagem de "Sem Resultados"
   if (!resultsFound) {
     noResultsMessage.style.display = 'block';
   }
