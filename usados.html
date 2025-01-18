@@ -692,11 +692,13 @@ const navMenu = document.querySelector('.nav-menu');
 
 menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
 });
 
 // Debugging
 console.log('Toggle connected:', menuToggle !== null);
 console.log('Menu found:', navMenu !== null);
+
 </script>
         
  <script>
