@@ -695,9 +695,9 @@ function filterProducts(searchTerm) {
   const navigationButtons = document.querySelector('.navigation-buttons');
   let resultsFound = false; // Flag para verificar se encontrou resultados
 
-  // Inicialmente, esconder a mensagem "Sem resultados" e o botão, e a navegação
+  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
   noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
-  navigationButtons.style.display = 'flex'; // Garantir que os botões de navegação aparecem por padrão
+  navigationButtons.style.display = 'block'; // Garantir que os botões de navegação aparecem por padrão
 
   // Filtra os produtos
   productCards.forEach(card => {
@@ -714,7 +714,9 @@ function filterProducts(searchTerm) {
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem e o botão
     navigationButtons.style.display = 'none'; // Esconde os botões de navegação
-  } else if (resultsFound) {
+  } else if (resultsFound || searchTerm === '') {
+    // Se encontrou resultados ou se o campo de pesquisa estiver vazio
+    noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.display = 'block'; // Exibe os botões de navegação novamente
   }
 }
