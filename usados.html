@@ -441,16 +441,26 @@ button:hover {
 </table
      </div>
     
-      <div class="search-bar">
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Pesquisar Marca, Modelo, Transmissão ..." 
-      oninput="filterProducts(this.value)" 
-    />
-    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
-      🔍
-    </button>
+     <div class="search-bar">
+  <input 
+    type="text" 
+    id="search-input" 
+    placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+    oninput="filterProducts(this.value)" 
+  />
+  <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+    🔍
+  </button>
+</div>
+
+<!-- Área de Resultados -->
+<div id="search-results"></div>
+
+<!-- Mensagem de "Sem Resultados" -->
+<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+  <p>Sem resultados, diga-nos qual viatura está a procura no botão abaixo.</p>
+  <button id="order-car-btn" style="background-color: #4a90e2; border: none; padding: 10px 20px; color: white; font-size: 16px; cursor: pointer; border-radius: 4px;">Encomendar viatura</button>
+</div>
   </div>
       <!-- Botões de Navegação -->
         <div class="navigation-buttons">
@@ -620,6 +630,36 @@ button:hover {
             <!-- Mais produtos podem ser adicionados aqui -->
         </div>
     </div>
+
+      <script>
+    // Função para filtrar os produtos com base na pesquisa
+function filterProducts(searchTerm) {
+  var products = ['Audi A3', 'BMW X5', 'Mercedes Benz C-Class', 'Toyota Corolla', 'Volkswagen Golf']; // Substitua com seus produtos reais
+  var resultsContainer = document.getElementById('search-results');
+  var noResultsMessage = document.getElementById('no-results-message');
+  
+  // Limpar resultados anteriores
+  resultsContainer.innerHTML = '';
+  noResultsMessage.style.display = 'none'; // Esconde a mensagem de "Sem resultados" inicialmente
+
+  // Filtra os produtos com base no termo de pesquisa
+  var results = products.filter(function(product) {
+    return product.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+  if (results.length > 0) {
+    // Exibe os resultados encontrados
+    results.forEach(function(result) {
+      var productElement = document.createElement('div');
+      productElement.textContent = result;
+      resultsContainer.appendChild(productElement);
+    });
+  } else {
+    // Exibe a mensagem de "Sem resultados"
+    noResultsMessage.style.display = 'block';
+  }
+}
+  </script>
   <script>
         // Seleciona todos os itens principais de categoria
         const categories = document.querySelectorAll('.category');
