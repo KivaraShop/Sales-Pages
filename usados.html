@@ -265,13 +265,21 @@ button:hover {
     object-fit: cover; /* Garante proporção sem deformar */
     display: block;
   }
-  .menu-toggle {
-            font-size: 30px;
-            background: none;
-            border: none;
-            color: #ffff;
-            cursor: pointer;
-        }
+ /* Estilo inicial do botão */
+.menu-toggle {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #ffff;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s; /* Transições suaves */
+}
+
+/* Efeito de clique - mudando a cor */
+.menu-toggle.clicked {
+  color: #0288d1; /* Cor azul quando clicado */
+  transform: scale(1.1); /* Aumenta o tamanho do botão */
+}
 
       .nav-menu {
     display: none; /* Initially hidden */
