@@ -902,6 +902,7 @@ function filterProducts(searchTerm) {
   // Inicialmente, esconder a mensagem "Sem resultados" e o botão
   noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
   navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis, sem afetar layout
+  footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
 
   // Filtra os produtos
   productCards.forEach(card => {
@@ -918,12 +919,12 @@ function filterProducts(searchTerm) {
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem e o botão
     navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação sem afetar layout
-    footer.style.display = 'hidden'; // Oculta o rodapé quando não há resultados
+    footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
   } else if (resultsFound || searchTerm === '') {
     // Se encontrou resultados ou se o campo de pesquisa estiver vazio
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação novamente
-    footer.style.display = 'visible'; // Mostra o rodapé quando há resultados ou pesquisa vazia
+    footer.style.visibility = 'visible'; // Mostra o rodapé quando há resultados ou pesquisa vazia
   }
 }
 
