@@ -300,6 +300,26 @@ button:hover {
             color: white;
             font-size: 18px;
         }
+           /* Submenu (subcategorias) */
+        .submenu {
+            display: none; /* Inicialmente escondido */
+            flex-direction: column;
+            background-color: #013a8b;
+            padding-left: 15px;
+            margin-top: 5px;
+            border-left: 3px solid #0288d1;
+        }
+
+        .submenu a {
+            font-size: 16px;
+            color: #cce7ff;
+            padding: 5px 10px;
+        }
+
+        .submenu a:hover {
+            color: white;
+        }
+        
 /* Hover effect */
 .nav-menu ul li a:hover {
     color: #012063; /* Change text color on hover */
@@ -371,7 +391,13 @@ button:hover {
             <li><a href="index.html">Carroceria</a></li>
             <li><a href="sobrenos.html">Interior e Conforto</a></li>
             <li><a href="contato.html">Mecânica e Motor</a></li>
-             <li><a href="index.html">Transmissão e Direção</a></li>
+              <li>
+                <a href="#" class="category">Transmissão</a>
+                <ul class="submenu">
+                    <li><a href="automatica.html">Automática</a></li>
+                    <li><a href="manual.html">Manual</a></li>
+                </ul>
+            </li>
             <li><a href="sobrenos.html">Exaustão e Escape</a></li>
             <li><a href="contato.html">Suspensão</a></li>
                 <li><a href="contato.html">Freios</a></li>
@@ -579,7 +605,26 @@ button:hover {
             <!-- Mais produtos podem ser adicionados aqui -->
         </div>
     </div>
+  <script>
+        // Seleciona todos os itens principais de categoria
+        const categories = document.querySelectorAll('.category');
 
+        categories.forEach(category => {
+            category.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita redirecionamento
+
+                // Seleciona o submenu relacionado
+                const submenu = this.nextElementSibling;
+
+                // Alterna a exibição do submenu
+                if (submenu.style.display === 'flex') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'flex';
+                }
+            });
+        });
+    </script>
       <script>
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
