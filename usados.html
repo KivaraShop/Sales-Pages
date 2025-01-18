@@ -630,35 +630,7 @@ button:hover {
   <button id="order-car-btn" style="background-color: #4a90e2; border: none; padding: 10px 20px; color: white; font-size: 16px; cursor: pointer; border-radius: 4px;">Encomendar viatura</button>
 </div>
   </div>
-      <script>
- function filterProducts(searchTerm) {
-  var searchTerm = searchTerm.toLowerCase();  // Tornar a pesquisa insensível a maiúsculas/minúsculas
-  var productCards = document.querySelectorAll('.product-card'); // Selecionar todos os cards
-  var noResultsMessage = document.getElementById('no-results-message'); // Selecionar a mensagem de sem resultados
-  var resultsFound = false; // Variável para controlar se encontrou resultados
-  
-  // Esconder a mensagem de "Sem Resultados" inicialmente
-  noResultsMessage.style.display = 'none';
-
-  // Loop por todos os cards de produtos
-  productCards.forEach(function(card) {
-    var productName = card.querySelector('h3').textContent.toLowerCase(); // Pegar o nome do produto em minúsculas
-    
-    // Verificar se o nome do produto contém o termo da pesquisa
-    if (productName.includes(searchTerm)) {
-      card.style.display = 'block'; // Exibir o card se corresponder
-      resultsFound = true; // Marcar que encontrou resultados
-    } else {
-      card.style.display = 'none'; // Esconder o card se não corresponder
-    }
-  });
-  
-  // Se nenhum produto foi encontrado, exibir a mensagem de "Sem Resultados"
-  if (!resultsFound) {
-    noResultsMessage.style.display = 'block';
-  }
-}
-  </script>
+   
   <script>
         // Seleciona todos os itens principais de categoria
         const categories = document.querySelectorAll('.category');
@@ -726,6 +698,7 @@ function adjustFilteredProductSize() {
     });
   }
 }
+
 // Função para restaurar o layout original dos produtos
 function restoreOriginalProductLayout() {
   const allProducts = document.querySelectorAll('.product-card');
@@ -736,11 +709,46 @@ function restoreOriginalProductLayout() {
   });
 }
 
+// Função para filtrar produtos e ajustar a exibição
+function filterProducts(searchTerm) {
+  const search = searchTerm.toLowerCase();
+  const productCards = document.querySelectorAll(".product-card");
+  let resultsFound = false; // Variável para controlar se encontrou resultados
+
+  // Esconder a mensagem de "Sem Resultados" inicialmente
+  const noResultsMessage = document.getElementById('no-results-message');
+  noResultsMessage.style.display = 'none';
+
+  productCards.forEach(card => {
+    const productName = card.querySelector("h3").textContent.toLowerCase();
+    
+    // Se o nome do produto corresponder à pesquisa
+    if (productName.includes(search)) {
+      card.style.display = "block"; // Mostra o card
+      resultsFound = true; // Marcar como encontrado
+    } else {
+      card.style.display = "none"; // Esconde o card
+    }
+  });
+
+  // Se não encontrar nenhum resultado, exibe a mensagem de "Sem resultados"
+  if (!resultsFound) {
+    noResultsMessage.style.display = 'block';
+  }
+
+  // Ajusta o tamanho dos produtos filtrados
+  adjustFilteredProductSize();
+}
+
 // Adicionar evento para ajustar os tamanhos após a pesquisa
-document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
+document.getElementById('search-btn').addEventListener('click', function() {
+  filterProducts(document.getElementById('search-input').value);
+  adjustFilteredProductSize();
+});
 
 // Também ajustar tamanho em tempo real enquanto o cliente digita
 document.getElementById('search-input').addEventListener('input', function() {
+  filterProducts(this.value);
   adjustFilteredProductSize();
 
   // Se o campo de pesquisa for apagado, restaura o layout original
