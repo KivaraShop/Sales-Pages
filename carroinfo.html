@@ -130,15 +130,28 @@
         footer p {
             margin: 0;
         }
-        /* Mobile responsive */
+ /* Mobile responsive */
 @media (max-width: 768px) {
-    .main-image img {
-        width: 90%; /* Ajusta a largura para 90% do container */
-        max-width: 600px; /* Define um limite máximo para o tamanho */
- 
+    /* Empilha as seções no celular */
+    .car-details {
+        flex-direction: column; /* Altera a direção para empilhar */
+        align-items: center; /* Centraliza os elementos */
+    }
+
+    .car-gallery {
+        width: 100%; /* A galeria ocupa toda a largura */
+        text-align: center; /* Centraliza o conteúdo */
+    }
+
     .car-info {
-        width: 100%; /* As informações do veículo ocupam 100% da largura da tela */
+        width: 100%; /* Informações do veículo ocupam toda a largura */
         padding: 0 10px; /* Adiciona espaçamento interno */
+    }
+
+    .main-image img {
+        width: 90%; /* Ajusta a largura da imagem principal */
+        max-width: 600px; /* Define um limite máximo */
+        height: auto; /* Mantém a proporção da imagem */
     }
 
     .car-state {
@@ -146,19 +159,14 @@
     }
 
     .state-bar {
-        width: 100%; /* As barras de estado ocupam toda a largura da tela */
+        width: 100%; /* Ajusta as barras de estado */
     }
 
     .bar-container {
-        width: 100%; /* A barra de estado ocupa toda a largura da tela */
+        width: 100%; /* A barra de estado ocupa toda a largura */
     }
 }
-        /* Ajuste para dispositivos móveis */
-@media (max-width: 768px) {
-     .main-image img {
-        width: 90%; /* Ajusta a largura para 90% do container */
-        max-width: 600px; /* Define um limite máximo para o tamanho */
-    
+
     </style>
 </head>
 <body>
