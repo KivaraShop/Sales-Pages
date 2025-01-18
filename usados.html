@@ -632,30 +632,31 @@ button:hover {
     </div>
 
       <script>
-    // Função para filtrar os produtos com base na pesquisa
+  // Função para filtrar os produtos com base na pesquisa
 function filterProducts(searchTerm) {
-  var products = ['Audi A3', 'BMW X5', 'Mercedes Benz C-Class', 'Toyota Corolla', 'Volkswagen Golf']; // Substitua com seus produtos reais
-  var resultsContainer = document.getElementById('search-results');
+  var searchTerm = searchTerm.toLowerCase();
+  var productCards = document.querySelectorAll('.product-card');
   var noResultsMessage = document.getElementById('no-results-message');
+  var resultsFound = false;
   
-  // Limpar resultados anteriores
-  resultsContainer.innerHTML = '';
-  noResultsMessage.style.display = 'none'; // Esconde a mensagem de "Sem resultados" inicialmente
+  // Limpar a mensagem de "Sem resultados"
+  noResultsMessage.style.display = 'none';
 
-  // Filtra os produtos com base no termo de pesquisa
-  var results = products.filter(function(product) {
-    return product.toLowerCase().includes(searchTerm.toLowerCase());
+  // Loop através de todos os cards de produtos
+  productCards.forEach(function(card) {
+    var productName = card.querySelector('h3').textContent.toLowerCase();
+    
+    // Verifica se o nome do produto corresponde ao termo de pesquisa
+    if (productName.includes(searchTerm)) {
+      card.style.display = 'block'; // Exibe o card se houver correspondência
+      resultsFound = true;
+    } else {
+      card.style.display = 'none'; // Esconde o card se não houver correspondência
+    }
   });
-
-  if (results.length > 0) {
-    // Exibe os resultados encontrados
-    results.forEach(function(result) {
-      var productElement = document.createElement('div');
-      productElement.textContent = result;
-      resultsContainer.appendChild(productElement);
-    });
-  } else {
-    // Exibe a mensagem de "Sem resultados"
+  
+  // Se nenhum produto corresponder, exibe a mensagem de "Sem resultados"
+  if (!resultsFound) {
     noResultsMessage.style.display = 'block';
   }
 }
