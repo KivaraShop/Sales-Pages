@@ -51,6 +51,54 @@ header .toggle-theme {
             padding: 0;
             margin: 0;
         }
+         /* Estilização do sininho */
+    .notification {
+      position: relative;
+      cursor: pointer;
+      font-size: 24px;
+      color: white;
+    }
+
+    .notification .badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Menu de notificações */
+    .notification-menu {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      display: none;
+      flex-direction: column;
+      width: 250px;
+      z-index: 9999;
+    }
+
+    .notification-menu a {
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .notification-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .notification-menu a:last-child {
+      border-bottom: none;
+    }
 /* Estilo para o slogan */
 .slogan-container {
     text-align: center;
@@ -551,7 +599,15 @@ button:hover {
      <a href="#" class="logo">
             <img src="https://i.ibb.co/jJ5B235/Logopit-1737236327538.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
         </a>
- <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
+ <div class="notification" onclick="toggleNotificationMenu()">
+      🔔
+      <span class="badge" id="notification-badge">3</span>
+      <div class="notification-menu" id="notification-menu">
+        <a href="novidades.html" onclick="markAsRead(0)">Novidades para você!</a>
+        <a href="ofertas.html" onclick="markAsRead(1)">Oferta especial!</a>
+        <a href="dicas.html" onclick="markAsRead(2)">Confira nossas dicas!</a>
+      </div>
+    </div>
     </header>
        
 <!-- Hidden menu items, will toggle on click -->
@@ -913,21 +969,7 @@ console.log('Menu found:', navMenu !== null);
 
 </script>
         
- <script>
-        const toggleButton = document.getElementById('theme-toggle');
-        const body = document.body;
 
-        toggleButton.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                toggleButton.classList.replace('fa-moon', 'fa-sun'); // Alternar para o ícone de sol
-                toggleButton.title = "Alternar para Modo Diurno";
-            } else {
-                toggleButton.classList.replace('fa-sun', 'fa-moon'); // Alternar para o ícone de lua
-                toggleButton.title = "Alternar para Modo Noturno";
-            }
-        });
-    </script>
        <script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
@@ -967,6 +1009,39 @@ function filterProducts(searchTerm) {
 }
 
 </script>
-        
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
 </body>
 </html>
