@@ -685,7 +685,7 @@ console.log('Menu found:', navMenu !== null);
         });
     </script>
        <script>
-        // Função para filtrar produtos
+// Função para filtrar produtos
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
@@ -693,7 +693,7 @@ function filterProducts(searchTerm) {
 
   // Esconde a mensagem "Sem resultados"
   const noResultsMessage = document.getElementById('no-results-message');
-  noResultsMessage.style.display = 'none';
+  noResultsMessage.style.display = 'none';  // Garantir que a mensagem comece oculta
 
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
@@ -708,7 +708,7 @@ function filterProducts(searchTerm) {
 
   // Se nenhum produto for encontrado, exibe a mensagem
   if (!resultsFound) {
-    noResultsMessage.style.display = 'block';
+    noResultsMessage.style.display = 'block'; // Exibe "Sem resultados"
   }
 }
 
