@@ -691,14 +691,15 @@ console.log('Menu found:', navMenu !== null);
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
-  const footer = document.getElementById('footer');
+  const noResultsMessage = document.getElementById('no-results-message');
   const navigationButtons = document.getElementById('navigation-buttons');
+  const footer = document.getElementById('footer');
   let resultsFound = false; // Flag para verificar se encontrou resultados
 
-  // Inicialmente, esconder a mensagem "Sem resultados", o botão e os botões de navegação
-  const noResultsMessage = document.getElementById('no-results-message');
+  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
   noResultsMessage.style.display = 'none';  // Esconder a mensagem e o botão ao iniciar
-  navigationButtons.style.display = 'block'; // Garantir que a navegação esteja visível ao carregar
+  navigationButtons.style.display = 'block'; // Exibir botões de navegação normalmente
+  footer.style.display = 'block'; // Exibir o rodapé normalmente
 
   // Filtra os produtos
   productCards.forEach(card => {
@@ -714,11 +715,12 @@ function filterProducts(searchTerm) {
   // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem e o botão
-    footer.classList.add('hide-elements'); // Oculta o rodapé
-    navigationButtons.classList.add('hide-elements'); // Oculta os botões de navegação
+    navigationButtons.style.display = 'none'; // Oculta os botões de navegação
+    footer.style.display = 'none'; // Oculta o rodapé
   } else {
-    footer.classList.remove('hide-elements'); // Exibe o rodapé quando há resultados
-    navigationButtons.classList.remove('hide-elements'); // Exibe os botões de navegação quando há resultados
+    noResultsMessage.style.display = 'none'; // Oculta a mensagem se houver resultados
+    navigationButtons.style.display = 'block'; // Exibe os botões de navegação
+    footer.style.display = 'block'; // Exibe o rodapé
   }
 }
 
