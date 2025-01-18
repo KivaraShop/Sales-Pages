@@ -90,14 +90,14 @@ header .toggle-theme {
       padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
       text-decoration: none;
       border-bottom: 1px solid #ddd;
       font-size: 14px;
       font-weight: bold;
       color: #012063;
       background: #eaf0f8; /* Cor de notificações não visualizadas */
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .notification-menu a.read {
@@ -107,23 +107,16 @@ header .toggle-theme {
 
     .notification-menu a:hover {
       background-color: #dce6f2;
+      transform: scale(1.02); /* Efeito sutil ao passar o mouse */
     }
 
     .notification-menu a:last-child {
       border-bottom: none;
     }
 
-    .notification-menu a .icon {
-      background-color: #012063;
-      color: white;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      margin-right: 10px;
+    .notification-menu i {
+      font-size: 18px;
+      color: #012063;
     }
 /* Estilo para o slogan */
 .slogan-container {
@@ -625,21 +618,18 @@ button:hover {
      <a href="#" class="logo">
             <img src="https://i.ibb.co/jJ5B235/Logopit-1737236327538.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
         </a>
-<div class="notification" onclick="toggleNotificationMenu()">
-      🔔
+ <div class="notification" onclick="toggleNotificationMenu()">
+      <i class="fas fa-bell"></i>
       <span class="badge" id="notification-badge">3</span>
       <div class="notification-menu" id="notification-menu">
         <a href="novidades.html" class="notification-item" onclick="markAsRead(0)">
-          <span class="icon">🆕</span>
-          Novidades para você!
+          <i class="fas fa-gift"></i> Novidades para você!
         </a>
         <a href="ofertas.html" class="notification-item" onclick="markAsRead(1)">
-          <span class="icon">🔥</span>
-          Oferta especial!
+          <i class="fas fa-tag"></i> Oferta especial!
         </a>
         <a href="dicas.html" class="notification-item" onclick="markAsRead(2)">
-          <span class="icon">💡</span>
-          Confira nossas dicas!
+          <i class="fas fa-lightbulb"></i> Confira nossas dicas!
         </a>
       </div>
     </div>
