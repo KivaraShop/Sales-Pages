@@ -918,12 +918,12 @@ function filterProducts(searchTerm) {
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem e o botão
     navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação sem afetar layout
-    footer.style.display = 'none'; // Oculta o rodapé quando não há resultados
+    footer.style.display = 'hidden'; // Oculta o rodapé quando não há resultados
   } else if (resultsFound || searchTerm === '') {
     // Se encontrou resultados ou se o campo de pesquisa estiver vazio
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação novamente
-    footer.style.display = 'block'; // Mostra o rodapé quando há resultados ou pesquisa vazia
+    footer.style.display = 'visible'; // Mostra o rodapé quando há resultados ou pesquisa vazia
   }
 }
 
