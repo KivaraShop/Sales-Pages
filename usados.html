@@ -680,6 +680,37 @@ console.log('Menu found:', navMenu !== null);
         });
     </script>
        <script>
+           // Função para filtrar produtos e ajustar a exibição
+function filterProducts(searchTerm) {
+  const search = searchTerm.toLowerCase();
+  const productCards = document.querySelectorAll(".product-card");
+  let resultsFound = false; // Variável para controlar se encontrou resultados
+
+  // Esconder a mensagem de "Sem Resultados" inicialmente
+  const noResultsMessage = document.getElementById('no-results-message');
+  noResultsMessage.style.display = 'none';
+
+  productCards.forEach(card => {
+    const productName = card.querySelector("h3").textContent.toLowerCase();
+    
+    // Se o nome do produto corresponder à pesquisa
+    if (productName.includes(search)) {
+      card.style.display = "block"; // Mostra o card
+      resultsFound = true; // Marcar como encontrado
+    } else {
+      card.style.display = "none"; // Esconde o card
+    }
+  });
+
+  // Se não encontrar nenhum resultado, exibe a mensagem de "Sem resultados"
+  if (!resultsFound) {
+    noResultsMessage.style.display = 'block';
+  }
+
+  // Ajusta o tamanho dos produtos filtrados
+  adjustFilteredProductSize();
+}
+
 // Função para ajustar o tamanho dos produtos filtrados
 function adjustFilteredProductSize() {
   const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
