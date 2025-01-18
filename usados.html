@@ -51,7 +51,7 @@ header .toggle-theme {
             padding: 0;
             margin: 0;
         }
-         /* Estilização do sininho */
+   /* Estilização do sininho */
     .notification {
       position: relative;
       cursor: pointer;
@@ -76,28 +76,54 @@ header .toggle-theme {
       position: absolute;
       top: 40px;
       right: 0;
-      background: white;
+      background: #fff;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      border-radius: 4px;
+      border-radius: 8px;
       display: none;
       flex-direction: column;
-      width: 250px;
+      width: 300px;
       z-index: 9999;
+      padding: 10px 0;
     }
 
     .notification-menu a {
-      padding: 10px;
-      color: #333;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       text-decoration: none;
       border-bottom: 1px solid #ddd;
+      font-size: 14px;
+      font-weight: bold;
+      color: #012063;
+      background: #eaf0f8; /* Cor de notificações não visualizadas */
+      transition: background-color 0.3s ease;
+    }
+
+    .notification-menu a.read {
+      background: #f7f7f7; /* Cor de notificações visualizadas */
+      color: #666; /* Texto mais discreto */
     }
 
     .notification-menu a:hover {
-      background-color: #f0f0f0;
+      background-color: #dce6f2;
     }
 
     .notification-menu a:last-child {
       border-bottom: none;
+    }
+
+    .notification-menu a .icon {
+      background-color: #012063;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-right: 10px;
     }
 /* Estilo para o slogan */
 .slogan-container {
@@ -599,13 +625,22 @@ button:hover {
      <a href="#" class="logo">
             <img src="https://i.ibb.co/jJ5B235/Logopit-1737236327538.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
         </a>
- <div class="notification" onclick="toggleNotificationMenu()">
+<div class="notification" onclick="toggleNotificationMenu()">
       🔔
       <span class="badge" id="notification-badge">3</span>
       <div class="notification-menu" id="notification-menu">
-        <a href="novidades.html" onclick="markAsRead(0)">Novidades para você!</a>
-        <a href="ofertas.html" onclick="markAsRead(1)">Oferta especial!</a>
-        <a href="dicas.html" onclick="markAsRead(2)">Confira nossas dicas!</a>
+        <a href="novidades.html" class="notification-item" onclick="markAsRead(0)">
+          <span class="icon">🆕</span>
+          Novidades para você!
+        </a>
+        <a href="ofertas.html" class="notification-item" onclick="markAsRead(1)">
+          <span class="icon">🔥</span>
+          Oferta especial!
+        </a>
+        <a href="dicas.html" class="notification-item" onclick="markAsRead(2)">
+          <span class="icon">💡</span>
+          Confira nossas dicas!
+        </a>
       </div>
     </div>
     </header>
@@ -1024,6 +1059,16 @@ function filterProducts(searchTerm) {
 
       // Esconde o badge se todas notificações foram lidas
       badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
     }
 
     // Alterna o menu de notificações
