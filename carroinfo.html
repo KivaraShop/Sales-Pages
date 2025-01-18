@@ -137,10 +137,6 @@
         flex-direction: column; /* Empilha as seções */
         align-items: center; /* Centraliza as seções */
     }
- .main-image img {
-        width: 100%; /* Ajuste o tamanho desejado aqui */
-        max-width: 550px; /* Pode aumentar ou diminuir o valor conforme necessário */
-    }
     .car-info {
         width: 100%; /* As informações do veículo ocupam 100% da largura da tela */
         padding: 0 10px; /* Adiciona espaçamento interno */
@@ -161,8 +157,9 @@
         /* Ajuste para dispositivos móveis */
 @media (max-width: 768px) {
     .main-image img {
-        width: 90%; /* Ajuste o tamanho desejado aqui */
-        max-width: 760px;
+       width: 90% !important; /* Força a largura a ser aplicada */
+        max-width: 700px !important; /* Permite mais controle sobre o tamanho */
+    }
     </style>
 </head>
 <body>
