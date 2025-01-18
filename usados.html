@@ -891,7 +891,6 @@ console.log('Menu found:', navMenu !== null);
         });
     </script>
        <script>
-<script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
@@ -902,7 +901,7 @@ function filterProducts(searchTerm) {
 
   // Inicialmente, esconder a mensagem "Sem resultados" e o botão
   noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
-  navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis, sem afetar layout
+  navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
   footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
 
   // Filtra os produtos
@@ -918,17 +917,16 @@ function filterProducts(searchTerm) {
 
   // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
   if (!resultsFound && searchTerm !== '') {
-    noResultsMessage.style.display = 'block'; // Exibe a mensagem e o botão
-    navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação sem afetar layout
+    noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
+    navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
     footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
   } else if (resultsFound || searchTerm === '') {
-    // Se encontrou resultados ou se o campo de pesquisa estiver vazio
+    // Se encontrou resultados ou o campo de pesquisa está vazio
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
-    navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação novamente
-    footer.style.visibility = 'visible'; // Mostra o rodapé quando há resultados ou pesquisa vazia
+    navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
+    footer.style.visibility = 'visible'; // Mostra o rodapé
   }
 }
-</script>
 
 </script>
         
