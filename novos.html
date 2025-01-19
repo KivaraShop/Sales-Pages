@@ -159,6 +159,40 @@
         .product-card {
             position: relative;
         }
+        /* Container do banner */
+.banner-container {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza o banner */
+    overflow: hidden;
+}
+
+/* Tabela do banner */
+.banner-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Colunas de largura fixa */
+}
+
+.banner-table td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    width: 33.33%; /* Três colunas de largura igual */
+}
+
+/* Estilo das imagens de cada coluna */
+.promo-gif {
+    width: 100%; /* Garante que a largura da coluna seja usada */
+}
+
+.promo-gif img {
+    width: 100%;
+    height: 100px; /* Altura fixa mais afinada */
+    object-fit: cover; /* Garante proporção sem deformar */
+    display: block;
+}
+
 
     </style>
 </head>
@@ -171,6 +205,22 @@
 
     <div class="container">
         <h2>Carros Novos</h2>
+
+        <div class="banner-container">
+    <table class="banner-table">
+        <tr>
+            <td class="promo-gif">
+                <img src="https://i.ibb.co/ZdRNVWp/giphy-10-ezgif-com-crop.gif" alt="GIF Promocional 1">
+            </td>
+            <td class="promo-gif">
+                <img src="https://i.ibb.co/ZdRNVWp/giphy-10-ezgif-com-crop.gif" alt="GIF Promocional 2">
+            </td>
+            <td class="promo-gif">
+                <img src="https://i.ibb.co/ZdRNVWp/giphy-10-ezgif-com-crop.gif" alt="GIF Promocional 3">
+            </td>
+        </tr>
+    </table>
+</div>
         <div class="product-grid">
             <!-- Exemplo de produto -->
             <div class="product-card">
