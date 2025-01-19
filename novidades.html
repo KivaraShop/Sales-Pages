@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novidades para Você!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            background-color: #fff3e0; /* Fundo amarelo suave */
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff3d00; /* Vermelho vibrante */
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo img {
+            width: 120px;
+        }
+
+        /* Título principal */
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+            color: #ff3d00; /* Vermelho vibrante */
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        /* Grade de produtos */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: #fff9c4; /* Amarelo claro */
+            border: 2px solid #ffab00; /* Amarelo forte */
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            color: #ff6f00; /* Tom de laranja */
+            margin: 10px 0;
+        }
+
+        .more-info {
+            margin-bottom: 10px;
+        }
+
+        .more-info a {
+            text-decoration: none;
+            color: #d32f2f; /* Vermelho escuro */
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #ff3d00; /* Vermelho vibrante */
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #d32f2f; /* Vermelho escuro */
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Shabe Motors">
+        </a>
+    </header>
+
+    <h2>Novidades para Você!</h2>
+
+    <div class="product-grid">
+        <!-- Exemplo de produto 1 -->
+        <div class="product-card">
+            <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Produto 1">
+            <h3>Novo Modelo Esportivo</h3>
+            <div class="more-info">
+                <a href="#">Saber Mais</a>
+            </div>
+            <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Novo%20Modelo%20Esportivo'">
+                Falar com o Vendedor
+            </button>
+        </div>
+        <!-- Exemplo de produto 2 -->
+        <div class="product-card">
+            <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Produto 2">
+            <h3>Carro Luxuoso 2025</h3>
+            <div class="more-info">
+                <a href="#">Saber Mais</a>
+            </div>
+            <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Carro%20Luxuoso%202025'">
+                Falar com o Vendedor
+            </button>
+        </div>
+        <!-- Exemplo de produto 3 -->
+        <div class="product-card">
+            <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Produto 3">
+            <h3>SUV Incrível</h3>
+            <div class="more-info">
+                <a href="#">Saber Mais</a>
+            </div>
+            <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20SUV%20Incrível'">
+                Falar com o Vendedor
+            </button>
+        </div>
+    </div>
+</body>
+</html>
