@@ -17,7 +17,7 @@
 
         /* Cabeçalho */
         header {
-            background-color: #4fc3f7; /* Azul claro */
+            background-color: #012063; /* Azul escuro */
             padding: 15px;
             width: 100%;
             display: flex;
@@ -30,12 +30,23 @@
             z-index: 1000;
         }
 
-        header .toggle-theme {
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
+     header .logo img {
+            width: 110px;
+        }
+ /* Logo */
+                .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
+
         }
 
+        .logo img {
+            height: 40px;
+            padding: 0;
+            margin: 0;
+        }
+        
         /* Layout de Produtos */
         .container {
             padding: 20px;
@@ -53,6 +64,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
+            padding-top: 20px;
         }
 
         .product-card {
@@ -103,7 +115,7 @@
         }
 
         button:hover {
-            background-color: #0277bd;
+            background-color: #012063;
         }
 
         /* Popup do Modo Noturno */
@@ -200,7 +212,9 @@
 
     <!-- Cabeçalho -->
     <header>
-        <i id="theme-toggle" class="fas fa-moon toggle-theme" title="Alternar Modo"></i>
+       <a href="#" class="logo">
+            <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
     </header>
 
     <div class="container">
