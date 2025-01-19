@@ -336,49 +336,38 @@
   font-size: 18px;
 }
  /* Container do banner */
-  .banner-container {
+.banner-container {
     width: 100%;
     max-width: 1200px; /* Limita a largura máxima */
     margin: 0 auto; /* Centraliza o banner */
     overflow: hidden;
-  }
+}
 
-  /* Tabela do banner */
-  .banner-table {
+/* Tabela do banner */
+.banner-table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
-  }
+    table-layout: fixed; /* Colunas de largura fixa */
+}
 
-  .banner-table td {
+.banner-table td {
     padding: 0;
     margin: 0;
     vertical-align: top;
-  }
+    width: 33.33%; /* Três colunas de largura igual */
+}
 
-  /* Coluna da imagem promocional (16:9 reduzida) */
-  .promo-image {
-    width: 70%;
-  }
+/* Estilo das imagens de cada coluna */
+.promo-gif {
+    width: 100%; /* Garante que a largura da coluna seja usada */
+}
 
-  .promo-image img {
+.promo-gif img {
     width: 100%;
-    height: 150px; /* Altura fixa menor para reduzir o banner */
-    object-fit: cover; /* Garante que a imagem se ajuste sem deformar */
-    display: block;
-  }
-
-  /* Coluna do GIF (1:1 reduzida) */
-  .promo-gif {
-    width: 30%;
-  }
-
-  .promo-gif img {
-    width: 100%;
-    height: 150px; /* Altura fixa igual à imagem promocional */
+    height: 200px; /* Altura fixa para consistência */
     object-fit: cover; /* Garante proporção sem deformar */
     display: block;
-  }
+}
   
     </style>
 </head>
@@ -440,21 +429,21 @@
     <div class="container">
         <h2>Peças</h2>
 
-<!-- Tabela para o banner -->
-<table class="banner-table">
-  <tr>
-    <!-- Imagem promocional -->
-    <td class="promo-image">
-      <img src="https://i.ibb.co/86tb2tF/digital-marketing-agency.png" alt="Imagem Promocional">
-    </td>
-
-    <!-- GIF do carro -->
-    <td class="promo-gif">
-      <img src="https://i.ibb.co/qk6PmL1/giphy-6.gif?cache-force=0.9114094591124764" alt="GIF do Carro Correndo">
-    </td>
-  </tr>
-</table
-     </div>
+<div class="banner-container">
+    <table class="banner-table">
+        <tr>
+            <td class="promo-gif">
+                <img src="gif1.gif" alt="GIF Promocional 1">
+            </td>
+            <td class="promo-gif">
+                <img src="gif2.gif" alt="GIF Promocional 2">
+            </td>
+            <td class="promo-gif">
+                <img src="gif3.gif" alt="GIF Promocional 3">
+            </td>
+        </tr>
+    </table>
+</div>
           <div class="search-bar">
     <input 
       type="text" 
