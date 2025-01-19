@@ -5,34 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confira Nossas Dicas</title>
     <style>
+        /* Estilo Geral */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            background-color: #e3f2fd; /* Fundo azul claro */
-            color: #01579b; /* Azul escuro para textos */
+            background-color: #f4f6f9; /* Tom mais claro para contraste */
+            color: #012063; /* Azul escuro da marca */
         }
 
-        /* Cabeçalho */
         header {
-            background-color: #0288d1; /* Azul vibrante */
+            background-color: #012063; /* Azul escuro da marca */
             padding: 15px;
             text-align: center;
+            color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        header .logo img {
-            max-width: 120px;
-        }
-
         header h1 {
-            color: white;
+            margin: 0;
             font-size: 24px;
-            margin: 10px 0 0;
         }
 
-        /* Conteúdo Principal */
         .container {
             padding: 20px;
             max-width: 1200px;
@@ -41,24 +35,22 @@
 
         h2 {
             text-align: center;
-            margin: 20px 0;
-            font-size: 28px;
-            color: #0288d1;
+            margin-bottom: 20px;
+            color: #012063; /* Azul escuro da marca */
         }
 
-        /* Grid de Dicas */
-        .tips-grid {
+        .tip-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
         .tip-card {
             background-color: white;
-            border: 2px solid #0288d1;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #b3d4fc; /* Tom suave de azul */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -69,89 +61,108 @@
 
         .tip-card img {
             width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            height: 150px;
+            object-fit: cover;
         }
 
-        .tip-card h3 {
-            font-size: 20px;
-            color: #0288d1;
-            margin-bottom: 10px;
-        }
-
-        .tip-card p {
-            font-size: 16px;
-            color: #01579b;
-            line-height: 1.6;
-        }
-
-        /* Rodapé */
-        footer {
-            text-align: center;
+        .tip-card-content {
             padding: 15px;
-            background-color: #0288d1;
-            color: white;
-            font-size: 14px;
-            margin-top: 20px;
         }
 
-        footer a {
-            color: #ffd54f;
+        .tip-card-content h3 {
+            font-size: 18px;
+            color: #012063; /* Azul escuro */
+            margin: 10px 0;
+        }
+
+        .tip-card-content p {
+            font-size: 14px;
+            color: #444444;
+        }
+
+        .tip-card-content .cta {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #012063; /* Azul escuro */
+            color: white;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tip-card-content .cta:hover {
+            background-color: #0345ad; /* Tom mais claro de azul */
+        }
+
+        footer {
+            background-color: #012063; /* Azul escuro da marca */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .tip-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- Cabeçalho -->
     <header>
-        <div class="logo">
-            <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Shabe Motors" border="0">
-        </div>
         <h1>Confira Nossas Dicas</h1>
     </header>
 
-    <!-- Conteúdo Principal -->
     <div class="container">
-        <h2>Dicas Para Aproveitar Melhor as Ofertas</h2>
-
-        <div class="tips-grid">
-            <!-- Dica 1 -->
+        <h2>Dicas Úteis para Você</h2>
+        <div class="tip-grid">
+            <!-- Cartão de Dica 1 -->
             <div class="tip-card">
-                <img src="https://via.placeholder.com/400x200?text=Planeje+Suas+Compras" alt="Planeje Suas Compras">
-                <h3>Planeje Suas Compras</h3>
-                <p>Antes de sair às compras, defina um orçamento e faça uma lista do que você precisa. Isso ajuda a evitar gastos desnecessários e aproveita melhor as promoções.</p>
+                <img src="https://via.placeholder.com/400x150?text=Planeje+Suas+Compras" alt="Planeje suas compras">
+                <div class="tip-card-content">
+                    <h3>Planeje Suas Compras</h3>
+                    <p>Evite surpresas organizando suas compras com antecedência.</p>
+                    <a href="#" class="cta">Saiba Mais</a>
+                </div>
             </div>
 
-            <!-- Dica 2 -->
+            <!-- Cartão de Dica 2 -->
             <div class="tip-card">
-                <img src="https://via.placeholder.com/400x200?text=Verifique+as+Condições" alt="Verifique as Condições">
-                <h3>Verifique as Condições</h3>
-                <p>Leia atentamente os termos das promoções e parcelamentos. Fique atento às taxas de juros e às condições de entrega ou devolução.</p>
+                <img src="https://via.placeholder.com/400x150?text=Verifique+as+Condições" alt="Verifique as condições">
+                <div class="tip-card-content">
+                    <h3>Verifique as Condições</h3>
+                    <p>Leia os termos antes de finalizar uma compra para evitar imprevistos.</p>
+                    <a href="#" class="cta">Saiba Mais</a>
+                </div>
             </div>
 
-            <!-- Dica 3 -->
+            <!-- Cartão de Dica 3 -->
             <div class="tip-card">
-                <img src="https://via.placeholder.com/400x200?text=Compare+Preços" alt="Compare Preços">
-                <h3>Compare Preços</h3>
-                <p>Pesquise em diferentes lojas para garantir que está aproveitando a melhor oferta. Usar ferramentas online pode economizar tempo e dinheiro.</p>
+                <img src="https://via.placeholder.com/400x150?text=Compare+Preços" alt="Compare preços">
+                <div class="tip-card-content">
+                    <h3>Compare Preços</h3>
+                    <p>Pesquise por ofertas e economize ao fazer comparações.</p>
+                    <a href="#" class="cta">Saiba Mais</a>
+                </div>
             </div>
 
-            <!-- Dica 4 -->
+            <!-- Cartão de Dica 4 -->
             <div class="tip-card">
-                <img src="https://via.placeholder.com/400x200?text=Escolha+Parcelamentos+Sem+Juros" alt="Escolha Parcelamentos Sem Juros">
-                <h3>Escolha Parcelamentos Sem Juros</h3>
-                <p>Aproveite os parcelamentos sem juros para compras maiores. Isso facilita o pagamento sem comprometer o orçamento.</p>
+                <img src="https://via.placeholder.com/400x150?text=Escolha+Parcelamentos" alt="Escolha parcelamentos sem juros">
+                <div class="tip-card-content">
+                    <h3>Escolha Parcelamentos Sem Juros</h3>
+                    <p>Opte por pagamentos sem juros para manter sua economia.</p>
+                    <a href="#" class="cta">Saiba Mais</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Rodapé -->
     <footer>
-        © 2025 Shabe Motors - <a href="#top">Voltar ao Topo</a>
+        &copy; 2025 - Sua Marca. Todos os direitos reservados.
     </footer>
-
 </body>
 </html>
