@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Novos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            background-color: #e0f7fa; /* Fundo azul claro */
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #012063; /* Azul escuro */
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+     header .logo img {
+            width: 110px;
+        }
+ /* Logo */
+                .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
+
+        }
+
+        .logo img {
+            height: 40px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Layout de Produtos */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #012063; /* Azul mais escuro */
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding-top: 20px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #b3e5fc;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            color: #0288d1;
+            margin: 10px 0;
+        }
+
+        .more-info {
+            margin-bottom: 10px;
+        }
+
+        .more-info a {
+            text-decoration: none;
+            color: #0288d1;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #012063;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0288d1; 
+        }
+
+        /* Popup do Modo Noturno */
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .dark-mode header {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode .toggle-theme {
+            color: #ff66b2;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        /* Container de Rótulos */
+        .product-labels {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        /* Estilo Base dos Rótulos */
+        .label {
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            background-color: #660033;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo Específico para Cada Rótulo */
+        .label.novo {
+            background-color: #00bcd4;
+        }
+
+        /* Ajuste de Posição no Card */
+        .product-card {
+            position: relative;
+        }
+        /* Container do banner */
+.banner-container {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza o banner */
+    overflow: hidden;
+}
+
+/* Tabela do banner */
+.banner-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Colunas de largura fixa */
+}
+
+.banner-table td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    width: 33.33%; /* Três colunas de largura igual */
+}
+
+/* Estilo das imagens de cada coluna */
+.promo-gif {
+    width: 100%; /* Garante que a largura da coluna seja usada */
+}
+
+.promo-gif img {
+    width: 100%;
+    height: 100px; /* Altura fixa mais afinada */
+    object-fit: cover; /* Garante proporção sem deformar */
+    display: block;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+       <a href="#" class="logo">
+            <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+    </header>
+
+    <div class="container">
+        <h2>Carros Novos</h2>
+
+        <div class="banner-container">
+    <table class="banner-table">
+        <tr>
+            <td class="promo-gif">
+                <img src="https://i.ibb.co/M99DH4m/ezgif-com-cut.gif" alt="GIF Promocional 1">
+            </td>
+            <td class="promo-gif">
+                <img src="https://i.ibb.co/M99DH4m/ezgif-com-cut.gif" alt="GIF Promocional 2">
+            </td>
+            <td class="promo-gif">
+                <img src="https://i.ibb.co/M99DH4m/ezgif-com-cut.gif" alt="GIF Promocional 3">
+            </td>
+        </tr>
+    </table>
+</div>
+        <div class="product-grid">
+            <!-- Exemplo de produto -->
+            <div class="product-card">
+                <div class="product-labels">
+                    <span class="label novo">Novo</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2024</h3>
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="productpage.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202024%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-labels">
+                    <span class="label novo">Novo</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2024</h3>
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="productpage.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202024%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+               <div class="product-card">
+                <div class="product-labels">
+                    <span class="label novo">Novo</span>
+                </div>
+                <img src="https://i.ibb.co/vqRM8MM/IMG-20250105-235648.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2024</h3>
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="productpage.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202024%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-labels">
+                    <span class="label novo">Novo</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2024</h3>
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="productpage.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202024%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+          
+            <!-- Mais produtos podem ser adicionados aqui -->
+        </div>
+    </div>
+
+     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
+</body>
+</html>
