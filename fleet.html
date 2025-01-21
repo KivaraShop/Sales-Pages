@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Vehicle Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .vehicle-card {
+            width: calc(33.333% - 20px);
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .vehicle-card h3 {
+            color: #012063;
+        }
+        .vehicle-card p {
+            color: #2AA7E7;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #012063;">Public Vehicle Listing</h1>
+    <div class="container" id="vehicleList">
+        <!-- Vehicles will dynamically populate here -->
+    </div>
+
+    <script>
+        // Function to fetch vehicle data from localStorage
+        function loadVehicles() {
+            const vehicleList = document.getElementById('vehicleList');
+            vehicleList.innerHTML = ''; // Clear current data
+
+            // Get the data from localStorage
+            const vehicles = JSON.parse(localStorage.getItem('vehicles')) || [];
+
+            // Display each vehicle as a card
+            vehicles.forEach(vehicle => {
+                const card = document.createElement('div');
+                card.className = 'vehicle-card';
+                card.innerHTML = `
+                    <h3>${vehicle.title}</h3>
+                    <p>Status: <strong>${vehicle.status}</strong></p>
+                `;
+                vehicleList.appendChild(card);
+            });
+        }
+
+        // Load vehicles on page load
+        document.addEventListener('DOMContentLoaded', loadVehicles);
+    </script>
+</body>
+</html>
