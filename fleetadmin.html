@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fleet Management</title>
+    <title>Fleet Management - Admin</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
         .container {
             display: flex;
@@ -32,9 +34,31 @@
             margin: 10px 0;
             border-radius: 5px;
             cursor: grab;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .vehicle.dragging {
             opacity: 0.5;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .controls input, .controls button {
+            padding: 10px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .controls button {
+            background-color: #012063;
+            color: white;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #2AA7E7;
         }
     </style>
 </head>
@@ -46,6 +70,15 @@
     </div>
 
     <div id="adminPage" style="display: none;">
+        <div class="controls">
+            <input type="text" id="vehicleTitle" placeholder="Vehicle Title">
+            <input type="number" id="vehiclePrice" placeholder="Price (e.g., 50000)">
+            <select id="vehicleStatus">
+                <option value="available">Available</option>
+                <option value="sold">Sold</option>
+            </select>
+            <button id="addVehicle">Add Vehicle</button>
+        </div>
         <div class="container">
             <div class="section" id="available">
                 <h2>Available Vehicles</h2>
@@ -56,19 +89,14 @@
                 <!-- Sold vehicles will populate here -->
             </div>
         </div>
-        <button id="saveChanges">Save Changes</button>
     </div>
 
     <script>
         // Password set to '8888'
         const password = '8888';
 
-        // Dummy data for vehicles
-        const vehicles = [
-            { id: 1, title: 'Car A', status: 'available' },
-            { id: 2, title: 'Car B', status: 'available' },
-            { id: 3, title: 'Car C', status: 'sold' }
-        ];
+        // Fetch vehicles from localStorage or initialize
+        const vehicles = JSON.parse(localStorage.getItem('vehicles')) || [];
 
         // Login functionality
         document.getElementById('login').addEventListener('click', () => {
@@ -82,7 +110,7 @@
             }
         });
 
-        // Populate vehicles
+        // Populate vehicles in respective sections
         function populateVehicles() {
             const availableSection = document.getElementById('available');
             const soldSection = document.getElementById('sold');
@@ -90,45 +118,69 @@
             soldSection.innerHTML = '<h2>Sold Vehicles</h2>';
 
             vehicles.forEach(vehicle => {
-                const div = document.createElement('div');
-                div.className = 'vehicle';
-                div.textContent = vehicle.title;
-                div.draggable = true;
-                div.dataset.id = vehicle.id;
-
-                // Append based on status
+                const div = createVehicleElement(vehicle);
                 if (vehicle.status === 'available') {
                     availableSection.appendChild(div);
                 } else {
                     soldSection.appendChild(div);
                 }
-
-                // Drag-and-drop events
-                div.addEventListener('dragstart', () => {
-                    div.classList.add('dragging');
-                });
-
-                div.addEventListener('dragend', () => {
-                    div.classList.remove('dragging');
-                });
             });
         }
 
-        // Enable drag-and-drop
+        // Create vehicle element
+        function createVehicleElement(vehicle) {
+            const div = document.createElement('div');
+            div.className = 'vehicle';
+            div.draggable = true;
+            div.dataset.id = vehicle.id;
+
+            div.innerHTML = `
+                ${vehicle.title} - $${vehicle.price}
+                <button onclick="editVehicle(${vehicle.id})">Edit</button>
+            `;
+
+            div.addEventListener('dragstart', () => div.classList.add('dragging'));
+            div.addEventListener('dragend', () => div.classList.remove('dragging'));
+
+            return div;
+        }
+
+        // Add new vehicle
+        document.getElementById('addVehicle').addEventListener('click', () => {
+            const title = document.getElementById('vehicleTitle').value.trim();
+            const price = document.getElementById('vehiclePrice').value;
+            const status = document.getElementById('vehicleStatus').value;
+
+            if (!title || !price) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const newVehicle = {
+                id: Date.now(),
+                title,
+                price: parseFloat(price).toFixed(2),
+                status
+            };
+
+            vehicles.push(newVehicle);
+            localStorage.setItem('vehicles', JSON.stringify(vehicles));
+            populateVehicles();
+            alert('Vehicle added successfully!');
+        });
+
+        // Drag-and-drop functionality
         const sections = document.querySelectorAll('.section');
         sections.forEach(section => {
-            section.addEventListener('dragover', e => {
-                e.preventDefault();
+            section.addEventListener('dragover', e => e.preventDefault());
+            section.addEventListener('drop', e => {
                 const dragging = document.querySelector('.dragging');
                 section.appendChild(dragging);
-            });
-
-            section.addEventListener('drop', () => {
                 updateVehicleStatus();
             });
         });
 
-        // Update vehicle status
+        // Update vehicle statuses after drag-and-drop
         function updateVehicleStatus() {
             const availableVehicles = document.querySelectorAll('#available .vehicle');
             const soldVehicles = document.querySelectorAll('#sold .vehicle');
@@ -145,8 +197,24 @@
                 v.status = 'sold';
             });
 
+            localStorage.setItem('vehicles', JSON.stringify(vehicles));
             console.log('Updated vehicles:', vehicles);
         }
+
+        // Edit vehicle details
+        window.editVehicle = function (id) {
+            const vehicle = vehicles.find(v => v.id === id);
+            if (!vehicle) return;
+
+            const newTitle = prompt('Enter new title:', vehicle.title);
+            const newPrice = prompt('Enter new price:', vehicle.price);
+
+            if (newTitle) vehicle.title = newTitle;
+            if (newPrice) vehicle.price = parseFloat(newPrice).toFixed(2);
+
+            localStorage.setItem('vehicles', JSON.stringify(vehicles));
+            populateVehicles();
+        };
     </script>
 </body>
 </html>
