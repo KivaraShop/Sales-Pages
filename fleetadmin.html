@@ -192,15 +192,7 @@
     </style>
 </head>
 <body>
-    <div id="passwordSection">
-        <div style="text-align: center; padding: 50px;">
-            <h2 style="color: var(--primary-color);">Enter Password to Access Admin Panel</h2>
-            <input type="password" id="password" placeholder="Password" style="padding: 10px; font-size: 16px; margin: 10px;">
-            <button id="login" style="padding: 10px 20px; font-size: 16px; background: var(--secondary-color); color: white; border: none; border-radius: 5px;">Login</button>
-        </div>
-    </div>
-
-    <div class="admin-container" id="adminPage" style="display: none;">
+    <div class="admin-container">
         <!-- Sidebar -->
         <div class="sidebar">
             <div>
@@ -212,7 +204,7 @@
                 </ul>
             </div>
             <div class="logout">
-                <a href="#" onclick="logout()">Logout</a>
+                <a href="#">Logout</a>
             </div>
         </div>
 
@@ -244,23 +236,6 @@
     </div>
 
     <script>
-        // Login functionality
-        const password = '8888';
-        document.getElementById('login').addEventListener('click', () => {
-            const inputPassword = document.getElementById('password').value;
-            if (inputPassword === password) {
-                document.getElementById('passwordSection').style.display = 'none';
-                document.getElementById('adminPage').style.display = 'flex';
-            } else {
-                alert('Incorrect password!');
-            }
-        });
-
-        function logout() {
-            document.getElementById('adminPage').style.display = 'none';
-            document.getElementById('passwordSection').style.display = 'block';
-        }
-
         // Add vehicle functionality
         document.getElementById('addVehicle').addEventListener('click', () => {
             const title = document.getElementById('vehicleTitle').value.trim();
@@ -276,7 +251,10 @@
             vehicleDiv.classList.add('vehicle');
             vehicleDiv.innerHTML = `
                 <span>${title} - $${price}</span>
-                <button onclick="removeVehicle(this)">Remove</button>
+                <div>
+                    <button onclick="editVehicle(this)">Edit</button>
+                    <button onclick="removeVehicle(this)">Remove</button>
+                </div>
             `;
 
             if (status === 'available') {
@@ -291,7 +269,19 @@
         });
 
         function removeVehicle(button) {
-            button.parentElement.remove();
+            button.parentElement.parentElement.remove();
+        }
+
+        function editVehicle(button) {
+            const vehicleDiv = button.parentElement.parentElement;
+            const details = vehicleDiv.querySelector('span').innerText.split(' - $');
+            const title = details[0];
+            const price = details[1];
+
+            document.getElementById('vehicleTitle').value = title;
+            document.getElementById('vehiclePrice').value = price;
+
+            vehicleDiv.remove();
         }
     </script>
 </body>
