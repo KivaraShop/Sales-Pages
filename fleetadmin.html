@@ -3,218 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fleet Management - Admin</title>
+    <title>Admin Panel - Fleet Management</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        :root {
+            --primary-color: #012063;
+            --secondary-color: #2AA7E7;
+            --bg-color: #f4f4f4;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        .container {
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        .admin-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background: var(--secondary-color);
+        }
+
+        .sidebar .logout {
+            text-align: center;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
             display: flex;
             justify-content: space-between;
-            padding: 20px;
+            align-items: center;
+            margin-bottom: 20px;
         }
+
+        .header h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .header button {
+            background: var(--secondary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .header button:hover {
+            background: var(--primary-color);
+        }
+
+        .form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .form input, .form select, .form button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            flex: 1;
+        }
+
+        .form button {
+            background: var(--secondary-color);
+            color: var(--text-light);
+            border: none;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background: var(--primary-color);
+        }
+
+        .vehicle-sections {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         .section {
-            width: 45%;
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 5px;
-            padding: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
         }
+
         .section h2 {
-            color: #012063;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
+
         .vehicle {
-            background: #2AA7E7;
-            color: white;
+            background: var(--secondary-color);
+            color: var(--text-light);
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
-            cursor: grab;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .vehicle.dragging {
-            opacity: 0.5;
-        }
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .controls input, .controls button {
-            padding: 10px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
+
+        .vehicle button {
+            background: #fff;
+            color: var(--secondary-color);
+            border: none;
             border-radius: 5px;
-        }
-        .controls button {
-            background-color: #012063;
-            color: white;
+            padding: 5px 10px;
             cursor: pointer;
         }
-        .controls button:hover {
-            background-color: #2AA7E7;
+
+        .vehicle button:hover {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .form input, .form select, .form button {
+                font-size: 14px;
+            }
+
+            .section {
+                min-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div id="passwordSection">
-        <h2>Enter Password to Access Admin Page:</h2>
-        <input type="password" id="password" placeholder="Password">
-        <button id="login">Login</button>
+        <div style="text-align: center; padding: 50px;">
+            <h2 style="color: var(--primary-color);">Enter Password to Access Admin Panel</h2>
+            <input type="password" id="password" placeholder="Password" style="padding: 10px; font-size: 16px; margin: 10px;">
+            <button id="login" style="padding: 10px 20px; font-size: 16px; background: var(--secondary-color); color: white; border: none; border-radius: 5px;">Login</button>
+        </div>
     </div>
 
-    <div id="adminPage" style="display: none;">
-        <div class="controls">
-            <input type="text" id="vehicleTitle" placeholder="Vehicle Title">
-            <input type="number" id="vehiclePrice" placeholder="Price (e.g., 50000)">
-            <select id="vehicleStatus">
-                <option value="available">Available</option>
-                <option value="sold">Sold</option>
-            </select>
-            <button id="addVehicle">Add Vehicle</button>
-        </div>
-        <div class="container">
-            <div class="section" id="available">
-                <h2>Available Vehicles</h2>
-                <!-- Vehicles will populate here -->
+    <div class="admin-container" id="adminPage" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div>
+                <h2>Admin Panel</h2>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Manage Vehicles</a></li>
+                    <li><a href="#">Reports</a></li>
+                </ul>
             </div>
-            <div class="section" id="sold">
-                <h2>Sold Vehicles</h2>
-                <!-- Sold vehicles will populate here -->
+            <div class="logout">
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="header">
+                <h1>Fleet Management</h1>
+            </div>
+
+            <div class="form">
+                <input type="text" id="vehicleTitle" placeholder="Vehicle Title">
+                <input type="number" id="vehiclePrice" placeholder="Price (e.g., 50000)">
+                <select id="vehicleStatus">
+                    <option value="available">Available</option>
+                    <option value="sold">Sold</option>
+                </select>
+                <button id="addVehicle">Add Vehicle</button>
+            </div>
+
+            <div class="vehicle-sections">
+                <div class="section" id="available">
+                    <h2>Available Vehicles</h2>
+                </div>
+                <div class="section" id="sold">
+                    <h2>Sold Vehicles</h2>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Password set to '8888'
-        const password = '8888';
-
-        // Fetch vehicles from localStorage or initialize
-        const vehicles = JSON.parse(localStorage.getItem('vehicles')) || [];
-
         // Login functionality
+        const password = '8888';
         document.getElementById('login').addEventListener('click', () => {
             const inputPassword = document.getElementById('password').value;
             if (inputPassword === password) {
                 document.getElementById('passwordSection').style.display = 'none';
-                document.getElementById('adminPage').style.display = 'block';
-                populateVehicles();
+                document.getElementById('adminPage').style.display = 'flex';
             } else {
                 alert('Incorrect password!');
             }
         });
 
-        // Populate vehicles in respective sections
-        function populateVehicles() {
-            const availableSection = document.getElementById('available');
-            const soldSection = document.getElementById('sold');
-            availableSection.innerHTML = '<h2>Available Vehicles</h2>';
-            soldSection.innerHTML = '<h2>Sold Vehicles</h2>';
-
-            vehicles.forEach(vehicle => {
-                const div = createVehicleElement(vehicle);
-                if (vehicle.status === 'available') {
-                    availableSection.appendChild(div);
-                } else {
-                    soldSection.appendChild(div);
-                }
-            });
+        function logout() {
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('passwordSection').style.display = 'block';
         }
-
-        // Create vehicle element
-        function createVehicleElement(vehicle) {
-            const div = document.createElement('div');
-            div.className = 'vehicle';
-            div.draggable = true;
-            div.dataset.id = vehicle.id;
-
-            div.innerHTML = `
-                ${vehicle.title} - $${vehicle.price}
-                <button onclick="editVehicle(${vehicle.id})">Edit</button>
-            `;
-
-            div.addEventListener('dragstart', () => div.classList.add('dragging'));
-            div.addEventListener('dragend', () => div.classList.remove('dragging'));
-
-            return div;
-        }
-
-        // Add new vehicle
-        document.getElementById('addVehicle').addEventListener('click', () => {
-            const title = document.getElementById('vehicleTitle').value.trim();
-            const price = document.getElementById('vehiclePrice').value;
-            const status = document.getElementById('vehicleStatus').value;
-
-            if (!title || !price) {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            const newVehicle = {
-                id: Date.now(),
-                title,
-                price: parseFloat(price).toFixed(2),
-                status
-            };
-
-            vehicles.push(newVehicle);
-            localStorage.setItem('vehicles', JSON.stringify(vehicles));
-            populateVehicles();
-            alert('Vehicle added successfully!');
-        });
-
-        // Drag-and-drop functionality
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => {
-            section.addEventListener('dragover', e => e.preventDefault());
-            section.addEventListener('drop', e => {
-                const dragging = document.querySelector('.dragging');
-                section.appendChild(dragging);
-                updateVehicleStatus();
-            });
-        });
-
-        // Update vehicle statuses after drag-and-drop
-        function updateVehicleStatus() {
-            const availableVehicles = document.querySelectorAll('#available .vehicle');
-            const soldVehicles = document.querySelectorAll('#sold .vehicle');
-
-            availableVehicles.forEach(vehicle => {
-                const id = parseInt(vehicle.dataset.id);
-                const v = vehicles.find(v => v.id === id);
-                v.status = 'available';
-            });
-
-            soldVehicles.forEach(vehicle => {
-                const id = parseInt(vehicle.dataset.id);
-                const v = vehicles.find(v => v.id === id);
-                v.status = 'sold';
-            });
-
-            localStorage.setItem('vehicles', JSON.stringify(vehicles));
-            console.log('Updated vehicles:', vehicles);
-        }
-
-        // Edit vehicle details
-        window.editVehicle = function (id) {
-            const vehicle = vehicles.find(v => v.id === id);
-            if (!vehicle) return;
-
-            const newTitle = prompt('Enter new title:', vehicle.title);
-            const newPrice = prompt('Enter new price:', vehicle.price);
-
-            if (newTitle) vehicle.title = newTitle;
-            if (newPrice) vehicle.price = parseFloat(newPrice).toFixed(2);
-
-            localStorage.setItem('vehicles', JSON.stringify(vehicles));
-            populateVehicles();
-        };
     </script>
 </body>
 </html>
