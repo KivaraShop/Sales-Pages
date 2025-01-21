@@ -90,20 +90,6 @@
             color: var(--primary-color);
         }
 
-        .header button {
-            background: var(--secondary-color);
-            color: var(--text-light);
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .header button:hover {
-            background: var(--primary-color);
-        }
-
         .form {
             display: flex;
             gap: 10px;
@@ -273,6 +259,39 @@
         function logout() {
             document.getElementById('adminPage').style.display = 'none';
             document.getElementById('passwordSection').style.display = 'block';
+        }
+
+        // Add vehicle functionality
+        document.getElementById('addVehicle').addEventListener('click', () => {
+            const title = document.getElementById('vehicleTitle').value.trim();
+            const price = document.getElementById('vehiclePrice').value.trim();
+            const status = document.getElementById('vehicleStatus').value;
+
+            if (!title || !price) {
+                alert('Please enter all details.');
+                return;
+            }
+
+            const vehicleDiv = document.createElement('div');
+            vehicleDiv.classList.add('vehicle');
+            vehicleDiv.innerHTML = `
+                <span>${title} - $${price}</span>
+                <button onclick="removeVehicle(this)">Remove</button>
+            `;
+
+            if (status === 'available') {
+                document.getElementById('available').appendChild(vehicleDiv);
+            } else {
+                document.getElementById('sold').appendChild(vehicleDiv);
+            }
+
+            // Clear input fields
+            document.getElementById('vehicleTitle').value = '';
+            document.getElementById('vehiclePrice').value = '';
+        });
+
+        function removeVehicle(button) {
+            button.parentElement.remove();
         }
     </script>
 </body>
