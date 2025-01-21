@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Fleet Management</title>
     <style>
+        /* Add your styles from the previous version */
         :root {
             --primary-color: #012063;
             --secondary-color: #2AA7E7;
@@ -192,6 +193,16 @@
     </style>
 </head>
 <body>
+    <script>
+        // Prompt for password before granting access
+        const password = "8888";
+        const userPassword = prompt("Enter the admin password to access:");
+        if (userPassword !== password) {
+            alert("Incorrect password. Redirecting...");
+            window.location.href = "about:blank"; // Redirect to a blank page or other desired location
+        }
+    </script>
+
     <div class="admin-container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -236,7 +247,7 @@
     </div>
 
     <script>
-        // Add vehicle functionality
+        // Add vehicle functionality remains unchanged
         document.getElementById('addVehicle').addEventListener('click', () => {
             const title = document.getElementById('vehicleTitle').value.trim();
             const price = document.getElementById('vehiclePrice').value.trim();
