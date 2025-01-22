@@ -252,8 +252,59 @@ form label {
         });
     });
 });
-
  </script>
+     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // Toggle entre as seções
+    const inventoryBtn = document.getElementById("inventory");
+    const addCarBtn = document.getElementById("addCar");
+    const dashboardBtn = document.getElementById("dashboard");
+    const settingsBtn = document.getElementById("settings"); // Novo botão para Settings
+    
+    inventoryBtn.addEventListener("click", () => showSection("inventory"));
+    addCarBtn.addEventListener("click", () => showSection("addCar"));
+    dashboardBtn.addEventListener("click", () => showSection("dashboard"));
+    settingsBtn.addEventListener("click", () => showSection("settings")); // Evento para abrir a seção de Settings
+    
+    function showSection(section) {
+        document.querySelectorAll(".content-section").forEach(content => {
+            content.style.display = "none";
+        });
+        document.getElementById(`${section}-content`).style.display = "block";
+    }
+
+    // Função de Settings - Alterar tema da plataforma
+    const themeSelect = document.getElementById("theme");
+    themeSelect.addEventListener("change", (e) => {
+        const theme = e.target.value;
+        document.body.className = theme;
+        localStorage.setItem("theme", theme); // Salva a escolha no armazenamento local
+    });
+
+    // Restaurar tema ao carregar a página
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        document.body.className = savedTheme;
+        themeSelect.value = savedTheme; // Atualiza a seleção do tema
+    }
+
+    // Alterar a senha do admin
+    const changePasswordForm = document.getElementById("changePasswordForm");
+    changePasswordForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const currentPassword = document.getElementById("currentPassword").value;
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (newPassword === confirmPassword) {
+            // Aqui você deve implementar a lógica de mudança de senha (em um sistema real, isso seria feito no backend)
+            alert("Senha alterada com sucesso!");
+        } else {
+            alert("As senhas não coincidem. Tente novamente.");
+        }
+    });
+});
+
     </script>
 </body>
 </html>
