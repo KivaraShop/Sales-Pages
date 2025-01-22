@@ -255,69 +255,98 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="brand">Car Fleet Management</div>
+    <!-- Header -->
+    <header class="header">
+        <div class="brand">Fleet Management</div>
         <button class="logout">Logout</button>
-    </div>
+    </header>
 
-    <div class="sidebar">
+    <!-- Sidebar -->
+    <aside class="sidebar">
         <nav>
-            <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-            <a href="#"><i class="fas fa-plus-circle"></i> Add Vehicle</a>
-            <a href="#"><i class="fas fa-car"></i> Vehicle Inventory</a>
-            <a href="#"><i class="fas fa-chart-line"></i> Reports</a>
-            <a href="#"><i class="fas fa-cogs"></i> Settings</a>
+            <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-car"></i> Vehicles</a>
+            <a href="#"><i class="fas fa-chart-bar"></i> Analytics</a>
+            <a href="#"><i class="fas fa-users"></i> Users</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
         </nav>
-    </div>
+    </aside>
 
-    <div class="main">
-        <h1>Welcome to Fleet Management</h1>
+    <!-- Main Content -->
+    <main class="main">
+        <h1>Welcome to the Fleet Dashboard</h1>
+
+        <!-- Cards Section -->
         <div class="card-container">
             <div class="card total">
                 <h3>Total Vehicles</h3>
-                <p>150</p>
+                <p>120</p>
             </div>
             <div class="card available">
-                <h3>Vehicles Available</h3>
-                <p>100</p>
+                <h3>Available</h3>
+                <p>80</p>
             </div>
             <div class="card sold">
-                <h3>Vehicles Sold</h3>
-                <p>50</p>
+                <h3>Sold</h3>
+                <p>40</p>
             </div>
         </div>
 
-        <div class="chart-container">
-            <h2>Sales Overview</h2>
-            <div class="chart">[Placeholder for Chart]</div>
-        </div>
-
-        <h2>Vehicle Inventory</h2>
+        <!-- Table Section -->
         <table>
             <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Brand</th>
+                    <th>Vehicle ID</th>
                     <th>Model</th>
-                    <th>Price</th>
                     <th>Status</th>
-                    <th>Actions</th>
+                    <th>Last Service</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><img src="placeholder.jpg" alt="Vehicle" width="50"></td>
-                    <td>Car A</td>
-                    <td>Brand X</td>
-                    <td>Model Y</td>
-                    <td>$20,000</td>
+                    <td>#1234</td>
+                    <td>Toyota Corolla</td>
                     <td>Available</td>
-                    <td><button>Edit</button> <button>Delete</button></td>
+                    <td>2025-01-15</td>
                 </tr>
                 <tr>
-                    <td><img src="placeholder.jpg" alt="Vehicle" width="50"></td>
-                    <td>Car B</td>
-                    <td>Brand Y</td>
-                    <td>Model Z</td>
-                    <td>$25
+                    <td>#5678</td>
+                    <td>Honda Civic</td>
+                    <td>Sold</td>
+                    <td>2024-12-20</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Add Vehicle Form -->
+        <div class="add-vehicle-container">
+            <h2>Add New Vehicle</h2>
+            <form>
+                <div class="form-group">
+                    <label for="vehicle-name">Vehicle Name</label>
+                    <input type="text" id="vehicle-name" placeholder="Enter vehicle name">
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-model">Model</label>
+                    <input type="text" id="vehicle-model" placeholder="Enter model">
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-description">Description</label>
+                    <textarea id="vehicle-description" placeholder="Enter description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-image">Upload Image</label>
+                    <input type="file" id="vehicle-image">
+                </div>
+                <button type="submit">Add Vehicle</button>
+            </form>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-container">
+            <h2>Fleet Overview</h2>
+            <div class="chart">[Chart Placeholder]</div>
+        </div>
+    </main>
+</body>
+</html>
