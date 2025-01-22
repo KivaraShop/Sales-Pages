@@ -99,6 +99,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             position: relative;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
         .card h3 {
@@ -205,6 +210,10 @@
             border-radius: 5px;
         }
 
+        .add-vehicle-container form .form-group input[type="file"] {
+            padding: 3px;
+        }
+
         .add-vehicle-container form .form-group textarea {
             resize: vertical;
         }
@@ -284,3 +293,31 @@
         </div>
 
         <h2>Vehicle Inventory</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="placeholder.jpg" alt="Vehicle" width="50"></td>
+                    <td>Car A</td>
+                    <td>Brand X</td>
+                    <td>Model Y</td>
+                    <td>$20,000</td>
+                    <td>Available</td>
+                    <td><button>Edit</button> <button>Delete</button></td>
+                </tr>
+                <tr>
+                    <td><img src="placeholder.jpg" alt="Vehicle" width="50"></td>
+                    <td>Car B</td>
+                    <td>Brand Y</td>
+                    <td>Model Z</td>
+                    <td>$25
