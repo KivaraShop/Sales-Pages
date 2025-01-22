@@ -9,7 +9,7 @@
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
-            background-color: #f9fbfd;
+            background-color: #f3f6fa;
             color: #333;
         }
 
@@ -21,6 +21,9 @@
             padding: 20px;
             background-color: #012063;
             color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header .brand {
@@ -51,6 +54,7 @@
             top: 0;
             left: 0;
             padding: 20px;
+            overflow-y: auto;
         }
 
         .sidebar nav a {
@@ -84,7 +88,7 @@
         /* Cards */
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
@@ -94,16 +98,48 @@
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            position: relative;
         }
 
         .card h3 {
             color: #012063;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .card p {
             font-size: 24px;
             font-weight: bold;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card.total {
+            background-color: #e3f2fd;
+        }
+        .card.total::after {
+            background-color: #2AA7E7;
+        }
+
+        .card.available {
+            background-color: #e8f5e9;
+        }
+        .card.available::after {
+            background-color: #66BB6A;
+        }
+
+        .card.sold {
+            background-color: #ffebee;
+        }
+        .card.sold::after {
+            background-color: #e57373;
         }
 
         /* Table */
@@ -187,6 +223,26 @@
         .add-vehicle-container form button:hover {
             background-color: #1B89BE;
         }
+
+        /* Chart Section */
+        .chart-container {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container h2 {
+            color: #012063;
+            margin-bottom: 20px;
+        }
+
+        .chart {
+            height: 250px;
+            width: 100%;
+        }
+
     </style>
 </head>
 <body>
@@ -208,93 +264,23 @@
     <div class="main">
         <h1>Welcome to Fleet Management</h1>
         <div class="card-container">
-            <div class="card">
+            <div class="card total">
                 <h3>Total Vehicles</h3>
                 <p>150</p>
             </div>
-            <div class="card">
+            <div class="card available">
                 <h3>Vehicles Available</h3>
                 <p>100</p>
             </div>
-            <div class="card">
+            <div class="card sold">
                 <h3>Vehicles Sold</h3>
                 <p>50</p>
             </div>
         </div>
 
-        <h2>Vehicle Inventory</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Model</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Toyota Corolla</td>
-                    <td><span class="status available">Available</span></td>
-                    <td class="action-buttons">
-                        <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Ford F-150</td>
-                    <td><span class="status sold">Sold</span></td>
-                    <td class="action-buttons">
-                        <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>003</td>
-                    <td>Honda Civic</td>
-                    <td><span class="status available">Available</span></td>
-                    <td class="action-buttons">
-                        <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="add-vehicle-container">
-            <h2>Add New Vehicle</h2>
-            <form>
-                <div class="form-group">
-                    <label for="vehicle-name">Vehicle Name</label>
-                    <input type="text" id="vehicle-name" placeholder="Enter vehicle name">
-                </div>
-                <div class="form-group">
-                    <label for="vehicle-brand">Brand</label>
-                    <input type="text" id="vehicle-brand" placeholder="Enter vehicle brand">
-                </div>
-                <div class="form-group">
-                    <label for="vehicle-model">Model</label>
-                    <input type="text" id="vehicle-model" placeholder="Enter vehicle model">
-                </div>
-                <div class="form-group">
-                    <label for="vehicle-price">Price</label>
-                    <input type="number" id="vehicle-price" placeholder="Enter price">
-                </div>
-                <div class="form-group">
-                    <label for="vehicle-description">Description</label>
-                    <textarea id="vehicle-description" rows="4" placeholder="Enter description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="vehicle-photo">Photo</label>
-                    <input type="file" id="vehicle-photo">
-                </div>
-                <button type="submit">Add Vehicle</button>
-            </form>
+        <div class="chart-container">
+            <h2>Sales Overview</h2>
+            <div class="chart">[Placeholder for Chart]</div>
         </div>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-</body>
-</html>
+        <h2>Vehicle Inventory</h2>
