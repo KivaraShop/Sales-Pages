@@ -317,8 +317,19 @@
 
 <div id="google_translate_element" style="display: none;"></div>
 
+<!-- Botão para traduzir -->
+<div style="text-align: center; margin-top: 20px;">
+  <button id="translateButton" onclick="translatePageToEnglish()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+    Traduzir para Inglês
+  </button>
+</div>
+
+<!-- Área oculta para o Google Tradutor -->
+<div id="google_translate_element" style="display: none;"></div>
+
 <script>
   function translatePageToEnglish() {
+    // Carrega o script do Google Tradutor
     var googleTranslateScript = document.createElement('script');
     googleTranslateScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     document.body.appendChild(googleTranslateScript);
@@ -335,16 +346,17 @@
       'google_translate_element'
     );
 
-    // Força a tradução para inglês
+    // Aguarda o carregamento e ativa a tradução
     setTimeout(() => {
       var selectBox = document.querySelector(".goog-te-combo");
       if (selectBox) {
-        selectBox.value = "en"; // Define inglês
-        selectBox.dispatchEvent(new Event("change")); // Dispara o evento de mudança
+        selectBox.value = "en"; // Define o idioma como inglês
+        selectBox.dispatchEvent(new Event("change")); // Dispara a tradução
       }
     }, 500);
   }
 </script>
+
 
 </body>
 </html>
