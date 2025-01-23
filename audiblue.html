@@ -321,42 +321,35 @@
     });
 });
  </script>
- <script>
-    function translatePageToEnglish() {
-      // Verifica se o script do Google Tradutor já foi carregado
-      if (!window.google || !google.translate) {
-        var googleTranslateScript = document.createElement('script');
-        googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-        document.body.appendChild(googleTranslateScript);
-      } else {
-        activateTranslation();
-      }
-    }
+  <!-- Scripts -->
+  <script>
+    // Adiciona o script do Google Tradutor
+    (function addGoogleTranslateScript() {
+      var googleTranslateScript = document.createElement('script');
+      googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.body.appendChild(googleTranslateScript);
+    })();
 
     // Inicializa o Google Tradutor
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement(
-        {
-          pageLanguage: 'pt',
-          includedLanguages: 'en',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false
-        },
-        'google_translate_element'
-      );
-      activateTranslation();
+      new google.translate.TranslateElement({
+        pageLanguage: 'pt', // Idioma original da página
+        includedLanguages: 'en', // Idiomas disponíveis para tradução
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
     }
 
-    // Ativa a tradução para inglês
-    function activateTranslation() {
-      setTimeout(() => {
-        var selectBox = document.querySelector(".goog-te-combo");
-        if (selectBox) {
-          selectBox.value = "en"; // Define o idioma para inglês
-          selectBox.dispatchEvent(new Event("change")); // Dispara o evento de mudança
-        }
-      }, 500);
-    }
+    // Ativa a tradução para inglês ao clicar no botão
+    document.getElementById('translateButton').addEventListener('click', function () {
+      const selectBox = document.querySelector('.goog-te-combo');
+      if (selectBox) {
+        selectBox.value = 'en'; // Define o idioma para inglês
+        selectBox.dispatchEvent(new Event('change')); // Dispara o evento de mudança
+      } else {
+        alert('O tradutor ainda está carregando. Tente novamente em alguns segundos.');
+      }
+    });
   </script>
 
 </body>
