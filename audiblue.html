@@ -324,11 +324,16 @@
   <!-- Scripts -->
   <script>
     // Adiciona o script do Google Tradutor
-    (function addGoogleTranslateScript() {
+    var googleTranslateScriptLoaded = false;
+
+    function addGoogleTranslateScript() {
       var googleTranslateScript = document.createElement('script');
       googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       document.body.appendChild(googleTranslateScript);
-    })();
+      googleTranslateScript.onload = function() {
+        googleTranslateScriptLoaded = true;
+      };
+    }
 
     // Inicializa o Google Tradutor
     function googleTranslateElementInit() {
@@ -340,12 +345,17 @@
       }, 'google_translate_element');
     }
 
+    // Chama o script do Google Tradutor
+    addGoogleTranslateScript();
+
     // Ativa a tradução para inglês ao clicar no botão
     document.getElementById('translateButton').addEventListener('click', function () {
-      const selectBox = document.querySelector('.goog-te-combo');
-      if (selectBox) {
-        selectBox.value = 'en'; // Define o idioma para inglês
-        selectBox.dispatchEvent(new Event('change')); // Dispara o evento de mudança
+      if (googleTranslateScriptLoaded) {
+        const selectBox = document.querySelector('.goog-te-combo');
+        if (selectBox) {
+          selectBox.value = 'en'; // Define o idioma para inglês
+          selectBox.dispatchEvent(new Event('change')); // Dispara o evento de mudança
+        }
       } else {
         alert('O tradutor ainda está carregando. Tente novamente em alguns segundos.');
       }
