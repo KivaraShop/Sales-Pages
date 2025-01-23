@@ -236,7 +236,15 @@
             </div>
         </section>
     </main>
+<!-- Botão para traduzir -->
+<div style="text-align: center; margin-top: 20px;">
+  <button id="translateButton" onclick="translatePageToEnglish()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+    Traduzir para Inglês
+  </button>
+</div>
 
+<!-- Área oculta para o Google Tradutor -->
+<div id="google_translate_element" style="display: none;"></div>
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
@@ -274,7 +282,7 @@
             }, 500);
         }
     </script>
-   <script>
+    <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
     const loadingWheel = document.getElementById('loadingWheel');
@@ -311,23 +319,8 @@
         gif.src = gifURL + `?cache-force=${Math.random()}`;
     });
 });
-<div>
-  <button onclick="translatePageToEnglish()">Traduzir para Inglês</button>
-</div>
-
-<div id="google_translate_element" style="display: none;"></div>
-
-<!-- Botão para traduzir -->
-<div style="text-align: center; margin-top: 20px;">
-  <button id="translateButton" onclick="translatePageToEnglish()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
-    Traduzir para Inglês
-  </button>
-</div>
-
-<!-- Área oculta para o Google Tradutor -->
-<div id="google_translate_element" style="display: none;"></div>
-
-<script>
+ </script>
+    <script>
   function translatePageToEnglish() {
     // Carrega o script do Google Tradutor
     var googleTranslateScript = document.createElement('script');
@@ -356,7 +349,6 @@
     }, 500);
   }
 </script>
-
 
 </body>
 </html>
