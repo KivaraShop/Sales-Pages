@@ -312,5 +312,21 @@
     });
 });
  </script>
+
+    <a href="#" onclick="translatePageToEnglish()">Traduzir para Inglês</a>
+<script>
+  function translatePageToEnglish() {
+    var googleTranslateScript = document.createElement('script');
+    googleTranslateScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.body.appendChild(googleTranslateScript);
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'pt', includedLanguages: 'en', autoDisplay: false },
+        'google_translate_element'
+      );
+    }
+  }
+</script>
+
 </body>
 </html>
