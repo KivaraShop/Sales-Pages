@@ -274,5 +274,43 @@
             }, 500);
         }
     </script>
+   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
 </body>
 </html>
