@@ -321,32 +321,39 @@
     });
 });
  </script>
-     <!-- Script de tradução -->
-  <script>
+ <script>
     function translatePageToEnglish() {
-      // Adiciona o script do Google Tradutor dinamicamente
-      var googleTranslateScript = document.createElement('script');
-      googleTranslateScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      document.body.appendChild(googleTranslateScript);
+      // Verifica se o script do Google Tradutor já foi carregado
+      if (!window.google || !google.translate) {
+        var googleTranslateScript = document.createElement('script');
+        googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(googleTranslateScript);
+      } else {
+        activateTranslation();
+      }
     }
 
+    // Inicializa o Google Tradutor
     function googleTranslateElementInit() {
       new google.translate.TranslateElement(
         {
-          pageLanguage: 'pt', // Idioma original do site
-          includedLanguages: 'en', // Idiomas disponíveis (aqui, apenas inglês)
+          pageLanguage: 'pt',
+          includedLanguages: 'en',
           layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false
         },
         'google_translate_element'
       );
+      activateTranslation();
+    }
 
-      // Aguarda a inicialização do tradutor e força a tradução
+    // Ativa a tradução para inglês
+    function activateTranslation() {
       setTimeout(() => {
         var selectBox = document.querySelector(".goog-te-combo");
         if (selectBox) {
-          selectBox.value = "en"; // Seleciona o inglês
-          selectBox.dispatchEvent(new Event("change")); // Dispara o evento para traduzir
+          selectBox.value = "en"; // Define o idioma para inglês
+          selectBox.dispatchEvent(new Event("change")); // Dispara o evento de mudança
         }
       }, 500);
     }
