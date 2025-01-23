@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda de Carros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background-color: #012063;
+            padding: 1px;
+            text-align: center;
+        }
+
+        header .logo img {
+            width: 110px;
+        }
+ /* Logo */
+                .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
+
+        }
+
+        .logo img {
+            height: 40px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        main {
+            padding: 20px;
+        }
+
+     .car-details {
+    display: flex;
+    flex-direction: row;  /* Coloca as seções lado a lado */
+    align-items: flex-start;  /* Alinha as seções ao topo */
+    gap: 20px;  /* Espaçamento entre as seções */
+}
+
+.car-gallery {
+    width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
+    text-align: center;
+}
+
+.main-image img {
+    width: 80%;
+    max-width: 400px; /* Limita a largura máxima da imagem */
+    height: auto;
+    border-radius: 15px; /* Bordas arredondadas na imagem principal */
+}
+
+.thumbnail-carousel {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: opacity 0.3s, border 0.3s;
+    border: 2px solid transparent; /* Sem borda por padrão */
+}
+
+.thumbnail:hover {
+    opacity: 0.7;
+}
+
+.thumbnail.active {
+    border: 2px solid #00aaff; /* Borda azul para a miniatura ativa */
+}
+
+.car-info {
+    width: 40%; /* Ajusta a largura da seção */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.car-info h1 {
+    color: #012063;
+}
+
+.description {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.car-state {
+    margin-top: 20px;
+}
+
+.state-bar {
+    margin-bottom: 15px;
+}
+
+.state-bar span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.bar-container {
+    background-color: #ddd;
+    border-radius: 5px;
+    width: 100%;
+    height: 20px;
+    position: relative;
+}
+
+.bar {
+    background-color: #012063;
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1s ease-out;
+}
+
+.bar-label {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+        footer {
+            background-color: #fff;
+            color: black;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+ /* Mobile responsive */
+@media (max-width: 768px) {
+    /* Empilha as seções no celular */
+    .car-details {
+        flex-direction: column; /* Altera a direção para empilhar */
+        align-items: center; /* Centraliza os elementos */
+    }
+
+    .car-gallery {
+        width: 100%; /* A galeria ocupa toda a largura */
+        text-align: center; /* Centraliza o conteúdo */
+    }
+
+    .car-info {
+        width: 100%; /* Informações do veículo ocupam toda a largura */
+        padding: 0 10px; /* Adiciona espaçamento interno */
+    }
+
+    .main-image img {
+        width: 90%; /* Ajusta a largura da imagem principal */
+        max-width: 600px; /* Define um limite máximo */
+        height: auto; /* Mantém a proporção da imagem */
+    }
+
+    .car-state {
+        width: 100%; /* As barras ocupam toda a largura disponível */
+    }
+
+    .state-bar {
+        width: 100%; /* Ajusta as barras de estado */
+    }
+
+    .bar-container {
+        width: 100%; /* A barra de estado ocupa toda a largura */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+    </header>
+
+    <main>
+        <section class="car-details">
+            <div class="car-gallery">
+                <div class="main-image">
+                    <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro Principal" id="main-car-image">
+                </div>
+                <div class="thumbnail-carousel">
+<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/Pr23d6L/ezgif-com-crop.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+
+
+
+                </div>
+            </div>
+            <div class="car-info">
+                <h1>Proton, X70</h1>
+                <p class="description">A Proton, X70 combina desempenho, luxo e tecnologia em um design elegante e sofisticado. Equipado com um motor de 2.0L de 184 cv, oferece uma condução dinâmica e eficiente, com transmissão automática de 8 marchas. O interior é refinado, com acabamentos em couro e tecnologia de ponta, incluindo o sistema iDrive e conectividade Bluetooth.</p>
+
+                <div class="car-state">
+                    <div class="state-bar">
+                        <span>Quilometragem</span>
+                        <div class="bar-container">
+                            <div class="bar" id="km-bar"></div>
+                        </div>
+                        <p class="bar-label" id="km-label">60.000 km</p>
+                    </div>
+                    <div class="state-bar">
+                        <span>Condição</span>
+                        <div class="bar-container">
+                            <div class="bar" id="condition-bar"></div>
+                        </div>
+                        <p class="bar-label" id="condition-label">80% de boa condição</p>
+                    </div>
+                    <div class="state-bar">
+                        <span>Combustível</span>
+                        <div class="bar-container">
+                            <div class="bar" id="fuel-bar"></div>
+                        </div>
+                        <p class="bar-label" id="fuel-label">40% restante</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+       function changeImage(thumbnail) {
+    // Mudar a imagem principal para o src da miniatura clicada
+    document.getElementById("main-car-image").src = thumbnail.src;
+
+    // Remover a classe 'active' de todas as miniaturas
+    let thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach(function(thumb) {
+        thumb.classList.remove('active');
+    });
+
+    // Adicionar a classe 'active' à miniatura clicada
+    thumbnail.classList.add('active');
+}
+
+
+        // Função para animar as barras
+        window.onload = function() {
+            animateBar('km-bar', 60, 'km-label', '60.000 km');
+            animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
+            animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
+        }
+
+        function animateBar(barId, percentage, labelId, labelText) {
+            let bar = document.getElementById(barId);
+            let label = document.getElementById(labelId);
+            bar.style.width = '0%';
+            setTimeout(function() {
+                bar.style.width = percentage + '%';
+                label.textContent = labelText;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
