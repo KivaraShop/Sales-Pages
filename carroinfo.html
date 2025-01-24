@@ -195,11 +195,6 @@
                 <div class="main-image">
                     <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
-                  <div class="thumbnail-wrapper" style="position: relative; display: flex; align-items: center;">
-            <!-- Left Navigation Icon -->
-            <div class="nav-icon left" onclick="scrollThumbnails('left')" style="cursor: pointer; position: absolute; left: 0; z-index: 10; background: rgba(0, 0, 0, 0.5); color: white; padding: 10px; border-radius: 50%;">
-                &#8249; <!-- Left arrow -->
-            </div>
                 <div class="thumbnail-carousel">
 <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
@@ -207,12 +202,10 @@
 <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
  <img src="https://i.ibb.co/k0Qfs9L/gif-interior.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/Hq36BFJ/ezgif-com-animated-gif-maker-1.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-     </div>
-            <!-- Right Navigation Icon -->
-            <div class="nav-icon right" onclick="scrollThumbnails('right')" style="cursor: pointer; position: absolute; right: 0; z-index: 10; background: rgba(0, 0, 0, 0.5); color: white; padding: 10px; border-radius: 50%;">
-                &#8250; <!-- Right arrow -->
-            </div>
-       
+
+
+
+                </div>
             </div>
             <div class="car-info">
                 <h1>Audi Q5, 2018</h1>
@@ -249,54 +242,61 @@
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
 
-    <script>
-// Function to change the main image
-function changeImage(thumbnail) {
-    // Change the main image to the clicked thumbnail's source
-    document.getElementById("main-car-image").src = thumbnail.src;
+<script>
+    function changeImage(thumbnail) {
+        // Mudar a imagem principal para o src da miniatura clicada
+        document.getElementById("main-car-image").src = thumbnail.src;
 
-    // Remove the 'active' class from all thumbnails
-    let thumbnails = document.querySelectorAll('.thumbnail');
-    thumbnails.forEach(function (thumb) {
-        thumb.classList.remove('active');
-    });
+        // Remover a classe 'active' de todas as miniaturas
+        let thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach(function(thumb) {
+            thumb.classList.remove('active');
+        });
 
-    // Add the 'active' class to the clicked thumbnail
-    thumbnail.classList.add('active');
-}
-
-// Function to scroll the thumbnails carousel
-function scrollThumbnails(direction) {
-    const carousel = document.getElementById('thumbnail-carousel');
-    const scrollAmount = 150; // Adjust the scroll distance as needed
-
-    if (direction === 'left') {
-        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    } else if (direction === 'right') {
-        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        // Adicionar a classe 'active' à miniatura clicada
+        thumbnail.classList.add('active');
     }
-}
 
-// Function to animate the bars for km, condition, and fuel
-function animateBar(barId, percentage, labelId, labelText) {
-    let bar = document.getElementById(barId);
-    let label = document.getElementById(labelId);
-    bar.style.width = '0%'; // Start animation from 0%
-    setTimeout(function () {
-        bar.style.width = percentage + '%'; // Animate to the given percentage
-        label.textContent = labelText; // Update the label text
-    }, 500);
-}
+    // Função para animar as barras
+    window.onload = function() {
+        animateBar('km-bar', 60, 'km-label', '60.000 km');
+        animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
+        animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
+    }
 
-// On window load, initialize the bars and any other functionality
-window.onload = function () {
-    // Animate the bars
-    animateBar('km-bar', 60, 'km-label', '60.000 km');
-    animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
-    animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
-};
+    function animateBar(barId, percentage, labelId, labelText) {
+        let bar = document.getElementById(barId);
+        let label = document.getElementById(labelId);
+        bar.style.width = '0%';
+        setTimeout(function() {
+            bar.style.width = percentage + '%';
+            label.textContent = labelText;
+        }, 500);
+    }
 
-    </script>
+    // Função para rolar o carrossel horizontalmente para a direita
+    function scrollRight() {
+        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        thumbnailCarousel.scrollBy({
+            left: 100, // Ajuste o valor para a distância do scroll
+            behavior: 'smooth'
+        });
+    }
+
+    // Função para rolar o carrossel horizontalmente para a esquerda
+    function scrollLeft() {
+        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        thumbnailCarousel.scrollBy({
+            left: -100, // Ajuste o valor para a distância do scroll
+            behavior: 'smooth'
+        });
+    }
+
+    // Adicionar event listeners se você tiver botões de rolagem
+    document.querySelector('.scroll-left')?.addEventListener('click', scrollLeft);
+    document.querySelector('.scroll-right')?.addEventListener('click', scrollRight);
+</script>
+
    <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
