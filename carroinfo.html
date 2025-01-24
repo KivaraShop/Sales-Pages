@@ -91,6 +91,12 @@ flex-shrink: 0; /* Impede que as miniaturas encolham */
 
 /* Ajustes para telas pequenas (dispositivos móveis) */
 @media screen and (max-width: 767px) {
+    .thumbnail-carousel {
+        padding-left: 10px;  /* Garante que o espaço à esquerda ainda exista */
+        padding-right: 10px; /* Espaço à direita para garantir que a primeira miniatura não seja cortada */
+        max-width: calc(3 * 60px + 2 * 10px); /* Ajusta a largura para 3 miniaturas no carrossel */
+    }
+    
     .thumbnail {
         width: 60px !important;  /* Tamanho pequeno para dispositivos móveis */
         height: 60px !important; /* Mantém a proporção 1:1 */
