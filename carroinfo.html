@@ -82,16 +82,16 @@ flex-shrink: 0; /* Impede que as miniaturas encolham */
 /* Ajustes para telas grandes (computadores) */
 @media screen and (min-width: 768px) {
     .thumbnail {
-        width: 80px;  /* Ajuste para largura maior em desktops */
-        height: 80px; /* Altura igual à largura, mantendo a proporção 1:1 */
+        width: 80px !important;  /* Ajuste para largura maior em desktops */
+        height: 80px !important; /* Altura igual à largura, mantendo a proporção 1:1 */
     }
 }
 
 /* Ajustes para telas pequenas (dispositivos móveis) */
 @media screen and (max-width: 767px) {
     .thumbnail {
-        width: 60px;  /* Tamanho pequeno para dispositivos móveis */
-        height: 60px; /* Mantém a proporção 1:1 */
+        width: 60px !important;  /* Tamanho pequeno para dispositivos móveis */
+        height: 60px !important; /* Mantém a proporção 1:1 */
     }
 }
 .thumbnail:hover {
