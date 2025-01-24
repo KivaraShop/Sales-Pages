@@ -78,59 +78,7 @@
 .thumbnail:hover {
     opacity: 0.7;
 }
-  /* Adicionar as classes necessárias */
-        .thumbnail-carousel {
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 10px;
-            gap: 10px;
-            overflow: hidden;
-            width: 100%;
-        }
 
-        .carousel-wrapper {
-            display: flex;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .thumbnail {
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            border-radius: 10px;
-            object-fit: cover;
-            transition: opacity 0.3s, border 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .thumbnail:hover {
-            opacity: 0.7;
-        }
-
-        .thumbnail.active {
-            border: 2px solid #00aaff;
-        }
-
-        .scroll-left, .scroll-right {
-            background-color: transparent;
-            border: none;
-            font-size: 24px;
-            color: #012063;
-            cursor: pointer;
-            padding: 10px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-
-        .scroll-left {
-            left: 10px;
-        }
-
-        .scroll-right {
-            right: 10px;
-        }
 .thumbnail.active {
     border: 2px solid #00aaff; /* Borda azul para a miniatura ativa */
 }
@@ -242,22 +190,21 @@
     </header>
 
     <main>
-            <section class="car-details">
+        <section class="car-details">
             <div class="car-gallery">
                 <div class="main-image">
                     <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
                 <div class="thumbnail-carousel">
-                    <button class="scroll-left" id="scroll-left">‹</button>
-                    <div class="carousel-wrapper" id="carousel-wrapper">
-                        <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-                        <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
-                        <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-                        <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 4" class="thumbnail" onclick="changeImage(this)">
-                        <img src="https://i.ibb.co/k0Qfs9L/gif-interior.gif" alt="Carro 5" class="thumbnail" onclick="changeImage(this)">
-                        <img src="https://i.ibb.co/Hq36BFJ/ezgif-com-animated-gif-maker-1.gif" alt="Carro 6" class="thumbnail" onclick="changeImage(this)">
-                    </div>
-                    <button class="scroll-right" id="scroll-right">›</button>
+<img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+ <img src="https://i.ibb.co/k0Qfs9L/gif-interior.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/Hq36BFJ/ezgif-com-animated-gif-maker-1.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+
+
+
                 </div>
             </div>
             <div class="car-info">
@@ -294,44 +241,40 @@
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
-    
-   <script>
-        let currentIndex = 0;
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const carouselWrapper = document.getElementById('carousel-wrapper');
-        const visibleThumbnails = 4; // Número de miniaturas visíveis
-        const totalThumbnails = thumbnails.length;
 
-        function changeImage(element) {
-            document.getElementById('main-car-image').src = element.src;
+    <script>
+       function changeImage(thumbnail) {
+    // Mudar a imagem principal para o src da miniatura clicada
+    document.getElementById("main-car-image").src = thumbnail.src;
+
+    // Remover a classe 'active' de todas as miniaturas
+    let thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach(function(thumb) {
+        thumb.classList.remove('active');
+    });
+
+    // Adicionar a classe 'active' à miniatura clicada
+    thumbnail.classList.add('active');
+}
+
+
+        // Função para animar as barras
+        window.onload = function() {
+            animateBar('km-bar', 60, 'km-label', '60.000 km');
+            animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
+            animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
         }
 
-        // Função para rolar as miniaturas para a esquerda
-        document.getElementById('scroll-left').addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarouselPosition();
-            }
-        });
-
-        // Função para rolar as miniaturas para a direita
-        document.getElementById('scroll-right').addEventListener('click', () => {
-            if (currentIndex < totalThumbnails - visibleThumbnails) {
-                currentIndex++;
-                updateCarouselPosition();
-            }
-        });
-
-        // Atualizar a posição do carrossel com base no índice atual
-        function updateCarouselPosition() {
-            const offset = -(currentIndex * (thumbnails[0].offsetWidth + 10)); // Deslocamento baseado no tamanho das miniaturas
-            carouselWrapper.style.transform = `translateX(${offset}px)`;
+        function animateBar(barId, percentage, labelId, labelText) {
+            let bar = document.getElementById(barId);
+            let label = document.getElementById(labelId);
+            bar.style.width = '0%';
+            setTimeout(function() {
+                bar.style.width = percentage + '%';
+                label.textContent = labelText;
+            }, 500);
         }
-
-        // Inicializar a posição do carrossel
-        updateCarouselPosition();
     </script>
-
    <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
