@@ -88,8 +88,10 @@
             width: 40px !important;  /* Ajuste para largura maior em desktops */
             height: 40px !important; /* Altura igual à largura, mantendo a proporção 1:1 */
         }
-    }
+.thumbnail-carousel {
+        max-width: calc(4 * 60px + 3 * 10px); /* Força a exibição de 4 miniaturas + espaços */
 
+    
     /* Ajustes para telas pequenas (dispositivos móveis) */
     @media screen and (max-width: 767px) {
         .thumbnail-carousel {
