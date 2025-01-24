@@ -43,6 +43,8 @@
         flex-direction: row;  /* Coloca as seções lado a lado */
         align-items: flex-start;  /* Alinha as seções ao topo */
         gap: 0px;  /* Espaçamento entre as seções */
+        margin: 0; /* Remove margens extras na descrição */
+    padding: 0; /* Remove qualquer padding */
     }
 
     .car-gallery {
@@ -115,6 +117,7 @@
     .car-info {
         width: 40%; /* Ajusta a largura da seção */
         text-align: left; /* Alinha o texto à esquerda */
+        column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
     }
 
     .car-info h1 {
@@ -193,6 +196,7 @@
             width: 90%; /* Ajusta a largura da imagem principal */
             max-width: 600px; /* Define um limite máximo */
             height: auto; /* Mantém a proporção da imagem */
+            margin: 0; /* Remove margens extras da imagem */
         }
 
         .car-state {
