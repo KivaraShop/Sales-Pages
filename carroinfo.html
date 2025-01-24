@@ -63,7 +63,7 @@
         margin-top: 20px !important;
         gap: 10px;
         overflow-x: auto;
-        width: 40% !important; /* Ajusta o tamanho do container para 80% da largura da tela */
+        width: 50% !important; /* Ajusta o tamanho do container para 80% da largura da tela */
         scroll-behavior: smooth;
         max-width: calc(4 * 60px + 3 * 10px); /* Força a exibição de 4 miniaturas + espaços */
         margin: 0 auto; /* Centraliza o cpadding-left: 10px; /* Garante que o container tenha espaço suficiente */
@@ -73,8 +73,8 @@
     }
 
     .thumbnail {
-        width: 30px !important;  /* Miniaturas com tamanho reduzido */
-        height: 30px !important; /* Mantendo proporção */
+        width: 45px !important;  /* Miniaturas com tamanho reduzido */
+        height: 45px !important; /* Mantendo proporção */
         cursor: pointer;
         border-radius: 10px;
         object-fit: cover;
@@ -88,10 +88,8 @@
             width: 60px !important;  /* Ajuste para largura maior em desktops */
             height: 60px !important; /* Altura igual à largura, mantendo a proporção 1:1 */
         }
-.thumbnail-carousel {
-        max-width: calc(4 * 60px + 3 * 10px); /* Força a exibição de 4 miniaturas + espaços */
+    }
 
-    
     /* Ajustes para telas pequenas (dispositivos móveis) */
     @media screen and (max-width: 767px) {
         .thumbnail-carousel {
