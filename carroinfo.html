@@ -242,6 +242,76 @@
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
+
+<script>
+    // Function to change the main image when a thumbnail is clicked
+function changeImage(thumbnail) {
+    // Change the main image to the source of the clicked thumbnail
+    document.getElementById("main-car-image").src = thumbnail.src;
+
+    // Remove the 'active' class from all thumbnails
+    let thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach(function(thumb) {
+        thumb.classList.remove('active');
+    });
+
+    // Add the 'active' class to the clicked thumbnail
+    thumbnail.classList.add('active');
+}
+
+// Function to initialize the carousel and make sure only 4 thumbnails are visible at a time
+document.addEventListener("DOMContentLoaded", function() {
+    const carousel = document.querySelector('.thumbnail-carousel');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const scrollLeftButton = document.querySelector('.scroll-left');
+    const scrollRightButton = document.querySelector('.scroll-right');
+
+    const thumbnailsPerPage = 4;
+    let currentIndex = 0;
+
+    // Function to update the carousel display
+    function updateCarousel() {
+        const maxIndex = thumbnails.length - thumbnailsPerPage;
+
+        // Show/hide the left scroll button
+        if (currentIndex > 0) {
+            scrollLeftButton.style.display = "block";
+        } else {
+            scrollLeftButton.style.display = "none";
+        }
+
+        // Show/hide the right scroll button
+        if (currentIndex < maxIndex) {
+            scrollRightButton.style.display = "block";
+        } else {
+            scrollRightButton.style.display = "none";
+        }
+
+        // Update the position of the thumbnails inside the carousel
+        carousel.style.transform = `translateX(-${currentIndex * (thumbnails[0].offsetWidth + 10)}px)`;
+    }
+
+    // Scroll left button functionality
+    scrollLeftButton.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+
+    // Scroll right button functionality
+    scrollRightButton.addEventListener('click', function() {
+        const maxIndex = thumbnails.length - thumbnailsPerPage;
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+
+    // Initialize carousel with the correct position
+    updateCarousel();
+});
+</script>
     
 <script>
     function changeImage(thumbnail) {
