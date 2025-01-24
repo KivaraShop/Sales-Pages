@@ -314,7 +314,7 @@
         // Ajustar a largura do carrossel de miniaturas para exibir apenas 4 de cada vez
         thumbnailCarousel.style.display = 'flex';
         thumbnailCarousel.style.overflow = 'hidden'; // Esconde o excesso de miniaturas
-        thumbnailCarousel.style.width = 'auto'; // Deixe a largura automática, sem cortar ou limitar
+        thumbnailCarousel.style.width = 'calc(100% / 4)'; // Exibe somente 4 miniaturas por vez
 
         // Adicionar 'active' na primeira miniatura (caso necessário)
         if (thumbnails.length > 0) {
