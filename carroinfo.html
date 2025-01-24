@@ -196,13 +196,14 @@
                     <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
                 <div class="thumbnail-carousel">
+<button class="scroll-left"><</button>
 <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
  <img src="https://i.ibb.co/k0Qfs9L/gif-interior.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/Hq36BFJ/ezgif-com-animated-gif-maker-1.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-
+<button class="scroll-right">></button>
 
 
                 </div>
@@ -277,8 +278,9 @@
     // Função para rolar o carrossel horizontalmente para a direita
     function scrollRight() {
         const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        // Scroll horizontal com suavidade para a direita
         thumbnailCarousel.scrollBy({
-            left: 100, // Ajuste o valor para a distância do scroll
+            left: 120,  // Distância para rolar para a direita
             behavior: 'smooth'
         });
     }
@@ -286,8 +288,9 @@
     // Função para rolar o carrossel horizontalmente para a esquerda
     function scrollLeft() {
         const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        // Scroll horizontal com suavidade para a esquerda
         thumbnailCarousel.scrollBy({
-            left: -100, // Ajuste o valor para a distância do scroll
+            left: -120, // Distância para rolar para a esquerda
             behavior: 'smooth'
         });
     }
