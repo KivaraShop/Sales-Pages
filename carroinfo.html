@@ -264,71 +264,67 @@
         animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
         animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
         
-        checkCarousel(); // Verifica e ajusta o carrossel ao carregar
-    }
+       // Troca de imagem principal
+        function changeImage(thumbnail) {
+            document.getElementById("main-car-image").src = thumbnail.src;
 
-    function animateBar(barId, percentage, labelId, labelText) {
-        let bar = document.getElementById(barId);
-        let label = document.getElementById(labelId);
-        bar.style.width = '0%';
-        setTimeout(function() {
-            bar.style.width = percentage + '%';
-            label.textContent = labelText;
-        }, 500);
-    }
+            let thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(function(thumb) {
+                thumb.classList.remove('active');
+            });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const carousel = document.querySelector('.thumbnail-carousel');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    const scrollLeftButton = document.querySelector('.scroll-left');
-    const scrollRightButton = document.querySelector('.scroll-right');
-
-    const thumbnailsPerPage = 4;
-    let currentIndex = 0;
-
-    // Function to update the carousel display
-    function updateCarousel() {
-        const maxIndex = thumbnails.length - thumbnailsPerPage;
-
-        // Show/hide the left scroll button
-        if (currentIndex > 0) {
-            scrollLeftButton.style.display = "block";
-        } else {
-            scrollLeftButton.style.display = "none";
+            thumbnail.classList.add('active');
         }
 
-        // Show/hide the right scroll button
-        if (currentIndex < maxIndex) {
-            scrollRightButton.style.display = "block";
-        } else {
-            scrollRightButton.style.display = "none";
-        }
+        // Função para gerenciar o carrossel de miniaturas
+        document.addEventListener("DOMContentLoaded", function() {
+            const carousel = document.querySelector('.thumbnail-carousel');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const scrollLeftButton = document.querySelector('.scroll-left');
+            const scrollRightButton = document.querySelector('.scroll-right');
 
-        // Update the position of the thumbnails inside the carousel
-        carousel.style.transform = `translateX(-${currentIndex * (thumbnails[0].offsetWidth + 10)}px)`;
-    }
+            const thumbnailsPerPage = 4;
+            let currentIndex = 0;
 
-    // Scroll left button functionality
-    scrollLeftButton.addEventListener('click', function() {
-        if (currentIndex > 0) {
-            currentIndex--;
+            // Função para atualizar a exibição do carrossel
+            function updateCarousel() {
+                const maxIndex = thumbnails.length - thumbnailsPerPage;
+
+                if (currentIndex > 0) {
+                    scrollLeftButton.style.display = "block";
+                } else {
+                    scrollLeftButton.style.display = "none";
+                }
+
+                if (currentIndex < maxIndex) {
+                    scrollRightButton.style.display = "block";
+                } else {
+                    scrollRightButton.style.display = "none";
+                }
+
+                carousel.style.transform = `translateX(-${currentIndex * (thumbnails[0].offsetWidth + 10)}px)`;
+            }
+
+            // Funcionalidade do botão "scroll-left"
+            scrollLeftButton.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            // Funcionalidade do botão "scroll-right"
+            scrollRightButton.addEventListener('click', function() {
+                const maxIndex = thumbnails.length - thumbnailsPerPage;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            // Inicializa o carrossel
             updateCarousel();
-        }
-    });
-
-    // Scroll right button functionality
-    scrollRightButton.addEventListener('click', function() {
-        const maxIndex = thumbnails.length - thumbnailsPerPage;
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateCarousel();
-        }
-    });
-
-    // Initialize carousel with the correct position
-    updateCarousel();
-});
-
+        });
 </script>
 
 
