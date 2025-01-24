@@ -264,7 +264,7 @@
         animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
         animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
         
-        checkCarousel();
+        checkCarousel(); // Verifica e ajusta o carrossel ao carregar
     }
 
     function animateBar(barId, percentage, labelId, labelText) {
@@ -300,6 +300,7 @@
         const thumbnails = document.querySelectorAll('.thumbnail');
         const scrollLeftButton = document.querySelector('.scroll-left');
         const scrollRightButton = document.querySelector('.scroll-right');
+        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
 
         // Se houver mais de 4 miniaturas, exibir os botões de rolagem
         if (thumbnails.length > 4) {
@@ -310,17 +311,22 @@
             scrollRightButton.style.display = 'none';
         }
 
-        // Ajustar o tamanho da rolagem (apenas 4 miniaturas visíveis ao mesmo tempo)
-        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        // Ajustar a largura do carrossel de miniaturas para exibir apenas 4 de cada vez
         thumbnailCarousel.style.display = 'flex';
         thumbnailCarousel.style.overflow = 'hidden'; // Esconde o excesso de miniaturas
-        thumbnailCarousel.style.width = 'calc(100% / 4)'; // Mostrar apenas 4 miniaturas de cada vez
+        thumbnailCarousel.style.width = 'auto'; // Deixe a largura automática, sem cortar ou limitar
+
+        // Adicionar 'active' na primeira miniatura (caso necessário)
+        if (thumbnails.length > 0) {
+            thumbnails[0].classList.add('active');
+        }
     }
 
     // Adicionar event listeners aos botões de rolagem
     document.querySelector('.scroll-left')?.addEventListener('click', scrollLeft);
     document.querySelector('.scroll-right')?.addEventListener('click', scrollRight);
 </script>
+
 
 
    <script>
