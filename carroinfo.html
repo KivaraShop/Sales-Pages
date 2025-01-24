@@ -242,7 +242,6 @@
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
-
 <script>
     function changeImage(thumbnail) {
         // Mudar a imagem principal para o src da miniatura clicada
@@ -311,10 +310,14 @@
             scrollRightButton.style.display = 'none';
         }
 
-        // Ajustar a largura do carrossel de miniaturas para exibir apenas 4 de cada vez
+        // Ajustar a largura do carrossel de miniaturas para exibir somente 4 por vez
         thumbnailCarousel.style.display = 'flex';
         thumbnailCarousel.style.overflow = 'hidden'; // Esconde o excesso de miniaturas
-        thumbnailCarousel.style.width = 'calc(100% / 4)'; // Exibe somente 4 miniaturas por vez
+        thumbnailCarousel.style.scrollBehavior = 'smooth'; // Scroll suave
+
+        // Configura a largura do container para exibir 4 thumbnails ao mesmo tempo
+        let thumbnailWidth = thumbnails[0].offsetWidth; // Pega a largura de cada miniatura
+        thumbnailCarousel.style.width = `${thumbnailWidth * 4}px`; // Largura total para 4 miniaturas visíveis de cada vez
 
         // Adicionar 'active' na primeira miniatura (caso necessário)
         if (thumbnails.length > 0) {
