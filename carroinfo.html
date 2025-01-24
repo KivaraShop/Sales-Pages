@@ -263,6 +263,8 @@
         animateBar('km-bar', 60, 'km-label', '60.000 km');
         animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
         animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
+        
+        checkCarousel();
     }
 
     function animateBar(barId, percentage, labelId, labelText) {
@@ -278,7 +280,6 @@
     // Função para rolar o carrossel horizontalmente para a direita
     function scrollRight() {
         const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
-        // Scroll horizontal com suavidade para a direita
         thumbnailCarousel.scrollBy({
             left: 120,  // Distância para rolar para a direita
             behavior: 'smooth'
@@ -288,17 +289,39 @@
     // Função para rolar o carrossel horizontalmente para a esquerda
     function scrollLeft() {
         const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
-        // Scroll horizontal com suavidade para a esquerda
         thumbnailCarousel.scrollBy({
             left: -120, // Distância para rolar para a esquerda
             behavior: 'smooth'
         });
     }
 
-    // Adicionar event listeners se você tiver botões de rolagem
+    // Verificar se há mais de 4 miniaturas e habilitar os botões de rolagem
+    function checkCarousel() {
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const scrollLeftButton = document.querySelector('.scroll-left');
+        const scrollRightButton = document.querySelector('.scroll-right');
+
+        // Se houver mais de 4 miniaturas, exibir os botões de rolagem
+        if (thumbnails.length > 4) {
+            scrollLeftButton.style.display = 'block';
+            scrollRightButton.style.display = 'block';
+        } else {
+            scrollLeftButton.style.display = 'none';
+            scrollRightButton.style.display = 'none';
+        }
+
+        // Ajustar o tamanho da rolagem (apenas 4 miniaturas visíveis ao mesmo tempo)
+        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        thumbnailCarousel.style.display = 'flex';
+        thumbnailCarousel.style.overflow = 'hidden'; // Esconde o excesso de miniaturas
+        thumbnailCarousel.style.width = 'calc(100% / 4)'; // Mostrar apenas 4 miniaturas de cada vez
+    }
+
+    // Adicionar event listeners aos botões de rolagem
     document.querySelector('.scroll-left')?.addEventListener('click', scrollLeft);
     document.querySelector('.scroll-right')?.addEventListener('click', scrollRight);
 </script>
+
 
    <script>
     document.addEventListener("DOMContentLoaded", () => {
