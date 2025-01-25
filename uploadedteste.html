@@ -948,23 +948,25 @@ button:hover {
     </div>
 </footer>
 <script>
-// Variáveis globais para armazenar os filtros ativos
-let filtrosAtivos = [];
-
 // Função para filtrar os produtos com base nas tags
 function filtrarProdutos() {
     const produtosElementos = document.querySelectorAll('.product-card'); // Pega todos os elementos de produto
     
+    // Verifica cada produto e aplica o filtro de tags
     produtosElementos.forEach(produto => {
-        const tagsProduto = produto.getAttribute('data-tags').split(' '); // Pega as tags associadas ao produto
+        // Pega as tags associadas ao produto
+        const tagsProduto = produto.getAttribute('data-tags').split(' ');
 
-        // Verifica se todas as tags do produto estão entre as tags ativas
+        // Verifica se o produto possui todas as tags ativas
         const match = filtrosAtivos.every(tag => tagsProduto.includes(tag));
 
-        // Exibe ou oculta o produto
+        // Exibe ou oculta o produto com base no filtro
         produto.style.display = match ? 'block' : 'none';
     });
 }
+
+// Variáveis globais para armazenar os filtros ativos
+let filtrosAtivos = [];
 
 // Função para adicionar ou remover tags dos filtros ativos
 function adicionarFiltro(tag) {
@@ -987,11 +989,13 @@ function configurarTagsMenu() {
     tags.forEach(tag => {
         tag.addEventListener('click', function(event) {
             event.preventDefault(); // Impede o comportamento de link padrão
+            
             const tagName = tag.innerText.trim(); // Obtém o nome da tag clicada
+
             // Adiciona ou remove a tag do filtro
             adicionarFiltro(tagName);
 
-            // Altera o estilo da tag para indicar que está ativa
+            // Alterna o estilo da tag para indicar que está ativa
             tag.classList.toggle('active');
         });
     });
@@ -1011,7 +1015,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Configura o filtro de tags
     configurarTagsMenu();
 });
-
 
 </script>
     
