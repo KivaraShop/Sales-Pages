@@ -1041,10 +1041,10 @@ console.log('Menu found:', navMenu !== null);
  </script>
  
        <script>
-// URL do JSON no S3
+// URL do JSON com os dados
 const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'; // Substitua pelo seu URL
 
-let carsData = []; // Armazena os dados dos carros
+let carsData = []; // Variável global para armazenar os dados dos carros
 
 // Função para carregar os carros
 async function loadCars() {
@@ -1052,13 +1052,13 @@ async function loadCars() {
         const response = await fetch(s3JsonUrl);
         carsData = await response.json();
 
-        // Verificar se existem carros
+        // Verificar se há carros cadastrados
         if (carsData.length === 0) {
             document.getElementById('car-grid').innerHTML = '<p>Nenhum carro cadastrado ainda.</p>';
             return;
         }
 
-        // Exibe todos os carros inicialmente
+        // Exibir os carros carregados
         displayCars(carsData);
     } catch (error) {
         console.error('Erro ao carregar carros:', error);
@@ -1066,7 +1066,7 @@ async function loadCars() {
     }
 }
 
-// Função para exibir os carros
+// Função para exibir os carros no grid
 function displayCars(cars) {
     const carGrid = document.getElementById('car-grid');
     carGrid.innerHTML = ''; // Limpa o conteúdo atual
@@ -1075,54 +1075,40 @@ function displayCars(cars) {
         const carCard = document.createElement('div');
         carCard.classList.add('product-card');
 
-        // HTML do card de cada carro
         carCard.innerHTML = `
-            <div class="product-labels">
-                <span class="label">${car.label}</span>
-            </div>
             <img src="${car.image}" alt="${car.name}">
             <h3>${car.name}</h3>
-            <p class="price">Preço: ${car.price}</p>
-            <div class="more-info">
-                <i class="fas fa-info-circle"></i>
-                <a href="${car.infoLink}" target="_blank">Saber Mais</a>
-            </div>
-            <button onclick="window.location.href='${car.whatsappLink}'">
-                Falar com o Vendedor
-            </button>
+            <p>Preço: ${car.price}</p>
+            <p>${car.details}</p>
         `;
 
-        // Adicionar o card ao grid
         carGrid.appendChild(carCard);
     });
 }
 
-// Função para filtrar produtos
+// Função para filtrar os carros
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
-    const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
+    const filteredCars = carsData.filter(car =>
+        car.name.toLowerCase().includes(search) ||
+        car.model.toLowerCase().includes(search) ||
+        car.transmission.toLowerCase().includes(search)
+    );
 
     const carGrid = document.getElementById('car-grid');
     const noResultsMessage = document.getElementById('no-results-message');
-    const orderButton = document.getElementById('order-button');
 
-    // Se encontrou carros filtrados
     if (filteredCars.length > 0) {
-        carGrid.innerHTML = ''; // Limpa os produtos visíveis
+        carGrid.innerHTML = ''; // Limpa os resultados anteriores
         displayCars(filteredCars); // Exibe os carros filtrados
-        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
-        orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
+        noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem Resultados"
     } else {
-        carGrid.innerHTML = ''; // Limpa os produtos visíveis
-        noResultsMessage.innerHTML = `
-            <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
-        `;
-        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
-        orderButton.style.display = 'block'; // Exibe o botão "Encomendar viatura"
+        carGrid.innerHTML = ''; // Limpa os resultados anteriores
+        noResultsMessage.style.display = 'block'; // Mostra a mensagem "Sem Resultados" e o botão
     }
 }
 
-// Chamar a função para carregar os carros quando a página carregar
+// Carregar os carros quando a página carregar
 window.onload = loadCars;
 
 </script>
