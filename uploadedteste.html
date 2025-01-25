@@ -830,12 +830,12 @@ button:hover {
   </button>
 </div>
 
-<!-- Mensagem de "Sem Resultados" -->
-<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+<!-- Mensagem de "Sem Resultados" e Botão -->
+<div id="no-results-message" style="display: none; text-align: center; margin-bottom: 20px;">
     <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
     <button id="order-button" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
-
+    
 <!-- Botões de Navegação -->
 <div class="navigation-buttons">
     <a href="novos.html">Novos</a>
@@ -1044,7 +1044,7 @@ console.log('Menu found:', navMenu !== null);
 // URL do JSON no S3
 const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'; // Substitua pelo seu URL
 
-let carsData = []; // Armazenar os dados dos carros
+let carsData = []; // Armazena os dados dos carros
 
 // Função para carregar os carros
 async function loadCars() {
@@ -1058,9 +1058,8 @@ async function loadCars() {
             return;
         }
 
-        // Criar os cards para cada carro
-        displayCars(carsData); // Exibe todos os carros inicialmente
-
+        // Exibe todos os carros inicialmente
+        displayCars(carsData);
     } catch (error) {
         console.error('Erro ao carregar carros:', error);
         document.getElementById('car-grid').innerHTML = '<p>Erro ao carregar carros. Tente novamente mais tarde.</p>';
@@ -1070,7 +1069,7 @@ async function loadCars() {
 // Função para exibir os carros
 function displayCars(cars) {
     const carGrid = document.getElementById('car-grid');
-    carGrid.innerHTML = ''; // Limpar o conteúdo atual
+    carGrid.innerHTML = ''; // Limpa o conteúdo atual
 
     cars.forEach(car => {
         const carCard = document.createElement('div');
@@ -1104,27 +1103,8 @@ function filterProducts(searchTerm) {
     const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
 
     const carGrid = document.getElementById('car-grid');
-    let noResultsMessage = document.getElementById('no-results-message'); // Elemento de mensagem de "sem resultados"
-    let orderButton = document.getElementById('order-button'); // Botão de "Encomendar viatura"
-
-    // Se não existir a mensagem e o botão, cria-los
-    if (!noResultsMessage) {
-        noResultsMessage = document.createElement('div');
-        noResultsMessage.id = 'no-results-message';
-        noResultsMessage.style.display = 'none'; // Inicialmente escondido
-        carGrid.parentNode.appendChild(noResultsMessage); // Adiciona ao DOM
-    }
-
-    if (!orderButton) {
-        orderButton = document.createElement('button');
-        orderButton.id = 'order-button';
-        orderButton.style.display = 'none'; // Inicialmente escondido
-        orderButton.innerHTML = 'Encomendar viatura';
-        orderButton.onclick = () => {
-            window.location.href = 'https://wa.me/258852136558';
-        };
-        carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
-    }
+    const noResultsMessage = document.getElementById('no-results-message');
+    const orderButton = document.getElementById('order-button');
 
     // Se encontrou carros filtrados
     if (filteredCars.length > 0) {
