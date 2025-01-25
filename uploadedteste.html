@@ -776,18 +776,18 @@ button:hover {
     <div class="nav-menu">
         <ul>
             <!-- Menu items moved here, they will be toggled by the button -->
-             <li>
-                <a href="#" class="category">Marca</a>
-                <ul class="submenu">
-                    <li><a href="automatica.html">Toyota</a></li>
-                    <li><a href="manual.html">Isuzu</a></li>
-                    <li><a href="manual.html">BMW</a></li>
-                    <li><a href="mercedes.html">Mercedes-Benz</a></li>
-                    <li><a href="manual.html">Ford</a></li>
-                    <li><a href="manual.html">Audi</a></li>
-                    <li><a href="manual.html">Honda</a></li>
-                </ul>
-            </li>
+              <li>
+            <a href="#" class="category">Marca</a>
+            <ul class="submenu">
+                <li><span class="tag" data-tag="Toyota">Toyota</span></li>
+                <li><span class="tag" data-tag="Isuzu">Isuzu</span></li>
+                <li><span class="tag" data-tag="BMW">BMW</span></li>
+                <li><span class="tag" data-tag="Mercedes-Benz">Mercedes-Benz</span></li>
+                <li><span class="tag" data-tag="Ford">Ford</span></li>
+                <li><span class="tag" data-tag="Audi">Audi</span></li>
+                <li><span class="tag" data-tag="Honda">Honda</span></li>
+            </ul>
+        </li>
               <li>
                 <a href="#" class="category">Modelo</a>
                 <ul class="submenu">
@@ -952,45 +952,26 @@ button:hover {
     </div>
 </footer>
 <script>
-    
-// Função para carregar as tags do arquivo JSON
-async function carregarTags() {
-    try {
-        const response = await fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json');
-        if (!response.ok) {
-            throw new Error('Erro ao buscar dados JSON.');
-        }
-        const data = await response.json();
+// Função para filtrar carros com base nas tags
+const tags = document.querySelectorAll('.tag');
+tags.forEach(tag => {
+    tag.addEventListener('click', function() {
+        const tagValue = this.getAttribute('data-tag');
+        
+        // Aqui você deve implementar a lógica para filtrar seus dados de carros
+        // Exemplo de filtragem usando um array JSON de carros:
+        const carrosFiltrados = carros.filter(carro => carro.modelo.includes(tagValue) || carro.marca.includes(tagValue));
+        
+        // Aqui você pode exibir ou atualizar os resultados filtrados
+        mostrarCarrosFiltrados(carrosFiltrados);
+    });
+});
 
-        // Criar um conjunto para evitar tags duplicadas
-        const tags = new Set();
-
-        // Iterar sobre os carros e extrair as tags
-        data.forEach(car => {
-            if (car.tags) {
-                car.tags.forEach(tag => {
-                    tags.add(tag);
-                });
-            }
-        });
-
-        // Adicionar as tags ao menu
-        const tagList = document.getElementById('tagList');
-        tags.forEach(tag => {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = `#${tag}`; // Aqui, você pode ajustar para a lógica de filtragem
-            link.textContent = tag;
-            listItem.appendChild(link);
-            tagList.appendChild(listItem);
-        });
-    } catch (error) {
-        console.error('Erro ao carregar as tags:', error);
-    }
+// Exemplo de função para mostrar os carros filtrados
+function mostrarCarrosFiltrados(carros) {
+    // Atualizar a UI com os carros filtrados
+    console.log(carros);
 }
-
-// Chamar a função ao carregar a página
-window.onload = carregarTags;
 </script>
     
         <!-- Inclua a biblioteca Font Awesome -->
