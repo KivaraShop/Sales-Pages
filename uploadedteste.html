@@ -960,36 +960,7 @@ async function loadCars() {
         }
 
         // Criar os cards para cada carro
-        const carGrid = document.getElementById('car-grid');
-        carGrid.innerHTML = ''; // Limpar o conteúdo atual
-
-        carsData.forEach(car => {
-            const carCard = document.createElement('div');
-            carCard.classList.add('product-card');
-
-            // HTML do card de cada carro
-            carCard.innerHTML = `
-                <div class="product-labels">
-                    <span class="label">${car.label}</span>
-                </div>
-                <img src="${car.image}" alt="${car.name}">
-                <h3>${car.name}</h3>
-                <p class="price">Preço: ${car.price}</p>
-                <div class="more-info">
-                    <i class="fas fa-info-circle"></i>
-                    <a href="${car.infoLink}" target="_blank">Saber Mais</a>
-                </div>
-                <button onclick="window.location.href='${car.whatsappLink}'">
-                    Falar com o Vendedor
-                </button>
-            `;
-
-            // Adicionar o card ao grid
-            carGrid.appendChild(carCard);
-        });
-
-        // Chamar a função de filtro após carregar os carros
-        filterProducts(''); // Para inicializar a página com todos os carros visíveis
+        displayCars(carsData); // Exibe todos os carros inicialmente
 
     } catch (error) {
         console.error('Erro ao carregar carros:', error);
@@ -997,61 +968,48 @@ async function loadCars() {
     }
 }
 
+// Função para exibir os carros
+function displayCars(cars) {
+    const carGrid = document.getElementById('car-grid');
+    carGrid.innerHTML = ''; // Limpar o conteúdo atual
+
+    cars.forEach(car => {
+        const carCard = document.createElement('div');
+        carCard.classList.add('product-card');
+
+        // HTML do card de cada carro
+        carCard.innerHTML = `
+            <div class="product-labels">
+                <span class="label">${car.label}</span>
+            </div>
+            <img src="${car.image}" alt="${car.name}">
+            <h3>${car.name}</h3>
+            <p class="price">Preço: ${car.price}</p>
+            <div class="more-info">
+                <i class="fas fa-info-circle"></i>
+                <a href="${car.infoLink}" target="_blank">Saber Mais</a>
+            </div>
+            <button onclick="window.location.href='${car.whatsappLink}'">
+                Falar com o Vendedor
+            </button>
+        `;
+
+        // Adicionar o card ao grid
+        carGrid.appendChild(carCard);
+    });
+}
+
 // Função para filtrar produtos
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
-    const carGrid = document.getElementById('car-grid');
-    const noResultsMessage = document.getElementById('no-results-message');
-    const navigationButtons = document.querySelector('.navigation-buttons');
-    const footer = document.querySelector('footer'); // Obtém o rodapé
-    let resultsFound = false; // Flag para verificar se encontrou resultados
+    const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
 
-    // Inicialmente, esconder a mensagem "Sem resultados" e o botão
-    noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
-    navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
-    footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
-
-    // Filtra os carros
-    carGrid.innerHTML = ''; // Limpar o grid antes de adicionar os resultados filtrados
-    carsData.forEach(car => {
-        const carName = car.name.toLowerCase();
-        if (carName.includes(search)) {
-            const carCard = document.createElement('div');
-            carCard.classList.add('product-card');
-
-            // HTML do card de cada carro
-            carCard.innerHTML = `
-                <div class="product-labels">
-                    <span class="label">${car.label}</span>
-                </div>
-                <img src="${car.image}" alt="${car.name}">
-                <h3>${car.name}</h3>
-                <p class="price">Preço: ${car.price}</p>
-                <div class="more-info">
-                    <i class="fas fa-info-circle"></i>
-                    <a href="${car.infoLink}" target="_blank">Saber Mais</a>
-                </div>
-                <button onclick="window.location.href='${car.whatsappLink}'">
-                    Falar com o Vendedor
-                </button>
-            `;
-
-            // Adicionar o card ao grid
-            carGrid.appendChild(carCard);
-            resultsFound = true; // Marcar que encontrou pelo menos um produto
-        }
-    });
-
-    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
-    if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
-        navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
-        footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
-    } else if (resultsFound || searchTerm === '') {
-        // Se encontrou resultados ou o campo de pesquisa está vazio
-        noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
-        navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
-        footer.style.visibility = 'visible'; // Mostra o rodapé
+    // Verifica se encontrou carros correspondentes
+    if (filteredCars.length > 0) {
+        displayCars(filteredCars); // Exibe os carros filtrados
+    } else {
+        const carGrid = document.getElementById('car-grid');
+        carGrid.innerHTML = '<p>Nenhum carro encontrado.</p>'; // Exibe mensagem de "sem resultados"
     }
 }
 
