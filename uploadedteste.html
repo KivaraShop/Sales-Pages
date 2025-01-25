@@ -952,26 +952,63 @@ button:hover {
     </div>
 </footer>
 <script>
-// Função para filtrar carros com base nas tags
+// Variáveis globais para armazenar os filtros ativos
+let filtrosAtivos = {
+    marca: [],
+    modelo: [],
+    transmissao: []
+};
+
+// Função para filtrar produtos com base nas tags ativas
+function filtrarProdutos() {
+    const produtos = document.querySelectorAll('.product-card'); // Seleciona todos os produtos
+    
+    produtos.forEach(produto => {
+        const marca = produto.getAttribute('data-marca');
+        const modelo = produto.getAttribute('data-modelo');
+        const transmissao = produto.getAttribute('data-transmissao');
+        
+        // Verifica se o produto corresponde aos filtros ativos
+        const marcaMatch = filtrosAtivos.marca.length === 0 || filtrosAtivos.marca.includes(marca);
+        const modeloMatch = filtrosAtivos.modelo.length === 0 || filtrosAtivos.modelo.includes(modelo);
+        const transmissaoMatch = filtrosAtivos.transmissao.length === 0 || filtrosAtivos.transmissao.includes(transmissao);
+        
+        // Exibe ou esconde o produto de acordo com o filtro
+        if (marcaMatch && modeloMatch && transmissaoMatch) {
+            produto.style.display = 'block'; // Exibe o produto
+        } else {
+            produto.style.display = 'none'; // Esconde o produto
+        }
+    });
+}
+
+// Função para adicionar o filtro quando uma tag for clicada
+function adicionarFiltro(tag, categoria) {
+    const tagValue = tag.getAttribute('data-tag');
+    
+    if (filtrosAtivos[categoria].includes(tagValue)) {
+        // Se a tag já estiver no filtro, remove
+        filtrosAtivos[categoria] = filtrosAtivos[categoria].filter(value => value !== tagValue);
+    } else {
+        // Caso contrário, adiciona ao filtro
+        filtrosAtivos[categoria].push(tagValue);
+    }
+
+    filtrarProdutos(); // Chama a função para filtrar produtos
+}
+
+// Adiciona os eventos de clique para as tags
 const tags = document.querySelectorAll('.tag');
 tags.forEach(tag => {
     tag.addEventListener('click', function() {
-        const tagValue = this.getAttribute('data-tag');
+        const categoria = tag.closest('.submenu').previousElementSibling.textContent.trim().toLowerCase();
+        adicionarFiltro(tag, categoria);
         
-        // Aqui você deve implementar a lógica para filtrar seus dados de carros
-        // Exemplo de filtragem usando um array JSON de carros:
-        const carrosFiltrados = carros.filter(carro => carro.modelo.includes(tagValue) || carro.marca.includes(tagValue));
-        
-        // Aqui você pode exibir ou atualizar os resultados filtrados
-        mostrarCarrosFiltrados(carrosFiltrados);
+        // Estilização opcional para mostrar o filtro ativo
+        tag.classList.toggle('active');
     });
 });
 
-// Exemplo de função para mostrar os carros filtrados
-function mostrarCarrosFiltrados(carros) {
-    // Atualizar a UI com os carros filtrados
-    console.log(carros);
-}
 </script>
     
         <!-- Inclua a biblioteca Font Awesome -->
