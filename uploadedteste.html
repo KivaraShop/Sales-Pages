@@ -1141,8 +1141,9 @@ function filterProducts(searchTerm) {
             <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
         `;
         noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
-        orderButton.style.display = 'block'; // Exibe o botão "Encomendar viatura"
-    }
+       orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
+    orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
+}
 }
 
 // Chamar a função para carregar os carros quando a página carregar
