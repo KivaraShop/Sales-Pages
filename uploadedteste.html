@@ -1050,14 +1050,13 @@ function configurarTagsMenu() {
     });
 }
 
-// Função para o toggle do menu
+// Função para configurar o menu toggle (abrir/fechar)
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
 menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active'); // Show/hide menu
-    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
-    console.log("Toggle menu ativado!");
+    navMenu.classList.toggle('active'); // Alterna a visibilidade do menu
+    menuToggle.classList.toggle('clicked'); // Alterna o efeito de cor e tamanho do botão
 });
 
 // Função para inicializar tudo
@@ -1067,18 +1066,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configura o filtro de tags
     configurarTagsMenu();
-
-    // Configura o toggle do menu
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active'); // Alterna o menu de navegação
-        menuToggle.classList.toggle('clicked'); // Alterna o efeito de estilo do botão
-    });
-
-    // Debugging
-    console.log('Toggle connected:', menuToggle !== null);
-    console.log('Menu found:', navMenu !== null);
 });
-
 
 </script>
     
