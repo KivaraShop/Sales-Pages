@@ -818,6 +818,15 @@ button:hover {
             </li>
             <li><a href="sobrenos.html">Ofertas e Novidades</a></li>
         </ul>
+          <!-- Novo item para Tags -->
+        <li>
+            <a href="#" class="category">Tags</a>
+            <ul class="submenu" id="tagList">
+                <!-- As tags serão carregadas aqui dinamicamente -->
+            </ul>
+        </li>
+          </ul>
+        
     </div>
 
     <div class="container">
@@ -942,7 +951,48 @@ button:hover {
         <p>© 2025 Minha Empresa. Todos os direitos reservados.</p>
     </div>
 </footer>
+<script>
+    
+// Função para carregar as tags do arquivo JSON
+async function carregarTags() {
+    try {
+        const response = await fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json');
+        if (!response.ok) {
+            throw new Error('Erro ao buscar dados JSON.');
+        }
+        const data = await response.json();
 
+        // Criar um conjunto para evitar tags duplicadas
+        const tags = new Set();
+
+        // Iterar sobre os carros e extrair as tags
+        data.forEach(car => {
+            if (car.tags) {
+                car.tags.forEach(tag => {
+                    tags.add(tag);
+                });
+            }
+        });
+
+        // Adicionar as tags ao menu
+        const tagList = document.getElementById('tagList');
+        tags.forEach(tag => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = `#${tag}`; // Aqui, você pode ajustar para a lógica de filtragem
+            link.textContent = tag;
+            listItem.appendChild(link);
+            tagList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar as tags:', error);
+    }
+}
+
+// Chamar a função ao carregar a página
+window.onload = carregarTags;
+</script>
+    
         <!-- Inclua a biblioteca Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
