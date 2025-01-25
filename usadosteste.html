@@ -895,9 +895,9 @@ button:hover {
         </div>
     </div>
   
-<iframe src="https://kivarashop.github.io/Sales-Pages/uploaded.html" width="100%" height="600px" frameborder="0" style="overflow: hidden; height: 100%;"></iframe>
+<iframe id="myIframe" src="https://kivarashop.github.io/Sales-Pages/uploaded.html" width="100%" frameborder="0" style="overflow: hidden;"></iframe>
 
-  
+
 <!-- Rodapé -->
 <footer class="footer">
     <!-- Logo e Slogan -->
@@ -965,8 +965,19 @@ button:hover {
     </div>
 </footer>
 
- 
-    </script>
+ <script>
+  // Escutar a mensagem da página dentro do iframe
+  window.addEventListener('message', function(event) {
+    // Garantir que a mensagem vem do domínio correto
+    if (event.origin === 'https://kivarashop.github.io') {
+      // Ajustar a altura do iframe com base na altura enviada pela página interna
+      if (event.data.type === 'setIframeHeight') {
+        const iframe = document.getElementById('myIframe');
+        iframe.style.height = `${event.data.height}px`;
+      }
+    }
+  });
+</script>
 
 <!-- Inclua a biblioteca Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
