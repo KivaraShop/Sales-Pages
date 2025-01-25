@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload no S3</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1117.0.min.js"></script>
+</head>
+<body>
+    <h2>Upload de Arquivo para S3</h2>
+    <input type="file" id="fileInput" />
+    <button onclick="uploadFile()">Enviar para o Bucket</button>
+
+    <script>
+        // Substitua com as credenciais no formato do JSON que criamos
+        AWS.config.update({
+            accessKeyId: 'AKIA5V6I6U63IERGYN6K ',
+            secretAccessKey: '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',
+            region: 'us-east-1',
+        });
+
+        // Nome do seu bucket
+        const bucketName = 'car-inventory-storage-xyz';
+        const s3 = new AWS.S3();
+
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Por favor, selecione um arquivo para enviar.');
+                return;
+            }
+
+            const params = {
+                Bucket: bucketName,
+                Key: file.name, // O nome do arquivo será o nome do arquivo que o usuário selecionou
+                Body: file,
+                ACL: 'public-read' // Permite que o arquivo seja acessado publicamente
+            };
+
+            s3.upload(params, function(err, data) {
+                if (err) {
+                    console.log('Erro no upload:', err);
+                    alert('Erro no upload');
+                } else {
+                    console.log('Arquivo enviado com sucesso:', data);
+                    alert('Arquivo enviado com sucesso!');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
