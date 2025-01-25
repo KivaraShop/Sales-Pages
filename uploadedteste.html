@@ -952,61 +952,110 @@ button:hover {
     </div>
 </footer>
 <script>
-// Variáveis globais para armazenar os filtros ativos
-let filtrosAtivos = {
-    marca: [],
-    modelo: [],
-    transmissao: []
-};
+// Dados do JSON
+const produtos = [
+    {
+        "label": "Usado",
+        "image": "https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg",
+        "name": "Audi Q5, 2018",
+        "price": "1.150.000 MZN",
+        "infoLink": "carroinfo.html",
+        "whatsappLink": "https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20Q5%202018",
+        "tags": ["#Audi", "#SUV", "#Automatica"]
+    },
+    {
+        "label": "Novo",
+        "image": "https://via.placeholder.com/300",
+        "name": "BMW X5, 2023",
+        "price": "2.750.000 MZN",
+        "infoLink": "carroinfo.html",
+        "whatsappLink": "https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20X5%202023",
+        "tags": ["#BMW", "#SUV", "#Manual"]
+    },
+    // Adicione mais produtos conforme necessário
+];
 
-// Função para filtrar produtos com base nas tags ativas
-function filtrarProdutos() {
-    const produtos = document.querySelectorAll('.product-card'); // Seleciona todos os produtos
+// Variáveis globais para armazenar os filtros ativos
+let filtrosAtivos = [];
+
+// Função para criar os produtos na página
+function exibirProdutos() {
+    const containerProdutos = document.querySelector('.product-list'); // Contêiner onde os produtos serão exibidos
+    containerProdutos.innerHTML = ''; // Limpa o contêiner antes de adicionar os produtos
     
     produtos.forEach(produto => {
-        const marca = produto.getAttribute('data-marca');
-        const modelo = produto.getAttribute('data-modelo');
-        const transmissao = produto.getAttribute('data-transmissao');
+        const produtoElement = document.createElement('div');
+        produtoElement.classList.add('product-card');
         
-        // Verifica se o produto corresponde aos filtros ativos
-        const marcaMatch = filtrosAtivos.marca.length === 0 || filtrosAtivos.marca.includes(marca);
-        const modeloMatch = filtrosAtivos.modelo.length === 0 || filtrosAtivos.modelo.includes(modelo);
-        const transmissaoMatch = filtrosAtivos.transmissao.length === 0 || filtrosAtivos.transmissao.includes(transmissao);
+        // Adiciona os dados do produto
+        produtoElement.innerHTML = `
+            <img src="${produto.image}" alt="${produto.name}">
+            <h3>${produto.name}</h3>
+            <p>${produto.label}</p>
+            <p>${produto.price}</p>
+            <a href="${produto.infoLink}">Mais Informações</a>
+            <a href="${produto.whatsappLink}">Contatar no WhatsApp</a>
+        `;
         
-        // Exibe ou esconde o produto de acordo com o filtro
-        if (marcaMatch && modeloMatch && transmissaoMatch) {
-            produto.style.display = 'block'; // Exibe o produto
-        } else {
-            produto.style.display = 'none'; // Esconde o produto
-        }
+        // Atribui as tags ao produto para que possamos filtrar
+        produtoElement.setAttribute('data-tags', produto.tags.join(' '));
+        
+        // Adiciona o produto ao contêiner
+        containerProdutos.appendChild(produtoElement);
     });
 }
 
-// Função para adicionar o filtro quando uma tag for clicada
-function adicionarFiltro(tag, categoria) {
-    const tagValue = tag.getAttribute('data-tag');
+// Função para filtrar os produtos com base nas tags
+function filtrarProdutos() {
+    const produtosElementos = document.querySelectorAll('.product-card');
     
-    if (filtrosAtivos[categoria].includes(tagValue)) {
-        // Se a tag já estiver no filtro, remove
-        filtrosAtivos[categoria] = filtrosAtivos[categoria].filter(value => value !== tagValue);
+    produtosElementos.forEach(produto => {
+        const tagsProduto = produto.getAttribute('data-tags').split(' ');
+
+        // Verifica se todas as tags do produto estão entre as tags ativas
+        const match = filtrosAtivos.every(tag => tagsProduto.includes(tag));
+
+        // Exibe ou oculta o produto
+        produto.style.display = match ? 'block' : 'none';
+    });
+}
+
+// Função para adicionar ou remover tags dos filtros ativos
+function adicionarFiltro(tag) {
+    if (filtrosAtivos.includes(tag)) {
+        // Remove a tag
+        filtrosAtivos = filtrosAtivos.filter(filtro => filtro !== tag);
     } else {
-        // Caso contrário, adiciona ao filtro
-        filtrosAtivos[categoria].push(tagValue);
+        // Adiciona a tag
+        filtrosAtivos.push(tag);
     }
 
-    filtrarProdutos(); // Chama a função para filtrar produtos
+    // Atualiza a visualização dos produtos
+    filtrarProdutos();
 }
 
-// Adiciona os eventos de clique para as tags
-const tags = document.querySelectorAll('.tag');
-tags.forEach(tag => {
-    tag.addEventListener('click', function() {
-        const categoria = tag.closest('.submenu').previousElementSibling.textContent.trim().toLowerCase();
-        adicionarFiltro(tag, categoria);
-        
-        // Estilização opcional para mostrar o filtro ativo
-        tag.classList.toggle('active');
+// Configura o evento de clique nas tags do menu
+function configurarTagsMenu() {
+    const tags = document.querySelectorAll('.submenu .tag');
+    
+    tags.forEach(tag => {
+        tag.addEventListener('click', function() {
+            // Adiciona ou remove a tag do filtro
+            adicionarFiltro(tag.getAttribute('data-tag'));
+
+            // Altera o estilo da tag para indicar que está ativa
+            tag.classList.toggle('active');
+        });
     });
+}
+
+// Inicializa a página
+document.addEventListener('DOMContentLoaded', () => {
+    // Exibe os produtos na página
+    exibirProdutos();
+
+    // Configura o filtro de tags
+    configurarTagsMenu();
 });
 
 </script>
