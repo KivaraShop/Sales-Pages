@@ -980,7 +980,7 @@ let filtrosAtivos = [];
 
 // Função para criar os produtos na página
 function exibirProdutos() {
-    const containerProdutos = document.querySelector('.product-list'); // Contêiner onde os produtos serão exibidos
+    const containerProdutos = document.querySelector('#car-grid'); // Contêiner onde os produtos serão exibidos (correto)
     containerProdutos.innerHTML = ''; // Limpa o contêiner antes de adicionar os produtos
     
     produtos.forEach(produto => {
@@ -1057,6 +1057,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Configura o filtro de tags
     configurarTagsMenu();
 });
+
 
 </script>
     
