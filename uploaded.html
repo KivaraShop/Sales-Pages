@@ -119,19 +119,6 @@
             <!-- Os carros serão exibidos aqui -->
         </div>
     </div>
-<script>
-  // Função para enviar a altura do conteúdo
-  function sendIframeHeight() {
-    const height = document.documentElement.scrollHeight; // Altura total do conteúdo
-    parent.postMessage({ type: 'setIframeHeight', height: height }, '*'); // Enviar para a página principal
-  }
-
-  // Chama a função quando a página for carregada
-  window.onload = sendIframeHeight;
-
-  // Atualiza a altura se o conteúdo mudar
-  window.addEventListener('resize', sendIframeHeight);
-</script>
 
     <script>
         // URL do JSON no S3
