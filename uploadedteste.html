@@ -779,14 +779,10 @@ button:hover {
               <li>
             <a href="#" class="category">Marca</a>
             <ul class="submenu">
-                <li><span class="tag" data-tag="#Toyota">Toyota</span></li>
-                <li><span class="tag" data-tag="#Isuzu">Isuzu</span></li>
-                <li><span class="tag" data-tag="#BMW">BMW</span></li>
-                <li><span class="tag" data-tag="Mercedes-Benz">Mercedes-Benz</span></li>
-                <li><span class="tag" data-tag="Ford">Ford</span></li>
-                <li><span class="tag" data-tag="Audi">Audi</span></li>
-                <li><span class="tag" data-tag="Honda">Honda</span></li>
-            </ul>
+              <li><a href="#">#Audi</a></li>
+        <li><a href="#">#SUV</a></li>
+        <li><a href="#">#Automatica</a></li>
+    </ul>
         </li>
               <li>
                 <a href="#" class="category">Modelo</a>
@@ -952,65 +948,15 @@ button:hover {
     </div>
 </footer>
 <script>
-// Dados do JSON (exemplo)
-const produtos = [
-    {
-        "label": "Usado",
-        "image": "https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg",
-        "name": "Audi Q5, 2018",
-        "price": "1.150.000 MZN",
-        "infoLink": "carroinfo.html",
-        "whatsappLink": "https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20Q5%202018",
-        "tags": ["#Audi", "#SUV", "#Automatica"]
-    },
-    {
-        "label": "Novo",
-        "image": "https://via.placeholder.com/300",
-        "name": "BMW X5, 2023",
-        "price": "2.750.000 MZN",
-        "infoLink": "carroinfo.html",
-        "whatsappLink": "https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20X5%202023",
-        "tags": ["#BMW", "#SUV", "#Manual"]
-    },
-    // Adicione mais produtos conforme necessário
-];
-
 // Variáveis globais para armazenar os filtros ativos
 let filtrosAtivos = [];
 
-// Função para criar os produtos na página
-function exibirProdutos() {
-    const containerProdutos = document.querySelector('#car-grid'); // Contêiner onde os produtos serão exibidos
-    containerProdutos.innerHTML = ''; // Limpa o contêiner antes de adicionar os produtos
-    
-    produtos.forEach(produto => {
-        const produtoElement = document.createElement('div');
-        produtoElement.classList.add('product-card');
-        
-        // Adiciona os dados do produto
-        produtoElement.innerHTML = `
-            <img src="${produto.image}" alt="${produto.name}">
-            <h3>${produto.name}</h3>
-            <p>${produto.label}</p>
-            <p>${produto.price}</p>
-            <a href="${produto.infoLink}">Mais Informações</a>
-            <a href="${produto.whatsappLink}">Contatar no WhatsApp</a>
-        `;
-        
-        // Atribui as tags ao produto para que possamos filtrar
-        produtoElement.setAttribute('data-tags', produto.tags.join(' '));
-        
-        // Adiciona o produto ao contêiner
-        containerProdutos.appendChild(produtoElement);
-    });
-}
-
 // Função para filtrar os produtos com base nas tags
 function filtrarProdutos() {
-    const produtosElementos = document.querySelectorAll('.product-card');
+    const produtosElementos = document.querySelectorAll('.product-card'); // Pega todos os elementos de produto
     
     produtosElementos.forEach(produto => {
-        const tagsProduto = produto.getAttribute('data-tags').split(' ');
+        const tagsProduto = produto.getAttribute('data-tags').split(' '); // Pega as tags associadas ao produto
 
         // Verifica se todas as tags do produto estão entre as tags ativas
         const match = filtrosAtivos.every(tag => tagsProduto.includes(tag));
@@ -1036,13 +982,14 @@ function adicionarFiltro(tag) {
 
 // Função para configurar os eventos de clique nas tags
 function configurarTagsMenu() {
-    const tags = document.querySelectorAll('.submenu .tag');
+    const tags = document.querySelectorAll('.submenu a'); // Ajustado para pegar os links das tags
     
     tags.forEach(tag => {
         tag.addEventListener('click', function(event) {
             event.preventDefault(); // Impede o comportamento de link padrão
+            const tagName = tag.innerText.trim(); // Obtém o nome da tag clicada
             // Adiciona ou remove a tag do filtro
-            adicionarFiltro(tag.getAttribute('data-tag'));
+            adicionarFiltro(tagName);
 
             // Altera o estilo da tag para indicar que está ativa
             tag.classList.toggle('active');
@@ -1061,12 +1008,10 @@ menuToggle.addEventListener('click', () => {
 
 // Função para inicializar tudo
 document.addEventListener('DOMContentLoaded', () => {
-    // Exibe os produtos na página
-    exibirProdutos();
-
     // Configura o filtro de tags
     configurarTagsMenu();
 });
+
 
 </script>
     
