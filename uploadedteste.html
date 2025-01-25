@@ -1110,6 +1110,9 @@ function displayCars(cars) {
             <img src="${car.image}" alt="${car.name}">
             <h3>${car.name}</h3>
             <p class="price">Preço: ${car.price}</p>
+            <div class="car-tags">
+                ${car.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
             <div class="more-info">
                 <i class="fas fa-info-circle"></i>
                 <a href="${car.infoLink}" target="_blank">Saber Mais</a>
