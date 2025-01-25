@@ -1109,6 +1109,7 @@ function filterProducts(searchTerm) {
     const carGrid = document.getElementById('car-grid');
     let noResultsMessage = document.getElementById('no-results-message'); // Elemento de mensagem de "sem resultados"
     let orderButton = document.getElementById('order-button'); // Botão de "Encomendar viatura"
+    let navigationButtons = document.querySelector('.navigation-buttons'); // Botões de navegação
 
     // Se não existir a mensagem e o botão, cria-los
     if (!noResultsMessage) {
@@ -1135,6 +1136,8 @@ function filterProducts(searchTerm) {
         displayCars(filteredCars); // Exibe os carros filtrados
         noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
         orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
+        navigationButtons.style.visibility = 'visible'; // Torna os botões invisíveis
+
     } else {
         carGrid.innerHTML = ''; // Limpa os produtos visíveis
         noResultsMessage.innerHTML = `
@@ -1143,6 +1146,7 @@ function filterProducts(searchTerm) {
         noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
        orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
     orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
+    navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
 }
 }
 
