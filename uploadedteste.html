@@ -952,7 +952,7 @@ button:hover {
     </div>
 </footer>
 <script>
-// Dados do JSON
+// Dados do JSON (exemplo)
 const produtos = [
     {
         "label": "Usado",
@@ -980,7 +980,7 @@ let filtrosAtivos = [];
 
 // Função para criar os produtos na página
 function exibirProdutos() {
-    const containerProdutos = document.querySelector('#car-grid'); // Contêiner onde os produtos serão exibidos (correto)
+    const containerProdutos = document.querySelector('#car-grid'); // Contêiner onde os produtos serão exibidos
     containerProdutos.innerHTML = ''; // Limpa o contêiner antes de adicionar os produtos
     
     produtos.forEach(produto => {
@@ -1034,12 +1034,13 @@ function adicionarFiltro(tag) {
     filtrarProdutos();
 }
 
-// Configura o evento de clique nas tags do menu
+// Função para configurar os eventos de clique nas tags
 function configurarTagsMenu() {
     const tags = document.querySelectorAll('.submenu .tag');
     
     tags.forEach(tag => {
-        tag.addEventListener('click', function() {
+        tag.addEventListener('click', function(event) {
+            event.preventDefault(); // Impede o comportamento de link padrão
             // Adiciona ou remove a tag do filtro
             adicionarFiltro(tag.getAttribute('data-tag'));
 
@@ -1049,13 +1050,33 @@ function configurarTagsMenu() {
     });
 }
 
-// Inicializa a página
+// Função para o toggle do menu
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+    console.log("Toggle menu ativado!");
+});
+
+// Função para inicializar tudo
 document.addEventListener('DOMContentLoaded', () => {
     // Exibe os produtos na página
     exibirProdutos();
 
     // Configura o filtro de tags
     configurarTagsMenu();
+
+    // Configura o toggle do menu
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active'); // Alterna o menu de navegação
+        menuToggle.classList.toggle('clicked'); // Alterna o efeito de estilo do botão
+    });
+
+    // Debugging
+    console.log('Toggle connected:', menuToggle !== null);
+    console.log('Menu found:', navMenu !== null);
 });
 
 
@@ -1085,20 +1106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     </script>
-      <script>
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active'); // Show/hide menu
-    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
-});
-
-// Debugging
-console.log('Toggle connected:', menuToggle !== null);
-console.log('Menu found:', navMenu !== null);
-
-</script>
         
 <script>
     // Contador inicial de notificações no localStorage
