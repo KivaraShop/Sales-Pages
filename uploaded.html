@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração de Carros</title>
+    <style>
+        /* Layout de Produtos */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            background-color: #f5f5f5; /* Fundo cinza claro */
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #012063; /* Azul escuro da marca */
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background-color: #FFFF; /* Branco */
+            border: 1px solid #dddfe1; /* Borda sutil e sofisticada */
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Efeito de destaque mais suave */
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            color: #012063; /* Azul escuro da marca */
+            margin: 10px 0;
+        }
+
+        .product-card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2AA7E7; /* Azul claro da marca para preço */
+            margin: 10px 0;
+        }
+
+        .more-info {
+            margin-bottom: 10px;
+        }
+
+        .more-info a {
+            text-decoration: none;
+            color: #2AA7E7; /* Azul claro da marca para links */
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #2AA7E7; /* Azul claro da marca */
+            border: none;
+            color: #FFFF; /* Cor branca para o texto do botão */
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #012063; /* Azul escuro da marca para efeito hover */
+        }
+
+        .product-labels {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .label {
+            background-color: #FF6347; /* Cor do rótulo */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr 1fr; /* Duas colunas em telas menores */
+            }
+
+            .product-card {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Carros Cadastrados</h2>
+        <div id="car-grid" class="product-grid">
+            <!-- Os carros serão exibidos aqui -->
+        </div>
+    </div>
+
+    <script>
+        // URL do JSON no S3
+        const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'; // Substitua pelo seu URL
+
+        // Função para carregar os carros
+        async function loadCars() {
+            try {
+                const response = await fetch(s3JsonUrl);
+                const cars = await response.json();
+
+                // Verificar se existem carros
+                if (cars.length === 0) {
+                    document.getElementById('car-grid').innerHTML = '<p>Nenhum carro cadastrado ainda.</p>';
+                    return;
+                }
+
+                // Criar os cards para cada carro
+                const carGrid = document.getElementById('car-grid');
+                carGrid.innerHTML = ''; // Limpar o conteúdo atual
+
+                cars.forEach(car => {
+                    const carCard = document.createElement('div');
+                    carCard.classList.add('product-card');
+
+                    // HTML do card de cada carro
+                    carCard.innerHTML = `
+                        <div class="product-labels">
+                            <span class="label">${car.label}</span>
+                        </div>
+                        <img src="${car.image}" alt="${car.name}">
+                        <h3>${car.name}</h3>
+                        <p class="price">Preço: ${car.price}</p>
+                        <div class="more-info">
+                            <i class="fas fa-info-circle"></i>
+                            <a href="${car.infoLink}" target="_blank">Saber Mais</a>
+                        </div>
+                        <button onclick="window.location.href='${car.whatsappLink}'">
+                            Falar com o Vendedor
+                        </button>
+                    `;
+
+                    // Adicionar o card ao grid
+                    carGrid.appendChild(carCard);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar carros:', error);
+                document.getElementById('car-grid').innerHTML = '<p>Erro ao carregar carros. Tente novamente mais tarde.</p>';
+            }
+        }
+
+        // Chamar a função para carregar os carros quando a página carregar
+        window.onload = loadCars;
+    </script>
+</body>
+</html>
