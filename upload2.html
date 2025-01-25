@@ -120,7 +120,7 @@
 
             try {
                 // Fazer o upload da imagem para o bucket S3
-                const s3UploadUrl = `https://SEU_BUCKET_NAME.s3.amazonaws.com/${uniqueImageName}`; // Substitua pelo seu bucket
+                const s3UploadUrl = `https://car-inventory-storage-xyz/${uniqueImageName}`; // Substitua pelo seu bucket
 
                 await fetch(s3UploadUrl, {
                     method: 'PUT',
