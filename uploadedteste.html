@@ -830,22 +830,27 @@ button:hover {
   </button>
 </div>
 
+<!-- Área de Pesquisa -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Pesquisar viatura..." oninput="filterProducts(this.value)" />
+</div>
+
 <!-- Área de Resultados -->
 <div id="search-results"></div>
-    
+
 <!-- Mensagem de "Sem Resultados" -->
 <div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
-  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
-  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
+    <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
+    <button id="order-button" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
-  </div>
-    
-      <!-- Botões de Navegação -->
-        <div class="navigation-buttons">
-            <a href="novos.html">Novos</a>
-              <a href="seminovos.html">Semi-novos</a>
-            <a href="usados.html" id="usadosButton">Usados</a>
-        </div>
+
+<!-- Botões de Navegação -->
+<div class="navigation-buttons">
+    <a href="novos.html">Novos</a>
+    <a href="seminovos.html">Semi-novos</a>
+    <a href="usados.html" id="usadosButton">Usados</a>
+</div>
+
       </div>
         <h2>Carros Cadastrados</h2>
         <div id="car-grid" class="product-grid">
