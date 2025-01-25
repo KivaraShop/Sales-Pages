@@ -1087,18 +1087,47 @@ function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
 
-    // Verifica se encontrou carros correspondentes
+    const carGrid = document.getElementById('car-grid');
+    let noResultsMessage = document.getElementById('no-results-message'); // Elemento de mensagem de "sem resultados"
+    let orderButton = document.getElementById('order-button'); // Botão de "Encomendar viatura"
+
+    // Se não existir a mensagem e o botão, cria-los
+    if (!noResultsMessage) {
+        noResultsMessage = document.createElement('div');
+        noResultsMessage.id = 'no-results-message';
+        noResultsMessage.style.display = 'none'; // Inicialmente escondido
+        carGrid.parentNode.appendChild(noResultsMessage); // Adiciona ao DOM
+    }
+
+    if (!orderButton) {
+        orderButton = document.createElement('button');
+        orderButton.id = 'order-button';
+        orderButton.style.display = 'none'; // Inicialmente escondido
+        orderButton.innerHTML = 'Encomendar viatura';
+        orderButton.onclick = () => {
+            window.location.href = 'https://wa.me/258852136558';
+        };
+        carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
+    }
+
+    // Se encontrou carros filtrados
     if (filteredCars.length > 0) {
+        carGrid.innerHTML = ''; // Limpa os produtos visíveis
         displayCars(filteredCars); // Exibe os carros filtrados
+        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
+        orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
     } else {
-        const carGrid = document.getElementById('car-grid');
-        carGrid.innerHTML = '<p>Nenhum carro encontrado.</p>'; // Exibe mensagem de "sem resultados"
+        carGrid.innerHTML = ''; // Limpa os produtos visíveis
+        noResultsMessage.innerHTML = `
+            <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
+        `;
+        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
+        orderButton.style.display = 'block'; // Exibe o botão "Encomendar viatura"
     }
 }
 
 // Chamar a função para carregar os carros quando a página carregar
 window.onload = loadCars;
-
 
 </script>
     
