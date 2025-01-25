@@ -948,27 +948,57 @@ button:hover {
     </div>
 </footer>
 <script>
-// Função para filtrar os produtos com base nas tags
-function filtrarProdutos() {
-    const produtosElementos = document.querySelectorAll('.product-card'); // Pega todos os elementos de produto
-    
-    // Verifica cada produto e aplica o filtro de tags
-    produtosElementos.forEach(produto => {
-        // Pega as tags associadas ao produto
-        const tagsProduto = produto.getAttribute('data-tags').split(' ');
+let produtos = []; // Para armazenar os produtos do JSON
+let filtrosAtivos = []; // Para armazenar as tags ativas de filtro
 
-        // Verifica se o produto possui todas as tags ativas
-        const match = filtrosAtivos.every(tag => tagsProduto.includes(tag));
+// Função para carregar os produtos do JSON (do S3 ou outro servidor)
+async function carregarProdutos() {
+    const response = await fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'); // Substitua pela URL do seu JSON no S3
+    const dados = await response.json();
+    produtos = dados; // Armazena os produtos carregados
+
+    // Exibe os produtos na página
+    exibirProdutos(produtos);
+}
+
+// Função para exibir os produtos na página
+function exibirProdutos(produtosParaExibir) {
+    const carGrid = document.getElementById('car-grid'); // O container onde os produtos serão exibidos
+    carGrid.innerHTML = ''; // Limpa os produtos anteriores
+
+    produtosParaExibir.forEach(produto => {
+        const divProduto = document.createElement('div');
+        divProduto.classList.add('product-card');
+        
+        // Adiciona as tags ao atributo data-tags para cada produto
+        divProduto.setAttribute('data-tags', produto.tags.join(' '));
+
+        divProduto.innerHTML = `
+            <img src="${produto.image}" alt="${produto.name}">
+            <h3>${produto.name}</h3>
+            <p>${produto.price}</p>
+            <a href="${produto.infoLink}">Mais informações</a>
+            <a href="${produto.whatsappLink}" target="_blank">Contatar via WhatsApp</a>
+        `;
+
+        carGrid.appendChild(divProduto); // Adiciona o produto ao grid
+    });
+}
+
+// Função para filtrar os produtos com base nas tags ativas
+function filtrarProdutos() {
+    const produtosElementos = document.querySelectorAll('.product-card'); // Pega todos os produtos
+
+    produtosElementos.forEach(produto => {
+        const tagsProduto = produto.getAttribute('data-tags').split(' '); // Pega as tags do produto
+        const match = filtrosAtivos.every(tag => tagsProduto.includes(tag)); // Verifica se todas as tags ativas estão presentes
 
         // Exibe ou oculta o produto com base no filtro
         produto.style.display = match ? 'block' : 'none';
     });
 }
 
-// Variáveis globais para armazenar os filtros ativos
-let filtrosAtivos = [];
-
-// Função para adicionar ou remover tags dos filtros ativos
+// Função para adicionar ou remover filtros das tags
 function adicionarFiltro(tag) {
     if (filtrosAtivos.includes(tag)) {
         // Remove a tag
@@ -978,19 +1008,19 @@ function adicionarFiltro(tag) {
         filtrosAtivos.push(tag);
     }
 
-    // Atualiza a visualização dos produtos
+    // Filtra os produtos após modificar as tags
     filtrarProdutos();
 }
 
-// Função para configurar os eventos de clique nas tags
+// Função para configurar os eventos de clique nas tags do menu
 function configurarTagsMenu() {
-    const tags = document.querySelectorAll('.submenu a'); // Ajustado para pegar os links das tags
+    const tags = document.querySelectorAll('.submenu a'); // Pega todos os links de tags no menu
     
     tags.forEach(tag => {
         tag.addEventListener('click', function(event) {
             event.preventDefault(); // Impede o comportamento de link padrão
-            
-            const tagName = tag.innerText.trim(); // Obtém o nome da tag clicada
+
+            const tagName = tag.innerText.trim(); // Pega o nome da tag clicada
 
             // Adiciona ou remove a tag do filtro
             adicionarFiltro(tagName);
@@ -1012,9 +1042,13 @@ menuToggle.addEventListener('click', () => {
 
 // Função para inicializar tudo
 document.addEventListener('DOMContentLoaded', () => {
-    // Configura o filtro de tags
+    // Carrega os produtos do JSON
+    carregarProdutos();
+
+    // Configura as tags do menu
     configurarTagsMenu();
 });
+
 
 </script>
     
