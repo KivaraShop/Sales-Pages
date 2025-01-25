@@ -1051,42 +1051,12 @@ async function loadCars() {
     try {
         const response = await fetch(s3JsonUrl);
         carsData = await response.json();
-
-        // Verificar se há carros cadastrados
-        if (carsData.length === 0) {
-            document.getElementById('car-grid').innerHTML = '<p>Nenhum carro cadastrado ainda.</p>';
-            return;
-        }
-
-        // Exibir os carros carregados
-        displayCars(carsData);
     } catch (error) {
         console.error('Erro ao carregar carros:', error);
-        document.getElementById('car-grid').innerHTML = '<p>Erro ao carregar carros. Tente novamente mais tarde.</p>';
     }
 }
 
-// Função para exibir os carros no grid
-function displayCars(cars) {
-    const carGrid = document.getElementById('car-grid');
-    carGrid.innerHTML = ''; // Limpa o conteúdo atual
-
-    cars.forEach(car => {
-        const carCard = document.createElement('div');
-        carCard.classList.add('product-card');
-
-        carCard.innerHTML = `
-            <img src="${car.image}" alt="${car.name}">
-            <h3>${car.name}</h3>
-            <p>Preço: ${car.price}</p>
-            <p>${car.details}</p>
-        `;
-
-        carGrid.appendChild(carCard);
-    });
-}
-
-// Função para filtrar os carros
+// Função para filtrar e exibir resultados
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const filteredCars = carsData.filter(car =>
@@ -1095,16 +1065,32 @@ function filterProducts(searchTerm) {
         car.transmission.toLowerCase().includes(search)
     );
 
-    const carGrid = document.getElementById('car-grid');
+    // Elementos necessários
     const noResultsMessage = document.getElementById('no-results-message');
+    const carGrid = document.getElementById('car-grid'); // Certifique-se de que este elemento exista no HTML
+
+    // Limpa o conteúdo anterior
+    if (carGrid) carGrid.innerHTML = '';
 
     if (filteredCars.length > 0) {
-        carGrid.innerHTML = ''; // Limpa os resultados anteriores
-        displayCars(filteredCars); // Exibe os carros filtrados
-        noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem Resultados"
+        // Oculta a mensagem "Sem resultados"
+        noResultsMessage.style.display = 'none';
+
+        // Adiciona os carros filtrados
+        filteredCars.forEach(car => {
+            const carCard = document.createElement('div');
+            carCard.classList.add('product-card');
+            carCard.innerHTML = `
+                <img src="${car.image}" alt="${car.name}" />
+                <h3>${car.name}</h3>
+                <p>Modelo: ${car.model}</p>
+                <p>Transmissão: ${car.transmission}</p>
+            `;
+            if (carGrid) carGrid.appendChild(carCard);
+        });
     } else {
-        carGrid.innerHTML = ''; // Limpa os resultados anteriores
-        noResultsMessage.style.display = 'block'; // Mostra a mensagem "Sem Resultados" e o botão
+        // Exibe a mensagem "Sem resultados" se nenhum carro for encontrado
+        noResultsMessage.style.display = 'block';
     }
 }
 
