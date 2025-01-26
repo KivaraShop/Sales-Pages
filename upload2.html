@@ -197,14 +197,20 @@
 
         // Força a atualização rápida de cada iframe
         iframes.forEach((iframe) => {
-            const currentSrc = iframe.src;
+            const iframeDocument = iframe.contentWindow.document;
 
-            // Adiciona um timestamp no final do src para evitar cache e acelerar o reload
-            const newSrc = currentSrc.includes("?")
-                ? `${currentSrc}&timestamp=${Date.now()}`
-                : `${currentSrc}?timestamp=${Date.now()}`;
-
-            iframe.src = newSrc;
+            if (iframeDocument.readyState === 'complete') {
+                // Força o reload do conteúdo do iframe sem recarregar o src
+                iframe.contentWindow.location.reload(true);
+            } else {
+                // Caso o conteúdo ainda não tenha carregado completamente
+                // Recarrega o iframe alterando o src com timestamp
+                const currentSrc = iframe.src;
+                const newSrc = currentSrc.includes("?")
+                    ? `${currentSrc}&timestamp=${Date.now()}`
+                    : `${currentSrc}?timestamp=${Date.now()}`;
+                iframe.src = newSrc;
+            }
         });
 
         // Força a página a permanecer na mesma posição
@@ -213,6 +219,7 @@
         }, 10); // Pequeno atraso para garantir estabilidade na rolagem
     });
 </script>
+
 
 
 
