@@ -76,40 +76,52 @@
 </div>
 
 <script>
-// Função para enviar os dados do carro ao S3
-async function uploadCarData(carData) {
-    const response = await fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
-        method: 'PUT', // O método PUT pode ser usado para sobrescrever o conteúdo do arquivo
-        headers: {
-            'Content-Type': 'application/json',
-            'x-amz-acl': 'public-read', // Isso é necessário se você precisar de acesso público (ajuste conforme necessário)
-        },
-        body: JSON.stringify(carData), // Aqui você envia os dados convertidos em JSON
+    // Função para enviar os dados do carro ao S3
+    document.getElementById("carForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        // Captura os valores dos campos
+        const model = document.getElementById("model").value;
+        const description = document.getElementById("description").value;
+        const mileage = document.getElementById("mileage").value;
+        const condition = document.getElementById("condition").value;
+        const fuel = document.getElementById("fuel").value;
+        const images = document.getElementById("images").value.split(',');
+
+        // Criando um novo objeto de carro
+        const newCar = {
+            model: model,
+            description: description,
+            mileage: parseInt(mileage),
+            condition: parseInt(condition),
+            fuel: parseInt(fuel),
+            images: images.map(url => url.trim()) // Limpa espaços extras
+        };
+
+        // Fazendo o upload para o S3 (simulando via fetch, deve usar o PUT para sobrescrever o arquivo)
+        try {
+            const response = await fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
+                method: 'PUT', // Usando PUT para sobrescrever
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-amz-acl': 'public-read', // Ajuste conforme as permissões
+                },
+                body: JSON.stringify([newCar]) // Envia o novo carro
+            });
+
+            if (response.ok) {
+                console.log('Dados enviados com sucesso!');
+                alert('Carro adicionado com sucesso!');
+                document.getElementById("carForm").reset(); // Limpa o formulário
+            } else {
+                console.error('Erro ao enviar os dados:', response.statusText);
+                alert('Erro ao adicionar o carro. Tente novamente.');
+            }
+        } catch (error) {
+            console.error('Erro de rede:', error);
+            alert('Erro de rede. Tente novamente.');
+        }
     });
-
-    if (response.ok) {
-        console.log('Dados enviados com sucesso!');
-    } else {
-        console.error('Erro ao enviar os dados:', response.statusText);
-    }
-}
-
-// Exemplo de dados do carro
-const carData = {
-    model: "BMW X6",
-    description: "Desempenho de alto nível com design moderno.",
-    mileage: 30000,
-    condition: 85,
-    fuel: 70,
-    images: [
-        "https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg",
-        "https://i.ibb.co/ZxmFVqy/GIF-20250124-220414-381.gif"
-    ]
-};
-
-// Chama a função para enviar os dados
-uploadCarData(carData);
-
 </script>
 
 </body>
