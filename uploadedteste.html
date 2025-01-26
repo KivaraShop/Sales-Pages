@@ -1072,7 +1072,7 @@ console.log('Menu found:', navMenu !== null);
 });
  </script>
  
-<script>
+       <script>
 // URL do JSON no S3
 const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'; // Substitua pelo seu URL
 
@@ -1133,23 +1133,11 @@ function displayCars(cars) {
     });
 }
 
-// Função para filtrar os carros com base na busca
+// Função para filtrar produtos
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
 
-    updateCarGrid(filteredCars);
-}
-
-// Função para filtrar os carros com base na tag
-function filterByTag(tag) {
-    const filteredCars = carsData.filter(car => car.tags.includes(tag));
-    
-    updateCarGrid(filteredCars);
-}
-
-// Função para atualizar o grid de carros
-function updateCarGrid(filteredCars) {
     const carGrid = document.getElementById('car-grid');
     let noResultsMessage = document.getElementById('no-results-message'); // Elemento de mensagem de "sem resultados"
     let orderButton = document.getElementById('order-button'); // Botão de "Encomendar viatura"
@@ -1173,6 +1161,27 @@ function updateCarGrid(filteredCars) {
         };
         carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
     }
+    
+// Função para filtrar os carros pela tag
+    function filterByTag(tag) {
+        const filteredCars = cars.filter(car => car.tags.includes(tag)); // Filtra os carros com base na tag
+        if (filteredCars.length > 0) {
+            carGrid.innerHTML = ''; // Limpa os produtos visíveis
+            displayCars(filteredCars); // Exibe os carros filtrados
+            noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
+            orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
+            navigationButtons.style.visibility = 'visible'; // Torna os botões visíveis
+        } else {
+            carGrid.innerHTML = ''; // Limpa os produtos visíveis
+            noResultsMessage.innerHTML = `
+                <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
+            `;
+            noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
+            orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
+            orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
+            navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
+        }
+    }
 
     // Se encontrou carros filtrados
     if (filteredCars.length > 0) {
@@ -1188,38 +1197,15 @@ function updateCarGrid(filteredCars) {
             <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
         `;
         noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
-        orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
-        orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
-        navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
-    }
+       orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
+    orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
+    navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
 }
-
-// Função para capturar o valor da busca e filtrar os carros
-document.getElementById('search-bar').addEventListener('input', function(e) {
-    const searchTerm = e.target.value;
-    filterProducts(searchTerm);
-});
-
-// Função para capturar a tag clicada no menu e filtrar os carros
-function filterByTag(tag) {
-    const filteredCars = carsData.filter(car => car.tags.includes(tag));
-    updateCarGrid(filteredCars);
 }
-
-// Função para lidar com os cliques nas tags
-function handleTagClick(event) {
-    event.preventDefault();
-    const tag = event.target.textContent.trim();
-    filterByTag(tag);
-}
-
-// Adicionar ouvintes de evento nas tags do menu
-document.querySelectorAll('.tag-menu a').forEach(link => {
-    link.addEventListener('click', handleTagClick);
-});
 
 // Chamar a função para carregar os carros quando a página carregar
 window.onload = loadCars;
+           
 </script>
 
 
