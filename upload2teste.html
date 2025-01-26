@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Lançamento de Viaturas</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o seu CSS -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Para ícones FontAwesome -->
+     <style>
+        /* Estilos da barra lateral */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #34495e;
+            padding-top: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #2c3e50;
+        }
+
+        /* Estilos do conteúdo principal */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-card button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra Lateral -->
+    <div class="sidebar">
+        <h2>Admin - Carros</h2>
+        <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Lançar Viatura</a></li>
+            <li><a href="#">Gerenciar Viaturas</a></li>
+            <li><a href="#">Configurações</a></li>
+        </ul>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        <h1>Adicionar Viatura</h1>
+        
+        <!-- Formulário de Adicionar Viatura -->
+        <form id="carForm">
+            <label for="label">Etiqueta:</label>
+            <select id="label" required>
+                <option value="novo">Novo</option>
+                <option value="Usado">Usado</option>
+                <option value="desconto">20% Desconto</option>
+                <option value="parcelado">Parcelado</option>
+                <option value="sem_rotulo">Sem Rótulo</option> <!-- Nova opção -->
+            </select>
+
+            <label for="name">Nome do Carro:</label>
+            <input type="text" id="name" required>
+
+            <label for="price">Preço:</label>
+            <input type="text" id="price" required>
+
+            <label for="image">Imagem (URL):</label>
+            <input type="url" id="image" required>
+
+            <label for="tags">Tags (separadas por vírgulas):</label>
+            <input type="text" id="tags">
+
+            <label for="infoLink">Link para mais informações:</label>
+            <input type="url" id="infoLink">
+
+            <label for="whatsappLink">Link do WhatsApp:</label>
+            <input type="url" id="whatsappLink">
+
+            <button type="submit">Adicionar Carro</button>
+        </form>
+
+        <!-- Lista de Viaturas -->
+        <h2>Viaturas Lançadas</h2>
+        <div id="car-grid" class="car-grid">
+            <!-- Aqui serão exibidos os carros lançados -->
+        </div>
+    </div>
+
+    <script>
+        const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'; // URL do JSON
+        let carsData = []; // Armazenar os dados dos carros
+
+        // Função para carregar os carros
+        async function loadCars() {
+            try {
+                const response = await fetch(s3JsonUrl);
+                carsData = await response.json();
+
+                if (carsData.length === 0) {
+                    document.getElementById('car-grid').innerHTML = '<p>Nenhum carro cadastrado ainda.</p>';
+                    return;
+                }
+
+                displayCars(carsData); // Exibe todos os carros inicialmente
+            } catch (error) {
+                console.error('Erro ao carregar carros:', error);
+                document.getElementById('car-grid').innerHTML = '<p>Erro ao carregar carros. Tente novamente mais tarde.</p>';
+            }
+        }
+
+        // Função para exibir os carros
+        function displayCars(cars) {
+            const carGrid = document.getElementById('car-grid');
+            carGrid.innerHTML = ''; // Limpar o conteúdo atual
+
+            cars.forEach((car, index) => {
+                const carCard = document.createElement('div');
+                carCard.classList.add('product-card');
+
+                // HTML do card de cada carro
+                carCard.innerHTML = `
+                    <div class="product-labels">
+                        <span class="label ${car.label.toLowerCase()}">${car.label}</span>
+                    </div>
+                    <img src="${car.image}" alt="${car.name}">
+                    <h3>${car.name}</h3>
+                    <p class="price">Preço: ${car.price}</p>
+                    <div class="car-tags">
+                        ${car.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="more-info">
+                        <i class="fas fa-info-circle"></i>
+                        <a href="${car.infoLink}" target="_blank">Saber Mais</a>
+                    </div>
+                    <button onclick="window.location.href='${car.whatsappLink}'">
+                        Falar com o Vendedor
+                    </button>
+                    <button onclick="deleteCar(${index})">Excluir</button> <!-- Botão de Excluir -->
+                `;
+
+                // Adicionar o card ao grid
+                carGrid.appendChild(carCard);
+            });
+        }
+
+        // Função para adicionar um novo carro
+        document.getElementById('carForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const newCar = {
+                label: document.getElementById('label').value,
+                image: document.getElementById('image').value,
+                name: document.getElementById('name').value,
+                price: document.getElementById('price').value,
+                infoLink: document.getElementById('infoLink').value,
+                whatsappLink: document.getElementById('whatsappLink').value,
+                tags: document.getElementById('tags').value.split(',').map(tag => tag.trim())
+            };
+
+            // Adicionar o novo carro ao array
+            carsData.push(newCar);
+
+            // Recarregar os carros
+            displayCars(carsData);
+
+            // Limpar o formulário
+            document.getElementById('carForm').reset();
+        });
+
+        // Função para excluir um carro
+        function deleteCar(index) {
+            if (confirm('Tem certeza de que deseja excluir esta viatura?')) {
+                // Remover o carro do array
+                carsData.splice(index, 1);
+
+                // Recarregar os carros
+                displayCars(carsData);
+            }
+        }
+
+        // Chamar a função para carregar os carros quando a página carregar
+        window.onload = loadCars;
+    </script>
+
+</body>
+</html>
