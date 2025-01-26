@@ -168,7 +168,8 @@
     src="https://kivarashop.github.io/Sales-Pages/produtoadicionar.html" 
     width="100%" 
     height="1000px" 
-    style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
+    style="border: none; border-radius: 10px; overflow: hidden; background: transparent;"
+    id="productFormIframe">
 </iframe>
     
 <iframe 
@@ -178,7 +179,28 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 
+  <script>
+        // Função para verificar se o formulário dentro do iframe foi preenchido
+        function checkIframeForm() {
+            const iframe = document.getElementById('productFormIframe');
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
+            // Verificar se o formulário do iframe está preenchido
+            const iframeForm = iframeDoc.querySelector('form');
+            if (iframeForm && iframeForm.checkValidity()) {
+                document.getElementById('carForm').disabled = false; // Habilita o formulário principal
+            } else {
+                document.getElementById('carForm').disabled = true; // Desabilita o formulário principal
+            }
+        }
+
+        // Monitorar o formulário do iframe
+        const iframe = document.getElementById('productFormIframe');
+        iframe.addEventListener('load', function() {
+            setInterval(checkIframeForm, 500); // Verifica a cada 500ms se o formulário foi preenchido
+        });
+    </script>
+    
 <script>
     // Seleciona o formulário e todos os iframes
     const form = document.querySelector("form");
