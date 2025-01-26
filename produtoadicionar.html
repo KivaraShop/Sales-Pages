@@ -195,7 +195,7 @@ button:hover {
             const formData = new FormData();
             formData.append("file", file);
             // Supondo que você tenha uma URL S3 configurada para upload direto
-            const s3UploadUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com'; // Substitua pela sua URL real do S3
+            const s3UploadUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${uniqueImageName}'; // Substitua pela sua URL real do S3
             const response = await fetch(s3UploadUrl, {
                 method: 'POST',
                 body: formData
