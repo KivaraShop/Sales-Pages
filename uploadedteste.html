@@ -171,13 +171,13 @@ h2 {
 }
 
 .product-card img {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%; /* Isso força a altura a ser igual à largura, criando um quadrado */
+    width: 100%; /* A imagem ocupará toda a largura do contêiner */
+    aspect-ratio: 1 / 1; /* Define explicitamente uma proporção de 1:1 */
     object-fit: cover; /* Garante que a imagem preencha o quadrado sem distorção */
-    border-radius: 5px;
-    display: block; /* Remove qualquer espaço extra abaixo da imagem */
+    border-radius: 5px; /* Bordas arredondadas */
+    display: block; /* Remove espaços extras causados por imagens inline */
 }
+
 
 .product-card h3 {
     font-size: 18px;
