@@ -196,7 +196,10 @@
             const productId = getProductIdFromUrl();
             if (productId) {
                 // Procurar o produto correspondente no JSON usando o ID
-                const carData = data.find(car => car.model.replace(/\s+/g, '').toLowerCase() === productId.replace(/\s+/g, '').toLowerCase());
+                const carData = data.find(car => {
+                    // Garantir que tanto o id da URL quanto o modelo do JSON sejam comparados de forma consistente
+                    return car.model.toLowerCase().trim() === productId.toLowerCase().trim();
+                });
 
                 if (carData) {
                     // Carregar imagem principal
@@ -250,6 +253,7 @@
         }, 500);
     }
 </script>
+
 
 
 </body>
