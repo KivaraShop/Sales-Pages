@@ -195,41 +195,45 @@
             // Obtém o ID do produto a partir da URL
             const productId = getProductIdFromUrl();
 
-            // Procurar o produto correspondente no JSON usando o ID
-            const carData = data.find(car => car.model.replace(/\s+/g, '').toLowerCase() === productId?.replace(/\s+/g, '').toLowerCase());
+            if (productId) {
+                // Procurar o produto correspondente no JSON usando o ID
+                const carData = data.find(car => car.model.replace(/\s+/g, '').toLowerCase() === productId.replace(/\s+/g, '').toLowerCase());
 
-            if (carData) {
-                // Carregar imagem principal
-                const mainImage = document.getElementById('car-main-image');
-                mainImage.src = carData.images[0];
+                if (carData) {
+                    // Carregar imagem principal
+                    const mainImage = document.getElementById('car-main-image');
+                    mainImage.src = carData.images[0];
 
-                // Carregar as miniaturas
-                const thumbnailCarousel = document.getElementById('thumbnail-carousel');
-                carData.images.forEach(image => {
-                    const img = document.createElement('img');
-                    img.src = image;
-                    img.classList.add('thumbnail');
-                    img.onclick = function() {
-                        mainImage.src = image;
-                    };
-                    thumbnailCarousel.appendChild(img);
-                });
+                    // Carregar as miniaturas
+                    const thumbnailCarousel = document.getElementById('thumbnail-carousel');
+                    carData.images.forEach(image => {
+                        const img = document.createElement('img');
+                        img.src = image;
+                        img.classList.add('thumbnail');
+                        img.onclick = function() {
+                            mainImage.src = image;
+                        };
+                        thumbnailCarousel.appendChild(img);
+                    });
 
-                // Carregar título, descrição e status
-                document.getElementById('car-title').innerText = carData.model || 'Modelo do Carro';
-                document.getElementById('car-description').innerText = carData.description || 'Descrição do Carro';
+                    // Carregar título, descrição e status
+                    document.getElementById('car-title').innerText = carData.model || 'Modelo do Carro';
+                    document.getElementById('car-description').innerText = carData.description || 'Descrição do Carro';
 
-                // Carregar quilometragem, condição e combustível
-                const kmPercentage = (carData.mileage / 100000) * 100; // Exemplo de cálculo de quilometragem
-                animateBar('km-bar', kmPercentage, 'km-label', carData.mileage + ' km');
+                    // Carregar quilometragem, condição e combustível
+                    const kmPercentage = (carData.mileage / 100000) * 100; // Exemplo de cálculo de quilometragem
+                    animateBar('km-bar', kmPercentage, 'km-label', carData.mileage + ' km');
 
-                const conditionPercentage = carData.condition || 0; // Supomos que a condição está entre 0 e 100
-                animateBar('condition-bar', conditionPercentage, 'condition-label', conditionPercentage + '% de boa condição');
+                    const conditionPercentage = carData.condition || 0; // Supomos que a condição está entre 0 e 100
+                    animateBar('condition-bar', conditionPercentage, 'condition-label', conditionPercentage + '% de boa condição');
 
-                const fuelPercentage = carData.fuel || 0; // Supomos que o combustível está entre 0 e 100
-                animateBar('fuel-bar', fuelPercentage, 'fuel-label', fuelPercentage + '% restante');
+                    const fuelPercentage = carData.fuel || 0; // Supomos que o combustível está entre 0 e 100
+                    animateBar('fuel-bar', fuelPercentage, 'fuel-label', fuelPercentage + '% restante');
+                } else {
+                    console.log('Produto não encontrado');
+                }
             } else {
-                console.log('Produto não encontrado');
+                console.log('ID não fornecido na URL');
             }
         })
         .catch(error => {
