@@ -175,6 +175,12 @@
     </footer>
 
  <script>
+      // Função para obter o ID do produto a partir da URL
+        function getProductIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id'); // Retorna o valor do parâmetro 'id' na URL
+        }
+
         // Função para carregar os dados do JSON
         fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json')
             .then(response => {
