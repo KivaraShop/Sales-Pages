@@ -291,7 +291,7 @@ document.getElementById('infoLink').addEventListener('input', function() {
                     image: imageUrl,
                     name: document.getElementById('name').value,
                     price: document.getElementById('price').value + " MZN",
-                    infoLink: infolink,
+                    infoLink: document.getElementById('infoLink').value,
                     whatsappLink: `https://wa.me/258${document.getElementById('whatsapp').value}`,
                     tags: [
                         document.getElementById('brand').value.toLowerCase(),
