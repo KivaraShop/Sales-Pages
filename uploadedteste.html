@@ -280,8 +280,8 @@ button:hover {
     color: #004b8d;
 }
 
-/* Tornar o rótulo invisível quando a opção "Sem Rótulo" for escolhida */
-.product-card.sem-rotulo .label {
+/* Esconde o rótulo quando a opção "Sem Rótulo" for selecionada */
+.label.sem-rotulo {
     display: none;
 }
         
@@ -1103,9 +1103,10 @@ function displayCars(cars) {
 
         // HTML do card de cada carro
         carCard.innerHTML = `
-            <div class="product-labels">
-                <span class="label">${car.label}</span>
-            </div>
+           <div class="product-labels">
+                <span class="label ${car.label === 'sem_rotulo' ? 'sem-rotulo' : ''}">
+                    ${car.label === 'sem_rotulo' ? '' : car.label}
+                </span>
             <img src="${car.image}" alt="${car.name}">
             <h3>${car.name}</h3>
             <p class="price">Preço: ${car.price}</p>
