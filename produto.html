@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda de Carros</title>
+    <style>
+        /* Estilos permanecem os mesmos */
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Shabe motors" style="max-width: 150px; padding-top: 10px; background: transparent;">
+        </a>
+    </header>
+
+    <main>
+        <section class="car-details">
+            <div class="car-gallery">
+                <div class="main-image">
+                    <img id="main-car-image" src="" alt="Carro Principal">
+                </div>
+                <div class="thumbnail-carousel" id="thumbnail-carousel">
+                    <!-- Miniaturas serão preenchidas automaticamente pelo JS -->
+                </div>
+            </div>
+            <div class="car-info">
+                <h1 id="car-name"></h1>
+                <p class="description" id="car-description"></p>
+
+                <div class="car-state">
+                    <div class="state-bar">
+                        <span>Quilometragem</span>
+                        <div class="bar-container">
+                            <div class="bar" id="km-bar"></div>
+                        </div>
+                        <p class="bar-label" id="km-label"></p>
+                    </div>
+                    <div class="state-bar">
+                        <span>Condição</span>
+                        <div class="bar-container">
+                            <div class="bar" id="condition-bar"></div>
+                        </div>
+                        <p class="bar-label" id="condition-label"></p>
+                    </div>
+                    <div class="state-bar">
+                        <span>Combustível</span>
+                        <div class="bar-container">
+                            <div class="bar" id="fuel-bar"></div>
+                        </div>
+                        <p class="bar-label" id="fuel-label"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
+    </footer>
+
+<script>
+    // URL pública do arquivo JSON no S3
+    fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json')
+        .then(response => response.json())
+        .then(data => {
+            const produto = data.carro;
+
+            // Preencher o nome e descrição do carro
+            document.getElementById('car-name').textContent = produto.nome;
+            document.getElementById('car-description').textContent = produto.descricao;
+
+            // Atualizar a imagem principal
+            const mainImage = document.getElementById('main-car-image');
+            mainImage.src = produto.imagens[0]; // Primeira imagem como principal
+
+            // Preencher as miniaturas
+            const thumbnailCarousel = document.getElementById('thumbnail-carousel');
+            produto.imagens.forEach(imagem => {
+                const imgElement = document.createElement('img');
+                imgElement.src = imagem;
+                imgElement.classList.add('thumbnail');
+                imgElement.onclick = () => changeImage(imgElement);
+                thumbnailCarousel.appendChild(imgElement);
+            });
+
+            // Preencher as barras de estado
+            animateBar('km-bar', 60, 'km-label', produto.quilibragem);
+            animateBar('condition-bar', 80, 'condition-label', produto.condicao);
+            animateBar('fuel-bar', 40, 'fuel-label', produto.combustivel);
+        })
+        .catch(error => {
+            console.error('Erro ao carregar o JSON:', error);
+        });
+
+    // Função para mudar a imagem principal
+    function changeImage(thumbnail) {
+        const mainImage = document.getElementById('main-car-image');
+        mainImage.src = thumbnail.src;
+        
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach(thumb => thumb.classList.remove('active'));
+        thumbnail.classList.add('active');
+    }
+
+    // Função para animar as barras
+    function animateBar(barId, percentage, labelId, labelText) {
+        const bar = document.getElementById(barId);
+        const label = document.getElementById(labelId);
+        bar.style.width = '0%';
+        setTimeout(() => {
+            bar.style.width = percentage + '%';
+            label.textContent = labelText;
+        }, 500);
+    }
+</script>
+
+</body>
+</html>
