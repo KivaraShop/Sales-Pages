@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Viatura</title>
+</head>
+<body>
+    <h1>Adicionar Viatura</h1>
+
+    <form id="carForm">
+        <label for="model">Modelo:</label>
+        <input type="text" id="model" name="model" required><br><br>
+
+        <label for="description">Descrição:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="mileage">Quilometragem:</label>
+        <input type="number" id="mileage" name="mileage" required><br><br>
+
+        <label for="condition">Estado (0-100):</label>
+        <input type="number" id="condition" name="condition" required min="0" max="100"><br><br>
+
+        <label for="fuel">Combustível (%):</label>
+        <input type="number" id="fuel" name="fuel" required min="0" max="100"><br><br>
+
+        <label for="images">Imagens (URLs separados por vírgula):</label>
+        <input type="text" id="images" name="images" required><br><br>
+
+        <button type="submit">Adicionar Viatura</button>
+    </form>
+
+    <script>
+        document.getElementById('carForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Pegar os valores do formulário
+            const model = document.getElementById('model').value;
+            const description = document.getElementById('description').value;
+            const mileage = document.getElementById('mileage').value;
+            const condition = document.getElementById('condition').value;
+            const fuel = document.getElementById('fuel').value;
+            const images = document.getElementById('images').value.split(',');
+
+            // Criar um objeto com as informações
+            const carData = {
+                model,
+                description,
+                mileage: parseInt(mileage),
+                condition: parseInt(condition),
+                fuel: parseInt(fuel),
+                images
+            };
+
+            // Enviar para o S3 - para o JSON
+            fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify([carData]) // Enviar os dados como um array JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Viatura adicionada com sucesso!');
+                console.log('Sucesso:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao adicionar a viatura.');
+            });
+        });
+    </script>
+</body>
+</html>
