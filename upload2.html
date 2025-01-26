@@ -103,7 +103,7 @@
         <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Logotipo da Shabe Motors" class="logo">
         
         <h1>ADMINISTRADOR - SHABE MOTORS</h1>
-<form id="carForm" disabled>
+<form id="carForm">
             <label for="label">Etiqueta:</label>
             <select id="label" required>
                 <option value="novo">Novo</option>
@@ -168,8 +168,7 @@
     src="https://kivarashop.github.io/Sales-Pages/produtoadicionar.html" 
     width="100%" 
     height="1000px" 
-    style="border: none; border-radius: 10px; overflow: hidden; background: transparent;"
-    id="productFormIframe">
+    style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
     
 <iframe 
@@ -179,19 +178,7 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 
-  <script>
-        // Escutando a mensagem do iframe
-        window.addEventListener('message', function(event) {
-            // Verifique se a mensagem é de um iframe confiável (opcional)
-            if (event.origin !== 'https://kivarashop.github.io') return;
 
-            // Se o formulário dentro do iframe foi preenchido, habilite o formulário principal
-            if (event.data === 'formPreenchido') {
-                document.getElementById('carForm').disabled = false;
-            }
-        });
-    </script>
-    
 <script>
     // Seleciona o formulário e todos os iframes
     const form = document.querySelector("form");
