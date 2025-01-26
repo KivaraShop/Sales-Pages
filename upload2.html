@@ -123,8 +123,10 @@
             <label for="price">Preço (MZN):</label>
             <input type="number" id="price" placeholder="Exemplo: 1150000" required>
 
-            <label for="infoLink">Link para Mais Informações:</label>
-            <input type="url" id="infoLink" placeholder="Exemplo: carroinfo.html" required>
+<label for="infoLink">Link para Mais Informações:</label>
+<input type="url" id="infoLink" placeholder="Exemplo: carroinfo.html" required 
+       value="https://kivarashop.github.io/Sales-Pages/produto.html?id=" readonly>
+<input type="number" id="productId" placeholder="Digite o ID do produto" oninput="updateLink()" required>
 
             <label for="whatsapp">WhatsApp (Apenas o número):</label>
             <input type="text" id="whatsapp" placeholder="Exemplo: 841234567" required>
@@ -177,6 +179,14 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
+
+    <script>
+    function updateLink() {
+        const productId = document.getElementById('productId').value;
+        const infoLink = document.getElementById('infoLink');
+        infoLink.value = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + productId;
+    }
+</script>
 <script>
     // Select the form and iframe
     const form = document.querySelector("form");
