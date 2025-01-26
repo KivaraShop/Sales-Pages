@@ -183,15 +183,15 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 
- <script>
+<script>
     function updateLink() {
         const productId = document.getElementById('productId').value;
         const infoLink = document.getElementById('infoLink');
         const errorMessage = document.getElementById('error-message');
 
-        // Verificar se o ID é um número válido
-        if (isNaN(productId) || productId.trim() === "") {
-            errorMessage.style.display = "block"; // Exibir mensagem de erro
+        // Verificar se o valor inserido é um texto (não numérico)
+        if (isNaN(productId) && productId !== "") {
+            errorMessage.style.display = "block"; // Exibir mensagem de erro se for texto
         } else {
             errorMessage.style.display = "none"; // Ocultar mensagem de erro
             infoLink.value = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + productId;
