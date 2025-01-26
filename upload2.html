@@ -103,7 +103,7 @@
         <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Logotipo da Shabe Motors" class="logo">
         
         <h1>ADMINISTRADOR - SHABE MOTORS</h1>
-<form id="carForm">
+        <form id="carForm">
             <label for="label">Etiqueta:</label>
             <select id="label" required>
                 <option value="novo">Novo</option>
@@ -124,7 +124,7 @@
             <input type="number" id="price" placeholder="Exemplo: 1150000" required>
 
             <label for="infoLink">Link para Mais Informações:</label>
-            <input type="url" id="infoLink" placeholder="Exemplo: Exemplo: 12" required>
+            <input type="url" id="infoLink" placeholder="Exemplo: carroinfo.html" required>
 
             <label for="whatsapp">WhatsApp (Apenas o número):</label>
             <input type="text" id="whatsapp" placeholder="Exemplo: 841234567" required>
@@ -177,62 +177,31 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
-
 <script>
-document.getElementById('infoLink').addEventListener('input', function() {
-    var id = this.value; // O valor inserido pelo usuário
-    // Verifica se a entrada contém apenas números
-    if (/^\d+$/.test(id)) { // Regex que garante que só números sejam permitidos
-        var url = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + id;
-        console.log(url); // Exibe a URL no console (pode ser removido ou usado conforme necessário)
-    } else {
-        console.log("Por favor, insira apenas números."); // Mensagem de erro
-    }
-});
-
-</script>
-<script>
-    // Seleciona o formulário e todos os iframes
+    // Select the form and iframe
     const form = document.querySelector("form");
-    const iframes = document.querySelectorAll("iframe");
+    const iframe = document.querySelector("iframe");
 
-    // Adiciona o listener ao evento de envio do formulário
+    // Add an event listener to the form submission
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Impede o comportamento padrão do formulário
+        event.preventDefault(); // Prevent the default form submission
 
-        // Exibe a mensagem de sucesso
+        // Show a success message
         const message = document.getElementById("message");
         message.textContent = "Carro adicionado com sucesso!";
 
-        // Salva a posição de rolagem atual
+        // Save the current scroll position
         const previousScroll = window.scrollY;
 
-        // Força a atualização rápida de cada iframe
-        iframes.forEach((iframe) => {
-            const iframeDocument = iframe.contentWindow.document;
+        // Reload the iframe without triggering focus or scroll
+        iframe.src = iframe.src;
 
-            if (iframeDocument.readyState === 'complete') {
-                // Força o reload do conteúdo do iframe sem recarregar o src
-                iframe.contentWindow.location.reload(true);
-            } else {
-                // Caso o conteúdo ainda não tenha carregado completamente
-                // Recarrega o iframe alterando o src com timestamp
-                const currentSrc = iframe.src;
-                const newSrc = currentSrc.includes("?")
-                    ? `${currentSrc}&timestamp=${Date.now()}`
-                    : `${currentSrc}?timestamp=${Date.now()}`;
-                iframe.src = newSrc;
-            }
-        });
-
-        // Força a página a permanecer na mesma posição
+        // Force the page to stay at the same scroll position
         setTimeout(() => {
             window.scrollTo(0, previousScroll);
-        }, 10); // Pequeno atraso para garantir estabilidade na rolagem
+        }, 10); // Slight delay to ensure no scroll is triggered
     });
 </script>
-
-
 
 
     <script>
