@@ -171,28 +171,23 @@
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        // Logic to show a success message (optional)
+        // Show a success message
         const message = document.getElementById("message");
         message.textContent = "Carro adicionado com sucesso!";
 
-        // Temporarily remove focus from the iframe to prevent scrolling
-        const previousScroll = window.scrollY; // Save the current scroll position
-        iframe.style.pointerEvents = "none"; // Disable interactions temporarily
+        // Save the current scroll position
+        const previousScroll = window.scrollY;
 
-        // Update the iframe's source
+        // Reload the iframe without triggering focus or scroll
         iframe.src = iframe.src;
 
-        // Wait for the iframe to load and restore the scroll position
-        iframe.addEventListener(
-            "load",
-            () => {
-                iframe.style.pointerEvents = ""; // Re-enable interactions
-                window.scrollTo(0, previousScroll); // Restore scroll position
-            },
-            { once: true }
-        );
+        // Force the page to stay at the same scroll position
+        setTimeout(() => {
+            window.scrollTo(0, previousScroll);
+        }, 10); // Slight delay to ensure no scroll is triggered
     });
 </script>
+
 
     <script>
         const carForm = document.getElementById('carForm');
