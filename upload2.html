@@ -163,6 +163,24 @@
     style="border: none; border-radius: 10px; overflow: hidden;">
 </iframe>
     <script>
+    // Seleciona o formulário e o iframe
+    const form = document.querySelector("form");
+    const iframe = document.querySelector("iframe");
+
+    // Adiciona um evento ao enviar o formulário
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        // Lógica para processar o formulário (opcional)
+        const message = document.getElementById("message");
+        message.textContent = "Carro adicionado com sucesso!";
+
+        // Atualiza o iframe imediatamente
+        iframe.src = iframe.src;
+    });
+</script>
+
+    <script>
         const carForm = document.getElementById('carForm');
         const message = document.getElementById('message');
 
