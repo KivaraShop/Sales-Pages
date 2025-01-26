@@ -1162,25 +1162,35 @@ function filterProducts(searchTerm) {
         carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
     }
     
-// Função para filtrar carros por tags
-function filterByTag(tag) {
-    const tagLower = tag.toLowerCase();
-    const filteredCars = carsData.filter(car => 
-        car.tags.some(t => t.toLowerCase().includes(tagLower))
-    );
-
-    const carGrid = document.getElementById('car-grid');
-
-    if (filteredCars.length > 0) {
-        carGrid.innerHTML = ''; // Limpa os produtos visíveis
-        displayCars(filteredCars); // Exibe os carros filtrados
-    } else {
-        carGrid.innerHTML = '<p>Sem resultados para esta tag. Tente outra.</p>';
+  // Função para filtrar os carros pela tag
+    function filterByTag(tag) {
+        const filteredCars = cars.filter(car => car.tags.includes(tag)); // Filtra os carros com base na tag
+        if (filteredCars.length > 0) {
+            carGrid.innerHTML = ''; // Limpa os produtos visíveis
+            displayCars(filteredCars); // Exibe os carros filtrados
+            noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
+            orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
+            navigationButtons.style.visibility = 'visible'; // Torna os botões visíveis
+        } else {
+            carGrid.innerHTML = ''; // Limpa os produtos visíveis
+            noResultsMessage.innerHTML = `
+                <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
+            `;
+            noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
+            orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
+            orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
+            navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
+        }
     }
-}
 
-// Chamar a função para carregar os carros quando a página carregar
-window.onload = loadCars;
+    // Função para carregar os carros
+    function loadCars() {
+        orderButton.onclick = () => { 
+            window.location.href = 'https://wa.me/258852136558'; // Link do WhatsApp para encomendar
+        };
+        carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
+    }
+
 
     // Se encontrou carros filtrados
     if (filteredCars.length > 0) {
