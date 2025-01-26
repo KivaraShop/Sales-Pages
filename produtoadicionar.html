@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Carro</title>
     <style>
-       body {
+    body {
     font-family: Arial, sans-serif;
     background-color: transparent !important;
     color: #f0f4ff; /* Cor clara para contraste com o fundo */
     padding: 20px;
+    margin: 0;
 }
 
 .form-container {
@@ -17,37 +18,47 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra mais intensa para destacar */
-    max-width: 600px;
+    max-width: 500px; /* Largura fixa mais compacta */
     margin: 0 auto;
     color: #f0f4ff; /* Texto claro para boa leitura */
+    box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
 }
 
 .form-container h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #ffffff; /* Cor branca para o título */
+    font-size: 1.5rem; /* Tamanho proporcional ao container */
 }
 
 label {
     display: block;
     margin: 10px 0 5px;
     color: #dce6ff; /* Cor suave e legível para os rótulos */
+    font-size: 0.9rem; /* Tamanho ajustado */
 }
 
 input, textarea {
-    width: 100%;
-    padding: 8px;
+    width: calc(100% - 16px); /* Garante que o campo se ajuste bem ao container */
+    padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
     border: 1px solid #85a9ff; /* Bordas em azul claro */
     background-color: #f0f4ff; /* Fundo claro para contraste */
     color: #012063; /* Texto escuro para leitura */
+    font-size: 0.95rem;
+    box-sizing: border-box; /* Evita overflow nos campos */
 }
 
 input:focus, textarea:focus {
     outline: none;
     border: 1px solid #4b8cff; /* Realce ao focar no campo */
     box-shadow: 0 0 4px #4b8cff;
+}
+
+textarea {
+    resize: none; /* Impede o redimensionamento que pode quebrar o layout */
+    height: 120px; /* Altura fixa */
 }
 
 button {
@@ -58,12 +69,26 @@ button {
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    font-size: 1rem;
     font-weight: bold;
 }
 
 button:hover {
     background-color: #3a6dd8; /* Sombra de azul ao passar o mouse */
 }
+
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px; /* Reduz padding para telas menores */
+    }
+    input, textarea {
+        font-size: 0.9rem; /* Ajusta texto dos campos em telas menores */
+    }
+    button {
+        font-size: 0.95rem; /* Ajusta tamanho do botão */
+    }
+}
+
     </style>
 </head>
 <body>
