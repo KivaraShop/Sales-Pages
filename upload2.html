@@ -178,9 +178,9 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 <script>
-    // Select the form and iframe
+    // Select the form and all iframes
     const form = document.querySelector("form");
-    const iframe = document.querySelector("iframe");
+    const iframes = document.querySelectorAll("iframe");
 
     // Add an event listener to the form submission
     form.addEventListener("submit", function (event) {
@@ -193,8 +193,10 @@
         // Save the current scroll position
         const previousScroll = window.scrollY;
 
-        // Reload the iframe without triggering focus or scroll
-        iframe.src = iframe.src;
+        // Reload all iframes without triggering focus or scroll
+        iframes.forEach((iframe) => {
+            iframe.src = iframe.src;
+        });
 
         // Force the page to stay at the same scroll position
         setTimeout(() => {
