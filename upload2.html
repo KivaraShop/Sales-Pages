@@ -189,8 +189,8 @@
         const infoLink = document.getElementById('infoLink');
         const errorMessage = document.getElementById('error-message');
 
-        // Verificar se o valor inserido é um texto (não numérico)
-        if (isNaN(productId) && productId !== "") {
+        // Verificar se o valor inserido é um número
+        if (productId && isNaN(productId)) {
             errorMessage.style.display = "block"; // Exibir mensagem de erro se for texto
         } else {
             errorMessage.style.display = "none"; // Ocultar mensagem de erro
