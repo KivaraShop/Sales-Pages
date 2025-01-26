@@ -162,7 +162,7 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden;">
 </iframe>
-   <script>
+  <script>
     // Seleciona o formulário e o iframe
     const form = document.querySelector("form");
     const iframe = document.querySelector("iframe");
@@ -175,10 +175,16 @@
         const message = document.getElementById("message");
         message.textContent = "Carro adicionado com sucesso!";
 
-        // Atualiza o iframe sem focar nele
+        // Atualiza o iframe sem focar ou rolar
         const previousScroll = window.scrollY; // Salva a posição de rolagem atual
+        iframe.addEventListener(
+            "load",
+            () => {
+                window.scrollTo(0, previousScroll); // Força o scroll de volta após o iframe carregar
+            },
+            { once: true }
+        );
         iframe.src = iframe.src; // Atualiza o iframe
-        window.scrollTo(0, previousScroll); // Retorna à posição original
     });
 </script>
 
