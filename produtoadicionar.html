@@ -104,7 +104,6 @@
                 method: 'PUT', // Usando PUT para sobrescrever
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-amz-acl': 'public-read', // Ajuste conforme as permissões
                 },
                 body: JSON.stringify([newCar]) // Envia o novo carro
             });
