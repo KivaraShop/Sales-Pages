@@ -937,26 +937,6 @@ button:hover {
     </div>
 </footer>
 
-     <script>
-        // Seleciona o dropdown
-        const labelSelect = document.getElementById('label');
-
-        // Evento para alterar o estilo do dropdown com base na seleção
-        labelSelect.addEventListener('change', function () {
-            const value = this.value.toLowerCase();
-
-            // Remove todas as classes anteriores
-            this.className = '';
-
-            // Adiciona a classe correspondente ao valor selecionado
-            if (value) {
-                this.classList.add(value);
-            }
-        });
-
-        // Dispara o evento para definir o estilo inicial (opção selecionada por padrão)
-        labelSelect.dispatchEvent(new Event('change'));
-    </script>
     
           <script>
 const menuToggle = document.querySelector('.menu-toggle');
