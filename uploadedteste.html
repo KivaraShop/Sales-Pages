@@ -937,25 +937,27 @@ button:hover {
     </div>
 </footer>
 
-      <script>
-        // Seleciona o dropdown e o rótulo dinâmico
+     <script>
+        // Seleciona o dropdown
         const labelSelect = document.getElementById('label');
-        const selectedLabel = document.getElementById('selected-label');
 
-        // Evento para atualizar a classe e o texto do rótulo com base na seleção
+        // Evento para alterar o estilo do dropdown com base na seleção
         labelSelect.addEventListener('change', function () {
             const value = this.value.toLowerCase();
 
-            // Remove todas as classes específicas
-            selectedLabel.className = 'label';
+            // Remove todas as classes anteriores
+            this.className = '';
 
             // Adiciona a classe correspondente ao valor selecionado
             if (value) {
-                selectedLabel.classList.add(value);
-                selectedLabel.textContent = value.charAt(0).toUpperCase() + value.slice(1); // Atualiza o texto
+                this.classList.add(value);
             }
         });
+
+        // Dispara o evento para definir o estilo inicial (opção selecionada por padrão)
+        labelSelect.dispatchEvent(new Event('change'));
     </script>
+    
           <script>
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
