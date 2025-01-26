@@ -178,32 +178,40 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 <script>
-    // Select the form and all iframes
+    // Seleciona o formulário e todos os iframes
     const form = document.querySelector("form");
     const iframes = document.querySelectorAll("iframe");
 
-    // Add an event listener to the form submission
+    // Adiciona o listener ao evento de envio do formulário
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); // Impede o comportamento padrão do formulário
 
-        // Show a success message
+        // Exibe a mensagem de sucesso
         const message = document.getElementById("message");
         message.textContent = "Carro adicionado com sucesso!";
 
-        // Save the current scroll position
+        // Salva a posição de rolagem atual
         const previousScroll = window.scrollY;
 
-        // Reload all iframes without triggering focus or scroll
+        // Força a atualização rápida de cada iframe
         iframes.forEach((iframe) => {
-            iframe.src = iframe.src;
+            const currentSrc = iframe.src;
+
+            // Adiciona um timestamp no final do src para evitar cache e acelerar o reload
+            const newSrc = currentSrc.includes("?")
+                ? `${currentSrc}&timestamp=${Date.now()}`
+                : `${currentSrc}?timestamp=${Date.now()}`;
+
+            iframe.src = newSrc;
         });
 
-        // Force the page to stay at the same scroll position
+        // Força a página a permanecer na mesma posição
         setTimeout(() => {
             window.scrollTo(0, previousScroll);
-        }, 10); // Slight delay to ensure no scroll is triggered
+        }, 10); // Pequeno atraso para garantir estabilidade na rolagem
     });
 </script>
+
 
 
     <script>
