@@ -72,8 +72,12 @@
         <input type="text" id="images" name="images" required>
 
         <button type="submit">Adicionar Carro</button>
+        <div id="notification-container" style="margin-top: 20px; color: green; font-weight: bold;"></div>
+
     </form>
 </div>
+
+<div id="notification-container" style="margin-top: 20px; color: green; font-weight: bold;"></div>
 
 <script>
     // Função para enviar os dados do carro ao S3
@@ -132,7 +136,11 @@
 
             if (response.ok) {
                 console.log('Dados enviados com sucesso!');
-                alert(`Carro adicionado com sucesso! ID do carro: ${newCar.id}`);
+
+                // Exibir notificação de sucesso no container
+                const notificationContainer = document.getElementById("notification-container");
+                notificationContainer.innerHTML = `Carro adicionado com sucesso! ID do carro: <strong>${newCar.id}</strong>`;
+
                 document.getElementById("carForm").reset(); // Limpa o formulário
             } else {
                 console.error('Erro ao enviar os dados:', response.statusText);
@@ -144,6 +152,7 @@
         }
     });
 </script>
+
 
 
 
