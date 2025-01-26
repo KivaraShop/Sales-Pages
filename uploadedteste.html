@@ -252,33 +252,34 @@ button:hover {
     font-size: 12px;
     font-weight: bold;
     color: white;
-    background-color: #34495e; /* Rótulos com cor de fundo sóbria */
+    background-color: #34495e; /* Cor padrão */
     padding: 5px 10px;
     border-radius: 4px;
     text-transform: uppercase;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
- /* Estilo Específico para Cada Opção */
-        .novo {
-            background-color: #e3fcec !important; /* Verde claro */
-            color: #2d6a4f !important;
-        }
+/* Estilos Específicos para Cada Rótulo */
+.label.novo {
+    background-color: #e3fcec; /* Verde claro para "Novo" */
+    color: #2d6a4f;
+}
 
-        .usado {
-            background-color: #fff3e6 !important; /* Laranja claro */
-            color: #a75b00 !important;
-        }
+.label.usado {
+    background-color: #fff3e6; /* Laranja claro para "Usado" */
+    color: #a75b00;
+}
 
-        .desconto {
-            background-color: #ffe6e6 !important; /* Vermelho claro */
-            color: #b22222 !important;
-        }
+.label.desconto {
+    background-color: #ffe6e6; /* Vermelho claro para "Desconto" */
+    color: #b22222;
+}
 
-        .parcelado {
-            background-color: #e6f2ff !important; /* Azul claro */
-            color: #004b8d !important;
-        }
+.label.parcelado {
+    background-color: #e6f2ff; /* Azul claro para "Parcelado" */
+    color: #004b8d;
+}
+
 
 /* Ajuste de Posição no Card */
 .product-card {
@@ -937,7 +938,33 @@ button:hover {
     </div>
 </footer>
 
-    
+            <script>
+// Função para aplicar o estilo aos rótulos
+function styleCarLabels() {
+    const labels = document.querySelectorAll('.product-labels .label'); // Seleciona todos os rótulos
+
+    labels.forEach(label => {
+        const labelText = label.textContent.trim().toLowerCase(); // Pega o texto do rótulo e converte para minúsculo
+
+        // Aplica o estilo baseado no texto do rótulo
+        if (labelText === 'novo') {
+            label.classList.add('novo'); // Classe para rótulo "Novo"
+        } else if (labelText === 'usado') {
+            label.classList.add('usado'); // Classe para rótulo "Usado"
+        } else if (labelText === 'desconto') {
+            label.classList.add('desconto'); // Classe para rótulo "Desconto"
+        } else if (labelText === 'parcelado') {
+            label.classList.add('parcelado'); // Classe para rótulo "Parcelado"
+        }
+    });
+}
+
+// Chama a função para aplicar o estilo aos rótulos após a página carregar
+window.onload = function() {
+    styleCarLabels(); // Aplica o estilo dos rótulos assim que a página carregar
+};
+
+            </script>
           <script>
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
