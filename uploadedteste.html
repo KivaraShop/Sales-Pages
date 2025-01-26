@@ -1085,15 +1085,12 @@ async function loadCars() {
         const response = await fetch(s3JsonUrl);
         carsData = await response.json();
 
-        // Verificar se existem carros
         if (carsData.length === 0) {
             document.getElementById('car-grid').innerHTML = '<p>Nenhum carro cadastrado ainda.</p>';
             return;
         }
 
-        // Exibe todos os carros inicialmente
-        displayCars(carsData);
-
+        displayCars(carsData); // Exibe todos os carros inicialmente
     } catch (error) {
         console.error('Erro ao carregar carros:', error);
         document.getElementById('car-grid').innerHTML = '<p>Erro ao carregar carros. Tente novamente mais tarde.</p>';
@@ -1142,44 +1139,28 @@ function filterByTag(tag) {
     );
 
     const carGrid = document.getElementById('car-grid');
-
-    if (filteredCars.length > 0) {
-        carGrid.innerHTML = ''; // Limpa os produtos visíveis
-        displayCars(filteredCars); // Exibe os carros filtrados
-        navigationButtons.style.visibility = 'visible'; // Torna os botões visíveis
-    } else {
-        carGrid.innerHTML = '<p style="text-align: center;">Sem resultados para esta tag. Tente outra.</p>';
-         navigationButtons.style.visibility = 'hidden'; // Oculta os botões de navegação
-    }
-}
-
-// Função para filtrar produtos por nome
-function filterProducts(searchTerm) {
-    const search = searchTerm.toLowerCase();
-    const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
-
-    const carGrid = document.getElementById('car-grid');
-    let noResultsMessage = document.getElementById('no-results-message'); // Elemento de mensagem de "sem resultados"
-    let orderButton = document.getElementById('order-button'); // Botão de "Encomendar viatura"
-    let navigationButtons = document.querySelector('.navigation-buttons'); // Botões de navegação
+    const noResultsMessage = document.getElementById('no-results-message');
+    const orderButton = document.getElementById('order-button');
+    const navigationButtons = document.querySelector('.navigation-buttons');
 
     // Se não existir a mensagem e o botão, cria-los
     if (!noResultsMessage) {
-        noResultsMessage = document.createElement('div');
-        noResultsMessage.id = 'no-results-message';
-        noResultsMessage.style.display = 'none'; // Inicialmente escondido
-        carGrid.parentNode.appendChild(noResultsMessage); // Adiciona ao DOM
+        const newNoResultsMessage = document.createElement('div');
+        newNoResultsMessage.id = 'no-results-message';
+        newNoResultsMessage.style.textAlign = 'center'; // Centraliza a mensagem
+        newNoResultsMessage.style.marginTop = '20px'; // Dê um espaço superior para centralizar
+        carGrid.parentNode.appendChild(newNoResultsMessage);
     }
 
     if (!orderButton) {
-        orderButton = document.createElement('button');
-        orderButton.id = 'order-button';
-        orderButton.style.display = 'none'; // Inicialmente escondido
-        orderButton.innerHTML = 'Encomendar viatura';
-        orderButton.onclick = () => {
+        const newOrderButton = document.createElement('button');
+        newOrderButton.id = 'order-button';
+        newOrderButton.style.display = 'none'; // Inicialmente escondido
+        newOrderButton.innerHTML = 'Encomendar viatura';
+        newOrderButton.onclick = () => {
             window.location.href = 'https://wa.me/258852136558'; // Link do WhatsApp para encomendar
         };
-        carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
+        carGrid.parentNode.appendChild(newOrderButton); // Adiciona ao DOM
     }
 
     // Se encontrou carros filtrados
@@ -1189,21 +1170,73 @@ function filterProducts(searchTerm) {
         noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
         orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
         navigationButtons.style.visibility = 'visible'; // Torna os botões visíveis
+
     } else {
         carGrid.innerHTML = ''; // Limpa os produtos visíveis
         noResultsMessage.innerHTML = `
-            <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
+            <p>Sem resultados para esta tag. Tente outra.</p>
         `;
         noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
         orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
         orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
-        navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
+        navigationButtons.style.visibility = 'hidden'; // Torna os botões invisíveis
+    }
+}
+
+// Função para filtrar carros pela pesquisa
+function filterProducts(searchTerm) {
+    const search = searchTerm.toLowerCase();
+    const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
+
+    const carGrid = document.getElementById('car-grid');
+    const noResultsMessage = document.getElementById('no-results-message');
+    const orderButton = document.getElementById('order-button');
+    const navigationButtons = document.querySelector('.navigation-buttons');
+
+    // Se não existir a mensagem e o botão, cria-los
+    if (!noResultsMessage) {
+        const newNoResultsMessage = document.createElement('div');
+        newNoResultsMessage.id = 'no-results-message';
+        newNoResultsMessage.style.textAlign = 'center'; // Centraliza a mensagem
+        newNoResultsMessage.style.marginTop = '20px'; // Dê um espaço superior para centralizar
+        carGrid.parentNode.appendChild(newNoResultsMessage);
+    }
+
+    if (!orderButton) {
+        const newOrderButton = document.createElement('button');
+        newOrderButton.id = 'order-button';
+        newOrderButton.style.display = 'none'; // Inicialmente escondido
+        newOrderButton.innerHTML = 'Encomendar viatura';
+        newOrderButton.onclick = () => {
+            window.location.href = 'https://wa.me/258852136558'; // Link do WhatsApp para encomendar
+        };
+        carGrid.parentNode.appendChild(newOrderButton); // Adiciona ao DOM
+    }
+
+    // Se encontrou carros filtrados
+    if (filteredCars.length > 0) {
+        carGrid.innerHTML = ''; // Limpa os produtos visíveis
+        displayCars(filteredCars); // Exibe os carros filtrados
+        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
+        orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
+        navigationButtons.style.visibility = 'visible'; // Torna os botões visíveis
+
+    } else {
+        carGrid.innerHTML = ''; // Limpa os produtos visíveis
+        noResultsMessage.innerHTML = `
+            <p>Sem resultados para esta pesquisa. Tente outra.</p>
+        `;
+        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
+        orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
+        orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
+        navigationButtons.style.visibility = 'hidden'; // Torna os botões invisíveis
     }
 }
 
 // Chamar a função para carregar os carros quando a página carregar
 window.onload = loadCars;
 </script>
+
 
 
     
