@@ -4,101 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5; /* Fundo geral em cinza claro */
+        margin: 0;
+        padding: 0;
+        color: #ffffff; /* Texto principal em branco */
+    }
 
-        .admin-container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .admin-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #012063; /* Fundo do container azul escuro */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
+        color: #ffffff; /* Texto em branco para contraste */
+    }
 
-        h1 {
-            text-align: center;
-            color: #012063;
-        }
+    h1 {
+        text-align: center;
+        color: #2AA7E7; /* Azul claro para o título */
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 
-        label {
-            font-weight: bold;
-            margin: 10px 0 5px;
-            color: #012063;
-        }
+    label {
+        font-weight: bold;
+        margin: 10px 0 5px;
+        color: #2AA7E7; /* Azul claro para os labels */
+    }
 
-        input, textarea, select {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #dddfe1;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+    input, textarea, select {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #2AA7E7; /* Borda azul claro */
+        border-radius: 5px;
+        font-size: 14px;
+        color: #012063; /* Texto azul escuro */
+        background-color: #f2f4f7; /* Fundo cinza claro */
+    }
 
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
 
-        button {
-            background-color: #2AA7E7;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    button {
+        background-color: #2AA7E7; /* Azul claro para botão */
+        color: #ffffff; /* Texto branco */
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
 
-        button:hover {
-            background-color: #012063;
-        }
+    button:hover {
+        background-color: #ffffff; /* Branco no hover */
+        color: #012063; /* Azul escuro para texto no hover */
+    }
 
-        .message {
-            text-align: center;
-            margin-top: 10px;
-            color: green;
-        }
+    .message {
+        text-align: center;
+        margin-top: 10px;
+        color: #2AA7E7; /* Azul claro para mensagens */
+    }
 
-        .car-list {
-            margin-top: 30px;
-            list-style-type: none;
-            padding: 0;
-        }
+    .car-list {
+        margin-top: 30px;
+        list-style-type: none;
+        padding: 0;
+    }
 
-        .car-list li {
-            background-color: #f9f9f9;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .car-list li {
+        background-color: #2AA7E7; /* Azul claro para itens da lista */
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #ffffff; /* Texto branco */
+    }
 
-        .delete-btn {
-            background-color: #FF6347;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    .delete-btn {
+        background-color: #FF6347; /* Vermelho para botão de deletar */
+        color: white; /* Texto branco */
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
 
-        .delete-btn:hover {
-            background-color: #D15B3C;
-        }
-    </style>
+    .delete-btn:hover {
+        background-color: #D15B3C; /* Vermelho mais escuro no hover */
+    }
+
+    /* Adicionei borda suave ao foco nos campos */
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: #ffffff; /* Borda branca no foco */
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+</style>
+
 </head>
 <body>
     <div class="admin-container">
