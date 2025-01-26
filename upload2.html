@@ -88,6 +88,42 @@
             border-color: #ffffff; /* Borda branca no foco */
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
+     /* Estilo do spinner */
+    .spinner {
+        display: none; /* Oculta o spinner inicialmente */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 6px solid #f3f3f3; /* Fundo cinza claro */
+        border-top: 6px solid #012063; /* Azul escuro da brand */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite; /* Animação de rotação */
+        z-index: 1000; /* Certifique-se de que o spinner está acima do iframe */
+    }
+
+    /* Container do iframe com posição relativa */
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        height: 1000px; /* Ajuste conforme necessário */
+        border-radius: 10px;
+    }
+
+    /* Animação do spinner */
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px;
+    }
     </style>
 </head>
 <body>
@@ -156,12 +192,41 @@
         </form>
         <div class="message" id="message"></div>
     </div>
-<iframe 
-    src="https://kivarashop.github.io/Sales-Pages/excluirviaturas.html#" 
-    width="100%" 
-    height="1000px" 
-    style="border: none; border-radius: 10px; overflow: hidden;">
-</iframe>
+<div class="iframe-container">
+    <div class="spinner" id="spinner"></div>
+    <iframe 
+        src="https://kivarashop.github.io/Sales-Pages/excluirviaturas.html#" 
+        id="iframe"
+    ></iframe>
+</div>
+
+    <script>
+    // Seleciona o formulário, iframe e spinner
+    const form = document.querySelector("form");
+    const iframe = document.getElementById("iframe");
+    const spinner = document.getElementById("spinner");
+
+    // Mostra o spinner e força a atualização do iframe ao enviar o formulário
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        // Exibe o spinner
+        spinner.style.display = "block";
+
+        // Lógica para processar o formulário (opcional)
+        const message = document.getElementById("message");
+        message.textContent = "Carro adicionado com sucesso!";
+
+        // Atualiza o iframe
+        iframe.src = iframe.src;
+
+        // Remove o spinner quando o iframe terminar de carregar
+        iframe.onload = () => {
+            spinner.style.display = "none"; // Oculta o spinner
+        };
+    });
+</script>
+    
     <script>
     // Seleciona o formulário e o iframe
     const form = document.querySelector("form");
