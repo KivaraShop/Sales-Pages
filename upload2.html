@@ -186,7 +186,11 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
-
+    
+<script>
+    document.getElementById("infoLink").style.display = "none";
+document.querySelector('label[for="infoLink"]').style.display = "none";
+</script>
 <script>
     document.getElementById("price").addEventListener("input", function (event) {
     let value = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
