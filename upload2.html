@@ -254,7 +254,7 @@ document.getElementById('infoLink').addEventListener('input', function() {
 
             try {
                 // Fazer o upload da imagem para o bucket S3
-                const s3UploadUrl = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json`; // Substitua pelo seu bucket
+                const s3UploadUrl = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${uniqueImageName}`; // Substitua pelo seu bucket
 
                 const uploadResponse = await fetch(s3UploadUrl, {
                     method: 'PUT',
