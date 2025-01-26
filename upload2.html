@@ -162,32 +162,37 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden;">
 </iframe>
-  <script>
-    // Seleciona o formulário e o iframe
+<script>
+    // Select the form and iframe
     const form = document.querySelector("form");
     const iframe = document.querySelector("iframe");
 
-    // Adiciona um evento ao enviar o formulário
+    // Add an event listener to the form submission
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
+        event.preventDefault(); // Prevent the default form submission
 
-        // Lógica para processar o formulário (opcional)
+        // Logic to show a success message (optional)
         const message = document.getElementById("message");
         message.textContent = "Carro adicionado com sucesso!";
 
-        // Atualiza o iframe sem focar ou rolar
-        const previousScroll = window.scrollY; // Salva a posição de rolagem atual
+        // Temporarily remove focus from the iframe to prevent scrolling
+        const previousScroll = window.scrollY; // Save the current scroll position
+        iframe.style.pointerEvents = "none"; // Disable interactions temporarily
+
+        // Update the iframe's source
+        iframe.src = iframe.src;
+
+        // Wait for the iframe to load and restore the scroll position
         iframe.addEventListener(
             "load",
             () => {
-                window.scrollTo(0, previousScroll); // Força o scroll de volta após o iframe carregar
+                iframe.style.pointerEvents = ""; // Re-enable interactions
+                window.scrollTo(0, previousScroll); // Restore scroll position
             },
             { once: true }
         );
-        iframe.src = iframe.src; // Atualiza o iframe
     });
 </script>
-
 
     <script>
         const carForm = document.getElementById('carForm');
