@@ -194,7 +194,6 @@
 
             // Obtém o ID do produto a partir da URL
             const productId = getProductIdFromUrl();
-
             if (productId) {
                 // Procurar o produto correspondente no JSON usando o ID
                 const carData = data.find(car => car.model.replace(/\s+/g, '').toLowerCase() === productId.replace(/\s+/g, '').toLowerCase());
