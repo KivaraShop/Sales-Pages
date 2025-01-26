@@ -95,6 +95,27 @@
     background-color: transparent; /* Remove o fundo */
 }
 
+      /* Container para organizar os iframes */
+    .iframe-container {
+        display: flex;
+        flex-wrap: wrap; /* Permite empilhar os iframes no celular */
+        gap: 16px; /* Espaço entre os iframes */
+    }
+
+    /* Estilo dos iframes */
+    .responsive-iframe {
+        flex: 1; /* Faz com que os iframes se expandam igualmente */
+        min-width: 300px; /* Define um tamanho mínimo para os iframes */
+        height: 1000px; /* Altura fixa (ajuste conforme necessário) */
+    }
+
+    /* Responsividade para celulares */
+    @media (max-width: 768px) {
+        .responsive-iframe {
+            flex: 100%; /* Faz os iframes ocuparem 100% da largura */
+            height: 500px; /* Altura reduzida para dispositivos menores */
+        }
+    }
     </style>
 </head>
 <body>
@@ -163,20 +184,24 @@
         </form>
         <div class="message" id="message"></div>
     </div>
+    
+<div class="iframe-container">
+    <iframe 
+        src="https://kivarashop.github.io/Sales-Pages/produtoadicionar.html" 
+        width="100%" 
+        height="1000px" 
+        class="responsive-iframe"
+        style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
+    </iframe>
 
     <iframe 
-    src="https://kivarashop.github.io/Sales-Pages/produtoadicionar.html" 
-    width="100%" 
-    height="1000px" 
-    style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
-</iframe>
-    
-<iframe 
-    src="https://kivarashop.github.io/Sales-Pages/excluirviaturas.html#" 
-    width="100%" 
-    height="1000px" 
-    style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
-</iframe>
+        src="https://kivarashop.github.io/Sales-Pages/excluirviaturas.html#" 
+        width="100%" 
+        height="1000px" 
+        class="responsive-iframe"
+        style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
+    </iframe>
+</div>
 <script>
     // Seleciona o formulário e todos os iframes
     const form = document.querySelector("form");
