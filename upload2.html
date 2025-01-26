@@ -124,7 +124,8 @@
             <input type="number" id="price" placeholder="Exemplo: 1150000" required>
 
             <label for="infoLink">Link para Mais Informações:</label>
-            <input type="url" id="infoLink" placeholder="Exemplo: Exemplo: 12" required>
+            <input type="url" id="infoLink" placeholder="Exemplo: Exemplo: 123" required>
+    <span id="error-message" style="color: red; display: none;">Por favor, insira apenas números.</span>
 
             <label for="whatsapp">WhatsApp (Apenas o número):</label>
             <input type="text" id="whatsapp" placeholder="Exemplo: 841234567" required>
@@ -180,13 +181,25 @@
 
 <script>
 document.getElementById('infoLink').addEventListener('input', function() {
-    var id = this.value; // O valor inserido pelo usuário
-    // Verifica se a entrada contém apenas números
-    if (/^\d+$/.test(id)) { // Regex que garante que só números sejam permitidos
+    var input = this;
+    var errorMessage = document.getElementById('error-message');
+
+    // Remove qualquer caractere não numérico
+    input.value = input.value.replace(/\D/g, '');
+
+    // Verifica se o valor contém caracteres não numéricos
+    if (/\D/g.test(input.value)) {
+        // Exibe a mensagem de erro se não for um número
+        errorMessage.style.display = 'inline';
+    } else {
+        // Esconde a mensagem de erro se for um número válido
+        errorMessage.style.display = 'none';
+    }
+
+    var id = input.value; // O valor inserido pelo usuário
+    if (id) {
         var url = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + id;
         console.log(url); // Exibe a URL no console (pode ser removido ou usado conforme necessário)
-    } else {
-        console.log("Por favor, insira apenas números."); // Mensagem de erro
     }
 });
 
