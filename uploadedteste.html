@@ -680,37 +680,6 @@ button:hover {
             margin-bottom: 10px;
         }
 
-        #label {
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-            cursor: pointer;
-            width: 200px;
-        }
-
-        /* Custom background colors for different states */
-        #label.novo {
-            background-color: #e3fcec; /* Light green for "Novo" */
-            color: #2d6a4f;
-        }
-
-        #label.usado {
-            background-color: #fff3e6; /* Light orange for "Usado" */
-            color: #a75b00;
-        }
-
-        #label.desconto {
-            background-color: #ffe6e6; /* Light red for "Desconto" */
-            color: #b22222;
-        }
-
-        #label.parcelado {
-            background-color: #e6f2ff; /* Light blue for "Parcelado" */
-            color: #004b8d;
-        }
-
         /* Responsividade para telas menores */
         @media (max-width: 768px) {
             .product-grid {
@@ -967,6 +936,26 @@ button:hover {
         <p>© 2025 Minha Empresa. Todos os direitos reservados.</p>
     </div>
 </footer>
+
+      <script>
+        // Seleciona o dropdown e o rótulo dinâmico
+        const labelSelect = document.getElementById('label');
+        const selectedLabel = document.getElementById('selected-label');
+
+        // Evento para atualizar a classe e o texto do rótulo com base na seleção
+        labelSelect.addEventListener('change', function () {
+            const value = this.value.toLowerCase();
+
+            // Remove todas as classes específicas
+            selectedLabel.className = 'label';
+
+            // Adiciona a classe correspondente ao valor selecionado
+            if (value) {
+                selectedLabel.classList.add(value);
+                selectedLabel.textContent = value.charAt(0).toUpperCase() + value.slice(1); // Atualiza o texto
+            }
+        });
+    </script>
           <script>
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
