@@ -121,6 +121,17 @@ button:hover {
 </div>
 
 <div id="notification-container" style="margin-top: 20px; color: white; font-weight: bold;"></div>
+    
+    <script>
+    document.querySelector('form').addEventListener('input', function() {
+        // Verifica se o formulário está válido
+        if (this.checkValidity()) {
+            // Envia uma mensagem para a página principal informando que o formulário foi preenchido
+            parent.postMessage('formPreenchido', '*');
+        }
+    });
+</script>
+
 
 <script>
     // Função para enviar os dados do carro ao S3
