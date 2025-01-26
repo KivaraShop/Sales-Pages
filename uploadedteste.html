@@ -1144,7 +1144,7 @@ function filterProducts(searchTerm) {
 // Função para filtrar os carros com base na tag
 function filterByTag(tag) {
     const filteredCars = carsData.filter(car => car.tags.includes(tag));
-
+    
     updateCarGrid(filteredCars);
 }
 
@@ -1205,6 +1205,18 @@ function filterByTag(tag) {
     const filteredCars = carsData.filter(car => car.tags.includes(tag));
     updateCarGrid(filteredCars);
 }
+
+// Função para lidar com os cliques nas tags
+function handleTagClick(event) {
+    event.preventDefault();
+    const tag = event.target.textContent.trim();
+    filterByTag(tag);
+}
+
+// Adicionar ouvintes de evento nas tags do menu
+document.querySelectorAll('.tag-menu a').forEach(link => {
+    link.addEventListener('click', handleTagClick);
+});
 
 // Chamar a função para carregar os carros quando a página carregar
 window.onload = loadCars;
