@@ -221,109 +221,106 @@
     });
 </script>
 
+<script>
+    const carForm = document.getElementById('carForm');
+    const message = document.getElementById('message');
 
+    carForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
+        // Garantir que o campo infoLink seja preenchido automaticamente
+        const infoLinkField = document.getElementById('infoLink');
+        const id = document.getElementById('infoLink').value.trim(); // Obter o número inserido
 
-    <script>
-const carForm = document.getElementById('carForm');
-const message = document.getElementById('message');
-
-carForm.addEventListener('submit', async (e) => {
-    e.preventDefault();  // Previne o comportamento padrão de envio do formulário
-
-    // Garantir que o campo infoLink seja preenchido automaticamente com o número
-    const infoLinkField = document.getElementById('infoLink');
-    const id = infoLinkField.value.trim(); // Obter o número inserido
-
-    // Gerar o link se o ID estiver presente
-    if (id) {
-        infoLinkField.value = `https://kivarashop.github.io/Sales-Pages/produto.html?id=${id}`;
-    } else {
-        // Se o ID não for inserido, exibe um erro
-        alert('Por favor, insira um ID válido!');
-        return;
-    }
-
-    // Agora o formulário pode ser enviado sem problemas
-    const imageUpload = document.getElementById('imageUpload').files[0];
-
-    if (!imageUpload) {
-        alert('Por favor, envie uma imagem!');
-        return;
-    }
-
-    // Gerar um nome único para a imagem
-    const uniqueImageName = `${Date.now()}_${imageUpload.name}`;
-
-    try {
-        // Fazer o upload da imagem para o bucket S3
-        const s3UploadUrl = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${uniqueImageName}`;
-
-        const uploadResponse = await fetch(s3UploadUrl, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': imageUpload.type,
-            },
-            body: imageUpload,
-        });
-
-        if (!uploadResponse.ok) {
-            throw new Error('Falha ao enviar a imagem para o S3.');
+        if (id) {
+            infoLinkField.value = `https://kivarashop.github.io/Sales-Pages/produto.html?id=${id}`;
         }
 
-        const imageUrl = s3UploadUrl;
-
-        // Dados do carro com as tags
-        const carData = {
-            label: document.getElementById('label').value,
-            image: imageUrl,
-            name: document.getElementById('name').value,
-            price: document.getElementById('price').value + " MZN",
-            infoLink: infoLinkField.value,  // Usando o valor gerado automaticamente
-            whatsappLink: `https://wa.me/258${document.getElementById('whatsapp').value}`,
-            tags: [
-                document.getElementById('brand').value.toLowerCase(),
-                document.getElementById('model').value.toLowerCase(),
-                document.getElementById('transmission').value.toLowerCase()
-            ]
-        };
-
-        // URL do JSON no S3
-        const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json';
-
-        // Buscar o arquivo JSON existente
-        const response = await fetch(s3JsonUrl);
-        if (!response.ok) {
-            throw new Error('Não foi possível buscar o JSON existente.');
+        // Verifica se o link foi gerado corretamente (caso o campo ainda esteja vazio)
+        if (!infoLinkField.value) {
+            alert('Por favor, insira um ID válido!');
+            return;
         }
 
-        const data = await response.json();
+        const imageUpload = document.getElementById('imageUpload').files[0];
 
-        // Adicionar o novo carro
-        data.push(carData);
-
-        // Atualizar o arquivo no S3
-        const updateResponse = await fetch(s3JsonUrl, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-
-        if (!updateResponse.ok) {
-            throw new Error('Erro ao atualizar o arquivo JSON no S3.');
+        if (!imageUpload) {
+            alert('Por favor, envie uma imagem!');
+            return;
         }
 
-        // Mensagem de sucesso
-        message.textContent = 'Carro adicionado com sucesso!';
-        carForm.reset();
-    } catch (error) {
-        console.error('Erro ao adicionar carro:', error);
-        message.textContent = 'Erro ao adicionar o carro. Tente novamente.';
-    }
-});
+        // Gerar um nome único para a imagem
+        const uniqueImageName = `${Date.now()}_${imageUpload.name}`;
 
-    </script>
+        try {
+            // Fazer o upload da imagem para o bucket S3
+            const s3UploadUrl = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${uniqueImageName}`; // Substitua pelo seu bucket
+
+            const uploadResponse = await fetch(s3UploadUrl, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': imageUpload.type,
+                },
+                body: imageUpload,
+            });
+
+            if (!uploadResponse.ok) {
+                throw new Error('Falha ao enviar a imagem para o S3.');
+            }
+
+            const imageUrl = s3UploadUrl;
+
+            // Dados do carro com as tags
+            const carData = {
+                label: document.getElementById('label').value,
+                image: imageUrl,
+                name: document.getElementById('name').value,
+                price: document.getElementById('price').value + " MZN",
+                infoLink: infoLinkField.value, // Usando o valor gerado ou preenchido automaticamente
+                whatsappLink: `https://wa.me/258${document.getElementById('whatsapp').value}`,
+                tags: [
+                    document.getElementById('brand').value.toLowerCase(),
+                    document.getElementById('model').value.toLowerCase(),
+                    document.getElementById('transmission').value.toLowerCase()
+                ]
+            };
+
+            // URL do JSON no S3
+            const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'; // Substitua pelo seu URL
+
+            // Buscar o arquivo JSON existente
+            const response = await fetch(s3JsonUrl);
+            if (!response.ok) {
+                throw new Error('Não foi possível buscar o JSON existente.');
+            }
+
+            const data = await response.json();
+
+            // Adicionar o novo carro
+            data.push(carData);
+
+            // Atualizar o arquivo no S3
+            const updateResponse = await fetch(s3JsonUrl, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!updateResponse.ok) {
+                throw new Error('Erro ao atualizar o arquivo JSON no S3.');
+            }
+
+            // Mensagem de sucesso
+            message.textContent = 'Carro adicionado com sucesso!';
+            carForm.reset();
+        } catch (error) {
+            console.error('Erro ao adicionar carro:', error);
+            message.textContent = 'Erro ao adicionar o carro. Tente novamente.';
+        }
+    });
+</script>
+
 </body>
 </html>
