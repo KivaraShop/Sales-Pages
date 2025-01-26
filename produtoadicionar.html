@@ -4,45 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Viatura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4a004e;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container input[type="file"] {
+            margin-top: 8px;
+        }
+
+        .form-container button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-container button:hover {
+            background-color: #ff3399;
+        }
+
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .image-preview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>Adicionar Viatura</h1>
 
-    <form id="carForm">
-        <label for="model">Modelo:</label>
-        <input type="text" id="model" name="model" required><br><br>
+    <div class="form-container">
+        <form id="carForm">
+            <label for="model">Modelo:</label>
+            <input type="text" id="model" name="model" required>
 
-        <label for="description">Descrição:</label>
-        <textarea id="description" name="description" required></textarea><br><br>
+            <label for="description">Descrição:</label>
+            <textarea id="description" name="description" required></textarea>
 
-        <label for="mileage">Quilometragem:</label>
-        <input type="number" id="mileage" name="mileage" required><br><br>
+            <label for="mileage">Quilometragem:</label>
+            <input type="number" id="mileage" name="mileage" required>
 
-        <label for="condition">Estado (0-100):</label>
-        <input type="number" id="condition" name="condition" required min="0" max="100"><br><br>
+            <label for="condition">Estado (0-100):</label>
+            <input type="number" id="condition" name="condition" required min="0" max="100">
 
-        <label for="fuel">Combustível (%):</label>
-        <input type="number" id="fuel" name="fuel" required min="0" max="100"><br><br>
+            <label for="fuel">Combustível (%):</label>
+            <input type="number" id="fuel" name="fuel" required min="0" max="100">
 
-        <label for="images">Imagens (URLs separados por vírgula):</label>
-        <input type="text" id="images" name="images" required><br><br>
+            <label for="images">Selecione as imagens:</label>
+            <input type="file" id="images" name="images" multiple required>
+            <div id="imagePreview" class="image-preview"></div>
 
-        <button type="submit">Adicionar Viatura</button>
-    </form>
+            <button type="submit">Adicionar Viatura</button>
+        </form>
+    </div>
 
     <script>
         document.getElementById('carForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Pegar os valores do formulário
             const model = document.getElementById('model').value;
             const description = document.getElementById('description').value;
             const mileage = document.getElementById('mileage').value;
             const condition = document.getElementById('condition').value;
             const fuel = document.getElementById('fuel').value;
-            const images = document.getElementById('images').value.split(',');
 
-            // Criar um objeto com as informações
+            const images = [];
+            const files = document.getElementById('images').files;
+
+            for (let i = 0; i < files.length; i++) {
+                images.push(URL.createObjectURL(files[i]));
+            }
+
             const carData = {
                 model,
                 description,
@@ -52,13 +130,13 @@
                 images
             };
 
-            // Enviar para o S3 - para o JSON
+            // Enviar os dados para o JSON no S3
             fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify([carData]) // Enviar os dados como um array JSON
+                body: JSON.stringify([carData]) // Envia os dados como um array
             })
             .then(response => response.json())
             .then(data => {
@@ -69,6 +147,18 @@
                 console.error('Erro:', error);
                 alert('Ocorreu um erro ao adicionar a viatura.');
             });
+        });
+
+        document.getElementById('images').addEventListener('change', function() {
+            const imagePreview = document.getElementById('imagePreview');
+            imagePreview.innerHTML = '';
+            const files = this.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(files[i]);
+                imagePreview.appendChild(img);
+            }
         });
     </script>
 </body>
