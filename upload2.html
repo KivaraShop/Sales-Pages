@@ -125,7 +125,7 @@
             <input type="text" id="name" placeholder="Exemplo: Audi Q5, 2018" required>
 
             <label for="price">Preço (MZN):</label>
-            <input type="number" id="price" placeholder="Exemplo: 1150000" required>
+            <input type="text" id="price" placeholder="Exemplo: 1150000" required>
 
 <label for="infoLink">Link para Mais Informações:</label>
 <input type="url" id="infoLink" value="https://kivarashop.github.io/Sales-Pages/produto.html?id=" readonly>
@@ -187,6 +187,16 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 
+<script>
+    document.getElementById("price").addEventListener("input", function (event) {
+    let value = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    if (value) {
+        value = parseInt(value, 10).toLocaleString(); // Formata para o padrão de milhares
+    }
+    event.target.value = value;
+});
+
+</script> 
 <script>
     function updateLink() {
         const input = document.getElementById('productId');
