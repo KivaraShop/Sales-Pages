@@ -1174,7 +1174,7 @@ function filterByTag(tag) {
     } else {
         carGrid.innerHTML = ''; // Limpa os produtos visíveis
         noResultsMessage.innerHTML = `
-            <p>Sem resultados para esta tag. Tente outra.</p>
+            <p>Sem resultados para esta categoria. Por favor, diga-nos qual viatura está a procura no botão abaixo.</p>
         `;
         noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
         orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
@@ -1224,7 +1224,7 @@ function filterProducts(searchTerm) {
     } else {
         carGrid.innerHTML = ''; // Limpa os produtos visíveis
         noResultsMessage.innerHTML = `
-            <p>Sem resultados para esta pesquisa. Tente outra.</p>
+            <p>Sem resultados para esta pesquisa. Por favor, diga-nos qual viatura está a procura no botão abaixo.</p>
         `;
         noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
         orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
