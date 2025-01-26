@@ -124,7 +124,7 @@
             <input type="number" id="price" placeholder="Exemplo: 1150000" required>
 
             <label for="infoLink">Link para Mais Informações:</label>
-            <input type="url" id="infoLink" placeholder="Exemplo: carroinfo.html" required>
+            <input type="url" id="infoLink" placeholder="Exemplo: Exemplo: 123" required>
 
             <label for="whatsapp">WhatsApp (Apenas o número):</label>
             <input type="text" id="whatsapp" placeholder="Exemplo: 841234567" required>
@@ -178,7 +178,17 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 
-
+<script>
+document.getElementById('infoLink').addEventListener('input', function() {
+    var id = this.value; // O valor inserido pelo usuário
+    if (id && !isNaN(id)) { // Verifica se o valor é um número
+        var url = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + id;
+        console.log(url); // Exibe a URL no console (pode ser removido ou usado conforme necessário)
+    } else {
+        console.log("Por favor, insira um número válido."); // Mensagem de erro se não for número
+    }
+});
+</script>
 <script>
     // Seleciona o formulário e todos os iframes
     const form = document.querySelector("form");
