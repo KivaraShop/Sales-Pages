@@ -118,7 +118,7 @@
             const files = document.getElementById('images').files;
 
             for (let i = 0; i < files.length; i++) {
-                images.push(URL.createObjectURL(files[i]));
+                images.push(URL.createObjectURL(files[i])); // Exibe as imagens no navegador antes de enviar
             }
 
             const carData = {
@@ -130,7 +130,7 @@
                 images
             };
 
-            // Enviar os dados para o JSON no S3
+            // Enviar os dados para o JSON no S3 (neste exemplo, não podemos enviar diretamente para o S3 sem um backend)
             fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
                 method: 'POST',
                 headers: {
@@ -151,7 +151,7 @@
 
         document.getElementById('images').addEventListener('change', function() {
             const imagePreview = document.getElementById('imagePreview');
-            imagePreview.innerHTML = '';
+            imagePreview.innerHTML = ''; // Limpa a área de pré-visualização
             const files = this.files;
 
             for (let i = 0; i < files.length; i++) {
