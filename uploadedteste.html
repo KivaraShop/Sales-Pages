@@ -1146,8 +1146,10 @@ function filterByTag(tag) {
     if (filteredCars.length > 0) {
         carGrid.innerHTML = ''; // Limpa os produtos visíveis
         displayCars(filteredCars); // Exibe os carros filtrados
+        navigationButtons.style.visibility = 'visible'; // Torna os botões visíveis
     } else {
         carGrid.innerHTML = '<p style="text-align: center;">Sem resultados para esta tag. Tente outra.</p>';
+         navigationButtons.style.visibility = 'hidden'; // Oculta os botões de navegação
     }
 }
 
