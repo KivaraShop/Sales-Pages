@@ -179,33 +179,7 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 
-<script>
-document.getElementById('infoLink').addEventListener('input', function() {
-    var input = this;
-    var errorMessage = document.getElementById('error-message');
 
-    // Remove qualquer caractere não numérico
-    var originalValue = input.value;
-    input.value = input.value.replace(/\D/g, '');
-
-    // Verifica se o valor original tinha caracteres não numéricos
-    if (originalValue !== input.value) {
-        // Exibe a mensagem de erro
-        errorMessage.style.display = 'inline';
-    } else {
-        // Esconde a mensagem de erro se o valor for válido
-        errorMessage.style.display = 'none';
-    }
-
-    // Gerar a URL com o ID inserido, se houver
-    var id = input.value; 
-    if (id) {
-        var url = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + id;
-        console.log(url); // Exibe a URL no console (pode ser removido ou usado conforme necessário)
-    }
-});
-
-</script>
 <script>
     // Seleciona o formulário e todos os iframes
     const form = document.querySelector("form");
