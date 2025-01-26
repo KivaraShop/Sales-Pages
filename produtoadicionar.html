@@ -113,9 +113,22 @@ button:hover {
         <label for="fuel">Combustível (em %)</label>
         <input type="number" id="fuel" name="fuel" required>
 
- <label for="images">Imagens (selecione arquivos)</label>
-        <input type="file" id="images" name="images" accept="image/*" multiple required>
+  <!-- Barra 1 -->
+        <label for="image1">Imagem 1 (selecione arquivo)</label>
+        <input type="file" id="image1" name="images[]" accept="image/*" required>
 
+        <!-- Barra 2 -->
+        <label for="image2">Imagem 2 (selecione arquivo)</label>
+        <input type="file" id="image2" name="images[]" accept="image/*">
+
+        <!-- Barra 3 -->
+        <label for="image3">Imagem 3 (selecione arquivo)</label>
+        <input type="file" id="image3" name="images[]" accept="image/*">
+
+        <!-- Barra 4 -->
+        <label for="image4">Imagem 4 (selecione arquivo)</label>
+        <input type="file" id="image4" name="images[]" accept="image/*">
+        
         <button type="submit">Adicionar Carro</button>
         <div id="notification-container" style="margin-top: 20px; color: white; font-weight: bold;"></div>
 
@@ -136,7 +149,17 @@ button:hover {
         const mileage = document.getElementById("mileage").value;
         const condition = document.getElementById("condition").value;
         const fuel = document.getElementById("fuel").value;
-        const images = document.getElementById("images").value.split(',');
+
+        // Obtendo os arquivos de imagem
+        const imageFiles = [
+            document.getElementById("image1").files[0],
+            document.getElementById("image2").files[0],
+            document.getElementById("image3").files[0],
+            document.getElementById("image4").files[0]
+        ];
+
+        // Filtra arquivos válidos
+        const validImageFiles = imageFiles.filter(file => file !== undefined);
 
         // Obter dados existentes no JSON
         let existingCars = [];
@@ -164,8 +187,37 @@ button:hover {
             mileage: parseInt(mileage),
             condition: parseInt(condition),
             fuel: parseInt(fuel),
-            images: images.map(url => url.trim()) // Limpa espaços extras
+            images: []  // Inicializa como um array vazio, que será preenchido após o upload
         };
+
+        // Função para upload de imagem para o S3
+        const uploadImageToS3 = async (file) => {
+            const formData = new FormData();
+            formData.append("file", file);
+            // Supondo que você tenha uma URL S3 configurada para upload direto
+            const s3UploadUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com'; // Substitua pela sua URL real do S3
+            const response = await fetch(s3UploadUrl, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const uploadedData = await response.json();
+                return uploadedData.fileUrl;  // Supondo que a resposta inclua a URL do arquivo carregado
+            } else {
+                throw new Error('Falha no upload da imagem');
+            }
+        };
+
+        // Upload das imagens e atualização do objeto de carro
+        try {
+            const imageUrls = await Promise.all(validImageFiles.map(file => uploadImageToS3(file)));
+            newCar.images = imageUrls;  // Atualiza o array de imagens com as URLs das imagens carregadas
+        } catch (error) {
+            console.error('Erro ao fazer upload das imagens:', error);
+            alert('Erro ao fazer upload das imagens. Tente novamente.');
+            return;
+        }
 
         // Adicionar o novo carro aos dados existentes
         existingCars.push(newCar);
