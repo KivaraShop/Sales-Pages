@@ -127,7 +127,7 @@
 <input type="url" id="infoLink" value="https://kivarashop.github.io/Sales-Pages/produto.html?id=" readonly>
 
 <label for="productId">ID do Produto:</label>
-<input type="number" id="productId" placeholder="Digite o ID do produto" oninput="updateLink()" required>
+<input type="text" id="productId" placeholder="Digite o ID do produto" oninput="updateLink()" required>
 
 <p id="error-message" style="color: red; display: none;">Por favor, digite apenas o número!</p>
 
@@ -185,17 +185,23 @@
 
 <script>
     function updateLink() {
-        const productId = document.getElementById('productId').value;
-        const infoLink = document.getElementById('infoLink');
+        const input = document.getElementById('productId');
         const errorMessage = document.getElementById('error-message');
+        const originalValue = input.value;
 
-        // Verificar se o valor inserido é um número
-        if (productId && isNaN(productId)) {
-            errorMessage.style.display = "block"; // Exibir mensagem de erro se for texto
+        // Remover qualquer caractere não numérico
+        input.value = input.value.replace(/\D/g, '');
+
+        // Verificar se a entrada continha caracteres não numéricos
+        if (input.value !== originalValue) {
+            errorMessage.style.display = "block"; // Exibir mensagem de erro se não for um número
         } else {
             errorMessage.style.display = "none"; // Ocultar mensagem de erro
-            infoLink.value = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + productId;
         }
+
+        // Atualizar o link
+        const infoLink = document.getElementById('infoLink');
+        infoLink.value = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + input.value;
     }
 </script>
 <script>
