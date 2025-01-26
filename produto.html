@@ -165,7 +165,92 @@
                         </div>
                         <p class="bar-label" id="fuel-label">0% restante</p>
                     </div>
-                </div>
+                </div><script>
+    // Função para obter o ID do produto a partir da URL
+    function getProductIdFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('id'); // Retorna o valor do parâmetro 'id' na URL
+    }
+
+    // Função para carregar os dados do JSON
+    fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar o JSON');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dados carregados:', data);  // Exibe os dados no console para depuração
+
+            // Obtém o ID do produto a partir da URL
+            const productId = getProductIdFromUrl();
+            console.log('ID da URL:', productId);  // Log do ID obtido da URL
+
+            if (productId) {
+                // Procurar o produto correspondente no JSON usando o ID
+                const carData = data.find(car => {
+                    const carModel = car.model.toLowerCase().trim();
+                    const urlProductId = productId.toLowerCase().trim();
+                    console.log(`Comparando model: "${carModel}" com id da URL: "${urlProductId}"`);  // Log da comparação
+                    return carModel === urlProductId;
+                });
+
+                if (carData) {
+                    console.log('Produto encontrado:', carData);  // Exibe o produto encontrado no JSON
+
+                    // Carregar imagem principal
+                    const mainImage = document.getElementById('car-main-image');
+                    mainImage.src = carData.images[0];
+
+                    // Carregar as miniaturas
+                    const thumbnailCarousel = document.getElementById('thumbnail-carousel');
+                    carData.images.forEach(image => {
+                        const img = document.createElement('img');
+                        img.src = image;
+                        img.classList.add('thumbnail');
+                        img.onclick = function() {
+                            mainImage.src = image;
+                        };
+                        thumbnailCarousel.appendChild(img);
+                    });
+
+                    // Carregar título, descrição e status
+                    document.getElementById('car-title').innerText = carData.model || 'Modelo do Carro';
+                    document.getElementById('car-description').innerText = carData.description || 'Descrição do Carro';
+
+                    // Carregar quilometragem, condição e combustível
+                    const kmPercentage = (carData.mileage / 100000) * 100; // Exemplo de cálculo de quilometragem
+                    animateBar('km-bar', kmPercentage, 'km-label', carData.mileage + ' km');
+
+                    const conditionPercentage = carData.condition || 0; // Supomos que a condição está entre 0 e 100
+                    animateBar('condition-bar', conditionPercentage, 'condition-label', conditionPercentage + '% de boa condição');
+
+                    const fuelPercentage = carData.fuel || 0; // Supomos que o combustível está entre 0 e 100
+                    animateBar('fuel-bar', fuelPercentage, 'fuel-label', fuelPercentage + '% restante');
+                } else {
+                    console.log('Produto não encontrado');
+                }
+            } else {
+                console.log('ID não fornecido na URL');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao carregar os dados do JSON:', error);
+        });
+
+    // Função para animar as barras
+    function animateBar(barId, percentage, labelId, labelText) {
+        let bar = document.getElementById(barId);
+        let label = document.getElementById(labelId);
+        bar.style.width = '0%';
+        setTimeout(function() {
+            bar.style.width = percentage + '%';
+            label.textContent = labelText;
+        }, 500);
+    }
+</script>
+
             </div>
         </section>
     </main>
