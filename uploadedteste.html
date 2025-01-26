@@ -779,10 +779,11 @@ button:hover {
               <li>
             <a href="#" class="category">Marca</a>
             <ul class="submenu">
-              <li><a href="#">#Audi</a></li>
-        <li><a href="#">#SUV</a></li>
-        <li><a href="#">#Automatica</a></li>
-    </ul>
+       <li><a href="#" onclick="filterByTag('#Audi')">Audi</a></li>
+    <li><a href="#" onclick="filterByTag('#BMW')">BMW</a></li>
+    <li><a href="#" onclick="filterByTag('#Mercedes')">Mercedes</a></li>
+    <li><a href="#" onclick="filterByTag('#Toyota')">Toyota</a></li>
+</ul>
         </li>
               <li>
                 <a href="#" class="category">Modelo</a>
@@ -947,7 +948,21 @@ button:hover {
         <p>© 2025 Minha Empresa. Todos os direitos reservados.</p>
     </div>
 </footer>
-    
+          <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+
+</script>
+        
         <!-- Inclua a biblioteca Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
@@ -1070,15 +1085,12 @@ async function loadCars() {
         const response = await fetch(s3JsonUrl);
         carsData = await response.json();
 
-        // Verificar se existem carros
         if (carsData.length === 0) {
             document.getElementById('car-grid').innerHTML = '<p>Nenhum carro cadastrado ainda.</p>';
             return;
         }
 
-        // Criar os cards para cada carro
         displayCars(carsData); // Exibe todos os carros inicialmente
-
     } catch (error) {
         console.error('Erro ao carregar carros:', error);
         document.getElementById('car-grid').innerHTML = '<p>Erro ao carregar carros. Tente novamente mais tarde.</p>';
@@ -1119,56 +1131,7 @@ function displayCars(cars) {
     });
 }
 
-// Função para filtrar produtos por nome
-function filterProducts(searchTerm) {
-    const search = searchTerm.toLowerCase();
-    const filteredCars = carsData.filter(car => car.name.toLowerCase().includes(search));
-
-    const carGrid = document.getElementById('car-grid');
-    let noResultsMessage = document.getElementById('no-results-message'); // Elemento de mensagem de "sem resultados"
-    let orderButton = document.getElementById('order-button'); // Botão de "Encomendar viatura"
-    let navigationButtons = document.querySelector('.navigation-buttons'); // Botões de navegação
-
-    // Se não existir a mensagem e o botão, cria-los
-    if (!noResultsMessage) {
-        noResultsMessage = document.createElement('div');
-        noResultsMessage.id = 'no-results-message';
-        noResultsMessage.style.display = 'none'; // Inicialmente escondido
-        carGrid.parentNode.appendChild(noResultsMessage); // Adiciona ao DOM
-    }
-
-    if (!orderButton) {
-        orderButton = document.createElement('button');
-        orderButton.id = 'order-button';
-        orderButton.style.display = 'none'; // Inicialmente escondido
-        orderButton.innerHTML = 'Encomendar viatura';
-        orderButton.onclick = () => {
-            window.location.href = 'https://wa.me/258852136558'; // Link do WhatsApp para encomendar
-        };
-        carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
-    }
-
-    // Se encontrou carros filtrados
-    if (filteredCars.length > 0) {
-        carGrid.innerHTML = ''; // Limpa os produtos visíveis
-        displayCars(filteredCars); // Exibe os carros filtrados
-        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
-        orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
-        navigationButtons.style.visibility = 'visible'; // Torna os botões invisíveis
-
-    } else {
-        carGrid.innerHTML = ''; // Limpa os produtos visíveis
-        noResultsMessage.innerHTML = `
-            <p>Sem resultados, por favor diga-nos a viatura que procura, no botão abaixo.</p>
-        `;
-        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
-        orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
-        orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
-        navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
-    }
-}
-
-// Função para filtrar produtos por tags
+// Função para filtrar carros por tags
 function filterByTag(tag) {
     const tagLower = tag.toLowerCase();
     const filteredCars = carsData.filter(car => 
@@ -1176,52 +1139,19 @@ function filterByTag(tag) {
     );
 
     const carGrid = document.getElementById('car-grid');
-    let noResultsMessage = document.getElementById('no-results-message'); // Elemento de mensagem de "sem resultados"
-    let orderButton = document.getElementById('order-button'); // Botão de "Encomendar viatura"
-    let navigationButtons = document.querySelector('.navigation-buttons'); // Botões de navegação
 
-    // Se não existir a mensagem e o botão, cria-los
-    if (!noResultsMessage) {
-        noResultsMessage = document.createElement('div');
-        noResultsMessage.id = 'no-results-message';
-        noResultsMessage.style.display = 'none'; // Inicialmente escondido
-        carGrid.parentNode.appendChild(noResultsMessage); // Adiciona ao DOM
-    }
-
-    if (!orderButton) {
-        orderButton = document.createElement('button');
-        orderButton.id = 'order-button';
-        orderButton.style.display = 'none'; // Inicialmente escondido
-        orderButton.innerHTML = 'Encomendar viatura';
-        orderButton.onclick = () => {
-            window.location.href = 'https://wa.me/258852136558'; // Link do WhatsApp para encomendar
-        };
-        carGrid.parentNode.appendChild(orderButton); // Adiciona ao DOM
-    }
-
-    // Se encontrou carros filtrados por tag
     if (filteredCars.length > 0) {
         carGrid.innerHTML = ''; // Limpa os produtos visíveis
         displayCars(filteredCars); // Exibe os carros filtrados
-        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "sem resultados"
-        orderButton.style.display = 'none'; // Esconde o botão "Encomendar viatura"
-        navigationButtons.style.visibility = 'visible'; // Torna os botões invisíveis
-
     } else {
-        carGrid.innerHTML = ''; // Limpa os produtos visíveis
-        noResultsMessage.innerHTML = `
-            <p>Sem resultados para esta tag. Tente outra.</p>
-        `;
-        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "sem resultados"
-        orderButton.style.margin = '0 auto'; // Centraliza o botão horizontalmente
-        orderButton.style.display = 'block'; // Garante que o botão seja exibido como um bloco para centralizar
-        navigationButtons.style.visibility = 'hidden'; // Torna os botões visíveis
+        carGrid.innerHTML = '<p>Sem resultados para esta tag. Tente outra.</p>';
     }
 }
 
 // Chamar a função para carregar os carros quando a página carregar
 window.onload = loadCars;
 </script>
+
 
 
     
