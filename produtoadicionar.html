@@ -5,75 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Viatura</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #4a004e;
-            text-align: center;
-        }
-
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-container label {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="number"],
-        .form-container textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .form-container input[type="file"] {
-            margin-top: 8px;
-        }
-
-        .form-container button {
-            background-color: #ff66b2;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .form-container button:hover {
-            background-color: #ff3399;
-        }
-
-        .image-preview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .image-preview img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+        /* Estilos aqui (como o anterior) */
     </style>
 </head>
 <body>
@@ -96,9 +28,29 @@
             <label for="fuel">Combustível (%):</label>
             <input type="number" id="fuel" name="fuel" required min="0" max="100">
 
-            <label for="images">Selecione as imagens:</label>
-            <input type="file" id="images" name="images" multiple required>
-            <div id="imagePreview" class="image-preview"></div>
+            <label>Selecione até 5 imagens:</label>
+            <div class="image-upload-blocks">
+                <div>
+                    <input type="file" id="image1" name="image1" accept="image/*">
+                    <div id="preview1" class="image-preview"></div>
+                </div>
+                <div>
+                    <input type="file" id="image2" name="image2" accept="image/*">
+                    <div id="preview2" class="image-preview"></div>
+                </div>
+                <div>
+                    <input type="file" id="image3" name="image3" accept="image/*">
+                    <div id="preview3" class="image-preview"></div>
+                </div>
+                <div>
+                    <input type="file" id="image4" name="image4" accept="image/*">
+                    <div id="preview4" class="image-preview"></div>
+                </div>
+                <div>
+                    <input type="file" id="image5" name="image5" accept="image/*">
+                    <div id="preview5" class="image-preview"></div>
+                </div>
+            </div>
 
             <button type="submit">Adicionar Viatura</button>
         </form>
@@ -114,52 +66,85 @@
             const condition = document.getElementById('condition').value;
             const fuel = document.getElementById('fuel').value;
 
-            const images = [];
-            const files = document.getElementById('images').files;
+            const imageUrls = [];
+            let uploadPromises = [];
 
-            for (let i = 0; i < files.length; i++) {
-                images.push(URL.createObjectURL(files[i])); // Exibe as imagens no navegador antes de enviar
+            // Fazendo upload das imagens para o S3
+            for (let i = 1; i <= 5; i++) {
+                const fileInput = document.getElementById('image' + i);
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const fileName = `car_image_${Date.now()}_${file.name}`;
+                    const s3Url = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${fileName}`;
+
+                    // Enviar a imagem para o S3 usando Fetch API ou outra lógica
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('key', fileName);
+                    formData.append('AWSAccessKeyId', 'YOUR_AWS_ACCESS_KEY_ID');
+                    formData.append('acl', 'public-read');
+                    formData.append('policy', 'YOUR_POLICY');
+                    formData.append('signature', 'YOUR_SIGNATURE');
+                    
+                    // Simulando o upload com Fetch (você precisaria de um endpoint que aceite este tipo de upload)
+                    uploadPromises.push(
+                        fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com', {
+                            method: 'POST',
+                            body: formData
+                        }).then(response => response.json())
+                          .then(data => imageUrls.push(s3Url)) // Após o upload, adicionar URL ao array
+                    );
+                }
             }
 
-            const carData = {
-                model,
-                description,
-                mileage: parseInt(mileage),
-                condition: parseInt(condition),
-                fuel: parseInt(fuel),
-                images
-            };
+            // Após o upload das imagens, enviar o JSON com os dados da viatura
+            Promise.all(uploadPromises).then(() => {
+                const carData = {
+                    model,
+                    description,
+                    mileage: parseInt(mileage),
+                    condition: parseInt(condition),
+                    fuel: parseInt(fuel),
+                    images: imageUrls
+                };
 
-            // Enviar os dados para o JSON no S3 (neste exemplo, não podemos enviar diretamente para o S3 sem um backend)
-            fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify([carData]) // Envia os dados como um array
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Viatura adicionada com sucesso!');
-                console.log('Sucesso:', data);
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Ocorreu um erro ao adicionar a viatura.');
+                // Enviar os dados para o arquivo JSON (exemplo fictício)
+                fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
+                    method: 'PUT',  // 'PUT' pode ser substituído dependendo do método de atualização
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(carData)
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Viatura adicionada com sucesso!');
+                    } else {
+                        alert('Erro ao adicionar a viatura.');
+                    }
+                }).catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao conectar com o servidor.');
+                });
+            }).catch(error => {
+                console.error('Erro no upload das imagens:', error);
+                alert('Erro no upload das imagens.');
             });
         });
 
-        document.getElementById('images').addEventListener('change', function() {
-            const imagePreview = document.getElementById('imagePreview');
-            imagePreview.innerHTML = ''; // Limpa a área de pré-visualização
-            const files = this.files;
+        // Função para mostrar as miniaturas das imagens selecionadas
+        for (let i = 1; i <= 5; i++) {
+            document.getElementById('image' + i).addEventListener('change', function() {
+                const preview = document.getElementById('preview' + i);
+                preview.innerHTML = '';  // Limpa a área de visualização
 
-            for (let i = 0; i < files.length; i++) {
-                const img = document.createElement('img');
-                img.src = URL.createObjectURL(files[i]);
-                imagePreview.appendChild(img);
-            }
-        });
+                const files = this.files;
+                if (files.length > 0) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(files[0]);
+                    preview.appendChild(img);
+                }
+            });
+        }
     </script>
 </body>
 </html>
