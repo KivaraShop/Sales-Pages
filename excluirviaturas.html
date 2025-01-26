@@ -91,6 +91,13 @@
         justify-content: space-between;
         align-items: center;
         color: #ffffff; /* Texto branco */
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Efeito de hover nos itens da lista */
+    .car-list li:hover {
+        background-color: #0163a0; /* Azul mais escuro no hover */
+        transform: scale(1.02); /* Leve aumento no tamanho */
     }
 
     .delete-btn {
@@ -114,6 +121,7 @@
         box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
 </style>
+
 
 </head>
 <body>
