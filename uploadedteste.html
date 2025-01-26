@@ -172,8 +172,11 @@ h2 {
 
 .product-card img {
     width: 100%;
-    height: auto;
+    height: 0;
+    padding-bottom: 100%; /* Isso força a altura a ser igual à largura, criando um quadrado */
+    object-fit: cover; /* Garante que a imagem preencha o quadrado sem distorção */
     border-radius: 5px;
+    display: block; /* Remove qualquer espaço extra abaixo da imagem */
 }
 
 .product-card h3 {
