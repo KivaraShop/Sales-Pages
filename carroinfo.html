@@ -343,43 +343,73 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
     </script>
-   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
-    const loadingWheel = document.getElementById('loadingWheel');
-    const contentContainer = document.getElementById('contentContainer');
-    let loadedGifs = 0;
+ <script>
+      // Função para obter o ID do produto a partir da URL
+        function getProductIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id'); // Retorna o valor do parâmetro 'id' na URL
+        }
+        // Função para carregar os dados do JSON
+        fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar o JSON');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dados carregados:', data);  // Exibe os dados no console para depuração
 
-    gifs.forEach((gif) => {
-        const gifURL = gif.src;
+                if (data && data[0]) {
+                    const carData = data[0]; // Pegando o primeiro carro do JSON
 
-        // Força o carregamento criando múltiplas requisições
-        const aggressivePreload = new Image();
-        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+                    // Carregar imagem principal
+                    const mainImage = document.getElementById('car-main-image');
+                    mainImage.src = carData.images[0];
 
-        aggressivePreload.onload = () => {
-            loadedGifs++;
-            if (loadedGifs === gifs.length) {
-                // Todos os GIFs carregados
-                loadingWheel.style.display = 'none';
-                contentContainer.style.display = 'block';
-            }
-        };
+                    // Carregar as miniaturas
+                    const thumbnailCarousel = document.getElementById('thumbnail-carousel');
+                    carData.images.forEach(image => {
+                        const img = document.createElement('img');
+                        img.src = image;
+                        img.classList.add('thumbnail');
+                        img.onclick = function() {
+                            mainImage.src = image;
+                        };
+                        thumbnailCarousel.appendChild(img);
+                    });
 
-        aggressivePreload.onerror = () => {
-            loadedGifs++;
-            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
-            if (loadedGifs === gifs.length) {
-                // Mesmo com erro, consideramos o carregamento concluído
-                loadingWheel.style.display = 'none';
-                contentContainer.style.display = 'block';
-            }
-        };
+                    // Carregar título, descrição e status
+                    document.getElementById('car-title').innerText = carData.model || 'Modelo do Carro';
+                    document.getElementById('car-description').innerText = carData.description || 'Descrição do Carro';
 
-        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
-        gif.src = gifURL + `?cache-force=${Math.random()}`;
-    });
-});
- </script>
+                    // Carregar quilometragem, condição e combustível
+                    const kmPercentage = (carData.mileage / 100000) * 100; // Exemplo de cálculo de quilometragem
+                    animateBar('km-bar', kmPercentage, 'km-label', carData.mileage + ' km');
+
+                    const conditionPercentage = carData.condition || 0; // Supomos que a condição está entre 0 e 100
+                    animateBar('condition-bar', conditionPercentage, 'condition-label', conditionPercentage + '% de boa condição');
+
+                    const fuelPercentage = carData.fuel || 0; // Supomos que o combustível está entre 0 e 100
+                    animateBar('fuel-bar', fuelPercentage, 'fuel-label', fuelPercentage + '% restante');
+                } else {
+                    console.log('Dados do JSON não encontrados');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os dados do JSON:', error);
+            });
+
+        // Função para animar as barras
+        function animateBar(barId, percentage, labelId, labelText) {
+            let bar = document.getElementById(barId);
+            let label = document.getElementById(labelId);
+            bar.style.width = '0%';
+            setTimeout(function() {
+                bar.style.width = percentage + '%';
+                label.textContent = labelText;
+            }, 500);
+        }
+    </script>
 </body>
 </html>
