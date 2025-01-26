@@ -177,20 +177,7 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
-    <script>
-    function ajustarAlturaIframe(iframe) {
-        iframe.height = iframe.contentWindow.document.documentElement.scrollHeight + "px";
-    }
 
-    window.addEventListener('load', function() {
-        const iframes = document.querySelectorAll('iframe');
-        iframes.forEach(function(iframe) {
-            iframe.onload = function() {
-                ajustarAlturaIframe(iframe);
-            };
-        });
-    });
-</script>
 
 <script>
     // Seleciona o formulário e todos os iframes
