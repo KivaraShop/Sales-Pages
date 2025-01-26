@@ -252,7 +252,7 @@ button:hover {
     font-size: 12px;
     font-weight: bold;
     color: white;
-    background-color: #34495e; /* Cor padrão */
+    background-color: #ff6347; /* Cor padrão */
     padding: 5px 10px;
     border-radius: 4px;
     text-transform: uppercase;
@@ -938,91 +938,6 @@ button:hover {
     </div>
 </footer>
 
-            <script>
-// Função para aplicar o estilo aos rótulos depois que os carros forem carregados
-function styleCarLabels() {
-    const labels = document.querySelectorAll('.product-labels .label'); // Seleciona todos os rótulos
-
-    labels.forEach(label => {
-        const labelText = label.textContent.trim().toLowerCase(); // Pega o texto do rótulo e converte para minúsculo
-        console.log("Texto do rótulo:", labelText); // Adicionando log para depuração
-
-        // Aplica o estilo baseado no texto do rótulo
-        if (labelText === 'novo') {
-            console.log("Aplicando a classe 'novo'"); // Verificando a aplicação da classe
-            label.classList.add('novo'); // Classe para rótulo "Novo"
-        } else if (labelText === 'usado') {
-            console.log("Aplicando a classe 'usado'"); // Verificando a aplicação da classe
-            label.classList.add('usado'); // Classe para rótulo "Usado"
-        } else if (labelText === 'desconto') {
-            console.log("Aplicando a classe 'desconto'"); // Verificando a aplicação da classe
-            label.classList.add('desconto'); // Classe para rótulo "Desconto"
-        } else if (labelText === 'parcelado') {
-            console.log("Aplicando a classe 'parcelado'"); // Verificando a aplicação da classe
-            label.classList.add('parcelado'); // Classe para rótulo "Parcelado"
-        }
-    });
-}
-
-// Função que será chamada após carregar os carros
-async function loadCars() {
-    try {
-        const response = await fetch(s3JsonUrl);
-        const carsData = await response.json();
-
-        if (carsData.length === 0) {
-            document.getElementById('car-grid').innerHTML = '<p>Nenhum carro cadastrado ainda.</p>';
-            return;
-        }
-
-        displayCars(carsData); // Exibe todos os carros inicialmente
-
-        // Após carregar os carros e exibi-los, aplica os estilos aos rótulos
-        styleCarLabels();
-    } catch (error) {
-        console.error('Erro ao carregar carros:', error);
-        document.getElementById('car-grid').innerHTML = '<p>Erro ao carregar carros. Tente novamente mais tarde.</p>';
-    }
-}
-
-// Função para exibir os carros
-function displayCars(cars) {
-    const carGrid = document.getElementById('car-grid');
-    carGrid.innerHTML = ''; // Limpar o conteúdo atual
-
-    cars.forEach(car => {
-        const carCard = document.createElement('div');
-        carCard.classList.add('product-card');
-
-        // HTML do card de cada carro
-        carCard.innerHTML = `
-            <div class="product-labels">
-                <span class="label">${car.label}</span>
-            </div>
-            <img src="${car.image}" alt="${car.name}">
-            <h3>${car.name}</h3>
-            <p class="price">Preço: ${car.price}</p>
-            <div class="car-tags">
-                ${car.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-            <div class="more-info">
-                <i class="fas fa-info-circle"></i>
-                <a href="${car.infoLink}" target="_blank">Saber Mais</a>
-            </div>
-            <button onclick="window.location.href='${car.whatsappLink}'">
-                Falar com o Vendedor
-            </button>
-        `;
-
-        // Adicionar o card ao grid
-        carGrid.appendChild(carCard);
-    });
-}
-
-// Chama a função para carregar os carros quando a página carregar
-window.onload = loadCars;
-
-            </script>
     
           <script>
 const menuToggle = document.querySelector('.menu-toggle');
