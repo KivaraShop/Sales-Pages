@@ -124,8 +124,7 @@
             <input type="number" id="price" placeholder="Exemplo: 1150000" required>
 
             <label for="infoLink">Link para Mais Informações:</label>
-            <input type="url" id="infoLink" placeholder="Exemplo: Exemplo: 123">
-    <span id="error-message" style="color: red; display: none;">Por favor, insira apenas números.</span>
+            <input type="url" id="infoLink" placeholder="Exemplo: Exemplo: 12" required>
 
             <label for="whatsapp">WhatsApp (Apenas o número):</label>
             <input type="text" id="whatsapp" placeholder="Exemplo: 841234567" required>
@@ -179,7 +178,19 @@
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
 
+<script>
+document.getElementById('infoLink').addEventListener('input', function() {
+    var id = this.value; // O valor inserido pelo usuário
+    // Verifica se a entrada contém apenas números
+    if (/^\d+$/.test(id)) { // Regex que garante que só números sejam permitidos
+        var url = "https://kivarashop.github.io/Sales-Pages/produto.html?id=" + id;
+        console.log(url); // Exibe a URL no console (pode ser removido ou usado conforme necessário)
+    } else {
+        console.log("Por favor, insira apenas números."); // Mensagem de erro
+    }
+});
 
+</script>
 <script>
     // Seleciona o formulário e todos os iframes
     const form = document.querySelector("form");
@@ -225,105 +236,90 @@
 
 
     <script>
-const carForm = document.getElementById('carForm');
-const message = document.getElementById('message');
+        const carForm = document.getElementById('carForm');
+        const message = document.getElementById('message');
 
-carForm.addEventListener('submit', async (e) => {
-    e.preventDefault();  // Previne o comportamento padrão de envio do formulário
+        carForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-    // Garantir que o campo infoLink seja preenchido automaticamente com o número
-    const infoLinkField = document.getElementById('infoLink');
-    const id = infoLinkField.value.trim(); // Obter o número inserido
+            const imageUpload = document.getElementById('imageUpload').files[0];
 
-    // Gerar o link se o ID estiver presente
-    if (id) {
-        infoLinkField.value = `https://kivarashop.github.io/Sales-Pages/produto.html?id=${id}`;
-    } else {
-        // Se o ID não for inserido, exibe um erro
-        alert('Por favor, insira um ID válido!');
-        return;
-    }
+            if (!imageUpload) {
+                alert('Por favor, envie uma imagem!');
+                return;
+            }
 
-    // Agora o formulário pode ser enviado sem problemas
-    const imageUpload = document.getElementById('imageUpload').files[0];
+            // Gerar um nome único para a imagem
+            const uniqueImageName = `${Date.now()}_${imageUpload.name}`;
 
-    if (!imageUpload) {
-        alert('Por favor, envie uma imagem!');
-        return;
-    }
+            try {
+                // Fazer o upload da imagem para o bucket S3
+                const s3UploadUrl = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${uniqueImageName}`; // Substitua pelo seu bucket
 
-    // Gerar um nome único para a imagem
-    const uniqueImageName = `${Date.now()}_${imageUpload.name}`;
+                const uploadResponse = await fetch(s3UploadUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': imageUpload.type,
+                    },
+                    body: imageUpload,
+                });
 
-    try {
-        // Fazer o upload da imagem para o bucket S3
-        const s3UploadUrl = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${uniqueImageName}`;
+                if (!uploadResponse.ok) {
+                    throw new Error('Falha ao enviar a imagem para o S3.');
+                }
 
-        const uploadResponse = await fetch(s3UploadUrl, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': imageUpload.type,
-            },
-            body: imageUpload,
+                const imageUrl = s3UploadUrl;
+
+                // Dados do carro com as tags
+                const carData = {
+                    label: document.getElementById('label').value,
+                    image: imageUrl,
+                    name: document.getElementById('name').value,
+                    price: document.getElementById('price').value + " MZN",
+                    infoLink: document.getElementById('infoLink').value,
+                    whatsappLink: `https://wa.me/258${document.getElementById('whatsapp').value}`,
+                    tags: [
+                        document.getElementById('brand').value.toLowerCase(),
+                        document.getElementById('model').value.toLowerCase(),
+                        document.getElementById('transmission').value.toLowerCase()
+                    ]
+                };
+
+                // URL do JSON no S3
+                const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json'; // Substitua pelo seu URL
+
+                // Buscar o arquivo JSON existente
+                const response = await fetch(s3JsonUrl);
+                if (!response.ok) {
+                    throw new Error('Não foi possível buscar o JSON existente.');
+                }
+
+                const data = await response.json();
+
+                // Adicionar o novo carro
+                data.push(carData);
+
+                // Atualizar o arquivo no S3
+                const updateResponse = await fetch(s3JsonUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (!updateResponse.ok) {
+                    throw new Error('Erro ao atualizar o arquivo JSON no S3.');
+                }
+
+                // Mensagem de sucesso
+                message.textContent = 'Carro adicionado com sucesso!';
+                carForm.reset();
+            } catch (error) {
+                console.error('Erro ao adicionar carro:', error);
+                message.textContent = 'Erro ao adicionar o carro. Tente novamente.';
+            }
         });
-
-        if (!uploadResponse.ok) {
-            throw new Error('Falha ao enviar a imagem para o S3.');
-        }
-
-        const imageUrl = s3UploadUrl;
-
-        // Dados do carro com as tags
-        const carData = {
-            label: document.getElementById('label').value,
-            image: imageUrl,
-            name: document.getElementById('name').value,
-            price: document.getElementById('price').value + " MZN",
-            infoLink: infoLinkField.value,  // Usando o valor gerado automaticamente
-            whatsappLink: `https://wa.me/258${document.getElementById('whatsapp').value}`,
-            tags: [
-                document.getElementById('brand').value.toLowerCase(),
-                document.getElementById('model').value.toLowerCase(),
-                document.getElementById('transmission').value.toLowerCase()
-            ]
-        };
-
-        // URL do JSON no S3
-        const s3JsonUrl = 'https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/dados.json';
-
-        // Buscar o arquivo JSON existente
-        const response = await fetch(s3JsonUrl);
-        if (!response.ok) {
-            throw new Error('Não foi possível buscar o JSON existente.');
-        }
-
-        const data = await response.json();
-
-        // Adicionar o novo carro
-        data.push(carData);
-
-        // Atualizar o arquivo no S3
-        const updateResponse = await fetch(s3JsonUrl, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-
-        if (!updateResponse.ok) {
-            throw new Error('Erro ao atualizar o arquivo JSON no S3.');
-        }
-
-        // Mensagem de sucesso
-        message.textContent = 'Carro adicionado com sucesso!';
-        carForm.reset();
-    } catch (error) {
-        console.error('Erro ao adicionar carro:', error);
-        message.textContent = 'Erro ao adicionar o carro. Tente novamente.';
-    }
-});
-
     </script>
 </body>
 </html>
