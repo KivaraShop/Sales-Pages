@@ -945,15 +945,20 @@ function styleCarLabels() {
 
     labels.forEach(label => {
         const labelText = label.textContent.trim().toLowerCase(); // Pega o texto do rótulo e converte para minúsculo
+        console.log("Texto do rótulo:", labelText); // Adicionando log para depuração
 
         // Aplica o estilo baseado no texto do rótulo
         if (labelText === 'novo') {
+            console.log("Aplicando a classe 'novo'"); // Verificando a aplicação da classe
             label.classList.add('novo'); // Classe para rótulo "Novo"
         } else if (labelText === 'usado') {
+            console.log("Aplicando a classe 'usado'"); // Verificando a aplicação da classe
             label.classList.add('usado'); // Classe para rótulo "Usado"
         } else if (labelText === 'desconto') {
+            console.log("Aplicando a classe 'desconto'"); // Verificando a aplicação da classe
             label.classList.add('desconto'); // Classe para rótulo "Desconto"
         } else if (labelText === 'parcelado') {
+            console.log("Aplicando a classe 'parcelado'"); // Verificando a aplicação da classe
             label.classList.add('parcelado'); // Classe para rótulo "Parcelado"
         }
     });
@@ -1016,6 +1021,7 @@ function displayCars(cars) {
 
 // Chama a função para carregar os carros quando a página carregar
 window.onload = loadCars;
+
             </script>
     
           <script>
