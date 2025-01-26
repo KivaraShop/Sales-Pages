@@ -5,13 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Viatura</title>
     <style>
-        /* Estilos aqui (como o anterior) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .image-upload-blocks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .image-upload-blocks input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .image-preview {
+            margin-top: 5px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-    <h1>Adicionar Viatura</h1>
-
     <div class="form-container">
+        <h1>Adicionar Viatura</h1>
         <form id="carForm">
             <label for="model">Modelo:</label>
             <input type="text" id="model" name="model" required>
@@ -69,15 +156,9 @@
             const imageUrls = [];
             let uploadPromises = [];
 
-            // Fazendo upload das imagens para o S3
-            for (let i = 1; i <= 5; i++) {
-                const fileInput = document.getElementById('image' + i);
-                if (fileInput.files.length > 0) {
-                    const file = fileInput.files[0];
-                    const fileName = `car_image_${Date.now()}_${file.name}`;
-                    const s3Url = `https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${fileName}`;
-
-                    // Enviar a imagem para o S3 usando Fetch API ou outra lógica
+            // Função para upload das imagens para o S3
+            const uploadImageToS3 = (file, fileName) => {
+                return new Promise((resolve, reject) => {
                     const formData = new FormData();
                     formData.append('file', file);
                     formData.append('key', fileName);
@@ -86,14 +167,22 @@
                     formData.append('policy', 'YOUR_POLICY');
                     formData.append('signature', 'YOUR_SIGNATURE');
                     
-                    // Simulando o upload com Fetch (você precisaria de um endpoint que aceite este tipo de upload)
-                    uploadPromises.push(
-                        fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com', {
-                            method: 'POST',
-                            body: formData
-                        }).then(response => response.json())
-                          .then(data => imageUrls.push(s3Url)) // Após o upload, adicionar URL ao array
-                    );
+                    fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com', {
+                        method: 'POST',
+                        body: formData
+                    }).then(response => response.json())
+                      .then(data => resolve(`https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${fileName}`))
+                      .catch(reject);
+                });
+            };
+
+            // Fazendo o upload das imagens
+            for (let i = 1; i <= 5; i++) {
+                const fileInput = document.getElementById('image' + i);
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const fileName = `car_image_${Date.now()}_${file.name}`;
+                    uploadPromises.push(uploadImageToS3(file, fileName).then(url => imageUrls.push(url)));
                 }
             }
 
@@ -108,9 +197,8 @@
                     images: imageUrls
                 };
 
-                // Enviar os dados para o arquivo JSON (exemplo fictício)
                 fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
-                    method: 'PUT',  // 'PUT' pode ser substituído dependendo do método de atualização
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                     },
