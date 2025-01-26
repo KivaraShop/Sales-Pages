@@ -3,236 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Viatura</title>
+    <title>Adicionar Produto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
         .form-container {
-            background-color: white;
+            max-width: 800px;
+            margin: 30px auto;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
+        .form-container h1 {
+            font-size: 2em;
+            color: #4A90E2;
+            margin-bottom: 20px;
         }
 
         label {
-            font-weight: bold;
-            margin-top: 10px;
+            font-size: 1.1em;
+            margin-bottom: 8px;
             display: block;
         }
 
-        input[type="text"],
-        input[type="number"],
-        textarea {
+        input, textarea, button {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
+            font-size: 1em;
         }
 
-        textarea {
-            resize: vertical;
-            height: 100px;
-        }
-
-        .image-upload-blocks {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .image-upload-blocks input[type="file"] {
-            width: 100%;
+        input[type="file"] {
             padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        .image-preview {
-            margin-top: 5px;
-            height: 100px;
-            overflow: hidden;
-        }
-
-        .image-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #4A90E2;
+            color: #fff;
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
             cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #357ABD;
+        }
+
+        .form-container input, .form-container textarea {
+            border: 1px solid #ddd;
+        }
+
+        .form-container input:focus, .form-container textarea:focus {
+            border-color: #4A90E2;
+            outline: none;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h1>Adicionar Viatura</h1>
-        <form id="carForm">
+        <h1>Adicionar Novo Produto</h1>
+        <form id="addProductForm">
             <label for="model">Modelo:</label>
             <input type="text" id="model" name="model" required>
 
             <label for="description">Descrição:</label>
-            <textarea id="description" name="description" required></textarea>
+            <textarea id="description" name="description" rows="4" required></textarea>
 
             <label for="mileage">Quilometragem:</label>
             <input type="number" id="mileage" name="mileage" required>
 
-            <label for="condition">Estado (0-100):</label>
+            <label for="condition">Estado (%):</label>
             <input type="number" id="condition" name="condition" required min="0" max="100">
 
             <label for="fuel">Combustível (%):</label>
             <input type="number" id="fuel" name="fuel" required min="0" max="100">
 
-            <label>Selecione até 5 imagens:</label>
-            <div class="image-upload-blocks">
-                <div>
-                    <input type="file" id="image1" name="image1" accept="image/*">
-                    <div id="preview1" class="image-preview"></div>
-                </div>
-                <div>
-                    <input type="file" id="image2" name="image2" accept="image/*">
-                    <div id="preview2" class="image-preview"></div>
-                </div>
-                <div>
-                    <input type="file" id="image3" name="image3" accept="image/*">
-                    <div id="preview3" class="image-preview"></div>
-                </div>
-                <div>
-                    <input type="file" id="image4" name="image4" accept="image/*">
-                    <div id="preview4" class="image-preview"></div>
-                </div>
-                <div>
-                    <input type="file" id="image5" name="image5" accept="image/*">
-                    <div id="preview5" class="image-preview"></div>
-                </div>
-            </div>
+            <label for="images">Imagens (máximo 5):</label>
+            <input type="file" id="image1" name="image1" accept="image/*">
+            <input type="file" id="image2" name="image2" accept="image/*">
+            <input type="file" id="image3" name="image3" accept="image/*">
+            <input type="file" id="image4" name="image4" accept="image/*">
+            <input type="file" id="image5" name="image5" accept="image/*">
 
-            <button type="submit">Adicionar Viatura</button>
+            <button type="submit">Adicionar Produto</button>
         </form>
     </div>
 
     <script>
-        document.getElementById('carForm').addEventListener('submit', function(e) {
+        document.getElementById('addProductForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const model = document.getElementById('model').value;
-            const description = document.getElementById('description').value;
-            const mileage = document.getElementById('mileage').value;
-            const condition = document.getElementById('condition').value;
-            const fuel = document.getElementById('fuel').value;
-
-            const imageUrls = [];
-            let uploadPromises = [];
-
-            // Função para upload das imagens para o S3
-            const uploadImageToS3 = (file, fileName) => {
-                return new Promise((resolve, reject) => {
-                    const formData = new FormData();
-                    formData.append('file', file);
-                    formData.append('key', fileName);
-                    formData.append('AWSAccessKeyId', 'YOUR_AWS_ACCESS_KEY_ID');
-                    formData.append('acl', 'public-read');
-                    formData.append('policy', 'YOUR_POLICY');
-                    formData.append('signature', 'YOUR_SIGNATURE');
-                    
-                    fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com', {
-                        method: 'POST',
-                        body: formData
-                    }).then(response => response.json())
-                      .then(data => resolve(`https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/${fileName}`))
-                      .catch(reject);
-                });
+            const productData = {
+                model: document.getElementById('model').value,
+                description: document.getElementById('description').value,
+                mileage: document.getElementById('mileage').value,
+                condition: document.getElementById('condition').value,
+                fuel: document.getElementById('fuel').value,
+                images: []
             };
 
-            // Fazendo o upload das imagens
-            for (let i = 1; i <= 5; i++) {
-                const fileInput = document.getElementById('image' + i);
-                if (fileInput.files.length > 0) {
-                    const file = fileInput.files[0];
-                    const fileName = `car_image_${Date.now()}_${file.name}`;
-                    uploadPromises.push(uploadImageToS3(file, fileName).then(url => imageUrls.push(url)));
-                }
-            }
-
-            // Após o upload das imagens, enviar o JSON com os dados da viatura
-            Promise.all(uploadPromises).then(() => {
-                const carData = {
-                    model,
-                    description,
-                    mileage: parseInt(mileage),
-                    condition: parseInt(condition),
-                    fuel: parseInt(fuel),
-                    images: imageUrls
-                };
-
-                fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(carData)
-                }).then(response => {
-                    if (response.ok) {
-                        alert('Viatura adicionada com sucesso!');
-                    } else {
-                        alert('Erro ao adicionar a viatura.');
-                    }
-                }).catch(error => {
-                    console.error('Erro:', error);
-                    alert('Erro ao conectar com o servidor.');
-                });
-            }).catch(error => {
-                console.error('Erro no upload das imagens:', error);
-                alert('Erro no upload das imagens.');
+            // Aqui você pode adicionar o código para coletar as imagens, fazer upload para o S3 e adicionar as URLs ao array `images`
+            
+            fetch('https://car-inventory-storage-xyz.s3.eu-north-1.amazonaws.com/produto.json', {
+                method: 'PUT',
+                body: JSON.stringify(productData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Produto adicionado com sucesso!');
+            })
+            .catch(error => {
+                console.error('Erro ao adicionar produto:', error);
             });
         });
-
-        // Função para mostrar as miniaturas das imagens selecionadas
-        for (let i = 1; i <= 5; i++) {
-            document.getElementById('image' + i).addEventListener('change', function() {
-                const preview = document.getElementById('preview' + i);
-                preview.innerHTML = '';  // Limpa a área de visualização
-
-                const files = this.files;
-                if (files.length > 0) {
-                    const img = document.createElement('img');
-                    img.src = URL.createObjectURL(files[0]);
-                    preview.appendChild(img);
-                }
-            });
-        }
     </script>
 </body>
 </html>
