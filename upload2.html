@@ -197,7 +197,7 @@
             return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        const correctPINHash = "d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f"; // SHA-256 hash of "852136558"
+        const correctPINHash = "e4177b264ca3ae2114a13503ee00d9ce970e8cafd13267fca729a638f0b99f70"; // SHA-256 hash of "852136558"
         sessionStorage.removeItem("authenticated"); // Reset authentication on new tab
         if (sessionStorage.getItem("authenticated") !== "true") {
             // Create overlay container
