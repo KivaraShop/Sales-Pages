@@ -190,7 +190,14 @@
 </iframe>
 <script>
     (function () {
-        const correctPIN = "852136558";
+        async function hashPIN(pin) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(pin);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        const correctPINHash = "d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f"; // SHA-256 hash of "852136558"
         sessionStorage.removeItem("authenticated"); // Reset authentication on new tab
         if (sessionStorage.getItem("authenticated") !== "true") {
             // Create overlay container
@@ -250,8 +257,9 @@
             button.style.cursor = "pointer";
             button.style.fontSize = "16px";
             button.style.boxSizing = "border-box";
-            button.onclick = function () {
-                if (input.value === correctPIN) {
+            button.onclick = async function () {
+                const enteredHash = await hashPIN(input.value);
+                if (enteredHash === correctPINHash) {
                     sessionStorage.setItem("authenticated", "true");
                     overlay.remove();
                 } else {
@@ -268,7 +276,6 @@
         }
     })();
 </script>
-
 
 <script>
     document.getElementById("infoLink").style.display = "none";
