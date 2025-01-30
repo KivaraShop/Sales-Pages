@@ -99,9 +99,50 @@
     #productId::placeholder {
         color: red; /* Definindo a cor do placeholder para vermelho */
     }
+
+      .password-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
+        <div class="password-container">
+        <img src="company-logo.png" alt="Company Logo" class="logo">
+        <h2>Enter PIN</h2>
+        <input type="password" id="pinInput" placeholder="Enter PIN" maxlength="9">
+        <button onclick="checkPIN()">Submit</button>
+    </div>
     <div class="admin-container">
          <!-- Logotipo -->
         <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Logotipo da Shabe Motors" class="logo">
@@ -186,7 +227,23 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
-    
+    <script>
+        function checkPIN() {
+            const correctPIN = "852136558";
+            const userInput = document.getElementById("pinInput").value;
+            if (userInput === correctPIN) {
+                sessionStorage.setItem("authenticated", "true");
+                window.location.href = "upload2.html";
+            } else {
+                alert("Incorrect PIN. Try again.");
+            }
+        }
+
+        // Check if already authenticated
+        if (sessionStorage.getItem("authenticated") === "true") {
+            window.location.href = "upload2.html";
+        }
+    </script>
 <script>
     document.getElementById("infoLink").style.display = "none";
 document.querySelector('label[for="infoLink"]').style.display = "none";
