@@ -100,49 +100,10 @@
         color: red; /* Definindo a cor do placeholder para vermelho */
     }
 
-      .password-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 300px;
-        }
-        .logo {
-            width: 100px;
-            margin-bottom: 15px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 18px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            width: 100%;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+    
     </style>
 </head>
 <body>
-        <div class="password-container">
-        <img src="company-logo.png" alt="Company Logo" class="logo">
-        <h2>Enter PIN</h2>
-        <input type="password" id="pinInput" placeholder="Enter PIN" maxlength="9">
-        <button onclick="checkPIN()">Submit</button>
-    </div>
     <div class="admin-container">
          <!-- Logotipo -->
         <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Logotipo da Shabe Motors" class="logo">
@@ -227,23 +188,80 @@
     height="1000px" 
     style="border: none; border-radius: 10px; overflow: hidden; background: transparent;">
 </iframe>
-    <script>
-        function checkPIN() {
-            const correctPIN = "852136558";
-            const userInput = document.getElementById("pinInput").value;
-            if (userInput === correctPIN) {
-                sessionStorage.setItem("authenticated", "true");
-                window.location.href = "upload2.html";
-            } else {
-                alert("Incorrect PIN. Try again.");
-            }
-        }
+<script>
+    (function () {
+        const correctPIN = "852136558";
+        if (localStorage.getItem("authenticated") !== "true") {
+            // Create overlay container
+            const overlay = document.createElement("div");
+            overlay.style.position = "fixed";
+            overlay.style.top = "0";
+            overlay.style.left = "0";
+            overlay.style.width = "100%";
+            overlay.style.height = "100vh";
+            overlay.style.backgroundColor = "#121212";
+            overlay.style.display = "flex";
+            overlay.style.justifyContent = "center";
+            overlay.style.alignItems = "center";
+            overlay.style.zIndex = "9999";
 
-        // Check if already authenticated
-        if (sessionStorage.getItem("authenticated") === "true") {
-            window.location.href = "upload2.html";
+            // Create PIN container
+            const container = document.createElement("div");
+            container.style.backgroundColor = "#1e1e1e";
+            container.style.padding = "20px";
+            container.style.borderRadius = "10px";
+            container.style.textAlign = "center";
+            container.style.boxShadow = "0px 4px 10px rgba(255, 255, 255, 0.2)";
+            container.style.color = "white";
+            
+            // Add logo
+            const logo = document.createElement("img");
+            logo.src = "https://i.ibb.co/30zTBZD/Logopit-1737243668024.png"; // Replace with your logo path
+            logo.style.width = "100px";
+            logo.style.marginBottom = "15px";
+            
+            // Add input field
+            const input = document.createElement("input");
+            input.type = "password";
+            input.placeholder = "Enter PIN";
+            input.style.padding = "10px";
+            input.style.margin = "10px 0";
+            input.style.border = "1px solid #ccc";
+            input.style.borderRadius = "5px";
+            input.style.textAlign = "center";
+            input.style.fontSize = "18px";
+            input.style.display = "block";
+            input.style.width = "100%";
+            
+            // Add button
+            const button = document.createElement("button");
+            button.innerText = "Submit";
+            button.style.backgroundColor = "#007bff";
+            button.style.color = "white";
+            button.style.padding = "10px";
+            button.style.border = "none";
+            button.style.width = "100%";
+            button.style.borderRadius = "5px";
+            button.style.cursor = "pointer";
+            button.style.fontSize = "16px";
+            button.onclick = function () {
+                if (input.value === correctPIN) {
+                    localStorage.setItem("authenticated", "true");
+                    overlay.remove();
+                } else {
+                    alert("Incorrect PIN. Try again.");
+                }
+            };
+            
+            container.appendChild(logo);
+            container.appendChild(input);
+            container.appendChild(button);
+            overlay.appendChild(container);
+            document.body.appendChild(overlay);
         }
-    </script>
+    })();
+</script>
+
 <script>
     document.getElementById("infoLink").style.display = "none";
 document.querySelector('label[for="infoLink"]').style.display = "none";
