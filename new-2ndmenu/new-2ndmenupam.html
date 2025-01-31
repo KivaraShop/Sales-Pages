@@ -1207,6 +1207,7 @@ function filterProducts(searchTerm) {
   const noResultsMessage = document.getElementById('no-results-message');
   const navigationButtons = document.querySelector('.menu-categorias');
   const footer = document.querySelector('footer');
+ const bebidasSection = document.querySelector('bebidas-section');
   let resultsFound = false;
 
   noResultsMessage.style.display = 'none';
@@ -1226,10 +1227,12 @@ function filterProducts(searchTerm) {
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block';
     navigationButtons.style.visibility = 'hidden';
+    bebidasSection.style.visibility = 'hidden';
     footer.style.visibility = 'hidden';
   } else if (resultsFound || searchTerm === '') {
     noResultsMessage.style.display = 'none';
     navigationButtons.style.visibility = 'visible';
+    bebidasSection.style.visibility = 'visible';
     footer.style.visibility = 'visible';
   }
 }
