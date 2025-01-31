@@ -1230,13 +1230,13 @@ function filterProducts(searchTerm) {
   noResultsMessage.style.display = 'none';
   navigationButtons.style.visibility = 'visible';
   footer.style.visibility = 'visible';
-  bebidasSection.style.display = 'block';
-  pizzasSection.style.display = 'block';
+  bebidasSection.style.display = 'flex';
+  pizzasSection.style.display = 'flex';
 
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
     if (productName.includes(search)) {
-      card.style.display = "block";
+      card.style.display = "flex";
       resultsFound = true;
     } else {
       card.style.display = "none";
@@ -1244,7 +1244,7 @@ function filterProducts(searchTerm) {
   });
 
   if (!resultsFound && searchTerm !== '') {
-    noResultsMessage.style.display = 'block';
+    noResultsMessage.style.display = 'flex';
     navigationButtons.style.visibility = 'hidden';
     footer.style.visibility = 'hidden';
     bebidasSection.style.display = 'none';
@@ -1253,8 +1253,8 @@ function filterProducts(searchTerm) {
     noResultsMessage.style.display = 'none';
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
-    bebidasSection.style.display = 'block';
-    pizzasSection.style.display = 'block';
+    bebidasSection.style.display = 'flex';
+    pizzasSection.style.display = 'flex';
   }
 }
 </script>
