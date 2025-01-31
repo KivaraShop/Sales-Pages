@@ -1223,12 +1223,15 @@ function filterProducts(searchTerm) {
   const noResultsMessage = document.getElementById('no-results-message');
   const navigationButtons = document.querySelector('.menu-categorias');
   const footer = document.querySelector('footer');
- const bebidasSection = document.querySelector('bebidas-section');
+  const bebidasSection = document.getElementById('bebidas-section');
+  const pizzasSection = document.getElementById('pizzas-section');
   let resultsFound = false;
 
   noResultsMessage.style.display = 'none';
   navigationButtons.style.visibility = 'visible';
   footer.style.visibility = 'visible';
+  bebidasSection.style.display = 'block';
+  pizzasSection.style.display = 'block';
 
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
@@ -1243,16 +1246,19 @@ function filterProducts(searchTerm) {
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block';
     navigationButtons.style.visibility = 'hidden';
-    bebidasSection.style.visibility = 'hidden';
     footer.style.visibility = 'hidden';
+    bebidasSection.style.display = 'none';
+    pizzasSection.style.display = 'none';
   } else if (resultsFound || searchTerm === '') {
     noResultsMessage.style.display = 'none';
     navigationButtons.style.visibility = 'visible';
-    bebidasSection.style.visibility = 'visible';
     footer.style.visibility = 'visible';
+    bebidasSection.style.display = 'block';
+    pizzasSection.style.display = 'block';
   }
 }
 </script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
