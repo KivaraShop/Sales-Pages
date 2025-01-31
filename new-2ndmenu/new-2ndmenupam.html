@@ -1216,7 +1216,8 @@ img {
     });
 });
  </script>
-     <script>
+    
+    <script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
@@ -1228,15 +1229,15 @@ function filterProducts(searchTerm) {
   let resultsFound = false;
 
   noResultsMessage.style.display = 'none';
-  navigationButtons.style.visibility = 'visible';
-  footer.style.visibility = 'visible';
-  bebidasSection.style.display = 'flex';
-  pizzasSection.style.display = 'flex';
+  navigationButtons.style.display = 'flex';
+  footer.style.display = 'flex';
+  bebidasSection.style.display = 'none';
+  pizzasSection.style.display = 'none';
 
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
     if (productName.includes(search)) {
-      card.style.display = "flex";
+      card.style.display = "flex"; // Mantém o layout correto
       resultsFound = true;
     } else {
       card.style.display = "none";
@@ -1244,20 +1245,17 @@ function filterProducts(searchTerm) {
   });
 
   if (!resultsFound && searchTerm !== '') {
-    noResultsMessage.style.display = 'flex';
-    navigationButtons.style.visibility = 'hidden';
-    footer.style.visibility = 'hidden';
-    bebidasSection.style.display = 'none';
-    pizzasSection.style.display = 'none';
+    noResultsMessage.style.display = 'block';
+    navigationButtons.style.display = 'none';
+    footer.style.display = 'none';
   } else if (resultsFound || searchTerm === '') {
     noResultsMessage.style.display = 'none';
-    navigationButtons.style.visibility = 'visible';
-    footer.style.visibility = 'visible';
-    bebidasSection.style.display = 'flex';
-    pizzasSection.style.display = 'flex';
+    navigationButtons.style.display = 'flex';
+    footer.style.display = 'flex';
   }
 }
 </script>
+
 
 
 <script>
