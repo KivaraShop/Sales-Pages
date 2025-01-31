@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="pt">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Digital - Restaurante Brasil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: e0f7fa;
+            color: #4a004e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 0 10px;
+            padding-top: 75px;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: f9f9f9;
+            padding: 15px 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box; 
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4a004e;
+            text-decoration: none;
+        }
+
+        /* Ícone do carrinho */
+        .cart-icon {
+            color: #4a004e;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .cart-icon .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff66b2;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+       .cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+  .cart-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 20px;
+    display: none;
+}
+
+.cart-popup-content {
+    padding: 20px;
+     margin-top: 20px; /* Adjust this value as needed */
+}
+        
+.cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-popup li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 10px; /* Reduced font size */
+}
+}
+
+.cart-popup img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-popup button {
+    background-color: #ff66b2;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+                .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
+
+        }
+
+        .logo img {
+            height: 40px;
+            padding: 0;
+            margin: 0;
+        }
+
+.menu-toggle {
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: #4a004e;
+            cursor: pointer;
+        }
+
+      .nav-menu {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 77px;
+    left: 0;
+    width: 250px; /* Adjust this width as needed */
+    height: 100vh;
+    background-color: #f9f9f9;
+    padding: 15px 0;
+    padding-left: 10px;
+    z-index: 1000;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth appearance */
+}
+
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            margin: 10px 0;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            color: 4a004e;
+            font-size: 18px;
+        }
+/* Hover effect */
+.nav-menu ul li a:hover {
+    color: #4fc3f7; /* Change text color on hover */
+    background-color: white; /* Change background color on hover */
+    padding-left: 10px; /* Optional: adds a small left padding when hovered */
+}
+        .nav-menu.active {
+            display: flex; /* Show when toggle is clicked */
+        }
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+
+        /* Grid de Proud tos (menu) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+
+        .menu-section {
+    padding: 30px;
+    background-color: #f9f9f9;
+}
+
+.menu-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4a004e; /* Match your theme color */
+}
+        /* Card de produto */
+          .product-card {
+            background-color: #ffffff;
+            border: 1px solid #d3e0d3;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin: 0 auto;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Imagem do produto */
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            color: #4a004e;
+            margin: 10px 0;
+        }
+
+        .product-card .price {
+            font-size: 16px;
+            color: #660033;
+            margin: 10px;
+            font-weight: bold;
+        }
+        
+         .product-card button {
+            background: #4fc3f7;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background: #4fc3f7;
+        }
+        
+
+        @media (max-width: 768px) { /* Target screens 768px wide or smaller */
+    #bannerText {
+        display: none;
+    }
+}
+
+        /* Estrelas de avaliação */
+        .stars {
+            font-size: 18px;
+            color: #ffcc00;
+            margin: 10px 0;
+        }
+
+        .stars i {
+            margin-right: 2px;
+        }
+
+        
+.more-info {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.more-info i {
+    font-size: 16px; /* Icon size */
+    color: #007bff; /* Matches the text color */
+    margin-right: 6px; /* Spacing between icon and text */
+}
+
+.more-info-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: #007bff; /* Blue color for clickable text */
+    text-decoration: none; /* Removes underline */
+    cursor: pointer;
+}
+
+.more-info-link:hover {
+    color: #0056b3; /* Slightly darker blue for hover effect */
+}
+
+.more-info:hover i {
+    color: #0056b3; /* Match the icon hover color to the text */
+}
+
+        .image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-wrapper img {
+    display: block;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Invisible overlay */
+    z-index: 1; /* Overlay above image */
+}
+
+img {
+    -webkit-user-drag: none;     /* Prevent dragging in Webkit browsers */
+    user-select: none;            /* Disable text/image selection */
+    image-rendering: none;        /* Disable image recognition for visual search */
+    pointer-events: none;         /* Prevent interactions with the image */
+}
+
+        /* Banner animado */
+        #bannerText {
+            font-family: 'Didot', serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #4a004e;
+            background-color: ##80d4f7;
+            padding: 5px;
+            text-align: center;
+            animation: slideInOut 4s ease-in-out infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes slideInOut {
+            0% { transform: translateX(-100%); opacity: 0; }
+            25% { transform: translateX(0); opacity: 1; }
+            75% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+          .footer {
+    background-color: #ff99cc;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilo do rodapé */
+.footer {
+    background-color: #4fc3f7;
+    color: white;
+    padding: 20px 50px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.footer-logo img {
+    width: 120px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+
+.footer-slogan {
+    font-size: 18px;
+    color: #4a004e;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-info a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    margin: 5px 0;
+    transition: color 0.3s;
+}
+
+.footer-info a:hover {
+    color: #4a004e;
+}
+
+.footer-bottom {
+    font-size: 14px;
+    margin-top: 10px;
+    color: white;
+}
+/* Ensure the wrapper div is properly aligned with the layout */
+.view-all-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    margin-top: 15px; /* Space above */
+}
+
+/* Ensure the wrapper div is properly aligned with the layout */
+.view-all-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    margin-top: 15px; /* Space above */
+    width: 100%; /* Ensure it takes full width for alignment */
+}
+
+.view-all-link {
+    color: #4a90e2; /* blue color */
+    font-size: 13px; /* Set the font size to 13px */
+    text-decoration: none; /* Remove underline */
+    display: flex;
+    align-items: center; /* Align the text and icon vertically */
+    gap: 5px; /* Space between text and icon */
+    font-weight: normal; /* Normal font weight */
+}
+
+.view-all-link:hover {
+    color: #ff3399; /* Hover color */
+    text-decoration: underline; /* Underline on hover */
+}
+
+.view-all-link i {
+    font-size: 12px; /* Reduce the icon size to harmonize with font size */
+}
+
+  .menu-categorias {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .categoria-btn {
+        background-color: #4a90e2;
+        color: white;
+        font-size: 14px;  /* Reduzido para um tamanho mais elegante */
+        font-weight: bold;
+        padding: 8px 15px;  /* Tamanho reduzido para manter a elegância */
+        margin: 0 12px;
+        border: 2px solid #4a90e2;
+        border-radius: 25px; /* Bordas um pouco mais arredondadas */
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .categoria-btn:hover {
+        background-color: #ffffff;
+        color: #4a004e;
+        border: 2px solid #4a90e2;
+        transform: scale(1.05); /* Leve aumento de tamanho para destaque */
+    }
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+        gap: 15px; /* Adjust spacing as needed */
+    }
+}
+        
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 10px 15px;
+    border: none;
+    background: #4fc3f7;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background: #4fc3f7;
+}
+
+        /* Container de Rótulos */
+.product-labels {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+/* Estilo Base dos Rótulos */
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #660033;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo Específico para Cada Rótulo */
+.label.spicy {
+    background-color: #ff5733; /* Vermelho picante */
+}
+
+.label.organic {
+    background-color: #28a745; /* Verde orgânico */
+}
+
+.label.highlight {
+    background-color: #ffc107; /* Amarelo destaque */
+}
+
+.label.sugar-free {
+    background-color: #6f42c1; /* Roxo Zero Açúcar */
+}
+
+.label.loved {
+    background-color: #ff66b2; /* Rosa Mais Amado */
+}
+
+/* Ajuste de Posição no Card */
+.product-card {
+    position: relative;
+}
+
+ .menu-item {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+    }
+    h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+     .parcerias-section {
+            margin-top: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .parceria-logo {
+            width: 60px;
+            height: 60px;
+            display: block;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: none; /* Remover qualquer sombra que possa parecer borda */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .parceria-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            outline: none; /* Remover qualquer contorno visível */
+            border: none; /* Remove qualquer borda da imagem */
+
+        }
+
+        .parcerias-section h2 {
+            width: 100%;
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+   .auth-buttons {
+    display: flex;
+    gap: 8px; /* Espaço entre os botões */
+}
+
+.btn-login,
+.btn-register {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500; /* Peso do texto moderado */
+    border-radius: 4px; /* Cantos levemente arredondados */
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.btn-login {
+    background-color: #4a90e2; /* azul */
+    color: #ffffff; /* Rosa suave */
+    border: 1px solid #4a90e2; /* Borda rosa suave */
+}
+
+.btn-login:hover {
+    background-color: #f8f9fa;
+    color: #ff6f91;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover */
+}
+
+.btn-register {
+    background-color: #4a90e2; /* azul suave */
+    color: #ffffff; /* Branco */
+    border: 1px solid #4a90e2;
+}
+
+.btn-register:hover {
+    background-color: #f8f9fa;
+    color: #ff6f91;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover */
+}
+
+
+        /* Barra de Pesquisa */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+#search-btn {
+  background-color: #4a90e2; /* Azul claro */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
+}
+
+
+    </style>
+</head>
+<body>
+
+   <!-- Cabeçalho -->
+ <header>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i> <!-- Toggle icon -->
+        </div>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/whs9mpZ4/Logopit-1738263457254.png" alt="PAM" border="0" style="max-width: 150px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">3</span>
+        </div>
+    </header>
+ <!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobrenos.html">About</a></li>
+            <li><a href="contato.html">Contact</a></li>
+            <li><a href="https://kivarashop.github.io/Sales-Pages/new-2ndmenu/dashboard/index.html">Dashboard</a></li>
+        </ul>
+    </div>
+    
+<!-- Popup do Carrinho -->
+<div class="cart-popup">
+    <div class="cart-popup-content">
+        <h2>Seu Carrinho</h2>
+        <!-- Lista de itens do carrinho será gerada aqui -->
+    </div>
+</div>
+
+    <!-- Banner com animação de texto -->
+    <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
+     
+    <!-- Conteúdo principal -->
+    <div class="container" id="todos-section">
+        <h2>Explore Nosso Menu</h2>
+    
+           <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquise a peça que procura..." 
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+<!-- Botões de Categoria -->
+<div class="menu-categorias">
+    <a href="dieta.html" class="categoria-btn">Dieta</a>
+    <a href="vegano.html" class="categoria-btn">Vegano</a>
+</div>
+        <div class="product-grid">
+            <!-- Card de Produto 1 (Prato Principal) -->
+<!-- Card de Produto -->
+<div class="product-card" data-id="1" data-nome="Salada Caesar" data-preco="19.90">
+    <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="IMG-20241216-093506" border="0" draggable="false">
+    <h3>Salada Caesar</h3>
+    <div class="price">R$ 19,90</div>
+    <div class="stars">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+    </div>
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button class="add-to-order-btn">Adicionar ao Pedido</button>
+</div>
+
+            
+            <div class="product-card">
+        <div class="product-labels">
+        <span class="label highlight">Popular</span>
+    </div>
+                <img src="https://i.ibb.co/6J13R1j/IMG-20241216-093530.jpg" border="0" draggable="false">
+                <h3> Frango Grelhado</h3>
+                <div class="price">R$ 39,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                 </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            <!-- Card de Produto 2 (Prato Principal) -->
+            <div class="product-card">
+                    <div class="product-labels">
+        <span class="label highlight">Popular</span>
+    </div>
+                <img src="https://i.ibb.co/gwwhjHY/IMG-20241216-093518.jpg" border="0" draggable="false">
+                <h3> Hamburguer Vegano</h3>
+                <div class="price">R$ 49,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            <!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="IMG-20241216-093506" border="0" draggable="false">
+                <h3> Salada Caesar</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            
+<!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+    <div class="product-labels">
+        <span class="label spicy">Picante</span>
+    </div>
+                <img src="https://i.ibb.co/1dqCDWX/IMG-20241225-163110.jpg" border="0" draggable="false">
+                <h3>Suco De Laranja</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            
+<!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+        <div class="product-labels">
+        <span class="label organic">100% Orgânico</span>
+    </div>
+                <img src="https://i.ibb.co/pzC0p1f/IMG-20241225-163233.jpg" border="0" draggable="false">
+                <h3> Coca-cola </h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                 </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+
+            <!-- Card de Produto 4 (Bebida) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/0Zm2NY7/IMG-20241225-163316.jpg" border="0" draggable="false">
+                <h3> Água Mineral </h3>
+                <div class="price">R$ 9,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            
+<div class="product-card">
+ <img src="https://i.ibb.co/BtR6mmS/IMG-20241225-163306.jpg">
+<h3>Frango Grelhado</h3>
+ <div class="price">R$ 39,90</div>
+<div class="stars">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+ <i class="fas fa-star"></i>
+<i class="fas fa-star-half-alt"></i>
+ <i class="far fa-star"></i>
+ </div>
+ <div class="more-info">
+ <i class="fas fa-info-circle"></i>
+     <a href="productpage.html">Saber Mais</a>
+ </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            
+                 <div class="product-card">
+                <img src="https://i.ibb.co/TbFkVLS/IMG-20241225-163646.jpg">
+                <h3>Frango Grelhado</h3>
+                <div class="price">R$ 39,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="productpage.html">Saber Mais</a>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+       </div>
+    <div class="pagination"></div>
+</div>
+     <div class="view-all-wrapper">
+        <a href="viewallexplore.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+ <!-- SECCAO DE PIZZAS -->
+    <div class="container" id="pizzas-section">
+        <h2>Pizzas</h2>
+
+        <div class="product-grid">
+            <!-- Card de Produto 1 (Prato Principal) -->
+            <div class="product-card">
+                        <div class="product-labels">
+        <span class="label highlight">Popular</span>
+    </div>
+                <img src="https://i.ibb.co/WVyCSf9/pizza-queijo-de-cabra-molho-de-tomate-bacon-prato-de-comida-saborosa-fresco-delicioso-comida-gourmet.jpg" border="0" draggable="false">
+                <h3> Margherita</h3>
+                <div class="price">R$ 39,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                 </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+
+            <!-- Card de Produto 2 (Prato Principal) -->
+            <div class="product-card">
+                    <div class="product-labels">
+        <span class="label highlight">Popular</span>
+    </div>
+                <img src="https://i.ibb.co/9sQcF8Y/IMG-20241228-212317.jpg" border="0" draggable="false">
+                <h3> Napolitana</h3>
+                <div class="price">R$ 49,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            <!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                      <div class="product-labels">
+        <span class="label organic">100% Orgânico</span>
+    </div>
+                <img src="https://i.ibb.co/CHM60VF/IMG-20241228-212424.jpg" border="0" draggable="false">
+                <h3> Calabresa</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            
+<!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+    <div class="product-labels">
+        <span class="label spicy">Picante</span>
+    </div>
+                <img src="https://i.ibb.co/XLmmrQM/IMG-20241228-212407.jpg" border="0" draggable="false">
+                <h3>Pepperoni</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            
+       </div>
+    <div class="pagination"></div>
+</div>
+     <div class="view-all-wrapper">
+        <a href="viewallexplore.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    
+        <!-- SECTION DEVIDER -->
+  <!-- Conteúdo principal -->
+    <div class="container" id="bebidas-section">
+        <h2>Bebidas</h2>
+
+        <div class="product-grid">
+            <!-- Card de Produto 1 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/Sd2y5ZR/IMG-20241225-194407.jpg" border="0" draggable="false">
+                <h3>Suco Laranja</h3>
+                <div class="price">R$ 39,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            <!-- Card de Produto 2 (Prato Principal) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/Q9jN05H/IMG-20241225-194532.jpg" border="0" draggable="false">
+                <h3>Suco de Limão</h3>
+                <div class="price">R$ 49,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                 </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+            <!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/D9JPcSz/IMG-20241225-163443.jpg" border="0" draggable="false">
+                <h3>Smoothie Morango</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+   <!-- Card de Produto 3 (Sobremesa) -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/qM0L21B/IMG-20241216-093604.jpg" border="0" draggable="false">
+                <h3>Coca-cola</h3>
+                <div class="price">R$ 19,90</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+    <!-- Saber Mais link -->
+    <div class="more-info">
+        <i class="fas fa-info-circle"></i>
+        <a href="productpage.html" class="more-info-link">Saber Mais</a>
+    </div>
+    <button>Adicionar ao Pedido</button>
+</div>
+
+            
+            </div>
+    <div class="pagination"></div>
+</div>
+    
+        </div>
+     <div class="view-all-wrapper">
+        <a href="viewallexplore.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    
+        <!-- Seção de Parcerias -->
+        <div class="parcerias-section">
+            <h2>Parceiros</h2>
+            <a href="#" class="parceria-logo">
+                <img src="https://i.ibb.co/KxvWrbR/Logopit-1734337615013.png/80x80.png?text=Logo+1" alt="Parceiro 1" draggable="false">
+            </a>
+            <a href="#" class="parceria-logo">
+                <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png/80x80.png?text=Logo+2" alt="Parceiro 2" draggable="false" >
+            </a>
+            <a href="#" class="parceria-logo">
+                <img src="https://i.ibb.co/KxvWrbR/Logopit-1734337615013.png/80x80.png?text=Logo+3" alt="Parceiro 3" draggable="false">
+            </a>
+        
+        </div>
+    </div>
+    
+   <!-- Rodapé -->
+<footer class="footer">
+    <!-- Logo -->
+    <div class="footer-logo">
+        <img src="https://i.ibb.co/ySxM3Gy/Logopit-1734339716315.png" alt="Logo">
+        <!-- Slogan abaixo da logo -->
+        <div class="footer-slogan">Sabores que encantam, momentos que ficam.</div>
+    </div>
+
+    <!-- Informações -->
+    <div class="footer-info">
+        <a href="sobrenos.html">Sobre nós</a>
+        <a href="termos.html">Termos e Condições</a>
+        <a href="privacidade.html">Política de Privacidade</a>
+        <a href="contato.html">Contate-nos</a>
+
+<div class="auth-buttons">
+    <a href="https://kivarashop.infy.uk/login.php" class="btn-login">Entrar</a>
+    <a href="https://kivarashop.infy.uk/register.php" class="btn-register">Registrar</a>
+</div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Restaurante Brasil. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
+      <script>
+// Função para ajustar o tamanho dos produtos filtrados
+function adjustFilteredProductSize() {
+  const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
+
+  // Verificar se é uma tela de computador (largura maior que 768px)
+  if (window.innerWidth > 768) {
+    filteredProducts.forEach(product => {
+      product.style.width = '250px'; // Define largura fixa
+      product.style.height = '350px'; // Define altura fixa
+    });
+  } else {
+    // Remove os ajustes para dispositivos móveis
+    filteredProducts.forEach(product => {
+      product.style.width = ''; // Restaura valores padrão
+      product.style.height = '';
+    });
+  }
+}
+// Função para restaurar o layout original dos produtos
+function restoreOriginalProductLayout() {
+  const allProducts = document.querySelectorAll('.product-card');
+
+  allProducts.forEach(product => {
+    product.style.width = ''; // Restaura valores de largura para o layout original
+    product.style.height = ''; // Restaura valores de altura para o layout original
+  });
+}
+
+// Adicionar evento para ajustar os tamanhos após a pesquisa
+document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
+
+// Também ajustar tamanho em tempo real enquanto o cliente digita
+document.getElementById('search-input').addEventListener('input', function() {
+  adjustFilteredProductSize();
+
+  // Se o campo de pesquisa for apagado, restaura o layout original
+  if (this.value === '') {
+    restoreOriginalProductLayout();
+  }
+});
+
+// Ajustar tamanho ao redimensionar a janela
+window.addEventListener('resize', adjustFilteredProductSize);
+
+</script>
+        
+  <script src="script.js"></script>
+<script>
+function filterProducts(searchTerm) {
+  const search = searchTerm.toLowerCase();
+  const productCards = document.querySelectorAll(".product-card");
+
+  productCards.forEach(card => {
+    const productName = card.querySelector("h3").textContent.toLowerCase();
+    if (productName.includes(search)) {
+      card.style.display = "block"; // Mostra o card
+    } else {
+      card.style.display = "none"; // Esconde o card
+    }
+  });
+}
+</script>
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const productsPerPage = 8; // Max 8 products per page
+
+    // Function to paginate each section independently
+    function paginateSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        const productGrid = section.querySelector('.product-grid');
+        const pagination = section.querySelector('.pagination');
+
+        const products = Array.from(productGrid.children);
+        const totalPages = Math.ceil(products.length / productsPerPage);
+
+        // Function to render products for a specific page
+        function renderPage(page) {
+            // Clear the current product grid
+            productGrid.innerHTML = '';
+
+            // Calculate the range of products to display
+            const start = (page - 1) * productsPerPage;
+            const end = Math.min(start + productsPerPage, products.length);
+
+            // Append the appropriate products for this page
+            for (let i = start; i < end; i++) {
+                productGrid.appendChild(products[i]);
+            }
+
+            // Render pagination buttons
+            renderPagination(page);
+        }
+
+        // Function to render pagination buttons
+        function renderPagination(activePage) {
+            pagination.innerHTML = ''; // Clear existing buttons
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.classList.add('page-button');
+                if (i === activePage) {
+                    button.classList.add('active');
+                }
+                button.addEventListener('click', () => renderPage(i));
+                pagination.appendChild(button);
+            }
+        }
+
+        // Initialize with the first page
+        if (products.length > 0) {
+            renderPage(1);
+        }
+    }
+
+    // Call paginateSection for each section on the page
+    const sections = document.querySelectorAll('.container');
+    sections.forEach(section => {
+        const sectionId = section.id;
+        paginateSection(sectionId);
+    });
+});
+
+</script>
+        
+<script>
+// Função para forçar o carregamento de todas as imagens da página
+function forceImageLoad() {
+    const images = document.querySelectorAll('img'); // Seleciona todas as imagens da página
+    images.forEach(img => {
+        const imgUrl = img.src;
+
+        // Se a imagem já estiver com erro, tenta forçar a recarga
+        if (!img.complete || img.naturalHeight === 0) {
+            img.src = ''; // Limpa temporariamente a imagem
+            img.src = imgUrl + '?' + new Date().getTime(); // Adiciona um timestamp para forçar o recarregamento
+        }
+
+        // Evento para quando a imagem carregar corretamente
+        img.onload = function() {
+            console.log('Imagem carregada com sucesso: ' + img.src);
+        };
+
+        // Evento para quando a imagem não carregar corretamente
+        img.onerror = function() {
+            console.log('Erro ao carregar a imagem: ' + img.src);
+            // Substitui a imagem por uma imagem de fallback
+            img.src = 'fallback.jpg'; // Substitua por uma imagem de fallback sua
+        };
+    });
+}
+
+// Chama a função para carregar as imagens assim que a página terminar de carregar
+window.onload = function() {
+    forceImageLoad();
+};
+</script>
+
+
+<!-- Spinner e mensagem -->
+<div id="loading-overlay">
+    <div id="spinner"></div>
+    <p>Bem-vindo !</p>
+</div>
+
+<!-- Spinner e mensagem -->
+<div id="loading-overlay" style="display: none;">
+    <div id="spinner"></div>
+    <p>少々お待ちください...</p>
+</div>
+
+<!-- Estilo do Spinner -->
+<style>
+    #loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #spinner {
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #ff66b2;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    #loading-overlay p {
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #4a004e;
+    }
+</style>
+
+<!-- Script -->
+<script>
+    // Verifica se já foi exibido o spinner durante esta sessão
+    if (!sessionStorage.getItem('spinnerShown')) {
+        // Exibe o spinner por 3 segundos
+        document.getElementById("loading-overlay").style.display = "flex";
+
+        setTimeout(function() {
+            document.getElementById("loading-overlay").style.display = "none";
+        }, 3000); // 3000ms = 3 segundos
+
+        // Marca que o spinner foi exibido durante esta sessão
+        sessionStorage.setItem('spinnerShown', 'true');
+    }
+
+    // Limpa a flag quando a página for recarregada ou navegação entre páginas
+    window.onbeforeunload = function() {
+        sessionStorage.removeItem('spinnerShown');
+    };
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Bloquear o menu de contexto (clique direito)
+    document.addEventListener("contextmenu", function (e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault(); // Impede o menu de contexto de aparecer
+        }
+    });
+
+    // Bloquear o toque e segurar nas imagens para prevenir download em dispositivos móveis
+    document.addEventListener("touchstart", function (e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault(); // Impede ações como o menu de opções no toque
+        }
+    });
+
+    // Bloquear o drag e download
+    const images = document.querySelectorAll("img");
+    images.forEach(img => {
+        img.setAttribute("draggable", "false"); // Impede o arrasto da imagem
+        img.addEventListener("mousedown", function (e) {
+            e.preventDefault(); // Impede o arrasto da imagem
+        });
+    });
+});
+
+</script>
+
+
+
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+</script>
+    
+    <!-- Script para animações ao rolar a página -->
+    <script>
+        // Detecta rolagem e adiciona classe 'visible' para animações
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            const handleScroll = () => {
+                elements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Iniciar animações em elementos já visíveis
+        });
+    </script>
+                    
+<script src="https://www.paypal.com/sdk/js?client-id=AeT59FzSVLi_vMCZHqk-LmUDcPdxWqoCWDcs_N_MfWMXX_WCwaEMY2ikaQrGyFGfVllwWiRg2dwEM4A-&currency=BRL"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const cartPopup = document.querySelector('.cart-popup');
+    const cartPopupContent = cartPopup.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function updateCartCount() {
+        cartBadge.textContent = cart.length || '';
+    }
+
+    function calculateTotal() {
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price.replace('R$', '').trim());
+        });
+        return total;
+    }
+
+    function animateTotalSum() {
+        const total = calculateTotal();
+        let currentTotal = 0;
+        const increment = total / 100;
+        const totalElement = document.querySelector('.cart-total');
+
+        function updateTotal() {
+            currentTotal += increment;
+            if (currentTotal < total) {
+                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
+                requestAnimationFrame(updateTotal);
+            } else {
+                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+            }
+        }
+        updateTotal();
+    }
+
+    function renderCart() {
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>';
+        const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
+
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
+        } else {
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
+                li.innerHTML = ` 
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <p>${item.name}</p>
+                        <p class="price">${item.price}</p>
+                    </div>
+                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+                `;
+
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1);
+                    saveCart();
+                    updateCartCount();
+                    renderCart();
+                });
+
+                ul.appendChild(li);
+            });
+        }
+        cartPopupContent.appendChild(ul);
+
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ 0.00`;
+        cartPopupContent.appendChild(totalElement);
+
+        animateTotalSum();
+
+        const fazerPedidoButton = document.createElement('button');
+        fazerPedidoButton.textContent = 'Fazer pedido';
+        fazerPedidoButton.style.background = '#0288d1';
+        fazerPedidoButton.style.color = 'white';
+        fazerPedidoButton.style.border = 'none';
+        fazerPedidoButton.style.padding = '10px';
+        fazerPedidoButton.style.width = '100%';
+        fazerPedidoButton.style.cursor = 'pointer';
+        fazerPedidoButton.style.marginTop = '10px';
+        fazerPedidoButton.addEventListener('click', () => {
+            showNextButtons();
+        });
+        cartPopupContent.appendChild(fazerPedidoButton);
+
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Fechar';
+        closeButton.style.background = '#0288d1';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '5px 10px';
+        closeButton.style.fontSize = '12px';
+        closeButton.style.width = 'auto';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', () => {
+            cartPopup.style.display = 'none';
+        });
+        cartPopupContent.appendChild(closeButton);
+    }
+
+    function showNextButtons() {
+        cartPopupContent.innerHTML = '';
+
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`;
+        cartPopupContent.appendChild(totalElement);
+
+        const aguardarButton = document.createElement('button');
+        aguardarButton.textContent = 'Aguardar';
+        aguardarButton.style.background = '#4CAF50';
+        aguardarButton.style.color = 'white';
+        aguardarButton.style.border = 'none';
+        aguardarButton.style.padding = '10px';
+        aguardarButton.style.width = '100%';
+        aguardarButton.style.cursor = 'pointer';
+        aguardarButton.style.marginTop = '10px';
+        aguardarButton.addEventListener('click', () => startCountdown());
+        cartPopupContent.appendChild(aguardarButton);
+
+        const falarButton = document.createElement('button');
+        falarButton.textContent = 'Falar com atendente';
+        falarButton.style.background = '#000000';
+        falarButton.style.color = 'white';
+        falarButton.style.border = 'none';
+        falarButton.style.padding = '10px';
+        falarButton.style.width = '100%';
+        falarButton.style.cursor = 'pointer';
+        falarButton.style.marginTop = '10px';
+        falarButton.addEventListener('click', () => {
+         const message = generateWhatsappMessage();
+    const encodedMessage = encodeURIComponent(message);
+    window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+});
+cartPopupContent.appendChild(falarButton);
+
+// Function to generate the message for WhatsApp
+function generateWhatsappMessage() {
+    let message = 'Pedido de compra:\n\n';
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price}\n`;
+    });
+    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+    message += 'Aguardo confirmação do pedido.';
+    return message;
+}
+
+// M-Pesa payment option with effects and no duplication
+function showMpesapayOption() {
+    const mpesaContainer = document.createElement('div');
+    cartPopupContent.appendChild(mpesaContainer);
+
+    // Check if the M-Pesa number has already been displayed to avoid duplication
+    const existingMpesaNumber = document.querySelector('.mpesa-number');
+    if (existingMpesaNumber) return; // Exit the function if the number already exists
+
+    // Create the M-Pesa payment button
+    const mpesaButton = document.createElement('button');
+    mpesaButton.textContent = 'Pagamento M-Pesa';
+    mpesaButton.style.backgroundColor = '#8B0000'; // Darker red background
+    mpesaButton.style.color = 'white'; // White text
+    mpesaButton.style.border = 'none';
+    mpesaButton.style.padding = '10px';
+    mpesaButton.style.fontSize = '16px';
+    mpesaButton.style.cursor = 'pointer';
+    mpesaButton.style.width = '100%';
+    mpesaButton.style.marginTop = '10px'; // Add some spacing
+    mpesaButton.style.transition = 'opacity 0.5s ease'; // Add fade-out transition
+    mpesaContainer.appendChild(mpesaButton);
+
+    // Add event listener for the M-Pesa button click
+    mpesaButton.addEventListener('click', () => {
+        // Fade out the button
+        mpesaButton.style.opacity = '0';
+
+        // Wait for the fade-out effect to finish, then replace the button with the number
+        setTimeout(() => {
+            mpesaButton.style.display = 'none'; // Hide the button after fade-out
+
+            // Show the M-Pesa transfer number
+            const mpesaNumber = document.createElement('div');
+            mpesaNumber.textContent = '852136558'; // Number to display
+            mpesaNumber.style.fontSize = '18px';
+            mpesaNumber.style.fontWeight = 'bold';
+            mpesaNumber.style.marginTop = '10px'; // Maintain spacing
+            mpesaNumber.style.textAlign = 'center'; // Center the number
+            mpesaNumber.classList.add('mpesa-number'); // Add a class to easily check if number already exists
+            mpesaContainer.appendChild(mpesaNumber);
+        }, 500); // Match the transition duration
+    });
+}
+
+
+// Pagar Conta button logic
+const pagarButton = document.createElement('button');
+pagarButton.textContent = 'Pagar Conta';
+pagarButton.style.background = '#0288d1';
+pagarButton.style.color = 'white';
+pagarButton.style.border = 'none';
+pagarButton.style.padding = '10px';
+pagarButton.style.width = '100%';
+pagarButton.style.cursor = 'pointer';
+pagarButton.style.marginTop = '10px';
+pagarButton.addEventListener('click', () => {
+    showPaypalButton();
+    showMpesapayOption(); // Show M-Pesa payment option below PayPal
+});
+cartPopupContent.appendChild(pagarButton);
+
+    }
+
+    function showPaypalButton() {
+        const existingPaypalButton = document.querySelector('.paypal-button-container');
+        if (existingPaypalButton) {
+            return; // Do not add another PayPal button if one already exists
+        }
+
+        const paypalButtonContainer = document.createElement('div');
+        paypalButtonContainer.classList.add('paypal-button-container');
+        cartPopupContent.appendChild(paypalButtonContainer);
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: calculateTotal().toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    window.location.href = 'https://kivarashop.github.io/Sales-Pages/new-2ndmenu/obrigado';
+                });
+            },
+            onError: function(err) {
+                console.error("Payment Error: ", err);
+            }
+        }).render(paypalButtonContainer);
+    }
+
+    let countdownInterval;
+    function startCountdown() {
+        let timeRemaining = 120; // 2 minutes
+        const countdownElement = document.querySelector('.countdown');
+        
+        if (countdownElement) {
+            countdownElement.remove(); // Remove previous countdown if it exists
+        }
+
+        const newCountdownElement = document.createElement('div');
+        newCountdownElement.classList.add('countdown');
+        newCountdownElement.style.marginTop = '20px';
+        cartPopupContent.appendChild(newCountdownElement);
+
+        function updateCountdown() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            newCountdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                newCountdownElement.innerHTML = 'Tempo esgotado!';
+                setTimeout(startCountdown, 1000); // Restart countdown
+            }
+        }
+        updateCountdown();
+    }
+
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
+
+            cart.push({ img, name, price });
+            saveCart();
+            updateCartCount();
+            renderCart();
+        });
+    });
+
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    updateCartCount();
+});
+</script>
+    
+  
+</body>
+</html>
