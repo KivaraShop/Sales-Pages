@@ -714,6 +714,16 @@ img {
       🔍
     </button>
   </div>
+        <!-- Área de Resultados -->
+<div id="search-results"></div>
+    
+<!-- Mensagem de "Sem Resultados" -->
+<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
+  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
+</div>
+  </div>
+    
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
     <a href="dieta.html" class="categoria-btn">Dieta</a>
@@ -1190,129 +1200,78 @@ img {
 });
  </script>
       <script>
-// Função para ajustar o tamanho dos produtos filtrados
-function adjustFilteredProductSize() {
-  const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
+        // Seleciona todos os itens principais de categoria
+        const categories = document.querySelectorAll('.category');
 
-  // Verificar se é uma tela de computador (largura maior que 768px)
-  if (window.innerWidth > 768) {
-    filteredProducts.forEach(product => {
-      product.style.width = '250px'; // Define largura fixa
-      product.style.height = '350px'; // Define altura fixa
-    });
-  } else {
-    // Remove os ajustes para dispositivos móveis
-    filteredProducts.forEach(product => {
-      product.style.width = ''; // Restaura valores padrão
-      product.style.height = '';
-    });
-  }
-}
-// Função para restaurar o layout original dos produtos
-function restoreOriginalProductLayout() {
-  const allProducts = document.querySelectorAll('.product-card');
+        categories.forEach(category => {
+            category.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita redirecionamento
 
-  allProducts.forEach(product => {
-    product.style.width = ''; // Restaura valores de largura para o layout original
-    product.style.height = ''; // Restaura valores de altura para o layout original
-  });
-}
+                // Seleciona o submenu relacionado
+                const submenu = this.nextElementSibling;
 
-// Adicionar evento para ajustar os tamanhos após a pesquisa
-document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
+                // Alterna a exibição do submenu
+                if (submenu.style.display === 'flex') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
 
-// Também ajustar tamanho em tempo real enquanto o cliente digita
-document.getElementById('search-input').addEventListener('input', function() {
-  adjustFilteredProductSize();
-
-  // Se o campo de pesquisa for apagado, restaura o layout original
-  if (this.value === '') {
-    restoreOriginalProductLayout();
-  }
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
 });
 
-// Ajustar tamanho ao redimensionar a janela
-window.addEventListener('resize', adjustFilteredProductSize);
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
 
 </script>
         
-  <script src="script.js"></script>
-<script>
+
+       <script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
+  const noResultsMessage = document.getElementById('no-results-message');
+  const navigationButtons = document.querySelector('.categoria-btn');
+  const footer = document.querySelector('footer'); // Obtém o rodapé
+  let resultsFound = false; // Flag para verificar se encontrou resultados
 
+  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
+  noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
+  navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
+  footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
+
+  // Filtra os produtos
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
     if (productName.includes(search)) {
       card.style.display = "block"; // Mostra o card
+      resultsFound = true; // Marcar que encontrou pelo menos um produto
     } else {
       card.style.display = "none"; // Esconde o card
     }
   });
+
+  // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
+  if (!resultsFound && searchTerm !== '') {
+    noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
+    navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
+    footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
+  } else if (resultsFound || searchTerm === '') {
+    // Se encontrou resultados ou o campo de pesquisa está vazio
+    noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
+    navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
+    footer.style.visibility = 'visible'; // Mostra o rodapé
+  }
 }
-</script>
-    
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const productsPerPage = 8; // Max 8 products per page
-
-    // Function to paginate each section independently
-    function paginateSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        const productGrid = section.querySelector('.product-grid');
-        const pagination = section.querySelector('.pagination');
-
-        const products = Array.from(productGrid.children);
-        const totalPages = Math.ceil(products.length / productsPerPage);
-
-        // Function to render products for a specific page
-        function renderPage(page) {
-            // Clear the current product grid
-            productGrid.innerHTML = '';
-
-            // Calculate the range of products to display
-            const start = (page - 1) * productsPerPage;
-            const end = Math.min(start + productsPerPage, products.length);
-
-            // Append the appropriate products for this page
-            for (let i = start; i < end; i++) {
-                productGrid.appendChild(products[i]);
-            }
-
-            // Render pagination buttons
-            renderPagination(page);
-        }
-
-        // Function to render pagination buttons
-        function renderPagination(activePage) {
-            pagination.innerHTML = ''; // Clear existing buttons
-
-            for (let i = 1; i <= totalPages; i++) {
-                const button = document.createElement('button');
-                button.textContent = i;
-                button.classList.add('page-button');
-                if (i === activePage) {
-                    button.classList.add('active');
-                }
-                button.addEventListener('click', () => renderPage(i));
-                pagination.appendChild(button);
-            }
-        }
-
-        // Initialize with the first page
-        if (products.length > 0) {
-            renderPage(1);
-        }
-    }
-
-    // Call paginateSection for each section on the page
-    const sections = document.querySelectorAll('.container');
-    sections.forEach(section => {
-        const sectionId = section.id;
-        paginateSection(sectionId);
-    });
-});
 
 </script>
         
