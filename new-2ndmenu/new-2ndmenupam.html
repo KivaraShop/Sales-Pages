@@ -1237,7 +1237,7 @@ function filterProducts(searchTerm) {
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
     if (productName.includes(search)) {
-      card.style.display = "flex"; // Mantém a estrutura do grid
+      grid.style.display = "flex"; // Mantém a estrutura do grid
       resultsFound = true;
     } else {
       card.style.display = "none";
