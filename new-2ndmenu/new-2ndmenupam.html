@@ -1284,17 +1284,19 @@ function filterProducts(searchTerm) {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
     footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
+    viewAllWrappers.forEach(wrapper => {
+      wrapper.style.display = 'none'; // Esconde os links "Ver todos" nas seções
+    });
   } else if (resultsFound || searchTerm === '') {
     // Se encontrou resultados ou o campo de pesquisa está vazio
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
     footer.style.visibility = 'visible'; // Mostra o rodapé
+    viewAllWrappers.forEach(wrapper => {
+      wrapper.style.display = 'block'; // Mostra os links "Ver todos" nas seções
+    });
   }
 
-  // Mostrar todos os "view-all-wrapper" nas seções
-  viewAllWrappers.forEach(wrapper => {
-    wrapper.style.visibility = 'visible';
-  });
 }
 </script>
 
