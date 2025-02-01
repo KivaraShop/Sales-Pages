@@ -1232,7 +1232,7 @@ img {
 });
  </script>
 
-<script> 
+<script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
@@ -1287,19 +1287,17 @@ function filterProducts(searchTerm) {
     viewAllWrappers.forEach(wrapper => {
       wrapper.style.display = 'none'; // Esconde os links "Ver todos" nas seções
     });
-  } else if (resultsFound || searchTerm === '') {
-    // Se encontrou resultados ou o campo de pesquisa está vazio
+  } else {
+    // Se a pesquisa estiver vazia ou houver resultados, ainda escondemos o "Ver todos"
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
     footer.style.visibility = 'visible'; // Mostra o rodapé
     viewAllWrappers.forEach(wrapper => {
-      wrapper.style.display = 'block'; // Mostra os links "Ver todos" nas seções
+      wrapper.style.display = 'none'; // Sempre esconde os links "Ver todos" durante a pesquisa
     });
   }
-
 }
 </script>
-
 
 
 
