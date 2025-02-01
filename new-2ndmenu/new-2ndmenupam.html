@@ -194,7 +194,7 @@
         /* Grid de Proud tos (menu) */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
 
@@ -714,17 +714,6 @@ img {
       🔍
     </button>
   </div>
-
-        <!-- Área de Resultados -->
-<div id="search-results"></div>
-    
-<!-- Mensagem de "Sem Resultados" -->
-<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
-  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
-  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
-</div>
-  </div>
-    
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
     <a href="dieta.html" class="categoria-btn">Dieta</a>
@@ -733,7 +722,7 @@ img {
         <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
 <!-- Card de Produto -->
-<div class="product-card">
+<div class="product-card" data-id="1" data-nome="Salada Caesar" data-preco="19.90">
     <img src="https://i.ibb.co/6Dtwb1n/IMG-20241216-093506.jpg" alt="IMG-20241216-093506" border="0" draggable="false">
     <h3>Salada Caesar</h3>
     <div class="price">R$ 19,90</div>
@@ -923,11 +912,10 @@ img {
         <a href="viewallexplore.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
     </div>
 
-<!-- Pizzas Section -->
-<div class="container" id="pizzas-section">
-    <h2>Pizzas</h2>
+ <!-- SECCAO DE PIZZAS -->
+    <div class="container" id="pizzas-section">
+        <h2>Pizzas</h2>
 
-    
         <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
             <div class="product-card">
@@ -1163,50 +1151,6 @@ img {
         </div>
     </div>
 </footer>
- <script>
-    function filterProducts(searchTerm) {
-    const search = searchTerm.toLowerCase();
-    const productCards = document.querySelectorAll(".product-card");
-    const noResultsMessage = document.getElementById('no-results-message');
-    const navigationButtons = document.querySelector('.menu-categorias');
-    const footer = document.querySelector('footer'); // Obtém o rodapé
-    const resultsContainer = document.getElementById('search-results');
-    let resultsFound = false;
-
-    // Limpa os resultados anteriores
-    resultsContainer.innerHTML = '';
-
-    // Inicialmente, esconder a mensagem "Sem resultados" e o botão
-    noResultsMessage.style.display = 'none';
-    navigationButtons.style.visibility = 'visible';
-    footer.style.visibility = 'visible';
-
-    // Filtra os produtos
-    productCards.forEach(card => {
-        const productName = card.querySelector("h3").textContent.toLowerCase();
-        const productModel = card.getAttribute('data-model')?.toLowerCase() || '';
-        const productTransmission = card.getAttribute('data-transmission')?.toLowerCase() || '';
-
-        if (productName.includes(search) || productModel.includes(search) || productTransmission.includes(search)) {
-            resultsContainer.appendChild(card.cloneNode(true));
-            resultsFound = true;
-        } else {
-            card.style.display = "none";
-        }
-    });
-
-    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
-    if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block';
-        navigationButtons.style.visibility = 'hidden';
-        footer.style.visibility = 'hidden';
-    } else {
-        noResultsMessage.style.display = 'none';
-        navigationButtons.style.visibility = 'visible';
-        footer.style.visibility = 'visible';
-    }
-}
- </script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
@@ -1245,11 +1189,132 @@ img {
     });
 });
  </script>
+      <script>
+// Função para ajustar o tamanho dos produtos filtrados
+function adjustFilteredProductSize() {
+  const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
 
+  // Verificar se é uma tela de computador (largura maior que 768px)
+  if (window.innerWidth > 768) {
+    filteredProducts.forEach(product => {
+      product.style.width = '250px'; // Define largura fixa
+      product.style.height = '350px'; // Define altura fixa
+    });
+  } else {
+    // Remove os ajustes para dispositivos móveis
+    filteredProducts.forEach(product => {
+      product.style.width = ''; // Restaura valores padrão
+      product.style.height = '';
+    });
+  }
+}
+// Função para restaurar o layout original dos produtos
+function restoreOriginalProductLayout() {
+  const allProducts = document.querySelectorAll('.product-card');
+
+  allProducts.forEach(product => {
+    product.style.width = ''; // Restaura valores de largura para o layout original
+    product.style.height = ''; // Restaura valores de altura para o layout original
+  });
+}
+
+// Adicionar evento para ajustar os tamanhos após a pesquisa
+document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
+
+// Também ajustar tamanho em tempo real enquanto o cliente digita
+document.getElementById('search-input').addEventListener('input', function() {
+  adjustFilteredProductSize();
+
+  // Se o campo de pesquisa for apagado, restaura o layout original
+  if (this.value === '') {
+    restoreOriginalProductLayout();
+  }
+});
+
+// Ajustar tamanho ao redimensionar a janela
+window.addEventListener('resize', adjustFilteredProductSize);
+
+</script>
         
   <script src="script.js"></script>
+<script>
+function filterProducts(searchTerm) {
+  const search = searchTerm.toLowerCase();
+  const productCards = document.querySelectorAll(".product-card");
 
+  productCards.forEach(card => {
+    const productName = card.querySelector("h3").textContent.toLowerCase();
+    if (productName.includes(search)) {
+      card.style.display = "block"; // Mostra o card
+    } else {
+      card.style.display = "none"; // Esconde o card
+    }
+  });
+}
+</script>
     
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const productsPerPage = 8; // Max 8 products per page
+
+    // Function to paginate each section independently
+    function paginateSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        const productGrid = section.querySelector('.product-grid');
+        const pagination = section.querySelector('.pagination');
+
+        const products = Array.from(productGrid.children);
+        const totalPages = Math.ceil(products.length / productsPerPage);
+
+        // Function to render products for a specific page
+        function renderPage(page) {
+            // Clear the current product grid
+            productGrid.innerHTML = '';
+
+            // Calculate the range of products to display
+            const start = (page - 1) * productsPerPage;
+            const end = Math.min(start + productsPerPage, products.length);
+
+            // Append the appropriate products for this page
+            for (let i = start; i < end; i++) {
+                productGrid.appendChild(products[i]);
+            }
+
+            // Render pagination buttons
+            renderPagination(page);
+        }
+
+        // Function to render pagination buttons
+        function renderPagination(activePage) {
+            pagination.innerHTML = ''; // Clear existing buttons
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.classList.add('page-button');
+                if (i === activePage) {
+                    button.classList.add('active');
+                }
+                button.addEventListener('click', () => renderPage(i));
+                pagination.appendChild(button);
+            }
+        }
+
+        // Initialize with the first page
+        if (products.length > 0) {
+            renderPage(1);
+        }
+    }
+
+    // Call paginateSection for each section on the page
+    const sections = document.querySelectorAll('.container');
+    sections.forEach(section => {
+        const sectionId = section.id;
+        paginateSection(sectionId);
+    });
+});
+
+</script>
         
 <script>
 // Função para forçar o carregamento de todas as imagens da página
