@@ -1268,9 +1268,9 @@ function filterProducts(searchTerm) {
   function checkSectionVisibility(section) {
     const visibleProducts = section.querySelectorAll('.product-card[style="display: block;"]');
     if (visibleProducts.length > 0) {
-      section.style.visibility = 'visible'; // Mostra a seção se houver produtos visíveis
+        section.style.display = 'block'; // Mostra a seção se houver produtos visíveis
     } else {
-      section.style.visibility = 'hidden'; // Esconde a seção se não houver produtos visíveis
+      section.style.display = 'none'; // Esconde a seção se não houver produtos visíveis
     }
   }
 
