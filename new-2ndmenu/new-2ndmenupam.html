@@ -1253,68 +1253,7 @@ function filterProducts(searchTerm) {
 }
 </script>
     
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const productsPerPage = 8; // Max 8 products per page
 
-    // Function to paginate each section independently
-    function paginateSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        const productGrid = section.querySelector('.product-grid');
-        const pagination = section.querySelector('.pagination');
-
-        const products = Array.from(productGrid.children);
-        const totalPages = Math.ceil(products.length / productsPerPage);
-
-        // Function to render products for a specific page
-        function renderPage(page) {
-            // Clear the current product grid
-            productGrid.innerHTML = '';
-
-            // Calculate the range of products to display
-            const start = (page - 1) * productsPerPage;
-            const end = Math.min(start + productsPerPage, products.length);
-
-            // Append the appropriate products for this page
-            for (let i = start; i < end; i++) {
-                productGrid.appendChild(products[i]);
-            }
-
-            // Render pagination buttons
-            renderPagination(page);
-        }
-
-        // Function to render pagination buttons
-        function renderPagination(activePage) {
-            pagination.innerHTML = ''; // Clear existing buttons
-
-            for (let i = 1; i <= totalPages; i++) {
-                const button = document.createElement('button');
-                button.textContent = i;
-                button.classList.add('page-button');
-                if (i === activePage) {
-                    button.classList.add('active');
-                }
-                button.addEventListener('click', () => renderPage(i));
-                pagination.appendChild(button);
-            }
-        }
-
-        // Initialize with the first page
-        if (products.length > 0) {
-            renderPage(1);
-        }
-    }
-
-    // Call paginateSection for each section on the page
-    const sections = document.querySelectorAll('.container');
-    sections.forEach(section => {
-        const sectionId = section.id;
-        paginateSection(sectionId);
-    });
-});
-
-</script>
         
 <script>
 // Função para forçar o carregamento de todas as imagens da página
