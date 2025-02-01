@@ -732,45 +732,31 @@ img {
 
 
         /* Barra de Pesquisa */
-* Estilo da barra de busca */
-  .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espaço entre os elementos */
-  }
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
 
-  /* Estilo do botão de compartilhamento */
-  #share-menu-btn {
-    background-color: transparent;
-    border: none;
-    color: #33001A;
-    font-size: 24px;
-    cursor: pointer;
-  }
+#search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
 
-  /* Estilo do input de pesquisa */
-  #search-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+#search-btn {
+  background-color: #ffc107; /* amarelo */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
+}
 
-  /* Estilo do botão de pesquisa */
-  #search-btn {
-    background-color: #ffc107;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-
-  /* Efeito ao passar o mouse sobre o botão de compartilhamento */
-  #share-menu-btn:hover {
-    color: #ffc107;
-  }
-        
 #no-results-message {
     display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
     text-align: center;
@@ -882,28 +868,8 @@ img {
     <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
       🔍
     </button>
-               <!-- Botão de compartilhar o menu digital -->
-  <button id="share-menu-btn" onclick="shareMenu()" title="Partilhar Menu Digital">
-    <i class="fas fa-share-alt"></i>  <!-- Ícone de compartilhamento da Font Awesome -->
-  </button>
-</div>
+  </div>
 
-
-<script>
-  function shareMenu() {
-    if (navigator.share) {
-      navigator.share({
-        title: 'Menu Digital',
-        text: 'Confira o menu digital do nosso restaurante!',
-        url: window.location.href
-      })
-      .then(() => console.log('Menu digital partilhado com sucesso'))
-      .catch(error => console.log('Erro ao partilhar menu:', error));
-    } else {
-      alert('O compartilhamento não é suportado neste navegador.');
-    }
-  }
-</script>
         <!-- Container de Resultados -->
 <div id="results-container" style="text-align: center; margin-top: 20px;">
 
