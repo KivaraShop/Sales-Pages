@@ -1829,18 +1829,6 @@ document.addEventListener('DOMContentLoaded', () => {
         totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`;
         cartPopupContent.appendChild(totalElement);
 
-        const aguardarButton = document.createElement('button');
-        aguardarButton.textContent = 'Aguardar';
-        aguardarButton.style.background = '#4CAF50';
-        aguardarButton.style.color = 'white';
-        aguardarButton.style.border = 'none';
-        aguardarButton.style.padding = '10px';
-        aguardarButton.style.width = '100%';
-        aguardarButton.style.cursor = 'pointer';
-        aguardarButton.style.marginTop = '10px';
-        aguardarButton.addEventListener('click', () => startCountdown());
-        cartPopupContent.appendChild(aguardarButton);
-
         const falarButton = document.createElement('button');
         falarButton.textContent = 'Falar com atendente';
         falarButton.style.background = '#000000';
