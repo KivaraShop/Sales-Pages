@@ -1584,19 +1584,16 @@ window.onload = function() {
 </script>
 
 
-<!-- Spinner e mensagem -->
+<!-- Spinner, Logo e mensagem -->
 <div id="loading-overlay">
+    <!-- Logo do restaurante -->
+    <img id="logo" src="https://i.ibb.co/whs9mpZ4/Logopit-1738263457254.png" alt="Logo do Restaurante">
+    <!-- Spinner -->
     <div id="spinner"></div>
     <p>Bem-vindo !</p>
 </div>
 
-<!-- Spinner e mensagem -->
-<div id="loading-overlay" style="display: none;">
-    <div id="spinner"></div>
-    <p>少々お待ちください...</p>
-</div>
-
-<!-- Estilo do Spinner -->
+<!-- Estilo do Spinner e do Logo -->
 <style>
     #loading-overlay {
         position: fixed;
@@ -1610,6 +1607,12 @@ window.onload = function() {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+
+    /* Estilo do Logo */
+    #logo {
+        max-width: 150px; /* ajuste conforme necessário */
+        margin-bottom: 20px; /* espaço entre o logo e o spinner */
     }
 
     #spinner {
@@ -1638,7 +1641,7 @@ window.onload = function() {
 <script>
     // Verifica se já foi exibido o spinner durante esta sessão
     if (!sessionStorage.getItem('spinnerShown')) {
-        // Exibe o spinner por 3 segundos
+        // Exibe o overlay por 3 segundos
         document.getElementById("loading-overlay").style.display = "flex";
 
         setTimeout(function() {
@@ -1649,11 +1652,12 @@ window.onload = function() {
         sessionStorage.setItem('spinnerShown', 'true');
     }
 
-    // Limpa a flag quando a página for recarregada ou navegação entre páginas
+    // Limpa a flag quando a página for recarregada ou navegar entre páginas
     window.onbeforeunload = function() {
         sessionStorage.removeItem('spinnerShown');
     };
 </script>
+
 
 
 <script>
