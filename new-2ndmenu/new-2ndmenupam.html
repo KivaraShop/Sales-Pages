@@ -1373,6 +1373,41 @@ img {
     </div>
 </footer>
 
+    <script>
+        // Seleciona todos os itens principais de categoria
+        const categories = document.querySelectorAll('.category');
+
+        categories.forEach(category => {
+            category.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita redirecionamento
+
+                // Seleciona o submenu relacionado
+                const submenu = this.nextElementSibling;
+
+                // Alterna a exibição do submenu
+                if (submenu.style.display === 'flex') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+
+</script>
+    
   <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
@@ -1616,39 +1651,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
- <script>
-        // Seleciona todos os itens principais de categoria
-        const categories = document.querySelectorAll('.category');
-
-        categories.forEach(category => {
-            category.addEventListener('click', function (event) {
-                event.preventDefault(); // Evita redirecionamento
-
-                // Seleciona o submenu relacionado
-                const submenu = this.nextElementSibling;
-
-                // Alterna a exibição do submenu
-                if (submenu.style.display === 'flex') {
-                    submenu.style.display = 'none';
-                } else {
-                    submenu.style.display = 'flex';
-                }
-            });
-        });
-    </script>
-
-<script>
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active'); // Show/hide menu
-});
-
-// Debugging
-console.log('Toggle connected:', menuToggle !== null);
-console.log('Menu found:', navMenu !== null);
-</script>
     
     <!-- Script para animações ao rolar a página -->
     <script>
