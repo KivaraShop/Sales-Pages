@@ -17,7 +17,7 @@
 
         /* Cabeçalho */
         header {
-            background-color: #3c8d3f; /* Verde escuro */
+            background-color: #f9f9f9; /* Verde escuro */
             padding: 15px;
             width: 100%;
             display: flex;
@@ -31,7 +31,7 @@
         }
 
         header .cart-icon {
-            color: white;
+            color: #33001A; 
             font-size: 22px;
             text-decoration: none;
             position: relative;
@@ -41,7 +41,7 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background: #ff6b6b;
+            background: red;
             color: white;
             border-radius: 50%;
             padding: 2px 6px;
@@ -52,7 +52,7 @@
       position: relative;
       cursor: pointer;
       font-size: 24px;
-      color: white;
+      color: #33001A; 
     }
 
     .notification .badge {
@@ -490,7 +490,51 @@
                 <button>Adicionar ao Pedido</button>
             </div>
     </div>
+        
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
 
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     // Bloquear o menu de contexto (clique direito)
