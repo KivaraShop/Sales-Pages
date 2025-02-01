@@ -1724,7 +1724,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return total;
     }
-
+// Função para buscar a taxa de conversão de MZN para BRL
+    async function getExchangeRate() {
+        try {
+            const response = await fetch('https://api.exchangerate-api.com/v4/latest/MZN');
+            const data = await response.json();
+            // Retorna a taxa de conversão para BRL
+            return data.rates.BRL;
+        } catch (error) {
+            console.error('Erro ao obter a taxa de conversão:', error);
+            return 0; // Caso haja erro, retorna 0 para evitar cálculos errados
+        }
+    }
     function animateTotalSum() {
         const total = calculateTotal();
         let currentTotal = 0;
