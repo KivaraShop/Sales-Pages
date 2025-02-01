@@ -1233,9 +1233,6 @@ img {
  </script>
 
 
-
-
-
 <script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
@@ -1253,9 +1250,6 @@ function filterProducts(searchTerm) {
   noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
   navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
   footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
-  pizzaSection.style.visibility = 'visible'; // Manter a seção visível inicialmente
-  bebidasSection.style.visibility = 'visible'; // Manter a seção visível inicialmente
-  parceriasSection.style.visibility = 'visible'; // Manter a seção visível inicialmente
 
   // Seletor para todos os "view-all-wrapper"
   const viewAllWrappers = document.querySelectorAll('.view-all-wrapper');
@@ -1276,30 +1270,35 @@ function filterProducts(searchTerm) {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
     footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
-    pizzaSection.style.visibility = 'hidden'; // Esconde a seção de pizzas
-    bebidasSection.style.visibility = 'hidden'; // Esconde a seção de bebidas
-    parceriasSection.style.visibility = 'hidden'; // Esconde a seção de parcerias
     
-    // Ocultar todos os "view-all-wrapper" nas seções
+    // Esconde as seções se não houver produtos
+    pizzaSection.style.display = 'none'; // Esconde a seção de pizzas
+    bebidasSection.style.display = 'none'; // Esconde a seção de bebidas
+    parceriasSection.style.display = 'none'; // Esconde a seção de parcerias
+    
+    // Ocultar todos os "view-all-wrapper"
     viewAllWrappers.forEach(wrapper => {
-      wrapper.style.visibility = 'hidden';
+      wrapper.style.display = 'none';
     });
   } else if (resultsFound || searchTerm === '') {
     // Se encontrou resultados ou o campo de pesquisa está vazio
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
     footer.style.visibility = 'visible'; // Mostra o rodapé
-    pizzaSection.style.visibility = 'hidden'; // Esconde a seção de pizzas
-    bebidasSection.style.visibility = 'hidden'; // Esconde a seção de bebidas
-    parceriasSection.style.visibility = 'hidden'; // Esconde a seção de parcerias
-    
+
     // Mostrar todos os "view-all-wrapper" nas seções
     viewAllWrappers.forEach(wrapper => {
-      wrapper.style.visibility = 'hidden'; // Ocultar os "view-all-wrapper" pois não há necessidade de separar por seções
+      wrapper.style.display = 'block';
     });
+
+    // Mostra todas as seções, independentemente de terem ou não resultados
+    pizzaSection.style.display = 'block'; // Mostra a seção de pizzas
+    bebidasSection.style.display = 'block'; // Mostra a seção de bebidas
+    parceriasSection.style.display = 'block'; // Mostra a seção de parcerias
   }
 }
 </script>
+
 
 
 
