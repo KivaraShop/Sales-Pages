@@ -869,7 +869,30 @@ img {
       🔍
     </button>
   </div>
+ <!-- Botão de compartilhar o menu digital -->
+  <button id="share-menu-btn" onclick="shareMenu()" title="Partilhar Menu Digital">
+    <!-- Ícone de compartilhamento em SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#33001A" viewBox="0 0 24 24" width="24px" height="24px">
+      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a2.5 2.5 0 000-1.4l7.13-4.16A2.5 2.5 0 1016 5a2.5 2.5 0 001.96.77 2.5 2.5 0 100-5A2.5 2.5 0 0016 1a2.5 2.5 0 10-1.96.77L8.91 6.93a2.5 2.5 0 100 4.14l5.13 3a2.5 2.5 0 101.96-.77z"/>
+    </svg>
+  </button>
+</div>
 
+<script>
+  function shareMenu() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Menu Digital',
+        text: 'Confira o menu digital do nosso restaurante!',
+        url: window.location.href
+      })
+      .then(() => console.log('Menu digital partilhado com sucesso'))
+      .catch(error => console.log('Erro ao partilhar menu:', error));
+    } else {
+      alert('O compartilhamento não é suportado neste navegador.');
+    }
+  }
+</script>
         <!-- Container de Resultados -->
 <div id="results-container" style="text-align: center; margin-top: 20px;">
 
