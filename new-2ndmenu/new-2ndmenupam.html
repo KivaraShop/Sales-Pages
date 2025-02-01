@@ -732,33 +732,14 @@ img {
 
 
         /* Barra de Pesquisa */
-.search-bar {
-  display: flex;
-  justify-content: center;
-  margin: 20px auto;
-  max-width: 600px;
- gap: 5px;
-}
+* Estilo da barra de busca */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre os elementos */
+  }
 
-#search-input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  font-size: 16px;
-}
-
-#search-btn {
-  background-color: #ffc107; /* amarelo */
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 0 4px 4px 0;
-  color: white;
-  font-size: 18px;
-}
-
- /* Estilo do botão de compartilhamento */
+  /* Estilo do botão de compartilhamento */
   #share-menu-btn {
     background-color: transparent;
     border: none;
@@ -766,6 +747,25 @@ img {
     font-size: 24px;
     cursor: pointer;
   }
+
+  /* Estilo do input de pesquisa */
+  #search-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Estilo do botão de pesquisa */
+  #search-btn {
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
   /* Efeito ao passar o mouse sobre o botão de compartilhamento */
   #share-menu-btn:hover {
     color: #ffc107;
