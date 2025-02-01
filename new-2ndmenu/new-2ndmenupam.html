@@ -659,23 +659,7 @@ img {
   font-size: 18px;
 }
 
-/* Estilo normal do botão */
-#order-car-btn {
-  background-color: #4a90e2; /* Cor de fundo original */
-  color: white; /* Cor do texto */
-  padding: 10px 20px; /* Espaçamento interno */
-  border: none; /* Sem borda */
-  font-size: 16px; /* Tamanho da fonte */
-  cursor: pointer; /* Cursor em forma de mão */
-  border-radius: 4px; /* Bordas arredondadas */
-  transition: background-color 0.3s, transform 0.3s; /* Transição suave */
-}
 
-/* Efeito hover */
-#order-car-btn:hover {
-  background-color: #357ab7; /* Cor de fundo ao passar o mouse */
-  transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
-}    
     </style>
 </head>
 <body>
@@ -716,7 +700,7 @@ img {
     <div id="bannerText">Sabores Incríveis Esperam Por Você - Aproveite Agora!</div>
      
     <!-- Conteúdo principal -->
-    <div class="container">
+    <div class="container" id="todos-section">
         <h2>Explore Nosso Menu</h2>
     
            <div class="search-bar">
@@ -729,18 +713,7 @@ img {
     <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
       🔍
     </button>
-  </div>  
-    </div>
-        <!-- Área de Resultados -->
-<div id="search-results"></div>
-    
-<!-- Mensagem de "Sem Resultados" -->
-<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
-  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
-  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
-</div>
   </div>
-    
 <!-- Botões de Categoria -->
 <div class="menu-categorias">
     <a href="dieta.html" class="categoria-btn">Dieta</a>
@@ -939,11 +912,10 @@ img {
         <a href="viewallexplore.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
     </div>
 
- <!-- SECCAO DE PIZZAS -->
-        </div>
-                  <h2>Pizzas</h2>
-              </div>
-      </div>
+    </div>
+        <h2>Pizzas</h2>
+    </div>
+        <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
             <div class="product-card">
                         <div class="product-labels">
@@ -1042,7 +1014,13 @@ img {
         <a href="viewallexplore.html" class="view-all-link">Ver todos <i class="fas fa-arrow-right"></i></a>
     </div>
 
+    
+        <!-- SECTION DEVIDER -->
+  <!-- Conteúdo principal -->
+    <div class="container" id="bebidas-section">
+        <h2>Bebidas</h2>
 
+        <div class="product-grid">
             <!-- Card de Produto 1 (Prato Principal) -->
             <div class="product-card">
                 <img src="https://i.ibb.co/Sd2y5ZR/IMG-20241225-194407.jpg" border="0" draggable="false">
@@ -1210,48 +1188,70 @@ img {
     });
 });
  </script>
+      <script>
+// Função para ajustar o tamanho dos produtos filtrados
+function adjustFilteredProductSize() {
+  const filteredProducts = document.querySelectorAll('.product-card[style*="display: block"]');
 
-       <script>
+  // Verificar se é uma tela de computador (largura maior que 768px)
+  if (window.innerWidth > 768) {
+    filteredProducts.forEach(product => {
+      product.style.width = '250px'; // Define largura fixa
+      product.style.height = '350px'; // Define altura fixa
+    });
+  } else {
+    // Remove os ajustes para dispositivos móveis
+    filteredProducts.forEach(product => {
+      product.style.width = ''; // Restaura valores padrão
+      product.style.height = '';
+    });
+  }
+}
+// Função para restaurar o layout original dos produtos
+function restoreOriginalProductLayout() {
+  const allProducts = document.querySelectorAll('.product-card');
+
+  allProducts.forEach(product => {
+    product.style.width = ''; // Restaura valores de largura para o layout original
+    product.style.height = ''; // Restaura valores de altura para o layout original
+  });
+}
+
+// Adicionar evento para ajustar os tamanhos após a pesquisa
+document.getElementById('search-btn').addEventListener('click', adjustFilteredProductSize);
+
+// Também ajustar tamanho em tempo real enquanto o cliente digita
+document.getElementById('search-input').addEventListener('input', function() {
+  adjustFilteredProductSize();
+
+  // Se o campo de pesquisa for apagado, restaura o layout original
+  if (this.value === '') {
+    restoreOriginalProductLayout();
+  }
+});
+
+// Ajustar tamanho ao redimensionar a janela
+window.addEventListener('resize', adjustFilteredProductSize);
+
+</script>
+        
+  <script src="script.js"></script>
+<script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
-  const noResultsMessage = document.getElementById('no-results-message');
-  const navigationButtons = document.querySelector('.menu-categorias');
-  const footer = document.querySelector('footer'); // Obtém o rodapé
-  let resultsFound = false; // Flag para verificar se encontrou resultados
 
-  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
-  noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
-  navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
-  footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
-
-  // Filtra os produtos
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
     if (productName.includes(search)) {
       card.style.display = "block"; // Mostra o card
-      resultsFound = true; // Marcar que encontrou pelo menos um produto
     } else {
       card.style.display = "none"; // Esconde o card
     }
   });
-
-  // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
-  if (!resultsFound && searchTerm !== '') {
-    noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
-    navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
-    footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
-  } else if (resultsFound || searchTerm === '') {
-    // Se encontrou resultados ou o campo de pesquisa está vazio
-    noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
-    navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
-    footer.style.visibility = 'visible'; // Mostra o rodapé
-  }
 }
-
 </script>
-
-
+    
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const productsPerPage = 8; // Max 8 products per page
