@@ -141,7 +141,7 @@
             cursor: pointer;
         }
 
-    .nav-menu {
+     .nav-menu {
     display: none; /* Initially hidden */
     flex-direction: column;
     align-items: flex-start;
@@ -150,7 +150,7 @@
     left: 0;
     width: 250px; /* Adjust this width as needed */
     height: 100vh;
-    background-color: #ffc107; /* Cor de fundo: Amarelo do restaurante */
+    background-color: #012063;
     padding: 15px 0;
     padding-left: 10px;
     z-index: 1000;
@@ -158,53 +158,50 @@
     transition: all 0.3s ease; /* Smooth appearance */
 }
 
-.nav-menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.nav-menu ul li {
-    margin: 10px 0;
-}
+        .nav-menu ul li {
+            margin: 10px 0;
+        }
 
-.nav-menu ul li a {
-    text-decoration: none;
-    color: #33001A; /* Cor do texto: Vermelho escuro (do restaurante) */
-    font-size: 18px;
-}
+        .nav-menu ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+           /* Submenu (subcategorias) */
+        .submenu {
+            display: none; /* Inicialmente escondido */
+            flex-direction: column;
+            background-color: #013a8b;
+            padding-left: 15px;
+            margin-top: 5px;
+            border-left: 3px solid #0288d1;
+        }
 
-/* Submenu (subcategorias) */
-.submenu {
-    display: none; /* Inicialmente escondido */
-    flex-direction: column;
-    background-color: #f9f9f9; /* Cor de fundo: Branco (sub-menu) */
-    padding-left: 15px;
-    margin-top: 5px;
-    border-left: 3px solid #ffb300; /* Cor da borda: Amarelo */
-}
+        .submenu a {
+            font-size: 16px;
+            color: #cce7ff;
+            padding: 5px 10px;
+        }
 
-.submenu a {
-    font-size: 16px;
-    color: #33001A; /* Cor do texto: Vermelho escuro */
-    padding: 5px 10px;
-}
-
-.submenu a:hover {
-    color: #f9f9f9; /* Cor do texto ao passar o mouse: Branco */
-    background-color: #33001A; /* Cor de fundo ao passar o mouse: Vermelho escuro */
-}
-
+        .submenu a:hover {
+            color: white;
+        }
+        
 /* Hover effect */
 .nav-menu ul li a:hover {
-    color: #f9f9f9; /* Cor do texto no hover: Branco */
-    background-color: #33001A; /* Cor de fundo no hover: Vermelho escuro */
+    color: #012063; /* Change text color on hover */
+    background-color: white; /* Change background color on hover */
     padding-left: 10px; /* Optional: adds a small left padding when hovered */
 }
-
-.nav-menu.active {
-    display: flex; /* Show when toggle is clicked */
-}
+        .nav-menu.active {
+            display: flex; /* Show when toggle is clicked */
+        }
 
         /* Container principal */
         .container {
