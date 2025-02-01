@@ -1028,7 +1028,7 @@ img {
             <div class="product-card">
                 <img src="https://i.ibb.co/0Zm2NY7/IMG-20241225-163316.jpg" border="0" draggable="false">
                 <h3> Água Mineral </h3>
-                <div class="price">R$ 9,90</div>
+                <div class="price"> 9,90</div>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1047,7 +1047,7 @@ img {
 <div class="product-card">
  <img src="https://i.ibb.co/BtR6mmS/IMG-20241225-163306.jpg">
 <h3>Frango Grelhado</h3>
- <div class="price">R$ 39,90</div>
+ <div class="price"> 39,90</div>
 <div class="stars">
 <i class="fas fa-star"></i>
 <i class="fas fa-star"></i>
@@ -1720,7 +1720,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function calculateTotal() {
         let total = 0;
         cart.forEach(item => {
-            total += parseFloat(item.price.replace('R$', '').trim());
+            total += parseFloat(item.price.replace('MZN', '').trim());
         });
         return total;
     }
@@ -1734,10 +1734,10 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateTotal() {
             currentTotal += increment;
             if (currentTotal < total) {
-                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
+                totalElement.innerHTML = `Total: MZN ${currentTotal.toFixed(2)}`;
                 requestAnimationFrame(updateTotal);
             } else {
-                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+                totalElement.innerHTML = `Total: MZN ${total.toFixed(2)}`;
             }
         }
         updateTotal();
@@ -1784,7 +1784,7 @@ document.addEventListener('DOMContentLoaded', () => {
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ 0.00`;
+        totalElement.innerHTML = `Total: MZN 0.00`;
         cartPopupContent.appendChild(totalElement);
 
         animateTotalSum();
@@ -1826,7 +1826,7 @@ document.addEventListener('DOMContentLoaded', () => {
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`;
+        totalElement.innerHTML = `Total: MZN ${calculateTotal().toFixed(2)}`;
         cartPopupContent.appendChild(totalElement);
 
         const falarButton = document.createElement('button');
@@ -1852,7 +1852,7 @@ function generateWhatsappMessage() {
     cart.forEach(item => {
         message += `${item.name} - ${item.price}\n`;
     });
-    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+    message += `\nTotal: MZN ${calculateTotal().toFixed(2)}\n\n`;
     message += 'Aguardo confirmação do pedido.';
     return message;
 }
