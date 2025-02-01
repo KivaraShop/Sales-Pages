@@ -1231,30 +1231,23 @@ img {
     });
 });
  </script>
-   <script>
+ <script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
   const noResultsMessage = document.getElementById('no-results-message');
   const navigationButtons = document.querySelector('.menu-categorias');
   const footer = document.querySelector('footer'); // Obtém o rodapé
-  const pizzaSection = document.getElementById('pizzas-section');
-  const bebidasSection = document.getElementById('bebidas-section');
-  const parceriasSection = document.querySelector('.parcerias-section');
-  
+  const allSections = document.querySelectorAll('.container'); // Selecione todas as seções de produtos
+  const viewAllWrappers = document.querySelectorAll('.view-all-wrapper'); // Seleciona todos os "view-all-wrapper"
+
   let resultsFound = false; // Flag para verificar se encontrou resultados
 
   // Inicialmente, esconder a mensagem "Sem resultados" e o botão
   noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
   navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
   footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
-  pizzaSection.style.visibility = 'visible'; // Manter a seção visível inicialmente
-  bebidasSection.style.visibility = 'visible'; // Manter a seção visível inicialmente
-  parceriasSection.style.visibility = 'visible'; // Manter a seção visível inicialmente
 
-  // Seletor para todos os "view-all-wrapper"
-  const viewAllWrappers = document.querySelectorAll('.view-all-wrapper');
-  
   // Filtra os produtos
   productCards.forEach(card => {
     const productName = card.querySelector("h3").textContent.toLowerCase();
@@ -1266,32 +1259,41 @@ function filterProducts(searchTerm) {
     }
   });
 
+  // Agora, ocultar as seções vazias
+  allSections.forEach(section => {
+    const sectionProducts = section.querySelectorAll(".product-card");
+    const sectionHasResults = Array.from(sectionProducts).some(card => card.style.display === "block");
+    if (sectionHasResults) {
+      section.style.display = 'block'; // Mostrar seção se houver resultados
+    } else {
+      section.style.display = 'none'; // Esconder a seção se não houver resultados
+    }
+  });
+
+  // Controla o comportamento dos "view-all-wrapper"
+  viewAllWrappers.forEach(wrapper => {
+    // Verifica se a seção ao qual o wrapper pertence tem produtos visíveis
+    const section = wrapper.closest('.container');
+    const sectionProducts = section.querySelectorAll(".product-card");
+    const sectionHasResults = Array.from(sectionProducts).some(card => card.style.display === "block");
+    
+    if (sectionHasResults) {
+      wrapper.style.display = 'block'; // Mostra o "view-all-wrapper" se houver resultados na seção
+    } else {
+      wrapper.style.display = 'none'; // Esconde o "view-all-wrapper" se a seção não tiver resultados
+    }
+  });
+
   // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
   if (!resultsFound && searchTerm !== '') {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
     footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
-    pizzaSection.style.visibility = 'hidden'; // Esconde a seção de pizzas
-    bebidasSection.style.visibility = 'hidden'; // Esconde a seção de bebidas
-    parceriasSection.style.visibility = 'hidden'; // Esconde a seção de parcerias
-    
-    // Ocultar todos os "view-all-wrapper" nas seções
-    viewAllWrappers.forEach(wrapper => {
-      wrapper.style.visibility = 'hidden';
-    });
   } else if (resultsFound || searchTerm === '') {
     // Se encontrou resultados ou o campo de pesquisa está vazio
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
     footer.style.visibility = 'visible'; // Mostra o rodapé
-    pizzaSection.style.visibility = 'visible'; // Mostra a seção de pizzas
-    bebidasSection.style.visibility = 'visible'; // Mostra a seção de bebidas
-    parceriasSection.style.visibility = 'visible'; // Mostra a seção de parcerias
-    
-    // Mostrar todos os "view-all-wrapper" nas seções
-    viewAllWrappers.forEach(wrapper => {
-      wrapper.style.visibility = 'visible';
-    });
   }
 }
 </script>
