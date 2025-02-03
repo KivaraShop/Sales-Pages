@@ -69,21 +69,60 @@
             <h3>Atendimento Premium</h3>
             <p>Nosso atendimento exclusivo garante uma experiência única.</p>
         </div>
-         <div class="service-card">
-            <img src="menu_fitness.jpg" alt="Opções Saudáveis">
-            <h3>Serviço de Encomenda</h3>
-            <p>Peça antecipadamente e tenha seus pratos prontos no momento certo</p>
-        </div>
-              <div class="service-card">
-            <img src="delivery.jpg" alt="Serviço de Entrega">
+          <div class="service-card">
+            <img src="https://i.ibb.co/b54J0dHZ/GIF-20250203-221402-825.gif" alt="Serviço de Entrega">
             <h3>Serviço de Entrega</h3>
             <p>Receba nossas deliciosas refeições no conforto da sua casa com rapidez e qualidade.</p>
         </div>
+         <div class="service-card">
+            <img src="https://i.ibb.co/0j7j3qG3/IMG-20250203-214825.jpg" alt="Opções Saudáveis">
+            <h3>Serviço de Encomenda</h3>
+            <p>Peça antecipadamente e tenha seus pratos prontos no momento certo</p>
+        </div>
+            
         <div class="service-card">
-            <img src="https://i.ibb.co/MnM4pXR/IMG-20250119-204018.jpg" alt="Serviço 3">
+            <img src="https://i.ibb.co/Qj7H35P6/IMG-20250203-214927.jpg" alt="Serviço 3">
             <h3>Eventos Privados</h3>
             <p>Ambiente sofisticado para momentos inesquecíveis.</p>
         </div>
     </div>
+      <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
 </body>
 </html>
