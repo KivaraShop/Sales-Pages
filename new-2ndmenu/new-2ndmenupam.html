@@ -1321,24 +1321,14 @@ img {
 </footer>
 
     <script>
-        // Seleciona todos os itens principais de categoria
-        const categories = document.querySelectorAll('.category');
-
-        categories.forEach(category => {
-            category.addEventListener('click', function (event) {
-                event.preventDefault(); // Evita redirecionamento
-
-                // Seleciona o submenu relacionado
-                const submenu = this.nextElementSibling;
-
-                // Alterna a exibição do submenu
-                if (submenu.style.display === 'flex') {
-                    submenu.style.display = 'none';
-                } else {
-                    submenu.style.display = 'flex';
-                }
-            });
-        });
+     document.querySelectorAll('.category').forEach(link => {
+    link.addEventListener('click', function(event) {
+        let submenu = this.nextElementSibling;
+        if (submenu && submenu.classList.contains('submenu')) {
+            event.preventDefault(); // Impede a navegação apenas se houver submenu
+        }
+    });
+});
     </script>
       <script>
 const menuToggle = document.querySelector('.menu-toggle');
