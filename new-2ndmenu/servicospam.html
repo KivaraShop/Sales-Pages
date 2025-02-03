@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Serviços</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #33001A;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-card h3 {
+            background-color: #ffc107;
+            margin: 0;
+            padding: 15px;
+            color: #33001A;
+        }
+        .service-card p {
+            padding: 15px;
+            color: #33001A;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Nossos Serviços</div>
+    <div class="container">
+        <div class="service-card">
+            <img src="servico1.jpg" alt="Serviço 1">
+            <h3>Serviço Especial</h3>
+            <p>Experimente a excelência em cada detalhe do nosso serviço.</p>
+        </div>
+        <div class="service-card">
+            <img src="servico2.jpg" alt="Serviço 2">
+            <h3>Atendimento Premium</h3>
+            <p>Nosso atendimento exclusivo garante uma experiência única.</p>
+        </div>
+        <div class="service-card">
+            <img src="servico3.jpg" alt="Serviço 3">
+            <h3>Eventos Privados</h3>
+            <p>Ambiente sofisticado para momentos inesquecíveis.</p>
+        </div>
+    </div>
+</body>
+</html>
