@@ -1320,16 +1320,26 @@ img {
     </div>
 </footer>
 
-    <script>
-     document.querySelectorAll('.category').forEach(link => {
-    link.addEventListener('click', function(event) {
-        let submenu = this.nextElementSibling;
-        if (submenu && submenu.classList.contains('submenu')) {
-            event.preventDefault(); // Impede a navegação apenas se houver submenu
-        }
+   <script>
+    // Seleciona todos os itens principais de categoria
+    const categories = document.querySelectorAll('.category');
+
+    categories.forEach(category => {
+        category.addEventListener('click', function (event) {
+            // Seleciona o submenu relacionado
+            const submenu = this.nextElementSibling;
+
+            // Se existir um submenu, impedir o redirecionamento e exibi-lo
+            if (submenu && submenu.classList.contains('submenu')) {
+                event.preventDefault(); // Impede navegação APENAS se houver submenu
+
+                // Alterna a exibição do submenu
+                submenu.style.display = (submenu.style.display === 'flex') ? 'none' : 'flex';
+            }
+        });
     });
-});
-    </script>
+</script>
+
       <script>
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
