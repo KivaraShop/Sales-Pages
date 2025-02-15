@@ -301,7 +301,7 @@
         const videoId = newSrc.split('/')[4]; // Aqui você extrai o ID do vídeo
             // Criar elemento <iframe> para vídeo do YouTube
        const videoElement = document.createElement('iframe');
-videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=en&hl=en&vtt_lang=en`;
+videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_load_policy=1&hl=en&cc_lang_pref=en`;
 videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
 videoElement.allowFullscreen = true;
 videoElement.style.width = '100%';  // O vídeo preenche 100% da largura do container
