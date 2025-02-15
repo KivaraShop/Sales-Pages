@@ -306,15 +306,17 @@
 
         if (isVideo) {
             // Criar elemento <iframe> para vídeo do YouTube
-            const videoElement = document.createElement('iframe');
-            videoElement.src = newSrc + "?autoplay=1"; // Autoplay ativado
-            videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-            videoElement.allowFullscreen = true;
-            videoElement.style.width = '80%';
-            videoElement.style.maxWidth = '400px';
-            videoElement.style.height = '225px';
-            videoElement.style.borderRadius = '15px';
-            mainContainer.appendChild(videoElement);
+       const videoElement = document.createElement('iframe');
+videoElement.src = newSrc + "?autoplay=1"; // Autoplay ativado
+videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+videoElement.allowFullscreen = true;
+videoElement.style.width = '80%';
+videoElement.style.maxWidth = '400px';
+videoElement.style.height = '80%'; // Ajuste a altura para ser proporcional à largura
+videoElement.style.maxHeight = '400px'; // Limita a altura
+videoElement.style.borderRadius = '15px';
+videoElement.style.objectFit = 'cover'; // Força o vídeo a preencher o quadrado
+mainContainer.appendChild(videoElement);
         } else {
             // Criar elemento <img> para imagens normais
             const imgElement = document.createElement('img');
