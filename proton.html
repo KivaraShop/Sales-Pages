@@ -310,11 +310,13 @@ videoElement.style.objectFit = 'cover';
 mainContainer.appendChild(videoElement);
 // Criar o container para o vídeo
 const videoContainer = document.createElement('div');
-videoContainer.style.width = '400px';  // Largura fixa
-videoContainer.style.height = '400px';  // Altura fixa, garantindo um formato quadrado
+videoContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
+videoContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
+videoContainer.style.height = 'auto';  // Altura automática
 videoContainer.style.borderRadius = '15px';  // Bordas arredondadas
+videoContainer.style.margin = '0';  // Remove margens laterais
+videoContainer.style.position = 'relative';  // Para garantir que o iframe ocupe todo o espaço
 videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapasse os limites do container
-videoContainer.style.position = 'center';  // Para garantir que o iframe ocupe todo o espaço
 
 // Adicionar o vídeo ao container
 videoContainer.appendChild(videoElement);
