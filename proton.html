@@ -52,8 +52,7 @@
         text-align: center;
     }
 
-    .main-image img,
-    .main-video video {
+    .main-image img {
         width: 80%;
         max-width: 400px; /* Limita a largura máxima da imagem */
         height: auto;
@@ -240,21 +239,17 @@
             <div class="car-gallery">
                 <div class="main-image">
                     <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro Principal" id="main-car-image">
-                     <!-- Main Video (Initially Hidden) -->
- <div class="main-video">
-        <video id="main-car-video" class="thumbnail" style="display:none;" autoplay loop muted controls>
-            <source id="main-video-source" src="" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
                 </div>
                 <div class="thumbnail-carousel">
-<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" class="thumbnail" onclick="changeMedia(this)">
-<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeMedia(this)">                 
-<video src="https://drive.google.com/uc?export=download&id=1XBxaqQXtDvIx2ZdAcr78wQRuvd0fnppL" class="thumbnail" onclick="changeMedia(this)"></video>
-<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeMedia(this)">
-<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeMedia(this)">
-<img src="https://i.ibb.co/pfxRbzn/GIF-20250124-221811-970.gif" alt="Carro 3" class="thumbnail" onclick="changeMedia(this)">
-<img src="https://i.ibb.co/dDcWfyN/GIF-20250124-210341-828.gif" alt="Carro 3" class="thumbnail" onclick="changeMedia(this)">
+<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/pfxRbzn/GIF-20250124-221811-970.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/dDcWfyN/GIF-20250124-210341-828.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+
+
+
                 </div>
             </div>
             <div class="car-info">
@@ -293,24 +288,10 @@
     </footer>
 
     <script>
-// Função para mudar a imagem ou vídeo principal
-function changeMedia(thumbnail) {
-    let mainImage = document.getElementById("main-car-image");
-    let mainVideo = document.getElementById("main-car-video");
-    let videoSource = document.getElementById("main-video-source");
-
-    // Verificar se o item clicado é uma imagem ou vídeo
-    if (thumbnail.tagName === "IMG") {
-        mainImage.src = thumbnail.src;
-        mainImage.style.display = "block";  // Exibir a imagem
-        mainVideo.style.display = "none";   // Esconder o vídeo
-    } else if (thumbnail.tagName === "VIDEO") {
-        videoSource.src = thumbnail.src;
-        mainVideo.style.display = "block";  // Exibir o vídeo
-        mainImage.style.display = "none";   // Esconder a imagem
-        mainVideo.load();  // Carregar o novo vídeo
-        mainVideo.play();  // Iniciar a reprodução do vídeo automaticamente
-    }
+// Função para mudar a imagem principal
+function changeImage(thumbnail) {
+    // Mudar a imagem principal para o src da miniatura clicada
+    document.getElementById("main-car-image").src = thumbnail.src;
 
     // Remover a classe 'active' de todas as miniaturas
     let thumbnails = document.querySelectorAll('.thumbnail');
