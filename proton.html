@@ -285,7 +285,7 @@
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
 
-    <script>
+       <script>
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
         const mainContainer = document.querySelector('.main-image');
@@ -301,8 +301,8 @@
 videoElement.src = newSrc + "?autoplay=1"; // Autoplay ativado
 videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
 videoElement.allowFullscreen = true;
-videoElement.style.width = '100%' !important;  // O vídeo preenche 100% da largura do container
-videoElement.style.height = '100%' !important;  // O vídeo preenche 100% da altura do container
+videoElement.style.width = '100%';  // O vídeo preenche 100% da largura do container
+videoElement.style.height = '100%';  // O vídeo preenche 100% da altura do container
 videoElement.style.borderRadius = '15px';
 videoElement.style.objectFit = 'cover';  
 mainContainer.appendChild(videoElement);
