@@ -307,7 +307,19 @@ videoElement.style.height = '80%'; // Ajuste a altura para ser proporcional à l
 videoElement.style.maxHeight = '400px'; // Limita a altura
 videoElement.style.borderRadius = '15px';
 mainContainer.appendChild(videoElement);
+// Criar o container para o vídeo
+const videoContainer = document.createElement('div');
+videoContainer.style.width = '400px';  // Largura fixa
+videoContainer.style.height = '400px';  // Altura fixa, garantindo um formato quadrado
+videoContainer.style.borderRadius = '15px';  // Bordas arredondadas
+videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapasse os limites do container
+videoContainer.style.position = 'relative';  // Para garantir que o iframe ocupe todo o espaço
 
+// Adicionar o vídeo ao container
+videoContainer.appendChild(videoElement);
+
+// Adicionar o container ao mainContainer
+mainContainer.appendChild(videoContainer);
         } else {
             // Criar elemento <img> para imagens normais
             const imgElement = document.createElement('img');
