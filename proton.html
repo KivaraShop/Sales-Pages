@@ -244,7 +244,7 @@
 <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/video-thumbnail.jpg" alt="Video Thumbnail" class="thumbnail" onclick="playVideo('https://drive.google.com/file/d/1XBxaqQXtDvIx2ZdAcr78wQRuvd0fnppL/view?usp=sharing')">
+<img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg" data-src="https://drive.google.com/file/d/1XBxaqQXtDvIx2ZdAcr78wQRuvd0fnppL/view?usp=sharing" data-type="video" class="thumbnail"  onclick="changeImage(this)">
 <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/pfxRbzn/GIF-20250124-221811-970.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/dDcWfyN/GIF-20250124-210341-828.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
@@ -286,59 +286,83 @@
     </footer>
 
     <script>
-// Função para mudar a imagem principal
-function changeImage(thumbnail) {
-    // Mudar a imagem principal para o src da miniatura clicada
-    document.getElementById("main-car-image").src = thumbnail.src;
+    // Função para mudar a imagem principal ou exibir um vídeo
+    function changeImage(thumbnail) {
+        const mainContainer = document.querySelector('.main-image');
+        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src; // Obtém o src da miniatura
+        const isVideo = thumbnail.getAttribute('data-type') === 'video'; // Verifica se é vídeo
 
-    // Remover a classe 'active' de todas as miniaturas
-    let thumbnails = document.querySelectorAll('.thumbnail');
-    thumbnails.forEach(function(thumb) {
-        thumb.classList.remove('active');
+        // Limpar conteúdo anterior
+        mainContainer.innerHTML = '';
+
+        if (isVideo) {
+            // Criar elemento <iframe> para vídeo do YouTube
+            const videoElement = document.createElement('iframe');
+            videoElement.src = newSrc + "?autoplay=1"; // Autoplay ativado
+            videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+            videoElement.allowFullscreen = true;
+            videoElement.style.width = '80%';
+            videoElement.style.maxWidth = '400px';
+            videoElement.style.height = '225px';
+            videoElement.style.borderRadius = '15px';
+            mainContainer.appendChild(videoElement);
+        } else {
+            // Criar elemento <img> para imagens normais
+            const imgElement = document.createElement('img');
+            imgElement.src = newSrc;
+            imgElement.id = 'main-car-image';
+            imgElement.style.width = '80%';
+            imgElement.style.maxWidth = '400px';
+            imgElement.style.borderRadius = '15px';
+            mainContainer.appendChild(imgElement);
+        }
+
+        // Remover a classe 'active' de todas as miniaturas
+        let thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach(thumb => thumb.classList.remove('active'));
+
+        // Adicionar a classe 'active' à miniatura clicada
+        thumbnail.classList.add('active');
+    }
+
+    // Função para animar as barras
+    window.onload = function() {
+        animateBar('km-bar', 60, 'km-label', '60.000 km');
+        animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
+        animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
+    }
+
+    // Função para animar as barras
+    function animateBar(barId, percentage, labelId, labelText) {
+        let bar = document.getElementById(barId);
+        let label = document.getElementById(labelId);
+        bar.style.width = '0%';
+        setTimeout(function() {
+            bar.style.width = percentage + '%';
+            label.textContent = labelText;
+        }, 500);
+    }
+
+    // Tornar as miniaturas roláveis e limitar a exibição para 4 miniaturas
+    document.addEventListener("DOMContentLoaded", () => {
+        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        // Ajusta a largura das miniaturas para garantir que 4 apareçam de cada vez
+        thumbnailCarousel.style.overflowX = 'auto';
+        thumbnailCarousel.style.display = 'flex';
+        thumbnailCarousel.style.gap = '10px';
+        thumbnailCarousel.style.scrollBehavior = 'smooth';
+
+        // Impede que as miniaturas encolham e ajusta a largura
+        thumbnails.forEach(thumb => {
+            thumb.style.flexShrink = '0';
+            thumb.style.cursor = 'pointer';
+            thumb.style.width = 'calc(100% / 4)'; // Ajusta para exibir 4 miniaturas
+        });
     });
+</script>
 
-    // Adicionar a classe 'active' à miniatura clicada
-    thumbnail.classList.add('active');
-}
-
-// Função para animar as barras
-window.onload = function() {
-    animateBar('km-bar', 60, 'km-label', '60.000 km');
-    animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
-    animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
-}
-
-// Função para animar as barras
-function animateBar(barId, percentage, labelId, labelText) {
-    let bar = document.getElementById(barId);
-    let label = document.getElementById(labelId);
-    bar.style.width = '0%';
-    setTimeout(function() {
-        bar.style.width = percentage + '%';
-        label.textContent = labelText;
-    }, 500);
-}
-
-// Tornar as miniaturas roláveis e limitar a exibição para 4 miniaturas
-document.addEventListener("DOMContentLoaded", () => {
-    const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-
-    // Ajusta a largura das miniaturas para garantir que 4 apareçam de cada vez
-    thumbnailCarousel.style.overflowX = 'auto';
-    thumbnailCarousel.style.display = 'flex';
-    thumbnailCarousel.style.gap = '10px';
-    thumbnailCarousel.style.scrollBehavior = 'smooth';
-
-    // Impede que as miniaturas encolham e ajusta a largura
-    thumbnails.forEach(thumb => {
-        thumb.style.flexShrink = '0';
-        thumb.style.cursor = 'pointer';
-        thumb.style.width = 'calc(100% / 4)'; // Ajusta para exibir 4 miniaturas
-    });
-});
-
-    </script>
        <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
