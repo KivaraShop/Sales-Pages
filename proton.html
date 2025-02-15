@@ -301,8 +301,8 @@
 videoElement.src = newSrc + "?autoplay=1"; // Autoplay ativado
 videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
 videoElement.allowFullscreen = true;
-videoElement.style.width = '100%';  // O vídeo preenche 100% da largura do container
-videoElement.style.height = '100%';  // O vídeo preenche 100% da altura do container
+videoElement.style.width = '100%' + ' !important';  // O vídeo preenche 100% da largura do container
+videoElement.style.height = '100%' + ' !important';  // O vídeo preenche 100% da altura do container
 videoElement.style.borderRadius = '15px';
 videoElement.style.objectFit = 'cover' + ' !important';
 videoElement.style.transform = 'scale(1)';  // Ajusta o vídeo para não manter a proporção
@@ -315,9 +315,11 @@ videoContainer.style.maxWidth = '400px';  // Limita a largura máxima do contain
 videoContainer.style.height = '400px';  // Altura automática
 videoContainer.style.borderRadius = '15px';  // Bordas arredondadas
 videoContainer.style.margin = '0';  // Remove margens laterais
-videoContainer.style.position = 'relative';  // Para garantir que o iframe ocupe todo o espaço
+videoContainer.style.position = 'flex';  // Para garantir que o iframe ocupe todo o espaço
 videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapasse os limites do container
-
+videoContainer.style.display = 'block';
+videoContainer.style.textAlign = 'center';
+            
 // Adicionar o vídeo ao container
 videoContainer.appendChild(videoElement);
 // Certificar-se de que o mainContainer está centralizado
