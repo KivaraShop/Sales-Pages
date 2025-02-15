@@ -319,7 +319,11 @@ videoContainer.style.display = 'block';
 videoContainer.style.textAlign = 'center'; 
 // Adicionar o vídeo ao container
 videoContainer.appendChild(videoElement);
-
+// Certificar-se de que o mainContainer está centralizado
+mainContainer.style.display = 'flex';
+mainContainer.style.justifyContent = 'center';
+mainContainer.style.alignItems = 'center';
+mainContainer.style.width = '100%';
 // Adicionar o container ao mainContainer
 mainContainer.appendChild(videoContainer);
         } else {
