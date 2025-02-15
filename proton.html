@@ -240,15 +240,17 @@
                 <div class="main-image">
                     <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro Principal" id="main-car-image">
                      <!-- Main Video (Initially Hidden) -->
+     <!-- Main Video (Initially Hidden) -->
     <video id="main-car-video" class="thumbnail" style="display:none; width:100%;" autoplay loop muted controls>
-        <source src="" type="video/mp4">
+        <source id="main-video-source" src="" type="video/mp4">
         Your browser does not support the video tag.
     </video>
                 </div>
                 <div class="thumbnail-carousel">
 <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" class="thumbnail" onclick="changeMedia(this)">
 <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeMedia(this)">                 
- <video src="https://drive.google.com/uc?export=download&id=1XBxaqQXtDvIx2ZdAcr78wQRuvd0fnppL" 
+   <!-- Video Thumbnail -->
+    <video src="https://drive.google.com/uc?export=download&id=1XBxaqQXtDvIx2ZdAcr78wQRuvd0fnppL" 
            class="thumbnail" 
            onclick="changeMedia(this)" 
            style="width:calc(100% / 4);" 
@@ -300,22 +302,23 @@
     </footer>
 
     <script>
-// Função para mudar a imagem principal ou o vídeo
+// Função para mudar a imagem ou vídeo principal
 function changeMedia(thumbnail) {
-    // Verifica se o thumbnail é uma imagem ou um vídeo
-    if (thumbnail.tagName.toLowerCase() === 'img') {
-        // Mudar a imagem principal para o src da miniatura clicada
-        document.getElementById("main-car-image").src = thumbnail.src;
-        // Ocultar o vídeo e mostrar a imagem
-        document.getElementById("main-car-video").style.display = 'none';
-        document.getElementById("main-car-image").style.display = 'block';
-    } else if (thumbnail.tagName.toLowerCase() === 'video') {
-        // Mudar o vídeo principal para o src da miniatura clicada
-        document.getElementById("main-car-video").src = thumbnail.src;
-        // Mostrar o vídeo e ocultar a imagem
-        document.getElementById("main-car-video").style.display = 'block';
-        document.getElementById("main-car-image").style.display = 'none';
-        document.getElementById("main-car-video").play(); // Play the video
+    let mainImage = document.getElementById("main-car-image");
+    let mainVideo = document.getElementById("main-car-video");
+    let videoSource = document.getElementById("main-video-source");
+
+    // Verificar se o item clicado é uma imagem ou vídeo
+    if (thumbnail.tagName === "IMG") {
+        mainImage.src = thumbnail.src;
+        mainImage.style.display = "block";  // Exibir a imagem
+        mainVideo.style.display = "none";   // Esconder o vídeo
+    } else if (thumbnail.tagName === "VIDEO") {
+        videoSource.src = thumbnail.src;
+        mainVideo.style.display = "block";  // Exibir o vídeo
+        mainImage.style.display = "none";   // Esconder a imagem
+        mainVideo.load();  // Carregar o novo vídeo
+        mainVideo.play();  // Iniciar a reprodução do vídeo automaticamente
     }
 
     // Remover a classe 'active' de todas as miniaturas
@@ -364,7 +367,6 @@ document.addEventListener("DOMContentLoaded", () => {
         thumb.style.width = 'calc(100% / 4)'; // Ajusta para exibir 4 miniaturas
     });
 });
-
 
     </script>
        <script>
