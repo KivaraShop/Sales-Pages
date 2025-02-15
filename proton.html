@@ -308,6 +308,20 @@ videoElement.style.maxHeight = '400px'; // Limita a altura
 videoElement.style.borderRadius = '15px';
 videoElement.style.objectFit = 'cover'; // Força o vídeo a preencher o quadrado
 mainContainer.appendChild(videoElement);
+            // Criar o container para o vídeo
+const videoContainer = document.createElement('div');
+videoContainer.style.width = '80%'; // Largura do container
+videoContainer.style.maxWidth = '400px'; // Limita a largura máxima
+videoContainer.style.height = '80%'; // Altura do container
+videoContainer.style.maxHeight = '400px'; // Limita a altura máxima
+videoContainer.style.borderRadius = '15px'; // Bordas arredondadas
+videoContainer.style.overflow = 'hidden'; // Garante que o vídeo não ultrapasse os limites do container
+
+// Adicionar o vídeo ao container
+videoContainer.appendChild(videoElement);
+
+// Adicionar o container ao mainContainer
+mainContainer.appendChild(videoContainer);
         } else {
             // Criar elemento <img> para imagens normais
             const imgElement = document.createElement('img');
