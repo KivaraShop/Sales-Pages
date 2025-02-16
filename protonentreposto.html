@@ -289,11 +289,11 @@
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
 
-       <script>
+      <script>
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
         const mainContainer = document.querySelector('.main-image');
-        document.getElementById("main-car-image").src = thumbnail.src;
+        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src; // Obtém o src da miniatura
         const isVideo = thumbnail.getAttribute('data-type') === 'video'; // Verifica se é vídeo
 
         // Limpar conteúdo anterior
