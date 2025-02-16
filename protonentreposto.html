@@ -242,7 +242,7 @@
                     <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
                 <div class="thumbnail-carousel">
-<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" id="main-image" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3"  class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
 <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
 <img src="https://img.youtube.com/vi/idgHV7rG06s/0.jpg" data-src="https://www.youtube.com/embed/idgHV7rG06s" data-type="video" class="thumbnail"  onclick="changeImage(this)">
@@ -293,7 +293,7 @@
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
         const mainContainer = document.querySelector('.main-image');
-        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src; // Obtém o src da miniatura
+        const newSrc = thumbnail.getAttribute('main-car-image') || thumbnail.src; // Obtém o src da miniatura
         const isVideo = thumbnail.getAttribute('data-type') === 'video'; // Verifica se é vídeo
 
         // Limpar conteúdo anterior
