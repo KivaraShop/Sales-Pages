@@ -351,6 +351,9 @@ mainContainer.appendChild(videoContainer);
 } else {
     // Criar um container para a imagem, igual ao do vídeo
     const imgContainer = document.createElement('div');
+    imgContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
+imgContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
+imgContainer.style.height = '400px'; 
     imgContainer.style.display = 'flex';
     imgContainer.style.justifyContent = 'center';
     imgContainer.style.alignItems = 'center';
