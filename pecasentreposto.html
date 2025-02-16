@@ -86,11 +86,6 @@
             </div>
 
             <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-            </div>
-
-            <div class="form-group">
                 <label for="carPart">Peça de Viatura</label>
                 <textarea id="carPart" name="carPart" placeholder="Descreva a peça ou peças que você deseja comprar" required></textarea>
             </div>
@@ -113,10 +108,9 @@
             event.preventDefault();
 
             const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
             const carPart = document.getElementById('carPart').value;
 
-            const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nE-mail: ${email}\nPeças: ${carPart}`;
+            const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nPeças: ${carPart}`;
 
             whatsappLink.href = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
         });
