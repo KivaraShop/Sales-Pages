@@ -332,6 +332,11 @@ videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapas
 videoContainer.style.display = 'block';
 videoContainer.style.textAlign = 'center';
             
+ // Ajustes específicos para celulares
+        if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
+            videoContainer.style.maxWidth = '100%';
+            videoContainer.style.aspectRatio = '1 / 1'; // Proporção mais quadrada para celulares
+        }
 // Adicionar o vídeo ao container
 videoContainer.appendChild(videoElement);
 // Certificar-se de que o mainContainer está centralizado
