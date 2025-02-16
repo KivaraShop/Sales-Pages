@@ -325,41 +325,62 @@ videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapas
 videoContainer.style.display = 'block';
 videoContainer.style.textAlign = 'center';
             
-        // Ajustes específicos para celulares
-        if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
-            videoContainer.style.width = '100%';
-            videoContainer.style.maxWidth = '400px'; // Garantir que ocupa toda a largura da tela
-            videoContainer.style.height = '300px'; // Manter o aspecto flexível
-        } else {
-            // Para desktops, usar um tamanho fixo ou o comportamento padrão
-            videoContainer.style.maxWidth = '400px';
-            videoContainer.style.height = '400px'; // Proporção padrão para desktop
-        }
+       // Ajustes específicos para celulares
+if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
+    videoContainer.style.width = '100%';
+    videoContainer.style.maxWidth = '400px'; // Garantir que ocupa toda a largura da tela
+    videoContainer.style.height = '300px'; // Manter a proporção flexível
+} else {
+    // Para desktops, usar um tamanho fixo ou o comportamento padrão
+    videoContainer.style.maxWidth = '400px';
+    videoContainer.style.height = '400px'; // Proporção padrão para desktop
+}
+
 // Adicionar o vídeo ao container
 videoContainer.appendChild(videoElement);
+
 // Certificar-se de que o mainContainer está centralizado
 mainContainer.style.display = 'flex';
 mainContainer.style.justifyContent = 'center';
 mainContainer.style.alignItems = 'center';
 mainContainer.style.width = '100%';
+
 // Adicionar o container ao mainContainer
 mainContainer.appendChild(videoContainer);
-        } else {
-            // Criar elemento <img> para imagens normais
-            const imgElement = document.createElement('img');
-            imgElement.src = newSrc;
-            imgElement.id = 'main-car-image';
-            imgElement.style.width = '80%';
-            imgElement.style.maxWidth = '400px';
-            imgElement.style.borderRadius = '15px';
-            mainContainer.appendChild(imgElement);
-        }
-// Ajustar imagem para celular
-        if (window.innerWidth <= 600) { 
-            imgElement.style.width = '100%';
-            imgElement.style.maxWidth = '400px';
-            imgElement.style.height = '300px';
-        }
+
+} else {
+    // Criar um container para a imagem, igual ao do vídeo
+    const imgContainer = document.createElement('div');
+    imgContainer.style.display = 'flex';
+    imgContainer.style.justifyContent = 'center';
+    imgContainer.style.alignItems = 'center';
+    imgContainer.style.overflow = 'hidden';
+    imgContainer.style.borderRadius = '15px';
+
+    // Ajustar tamanhos para celular e desktop
+    if (window.innerWidth <= 600) {
+        imgContainer.style.width = '100%';
+        imgContainer.style.maxWidth = '400px';
+        imgContainer.style.height = '300px';
+    } else {
+        imgContainer.style.maxWidth = '400px';
+        imgContainer.style.height = '400px';
+    }
+
+    // Criar elemento <img> para imagens normais
+    const imgElement = document.createElement('img');
+    imgElement.src = newSrc;
+    imgElement.id = 'main-car-image';
+    imgElement.style.width = '100%';
+    imgElement.style.height = '100%';
+    imgElement.style.objectFit = 'cover'; // Para garantir que a imagem preencha corretamente o container
+
+    // Adicionar a imagem ao container
+    imgContainer.appendChild(imgElement);
+
+    // Adicionar o container ao mainContainer
+    mainContainer.appendChild(imgContainer);
+}
   
         // Remover a classe 'active' de todas as miniaturas
         let thumbnails = document.querySelectorAll('.thumbnail');
