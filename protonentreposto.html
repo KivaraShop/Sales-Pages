@@ -42,7 +42,7 @@
         display: flex;
         flex-direction: row;  /* Coloca as seções lado a lado */
         align-items: flex-start;  /* Alinha as seções ao topo */
-        gap: 0px;  /* Espaçamento entre as seções */
+        gap: -10px; /* Espaçamento entre as seções */
         margin: 0; /* Remove margens extras na descrição */
     padding: 0; /* Remove qualquer padding */
     }
@@ -384,6 +384,7 @@ imgContainer.style.margin = '0 auto';  // Centraliza o container
     // Adicionar a imagem ao container
     imgContainer.appendChild(imgElement);
 
+    
     // Adicionar o container ao mainContainer
     mainContainer.appendChild(imgContainer);
 }
