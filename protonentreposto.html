@@ -142,13 +142,16 @@
 
     .car-info h1 {
         color: #0088B5;
-    margin-top: 0; /* Remove a margem superior */
+    margin: 0; /* Remove a margem superior */
     }
 
-    .description {
-        margin-top: 10px;
-        font-size: 14px;
-    }
+.description {
+    margin-top: 10px;
+    font-size: 14px;
+    width: 100%;  /* Garante que ocupe toda a largura */
+    word-wrap: break-word;  /* Quebra palavras longas, se necessário */
+    line-height: 1.5;  /* Ajusta o espaçamento entre as linhas */
+}
 
     .car-state {
         margin-top: 20px;
