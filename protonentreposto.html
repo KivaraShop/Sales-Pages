@@ -293,7 +293,7 @@
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
         const mainContainer = document.querySelector('.main-image');
-        const newSrc = thumbnail.getAttribute('main-car-image') || thumbnail.src; // Obtém o src da miniatura
+        document.getElementById("main-car-image").src = thumbnail.src;
         const isVideo = thumbnail.getAttribute('data-type') === 'video'; // Verifica se é vídeo
 
         // Limpar conteúdo anterior
