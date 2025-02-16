@@ -376,11 +376,11 @@ button:hover {
 
 /* Efeito de clique - mudando a cor */
 .menu-toggle.clicked {
-  color: #0288d1; /* Cor azul quando clicado */
+  color:#FFFACD;
   transform: scale(1.1); /* Aumenta o tamanho do botão */
 }
 
-   .nav-menu {
+      .nav-menu {
     display: none; /* Inicialmente oculto */
     flex-direction: column;
     align-items: flex-start;
@@ -392,7 +392,7 @@ button:hover {
     background-color: #0088B5; /* Cor principal da brand */
     padding: 15px 0;
     padding-left: 10px;
-    z-index: 1000;
+    z-index: 999;
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease; /* Transição suave */
 }
@@ -446,6 +446,8 @@ button:hover {
     display: flex; /* Exibir quando ativado */
 }
 
+
+        
 /* Ajustes para telas menores (celulares) */
 @media (max-width: 768px) {
   .promo-image {
