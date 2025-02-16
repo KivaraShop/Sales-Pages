@@ -94,21 +94,7 @@
             height: 60px !important; /* Altura igual à largura, mantendo a proporção 1:1 */
         }
     }
-    /* Ajustes para telas pequenas (dispositivos móveis) */
-    @media screen and (max-width: 767px) {
-        .thumbnail-carousel {
-            padding-left: 63px;  /* Garante que o espaço à esquerda ainda exista */
-            padding-right: 15px; /* Espaço à direita para garantir que a primeira miniatura não seja cortada */
-           max-width: calc(4 * 45px + 3 * 10px) !important; /* Ajusta a largura para 4 miniaturas no carrossel */
-    }
-        }
-
-        .thumbnail {
-            width: 45px !important;  /* Tamanho pequeno para dispositivos móveis */
-            height: 45px !important; /* Mantém a proporção 1:1 */
-        }
-    }
-    .car-details {
+         .car-details {
         display: flex;
         flex-direction: row;  /* Coloca as seções lado a lado */
         align-items: flex-start;  /* Alinha as seções ao topo */
@@ -122,6 +108,20 @@
         margin: 0;
         gap: 10px !important; /* Espaçamento entre as seções */
         text-align: center;
+    }
+    /* Ajustes para telas pequenas (dispositivos móveis) */
+    @media screen and (max-width: 767px) {
+        .thumbnail-carousel {
+            padding-left: 63px;  /* Garante que o espaço à esquerda ainda exista */
+            padding-right: 15px; /* Espaço à direita para garantir que a primeira miniatura não seja cortada */
+           max-width: calc(4 * 45px + 3 * 10px) !important; /* Ajusta a largura para 4 miniaturas no carrossel */
+    }
+        }
+
+        .thumbnail {
+            width: 45px !important;  /* Tamanho pequeno para dispositivos móveis */
+            height: 45px !important; /* Mantém a proporção 1:1 */
+        }
     }
 
     .thumbnail:hover {
