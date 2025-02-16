@@ -355,25 +355,15 @@ mainContainer.appendChild(videoContainer);
             imgElement.style.borderRadius = '15px';
             mainContainer.appendChild(imgElement);
         }
-// Lógica de estilo para celular
-if (window.innerWidth <= 600) { // Para telas de até 600px (celular)
-    imgElement.style.width = '100%';
-    imgElement.style.maxwidth = '400px'; // A imagem vai ocupar 100% da largura da tela
-    imgElement.style.height = '300px'; // Manter a proporção da imagem
-} else {
-    // Para desktop
-    imgElement.style.width = '80%'; // Largura da imagem em 80% da tela
-    imgElement.style.maxWidth = '400px'; // Largura máxima de 400px
-}
+// Ajustar imagem para celular
+        if (window.innerWidth <= 600) { 
+            imgElement.style.width = '100%';
+            imgElement.style.maxWidth = '400px';
+            imgElement.style.height = '300px';
+        }
 
-// Adiciona a imagem ao container principal
-mainContainer.appendChild(imgElement);
-
-// Chama a função para ajustar o tamanho da imagem inicialmente
-ajustarImagem();
-
-// Adiciona um ouvinte de evento para mudar a imagem quando a janela for redimensionada
-window.addEventListener('resize', ajustarImagem);
+        mainContainer.appendChild(imgElement);
+    }
         
         // Remover a classe 'active' de todas as miniaturas
         let thumbnails = document.querySelectorAll('.thumbnail');
