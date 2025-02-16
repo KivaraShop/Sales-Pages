@@ -120,20 +120,26 @@
         <p>&copy; 2025 Sua Empresa - Todos os direitos reservados.</p>
     </div>
 
-    <script>
-        const form = document.getElementById('quotationForm');
-        const whatsappLink = document.getElementById('whatsappLink');
+  <script>
+    const form = document.getElementById('quotationForm');
+    const whatsappLink = document.getElementById('whatsappLink');
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
+    // Usando o evento de clique para gerar o link do WhatsApp
+    whatsappLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Evitar o comportamento padrão de clicar no link
 
-            const name = document.getElementById('name').value;
-            const carPart = document.getElementById('carPart').value;
+        const name = document.getElementById('name').value;
+        const carPart = document.getElementById('carPart').value;
 
-            const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nPeças: ${carPart}`;
+        // Criação da mensagem com o nome do cliente e descrição da peça
+        const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nPeças: ${carPart}`;
 
-            whatsappLink.href = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
-        });
-    </script>
+        // Criação do link do WhatsApp com a mensagem
+        const whatsappUrl = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
+
+        // Redirecionando para o WhatsApp
+        window.location.href = whatsappUrl;
+    });
+</script>
 </body>
 </html>
