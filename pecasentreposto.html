@@ -75,14 +75,15 @@
             background-color: #006F8C;
         }
         .footer {
-            background-color: #0088B5;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
+               background-color: #0088B5;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    /* Remover o position: fixed; para não prender o rodapé */
+    position: relative; /* Deixe o rodapé ir para o final da página */
+    bottom: 0;
+    width: 100%;
+}
     </style>
 </head>
 <body>
