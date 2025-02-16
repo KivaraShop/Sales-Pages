@@ -108,6 +108,21 @@
             height: 45px !important; /* Mantém a proporção 1:1 */
         }
     }
+    .car-details {
+        display: flex;
+        flex-direction: row;  /* Coloca as seções lado a lado */
+        align-items: flex-start;  /* Alinha as seções ao topo */
+        gap: 10px !important; /* Espaçamento entre as seções */
+        margin: 0;/* Remove margens extras na descrição */
+    padding: 0; /* Remove qualquer padding */
+    }
+
+    .car-gallery {
+        width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
+        margin: 0;
+        gap: 10px !important; /* Espaçamento entre as seções */
+        text-align: center;
+    }
 
     .thumbnail:hover {
         opacity: 0.7;
