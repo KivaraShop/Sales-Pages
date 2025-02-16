@@ -16,6 +16,14 @@
             color: white;
             padding: 20px 0;
             text-align: center;
+            position: relative;
+        }
+        .header img {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            max-height: 50px;
         }
         .header h1 {
             margin: 0;
@@ -28,6 +36,12 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 40px;
+        }
+        .intro-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
         .form-group {
             margin-bottom: 20px;
@@ -73,10 +87,15 @@
 </head>
 <body>
     <div class="header">
+        <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="Logo da sua marca">
         <h1>Solicite a Cotação das Peças de Viaturas</h1>
     </div>
 
     <div class="container">
+        <div class="intro-text">
+            <p>Na nossa empresa, trabalhamos com as melhores peças de viatura disponíveis no mercado, garantindo qualidade e durabilidade em cada produto. Nosso compromisso é oferecer soluções rápidas e confiáveis para atender às suas necessidades, com um serviço personalizado e transparente. Estamos aqui para garantir que você receba as peças certas, com o melhor preço e com a confiança de um atendimento profissional.</p>
+        </div>
+
         <h2>Preencha o formulário abaixo para solicitar a cotação das peças que precisa:</h2>
         
         <form id="quotationForm">
