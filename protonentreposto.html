@@ -326,10 +326,12 @@ videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapas
 videoContainer.style.display = 'block';
 videoContainer.style.textAlign = 'center';
             
- if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
-     videoContainer.style.width = '80%';
-            videoContainer.style.maxWidth = '400px%'; // Garantir que ocupa toda a largura da tela
-            videoContainer.style.height = '400px'; // Manter o aspecto flexível
+        // Ajustes específicos para celulares
+        if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
+            videoContainer.style.maxWidth = '100%'; // Garantir que ocupa toda a largura da tela
+            videoContainer.style.height = 'auto'; // Manter o aspecto flexível
+            videoContainer.style.paddingBottom = '100%'; // Isso cria a proporção 1:1
+            videoContainer.style.height = 0; // Para usar padding-bottom e criar o quadrado
         } else {
             // Para desktops, usar um tamanho fixo ou o comportamento padrão
             videoContainer.style.maxWidth = '400px';
