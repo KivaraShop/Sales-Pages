@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitação de Cotação - Peças de Viaturas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #0088B5;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            height: 150px;
+        }
+        .button {
+            background-color: #0088B5;
+            color: white;
+            padding: 14px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #006F8C;
+        }
+        .footer {
+            background-color: #0088B5;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Solicite a Cotação das Peças de Viaturas</h1>
+    </div>
+
+    <div class="container">
+        <h2>Preencha o formulário abaixo para solicitar a cotação das peças que precisa:</h2>
+        
+        <form id="quotationForm">
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="carPart">Peça de Viatura</label>
+                <textarea id="carPart" name="carPart" placeholder="Descreva a peça ou peças que você deseja comprar" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <a id="whatsappLink" class="button" href="" target="_blank">Enviar Solicitação</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Sua Empresa - Todos os direitos reservados.</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('quotationForm');
+        const whatsappLink = document.getElementById('whatsappLink');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const carPart = document.getElementById('carPart').value;
+
+            const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nE-mail: ${email}\nPeças: ${carPart}`;
+
+            whatsappLink.href = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
+        });
+    </script>
+</body>
+</html>
