@@ -612,9 +612,14 @@ button:hover {
     color: #25D366;
 }
 
-* {
-    cursor: default !important; /* Corrige o problema globalmente */
+html, body, *, *::before, *::after {
+    cursor: default !important; /* Força cursor normal para tudo */
+    user-select: none !important; /* Impede seleção de texto */
 }
+div, span, section, header, footer, main, article {
+    pointer-events: auto !important;
+}
+
 
     </style>
 </head>
