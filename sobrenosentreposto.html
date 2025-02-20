@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | [Nome da Empresa]</title>
+    <style>
+        /* Reset básico de margens e paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Cor principal */
+        :root {
+            --cor-principal: #0088B5;
+            --cor-secundaria: #006E8E;
+            --cor-clara: #B3D9E1;
+        }
+
+        /* Imagem Hero */
+        .hero {
+            position: relative;
+            background-image: url('https://i.ibb.co/ch5jvJ2x/IMG-20250216-005434.jpg'); /* Substitua pelo caminho correto da sua imagem */
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 3rem;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Container para o conteúdo */
+        .container {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--cor-principal);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section-text {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--cor-principal);
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+        /* Seção de missão e visão */
+        .mission-vision {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+
+        .mission-vision div {
+            width: 48%;
+        }
+
+        .mission-vision h3 {
+            font-size: 1.5rem;
+            color: var(--cor-principal);
+            margin-bottom: 1rem;
+        }
+
+        .mission-vision p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Imagem Hero -->
+    <section class="hero">
+        <h1>Bem-vindo à Entreposto </h1>
+    </section>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Seção sobre a empresa -->
+        <section>
+            <h2 class="section-title">Nossa História</h2>
+            <p class="section-text">Na [Nome da Empresa], somos mais do que uma simples revendedora de carros, peças e máquinas agrícolas. Somos a sua parceira na busca por excelência, qualidade e soluções para suas necessidades no setor automotivo e agrícola. Desde o primeiro dia, buscamos oferecer um atendimento personalizado que acompanha o cliente desde a escolha do produto até o pós-venda.</p>
+        </section>
+
+        <!-- Missão e Visão -->
+        <section class="mission-vision">
+            <div>
+                <h3>Missão</h3>
+                <p>Oferecer aos nossos clientes produtos de alta qualidade e confiança, além de um serviço de atendimento que vá além das expectativas.</p>
+            </div>
+            <div>
+                <h3>Visão</h3>
+                <p>Ser a referência no mercado de carros, peças e máquinas agrícolas, reconhecida pela excelência, inovação e compromisso com os nossos clientes.</p>
+            </div>
+        </section>
+
+        <!-- Chamada para ação -->
+        <section>
+            <h2 class="section-title">Explore nossos Produtos</h2>
+            <p class="section-text">Na [Nome da Empresa], oferecemos uma ampla gama de carros, peças e máquinas agrícolas de alta qualidade. Encontre o que você precisa para impulsionar o seu negócio ou atender à sua necessidade pessoal.</p>
+            <a href="/produtos" class="btn">Veja Nossos Produtos</a>
+        </section>
+    </div>
+
+</body>
+</html>
