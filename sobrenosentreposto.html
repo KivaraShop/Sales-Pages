@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós | [Nome da Empresa]</title>
+    <title>Sobre Nós | Entreposto </title>
     <style>
         /* Reset básico de margens e paddings */
         * {
@@ -48,8 +48,8 @@
         }
 
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0% { opacity: 0; background-color: rgba(0, 136, 181, 0.0); }
+            100% { opacity: 1; background-color: rgba(0, 136, 181, 0.3); }
         }
 
         /* Container para o conteúdo */
@@ -113,13 +113,18 @@
             font-size: 1.1rem;
             color: #555;
         }
+
+        /* Seção de Explore Nossos Produtos */
+        .explore-section {
+            margin-top: 3rem; /* Espaçamento maior entre as seções */
+        }
     </style>
 </head>
 <body>
 
     <!-- Imagem Hero -->
     <section class="hero">
-        <h1>Bem-vindo à Entreposto </h1>
+        <h1>Bem-vindo à Entreposto</h1>
     </section>
 
     <!-- Container principal -->
@@ -127,7 +132,7 @@
         <!-- Seção sobre a empresa -->
         <section>
             <h2 class="section-title">Nossa História</h2>
-            <p class="section-text">Na [Nome da Empresa], somos mais do que uma simples revendedora de carros, peças e máquinas agrícolas. Somos a sua parceira na busca por excelência, qualidade e soluções para suas necessidades no setor automotivo e agrícola. Desde o primeiro dia, buscamos oferecer um atendimento personalizado que acompanha o cliente desde a escolha do produto até o pós-venda.</p>
+            <p class="section-text">Na Entreposto, somos mais do que uma simples revendedora de carros, peças e máquinas agrícolas. Somos a sua parceira na busca por excelência, qualidade e soluções para suas necessidades no setor automotivo e agrícola. Desde o primeiro dia, buscamos oferecer um atendimento personalizado que acompanha o cliente desde a escolha do produto até o pós-venda.</p>
         </section>
 
         <!-- Missão e Visão -->
@@ -142,10 +147,10 @@
             </div>
         </section>
 
-        <!-- Chamada para ação -->
-        <section>
+        <!-- Explore Nossos Produtos -->
+        <section class="explore-section">
             <h2 class="section-title">Explore nossos Produtos</h2>
-            <p class="section-text">Na [Nome da Empresa], oferecemos uma ampla gama de carros, peças e máquinas agrícolas de alta qualidade. Encontre o que você precisa para impulsionar o seu negócio ou atender à sua necessidade pessoal.</p>
+            <p class="section-text">Na Entreposto, oferecemos uma ampla gama de carros, peças e máquinas agrícolas de alta qualidade. Encontre o que você precisa para impulsionar o seu negócio ou atender à sua necessidade pessoal.</p>
             <a href="/produtos" class="btn">Veja Nossos Produtos</a>
         </section>
     </div>
