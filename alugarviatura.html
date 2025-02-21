@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas de Viaturas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff3e0;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .product-card {
+            background: #ff8000;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-card h3 {
+            margin: 10px 0;
+        }
+        .rent-button {
+            background: #cc6600;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .rent-button:hover {
+            background: #a65300;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reservas de Viaturas</h1>
+    <div class="container" id="car-list"></div>
+
+    <script>
+        const cars = [
+            { name: "Toyota Corolla 2022", image: "https://via.placeholder.com/200" },
+            { name: "Mercedes-Benz C200", image: "https://via.placeholder.com/200" },
+            { name: "BMW X5 2023", image: "https://via.placeholder.com/200" },
+            { name: "Range Rover Evoque", image: "https://via.placeholder.com/200" },
+            { name: "Audi A3 Sportback", image: "https://via.placeholder.com/200" },
+            { name: "Hyundai Tucson", image: "https://via.placeholder.com/200" },
+            { name: "Kia Sportage", image: "https://via.placeholder.com/200" },
+            { name: "Volkswagen Golf GTI", image: "https://via.placeholder.com/200" },
+            { name: "Ford Mustang 2022", image: "https://via.placeholder.com/200" },
+            { name: "Chevrolet Camaro", image: "https://via.placeholder.com/200" }
+        ];
+        
+        const carList = document.getElementById("car-list");
+        cars.forEach(car => {
+            const carCard = document.createElement("div");
+            carCard.classList.add("product-card");
+            carCard.innerHTML = `
+                <img src="${car.image}" alt="${car.name}">
+                <h3>${car.name}</h3>
+                <button class="rent-button" onclick="rentCar('${car.name}')">ALUGAR VIATURA</button>
+            `;
+            carList.appendChild(carCard);
+        });
+        
+        function rentCar(carName) {
+            const phone = "+258852136558";
+            const message = encodeURIComponent(`Olá, estou interessado em alugar o ${carName}.`);
+            window.location.href = `https://wa.me/${phone}?text=${message}`;
+        }
+    </script>
+</body>
+</html>
