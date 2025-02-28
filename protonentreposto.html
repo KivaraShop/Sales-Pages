@@ -255,7 +255,24 @@
     border-radius: 3px; /* Menos arredondamento */
     font-size: 14px; /* Tamanho de fonte menor */
 }
+/* Efeito de hover (passando o mouse sobre o botão) */
+.ficha-btn:hover {
+    background-color: #00729d; /* Escurece o azul claro */
+    transform: scale(1.05); /* Levemente aumenta o tamanho do botão */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+}
 
+/* Efeito de foco (quando o botão é clicado ou recebe foco) */
+.ficha-btn:focus {
+    outline: none; /* Remove a borda padrão de foco */
+    border: 2px solid #00b4e6; /* Borda azul clara para foco */
+}
+
+/* Efeito de clique */
+.ficha-btn:active {
+    transform: scale(0.98); /* Levemente diminui o tamanho ao clicar */
+    background-color: #006a8f; /* Escurece o fundo quando pressionado */
+}
 /* Estilo da ficha técnica */
 .ficha-tecnica {
     display: none; /* Oculto por padrão */
