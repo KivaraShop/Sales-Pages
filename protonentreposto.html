@@ -243,7 +243,47 @@
             width: 100%; /* A barra de estado ocupa toda a largura */
         }
     }
+/* Botão de alternância */
+.ficha-btn {
+    background-color: #0088B5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
 
+/* Estilo da ficha técnica */
+.ficha-tecnica {
+    display: none; /* Oculto por padrão */
+    background-color: #f1f9fc; /* Tom mais claro de azul */
+    padding: 20px;
+    border-left: 4px solid #0088B5;
+    border-radius: 5px;
+}
+
+.ficha-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ficha-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ficha-content li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.ficha-content li strong {
+    color: #0088B5;
+}
 </style>
 </head>
 <body>
@@ -301,12 +341,49 @@
                 </div>
             </div>
         </section>
+
+        <!-- Botão para exibir a ficha técnica -->
+<button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
+
+<!-- Seção da Ficha Técnica (oculta por padrão) -->
+<div id="fichaTecnica" class="ficha-tecnica">
+    <h2>FICHA TÉCNICA</h2>
+    <div class="ficha-content">
+        <ul>
+            <li><strong>Categoria:</strong> SUV</li>
+            <li><strong>Ano de fabrico:</strong> 2008</li>
+            <li><strong>Cilindrada:</strong> 2972 cc</li>
+            <li><strong>Combustível:</strong> Gasolina</li>
+            <li><strong>Quilometragem:</strong> 87.000 Km</li>
+            <li><strong>Tração:</strong> 4WD</li>
+            <li><strong>Transmissão:</strong> Automática</li>
+            <li><strong>Cor:</strong> Branca</li>
+        </ul>
+        <ul>
+            <li><strong>Portas:</strong> 3</li>
+            <li><strong>Lotação:</strong> 5 Lugares</li>
+            <li><strong>Potência:</strong> 176 Hp @ 5240 rpm</li>
+            <li><strong>Torque:</strong> 261 Nm @ 4000 rpm</li>
+            <li><strong>Velocidade máxima:</strong> 220 km/h</li>
+            <li><strong>Aceleração:</strong> 0 a 100km/h – 11,5 segundos</li>
+            <li><strong>Consumo cidade (l/100 km):</strong> 15,9</li>
+            <li><strong>Consumo estrada (l/100 km):</strong> 10,6</li>
+        </ul>
+    </div>
+</div>
+        
     </main>
 
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
-
+    
+<script>
+document.getElementById("toggleFicha").addEventListener("click", function() {
+    var ficha = document.getElementById("fichaTecnica");
+    ficha.style.display = ficha.style.display === "none" ? "block" : "none";
+});
+</script>
       <script>
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
