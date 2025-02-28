@@ -243,26 +243,17 @@
             width: 100%; /* A barra de estado ocupa toda a largura */
         }
     }
-
-/* Centralizar o botão */
-.ficha-btn-container {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
 /* Botão de alternância */
 .ficha-btn {
-    display: block;
-    margin: 20px auto; /* Adiciona margem e centraliza */
+    background-color: #0088B5;
     text-align: center;
-    background-color: #0088B5; /* Cor azul clara */
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
-}
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 /* Estilo da ficha técnica */
@@ -349,7 +340,11 @@
                         <p class="bar-label" id="fuel-label">40% restante</p>
                     </div>
                 </div>
+                        <!-- Botão para exibir a ficha técnica -->
+<button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
+
             </div>
+        </section>
 
         <!-- Botão para exibir a ficha técnica -->
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
@@ -381,7 +376,6 @@
     </div>
 </div>
         
-        </section>
     </main>
 
     <footer>
