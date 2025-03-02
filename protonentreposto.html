@@ -439,12 +439,22 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
     
     // Alternar a visibilidade dos iframes
     var iframes = document.querySelectorAll("iframe");
+    var videos = document.querySelectorAll(".thumbnail");
+
     iframes.forEach(function(iframe) {
-        // Verificar visibilidade para ambos ao mesmo tempo
         if (ficha.style.display === "none") {
-            iframe.style.visibility = "hidden";
+            iframe.style.visibility = "hidden";  // Ocultar os iframes
         } else {
-            iframe.style.visibility = "visible";
+            iframe.style.visibility = "visible"; // Mostrar os iframes
+        }
+    });
+
+    // Manipular os vídeos do YouTube
+    videos.forEach(function(video) {
+        if (ficha.style.display === "none") {
+            video.style.pointerEvents = "auto"; // Permitir interação com vídeos
+        } else {
+            video.style.pointerEvents = "none"; // Desabilitar interação com vídeos
         }
     });
 });
