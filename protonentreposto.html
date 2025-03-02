@@ -408,7 +408,7 @@ p {
     
 <div style="width: 100%; height: 600px; overflow: hidden; position: relative;">
     <div style="position: absolute; top: -130px; left: -100px; width: calc(100% + 100px); height: 100%; ">
-        <iframe allow="web-share" width="100%" height="100%" style="border:none;" 
+        <iframe allow="web-share" width="100%" height="100%" style="display: none;" id="carIframe" border:none;" 
                 src="https://carshow360.net/en/ssangyong/korando/iv-10231?iframe" 
                 title="BMW 360°">
         </iframe>
@@ -416,7 +416,7 @@ p {
 </div>
 <div style="width: 100%; height: 600px; overflow: hidden; position: relative;">
     <div style="position: absolute; top: -200px; left: -100px; width: calc(100% + 100px); height: 100%; bottom: -250px !important; overflow: hidden; ">
-        <iframe allow="web-share" width="100%" height="100%" style="border:none;" 
+        <iframe allow="web-share" width="100%" height="100%" style="display: none;" id="carIframe" border:none;" 
                 scrolling="no" 
                 src="https://carshow360.net/en/ssangyong/korando/iv-10231?details=&frame" 
                 title="BMW 360°">
@@ -444,6 +444,7 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
     });
 });
 </script>
+
 
       <script>
     // Função para mudar a imagem principal ou exibir um vídeo
