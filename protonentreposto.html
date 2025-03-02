@@ -433,10 +433,18 @@ p {
     
 <script>
 document.getElementById("toggleFicha").addEventListener("click", function() {
+    // Toggle the display of the ficha tecnica
     var ficha = document.getElementById("fichaTecnica");
     ficha.style.display = ficha.style.display === "none" ? "block" : "none";
+    
+    // Toggle the display of all iframes on the page
+    var iframes = document.querySelectorAll("iframe"); // Select all iframe elements
+    iframes.forEach(function(iframe) {
+        iframe.style.display = iframe.style.display === "none" ? "block" : "none";
+    });
 });
 </script>
+
       <script>
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
