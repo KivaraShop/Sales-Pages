@@ -450,43 +450,7 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
 });
 
 </script>
-              <script>
-document.getElementById("toggleFicha").addEventListener("click", function() {
-    var ficha = document.getElementById("fichaTecnica");
-    var iframes = document.querySelectorAll(".showroom-iframe");
-    var rodape = document.querySelector("footer");
-    var container = document.querySelector(".content-container"); // Ajuste conforme sua estrutura
-
-    var isVisible = ficha.style.display === "none";
-
-    ficha.style.display = isVisible ? "block" : "none";
-    ficha.style.height = isVisible ? "auto" : "0";
-    ficha.style.margin = isVisible ? "" : "0";
-    ficha.style.padding = isVisible ? "" : "0";
-
-    iframes.forEach(iframe => {
-        iframe.style.visibility = isVisible ? "visible" : "hidden";
-        iframe.style.height = isVisible ? "auto" : "0";
-        iframe.style.margin = isVisible ? "" : "0";
-        iframe.style.padding = isVisible ? "" : "0";
-    });
-
-    if (isVisible) {
-        rodape.style.position = "relative";
-    } else {
-        rodape.style.position = "absolute";
-        rodape.style.bottom = "0";
-        rodape.style.width = "100%";
-    }
-
-    // Ajusta o container principal para remover espaços extras
-    if (container) {
-        container.style.paddingBottom = isVisible ? "20px" : "0";
-        container.style.marginBottom = isVisible ? "20px" : "0";
-    }
-});
-
-                  </script>
+             
       <script>
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
