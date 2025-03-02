@@ -432,22 +432,23 @@ p {
     </footer>
     
 <script>
-// Definir a visibilidade inicial dos iframes como "hidden"
-document.querySelectorAll("iframe").forEach(function(iframe) {
-    iframe.style.visibility = "hidden";
-});
-
 document.getElementById("toggleFicha").addEventListener("click", function() {
-    // Alternar visibilidade da ficha técnica
+    // Alternar a visibilidade da ficha técnica
     var ficha = document.getElementById("fichaTecnica");
     ficha.style.display = ficha.style.display === "none" ? "block" : "none";
     
-    // Alternar visibilidade dos iframes
+    // Alternar a visibilidade dos iframes
     var iframes = document.querySelectorAll("iframe");
     iframes.forEach(function(iframe) {
-        iframe.style.visibility = iframe.style.visibility === "hidden" ? "visible" : "hidden";
+        // Verificar visibilidade para ambos ao mesmo tempo
+        if (ficha.style.display === "none") {
+            iframe.style.visibility = "hidden";
+        } else {
+            iframe.style.visibility = "visible";
+        }
     });
 });
+
 </script>
 
       <script>
