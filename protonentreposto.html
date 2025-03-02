@@ -307,9 +307,7 @@ p {
     margin-bottom: 20px; /* Espaço abaixo do parágrafo */
     padding: 0.5px; /* Adiciona 2.5px de espaço dentro de cada parágrafo */
 }
- .showroom-iframe {
-    visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
-}    
+
 </style>
 </head>
 <body>
@@ -434,22 +432,33 @@ p {
     </footer>
     
 <script>
+// Inicialmente, ocultar todos os iframes de showroom
+window.addEventListener('load', function() {
+    var iframes = document.querySelectorAll(".showroom-iframe");
+    
+    iframes.forEach(function(iframe) {
+        iframe.style.display = "none";  // Inicialmente ocultar os iframes
+    });
+});
+
+// Alternar a visibilidade com o clique no botão
 document.getElementById("toggleFicha").addEventListener("click", function() {
     // Alternar a visibilidade da ficha técnica
     var ficha = document.getElementById("fichaTecnica");
     ficha.style.display = ficha.style.display === "none" ? "block" : "none";
 
-    // Selecionar somente os iframes do showroom
+    // Selecionar os iframes do showroom
     var iframes = document.querySelectorAll(".showroom-iframe");
     
     iframes.forEach(function(iframe) {
         if (ficha.style.display === "none") {
-            iframe.style.visibility = "hidden";  // Ocultar os iframes
+            iframe.style.display = "none";  // Remover do fluxo de layout
         } else {
-            iframe.style.visibility = "visible"; // Mostrar os iframes
+            iframe.style.display = "block"; // Voltar ao layout normal
         }
     });
 });
+
 
 </script>
 
