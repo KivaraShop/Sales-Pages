@@ -432,6 +432,11 @@ p {
     </footer>
     
 <script>
+// Definir a visibilidade inicial dos iframes como "hidden"
+document.querySelectorAll("iframe").forEach(function(iframe) {
+    iframe.style.visibility = "hidden";
+});
+
 document.getElementById("toggleFicha").addEventListener("click", function() {
     // Alternar visibilidade da ficha técnica
     var ficha = document.getElementById("fichaTecnica");
@@ -443,7 +448,6 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
         iframe.style.visibility = iframe.style.visibility === "hidden" ? "visible" : "hidden";
     });
 });
-
 </script>
 
       <script>
