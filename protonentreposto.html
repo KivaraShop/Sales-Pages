@@ -450,27 +450,6 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
 });
 
 </script>
-
-    <script>
-document.getElementById("toggleFicha").addEventListener("click", function() {
-    var ficha = document.getElementById("fichaTecnica");
-    var iframes = document.querySelectorAll(".showroom-iframe");
-    var rodape = document.querySelector("footer");
-
-    var isVisible = ficha.style.display === "none";
-
-    ficha.style.display = isVisible ? "block" : "none";
-    iframes.forEach(iframe => {
-        iframe.style.visibility = isVisible ? "visible" : "hidden";
-        iframe.style.height = isVisible ? "auto" : "0";
-    });
-
-    rodape.style.position = isVisible ? "relative" : "absolute";
-    rodape.style.bottom = isVisible ? "auto" : "0";
-});
-
-
-</script>
         
       <script>
     // Função para mudar a imagem principal ou exibir um vídeo
