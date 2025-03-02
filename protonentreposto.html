@@ -246,42 +246,48 @@
 /* Botão de alternância */
 .ficha-btn {
     display: block;
-    margin: 10px auto; /* Menos margem */
+    margin: 10px auto;
     text-align: center;
-    background-color: #0088B5; /* Cor azul clara */
+    background-color: #0088B5;
     color: white;
-    padding: 6px 12px; /* Menos preenchimento */
+    padding: 6px 12px;
     border: none;
-    border-radius: 3px; /* Menos arredondamento */
-    font-size: 14px; /* Tamanho de fonte menor */
-}
-/* Efeito de hover (passando o mouse sobre o botão) */
-.ficha-btn:hover {
-    background-color: #00729d; /* Escurece o azul claro */
-    transform: scale(1.05); /* Levemente aumenta o tamanho do botão */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+    border-radius: 3px;
+    font-size: 14px;
 }
 
-/* Efeito de foco (quando o botão é clicado ou recebe foco) */
+/* Efeito de hover */
+.ficha-btn:hover {
+    background-color: #00729d;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Efeito de foco */
 .ficha-btn:focus {
-    outline: none; /* Remove a borda padrão de foco */
-    border: 2px solid #00b4e6; /* Borda azul clara para foco */
+    outline: none;
+    border: 2px solid #00b4e6;
 }
 
 /* Efeito de clique */
 .ficha-btn:active {
-    transform: scale(0.98); /* Levemente diminui o tamanho ao clicar */
-    background-color: #006a8f; /* Escurece o fundo quando pressionado */
+    transform: scale(0.98);
+    background-color: #006a8f;
 }
+
 /* Estilo da ficha técnica */
 .ficha-tecnica {
     display: none; /* Oculto por padrão */
-    background-color: #f1f9fc; /* Tom mais claro de azul */
+    background-color: #f1f9fc;
     padding: 20px;
     border-left: 4px solid #0088B5;
     border-radius: 5px;
+    margin: 0; /* Garantir que não haja margem extra quando oculto */
+    height: 0; /* Definir altura como 0 para eliminar espaço */
+    overflow: hidden; /* Impedir que algo vaze quando oculto */
 }
 
+/* Estilo do conteúdo da ficha */
 .ficha-content {
     display: flex;
     justify-content: space-between;
@@ -302,6 +308,19 @@
 .ficha-content li strong {
     color: #0088B5;
 }
+
+/* Estilo dos iframes de showroom */
+.showroom-iframe {
+    display: none; /* Oculto por padrão */
+    width: 100%;
+    height: 300px;
+}
+
+/* Contêiner do iframe de showroom */
+.showroom-container {
+    display: none; /* Oculto por padrão */
+}
+
 
 p {
     margin-bottom: 20px; /* Espaço abaixo do parágrafo */
@@ -428,57 +447,22 @@ p {
     </footer>
     
 <script>
-// Inicialmente, ocultar os iframes e a ficha técnica sem ocupar espaço
-window.addEventListener('load', function() {
-    // Selecionar os iframes do showroom e a ficha técnica
-    var iframes = document.querySelectorAll(".showroom-iframe");
-    var iframeContainers = document.querySelectorAll(".showroom-container");
-    var ficha = document.getElementById("fichaTecnica");
-
-    // Inicialmente ocultar os iframes de showroom e ficha técnica sem deixar espaço
-    iframes.forEach(function(iframe) {
-        iframe.style.visibility = "hidden";  // Ocultar sem deixar espaço
-        iframe.style.position = "absolute";  // Remover o espaço do layout
-    });
-
-    iframeContainers.forEach(function(container) {
-        container.style.visibility = "hidden";  // Ocultar sem deixar espaço
-        container.style.position = "absolute";  // Remover o espaço do layout
-    });
-
-    if (ficha) {
-        ficha.style.visibility = "hidden";  // Ocultar sem deixar espaço
-        ficha.style.position = "absolute";  // Remover o espaço do layout
-    }
-});
-
-// Alternar a visibilidade com o clique no botão
 document.getElementById("toggleFicha").addEventListener("click", function() {
     // Alternar a visibilidade da ficha técnica
     var ficha = document.getElementById("fichaTecnica");
-    ficha.style.visibility = ficha.style.visibility === "hidden" ? "visible" : "hidden";  // Alternar a visibilidade da ficha técnica
-    ficha.style.position = ficha.style.visibility === "hidden" ? "absolute" : "relative";  // Garantir que o espaço não seja ocupado quando invisível
+    ficha.style.display = ficha.style.display === "none" ? "block" : "none";
 
-    // Selecionar os iframes do showroom
+    // Selecionar somente os iframes do showroom
     var iframes = document.querySelectorAll(".showroom-iframe");
-    var iframeContainers = document.querySelectorAll(".showroom-container");
-
-    // Alternar a visibilidade dos iframes de showroom
-    iframes.forEach(function(iframe, index) {
-        if (ficha.style.visibility === "hidden") {
-            iframe.style.visibility = "hidden";  // Ocultar iframe sem deixar espaço
-            iframe.style.position = "absolute";  // Remover o espaço do layout
-            iframeContainers[index].style.visibility = "hidden";  // Ocultar contêiner sem deixar espaço
-            iframeContainers[index].style.position = "absolute";  // Remover o espaço do layout
+    
+    iframes.forEach(function(iframe) {
+        if (ficha.style.display === "none") {
+            iframe.style.visibility = "hidden";  // Ocultar os iframes
         } else {
-            iframe.style.visibility = "visible";  // Tornar o iframe visível novamente
-            iframe.style.position = "relative";  // Restaurar o layout normal
-            iframeContainers[index].style.visibility = "visible";  // Tornar o contêiner visível
-            iframeContainers[index].style.position = "relative";  // Restaurar o layout normal
+            iframe.style.visibility = "visible"; // Mostrar os iframes
         }
     });
 });
-
 </script>
 
       <script>
