@@ -450,7 +450,35 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
 });
 
 </script>
+<script>
+document.getElementById("toggleFicha").addEventListener("click", function() {
+    var ficha = document.getElementById("fichaTecnica");
+    var showroomIframes = document.querySelectorAll(".showroom-iframe");
+    var fichaContent = document.getElementById("fichaContent");
 
+    // Verifica se a ficha técnica está visível
+    if (ficha.style.display === "none" || ficha.style.display === "") {
+        ficha.style.display = "block"; // Exibe a ficha técnica
+        // Exibe os iframes do showroom
+        showroomIframes.forEach(function(iframe) {
+            iframe.style.display = "block";
+        });
+        
+        // Permite o scroll para baixo
+        document.body.style.overflow = "auto"; // Permite a rolagem
+    } else {
+        ficha.style.display = "none"; // Oculta a ficha técnica
+        // Oculta os iframes do showroom
+        showroomIframes.forEach(function(iframe) {
+            iframe.style.display = "none";
+        });
+
+        // Desativa o scroll
+        document.body.style.overflow = "hidden"; // Impede a rolagem
+    }
+});
+
+</script>
       <script>
     // Função para mudar a imagem principal ou exibir um vídeo
     function changeImage(thumbnail) {
