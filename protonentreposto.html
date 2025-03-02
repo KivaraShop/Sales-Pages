@@ -428,31 +428,38 @@ p {
     </footer>
     
 <script>
-// Inicialmente, ocultar todos os iframes de showroom sem ocupar espaço
+// Inicialmente, ocultar todos os iframes de showroom e a ficha técnica sem ocupar espaço
 window.addEventListener('load', function() {
+    // Ocultar os iframes de showroom
     var iframes = document.querySelectorAll(".showroom-iframe");
-    
+    var iframeContainers = document.querySelectorAll(".showroom-container");
+    var ficha = document.getElementById("fichaTecnica");
+
     iframes.forEach(function(iframe) {
         iframe.style.display = "none";  // Inicialmente ocultar os iframes
     });
 
     // Ocultar o contêiner que envolve os iframes também
-    var iframeContainers = document.querySelectorAll(".showroom-container");
     iframeContainers.forEach(function(container) {
         container.style.display = "none"; // Não deixa o espaço ocupado
     });
+
+    // Ocultar a ficha técnica
+    if (ficha) {
+        ficha.style.display = "none";  // Ocultar ficha técnica inicialmente
+    }
 });
 
 // Alternar a visibilidade com o clique no botão
 document.getElementById("toggleFicha").addEventListener("click", function() {
     // Alternar a visibilidade da ficha técnica
     var ficha = document.getElementById("fichaTecnica");
-    ficha.style.display = ficha.style.display === "none" ? "block" : "none";
+    ficha.style.display = ficha.style.display === "none" ? "block" : "none";  // Exibir ou ocultar ficha técnica
 
     // Selecionar os iframes do showroom
     var iframes = document.querySelectorAll(".showroom-iframe");
     var iframeContainers = document.querySelectorAll(".showroom-container");
-    
+
     iframes.forEach(function(iframe, index) {
         if (ficha.style.display === "none") {
             iframe.style.display = "none";  // Remover o iframe do layout
@@ -463,6 +470,7 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
         }
     });
 });
+
 
 </script>
 
