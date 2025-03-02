@@ -439,8 +439,7 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
     
     // Alternar a visibilidade dos iframes
     var iframes = document.querySelectorAll("iframe");
-    var videos = document.querySelectorAll(".thumbnail");
-
+    
     iframes.forEach(function(iframe) {
         if (ficha.style.display === "none") {
             iframe.style.visibility = "hidden";  // Ocultar os iframes
@@ -449,14 +448,17 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
         }
     });
 
-    // Manipular os vídeos do YouTube
-    videos.forEach(function(video) {
-        if (ficha.style.display === "none") {
-            video.style.pointerEvents = "auto"; // Permitir interação com vídeos
-        } else {
-            video.style.pointerEvents = "none"; // Desabilitar interação com vídeos
-        }
-    });
+    // Manipular o z-index para garantir que os vídeos fiquem acima dos iframes
+    var videos = document.querySelectorAll(".thumbnail");
+    if (ficha.style.display === "none") {
+        videos.forEach(function(video) {
+            video.style.zIndex = "10"; // Colocar vídeos acima do iframe
+        });
+    } else {
+        videos.forEach(function(video) {
+            video.style.zIndex = "initial"; // Restaurar o z-index para o valor inicial
+        });
+    }
 });
 
 </script>
