@@ -428,25 +428,27 @@ p {
     </footer>
     
 <script>
-// Inicialmente, ocultar todos os iframes de showroom e a ficha técnica sem ocupar espaço
+// Inicialmente, ocultar os iframes e a ficha técnica sem ocupar espaço
 window.addEventListener('load', function() {
-    // Ocultar os iframes de showroom
+    // Selecionar os iframes do showroom e a ficha técnica
     var iframes = document.querySelectorAll(".showroom-iframe");
     var iframeContainers = document.querySelectorAll(".showroom-container");
     var ficha = document.getElementById("fichaTecnica");
 
+    // Inicialmente ocultar os iframes de showroom e ficha técnica sem deixar espaço
     iframes.forEach(function(iframe) {
-        iframe.style.display = "none";  // Inicialmente ocultar os iframes
+        iframe.style.visibility = "hidden";  // Ocultar sem deixar espaço
+        iframe.style.position = "absolute";  // Remover o espaço do layout
     });
 
-    // Ocultar o contêiner que envolve os iframes também
     iframeContainers.forEach(function(container) {
-        container.style.display = "none"; // Não deixa o espaço ocupado
+        container.style.visibility = "hidden";  // Ocultar sem deixar espaço
+        container.style.position = "absolute";  // Remover o espaço do layout
     });
 
-    // Ocultar a ficha técnica
     if (ficha) {
-        ficha.style.display = "none";  // Ocultar ficha técnica inicialmente
+        ficha.style.visibility = "hidden";  // Ocultar sem deixar espaço
+        ficha.style.position = "absolute";  // Remover o espaço do layout
     }
 });
 
@@ -454,23 +456,28 @@ window.addEventListener('load', function() {
 document.getElementById("toggleFicha").addEventListener("click", function() {
     // Alternar a visibilidade da ficha técnica
     var ficha = document.getElementById("fichaTecnica");
-    ficha.style.display = ficha.style.display === "none" ? "block" : "none";  // Exibir ou ocultar ficha técnica
+    ficha.style.visibility = ficha.style.visibility === "hidden" ? "visible" : "hidden";  // Alternar a visibilidade da ficha técnica
+    ficha.style.position = ficha.style.visibility === "hidden" ? "absolute" : "relative";  // Garantir que o espaço não seja ocupado quando invisível
 
     // Selecionar os iframes do showroom
     var iframes = document.querySelectorAll(".showroom-iframe");
     var iframeContainers = document.querySelectorAll(".showroom-container");
 
+    // Alternar a visibilidade dos iframes de showroom
     iframes.forEach(function(iframe, index) {
-        if (ficha.style.display === "none") {
-            iframe.style.display = "none";  // Remover o iframe do layout
-            iframeContainers[index].style.display = "none";  // Remover também o contêiner
+        if (ficha.style.visibility === "hidden") {
+            iframe.style.visibility = "hidden";  // Ocultar iframe sem deixar espaço
+            iframe.style.position = "absolute";  // Remover o espaço do layout
+            iframeContainers[index].style.visibility = "hidden";  // Ocultar contêiner sem deixar espaço
+            iframeContainers[index].style.position = "absolute";  // Remover o espaço do layout
         } else {
-            iframe.style.display = "block"; // Voltar o iframe à visibilidade
-            iframeContainers[index].style.display = "block";  // Voltar o contêiner
+            iframe.style.visibility = "visible";  // Tornar o iframe visível novamente
+            iframe.style.position = "relative";  // Restaurar o layout normal
+            iframeContainers[index].style.visibility = "visible";  // Tornar o contêiner visível
+            iframeContainers[index].style.position = "relative";  // Restaurar o layout normal
         }
     });
 });
-
 
 </script>
 
