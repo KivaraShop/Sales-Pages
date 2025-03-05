@@ -290,19 +290,18 @@ button:hover {
     position: relative;
 }
 
-   .search-navigation-container {
+  .search-navigation-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Espaçamento entre os elementos */
-    margin: 20px auto;
-    max-width: 800px; /* Ajuste conforme necessário */
+    justify-content: space-between; /* Distributes space between elements */
+    align-items: center; /* Aligns them vertically */
+    width: 100%; /* Ensures it spans the full width */
 }
 
 .search-bar {
     display: flex;
-    flex: 1; /* Permite que a barra de pesquisa ocupe espaço disponível */
-    max-width: 600px;
+    align-items: center;
+    flex: 1; /* Takes available space */
+    margin-right: 50px; /* Space between search bar and buttons */
 }
 
 #search-input {
@@ -478,7 +477,7 @@ button:hover {
 
 .navigation-buttons {
     display: flex;
-    gap: 10px; /* Espaçamento entre os botões */
+    align-items: center; /* Aligns buttons vertically */
 }
 
 .navigation-buttons a {
@@ -488,6 +487,7 @@ button:hover {
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 20px;
+    margin-left: 10px; /* Adds space between buttons */
     transition: background 0.3s;
 }
 
