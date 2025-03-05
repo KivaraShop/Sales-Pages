@@ -153,6 +153,7 @@ h2 {
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
     gap: 15px;
+    flex-grow: 1;
 }
 
 .product-card {
@@ -621,13 +622,20 @@ div, span, section, header, footer, main, article {
 }
 
 
-        .brand-search {
+.content-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.brand-search {
     background-color: #0088B5;
     padding: 15px;
     border-radius: 8px;
     color: white;
     font-family: Arial, sans-serif;
     width: 250px;
+    flex-shrink: 0;
 }
 
 .brand-search h3 {
