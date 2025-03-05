@@ -621,6 +621,51 @@ div, span, section, header, footer, main, article {
 }
 
 
+        .brand-search {
+    background-color: #0088B5;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 250px;
+}
+
+.brand-search h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.brand-search ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.brand-search li {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.brand-search li:last-child {
+    border-bottom: none;
+}
+
+.brand-search li:hover {
+    background-color: #005f7a;
+}
+
+.brand-search img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
     </style>
 </head>
 <body>
@@ -746,7 +791,19 @@ div, span, section, header, footer, main, article {
               <a href="seminovos.html">Semi-novos</a>
             <a href="usados.html" id="usadosButton">Usados</a>
         </div>
-    
+    <div class="brand-search">
+    <h3>Busca por Marca</h3>
+    <ul>
+        <li><img src="URL_DA_IMAGEM" alt="Toyota"> Toyota (60,247)</li>
+        <li><img src="URL_DA_IMAGEM" alt="Honda"> Honda (19,208)</li>
+        <li><img src="URL_DA_IMAGEM" alt="Nissan"> Nissan (22,413)</li>
+        <li><img src="URL_DA_IMAGEM" alt="Mazda"> Mazda (8,850)</li>
+        <li><img src="URL_DA_IMAGEM" alt="Suzuki"> Suzuki (18,169)</li>
+        <li><img src="URL_DA_IMAGEM" alt="Mitsubishi"> Mitsubishi (5,461)</li>
+        <li><img src="URL_DA_IMAGEM" alt="Daihatsu"> Daihatsu (9,579)</li>
+        <li><img src="URL_DA_IMAGEM" alt="Subaru"> Subaru (8,390)</li>
+    </ul>
+</div>
         <div class="product-grid">
             <!-- Exemplo de produto -->
             <div class="product-card">
