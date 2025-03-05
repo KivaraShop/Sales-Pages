@@ -680,6 +680,49 @@ div, span, section, header, footer, main, article {
     margin-right: 10px;
 }
 
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #333;
+    color: white;
+    padding: 40px;
+    text-align: left;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h2 {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.features span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.hero-image img {
+    max-width: 500px;
+    border-radius: 8px;
+}
+
     </style>
 </head>
 <body>
@@ -708,7 +751,22 @@ div, span, section, header, footer, main, article {
       </div>
     </div>
     </header>
-       
+
+    <section class="hero-section">
+    <div class="hero-content">
+        <h2>REVOLUCIONÁRIO<br>NOVO HYUNDAI TUCSON</h2>
+        <p>Visite-nos e venha fazer parte da revolução.</p>
+        <div class="features">
+            <span>🚗 Motor 1.6 Turbo GDi com 180 cavalos</span>
+            <span>⚙️ Caixa Auto 7 Velocidades DCT</span>
+            <span>💡 1ª luzes ocultas paramétricas do mundo</span>
+            <span>📱 Painel 10,25" Touch Screen 100% Digital</span>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/headers/Mazda%20web.jpg" alt="Hyundai Tucson">
+    </div>
+</section>
 <!-- Hidden menu items, will toggle on click -->
     <div class="nav-menu">
         <ul>
