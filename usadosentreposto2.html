@@ -290,31 +290,39 @@ button:hover {
     position: relative;
 }
 
-       /* Barra de Pesquisa */
+   .search-navigation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os elementos */
+    margin: 20px auto;
+    max-width: 800px; /* Ajuste conforme necessário */
+}
+
 .search-bar {
-  display: flex;
-  justify-content: center;
-  margin: 20px auto;
-  max-width: 600px;
+    display: flex;
+    flex: 1; /* Permite que a barra de pesquisa ocupe espaço disponível */
+    max-width: 600px;
 }
 
 #search-input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  font-size: 16px;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
 }
 
 #search-btn {
-  background-color: #0288d1; /* Azul claro */
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 0 4px 4px 0;
-  color: white;
-  font-size: 18px;
+    background-color: #0288d1; /* Azul claro */
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    color: white;
+    font-size: 18px;
 }
+
 #no-results-message {
     display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
     text-align: center;
@@ -468,11 +476,9 @@ button:hover {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
 
-    .navigation-buttons {
-    margin-bottom: 30px;
-    display: flex; /* Define o uso do Flexbox */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Alinha os itens verticalmente */
+.navigation-buttons {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
 }
 
 .navigation-buttons a {
@@ -482,8 +488,6 @@ button:hover {
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 20px;
-    margin: 0 10px;
-    display: inline-block;
     transition: background 0.3s;
 }
 
