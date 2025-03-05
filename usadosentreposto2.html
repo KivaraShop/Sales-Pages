@@ -15,8 +15,6 @@
     overflow-x: hidden;
     box-sizing: border-box;
     background-color: #f5f5f5; /* Fundo suave e neutro */
-    width: 100%;
-
 }
 
 /* Cabeçalho */
@@ -292,41 +290,31 @@ button:hover {
     position: relative;
 }
 
-/* Ensure the search bar and buttons are aligned side by side without messing with layout */
-.search-navigation-container {
-    display: flex;
-    justify-content: flex-start; /* Aligns items to the left */
-    align-items: center; /* Vertically aligns the items */
-    width: 100%; /* Use full width of the parent container */
-    padding: 0; /* Remove unnecessary padding */
-    margin: 0; /* Remove margins to avoid centering the page */
-}
-
+       /* Barra de Pesquisa */
 .search-bar {
-    display: flex;
-    align-items: center;
-    margin-right: 20px; /* Adds space between search bar and buttons */
-    flex: 1; /* Allows search bar to grow and occupy available space */
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
 }
 
 #search-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-    font-size: 16px;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
 }
 
 #search-btn {
-    background-color: #0288d1; /* Azul claro */
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 0 4px 4px 0;
-    color: white;
-    font-size: 18px;
+  background-color: #0288d1; /* Azul claro */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
 }
-
 #no-results-message {
     display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
     text-align: center;
@@ -480,9 +468,11 @@ button:hover {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
 
-.navigation-buttons {
-    display: flex;
-    align-items: center; /* Aligns buttons vertically */
+    .navigation-buttons {
+    margin-bottom: 30px;
+    display: flex; /* Define o uso do Flexbox */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente */
 }
 
 .navigation-buttons a {
@@ -492,7 +482,8 @@ button:hover {
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 20px;
-    margin-left: 10px; /* Adds space between buttons */
+    margin: 0 10px;
+    display: inline-block;
     transition: background 0.3s;
 }
 
@@ -832,7 +823,7 @@ div, span, section, header, footer, main, article {
     <p class="slogan">"Seu futuro começa aqui!"</p>
 </div>
 
-    <div class="search-navigation-container">
+    
      <div class="search-bar">
   <input 
     type="text" 
@@ -843,12 +834,6 @@ div, span, section, header, footer, main, article {
   <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
     🔍
   </button>
-<!-- Botões de Navegação -->
-        <div class="navigation-buttons">
-            <a href="novos.html">Novos</a>
-              <a href="seminovos.html">Semi-novos</a>
-            <a href="usados.html" id="usadosButton">Usados</a>
-        </div>
 </div>
 
 <!-- Área de Resultados -->
@@ -860,7 +845,13 @@ div, span, section, header, footer, main, article {
   <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
   </div>
-
+    
+      <!-- Botões de Navegação -->
+        <div class="navigation-buttons">
+            <a href="novos.html">Novos</a>
+              <a href="seminovos.html">Semi-novos</a>
+            <a href="usados.html" id="usadosButton">Usados</a>
+        </div>
  <div class="content-container">
     <div class="sidebar">
         <!-- Busca por Marca -->
