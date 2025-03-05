@@ -290,18 +290,21 @@ button:hover {
     position: relative;
 }
 
-  .search-navigation-container {
+/* Ensure the search bar and buttons are aligned side by side without messing with layout */
+.search-navigation-container {
     display: flex;
-    justify-content: space-between; /* Distributes space between elements */
-    align-items: center; /* Aligns them vertically */
-    width: 100%; /* Ensures it spans the full width */
+    justify-content: flex-start; /* Aligns items to the left */
+    align-items: center; /* Vertically aligns the items */
+    width: 100%; /* Use full width of the parent container */
+    padding: 0; /* Remove unnecessary padding */
+    margin: 0; /* Remove margins to avoid centering the page */
 }
 
 .search-bar {
     display: flex;
     align-items: center;
-    flex: 1; /* Takes available space */
-    margin-right: 50px; /* Space between search bar and buttons */
+    margin-right: 20px; /* Adds space between search bar and buttons */
+    flex: 1; /* Allows search bar to grow and occupy available space */
 }
 
 #search-input {
