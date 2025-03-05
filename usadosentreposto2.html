@@ -682,13 +682,23 @@ div, span, section, header, footer, main, article {
 
 
 .hero-section {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Ajuste a altura conforme necessário */
+    background: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/headers/Mazda%20web.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: #333;
+    justify-content: flex-start;
     color: white;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5); /* Efeito de escurecimento */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
     padding: 40px;
-    text-align: left;
 }
 
 .hero-content {
@@ -696,13 +706,13 @@ div, span, section, header, footer, main, article {
 }
 
 .hero-content h2 {
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
     line-height: 1.2;
 }
 
 .hero-content p {
-    font-size: 18px;
+    font-size: 20px;
     margin-top: 10px;
 }
 
@@ -715,14 +725,8 @@ div, span, section, header, footer, main, article {
 .features span {
     display: block;
     margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 18px;
 }
-
-.hero-image img {
-    max-width: 500px;
-    border-radius: 8px;
-}
-
     </style>
 </head>
 <body>
@@ -753,18 +757,17 @@ div, span, section, header, footer, main, article {
     </header>
 
     <section class="hero-section">
-    <div class="hero-content">
-        <h2>REVOLUCIONÁRIO<br>NOVO HYUNDAI TUCSON</h2>
-        <p>Visite-nos e venha fazer parte da revolução.</p>
-        <div class="features">
-            <span>🚗 Motor 1.6 Turbo GDi com 180 cavalos</span>
-            <span>⚙️ Caixa Auto 7 Velocidades DCT</span>
-            <span>💡 1ª luzes ocultas paramétricas do mundo</span>
-            <span>📱 Painel 10,25" Touch Screen 100% Digital</span>
+    <div class="overlay">
+        <div class="hero-content">
+            <h2>REVOLUCIONÁRIO<br>NOVO HYUNDAI TUCSON</h2>
+            <p>Visite-nos e venha fazer parte da revolução.</p>
+            <div class="features">
+                <span>🚗 Motor 1.6 Turbo GDi com 180 cavalos</span>
+                <span>⚙️ Caixa Auto 7 Velocidades DCT</span>
+                <span>💡 1ª luzes ocultas paramétricas do mundo</span>
+                <span>📱 Painel 10,25" Touch Screen 100% Digital</span>
+            </div>
         </div>
-    </div>
-    <div class="hero-image">
-        <img src="https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/headers/Mazda%20web.jpg" alt="Hyundai Tucson">
     </div>
 </section>
 <!-- Hidden menu items, will toggle on click -->
