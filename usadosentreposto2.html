@@ -684,16 +684,18 @@ div, span, section, header, footer, main, article {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 80vh; /* Ajuste a altura conforme necessário */
+    height: 80vh;
     background: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/headers/Mazda%20web.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     color: white;
+    overflow: hidden;
+    transition: background-image 1s ease-in-out;
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.5); /* Efeito de escurecimento */
+    background: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
     display: flex;
@@ -726,6 +728,12 @@ div, span, section, header, footer, main, article {
     display: block;
     margin-bottom: 5px;
     font-size: 18px;
+}
+
+/* Adicionando transições de fade para as imagens */
+.hero-section.fade {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
     </style>
 </head>
@@ -1109,8 +1117,30 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
+  <script>
+      // Array de imagens para o slider
+const images = [
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/MAZDA.jpg',
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/HYUNDAI.jpg',
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/BMW.jpg'
+];
 
- 
+let currentImageIndex = 0;
+const heroSection = document.querySelector('.hero-section');
+
+// Função para trocar a imagem do background com fade
+function changeImage() {
+    heroSection.classList.add('fade'); // Ativa a transição de fade
+    setTimeout(() => {
+        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
+        heroSection.classList.remove('fade'); // Remove o fade após a troca da imagem
+        currentImageIndex = (currentImageIndex + 1) % images.length; // Incrementa o índice, voltando para 0 se ultrapassar o número de imagens
+    }, 1000); // Tempo de duração da transição
+}
+
+// Troca a imagem automaticamente a cada 5 segundos
+setInterval(changeImage, 5000);
+     </script>
     </script>
 
 <!-- Inclua a biblioteca Font Awesome -->
