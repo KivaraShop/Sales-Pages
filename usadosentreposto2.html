@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Entreposto - Usados</title>
+    <style>
+     
+     body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #f5f5f5; /* Fundo suave e neutro */
+}
+
+/* Cabeçalho */
+header {
+    background-color: #0088B5; /* Azul escuro da marca */
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .toggle-theme {
+    font-size: 24px;
+    cursor: pointer;
+    color: #FFFF; /* Cor branca para o ícone */
+}
+        
+ /* Logo */
+                .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
+
+        }
+
+        .logo img {
+            height: 35px;
+            padding: 0;
+            margin: 0;
+        }
+   /* Estilização do sininho */
+    .notification {
+      position: relative;
+      cursor: pointer;
+      font-size: 24px;
+      color: white;
+    }
+
+    .notification .badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Menu de notificações */
+    .notification-menu {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      display: none;
+      flex-direction: column;
+      width: 300px;
+      z-index: 9999;
+      padding: 10px 0;
+    }
+
+    .notification-menu a {
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+      font-weight: bold;
+      color: #0288d1;
+      background: #eaf0f8; /* Cor de notificações não visualizadas */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .notification-menu a.read {
+      background: #f7f7f7; /* Cor de notificações visualizadas */
+      color: #666; /* Texto mais discreto */
+    }
+
+    .notification-menu a:hover {
+      background-color: #dce6f2;
+      transform: scale(1.02); /* Efeito sutil ao passar o mouse */
+    }
+
+    .notification-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .notification-menu i {
+      font-size: 18px;
+      color: #012063;
+    }
+/* Estilo para o slogan */
+.slogan-container {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.slogan {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; /* Tamanho da fonte pode ser ajustado conforme necessário */
+    font-weight: 700; /* Deixe o texto mais forte */
+    color: #012063; /* Cor que combina com o cabeçalho */
+    letter-spacing: 2px; /* Espaçamento entre as letras para um efeito mais elegante */
+    font-style: italic; /* Estilo em itálico para um toque mais sofisticado */
+    margin: 0;
+}
+
+        
+/* Layout de Produtos */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #012063; /* Azul escuro da marca */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 15px;
+}
+
+.product-card {
+    background-color: #FFFF; /* Branco */
+    border: 1px solid #dddfe1; /* Borda sutil e sofisticada */
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Efeito de destaque mais suave */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    color: #012063; /* Azul escuro da marca */
+    margin: 10px 0;
+}
+
+.product-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2AA7E7; /* Azul claro da marca para preço */
+    margin: 10px 0;
+}
+
+.more-info {
+    margin-bottom: 10px;
+}
+
+.more-info a {
+    text-decoration: none;
+    color: #2AA7E7; /* Azul claro da marca para links */
+    font-size: 14px;
+}
+
+button {
+    background-color: #2AA7E7; /* Azul claro da marca */
+    border: none;
+    color: #FFFF; /* Cor branca para o texto do botão */
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #012063; /* Azul escuro da marca para efeito hover */
+}
+
+/* Popup do Modo Noturno */
+.dark-mode {
+    background-color: #121212;
+    color: #FFFF; /* Branco */
+}
+
+.dark-mode header {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .toggle-theme {
+    color: #2AA7E7; /* Azul claro da marca para o ícone no modo noturno */
+}
+
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* Container de Rótulos */
+.product-labels {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+/* Estilo Base dos Rótulos */
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #34495e; /* Rótulos com cor de fundo sóbria */
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo Específico para Cada Rótulo */
+.label.spicy {
+    background-color: #e74c3c; /* Vermelho mais elegante */
+}
+
+.label.organic {
+    background-color: #2ecc71; /* Verde sofisticado */
+}
+
+.label.highlight {
+    background-color: #f39c12; /* Dourado, mas não exagerado */
+}
+
+.label.sugar-free {
+    background-color: #8e44ad; /* Roxo sutil */
+}
+
+.label.loved {
+    background-color: #ff66b2; /* Rosa suave e elegante */
+}
+
+.label.sold {
+    background-color: #e74c3c; /* Vermelho mais vibrante para "vendido" */
+}
+
+/* Ajuste de Posição no Card */
+.product-card {
+    position: relative;
+}
+
+       /* Barra de Pesquisa */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+#search-btn {
+  background-color: #0288d1; /* Azul claro */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
+}
+#no-results-message {
+    display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
+    text-align: center;
+    margin-top: 20px;
+}
+
+ /* Container do banner */
+  .banner-container {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza o banner */
+    overflow: hidden;
+  }
+
+  /* Tabela do banner */
+  .banner-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .banner-table td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+  }
+
+  /* Coluna da imagem promocional (16:9 reduzida) */
+  .promo-image {
+    width: 70%;
+  }
+
+  .promo-image img {
+    width: 100%;
+    height: 200px; /* Altura fixa menor para reduzir o banner */
+    object-fit: cover; /* Garante que a imagem se ajuste sem deformar */
+    display: block;
+  }
+
+  /* Coluna do GIF (1:1 reduzida) */
+  .promo-gif {
+    width: 30%;
+  }
+
+  .promo-gif img {
+    width: 100%;
+    height: 200px; /* Altura fixa igual à imagem promocional */
+    object-fit: cover; /* Garante proporção sem deformar */
+    display: block;
+  }
+ /* Estilo inicial do botão */
+.menu-toggle {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #ffff;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s; /* Transições suaves */
+}
+
+/* Efeito de clique - mudando a cor */
+.menu-toggle.clicked {
+  color:#FFFACD;
+  transform: scale(1.1); /* Aumenta o tamanho do botão */
+}
+
+      .nav-menu {
+    display: none; /* Inicialmente oculto */
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 61px;
+    left: 0;
+    width: 250px; /* Ajuste conforme necessário */
+    height: 100vh;
+    background-color: #0088B5; /* Cor principal da brand */
+    padding: 15px 0;
+    padding-left: 10px;
+    z-index: 999;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+.nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu ul li {
+    margin: 10px 0;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #E0F7FF; /* Azul claro para contraste */
+    font-size: 18px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Submenu (subcategorias) */
+.submenu {
+    display: none; /* Inicialmente escondido */
+    flex-direction: column;
+    background-color: #006F99; /* Tom mais escuro para diferenciação */
+    padding-left: 15px;
+    margin-top: 5px;
+    border-left: 3px solid #00A3CC; /* Tom intermediário para um detalhe moderno */
+}
+
+.submenu a {
+    font-size: 16px;
+    color: #B3E5FC; /* Azul bem claro para legibilidade */
+    padding: 5px 10px;
+}
+
+.submenu a:hover {
+    color: white; /* Destaque total no hover */
+}
+
+/* Efeito Hover */
+.nav-menu ul li a:hover {
+    color: #005577; /* Azul mais escuro para contraste */
+    background-color: #E0F7FF; /* Azul claro no fundo para efeito suave */
+    padding-left: 10px; /* Efeito sutil de deslocamento */
+    border-radius: 4px; /* Arredondamento para um visual moderno */
+}
+
+.nav-menu.active {
+    display: flex; /* Exibir quando ativado */
+}
+
+
+        
+/* Ajustes para telas menores (celulares) */
+@media (max-width: 768px) {
+  .promo-image {
+    width: 70%; /* A imagem ocupa 70% da largura em celulares */
+  }
+
+  .promo-gif {
+    width: 30%; /* O GIF ocupa 30% da largura em celulares */
+  }
+
+  /* Se necessário, pode ajustar a altura para garantir uma proporção adequada */
+  .promo-image, .promo-gif {
+    display: inline-block; /* Manter as colunas lado a lado */
+  }
+}
+  .promo-image img, .promo-gif img {
+    height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
+  }
+
+    .navigation-buttons {
+    margin-bottom: 30px;
+    display: flex; /* Define o uso do Flexbox */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente */
+}
+
+.navigation-buttons a {
+    background: #0288d1; /* Azul claro */ 
+    color: white;
+    font-size: 16px;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 20px;
+    margin: 0 10px;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.navigation-buttons a:hover {
+    background: #012063; /* Tom mais escuro de azul */  
+}
+        
+.hide-elements {
+    display: none; /* Classe que oculta elementos */
+}
+        
+/* Estilo normal do botão */
+#order-car-btn {
+  background-color: #0088B5; /* Cor de fundo original */
+  color: white; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: none; /* Sem borda */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor em forma de mão */
+  border-radius: 4px; /* Bordas arredondadas */
+  transition: background-color 0.3s, transform 0.3s; /* Transição suave */
+}
+
+/* Efeito hover */
+#order-car-btn:hover {
+  background-color: #357ab7; /* Cor de fundo ao passar o mouse */
+  transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+}    
+
+/* Estilos do Rodapé */
+.footer {
+    background-color: #0088B5;
+    color: #fff;
+    padding: 20px 10px;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.footer-logo {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.footer-title {
+    margin: 0;
+}
+
+.footer-slogan {
+    margin: 0;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.footer-contacts, .footer-socials, .footer-navigation {
+    margin-bottom: 10px;
+}
+
+.footer-section-title {
+    margin-bottom: 5px;
+}
+
+.footer-contact-item {
+    margin: 0;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social-icon {
+    color: #fff;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-social-icon:hover {
+    color: #ff66b2 !important;
+}
+
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav-list .footer-nav-item {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-nav-item:hover {
+    color: #ff66b2 !important;
+    text-decoration: underline;
+}
+
+.footer-copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    border-top: 1px solid #fff;
+    padding-top: 10px;
+}
+
+.footer-copyright p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Cor específica para o WhatsApp */
+.footer-social-icon.whatsapp {
+    color: #25D366;
+}
+
+html, body, *, *::before, *::after {
+    cursor: default !important; /* Força cursor normal para tudo */
+    user-select: none !important; /* Impede seleção de texto */
+}
+div, span, section, header, footer, main, article {
+    pointer-events: auto !important;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+    <div class="menu-toggle">
+    <i class="fas fa-bars"></i> <!-- Toggle icon -->
+     </div>
+     <a href="#" class="logo">
+            <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+ <div class="notification" onclick="toggleNotificationMenu()">
+      <i class="fas fa-bell"></i>
+      <span class="badge" id="notification-badge">3</span>
+      <div class="notification-menu" id="notification-menu">
+        <a href="novidades.html" class="notification-item" onclick="markAsRead(0)">
+          <i class="fas fa-gift"></i> Novidades para você!
+        </a>
+        <a href="ofertas.html" class="notification-item" onclick="markAsRead(1)">
+          <i class="fas fa-tag"></i> Oferta especial!
+        </a>
+        <a href="dicas.html" class="notification-item" onclick="markAsRead(2)">
+          <i class="fas fa-lightbulb"></i> Confira nossas dicas!
+        </a>
+      </div>
+    </div>
+    </header>
+       
+<!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+             <li>
+                <a href="#" class="category">Marca</a>
+                <ul class="submenu">
+                    <li><a href="automatica.html">Toyota</a></li>
+                    <li><a href="manual.html">Isuzu</a></li>
+                    <li><a href="manual.html">BMW</a></li>
+                    <li><a href="mercedes.html">Mercedes-Benz</a></li>
+                    <li><a href="manual.html">Ford</a></li>
+                    <li><a href="manual.html">Audi</a></li>
+                    <li><a href="manual.html">Honda</a></li>
+                </ul>
+            </li>
+              <li>
+                <a href="#" class="category">Modelo</a>
+                <ul class="submenu">
+                    <li><a href="automatica.html">SUV</a></li>
+                    <li><a href="manual.html">Sedan</a></li>
+                    <li><a href="automatica.html">Pickup</a></li>
+                    <li><a href="manual.html">Minivan</a></li>
+                    <li><a href="manual.html">Esportivo</a></li>
+                    <li><a href="manual.html">Conversível</a></li>
+                    <li><a href="manual.html">Caminhonetas</a></li>
+                    <li><a href="manual.html">Caminhões</a></li>
+                </ul>
+            </li>
+              <li>
+                <a href="#" class="category">Transmissão</a>
+                <ul class="submenu">
+                    <li><a href="automatica.html">Automática</a></li>
+                    <li><a href="manual.html">Manual</a></li>
+                </ul>
+            </li>
+               <li>
+                <a href="#" class="category">Viaturas Comerciais</a>
+                <ul class="submenu">
+                       <li><a href="manual.html">Caminhonetas</a></li>
+                </ul>
+               </li>
+            <li><a href="sobrenos.html">Máquinas Agrícolas</a></li>
+            <li><a href="sobrenos.html">Ofertas e Novidades</a></li>
+            <li><a href="alugarviatura.html">Alugar Viatura</a></li>
+    </div>
+
+    <div class="container">
+   
+        <div class="slogan-container">
+    <p class="slogan">"Seu futuro começa aqui!"</p>
+</div>
+        <!-- Tabela para o banner -->
+<table class="banner-table">
+  <tr>
+    <!-- Imagem promocional -->
+    <td class="promo-image">
+      <img src="https://i.ibb.co/ch5jvJ2x/IMG-20250216-005434.jpg" alt="Imagem Promocional">
+    </td>
+
+    <!-- GIF do carro -->
+    <td class="promo-gif">
+      <img src="https://i.ibb.co/d2LC7ts/ezgif-com-cut-1.gif" alt="GIF do Carro Correndo">
+    </td>
+  </tr>
+</table
+     </div>
+    
+     <div class="search-bar">
+  <input 
+    type="text" 
+    id="search-input" 
+    placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+    oninput="filterProducts(this.value)" 
+  />
+  <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+    🔍
+  </button>
+</div>
+
+<!-- Área de Resultados -->
+<div id="search-results"></div>
+    
+<!-- Mensagem de "Sem Resultados" -->
+<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
+  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
+</div>
+  </div>
+    
+      <!-- Botões de Navegação -->
+        <div class="navigation-buttons">
+            <a href="novos.html">Novos</a>
+              <a href="seminovos.html">Semi-novos</a>
+            <a href="usados.html" id="usadosButton">Usados</a>
+        </div>
+    
+        <div class="product-grid">
+            <!-- Exemplo de produto -->
+            <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg/300" alt="Carro 1">
+                <h3>Audi Q5, 2018</h3>
+                <p class="price">Preço: 1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+               <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg/300" alt="Carro 2">
+                <h3>Proton X70</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="protonentreposto.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+              <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg/300" alt="Carro 1">
+                <h3>Audi Q7, 2017</h3>
+                <p class="price">Preço: 1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+              <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+             <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+                <p class="price">Preço: 1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+           <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+            <!-- Mais produtos podem ser adicionados aqui -->
+        </div>
+    </div>
+
+<!-- Rodapé -->
+<footer class="footer">
+    <!-- Logo e Slogan -->
+    <div class="footer-logo-slogan">
+        <img src="https://i.ibb.co/Rp4kzky/Logopit-1736106739595.png/160x80" alt="Logo" class="footer-logo">
+        <div>
+            <h3 class="footer-title">Grupo Entreposto</h3>
+            <p class="footer-slogan">"Seu futuro começa aqui!"</p>
+        </div>
+    </div>
+
+    <!-- Contatos -->
+    <div class="footer-contacts">
+        <h4 class="footer-section-title">Contatos</h4>
+        <p class="footer-contact-item"><i class="fas fa-phone-alt"></i>+258 852136558</p>
+        <p class="footer-contact-item"><i class="fas fa-envelope"></i>eugenioalbertocumbane02@gmail.com</p>
+    </div>
+
+    <!-- Redes Sociais -->
+    <div class="footer-socials">
+        <h4 class="footer-section-title">Redes Sociais</h4>
+        <div class="footer-social-links">
+         <a href="fb://page/Entreposto.MZ" target="_blank" class="footer-social-icon">
+  <i class="fab fa-facebook"></i> <!-- Ícone do Facebook -->
+</a>
+            <a href="#" target="_blank" class="footer-social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/258852136558" target="_blank" class="footer-social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Navegação Rápida -->
+    <div class="footer-navigation">
+        <h4 class="footer-section-title">Navegação Rápida</h4>
+        <ul class="footer-nav-list">
+            <li>
+                <a href="#" class="footer-nav-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+            </li>
+            <li>
+                <a href="sobrenosentreposto.html" class="footer-nav-item">
+                    <i class="fas fa-info-circle"></i> Sobre Nós
+                </a>
+            </li>
+            <li>
+                <a href="#" class="footer-nav-item">
+                    <i class="fas fa-concierge-bell"></i> Serviços
+                </a>
+            </li>
+            <li>
+                <a href="#" class="footer-nav-item">
+                    <i class="fas fa-phone-alt"></i> Contato
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Direitos Autorais -->
+    <div class="footer-copyright">
+        <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+ 
+    </script>
+
+<!-- Inclua a biblioteca Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+
+  <script>
+        // Seleciona todos os itens principais de categoria
+        const categories = document.querySelectorAll('.category');
+
+        categories.forEach(category => {
+            category.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita redirecionamento
+
+                // Seleciona o submenu relacionado
+                const submenu = this.nextElementSibling;
+
+                // Alterna a exibição do submenu
+                if (submenu.style.display === 'flex') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+
+</script>
+        
+
+       <script>
+function filterProducts(searchTerm) {
+  const search = searchTerm.toLowerCase();
+  const productCards = document.querySelectorAll(".product-card");
+  const noResultsMessage = document.getElementById('no-results-message');
+  const navigationButtons = document.querySelector('.navigation-buttons');
+  const footer = document.querySelector('footer'); // Obtém o rodapé
+  let resultsFound = false; // Flag para verificar se encontrou resultados
+
+  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
+  noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
+  navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
+  footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
+
+  // Filtra os produtos
+  productCards.forEach(card => {
+    const productName = card.querySelector("h3").textContent.toLowerCase();
+    if (productName.includes(search)) {
+      card.style.display = "block"; // Mostra o card
+      resultsFound = true; // Marcar que encontrou pelo menos um produto
+    } else {
+      card.style.display = "none"; // Esconde o card
+    }
+  });
+
+  // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem
+  if (!resultsFound && searchTerm !== '') {
+    noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
+    navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
+    footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
+  } else if (resultsFound || searchTerm === '') {
+    // Se encontrou resultados ou o campo de pesquisa está vazio
+    noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
+    navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
+    footer.style.visibility = 'visible'; // Mostra o rodapé
+  }
+}
+
+</script>
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
+
+     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
+</body>
+</html>
