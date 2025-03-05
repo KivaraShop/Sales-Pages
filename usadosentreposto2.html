@@ -1118,29 +1118,24 @@ div, span, section, header, footer, main, article {
     </div>
 </footer>
   <script>
+// Array de imagens para o slider
 const images = [
-    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/MAZDA.jpg',
-    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/HYUNDAI.jpg',
-    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/BMW.jpg'
+   'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/headers/Mazda%20web.jpg',
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/headers/Mazda%20web2.jpg',
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/headers/Mazda%20web3.jpg'
 ];
 
 let currentImageIndex = 0;
 const heroSection = document.querySelector('.hero-section');
 
-// Função para trocar a imagem com efeito de slide e fade
+// Função para trocar a imagem do background com fade
 function changeImage() {
-    heroSection.style.transition = 'none'; // Remove transição temporariamente
+    heroSection.classList.add('fade'); // Ativa a transição de fade
     setTimeout(() => {
-        heroSection.style.transition = 'background-image 1s ease-in-out, opacity 1s ease-in-out, transform 1s ease-in-out';
-        heroSection.style.opacity = 0; // Aplica o fade
-        heroSection.style.transform = 'translateX(100%)'; // Desloca a imagem para a direita
-        setTimeout(() => {
-            heroSection.style.opacity = 1; // Restaura a opacidade
-            heroSection.style.transform = 'translateX(0)'; // A imagem volta à posição original
-            heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-        }, 500); // Tempo para o deslocamento e fade
-    }, 10); // Delay para garantir que a transição aconteça
+        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
+        heroSection.classList.remove('fade'); // Remove o fade após a troca da imagem
+        currentImageIndex = (currentImageIndex + 1) % images.length; // Incrementa o índice, voltando para 0 se ultrapassar o número de imagens
+    }, 1000); // Tempo de duração da transição
 }
 
 // Troca a imagem automaticamente a cada 5 segundos
