@@ -628,29 +628,35 @@ div, span, section, header, footer, main, article {
     gap: 20px;
 }
 
-.brand-search {
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.brand-search, .model-search {
     background-color: #0088B5;
     padding: 15px;
     border-radius: 8px;
     color: white;
     font-family: Arial, sans-serif;
-    width: 250px;
-    flex-shrink: 0;
 }
 
-.brand-search h3 {
+.brand-search h3, .model-search h3 {
     font-size: 18px;
     margin-bottom: 10px;
     text-align: center;
 }
 
-.brand-search ul {
+.brand-search ul, .model-search ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.brand-search li {
+.brand-search li, .model-search li {
     display: flex;
     align-items: center;
     padding: 8px;
@@ -659,15 +665,15 @@ div, span, section, header, footer, main, article {
     font-size: 14px;
 }
 
-.brand-search li:last-child {
+.brand-search li:last-child, .model-search li:last-child {
     border-bottom: none;
 }
 
-.brand-search li:hover {
+.brand-search li:hover, .model-search li:hover {
     background-color: #005f7a;
 }
 
-.brand-search img {
+.brand-search img, .model-search img {
     width: 25px;
     height: 25px;
     object-fit: contain;
@@ -799,33 +805,37 @@ div, span, section, header, footer, main, article {
               <a href="seminovos.html">Semi-novos</a>
             <a href="usados.html" id="usadosButton">Usados</a>
         </div>
-  <div class="content-container">
-    <div class="brand-search">
-        <h3>Busca por Marca</h3>
-        <ul>
-            <li><img src="URL_DA_IMAGEM" alt="Toyota"> Toyota (60,247)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Honda"> Honda (19,208)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Nissan"> Nissan (22,413)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Mazda"> Mazda (8,850)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Suzuki"> Suzuki (18,169)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Mitsubishi"> Mitsubishi (5,461)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Daihatsu"> Daihatsu (9,579)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Subaru"> Subaru (8,390)</li>
-        </ul>
-    </div>
-       <div class="content-container">
-          <div class="brand-search">
-        <h3>Busca por Modelo</h3>
-        <ul>
-            <li><img src="URL_DA_IMAGEM" alt="Toyota"> Toyota (60,247)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Honda"> Honda (19,208)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Nissan"> Nissan (22,413)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Mazda"> Mazda (8,850)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Suzuki"> Suzuki (18,169)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Mitsubishi"> Mitsubishi (5,461)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Daihatsu"> Daihatsu (9,579)</li>
-            <li><img src="URL_DA_IMAGEM" alt="Subaru"> Subaru (8,390)</li>
-        </ul>
+ <div class="content-container">
+    <div class="sidebar">
+        <!-- Busca por Marca -->
+        <div class="brand-search">
+            <h3>Busca por Marca</h3>
+            <ul>
+                <li><img src="URL_DA_IMAGEM_TOYOTA" alt="Toyota"> Toyota (60,247)</li>
+                <li><img src="URL_DA_IMAGEM_HONDA" alt="Honda"> Honda (19,208)</li>
+                <li><img src="URL_DA_IMAGEM_NISSAN" alt="Nissan"> Nissan (22,413)</li>
+                <li><img src="URL_DA_IMAGEM_MAZDA" alt="Mazda"> Mazda (8,850)</li>
+                <li><img src="URL_DA_IMAGEM_SUZUKI" alt="Suzuki"> Suzuki (18,169)</li>
+                <li><img src="URL_DA_IMAGEM_MITSUBISHI" alt="Mitsubishi"> Mitsubishi (5,461)</li>
+                <li><img src="URL_DA_IMAGEM_DAIHATSU" alt="Daihatsu"> Daihatsu (9,579)</li>
+                <li><img src="URL_DA_IMAGEM_SUBARU" alt="Subaru"> Subaru (8,390)</li>
+            </ul>
+        </div>
+
+        <!-- Busca por Modelo -->
+        <div class="model-search">
+            <h3>Busca por Modelo</h3>
+            <ul>
+                <li><img src="URL_DA_IMAGEM_COROLLA" alt="Corolla"> Corolla (15,320)</li>
+                <li><img src="URL_DA_IMAGEM_CIVIC" alt="Civic"> Civic (12,450)</li>
+                <li><img src="URL_DA_IMAGEM_ALTIMA" alt="Altima"> Altima (9,876)</li>
+                <li><img src="URL_DA_IMAGEM_CX5" alt="CX-5"> CX-5 (7,341)</li>
+                <li><img src="URL_DA_IMAGEM_SWIFT" alt="Swift"> Swift (6,220)</li>
+                <li><img src="URL_DA_IMAGEM_PAJERO" alt="Pajero"> Pajero (4,985)</li>
+                <li><img src="URL_DA_IMAGEM_TERIOS" alt="Terios"> Terios (3,842)</li>
+                <li><img src="URL_DA_IMAGEM_FORESTER" alt="Forester"> Forester (5,690)</li>
+            </ul>
+        </div>
     </div>
         <div class="product-grid">
             <!-- Exemplo de produto -->
