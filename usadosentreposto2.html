@@ -869,14 +869,18 @@ div, span, section, header, footer, main, article {
     margin-top: 10px;
   }
 
-  .review-link {
+  .more-reviews-link {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9rem;
     color: #0088B5;
-    font-size: 1rem;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: normal;
+    transition: color 0.3s ease;
   }
 
-  .review-link:hover {
+  .more-reviews-link:hover {
+    color: #005f8d;
     text-decoration: underline;
   }
 
@@ -1226,7 +1230,7 @@ div, span, section, header, footer, main, article {
         </div>
     </div>
 
- <!-- Seção de Avaliações do Google -->
+<!-- Seção de Avaliações do Google -->
 <section class="google-reviews">
   <div class="container">
     <h2 class="section-title">O que nossos clientes dizem</h2>
@@ -1245,6 +1249,7 @@ div, span, section, header, footer, main, article {
             <span class="star">&#9733;</span>
           </div>
           <p class="review-text">"Ótimo atendimento! O processo de compra foi rápido e fácil. Recomendo a todos!"</p>
+          <a href="#" class="more-reviews-link">Ver mais avaliações</a>
         </div>
         <div class="review-card">
           <div class="author-info">
@@ -1259,6 +1264,7 @@ div, span, section, header, footer, main, article {
             <span class="star">&#9734;</span>
           </div>
           <p class="review-text">"Excelente experiência de compra. O carro chegou em perfeito estado!"</p>
+          <a href="#" class="more-reviews-link">Ver mais avaliações</a>
         </div>
         <!-- Adicione mais cards de avaliação conforme necessário -->
       </div>
@@ -1349,7 +1355,6 @@ div, span, section, header, footer, main, article {
 
   // Definir um intervalo para rolar automaticamente
   setInterval(scrollReviews, 3000);  // A cada 3 segundos
-
 </script>
   <script>
 // Array de imagens para o slider
