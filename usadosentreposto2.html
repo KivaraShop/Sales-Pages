@@ -444,19 +444,21 @@ button:hover {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
 
-/* Ajuste para manter a barra de pesquisa e os botões na mesma linha */
-.search-bar,
-.navigation-buttons {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
+/* Contêiner para manter a barra de pesquisa e os botões alinhados horizontalmente */
+.search-navigation-container {
+    display: flex;
+    justify-content: center; /* Centraliza na página */
+    align-items: center; /* Alinha verticalmente */
+    gap: 15px; /* Espaço entre a barra de pesquisa e os botões */
+    margin: 20px auto;
+    max-width: 900px; /* Largura máxima */
 }
 
 /* Barra de Pesquisa */
 .search-bar {
-    margin: 20px 10px;
+    display: flex;
+    flex: 1;
     max-width: 600px;
-    flex-grow: 1; /* Permite ajuste automático */
 }
 
 #search-input {
@@ -477,10 +479,10 @@ button:hover {
     font-size: 18px;
 }
 
-/* Botões de Navegação ao lado da barra de pesquisa */
+/* Botões de Navegação */
 .navigation-buttons {
-    display: inline-flex;
-    margin-left: 15px; /* Espaço entre a barra de pesquisa e os botões */
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
 }
 
 .navigation-buttons a {
@@ -490,7 +492,6 @@ button:hover {
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 20px;
-    margin: 0 5px; /* Espaço entre os botões */
     display: inline-block;
     transition: background 0.3s;
 }
@@ -840,7 +841,7 @@ div, span, section, header, footer, main, article {
     <p class="slogan">"Seu futuro começa aqui!"</p>
 </div>
 
-    
+    <div class="search-navigation-container">
      <div class="search-bar">
   <input 
     type="text" 
@@ -851,6 +852,12 @@ div, span, section, header, footer, main, article {
   <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
     🔍
   </button>
+   <!-- Botões de Navegação -->
+        <div class="navigation-buttons">
+            <a href="novos.html">Novos</a>
+              <a href="seminovos.html">Semi-novos</a>
+            <a href="usados.html" id="usadosButton">Usados</a>
+        </div>
 </div>
 
 <!-- Área de Resultados -->
@@ -863,12 +870,7 @@ div, span, section, header, footer, main, article {
 </div>
   </div>
     
-      <!-- Botões de Navegação -->
-        <div class="navigation-buttons">
-            <a href="novos.html">Novos</a>
-              <a href="seminovos.html">Semi-novos</a>
-            <a href="usados.html" id="usadosButton">Usados</a>
-        </div>
+   
  <div class="content-container">
     <div class="sidebar">
         <!-- Busca por Marca -->
