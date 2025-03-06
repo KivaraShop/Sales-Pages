@@ -795,7 +795,84 @@ div, span, section, header, footer, main, article {
             background: white;
             color: #003366;
         }
+.google-reviews {
+    background-color: #f5f5f5;
+    padding: 40px 0;
+    font-family: Arial, sans-serif;
+  }
 
+  .google-reviews .container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #0088B5;
+    margin-bottom: 30px;
+  }
+
+  .reviews {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 48%;
+    box-sizing: border-box;
+  }
+
+  .review-rating {
+    color: #ffcc00;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .star {
+    margin-right: 3px;
+  }
+
+  .review-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .review-author {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .review-link {
+    color: #0088B5;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .review-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .reviews {
+      flex-direction: column;
+    }
+
+    .review-card {
+      width: 100%;
+    }
+  }
     </style>
 </head>
 <body>
@@ -1136,6 +1213,38 @@ div, span, section, header, footer, main, article {
         </div>
     </div>
 
+    <section class="google-reviews">
+  <div class="container">
+    <h2 class="section-title">O que nossos clientes dizem</h2>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="review-rating">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+        </div>
+        <p class="review-text">"Ótimo atendimento! O processo de compra foi rápido e fácil. Recomendo a todos!"</p>
+        <p class="review-author">João Silva</p>
+        <a href="#" class="review-link" target="_blank">Veja mais avaliações no Google</a>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9734;</span>
+        </div>
+        <p class="review-text">"Excelente experiência de compra. O carro chegou em perfeito estado!"</p>
+        <p class="review-author">Maria Oliveira</p>
+        <a href="#" class="review-link" target="_blank">Veja mais avaliações no Google</a>
+      </div>
+    </div>
+  </div>
+</section>
+    
 <!-- Rodapé -->
 <footer class="footer">
     <!-- Logo e Slogan -->
