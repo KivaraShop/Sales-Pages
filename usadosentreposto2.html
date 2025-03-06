@@ -444,13 +444,19 @@ button:hover {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
 
- /* Mantém a barra de pesquisa e os botões na mesma linha */
-.search-bar {
+/* Ajuste para manter a barra de pesquisa e os botões na mesma linha */
+.search-bar,
+.navigation-buttons {
     display: inline-flex;
     align-items: center;
+    vertical-align: middle;
+}
+
+/* Barra de Pesquisa */
+.search-bar {
     margin: 20px 10px;
     max-width: 600px;
-    vertical-align: middle;
+    flex-grow: 1; /* Permite ajuste automático */
 }
 
 #search-input {
@@ -471,11 +477,10 @@ button:hover {
     font-size: 18px;
 }
 
-/* Botões de Navegação */
+/* Botões de Navegação ao lado da barra de pesquisa */
 .navigation-buttons {
     display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
+    margin-left: 15px; /* Espaço entre a barra de pesquisa e os botões */
 }
 
 .navigation-buttons a {
@@ -485,7 +490,7 @@ button:hover {
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 20px;
-    margin-left: 10px; /* Espaço entre os botões */
+    margin: 0 5px; /* Espaço entre os botões */
     display: inline-block;
     transition: background 0.3s;
 }
