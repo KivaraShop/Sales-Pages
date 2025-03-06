@@ -290,7 +290,31 @@ button:hover {
     position: relative;
 }
 
+       /* Barra de Pesquisa */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
 
+#search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+#search-btn {
+  background-color: #0288d1; /* Azul claro */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  font-size: 18px;
+}
 #no-results-message {
     display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
     text-align: center;
@@ -444,62 +468,28 @@ button:hover {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
 
-/* Container full-width para manter os elementos lado a lado */
-.search-navigation-container {
-    display: flex;
-    justify-content: space-between; /* Mantém espaçamento adequado */
+    .navigation-buttons {
+    margin-bottom: 30px;
+    display: flex; /* Define o uso do Flexbox */
+    justify-content: center; /* Centraliza os itens horizontalmente */
     align-items: center; /* Alinha os itens verticalmente */
-    width: 100%; /* Ocupa toda a largura */
-    padding: 0 20px; /* Espaço nas laterais para não ficar colado na borda */
-    box-sizing: border-box; /* Evita que o padding quebre o layout */
-}
-
-/* Barra de Pesquisa */
-.search-bar {
-    display: flex;
-    flex: 1;
-    max-width: 600px;
-}
-
-#search-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-    font-size: 16px;
-}
-
-#search-btn {
-    background-color: #0288d1; /* Azul claro */
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 0 4px 4px 0;
-    color: white;
-    font-size: 18px;
-}
-
-/* Botões de Navegação */
-.navigation-buttons {
-    display: flex;
-    gap: 10px; /* Espaço entre os botões */
 }
 
 .navigation-buttons a {
-    background: #0288d1; /* Azul claro */
+    background: #0288d1; /* Azul claro */ 
     color: white;
     font-size: 16px;
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 20px;
+    margin: 0 10px;
     display: inline-block;
     transition: background 0.3s;
 }
 
 .navigation-buttons a:hover {
-    background: #012063; /* Tom mais escuro de azul */
+    background: #012063; /* Tom mais escuro de azul */  
 }
-
         
 .hide-elements {
     display: none; /* Classe que oculta elementos */
@@ -841,7 +831,7 @@ div, span, section, header, footer, main, article {
     <p class="slogan">"Seu futuro começa aqui!"</p>
 </div>
 
-    <div class="search-navigation-container">
+    
      <div class="search-bar">
   <input 
     type="text" 
@@ -852,12 +842,6 @@ div, span, section, header, footer, main, article {
   <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
     🔍
   </button>
-   <!-- Botões de Navegação -->
-        <div class="navigation-buttons">
-            <a href="novos.html">Novos</a>
-              <a href="seminovos.html">Semi-novos</a>
-            <a href="usados.html" id="usadosButton">Usados</a>
-        </div>
 </div>
 
 <!-- Área de Resultados -->
@@ -870,7 +854,12 @@ div, span, section, header, footer, main, article {
 </div>
   </div>
     
-   
+      <!-- Botões de Navegação -->
+        <div class="navigation-buttons">
+            <a href="novos.html">Novos</a>
+              <a href="seminovos.html">Semi-novos</a>
+            <a href="usados.html" id="usadosButton">Usados</a>
+        </div>
  <div class="content-container">
     <div class="sidebar">
         <!-- Busca por Marca -->
