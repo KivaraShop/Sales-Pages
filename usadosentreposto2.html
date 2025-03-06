@@ -795,7 +795,7 @@ div, span, section, header, footer, main, article {
             background: white;
             color: #003366;
         }
-  .google-reviews {
+.google-reviews {
     background-color: #f5f5f5;
     padding: 40px 0;
     font-family: Arial, sans-serif;
@@ -814,11 +814,14 @@ div, span, section, header, footer, main, article {
     margin-bottom: 30px;
   }
 
+  .reviews-wrapper {
+    overflow: hidden;
+    width: 100%;
+  }
+
   .reviews {
     display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 20px;
+    transition: transform 0.5s ease;
   }
 
   .review-card {
@@ -827,12 +830,27 @@ div, span, section, header, footer, main, article {
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     min-width: 300px;
+    margin-right: 20px;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    text-align: center;
   }
 
-  .review-card:hover {
-    transform: scale(1.05);
+  .author-info {
+    margin-bottom: 10px;
+  }
+
+  .author-photo {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .review-author {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
   }
 
   .review-rating {
@@ -848,27 +866,7 @@ div, span, section, header, footer, main, article {
   .review-text {
     font-size: 1rem;
     color: #555;
-    margin-bottom: 10px;
-  }
-
-  .review-author-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
-  .author-photo {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-
-  .review-author {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #333;
+    margin-top: 10px;
   }
 
   .review-link {
@@ -882,14 +880,10 @@ div, span, section, header, footer, main, article {
     text-decoration: underline;
   }
 
+  /* Estilo para dispositivos móveis */
   @media (max-width: 768px) {
     .reviews {
       flex-direction: column;
-      padding: 0;
-    }
-
-    .review-card {
-      width: 100%;
     }
   }
     </style>
@@ -1236,36 +1230,37 @@ div, span, section, header, footer, main, article {
 <section class="google-reviews">
   <div class="container">
     <h2 class="section-title">O que nossos clientes dizem</h2>
-    <div class="reviews">
-      <div class="review-card">
-        <div class="review-rating">
-          <span class="star">&#9733;</span>
-          <span class="star">&#9733;</span>
-          <span class="star">&#9733;</span>
-          <span class="star">&#9733;</span>
-          <span class="star">&#9733;</span>
+    <div class="reviews-wrapper">
+      <div class="reviews">
+        <div class="review-card">
+          <div class="author-info">
+            <img src="https://via.placeholder.com/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">João Silva</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+          </div>
+          <p class="review-text">"Ótimo atendimento! O processo de compra foi rápido e fácil. Recomendo a todos!"</p>
         </div>
-        <p class="review-text">"Ótimo atendimento! O processo de compra foi rápido e fácil. Recomendo a todos!"</p>
-        <div class="review-author-info">
-          <img src="https://via.placeholder.com/50" alt="Foto do avaliador" class="author-photo">
-          <p class="review-author">João Silva</p>
+        <div class="review-card">
+          <div class="author-info">
+            <img src="https://via.placeholder.com/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">Maria Oliveira</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9734;</span>
+          </div>
+          <p class="review-text">"Excelente experiência de compra. O carro chegou em perfeito estado!"</p>
         </div>
-        <a href="#" class="review-link" target="_blank">Veja mais avaliações no Google</a>
-      </div>
-      <div class="review-card">
-        <div class="review-rating">
-          <span class="star">&#9733;</span>
-          <span class="star">&#9733;</span>
-          <span class="star">&#9733;</span>
-          <span class="star">&#9733;</span>
-          <span class="star">&#9734;</span>
-        </div>
-        <p class="review-text">"Excelente experiência de compra. O carro chegou em perfeito estado!"</p>
-        <div class="review-author-info">
-          <img src="https://via.placeholder.com/50" alt="Foto do avaliador" class="author-photo">
-          <p class="review-author">Maria Oliveira</p>
-        </div>
-        <a href="#" class="review-link" target="_blank">Veja mais avaliações no Google</a>
+        <!-- Adicione mais cards de avaliação conforme necessário -->
       </div>
     </div>
   </div>
@@ -1337,6 +1332,25 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
+    <script>
+  let currentIndex = 0;
+  const reviewsContainer = document.querySelector('.reviews');
+  const reviewCards = document.querySelectorAll('.review-card');
+  const totalReviews = reviewCards.length;
+
+  function scrollReviews() {
+    if (currentIndex >= totalReviews - 1) {
+      currentIndex = 0;  // Voltar para o início
+    } else {
+      currentIndex++;
+    }
+    reviewsContainer.style.transform = `translateX(-${currentIndex * 340}px)`;  // Ajuste a largura dos cards se necessário
+  }
+
+  // Definir um intervalo para rolar automaticamente
+  setInterval(scrollReviews, 3000);  // A cada 3 segundos
+
+</script>
   <script>
 // Array de imagens para o slider
 const images = [
