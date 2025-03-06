@@ -735,6 +735,54 @@ div, span, section, header, footer, main, article {
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
+.brands-section {
+            display: flex;
+            width: 100%;
+        }
+        .brand-card {
+            position: relative;
+            flex: 1;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .brand-card:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .brand-card:nth-child(2) p {
+            font-size: 14px;
+            font-weight: normal;
+            margin-top: 10px;
+        }
+        .brand-card:nth-child(2) a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .brand-card:nth-child(2) a:hover {
+            text-decoration: underline;
+        }
+        .brand-card span {
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: white;
+            margin-top: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -778,6 +826,27 @@ div, span, section, header, footer, main, article {
         </div>
     </div>
 </section>
+<div class="brands-section">
+    <div class="brand-card" style="background-image: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/BMW.jpg');">
+        BMW
+         <span></span>
+        <p>Hyundai Motor Company, sediada em Seul na Coreia do Sul, e fundada por Chung Ju-Yung em 1967</p>
+        <a href="#">READ MORE</a>
+    </div>
+    <div class="brand-card" style="background-image: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/HYUNDAI.jpg');">
+        HYUNDAI
+        <span></span>
+        <p>Hyundai Motor Company, sediada em Seul na Coreia do Sul, e fundada por Chung Ju-Yung em 1967</p>
+        <a href="#">READ MORE</a>
+    </div>
+    <div class="brand-card" style="background-image: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/MAZDA.jpg');">
+        MAZDA
+         <span></span>
+        <p>Hyundai Motor Company, sediada em Seul na Coreia do Sul, e fundada por Chung Ju-Yung em 1967</p>
+        <a href="#">READ MORE</a>
+    </div>
+</div>
+
 <!-- Hidden menu items, will toggle on click -->
     <div class="nav-menu">
         <ul>
