@@ -891,7 +891,7 @@ div, span, section, header, footer, main, article {
     }
   }
 
-         .parceiros-section {
+  .parceiros-section {
       padding: 20px;
       background-color: #f8f8f8;
     }
@@ -1012,9 +1012,31 @@ div, span, section, header, footer, main, article {
       <div class="parceiro">
         <img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda">
       </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mercedes">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Audi">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Hyundai">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/QFGxfnbk/ford-logo-2017-640.png" alt="Ford">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/C5dmDsWR/bmw-logo-2020-gray.png" alt="BMW">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/C3GwMKQj/Volvo-logo-2014-1920x1080.png" alt="Volvo">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/YTBmjcVm/jeep-logo-1993-640.png" alt="Jeep">
+      </div>
     </div>
     <div id="ver-mais" class="ver-mais" onclick="toggleParceiros()">Ver mais</div>
   </section>
+
 
 
 <!-- Hidden menu items, will toggle on click -->
@@ -1418,16 +1440,19 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
-    <script>
+     <script>
     function toggleParceiros() {
-      const container = document.getElementById('parceiros-container');
+      const parceiros = document.querySelectorAll('.parceiro.hidden');
       const verMais = document.getElementById('ver-mais');
       
-      container.classList.toggle('hidden');
-      if (container.classList.contains('hidden')) {
-        verMais.textContent = 'Ver mais';
-      } else {
+      parceiros.forEach(parceiro => {
+        parceiro.classList.toggle('hidden');
+      });
+      
+      if (verMais.textContent === 'Ver mais') {
         verMais.textContent = 'Ver menos';
+      } else {
+        verMais.textContent = 'Ver mais';
       }
     }
   </script>
