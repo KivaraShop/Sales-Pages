@@ -290,18 +290,18 @@ button:hover {
     position: relative;
 }
 
-       /* Barra de Pesquisa */
+/* Flexbox direto nas duas seções */
+.search-bar,
+.navigation-buttons {
+  display: inline-flex; /* Faz com que ambos os elementos fiquem lado a lado */
+  align-items: center; /* Alinha os itens verticalmente */
+}
+
 .search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-  max-width: 600px;
-  flex: 1; /* Permite que o elemento ocupe o máximo de espaço disponível */
+  margin-right: 20px; /* Espaço entre a barra de pesquisa e os botões */
 }
 
 #search-input {
-  flex: 1; /* Permite que a caixa de pesquisa ocupe o máximo de espaço possível */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
@@ -317,6 +317,27 @@ button:hover {
   color: white;
   font-size: 18px;
 }
+
+.navigation-buttons {
+  margin-left: 20px; /* Espaço entre os botões de navegação */
+}
+
+.navigation-buttons a {
+  background: #0288d1; /* Azul claro */
+  color: white;
+  font-size: 16px;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 20px;
+  margin: 0 10px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.navigation-buttons a:hover {
+  background: #012063; /* Tom mais escuro de azul */
+}
+
 #no-results-message {
     display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
     text-align: center;
@@ -470,29 +491,7 @@ button:hover {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
 
-   .navigation-buttons {
-  margin-bottom: 30px;
-  display: flex; /* Define o uso do Flexbox */
-  justify-content: center; /* Centraliza os itens horizontalmente */
-  align-items: center; /* Alinha os itens verticalmente */
-  flex: 1; /* Permite que ocupe o máximo de espaço disponível */
-}
-
-.navigation-buttons a {
-  background: #0288d1; /* Azul claro */
-  color: white;
-  font-size: 16px;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 20px;
-  margin: 0 10px;
-  display: inline-block;
-  transition: background 0.3s;
-}
-
-.navigation-buttons a:hover {
-  background: #012063; /* Tom mais escuro de azul */
-}
+ 
 
         
 .hide-elements {
