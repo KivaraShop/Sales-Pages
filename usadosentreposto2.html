@@ -1444,26 +1444,26 @@ div, span, section, header, footer, main, article {
 </footer>
      <script>
 function toggleParceiros() {
-  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
-  const verMais = document.getElementById('ver-mais');
-  
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden'); // Seleciona os logotipos ocultos
+  const verMais = document.getElementById('ver-mais'); // Seleciona o botão Ver Mais/Ver Menos
+
   if (verMais.textContent === 'Ver mais') {
     // Exibe todos os parceiros ocultos
     parceirosOcultos.forEach(parceiro => {
-      parceiro.classList.remove('hidden');
+      parceiro.classList.remove('hidden'); // Remove a classe 'hidden' para exibir
     });
     verMais.textContent = 'Ver menos'; // Altera o texto para "Ver menos"
   } else {
-    // Oculta apenas os parceiros que estão com a classe 'hidden'
-    const parceirosOcultosParaOcultar = document.querySelectorAll('.parceiro.hidden');
-    parceirosOcultosParaOcultar.forEach(parceiro => {
-      parceiro.classList.add('hidden');
+    // Oculta apenas os logotipos que estavam ocultos
+    const parceiros = document.querySelectorAll('.parceiro'); // Seleciona todos os parceiros
+    parceiros.forEach(parceiro => {
+      if (parceiro.classList.contains('hidden')) {
+        parceiro.classList.add('hidden'); // Adiciona a classe 'hidden' de volta aos ocultos
+      }
     });
-    
     verMais.textContent = 'Ver mais'; // Altera o texto para "Ver mais"
   }
 }
-
 
   </script>
     <script>
