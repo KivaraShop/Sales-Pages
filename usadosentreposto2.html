@@ -1443,30 +1443,18 @@ div, span, section, header, footer, main, article {
     </div>
 </footer>
      <script>
-// Função para alternar entre exibir e ocultar os parceiros
-function toggleParceiros() {
-  const parceirosContainer = document.querySelector('.parceiros-container'); // Seleciona o container dos parceiros
-  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden'); // Seleciona os parceiros com a classe 'hidden'
-  const verMais = document.getElementById('ver-mais'); // Seleciona o botão "Ver mais/menos"
+function mostrarParceiros() {
+  // Seleciona todos os parceiros que têm a classe 'hidden' (ocultos)
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden'); 
   
-  // Verifica o texto do botão para alternar entre "Ver mais" e "Ver menos"
-  if (verMais.textContent === 'Ver mais') {
-    // Exibe todos os parceiros ocultos, removendo a classe 'hidden'
-    parceirosOcultos.forEach(parceiro => {
-      parceiro.classList.remove('hidden'); // Remove a classe 'hidden' para exibir o parceiro
-    });
+  // Itera por cada parceiro oculto e remove a classe 'hidden' para exibi-los
+  parceirosOcultos.forEach(parceiro => {
+    parceiro.classList.remove('hidden'); // Remove a classe 'hidden'
+  });
 
-    // Atualiza o texto do botão para "Ver menos"
-    verMais.textContent = 'Ver menos';
-  } else {
-    // Oculta os parceiros novamente, adicionando a classe 'hidden'
-    parceirosOcultos.forEach(parceiro => {
-      parceiro.classList.add('hidden'); // Adiciona a classe 'hidden' para ocultar o parceiro
-    });
-
-    // Atualiza o texto do botão para "Ver mais"
-    verMais.textContent = 'Ver mais';
-  }
+  // Esconde o botão "Ver mais" após exibir os parceiros
+  const verMais = document.getElementById('ver-mais');
+  verMais.style.display = 'none'; // Torna o botão invisível após o clique
 }
 
   </script>
