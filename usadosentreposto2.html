@@ -291,23 +291,30 @@ button:hover {
 }
 
 /* Flexbox para o container que envolve ambos */
+/* Flexbox para o container que envolve ambos */
 .parent {
   display: flex; /* Faz com que os elementos filhos fiquem lado a lado */
   justify-content: space-between; /* Espaça os filhos igualmente entre os extremos */
   align-items: center; /* Alinha verticalmente os elementos */
   width: 100%; /* Garantir que o container ocupe toda a largura */
+  padding: 0; /* Remover qualquer padding extra */
+  margin: 0; /* Remover qualquer margem extra */
 }
 
 /* A barra de pesquisa à esquerda */
 .search-bar {
   display: flex;
   align-items: center;
+  margin: 0; /* Remove qualquer margem extra */
+  padding: 0; /* Remove qualquer padding extra */
 }
 
 /* Os botões de navegação à direita */
 .navigation-buttons {
   display: flex;
   align-items: center;
+  margin: 0; /* Remove qualquer margem extra */
+  padding: 0; /* Remove qualquer padding extra */
 }
 
 #search-input {
@@ -315,6 +322,7 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
   font-size: 16px;
+  margin: 0; /* Remove qualquer margem extra */
 }
 
 #search-btn {
@@ -334,7 +342,7 @@ button:hover {
   padding: 8px 16px;
   text-decoration: none;
   border-radius: 20px;
-  margin: 0 10px;
+  margin: 0 10px; /* Adiciona algum espaço entre os links */
   display: inline-block;
   transition: background 0.3s;
 }
