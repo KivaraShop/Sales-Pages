@@ -1444,26 +1444,26 @@ div, span, section, header, footer, main, article {
 </footer>
      <script>
 function toggleParceiros() {
-  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden'); // Seleciona os logotipos ocultos
-  const verMais = document.getElementById('ver-mais'); // Seleciona o botão Ver Mais/Ver Menos
-
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden'); // Seleciona os parceiros com a classe 'hidden'
+  const verMais = document.getElementById('ver-mais'); // Seleciona o botão "Ver mais/menos"
+  
+  // Quando o botão for "Ver mais", exibe os parceiros ocultos
   if (verMais.textContent === 'Ver mais') {
-    // Exibe todos os parceiros ocultos
     parceirosOcultos.forEach(parceiro => {
       parceiro.classList.remove('hidden'); // Remove a classe 'hidden' para exibir
     });
     verMais.textContent = 'Ver menos'; // Altera o texto para "Ver menos"
-  } else {
-    // Oculta apenas os logotipos que estavam ocultos
-    const parceiros = document.querySelectorAll('.parceiro'); // Seleciona todos os parceiros
-    parceiros.forEach(parceiro => {
-      if (parceiro.classList.contains('hidden')) {
-        parceiro.classList.add('hidden'); // Adiciona a classe 'hidden' de volta aos ocultos
-      }
+  } 
+  // Quando o botão for "Ver menos", oculta os parceiros novamente
+  else {
+    // Aqui você oculta somente os parceiros com a classe 'hidden', sem afetar os que já estão visíveis
+    parceirosOcultos.forEach(parceiro => {
+      parceiro.classList.add('hidden'); // Adiciona a classe 'hidden' novamente
     });
     verMais.textContent = 'Ver mais'; // Altera o texto para "Ver mais"
   }
 }
+
 
   </script>
     <script>
