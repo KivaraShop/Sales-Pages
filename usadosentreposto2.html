@@ -1448,25 +1448,27 @@ function toggleParceiros() {
   const verMais = document.getElementById('ver-mais');
   
   if (verMais.textContent === 'Ver mais') {
-    // Exibe todos os logotipos ocultos removendo a classe 'hidden'
+    // Exibe todos os logotipos ocultos
     parceirosOcultos.forEach(parceiro => {
       parceiro.classList.remove('hidden');
     });
     verMais.textContent = 'Ver menos'; // Altera o texto para "Ver menos"
   } else {
-    // Oculta todos os logotipos além dos primeiros 7, adicionando a classe 'hidden'
+    // Oculta novamente todos os logotipos além dos 7 primeiros
     const parceiros = document.querySelectorAll('.parceiro');
     parceiros.forEach(parceiro => {
       parceiro.classList.add('hidden');
     });
-    // Mantém os primeiros 7 visíveis
-    document.querySelectorAll('.parceiro:nth-child(n+8)').forEach(parceiro => {
+
+    // Mantém os 7 primeiros visíveis
+    const primeiros7 = document.querySelectorAll('.parceiro:nth-child(-n+7)');
+    primeiros7.forEach(parceiro => {
       parceiro.classList.remove('hidden');
     });
+
     verMais.textContent = 'Ver mais'; // Altera o texto para "Ver mais"
   }
-}
-
+  }
   </script>
     <script>
   let currentIndex = 0;
