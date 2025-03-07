@@ -890,6 +890,41 @@ div, span, section, header, footer, main, article {
       flex-direction: column;
     }
   }
+
+         .parceiros-section {
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+    
+    .parceiros-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .parceiro {
+      text-align: center;
+      width: 120px;
+    }
+    
+    .parceiro img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    
+    .ver-mais {
+      text-align: center;
+      margin-top: 10px;
+      cursor: pointer;
+      color: #007BFF;
+      font-weight: bold;
+    }
+    
+    .parceiros-container.hidden {
+      display: none;
+    }
     </style>
 </head>
 <body>
@@ -956,6 +991,31 @@ div, span, section, header, footer, main, article {
         </div>
     </div>
 </div>
+ <section class="parceiros-section">
+    <h2>Nossos Parceiros</h2>
+    <div class="parceiros-container" id="parceiros-container">
+      <div class="parceiro">
+        <img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/mVKg6sJD/Peugeot-logo-2010-1920x1080.png" alt="Peugeot">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/Rp6xsbBK/toyota-logo-2020-europe-640.png" alt="Toyota">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/HT0ppYzb/Proton-logo-2016-2048x2048.png" alt="Proton">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/GvHfjQrx/nissan-logo-2020-black-show.png" alt="Nissan">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda">
+      </div>
+    </div>
+    <div id="ver-mais" class="ver-mais" onclick="toggleParceiros()">Ver mais</div>
+  </section>
+
 
 <!-- Hidden menu items, will toggle on click -->
     <div class="nav-menu">
@@ -1358,6 +1418,19 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
+    <script>
+    function toggleParceiros() {
+      const container = document.getElementById('parceiros-container');
+      const verMais = document.getElementById('ver-mais');
+      
+      container.classList.toggle('hidden');
+      if (container.classList.contains('hidden')) {
+        verMais.textContent = 'Ver mais';
+      } else {
+        verMais.textContent = 'Ver menos';
+      }
+    }
+  </script>
     <script>
   let currentIndex = 0;
   const reviewsContainer = document.querySelector('.reviews');
