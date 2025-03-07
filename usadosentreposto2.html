@@ -1036,7 +1036,7 @@ div, span, section, header, footer, main, article {
         <img src="https://i.ibb.co/YTBmjcVm/jeep-logo-1993-640.png" alt="Jeep">
       </div>
     </div>
-    <div id="ver-mais" class="ver-mais" onclick="toggleParceiros()">Ver mais</div>
+  <div id="ver-mais" class="ver-mais" onclick="mostrarParceiros()">Ver mais</div>
   </section>
 
 
@@ -1444,20 +1444,19 @@ div, span, section, header, footer, main, article {
 </footer>
      <script>
 function mostrarParceiros() {
-  // Seleciona todos os parceiros que estão ocultos (com a classe 'hidden')
+  // Seleciona todos os parceiros que têm a classe 'hidden'
   const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
-  
-  // Remove a classe 'hidden' para exibir os parceiros ocultos
+
+  // Itera por cada parceiro oculto e remove a classe 'hidden' para exibi-los
   parceirosOcultos.forEach(parceiro => {
     parceiro.classList.remove('hidden');
   });
 
-  // Seleciona o botão "Ver mais"
+  // Esconde o botão "Ver mais" após exibir os parceiros
   const verMais = document.getElementById('ver-mais');
-  
-  // Torna o botão "Ver mais" invisível após exibir os parceiros ocultos
-  verMais.style.display = 'none'; 
+  verMais.style.display = 'none'; // Torna o botão invisível após o clique
 }
+
 
   </script>
     <script>
