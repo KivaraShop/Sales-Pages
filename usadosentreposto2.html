@@ -294,12 +294,14 @@ button:hover {
 .search-bar {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 20px auto;
   max-width: 600px;
+  flex: 1; /* Permite que o elemento ocupe o máximo de espaço disponível */
 }
 
 #search-input {
-  flex: 1;
+  flex: 1; /* Permite que a caixa de pesquisa ocupe o máximo de espaço possível */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
@@ -468,28 +470,30 @@ button:hover {
     height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
   }
 
-    .navigation-buttons {
-    margin-bottom: 30px;
-    display: flex; /* Define o uso do Flexbox */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Alinha os itens verticalmente */
+   .navigation-buttons {
+  margin-bottom: 30px;
+  display: flex; /* Define o uso do Flexbox */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Alinha os itens verticalmente */
+  flex: 1; /* Permite que ocupe o máximo de espaço disponível */
 }
 
 .navigation-buttons a {
-    background: #0288d1; /* Azul claro */ 
-    color: white;
-    font-size: 16px;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 20px;
-    margin: 0 10px;
-    display: inline-block;
-    transition: background 0.3s;
+  background: #0288d1; /* Azul claro */
+  color: white;
+  font-size: 16px;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 20px;
+  margin: 0 10px;
+  display: inline-block;
+  transition: background 0.3s;
 }
 
 .navigation-buttons a:hover {
-    background: #012063; /* Tom mais escuro de azul */  
+  background: #012063; /* Tom mais escuro de azul */
 }
+
         
 .hide-elements {
     display: none; /* Classe que oculta elementos */
