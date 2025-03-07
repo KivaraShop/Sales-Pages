@@ -1444,17 +1444,19 @@ div, span, section, header, footer, main, article {
 </footer>
      <script>
 function mostrarParceiros() {
-  // Seleciona todos os parceiros que têm a classe 'hidden' (ocultos)
-  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden'); 
+  // Seleciona todos os parceiros que estão ocultos (com a classe 'hidden')
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
   
-  // Itera por cada parceiro oculto e remove a classe 'hidden' para exibi-los
+  // Remove a classe 'hidden' para exibir os parceiros ocultos
   parceirosOcultos.forEach(parceiro => {
-    parceiro.classList.remove('hidden'); // Remove a classe 'hidden'
+    parceiro.classList.remove('hidden');
   });
 
-  // Esconde o botão "Ver mais" após exibir os parceiros
+  // Seleciona o botão "Ver mais"
   const verMais = document.getElementById('ver-mais');
-  verMais.style.display = 'none'; // Torna o botão invisível após o clique
+  
+  // Torna o botão "Ver mais" invisível após exibir os parceiros ocultos
+  verMais.style.display = 'none'; 
 }
 
   </script>
