@@ -1443,29 +1443,27 @@ div, span, section, header, footer, main, article {
     </div>
 </footer>
      <script>
-  function toggleParceiros() {
-  const parceiros = document.querySelectorAll('.parceiro');
+function toggleParceiros() {
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
   const verMais = document.getElementById('ver-mais');
-
-  let hiddenCount = 0;
-
-  // Verifica quantos parceiros estão ocultos e alterna a visibilidade
-  parceiros.forEach(parceiro => {
-    if (parceiro.classList.contains('hidden')) {
-      parceiro.classList.remove('hidden');
-      hiddenCount++;
-    } else {
-      if (hiddenCount < parceiros.length - 7) {
-        parceiro.classList.add('hidden');
-      }
-    }
-  });
-
-  // Alterna o texto do botão
+  
   if (verMais.textContent === 'Ver mais') {
-    verMais.textContent = 'Ver menos';
+    // Exibe todos os logotipos ocultos removendo a classe 'hidden'
+    parceirosOcultos.forEach(parceiro => {
+      parceiro.classList.remove('hidden');
+    });
+    verMais.textContent = 'Ver menos'; // Altera o texto para "Ver menos"
   } else {
-    verMais.textContent = 'Ver mais';
+    // Oculta todos os logotipos além dos primeiros 7, adicionando a classe 'hidden'
+    const parceiros = document.querySelectorAll('.parceiro');
+    parceiros.forEach(parceiro => {
+      parceiro.classList.add('hidden');
+    });
+    // Mantém os primeiros 7 visíveis
+    document.querySelectorAll('.parceiro:nth-child(n+8)').forEach(parceiro => {
+      parceiro.classList.remove('hidden');
+    });
+    verMais.textContent = 'Ver mais'; // Altera o texto para "Ver mais"
   }
 }
 
