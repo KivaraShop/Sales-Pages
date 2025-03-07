@@ -1454,15 +1454,16 @@ function toggleParceiros() {
     });
     verMais.textContent = 'Ver menos'; // Altera o texto para "Ver menos"
   } else {
-    // Oculta novamente os parceiros que têm a classe 'hidden'
-    const parceiros = document.querySelectorAll('.parceiro');
-    parceiros.forEach(parceiro => {
+    // Oculta apenas os parceiros que estão com a classe 'hidden'
+    const parceirosOcultosParaOcultar = document.querySelectorAll('.parceiro.hidden');
+    parceirosOcultosParaOcultar.forEach(parceiro => {
       parceiro.classList.add('hidden');
     });
     
     verMais.textContent = 'Ver mais'; // Altera o texto para "Ver mais"
   }
 }
+
 
   </script>
     <script>
