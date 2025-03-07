@@ -290,21 +290,24 @@ button:hover {
     position: relative;
 }
 
-/* Flexbox direto nas duas seções */
-.search-bar,
-.navigation-buttons {
-  display: inline-flex; /* Faz com que ambos os elementos fiquem lado a lado */
-  align-items: center; /* Alinha os itens verticalmente */
+/* Flexbox para o container que envolve ambos */
+.parent {
+  display: flex; /* Faz com que os elementos filhos fiquem lado a lado */
+  justify-content: space-between; /* Espaça os filhos igualmente entre os extremos */
+  align-items: center; /* Alinha verticalmente os elementos */
+  width: 100%; /* Garantir que o container ocupe toda a largura */
 }
 
-/* Barra de pesquisa alinhada à esquerda */
+/* A barra de pesquisa à esquerda */
 .search-bar {
-  margin-right: auto; /* Garante que a search bar fique à esquerda */
+  display: flex;
+  align-items: center;
 }
 
-/* Botões de navegação alinhados à direita */
+/* Os botões de navegação à direita */
 .navigation-buttons {
-  margin-left: auto; /* Garante que os botões fiquem à direita */
+  display: flex;
+  align-items: center;
 }
 
 #search-input {
@@ -339,6 +342,7 @@ button:hover {
 .navigation-buttons a:hover {
   background: #012063; /* Tom mais escuro de azul */
 }
+
 
 #no-results-message {
     display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
@@ -1100,23 +1104,25 @@ div, span, section, header, footer, main, article {
 </div>
 
     
-     <div class="search-bar">
-  <input 
-    type="text" 
-    id="search-input" 
-    placeholder="Pesquisar Marca, Modelo, Transmissão ..."
-    oninput="filterProducts(this.value)" 
-  />
-  <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
-    🔍
-  </button>
+ <div class="parent">
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+  
+  <div class="navigation-buttons">
+    <a href="novos.html">Novos</a>
+    <a href="seminovos.html">Semi-novos</a>
+    <a href="usados.html" id="usadosButton">Usados</a>
+  </div>
 </div>
-      <!-- Botões de Navegação -->
-        <div class="navigation-buttons">
-            <a href="novos.html">Novos</a>
-              <a href="seminovos.html">Semi-novos</a>
-            <a href="usados.html" id="usadosButton">Usados</a>
-        </div>
         
 <!-- Área de Resultados -->
 <div id="search-results"></div>
