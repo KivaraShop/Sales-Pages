@@ -891,7 +891,7 @@ div, span, section, header, footer, main, article {
     }
   }
 
-  .parceiros-section {
+     .parceiros-section {
       padding: 20px;
       background-color: #f8f8f8;
     }
@@ -922,7 +922,7 @@ div, span, section, header, footer, main, article {
       font-weight: bold;
     }
     
-    .parceiros-container.hidden {
+    .hidden {
       display: none;
     }
     </style>
@@ -991,9 +991,10 @@ div, span, section, header, footer, main, article {
         </div>
     </div>
 </div>
- <section class="parceiros-section">
+<section class="parceiros-section">
     <h2>Nossos Parceiros</h2>
     <div class="parceiros-container" id="parceiros-container">
+      <!-- Exibindo 7 parceiros inicialmente -->
       <div class="parceiro">
         <img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu">
       </div>
@@ -1015,12 +1016,13 @@ div, span, section, header, footer, main, article {
       <div class="parceiro">
         <img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mercedes">
       </div>
-      <div class="parceiro hidden">
+         <div class="parceiro">
         <img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Audi">
       </div>
-      <div class="parceiro hidden">
+     <div class="parceiro">
         <img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Hyundai">
       </div>
+      <!-- Logotipos ocultos -->
       <div class="parceiro hidden">
         <img src="https://i.ibb.co/QFGxfnbk/ford-logo-2017-640.png" alt="Ford">
       </div>
@@ -1442,10 +1444,10 @@ div, span, section, header, footer, main, article {
 </footer>
      <script>
     function toggleParceiros() {
-      const parceiros = document.querySelectorAll('.parceiro.hidden');
+      const hiddenParceiros = document.querySelectorAll('.parceiro.hidden');
       const verMais = document.getElementById('ver-mais');
       
-      parceiros.forEach(parceiro => {
+      hiddenParceiros.forEach(parceiro => {
         parceiro.classList.toggle('hidden');
       });
       
