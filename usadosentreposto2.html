@@ -1543,21 +1543,19 @@ function mostrarParceiros() {
 }
   </script>
     <script>
- let currentIndex = 0;
+let currentIndex = 0;
 const reviewsContainer = document.querySelector('.reviews');
 const reviewCards = document.querySelectorAll('.review-card');
 const totalReviews = reviewCards.length;
-const cardWidth = 340; // Largura dos cards, ajuste conforme necessário
+const cardWidth = reviewCards[0].offsetWidth + 15; // Largura do card + espaçamento (margin-right)
+const containerWidth = reviewsContainer.offsetWidth; // Largura do container
 
 function scrollReviews() {
-  const lastReview = reviewCards[totalReviews - 1];
-  const containerWidth = reviewsContainer.offsetWidth;
-  const lastReviewPosition = lastReview.offsetLeft + lastReview.offsetWidth;
-
-  // Verificar se o último review está completamente visível
-  if (lastReviewPosition <= containerWidth) {
-    // Se o último review estiver visível, reinicia o scroll
-    currentIndex = 0;
+  // Verificar se o último card está visível dentro do container
+  const lastReviewPosition = (currentIndex + 1) * cardWidth;  // Posição final do último card no container
+  if (lastReviewPosition >= containerWidth) {
+    // Se a posição do último card for maior ou igual à largura do container, reinicie o scroll
+    currentIndex = 0; // Volta para o início
   } else {
     // Caso contrário, avançar para o próximo review
     if (currentIndex >= totalReviews - 1) {
@@ -1567,11 +1565,12 @@ function scrollReviews() {
     }
   }
 
-  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;  // Ajuste a largura dos cards
+  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`; // Atualiza o scroll
 }
 
 // Definir um intervalo para rolar automaticamente
 setInterval(scrollReviews, 3000);  // A cada 3 segundos
+
 </script>
   <script>
 // Array de imagens para o slider
