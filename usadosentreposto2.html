@@ -1632,26 +1632,6 @@ div, span, section, header, footer, main, article {
     </div>
 </footer>
 
-       <script>
-        // Seleciona o grid de produtos
-const productGrid = document.querySelector('.product-grid');
-
-// Cria o observador para detectar quando o grid entra ou sai da tela
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
-            entry.target.classList.add('show');
-        } else {
-            // Se o grid sai da tela, remove a classe para permitir a animação novamente
-            entry.target.classList.remove('show');
-        }
-    });
-}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
-
-// Inicia a observação
-observer.observe(productGrid);
-            </script>
      <script>
 function mostrarParceiros() {
   // Seleciona todos os parceiros que têm a classe 'hidden'
