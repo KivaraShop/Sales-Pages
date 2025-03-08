@@ -312,75 +312,200 @@ p {
  .showroom-iframe {
     visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
 }    
+/* Estilo geral da seção de contato */
 .contact-section {
-    background: linear-gradient(135deg, #ffcc00, #ff6600);
-    padding: 20px;
+    background-color: #f1f1f1;
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact-section h2 {
+    color: #0088B5;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.contact-section p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Informações do telefone */
+.phone-info {
+    background-color: #25D366;
+    color: white;
+    padding: 25px;
     border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     text-align: center;
-    margin-left: 20px;
-    max-width: 300px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    color: #fff;
 }
-.contact-title {
+
+.phone-info:hover {
+    transform: scale(1.05);
+}
+
+.phone-info h3 {
     font-size: 22px;
+    margin-bottom: 15px;
     font-weight: bold;
-    margin-bottom: 10px;
 }
-.contact-subtitle {
-    font-size: 16px;
-    margin-bottom: 15px;
+
+.phone-info p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
-.contact-benefits {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    margin-bottom: 15px;
-}
-.contact-benefits li {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-.contact-benefits i {
-    color: #00ff00;
-    margin-right: 8px;
-}
-.contact-actions {
-    display: flex;
-    flex-direction: column;
-}
-.contact-btn {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    font-size: 16px;
+
+.show-phone-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    font-size: 18px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
     font-weight: bold;
 }
-.call-btn {
-    background: #ff0000;
-    color: white;
+
+.show-phone-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
 }
-.whatsapp-btn {
-    background: #25d366;
+
+.phone-description {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Estilo do botão WhatsApp */
+.whatsapp-info {
+    background-color: #075E54;
     color: white;
-    text-decoration: none;
+    padding: 25px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     text-align: center;
-    display: flex;
+}
+
+.whatsapp-info:hover {
+    transform: scale(1.05);
+}
+
+.whatsapp-info h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    background-color: #128C7E;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
 }
+
 .whatsapp-btn i {
-    margin-right: 8px;
+    margin-right: 10px;
 }
-.hidden {
-    display: none;
+
+.whatsapp-btn:hover {
+    background-color: #075E54;
+    transform: scale(1.05);
+}
+
+.whatsapp-description {
     font-size: 16px;
-    margin-top: 10px;
+    color: #fff;
+    margin-top: 20px;
+    font-style: italic;
 }
+
+/* Chamada para ação */
+.cta-section {
+    background-color: #ff6600;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.cta-section h3 {
+    font-size: 26px;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.cta-section p {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.cta-btn {
+    background-color: #ff3333;
+    color: white;
+    padding: 15px 25px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #e62e2e;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .phone-info, .whatsapp-info {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .cta-btn {
+        width: 100%;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -437,8 +562,39 @@ p {
                 <div>
     <p></p>
 </div>
+
                         <!-- Botão para exibir a ficha técnica -->
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
+
+<div class="contact-section">
+    <h2>Está Pronto Para Transformar Sua Vida?</h2>
+    <p>Nosso número está esperando para conectar você com a solução dos seus problemas. Não perca tempo, o futuro começa agora!</p>
+
+    <div class="contact-info">
+        <!-- Contato por Telefone -->
+        <div class="phone-info">
+            <h3><i class="fas fa-phone-alt"></i> Seu Contato Direto</h3>
+            <p id="phone-number">8521*****</p>
+            <button id="show-phone" class="show-phone-btn">Clique para mostrar o número</button>
+            <p class="phone-description">Nosso número está esperando por sua ligação ou mensagem. Não fique para trás, entre em contato agora!</p>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="whatsapp-info">
+            <h3><i class="fab fa-whatsapp"></i> Fale Conosco no WhatsApp</h3>
+            <a href="https://wa.me/+258852136558" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Vamos conversar agora!
+            </a>
+            <p class="whatsapp-description">Com um simples clique você entra diretamente em contato com a gente. Não perca tempo, estamos prontos para atender suas necessidades!</p>
+        </div>
+    </div>
+    
+    <div class="cta-section">
+        <h3>O Que Você Está Esperando?</h3>
+        <p>Entre em contato e descubra como podemos revolucionar o seu negócio com as soluções mais inovadoras. **NÃO ESPERE MAIS**!</p>
+        <a href="https://wa.me/+258852136558" target="_blank" class="cta-btn">Clique Aqui Para Falar Conosco Já!</a>
+    </div>
+</div>
                 
         </section>
         
@@ -521,9 +677,12 @@ p {
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
     <script>
-function revealPhone() {
-    document.getElementById('phone-number').classList.remove('hidden');
-}
+document.getElementById("show-phone").addEventListener("click", function() {
+    var phoneNumber = document.getElementById("phone-number");
+    phoneNumber.textContent = "852136558"; // Exibe o número completo
+    this.style.display = "none"; // Esconde o botão após clicar
+});
+
 </script>
 
 <script>
