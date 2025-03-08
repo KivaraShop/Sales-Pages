@@ -151,10 +151,20 @@ h2 {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(5, 1fr);
     gap: 15px;
     flex-grow: 1;
+    opacity: 0; /* Inicialmente invisível */
+    transform: translateY(50px); /* Começa abaixo */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Animação */
 }
+
+/* Classe que será adicionada quando os produtos entrarem na tela */
+.product-grid.show {
+    opacity: 1;
+    transform: translateY(0); /* Move para a posição original */
+}
+
 
 .product-card {
     background-color: #FFFF; /* Branco */
@@ -1508,6 +1518,24 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
+
+       <script>
+           // Seleciona o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Cria um observador que detecta quando o grid entra na tela
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Quando o grid entrar na tela, adiciona a classe 'show' para ativar a animação
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.5 }); // O grid será considerado visível quando 50% dele entrar na tela
+
+// Inicia a observação no grid de produtos
+observer.observe(productGrid);
+            </script>
      <script>
 function mostrarParceiros() {
   // Seleciona todos os parceiros que têm a classe 'hidden'
@@ -1522,8 +1550,6 @@ function mostrarParceiros() {
   const verMais = document.getElementById('ver-mais');
   verMais.style.display = 'none'; // Torna o botão invisível após o clique
 }
-
-
   </script>
     <script>
   let currentIndex = 0;
