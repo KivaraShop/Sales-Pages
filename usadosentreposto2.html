@@ -1549,27 +1549,26 @@ const reviewCards = document.querySelectorAll('.review-card');
 const totalReviews = reviewCards.length;
 const cardWidth = reviewCards[0].offsetWidth + 15; // Largura do card + espaçamento (margin-right)
 const containerWidth = reviewsContainer.offsetWidth; // Largura do container
+let isScrolling = false;  // Flag para garantir que não haja conflito ao scrollar
 
 function scrollReviews() {
-  // Verificar se o último card está visível dentro do container
-  const lastReviewPosition = (currentIndex + 1) * cardWidth;  // Posição final do último card no container
-  if (lastReviewPosition >= containerWidth) {
-    // Se a posição do último card for maior ou igual à largura do container, reinicie o scroll
-    currentIndex = 0; // Volta para o início
+  // Verifica se já atingiu a última posição
+  const maxScroll = (totalReviews - 1) * cardWidth;
+
+  if (currentIndex * cardWidth >= maxScroll) {
+    // Se já estiver na última posição, reiniciar
+    currentIndex = 0;
   } else {
-    // Caso contrário, avançar para o próximo review
-    if (currentIndex >= totalReviews - 1) {
-      currentIndex = 0;  // Voltar para o início
-    } else {
-      currentIndex++;
-    }
+    currentIndex++;
   }
 
-  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`; // Atualiza o scroll
+  // Aplicar o novo scroll
+  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
 }
 
 // Definir um intervalo para rolar automaticamente
 setInterval(scrollReviews, 3000);  // A cada 3 segundos
+
 
 </script>
   <script>
