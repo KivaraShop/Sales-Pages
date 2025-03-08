@@ -1631,7 +1631,64 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
+<script>
+function filterProducts(searchTerm) {
+    const search = searchTerm.toLowerCase();
+    const productCards = document.querySelectorAll(".product-card");
+    const noResultsMessage = document.getElementById('no-results-message');
+    const navigationButtons = document.querySelector('.navigation-buttons');
+    const footer = document.querySelector('footer');
+    const googleReviewsContainer = document.querySelector('.google-reviews .container');
+    const brandSearch = document.querySelector('.brand-search');
+    const modelSearch = document.querySelector('.model-search');
+    let resultsFound = false;
 
+    // Resetando os elementos para estado padrão antes da filtragem
+    noResultsMessage.style.display = 'none'; 
+    noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
+    navigationButtons.style.visibility = 'visible';
+    footer.style.visibility = 'visible';
+    googleReviewsContainer.style.visibility = 'visible';
+    brandSearch.style.visibility = 'visible';
+    modelSearch.style.visibility = 'visible';
+
+    // Filtra os produtos
+    productCards.forEach(card => {
+        const productName = card.querySelector("h3").textContent.toLowerCase();
+        if (productName.includes(search)) {
+            card.style.display = "block";
+            resultsFound = true;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
+    if (!resultsFound && searchTerm !== '') {
+        noResultsMessage.style.display = 'block'; // Garante que ele está visível
+        setTimeout(() => {
+            noResultsMessage.classList.add('show'); // Ativa a animação
+        }, 10);
+
+        navigationButtons.style.visibility = 'hidden';
+        footer.style.visibility = 'hidden';
+        googleReviewsContainer.style.visibility = 'hidden';
+        brandSearch.style.visibility = 'hidden';
+        modelSearch.style.visibility = 'hidden';
+    } else if (resultsFound || searchTerm === '') {
+        noResultsMessage.classList.remove('show'); // Remove o efeito
+        setTimeout(() => {
+            noResultsMessage.style.display = 'none'; // Esconde após a animação
+        }, 600);
+
+        navigationButtons.style.visibility = 'visible';
+        footer.style.visibility = 'visible';
+        googleReviewsContainer.style.visibility = 'visible';
+        brandSearch.style.visibility = 'visible';
+        modelSearch.style.visibility = 'visible';
+    }
+}
+</script> 
      <script>
 function mostrarParceiros() {
   // Seleciona todos os parceiros que têm a classe 'hidden'
