@@ -1568,6 +1568,48 @@ div, span, section, header, footer, main, article {
     </div>
 </footer>
 
+ <script>
+// Observador para as marcas
+const brandObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // Atraso para cada marca baseado no seu índice
+            setTimeout(() => {
+                // Adiciona a classe 'visible' após o delay para animar
+                entry.target.classList.add('visible');
+            }, index * 300); // 300ms de atraso entre as marcas
+        } else {
+            // Se sair da tela, remove a classe 'visible'
+            entry.target.classList.remove('visible');
+        }
+    });
+}, {
+    threshold: 0.25  // A animação começa quando 25% da marca estiver visível
+});
+
+// Seleciona todas as marcas na lista e começa a observá-las
+const brands = document.querySelectorAll('.brand-search li');
+brands.forEach(brand => brandObserver.observe(brand));
+
+// Observador para o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Criar observador para grid de produtos
+const gridObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Adiciona a classe 'show' apenas para o grid de produtos
+            entry.target.classList.add('show');
+        } else {
+            // Remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 25% do grid estiver visível
+
+// Inicia a observação para o grid de produtos
+gridObserver.observe(productGrid);
+     </script>
        <script>
         // Seleciona o grid de produtos
 const productGrid = document.querySelector('.product-grid');
@@ -1583,7 +1625,7 @@ const observer = new IntersectionObserver(entries => {
             entry.target.classList.remove('show');
         }
     });
-}, { threshold: 0.3 }); // Ativa quando 30% do grid estiver visível
+}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
 
 // Inicia a observação
 observer.observe(productGrid);
