@@ -1642,7 +1642,7 @@ div, span, section, header, footer, main, article {
     
  <script>
 // Observador para as marcas
-const observer = new IntersectionObserver((entries, observer) => {
+const brandObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
             // Atraso para cada marca baseado no seu índice
@@ -1661,27 +1661,26 @@ const observer = new IntersectionObserver((entries, observer) => {
 
 // Seleciona todas as marcas na lista e começa a observá-las
 const brands = document.querySelectorAll('.brand-search li');
-brands.forEach(brand => observer.observe(brand));
- </script>
-     <script>
-// Seleciona o grid de produtos
+brands.forEach(brand => brandObserver.observe(brand));
+
+// Observador para o grid de produtos
 const productGrid = document.querySelector('.product-grid');
 
-// Cria o observador para detectar quando o grid entra ou sai da tela
-const observer = new IntersectionObserver(entries => {
+// Criar observador para grid de produtos
+const gridObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
+            // Adiciona a classe 'show' apenas para o grid de produtos
             entry.target.classList.add('show');
         } else {
-            // Se o grid sai da tela, remove a classe para permitir a animação novamente
+            // Remove a classe para permitir a animação novamente
             entry.target.classList.remove('show');
         }
     });
-}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
+}, { threshold: 0.25 }); // Ativa quando 25% do grid estiver visível
 
-// Inicia a observação
-observer.observe(productGrid);
+// Inicia a observação para o grid de produtos
+gridObserver.observe(productGrid);
      </script>
        <script>
         // Seleciona o grid de produtos
