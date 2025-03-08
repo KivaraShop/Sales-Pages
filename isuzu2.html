@@ -39,25 +39,23 @@
         padding: 20px;
     }
 
-    .car-details {
-        display: flex;
-        flex-direction: row;  /* Coloca as seções lado a lado */
-        align-items: flex-start;  /* Alinha as seções ao topo */
-        gap: 0 !important;/* Espaçamento entre as seções */
-        margin: 0 !important; /* Remove margens extras na descrição */
-    padding: 0 !important; /* Remove qualquer padding */
-        width: 50%;
-    }
+  .car-details {
+    display: flex;
+    flex-direction: row; /* Mantém lado a lado */
+    align-items: flex-start; /* Alinha no topo */
+    gap: 0; /* Remove espaçamento extra */
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Garante que a seção ocupe a largura correta */
+}
 
-    .car-gallery {
-    width: 100% !important; /* Ajuste de largura para exibir ao lado da info do carro */
-        text-align: center;
-        position: relative; 
-             gap: 0 !important;/* Espaçamento entre as seções */
-        margin: 0 !important; /* Remove margens extras na descrição */
-    padding: 0 !important;
-     
-    }
+.car-gallery {
+    width: 60%; /* Ajustado para 60% para melhor equilíbrio */
+    text-align: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
     .main-image img {
         width: 80%;
         max-width: 400px; /* Limita a largura máxima da imagem */
@@ -136,16 +134,14 @@
         border: 2px solid #00aaff; /* Borda azul para a miniatura ativa */
     }
 
-    .car-info {
-        max-width: 25% !important; /* Ajusta a largura da seção */
-        text-align: left; /* Alinha o texto à esquerda */
-        column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
-         padding: 0px; /* Reduz o padding à esquerda */
-    padding: 0px; /
-    margin: 0px; /* Remove as margens externas */
- 
-    }
-
+  .car-info {
+    width: 25%; /* Ajusta para ocupar o espaço restante */
+    text-align: left;
+    column-gap: 10px; /* Mantém espaçamento entre colunas */
+    padding: 0;
+    margin: 0;
+}
+     
     .car-info h1 {
         color: #0088B5;
     margin: 0; /* Remove a margem superior */
