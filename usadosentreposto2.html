@@ -1543,22 +1543,35 @@ function mostrarParceiros() {
 }
   </script>
     <script>
-  let currentIndex = 0;
-  const reviewsContainer = document.querySelector('.reviews');
-  const reviewCards = document.querySelectorAll('.review-card');
-  const totalReviews = reviewCards.length;
+ let currentIndex = 0;
+const reviewsContainer = document.querySelector('.reviews');
+const reviewCards = document.querySelectorAll('.review-card');
+const totalReviews = reviewCards.length;
+const cardWidth = 340; // Largura dos cards, ajuste conforme necessário
 
-  function scrollReviews() {
+function scrollReviews() {
+  const lastReview = reviewCards[totalReviews - 1];
+  const containerWidth = reviewsContainer.offsetWidth;
+  const lastReviewPosition = lastReview.offsetLeft + lastReview.offsetWidth;
+
+  // Verificar se o último review está completamente visível
+  if (lastReviewPosition <= containerWidth) {
+    // Se o último review estiver visível, reinicia o scroll
+    currentIndex = 0;
+  } else {
+    // Caso contrário, avançar para o próximo review
     if (currentIndex >= totalReviews - 1) {
       currentIndex = 0;  // Voltar para o início
     } else {
       currentIndex++;
     }
-    reviewsContainer.style.transform = `translateX(-${currentIndex * 340}px)`;  // Ajuste a largura dos cards se necessário
   }
 
-  // Definir um intervalo para rolar automaticamente
-  setInterval(scrollReviews, 3000);  // A cada 3 segundos
+  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;  // Ajuste a largura dos cards
+}
+
+// Definir um intervalo para rolar automaticamente
+setInterval(scrollReviews, 3000);  // A cada 3 segundos
 </script>
   <script>
 // Array de imagens para o slider
