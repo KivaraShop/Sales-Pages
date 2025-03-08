@@ -425,7 +425,24 @@ p {
         align-items: center;
     }
 }
+/* Torna as seções flexíveis e alinhadas lado a lado */
+.container {
+    display: flex;
+    flex-direction: row; /* Mantém os itens na horizontal */
+    justify-content: space-between; /* Distribui o espaço entre os elementos */
+    align-items: flex-start; /* Alinha ao topo */
+    flex-wrap: wrap; /* Permite quebra para telas menores */
+    gap: 20px; /* Espaço entre os itens */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
+/* Cada seção dentro do container ocupa espaço proporcional */
+.car-gallery, .car-info, .contact-section {
+    flex: 1; /* Ocupa o mesmo espaço */
+}
 
 </style>
 </head>
