@@ -333,7 +333,8 @@ button:hover {
   border-radius: 4px 0 0 4px !important;
   font-size: 16px !important;
   margin: 0 !important;
-  height: 40px !important;
+  height: 40px !important; /* Altura fixa */
+  box-sizing: border-box !important; /* Garante que padding não aumente a altura total */
 }
 
 #search-btn {
@@ -344,11 +345,12 @@ button:hover {
   border-radius: 0 4px 4px 0 !important;
   color: white !important;
   font-size: 18px !important;
-  height: 40px !important;
+  height: 40px !important; /* Mesma altura do input */
+  box-sizing: border-box !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px !important; /* Adiciona espaço à direita */
+  margin-right: 8px !important; /* Espaço à direita */
 }
 
 
