@@ -104,7 +104,7 @@
     }
 
     .car-gallery {
-        width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
+        max-width: 50% !important; /* Ajuste de largura para exibir ao lado da info do carro */
         margin: 0;
         gap: 10px !important; /* Espaçamento entre as seções */
         text-align: center;
@@ -133,7 +133,7 @@
     }
 
     .car-info {
-        width: 25%; /* Ajusta a largura da seção */
+        max-width: 25% !important; /* Ajusta a largura da seção */
         text-align: left; /* Alinha o texto à esquerda */
         column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
          padding-left: -20px; /* Reduz o padding à esquerda */
@@ -319,7 +319,7 @@ p {
     color: white;
     padding: 20px;
     border-radius: 10px;
-    width: 25%; /* Terceira coluna ao lado das outras */
+    max-width: 25% !important; /* Terceira coluna ao lado das outras */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -455,6 +455,7 @@ p {
 
     <main>
    <section class="container">
+    <div class="car-details">
     <div class="car-gallery">
         <div class="main-image">
             <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
@@ -468,7 +469,7 @@ p {
             <img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail" onclick="changeImage(this)">
         </div>
     </div>
-
+  </div>
     <div class="car-info">
         <h1>Izuzu, Dmax</h1>
         <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia...</p>
