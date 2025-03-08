@@ -1551,12 +1551,14 @@ const cardWidth = reviewCards[0].offsetWidth + 15; // Largura do card + espaçam
 const containerWidth = reviewsContainer.offsetWidth; // Largura do container
 
 function scrollReviews() {
-  // Calcula a posição final do último card, onde ele estaria completamente visível
+  // Calcula a posição final para o último card ser completamente visível à direita
   const maxScroll = (totalReviews - 1) * cardWidth;
 
-  // Verifica se o último card está completamente visível à direita (sem deixar espaço vazio)
-  if (currentIndex * cardWidth >= maxScroll) {
-    currentIndex = 0;  // Reinicia quando o último card atingir a posição
+  // Verifica se a posição do scroll atingiu ou passou o valor necessário para mostrar o último card completamente
+  const currentTransform = Math.abs(parseInt(reviewsContainer.style.transform.replace('translateX(', '').replace('px)', '')) || 0);
+
+  if (currentTransform >= maxScroll) {
+    currentIndex = 0;  // Reinicia o scroll quando o último card for completamente visível
   } else {
     currentIndex++;  // Avança para o próximo card
   }
@@ -1567,6 +1569,7 @@ function scrollReviews() {
 
 // Definir um intervalo para rolar automaticamente
 setInterval(scrollReviews, 3000);  // A cada 3 segundos
+
 
 </script>
   <script>
