@@ -673,18 +673,28 @@ div, span, section, header, footer, main, article {
     margin: 0;
 }
 
-/* Estilo para a animação de entrada */
-.brand-search li {
+.brand-search li, .model-search li {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0; /* Cor de borda suave */
+    cursor: pointer;
+    font-size: 14px;
+    background-color: white; /* Fundo branco para as opções da lista */
+    color: #333; /* Contraste adequado para o texto */
     opacity: 0;
     transform: translateX(-100px); /* Inicia fora da tela, à esquerda */
     transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave */
 }
-
+        
 .brand-search li.visible {
     opacity: 1;
     transform: translateX(0); /* Quando visível, volta à posição original */
 }
 
+.brand-search li:last-child, .model-search li:last-child {
+    border-bottom: none;
+}
 
 .brand-search li:hover, .model-search li:hover {
     background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
@@ -1629,7 +1639,8 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
-      <script>
+    
+ <script>
 // Observador para as marcas
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry, index) => {
@@ -1651,7 +1662,8 @@ const observer = new IntersectionObserver((entries, observer) => {
 // Seleciona todas as marcas na lista e começa a observá-las
 const brands = document.querySelectorAll('.brand-search li');
 brands.forEach(brand => observer.observe(brand));
-  </script>
+ </script>
+
        <script>
         // Seleciona o grid de produtos
 const productGrid = document.querySelector('.product-grid');
