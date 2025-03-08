@@ -1647,7 +1647,7 @@ const observer = new IntersectionObserver(entries => {
             entry.target.classList.remove('show');
         }
     });
-}, { threshold: 0.3 }); // Ativa quando 30% do grid estiver visível
+}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
 
 // Inicia a observação
 observer.observe(productGrid);
