@@ -1648,26 +1648,6 @@ div, span, section, header, footer, main, article {
 </footer>
     
      <script>
-// Função para ajustar a altura da busca por preço sem ultrapassar a altura do grid
-function ajustarAlturaBusca() {
-    const productGrid = document.querySelector('.product-grid'); // Seleciona o grid de produtos
-    const priceSearch = document.querySelector('.price-search'); // Seleciona a seção de busca por preço
-    
-    // Ajusta a altura da busca para a altura do grid, mas não ultrapassa
-    if (productGrid && priceSearch) {
-        const alturaGrid = productGrid.offsetHeight; // Obtém a altura do grid de produtos
-        const alturaMaxima = alturaGrid > 500 ? alturaGrid : 500; // Garantir que a altura mínima seja 500px
-
-        priceSearch.style.height = `${alturaMaxima}px`; // Define a altura da busca por preço
-    }
-}
-
-// Chama a função quando a página carregar
-window.addEventListener('load', ajustarAlturaBusca);
-
-// Chama a função sempre que o tamanho da janela mudar (para responsividade)
-window.addEventListener('resize', ajustarAlturaBusca);
-
 
      </script>
  <script>
