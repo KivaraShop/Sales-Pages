@@ -653,17 +653,20 @@ div, span, section, header, footer, main, article {
 }
 
 .brand-search, .model-search {
-    background-color: #0088B5;
+    background-color: white; /* Alterado para fundo branco */
     padding: 15px;
     border-radius: 8px;
-    color: white;
-    font-family: Arial, sans-serif;
+    color: #333; /* Cor do texto para contraste adequado */
 }
 
 .brand-search h3, .model-search h3 {
     font-size: 18px;
     margin-bottom: 10px;
     text-align: center;
+    background-color: #0088B5; /* Azul apenas no fundo do título */
+    color: white; /* Cor do texto no título */
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .brand-search ul, .model-search ul {
@@ -676,9 +679,11 @@ div, span, section, header, footer, main, article {
     display: flex;
     align-items: center;
     padding: 8px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #f0f0f0; /* Cor de borda suave */
     cursor: pointer;
     font-size: 14px;
+    background-color: white; /* Fundo branco para as opções da lista */
+    color: #333; /* Contraste adequado para o texto */
 }
 
 .brand-search li:last-child, .model-search li:last-child {
@@ -686,7 +691,7 @@ div, span, section, header, footer, main, article {
 }
 
 .brand-search li:hover, .model-search li:hover {
-    background-color: #005f7a;
+    background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
 }
 
 .brand-search img, .model-search img {
