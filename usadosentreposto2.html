@@ -711,6 +711,11 @@ div, span, section, header, footer, main, article {
     padding: 15px;
     border-radius: 8px;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que o conteúdo ocupe o máximo de espaço possível */
+    flex-grow: 1; /* Faz com que a seção cresça para ocupar o espaço disponível */
+    height: 100%; /* A altura será igual à do grid */
 }
 
 .price-search h3 {
@@ -728,6 +733,8 @@ div, span, section, header, footer, main, article {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1; /* Garante que a lista ocupe o máximo de espaço disponível */
+    overflow-y: auto; /* Caso haja mais itens, habilita o scroll */
 }
 
 .price-search li {
@@ -753,7 +760,6 @@ div, span, section, header, footer, main, article {
     font-size: 18px;
     margin-right: 20px;
 }
-
 
 .hero-section {
     position: relative;
