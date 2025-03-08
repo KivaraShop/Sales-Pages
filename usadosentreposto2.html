@@ -1876,8 +1876,27 @@ function filterProducts(searchTerm) {
         brandSearch.style.visibility = 'visible';
         modelSearch.style.visibility = 'visible';
     }
+
+    // Agora, vamos configurar o IntersectionObserver para monitorar os cards de produtos
+    const productGrid = document.querySelector('.product-grid'); // Supondo que o grid de produtos tenha essa classe
+
+    const gridObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show'); // Torna o produto visível com animação
+            } else {
+                entry.target.classList.remove('show'); // Remove a animação se sair de vista
+            }
+        });
+    }, {
+        threshold: 0.25  // Ativa quando 25% do card estiver visível
+    });
+
+    // Observa cada card de produto dentro do grid
+    productCards.forEach(card => gridObserver.observe(card));
 }
 </script>
+
 
 <script>
     // Contador inicial de notificações no localStorage
