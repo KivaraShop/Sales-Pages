@@ -38,23 +38,11 @@
     main {
         padding: 20px;
     }
-section {
-    display: flex;
-    justify-content: space-between; /* Espaço uniforme entre os elementos */
-    align-items: flex-start; /* Alinha os itens ao topo */
-    gap: 20px; /* Espaçamento entre os blocos */
-    flex-wrap: wrap; /* Permite ajuste automático em telas menores */
-    width: 100%; /* Usa toda a largura disponível */
-    max-width: 1200px; /* Define um limite para evitar layout muito esticado */
-    margin: 0 auto; /* Centraliza no meio da tela */
-    padding: 20px; /* Espaço interno */
-}
 
     .car-details {
         display: flex;
         flex-direction: row;  /* Coloca as seções lado a lado */
         align-items: flex-start;  /* Alinha as seções ao topo */
-       justify-content: flex-start;  
         gap: 0;/* Espaçamento entre as seções */
         margin: 0; /* Remove margens extras na descrição */
     padding: 0; /* Remove qualquer padding */
@@ -64,7 +52,7 @@ section {
         width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
         text-align: center;
         position: relative; 
-
+     
     }
     .main-image img {
         width: 80%;
@@ -145,11 +133,10 @@ section {
     }
 
     .car-info {
-        width: 25%; /* Ajusta a largura da seção */
+        width: 40%; /* Ajusta a largura da seção */
         text-align: left; /* Alinha o texto à esquerda */
-        column-gap: 0px; /* Ajusta o espaçamento entre as colunas */
-         padding-left: 0; /* Reduz o padding à esquerda */
-    padding-right: 0; 
+        column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
+         padding: 0; /* Remove o espaçamento interno */
     margin: 0; /* Remove as margens externas */
  
     }
@@ -325,119 +312,199 @@ p {
  .showroom-iframe {
     visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
 }    
-/* Estilos gerais para a seção de contato */
+/* Estilo geral da seção de contato */
 .contact-section {
-    background-color: #F4F4F4F4; /* Cor chamativa para atrair atenção */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 25%; /* A largura será 100% para se ajustar ao espaço disponível */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Cabeçalho da seção */
-.contact-header {
+    background-color: #f1f1f1;
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 60px auto;
     text-align: center;
-    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
 }
 
-.contact-header h2 {
-    font-size: 24px;
+.contact-section h2 {
+    color: #0088B5;
+    font-size: 36px;
     font-weight: bold;
+    margin-bottom: 15px;
     text-transform: uppercase;
-    color: #FFD700; /* Cor dourada */
-    margin-bottom: 10px;
 }
 
-.contact-header p {
-    font-size: 16px;
-    font-weight: normal;
-}
-
-/* Nota de urgência */
-.urgency-note {
+.contact-section p {
     font-size: 18px;
-    font-weight: bold;
-    color: #FFD700; /* Dourado */
-    margin-top: 15px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Informações do telefone */
+.phone-info {
+    background-color: #25D366;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     text-align: center;
 }
 
-/* Estilos para os botões */
-.contact-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    align-items: center;
+.phone-info:hover {
+    transform: scale(1.05);
 }
 
-.contact-btn, .whatsapp-btn {
-    background-color: #28A745; /* Verde chamativo */
-    color: white;
+.phone-info h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.phone-info p {
     font-size: 18px;
-    padding: 15px 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.show-phone-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    font-size: 18px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 80%;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    transition: background-color 0.3s, transform 0.3s;
     font-weight: bold;
 }
 
-/* Efeito de hover para os botões */
-.contact-btn:hover, .whatsapp-btn:hover {
-    background-color: #218838; /* Verde mais escuro */
+.show-phone-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
 }
 
-/* Escondendo o número de telefone parcialmente */
-.contact-number {
+.phone-description {
     font-size: 16px;
-    color: #FFD700; /* Cor dourada */
+    color: #fff;
+    margin-top: 20px;
+    font-style: italic;
 }
 
-#contact-visible {
-    display: inline;
+/* Estilo do botão WhatsApp */
+.whatsapp-info {
+    background-color: #075E54;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    text-align: center;
 }
 
-#contact-hidden {
-    display: none;
+.whatsapp-info:hover {
+    transform: scale(1.05);
 }
 
-/* Botão WhatsApp */
+.whatsapp-info h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
 .whatsapp-btn {
-    background-color: #25D366; /* Verde do WhatsApp */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #128C7E;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Alinhamento lado a lado com outras colunas */
-.car-details {
-    display: flex;
-    flex-direction: row;  /* Coloca as seções lado a lado */
-    gap: 20px;
-    align-items: flex-start;
+.whatsapp-btn i {
+    margin-right: 10px;
 }
 
-/* Responsividade: Ajustando para telas menores */
-@media (max-width: 768px) {
-    .contact-section {
-        width: 100%; /* Para telas pequenas, ocupa toda a largura */
-    }
+.whatsapp-btn:hover {
+    background-color: #075E54;
+    transform: scale(1.05);
+}
 
-    .contact-buttons {
+.whatsapp-description {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Chamada para ação */
+.cta-section {
+    background-color: #ff6600;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.cta-section h3 {
+    font-size: 26px;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.cta-section p {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.cta-btn {
+    background-color: #ff3333;
+    color: white;
+    padding: 15px 25px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #e62e2e;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .contact-info {
         flex-direction: column;
         align-items: center;
     }
-}
 
+    .phone-info, .whatsapp-info {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .cta-btn {
+        width: 100%;
+    }
+}
 
 </style>
 </head>
@@ -449,8 +516,7 @@ p {
     </header>
 
     <main>
-        
-        <section>
+        <section class="car-details">
             <div class="car-gallery">
                 <div class="main-image">
                     <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
@@ -465,7 +531,7 @@ p {
 <img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail"  onclick="changeImage(this)">
 <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
                 </div>
-        
+            </div>
             <div class="car-info">
                 <h1>Izuzu, Dmax</h1>
                 <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia em um design elegante e sofisticado. Equipado com um motor de 2.0L de 184 cv, oferece uma condução dinâmica e eficiente, com transmissão automática de 8 marchas. O interior é refinado, com acabamentos em couro e tecnologia de ponta, incluindo o sistema iDrive e conectividade Bluetooth.</p>
@@ -492,36 +558,49 @@ p {
                         </div>
                         <p class="bar-label" id="fuel-label">40% restante</p>
                     </div>
+                </div>
                 <div>
     <p></p>
 </div>
 
                         <!-- Botão para exibir a ficha técnica -->
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
-        
-<div class="contact-section">
-    <div class="contact-header">
-        <h2>🚨 Entre em contato AGORA!</h2>
-        <p>Estamos prontos para atender você! Não perca tempo, fale conosco!</p>
+                
+        </section>
+        <div class="contact-section">
+    <h2>Está Pronto Para Transformar Sua Vida?</h2>
+    <p>Nosso número está esperando para conectar você com a solução dos seus problemas. !</p>
+
+    <div class="contact-info">
+        <!-- Contato por Telefone -->
+        <div class="phone-info">
+            <h3><i class="fas fa-phone-alt"></i> Seu Contato Direto</h3>
+            <p id="phone-number">8521*****</p>
+            <button id="show-phone" class="show-phone-btn">Clique para mostrar o número</button>
+            <p class="phone-description">Nosso número está esperando por sua ligação ou mensagem. Não fique para trás, entre em contato agora!</p>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="whatsapp-info">
+            <h3><i class="fab fa-whatsapp"></i> Fale Consco no WhatsApp</h3>
+            <a href="https://wa.me/+258852136558" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Vamos conversar agora!
+            </a>
+            <p class="whatsapp-description">Com um simples clique você entra diretamente em contato com a gente. Não perca tempo, estamos prontos para atender suas necessidades!</p>
+        </div>
     </div>
-    <div class="contact-buttons">
-        <!-- Botão para ligar (com número oculto) -->
-        <button class="contact-btn" id="call-btn" onclick="togglePhoneNumber()">
-            <i class="fas fa-phone-alt"></i> Ligar Agora
-            <span id="contact-hidden" class="contact-number" style="display:none;">+258 852136558</span>
-            <span id="contact-visible" class="contact-number">+258 852***558</span>
-        </button>
-</div> 
-        <!-- Botão WhatsApp -->
-        <a href="https://wa.me/258852136558" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Fale pelo WhatsApp
-        </a>
+    
+    <div class="cta-section">
+        <h3>O Que Você Está Esperando?</h3>
+        <p>Entre em contato e descubra como podemos revolucionar o seu negócio com as soluções mais inovadoras. **NÃO ESPERE MAIS**!</p>
+        <a href="https://wa.me/+258852136558" target="_blank" class="cta-btn">Clique Aqui Para Falar Conosco Já!</a>
     </div>
-    <p class="urgency-note">⏰ As oportunidades não esperam! Clique agora para falar conosco!</p>
-</div>    
-</div> 
-    </section>
-                    
+</div>
+     
+</div>
+<div>
+      <p></p>
+</div>
 <div>
       <p></p>
 </div>
@@ -575,20 +654,11 @@ p {
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
     <script>
-// Função para alternar a visibilidade do número de telefone
-function togglePhoneNumber() {
-    var hiddenNumber = document.getElementById("contact-hidden");
-    var visibleNumber = document.getElementById("contact-visible");
-
-    // Alternar a exibição dos números
-    if (hiddenNumber.style.display === "none") {
-        hiddenNumber.style.display = "inline";
-        visibleNumber.style.display = "none";
-    } else {
-        hiddenNumber.style.display = "none";
-        visibleNumber.style.display = "inline";
-    }
-}
+document.getElementById("show-phone").addEventListener("click", function() {
+    var phoneNumber = document.getElementById("phone-number");
+    phoneNumber.textContent = "852136558"; // Exibe o número completo
+    this.style.display = "none"; // Esconde o botão após clicar
+});
 
 </script>
 
