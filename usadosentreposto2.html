@@ -716,6 +716,7 @@ div, span, section, header, footer, main, article {
     justify-content: space-between; /* Garante que o conteúdo ocupe o máximo de espaço possível */
     flex-grow: 1; /* Faz com que a seção cresça para ocupar o espaço disponível */
     height: 100%; /* A altura será igual à do grid */
+    overflow: hidden;
 }
 
 .price-search h3 {
@@ -1647,15 +1648,17 @@ div, span, section, header, footer, main, article {
 </footer>
     
      <script>
-         // Função para ajustar a altura da busca por preço
+// Função para ajustar a altura da busca por preço sem ultrapassar a altura do grid
 function ajustarAlturaBusca() {
     const productGrid = document.querySelector('.product-grid'); // Seleciona o grid de produtos
     const priceSearch = document.querySelector('.price-search'); // Seleciona a seção de busca por preço
     
-    // Ajusta a altura da busca para a altura do grid
+    // Ajusta a altura da busca para a altura do grid, mas não ultrapassa
     if (productGrid && priceSearch) {
         const alturaGrid = productGrid.offsetHeight; // Obtém a altura do grid de produtos
-        priceSearch.style.height = `${alturaGrid}px`; // Define a altura da busca por preço igual à do grid
+        const alturaMaxima = alturaGrid > 500 ? alturaGrid : 500; // Garantir que a altura mínima seja 500px
+
+        priceSearch.style.height = `${alturaMaxima}px`; // Define a altura da busca por preço
     }
 }
 
@@ -1664,6 +1667,7 @@ window.addEventListener('load', ajustarAlturaBusca);
 
 // Chama a função sempre que o tamanho da janela mudar (para responsividade)
 window.addEventListener('resize', ajustarAlturaBusca);
+
 
      </script>
  <script>
@@ -1708,26 +1712,7 @@ const gridObserver = new IntersectionObserver(entries => {
 // Inicia a observação para o grid de produtos
 gridObserver.observe(productGrid);
      </script>
-       <script>
-        // Seleciona o grid de produtos
-const productGrid = document.querySelector('.product-grid');
 
-// Cria o observador para detectar quando o grid entra ou sai da tela
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
-            entry.target.classList.add('show');
-        } else {
-            // Se o grid sai da tela, remove a classe para permitir a animação novamente
-            entry.target.classList.remove('show');
-        }
-    });
-}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
-
-// Inicia a observação
-observer.observe(productGrid);
-            </script>
      <script>
 function mostrarParceiros() {
   // Seleciona todos os parceiros que têm a classe 'hidden'
@@ -1797,7 +1782,7 @@ function changeImage() {
 // Troca a imagem automaticamente a cada 5 segundos
 setInterval(changeImage, 5000);
      </script>
-    </script>
+
 
 <!-- Inclua a biblioteca Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
