@@ -639,6 +639,7 @@ div, span, section, header, footer, main, article {
     display: flex;
     align-items: flex-start;
     gap: 20px;
+    height: 100%;
 }
 
 .sidebar {
@@ -682,6 +683,14 @@ div, span, section, header, footer, main, article {
     font-size: 14px;
     background-color: white; /* Fundo branco para as opções da lista */
     color: #333; /* Contraste adequado para o texto */
+    opacity: 0;
+    transform: translateX(-100px); /* Inicia fora da tela, à esquerda */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave */
+}
+        
+.brand-search li.visible {
+    opacity: 1;
+    transform: translateX(0); /* Quando visível, volta à posição original */
 }
 
 .brand-search li:last-child, .model-search li:last-child {
@@ -703,6 +712,11 @@ div, span, section, header, footer, main, article {
     padding: 15px;
     border-radius: 8px;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que o conteúdo ocupe o máximo de espaço possível */
+    flex-grow: 1; /* Faz com que a seção cresça para ocupar o espaço disponível */
+    height: 100%; /* A altura será igual à do grid */
 }
 
 .price-search h3 {
@@ -720,6 +734,8 @@ div, span, section, header, footer, main, article {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1; /* Garante que a lista ocupe o máximo de espaço disponível */
+    overflow-y: auto; /* Caso haja mais itens, habilita o scroll */
 }
 
 .price-search li {
@@ -745,7 +761,6 @@ div, span, section, header, footer, main, article {
     font-size: 18px;
     margin-right: 20px;
 }
-
 
 .hero-section {
     position: relative;
@@ -1631,7 +1646,8 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
-<script>
+    
+ <script>
 // Observador para as marcas
 const brandObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry, index) => {
@@ -1672,8 +1688,27 @@ const gridObserver = new IntersectionObserver(entries => {
 
 // Inicia a observação para o grid de produtos
 gridObserver.observe(productGrid);
+     </script>
+       <script>
+        // Seleciona o grid de produtos
+const productGrid = document.querySelector('.product-grid');
 
-</script> 
+// Cria o observador para detectar quando o grid entra ou sai da tela
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
+            entry.target.classList.add('show');
+        } else {
+            // Se o grid sai da tela, remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
+
+// Inicia a observação
+observer.observe(productGrid);
+            </script>
      <script>
 function mostrarParceiros() {
   // Seleciona todos os parceiros que têm a classe 'hidden'
