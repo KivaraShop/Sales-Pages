@@ -1558,19 +1558,25 @@ console.log('Menu found:', navMenu !== null);
 </script>
         
 
-       <script>
+<script>
 function filterProducts(searchTerm) {
   const search = searchTerm.toLowerCase();
   const productCards = document.querySelectorAll(".product-card");
   const noResultsMessage = document.getElementById('no-results-message');
   const navigationButtons = document.querySelector('.navigation-buttons');
   const footer = document.querySelector('footer'); // Obtém o rodapé
+  const googleReviewsContainer = document.querySelector('.google-reviews .container'); // Obtém o container das avaliações
+  const brandSearch = document.querySelector('.brand-search'); // Obtém a seção de busca de marca
+  const modelSearch = document.querySelector('.model-search'); // Obtém a seção de busca de modelo
   let resultsFound = false; // Flag para verificar se encontrou resultados
 
-  // Inicialmente, esconder a mensagem "Sem resultados" e o botão
+  // Inicialmente, esconder a mensagem "Sem resultados" e os botões
   noResultsMessage.style.display = 'none'; // Esconder a mensagem e o botão ao iniciar
   navigationButtons.style.visibility = 'visible'; // Manter os botões visíveis
   footer.style.visibility = 'visible'; // Manter o rodapé visível inicialmente
+  googleReviewsContainer.style.visibility = 'visible'; // Garantir que o container de reviews esteja visível
+  brandSearch.style.visibility = 'visible'; // Garantir que a busca de marcas esteja visível
+  modelSearch.style.visibility = 'visible'; // Garantir que a busca de modelos esteja visível
 
   // Filtra os produtos
   productCards.forEach(card => {
@@ -1588,15 +1594,21 @@ function filterProducts(searchTerm) {
     noResultsMessage.style.display = 'block'; // Exibe a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'hidden'; // Esconde os botões de navegação
     footer.style.visibility = 'hidden'; // Oculta o rodapé quando não há resultados
+    googleReviewsContainer.style.visibility = 'hidden'; // Oculta o container de avaliações
+    brandSearch.style.visibility = 'hidden'; // Oculta a busca de marcas
+    modelSearch.style.visibility = 'hidden'; // Oculta a busca de modelos
   } else if (resultsFound || searchTerm === '') {
     // Se encontrou resultados ou o campo de pesquisa está vazio
     noResultsMessage.style.display = 'none'; // Esconde a mensagem "Sem resultados"
     navigationButtons.style.visibility = 'visible'; // Exibe os botões de navegação
     footer.style.visibility = 'visible'; // Mostra o rodapé
+    googleReviewsContainer.style.visibility = 'visible'; // Exibe o container de avaliações
+    brandSearch.style.visibility = 'visible'; // Exibe a busca de marcas
+    modelSearch.style.visibility = 'visible'; // Exibe a busca de modelos
   }
 }
-
 </script>
+
 <script>
     // Contador inicial de notificações no localStorage
     if (!localStorage.getItem('notifications')) {
