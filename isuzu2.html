@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Izuzu Dmax</title>
  <style>
     body {
@@ -312,34 +313,55 @@ p {
     visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
 }    
 .contact-section {
-    background: #ffcc00;
+    background: linear-gradient(135deg, #ffcc00, #ff6600);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     margin-left: 20px;
-    max-width: 250px;
+    max-width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
 }
 .contact-title {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
-    color: #c00;
+    margin-bottom: 10px;
 }
-.contact-text {
-    font-size: 14px;
+.contact-subtitle {
+    font-size: 16px;
     margin-bottom: 15px;
+}
+.contact-benefits {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 15px;
+}
+.contact-benefits li {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.contact-benefits i {
+    color: #00ff00;
+    margin-right: 8px;
+}
+.contact-actions {
+    display: flex;
+    flex-direction: column;
 }
 .contact-btn {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-top: 10px;
     font-size: 16px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: bold;
 }
 .call-btn {
-    background: #ff6600;
+    background: #ff0000;
     color: white;
 }
 .whatsapp-btn {
@@ -347,6 +369,12 @@ p {
     color: white;
     text-decoration: none;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.whatsapp-btn i {
+    margin-right: 8px;
 }
 .hidden {
     display: none;
@@ -411,23 +439,33 @@ p {
 </div>
                         <!-- Botão para exibir a ficha técnica -->
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
-
+                
+<div class="contact-section">
+    <h2 class="contact-title">🔥 Oportunidade Única! 🔥</h2>
+    <p class="contact-subtitle">Este carro pode ser vendido a qualquer momento. Não perca a chance!</p>
+    
+    <ul class="contact-benefits">
+        <li><i class="fas fa-check-circle"></i> Veículo revisado e pronto para uso</li>
+        <li><i class="fas fa-check-circle"></i> Garantia de procedência</li>
+        <li><i class="fas fa-check-circle"></i> Pagamento facilitado</li>
+        <li><i class="fas fa-check-circle"></i> Atendimento rápido e exclusivo</li>
+    </ul>
+    
+    <div class="contact-actions">
+        <button id="call-button" class="contact-btn call-btn" onclick="revealPhone()">
+            <i class="fas fa-phone"></i> Mostrar contato
+        </button>
+        <p id="phone-number" class="hidden">852****558</p>
+    
+        <a href="https://wa.me/258852136558" target="_blank" class="contact-btn whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+    </div>
+</div>
             </div>
         </section>
         
-        <div class="contact-section">
-    <h3 class="contact-title">Essa oferta pode sair do ar a qualquer momento!</h3>
-    <p class="contact-text">Garanta agora mesmo antes que seja tarde. Fale conosco!</p>
-    
-    <button id="call-button" class="contact-btn call-btn" onclick="revealPhone()">
-        📞 Mostrar contato
-    </button>
-    <p id="phone-number" class="hidden">852****558</p>
-    
-    <a href="https://wa.me/258852136558" target="_blank" class="contact-btn whatsapp-btn">
-        💬 Falar no WhatsApp
-    </a>
-</div>
+
 <div>
       <p></p>
 </div>
