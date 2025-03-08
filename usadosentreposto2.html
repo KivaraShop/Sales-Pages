@@ -1815,8 +1815,8 @@ function filterProducts(searchTerm) {
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
-    noResultsMessage.style.display = 'none'; 
-    noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
+    noResultsMessage.style.display = 'none';
+    noResultsMessage.classList.remove('show');
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
     googleReviewsContainer.style.visibility = 'visible';
@@ -1841,17 +1841,20 @@ function filterProducts(searchTerm) {
             noResultsMessage.classList.add('show'); // Ativa a animação
         }, 10);
 
+        // Esconde outros elementos
         navigationButtons.style.visibility = 'hidden';
         footer.style.visibility = 'hidden';
         googleReviewsContainer.style.visibility = 'hidden';
         brandSearch.style.visibility = 'hidden';
         modelSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
-        noResultsMessage.classList.remove('show'); // Remove o efeito
+        // Remove animação de no results
+        noResultsMessage.classList.remove('show');
         setTimeout(() => {
             noResultsMessage.style.display = 'none'; // Esconde após a animação
         }, 600);
 
+        // Reexibe elementos
         navigationButtons.style.visibility = 'visible';
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
@@ -1859,6 +1862,7 @@ function filterProducts(searchTerm) {
         modelSearch.style.visibility = 'visible';
     }
 }
+
 </script>
 
 <script>
