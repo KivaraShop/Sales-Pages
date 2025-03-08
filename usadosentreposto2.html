@@ -332,18 +332,25 @@ button:hover {
   border: 1px solid #ccc !important;
   border-radius: 4px 0 0 4px !important;
   font-size: 16px !important;
-  margin: 0 !important; /* Remove qualquer margem extra */
+  margin: 0 !important;
+  height: 40px !important;
 }
 
 #search-btn {
-  background-color: #0288d1 !important; /* Azul claro */
+  background-color: #0288d1 !important;
   border: none !important;
   padding: 10px 15px !important;
   cursor: pointer !important;
   border-radius: 0 4px 4px 0 !important;
   color: white !important;
   font-size: 18px !important;
+  height: 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px !important; /* Adiciona espaço à direita */
 }
+
 
 .navigation-buttons a {
   background: #0288d1 !important; /* Azul claro */
@@ -377,50 +384,6 @@ button:hover {
 }
 
 
- /* Container do banner */
-  .banner-container {
-    width: 100%;
-    max-width: 1200px; /* Limita a largura máxima */
-    margin: 0 auto; /* Centraliza o banner */
-    overflow: hidden;
-  }
-
-  /* Tabela do banner */
-  .banner-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-  }
-
-  .banner-table td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-  }
-
-  /* Coluna da imagem promocional (16:9 reduzida) */
-  .promo-image {
-    width: 70%;
-  }
-
-  .promo-image img {
-    width: 100%;
-    height: 200px; /* Altura fixa menor para reduzir o banner */
-    object-fit: cover; /* Garante que a imagem se ajuste sem deformar */
-    display: block;
-  }
-
-  /* Coluna do GIF (1:1 reduzida) */
-  .promo-gif {
-    width: 30%;
-  }
-
-  .promo-gif img {
-    width: 100%;
-    height: 200px; /* Altura fixa igual à imagem promocional */
-    object-fit: cover; /* Garante proporção sem deformar */
-    display: block;
-  }
  /* Estilo inicial do botão */
 .menu-toggle {
   font-size: 30px;
