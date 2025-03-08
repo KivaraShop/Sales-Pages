@@ -1812,10 +1812,11 @@ function filterProducts(searchTerm) {
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
     const brandSearch = document.querySelector('.brand-search');
     const modelSearch = document.querySelector('.model-search');
+    
     let resultsFound = false;
 
-    // Resetando os elementos para estado padrão antes da filtragem
-    noResultsMessage.style.display = 'none';
+    // Resetando todos os elementos antes da filtragem
+    noResultsMessage.style.display = 'none'; 
     noResultsMessage.classList.remove('show');
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
@@ -1827,34 +1828,34 @@ function filterProducts(searchTerm) {
     productCards.forEach(card => {
         const productName = card.querySelector("h3").textContent.toLowerCase();
         if (productName.includes(search)) {
-            card.style.display = "block";
+            card.style.display = "block";  // Exibe o produto se corresponder ao filtro
             resultsFound = true;
         } else {
-            card.style.display = "none";
+            card.style.display = "none";  // Oculta o produto se não corresponder
         }
     });
 
-    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
+    // Lógica para exibir a mensagem "sem resultados"
     if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block'; // Garante que ele está visível
+        noResultsMessage.style.display = 'block'; // Mostra a mensagem
         setTimeout(() => {
             noResultsMessage.classList.add('show'); // Ativa a animação
         }, 10);
 
-        // Esconde outros elementos
+        // Esconde elementos relacionados à navegação e outros
         navigationButtons.style.visibility = 'hidden';
         footer.style.visibility = 'hidden';
         googleReviewsContainer.style.visibility = 'hidden';
         brandSearch.style.visibility = 'hidden';
         modelSearch.style.visibility = 'hidden';
-    } else if (resultsFound || searchTerm === '') {
-        // Remove animação de no results
+    } else {
+        // Quando encontrar resultados ou quando o campo de pesquisa estiver vazio
         noResultsMessage.classList.remove('show');
         setTimeout(() => {
-            noResultsMessage.style.display = 'none'; // Esconde após a animação
+            noResultsMessage.style.display = 'none'; // Esconde a mensagem
         }, 600);
 
-        // Reexibe elementos
+        // Reexibe os outros elementos
         navigationButtons.style.visibility = 'visible';
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
