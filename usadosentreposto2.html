@@ -363,20 +363,22 @@ button:hover {
 
 
 #no-results-message {
-    visibility: hidden; /* Mantém o espaço reservado, mas invisível */
+    display: block; /* Mantém o espaço do elemento */
     text-align: center;
     margin-top: 20px;
     opacity: 0;
-    transform: scale(0.7); /* Começa menor, simulando vinda do fundo */
+    transform: scale(0.7); /* Começa pequeno, como se estivesse distante */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    pointer-events: none; /* Evita interações enquanto invisível */
 }
 
 /* Quando a mensagem deve aparecer */
 #no-results-message.show {
-    visibility: visible; /* Torna visível */
     opacity: 1;
-    transform: scale(1); /* Cresce para o tamanho normal */
+    transform: scale(1); /* Cresce suavemente para o tamanho normal */
+    pointer-events: auto; /* Permite interações novamente */
 }
+
 
 
 
@@ -1468,13 +1470,20 @@ div, span, section, header, footer, main, article {
            <script>
 function showNoResultsMessage() {
     const message = document.querySelector('#no-results-message');
-    message.classList.add('show'); // Ativa a animação
+    message.style.display = "block"; // Garante que está visível
+    setTimeout(() => {
+        message.classList.add('show'); // Ativa o efeito com delay
+    }, 10); // Pequeno atraso para o CSS reconhecer a mudança
 }
 
 function hideNoResultsMessage() {
     const message = document.querySelector('#no-results-message');
-    message.classList.remove('show'); // Esconde e reseta o efeito
+    message.classList.remove('show'); // Esconde suavemente
+    setTimeout(() => {
+        message.style.display = "none"; // Remove da tela após a animação
+    }, 600); // Espera a animação terminar antes de ocultar
 }
+
            </script>
     
        <script>
