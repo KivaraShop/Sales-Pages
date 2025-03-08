@@ -363,23 +363,55 @@ button:hover {
 
 
 #no-results-message {
-    display: block; /* Mantém o espaço do elemento */
+    display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
     text-align: center;
     margin-top: 20px;
-    opacity: 0;
-    transform: translateX(50px); /* Começa deslocado para a direita */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    pointer-events: none; /* Evita interações enquanto invisível */
 }
 
-/* Quando a mensagem deve aparecer */
-#no-results-message.show {
-    opacity: 1;
-    transform: translateX(0); /* Move suavemente para o centro */
-    pointer-events: auto; /* Permite interações novamente */
-}
+ /* Container do banner */
+  .banner-container {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza o banner */
+    overflow: hidden;
+  }
 
- 
+  /* Tabela do banner */
+  .banner-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .banner-table td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+  }
+
+  /* Coluna da imagem promocional (16:9 reduzida) */
+  .promo-image {
+    width: 70%;
+  }
+
+  .promo-image img {
+    width: 100%;
+    height: 200px; /* Altura fixa menor para reduzir o banner */
+    object-fit: cover; /* Garante que a imagem se ajuste sem deformar */
+    display: block;
+  }
+
+  /* Coluna do GIF (1:1 reduzida) */
+  .promo-gif {
+    width: 30%;
+  }
+
+  .promo-gif img {
+    width: 100%;
+    height: 200px; /* Altura fixa igual à imagem promocional */
+    object-fit: cover; /* Garante proporção sem deformar */
+    display: block;
+  }
  /* Estilo inicial do botão */
 .menu-toggle {
   font-size: 30px;
@@ -1464,24 +1496,7 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
-           <script>
-function showNoResultsMessage() {
-    const message = document.querySelector('#no-results-message');
-    message.style.display = "block"; // Garante que está visível
-    setTimeout(() => {
-        message.classList.add('show'); // Ativa a animação após um pequeno delay
-    }, 10);
-}
 
-function hideNoResultsMessage() {
-    const message = document.querySelector('#no-results-message');
-    message.classList.remove('show'); // Esconde suavemente
-    setTimeout(() => {
-        message.style.display = "none"; // Remove da tela após a animação
-    }, 600); // Espera a animação terminar antes de ocultar
-}
-           </script>
-    
        <script>
         // Seleciona o grid de produtos
 const productGrid = document.querySelector('.product-grid');
