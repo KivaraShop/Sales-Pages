@@ -367,7 +367,7 @@ button:hover {
     text-align: center;
     margin-top: 20px;
     opacity: 0;
-    transform: scale(0.7); /* Começa pequeno, como se estivesse distante */
+    transform: translateX(50px); /* Começa deslocado para a direita */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     pointer-events: none; /* Evita interações enquanto invisível */
 }
@@ -375,12 +375,9 @@ button:hover {
 /* Quando a mensagem deve aparecer */
 #no-results-message.show {
     opacity: 1;
-    transform: scale(1); /* Cresce suavemente para o tamanho normal */
+    transform: translateX(0); /* Move suavemente para o centro */
     pointer-events: auto; /* Permite interações novamente */
 }
-
-
-
 
  
  /* Estilo inicial do botão */
@@ -1472,8 +1469,8 @@ function showNoResultsMessage() {
     const message = document.querySelector('#no-results-message');
     message.style.display = "block"; // Garante que está visível
     setTimeout(() => {
-        message.classList.add('show'); // Ativa o efeito com delay
-    }, 10); // Pequeno atraso para o CSS reconhecer a mudança
+        message.classList.add('show'); // Ativa a animação após um pequeno delay
+    }, 10);
 }
 
 function hideNoResultsMessage() {
@@ -1483,7 +1480,6 @@ function hideNoResultsMessage() {
         message.style.display = "none"; // Remove da tela após a animação
     }, 600); // Espera a animação terminar antes de ocultar
 }
-
            </script>
     
        <script>
