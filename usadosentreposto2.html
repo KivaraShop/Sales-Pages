@@ -639,7 +639,6 @@ div, span, section, header, footer, main, article {
     display: flex;
     align-items: flex-start;
     gap: 20px;
-    height: 100%;
 }
 
 .sidebar {
@@ -683,14 +682,6 @@ div, span, section, header, footer, main, article {
     font-size: 14px;
     background-color: white; /* Fundo branco para as opções da lista */
     color: #333; /* Contraste adequado para o texto */
-    opacity: 0;
-    transform: translateX(-100px); /* Inicia fora da tela, à esquerda */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave */
-}
-        
-.brand-search li.visible {
-    opacity: 1;
-    transform: translateX(0); /* Quando visível, volta à posição original */
 }
 
 .brand-search li:last-child, .model-search li:last-child {
@@ -712,11 +703,6 @@ div, span, section, header, footer, main, article {
     padding: 15px;
     border-radius: 8px;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Garante que o conteúdo ocupe o máximo de espaço possível */
-    flex-grow: 1; /* Faz com que a seção cresça para ocupar o espaço disponível */
-    height: 100%; /* A altura será igual à do grid */
 }
 
 .price-search h3 {
@@ -734,8 +720,6 @@ div, span, section, header, footer, main, article {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1; /* Garante que a lista ocupe o máximo de espaço disponível */
-    overflow-y: auto; /* Caso haja mais itens, habilita o scroll */
 }
 
 .price-search li {
@@ -761,6 +745,7 @@ div, span, section, header, footer, main, article {
     font-size: 18px;
     margin-right: 20px;
 }
+
 
 .hero-section {
     position: relative;
@@ -1646,49 +1631,7 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
-    
- <script>
-// Observador para as marcas
-const brandObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            // Atraso para cada marca baseado no seu índice
-            setTimeout(() => {
-                // Adiciona a classe 'visible' após o delay para animar
-                entry.target.classList.add('visible');
-            }, index * 300); // 300ms de atraso entre as marcas
-        } else {
-            // Se sair da tela, remove a classe 'visible'
-            entry.target.classList.remove('visible');
-        }
-    });
-}, {
-    threshold: 0.25  // A animação começa quando 25% da marca estiver visível
-});
 
-// Seleciona todas as marcas na lista e começa a observá-las
-const brands = document.querySelectorAll('.brand-search li');
-brands.forEach(brand => brandObserver.observe(brand));
-
-// Observador para o grid de produtos
-const productGrid = document.querySelector('.product-grid');
-
-// Criar observador para grid de produtos
-const gridObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Adiciona a classe 'show' apenas para o grid de produtos
-            entry.target.classList.add('show');
-        } else {
-            // Remove a classe para permitir a animação novamente
-            entry.target.classList.remove('show');
-        }
-    });
-}, { threshold: 0.25 }); // Ativa quando 25% do grid estiver visível
-
-// Inicia a observação para o grid de produtos
-gridObserver.observe(productGrid);
-     </script>
        <script>
         // Seleciona o grid de produtos
 const productGrid = document.querySelector('.product-grid');
@@ -1704,7 +1647,7 @@ const observer = new IntersectionObserver(entries => {
             entry.target.classList.remove('show');
         }
     });
-}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
+}, { threshold: 0.3 }); // Ativa quando 30% do grid estiver visível
 
 // Inicia a observação
 observer.observe(productGrid);
@@ -1845,10 +1788,10 @@ function filterProducts(searchTerm) {
     productCards.forEach(card => {
         const productName = card.querySelector("h3").textContent.toLowerCase();
         if (productName.includes(search)) {
-            card.style.display = "block";  // Exibe o card
+            card.style.display = "block";
             resultsFound = true;
         } else {
-            card.style.display = "none";  // Oculta o card
+            card.style.display = "none";
         }
     });
 
@@ -1877,28 +1820,7 @@ function filterProducts(searchTerm) {
         modelSearch.style.visibility = 'visible';
     }
 }
-
-// Agora, vamos configurar o IntersectionObserver para monitorar os cards de produtos
-const productGrid = document.querySelector('.product-grid'); // Supondo que o grid de produtos tenha essa classe
-
-const gridObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show'); // Torna o produto visível com animação
-        } else {
-            entry.target.classList.remove('show'); // Remove a animação se sair de vista
-        }
-    });
-}, {
-    threshold: 0.25  // Ativa quando 25% do card estiver visível
-});
-
-// Seleciona todos os produtos para observá-los
-const productCards = document.querySelectorAll(".product-card");
-productCards.forEach(card => gridObserver.observe(card));
 </script>
-
-
 
 <script>
     // Contador inicial de notificações no localStorage
