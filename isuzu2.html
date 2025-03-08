@@ -331,29 +331,51 @@ p {
         margin-bottom: 10px;
     }
 
-/* Seção de contato */
+/* Estilos gerais para a seção de contato */
 .contact-section {
     background-color: #FF5733; /* Cor chamativa */
     color: white;
-    text-align: center;
     padding: 30px;
     border-radius: 10px;
-    width: 25%; /* Terceira coluna */
+    width: 25%; /* Terceira coluna ao lado das outras */
     margin-left: 10px;
-}
-
-.contact-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.contact-buttons {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+/* Título com urgência */
+.contact-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.contact-section p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: normal;
+}
+
+/* Nota de urgência */
+.urgency-note {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFD700; /* Dourado */
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Estilos para os botões */
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
     gap: 20px;
+    width: 100%;
 }
 
 .contact-btn, .whatsapp-btn {
@@ -371,48 +393,50 @@ p {
     justify-content: center;
     align-items: center;
     gap: 10px;
-}
-
-.contact-btn:hover, .whatsapp-btn:hover {
-    background-color: #218838; /* Verde mais escuro ao passar o mouse */
-}
-
-.contact-btn span, .whatsapp-btn span {
     font-weight: bold;
 }
 
-#contact-hidden {
+/* Efeito de hover para os botões */
+.contact-btn:hover, .whatsapp-btn:hover {
+    background-color: #218838; /* Verde mais escuro */
+}
+
+/* Escondendo o número de telefone parcial e mostrando o completo */
+.contact-number {
     font-size: 16px;
-    color: #FFD700; /* Cor dourada para destacar o número escondido */
+    color: #FFD700; /* Cor dourada */
 }
 
 #contact-visible {
-    font-size: 16px;
-    color: #FFD700; /* Cor dourada para destacar */
+    display: block;
 }
 
+#contact-hidden {
+    display: none;
+}
+
+/* Botão WhatsApp */
 .whatsapp-btn {
     background-color: #25D366; /* Verde do WhatsApp */
-    width: 80%;
 }
 
-.contact-section {
+/* Estrutura para alinhamento horizontal ao lado das outras colunas */
+.car-details {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;  /* Coloca as seções lado a lado */
+    gap: 20px;
+    align-items: flex-start;
 }
 
-
-/* Mobile responsiveness */
+/* Responsividade: Ajustando para telas menores */
 @media (max-width: 768px) {
     .contact-section {
-        width: 100%;
+        width: 100%; /* Para telas pequenas, ocupa toda a largura */
     }
 
     .contact-buttons {
         flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -476,18 +500,15 @@ p {
                         <!-- Botão para exibir a ficha técnica -->
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
                 
-        </section>
-<!-- Incluindo a biblioteca Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-<div class="contact-section">
-    <h2>🚨 Não perca tempo! Entre em contato agora e tire todas as suas dúvidas! 🚨</h2>
+    <div class="contact-section">
+    <h2>🚨 Precisa de ajuda? Entre em contato agora! 🚨</h2>
+    <p>Nosso time está pronto para atender você. Não deixe para depois, entre em contato agora mesmo!</p>
     <div class="contact-buttons">
-        <!-- Botão para ligar -->
-        <button class="contact-btn" id="call-btn">
+        <!-- Botão para ligar (com número oculto) -->
+        <button class="contact-btn" id="call-btn" onclick="togglePhoneNumber()">
             <i class="fas fa-phone-alt"></i> <span>Ligar Agora</span>
-            <span id="contact-hidden" style="display:none;">+258 852136558</span>
-            <span id="contact-visible">+258 852***558</span>
+            <span id="contact-hidden" class="contact-number" style="display:none;">+258 852136558</span>
+            <span id="contact-visible" class="contact-number">+258 852***558</span>
         </button>
 
         <!-- Botão WhatsApp -->
@@ -495,7 +516,10 @@ p {
             <i class="fab fa-whatsapp"></i> <span>Fale pelo WhatsApp</span>
         </a>
     </div>
+    <p class="urgency-note">⏰ Não espere mais! As oportunidades estão ao seu alcance. Clique agora!</p>
 </div>
+
+        </section>
 
 <div>
       <p></p>
@@ -550,11 +574,20 @@ p {
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
     <script>
-document.getElementById("show-phone").addEventListener("click", function() {
-    var phoneNumber = document.getElementById("phone-number");
-    phoneNumber.textContent = "852136558"; // Exibe o número completo
-    this.style.display = "none"; // Esconde o botão após clicar
-});
+// Função para alternar a visibilidade do número de telefone
+function togglePhoneNumber() {
+    var hiddenNumber = document.getElementById("contact-hidden");
+    var visibleNumber = document.getElementById("contact-visible");
+
+    // Alternar a exibição dos números
+    if (hiddenNumber.style.display === "none") {
+        hiddenNumber.style.display = "inline";
+        visibleNumber.style.display = "none";
+    } else {
+        hiddenNumber.style.display = "none";
+        visibleNumber.style.display = "inline";
+    }
+}
 
 </script>
 
