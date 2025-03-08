@@ -38,6 +38,18 @@
     main {
         padding: 20px;
     }
+     section {
+    display: flex; /* Organiza os elementos horizontalmente */
+    justify-content: space-between; /* Cria espaçamento entre os itens */
+    align-items: flex-start; /* Alinha os itens no topo */
+    width: 100%; /* Garante que ocupe toda a largura */
+    gap: 20px; /* Adiciona espaçamento entre os elementos */
+}
+
+/* Garante que os elementos dentro da seção ocupem espaços proporcionais */
+section > * {
+    flex: 1; /* Cada elemento dentro da seção ocupa um espaço igual */
+}
 
     .car-details {
         display: flex;
@@ -53,8 +65,7 @@
         width: 40%; /* Ajuste de largura para exibir ao lado da info do carro */
         text-align: center;
         position: relative; 
-        flex: 1;
-     
+
     }
     .main-image img {
         width: 80%;
@@ -489,8 +500,6 @@ p {
 
                         <!-- Botão para exibir a ficha técnica -->
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
-                
-    </section>
         
 <div class="contact-section">
     <div class="contact-header">
@@ -512,6 +521,8 @@ p {
     </div>
     <p class="urgency-note">⏰ As oportunidades não esperam! Clique agora para falar conosco!</p>
 </div>
+                                
+    </section>
 <div>
       <p></p>
 </div>
