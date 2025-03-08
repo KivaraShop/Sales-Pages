@@ -313,33 +313,13 @@ p {
  .showroom-iframe {
     visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
 }    
- /* Contêiner da barra lateral */
-    .contact-sidebar {
-        position: fixed;
-        top: 20%;
-        right: 10px;
-        width: 300px;
-        background-color: #ffffff;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        z-index: 1000;
-        border-radius: 10px;
-    }
-
-    .contact-section h2, .contact-section h3 {
-        font-size: 18px;
-        color: #333;
-        margin-bottom: 10px;
-    }
-
 /* Estilos gerais para a seção de contato */
 .contact-section {
-    background-color: #FF5733; /* Cor chamativa */
+    background-color: #FF5733; /* Cor chamativa para atrair atenção */
     color: white;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
     width: 25%; /* Terceira coluna ao lado das outras */
-    margin-left: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -347,18 +327,22 @@ p {
     justify-content: center;
 }
 
-/* Título com urgência */
-.contact-section h2 {
+/* Cabeçalho da seção */
+.contact-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-header h2 {
     font-size: 24px;
     font-weight: bold;
     text-transform: uppercase;
+    color: #FFD700; /* Cor dourada */
     margin-bottom: 10px;
 }
 
-.contact-section p {
+.contact-header p {
     font-size: 16px;
-    margin-bottom: 20px;
-    text-align: center;
     font-weight: normal;
 }
 
@@ -377,13 +361,14 @@ p {
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    align-items: center;
 }
 
 .contact-btn, .whatsapp-btn {
     background-color: #28A745; /* Verde chamativo */
     color: white;
     font-size: 18px;
-    padding: 12px 30px;
+    padding: 15px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -402,14 +387,14 @@ p {
     background-color: #218838; /* Verde mais escuro */
 }
 
-/* Escondendo o número de telefone parcial e mostrando o completo */
+/* Escondendo o número de telefone parcialmente */
 .contact-number {
     font-size: 16px;
     color: #FFD700; /* Cor dourada */
 }
 
 #contact-visible {
-    display: block;
+    display: inline;
 }
 
 #contact-hidden {
@@ -421,7 +406,7 @@ p {
     background-color: #25D366; /* Verde do WhatsApp */
 }
 
-/* Estrutura para alinhamento horizontal ao lado das outras colunas */
+/* Alinhamento lado a lado com outras colunas */
 .car-details {
     display: flex;
     flex-direction: row;  /* Coloca as seções lado a lado */
@@ -440,6 +425,7 @@ p {
         align-items: center;
     }
 }
+
 
 </style>
 </head>
@@ -501,24 +487,28 @@ p {
                         <!-- Botão para exibir a ficha técnica -->
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
                 
-    <div class="contact-section">
-    <h2>🚨 Precisa de ajuda? Entre em contato agora! 🚨</h2>
-    <p>Nosso time está pronto para atender você. Não deixe para depois, entre em contato agora mesmo!</p>
+
+    <section="contact-section">
+    <div class="contact-header">
+        <h2>🚨 Entre em contato AGORA!</h2>
+        <p>Estamos prontos para atender você! Não perca tempo, fale conosco!</p>
+    </div>
     <div class="contact-buttons">
         <!-- Botão para ligar (com número oculto) -->
         <button class="contact-btn" id="call-btn" onclick="togglePhoneNumber()">
-            <i class="fas fa-phone-alt"></i> <span>Ligar Agora</span>
+            <i class="fas fa-phone-alt"></i> Ligar Agora
             <span id="contact-hidden" class="contact-number" style="display:none;">+258 852136558</span>
             <span id="contact-visible" class="contact-number">+258 852***558</span>
         </button>
 
         <!-- Botão WhatsApp -->
         <a href="https://wa.me/258852136558" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> <span>Fale pelo WhatsApp</span>
+            <i class="fab fa-whatsapp"></i> Fale pelo WhatsApp
         </a>
     </div>
-    <p class="urgency-note">⏰ Não espere mais! As oportunidades estão ao seu alcance. Clique agora!</p>
+    <p class="urgency-note">⏰ As oportunidades não esperam! Clique agora para falar conosco!</p>
 </div>
+    </section>
 
         </section>
 
