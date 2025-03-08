@@ -493,30 +493,7 @@ button:hover {
 .nav-menu.active {
     display: flex; /* Exibir quando ativado */
 }
-
-
-        
-/* Ajustes para telas menores (celulares) */
-@media (max-width: 768px) {
-  .promo-image {
-    width: 70%; /* A imagem ocupa 70% da largura em celulares */
-  }
-
-  .promo-gif {
-    width: 30%; /* O GIF ocupa 30% da largura em celulares */
-  }
-
-  /* Se necessário, pode ajustar a altura para garantir uma proporção adequada */
-  .promo-image, .promo-gif {
-    display: inline-block; /* Manter as colunas lado a lado */
-  }
-}
-  .promo-image img, .promo-gif img {
-    height: 90px; /* Reduz a altura para ajustar o banner em telas menores */
-  }
-
  
-
         
 .hide-elements {
     display: none; /* Classe que oculta elementos */
@@ -1521,20 +1498,23 @@ div, span, section, header, footer, main, article {
 </footer>
 
        <script>
-           // Seleciona o grid de produtos
+        // Seleciona o grid de produtos
 const productGrid = document.querySelector('.product-grid');
 
-// Cria um observador que detecta quando o grid entra na tela
+// Cria o observador para detectar quando o grid entra ou sai da tela
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Quando o grid entrar na tela, adiciona a classe 'show' para ativar a animação
+            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
             entry.target.classList.add('show');
+        } else {
+            // Se o grid sai da tela, remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
         }
     });
-}, { threshold: 0.3 }); // O grid será considerado visível quando 50% dele entrar na tela
+}, { threshold: 0.3 }); // Ativa quando 30% do grid estiver visível
 
-// Inicia a observação no grid de produtos
+// Inicia a observação
 observer.observe(productGrid);
             </script>
      <script>
