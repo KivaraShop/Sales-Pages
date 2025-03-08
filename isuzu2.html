@@ -331,56 +331,91 @@ p {
         margin-bottom: 10px;
     }
 
-    .contact-section p {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 20px;
-    }
+/* Seção de contato */
+.contact-section {
+    background-color: #FF5733; /* Cor chamativa */
+    color: white;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    width: 25%; /* Terceira coluna */
+    margin-left: 10px;
+}
 
-    .contact-info .phone-info, .contact-info .whatsapp-info {
-        margin-bottom: 20px;
-    }
+.contact-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 
-    .whatsapp-btn, .cta-btn {
-        display: inline-block;
-        padding: 12px 20px;
-        background-color: #25d366;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        text-align: center;
-        font-size: 16px;
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-btn, .whatsapp-btn {
+    background-color: #28A745; /* Verde chamativo */
+    color: white;
+    font-size: 18px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-btn:hover, .whatsapp-btn:hover {
+    background-color: #218838; /* Verde mais escuro ao passar o mouse */
+}
+
+.contact-btn span, .whatsapp-btn span {
+    font-weight: bold;
+}
+
+#contact-hidden {
+    font-size: 16px;
+    color: #FFD700; /* Cor dourada para destacar o número escondido */
+}
+
+#contact-visible {
+    font-size: 16px;
+    color: #FFD700; /* Cor dourada para destacar */
+}
+
+.whatsapp-btn {
+    background-color: #25D366; /* Verde do WhatsApp */
+    width: 80%;
+}
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .contact-section {
         width: 100%;
-        margin-top: 10px;
     }
 
-    .whatsapp-btn:hover, .cta-btn:hover {
-        background-color: #128c7e;
+    .contact-buttons {
+        flex-direction: column;
     }
+}
 
-    .show-phone-btn {
-        background-color: #007bff;
-        color: white;
-        padding: 8px 12px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
-    }
-
-    .show-phone-btn:hover {
-        background-color: #0056b3;
-    }
-
-    .phone-description, .whatsapp-description {
-        font-size: 12px;
-        color: #999;
-        margin-top: 10px;
-    }
-
-    .cta-section {
-        margin-top: 20px;
-    }
 </style>
 </head>
 <body>
@@ -442,41 +477,26 @@ p {
 <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
                 
         </section>
-       <!-- Seção Sidebar -->
-<div class="contact-sidebar">
-    <div class="contact-section">
-        <h2>🚗 O Carro que Você Quer Está Aqui! Não Perde Tempo! 🚗</h2>
-        <p><strong>Essa é a sua chance! O carro dos seus sonhos está a um clique de distância.</strong> A oferta é irresistível, mas não vai durar muito! Entre em contato AGORA e saia dirigindo o seu novo carro hoje mesmo.</p>
+<!-- Incluindo a biblioteca Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-        <div class="contact-info">
-            <!-- Contato por Telefone -->
-            <div class="phone-info">
-                <h3><i class="fas fa-phone-alt"></i> Precisa de Mais Detalhes? Ligue Agora!</h3>
-                <p id="phone-number">8521*****</p>
-                <button id="show-phone" class="show-phone-btn">Mostrar Contato</button>
-                <p class="phone-description">Não deixe para amanhã, ligue agora e garanta a sua oportunidade! Os melhores carros não esperam!</p>
-            </div>
+<div class="contact-section">
+    <h2>🚨 Não perca tempo! Entre em contato agora e tire todas as suas dúvidas! 🚨</h2>
+    <div class="contact-buttons">
+        <!-- Botão para ligar -->
+        <button class="contact-btn" id="call-btn">
+            <i class="fas fa-phone-alt"></i> <span>Ligar Agora</span>
+            <span id="contact-hidden" style="display:none;">+258 852136558</span>
+            <span id="contact-visible">+258 852***558</span>
+        </button>
 
-            <!-- WhatsApp -->
-            <div class="whatsapp-info">
-                <h3><i class="fab fa-whatsapp"></i> Fale Conosco pelo WhatsApp e Feche o Negócio!</h3>
-                <a href="https://wa.me/+258852136558" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Quero Conversar Agora! 🚗💬
-                </a>
-                <p class="whatsapp-description">Não perca tempo, entre em contato agora mesmo e saia com o carro dos seus sonhos!</p>
-            </div>
-        </div>
-
-        <div class="cta-section">
-            <h3>🔥 Esta Oferta Não Vai Esperar por Você! 🔥</h3>
-            <p><strong>Está pronto para dar o próximo passo? O carro dos seus sonhos está a um clique de distância!</strong> Mas corra, as ofertas quentes como essa acabam rápido!</p>
-            <a href="https://wa.me/+258852136558" target="_blank" class="cta-btn">Clique Aqui e Garanta Já o Seu Carro!</a>
-        </div>
+        <!-- Botão WhatsApp -->
+        <a href="https://wa.me/258852136558" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> <span>Fale pelo WhatsApp</span>
+        </a>
     </div>
 </div>
-<div>
-      <p></p>
-</div>
+
 <div>
       <p></p>
 </div>
