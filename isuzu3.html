@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Izuzu Dmax</title>
+ <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+    }
+
+    header {
+        background-color: #0088B5;
+        padding: 1px;
+        text-align: center;
+    }
+
+    header .logo img {
+        width: 110px;
+    }
+    /* Logo */
+    .logo {
+        flex-grow: 1;
+        text-align: center;
+        background-color: transparent;
+    }
+
+    .logo img {
+        height: 35px;
+        padding: 0;
+        margin: 0;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .car-details {
+        display: flex;
+        flex-direction: row;  /* Coloca as seções lado a lado */
+        align-items: flex-start;  /* Alinha as seções ao topo */
+        gap: 0;/* Espaçamento entre as seções */
+        margin: 0; /* Remove margens extras na descrição */
+    padding: 0; /* Remove qualquer padding */
+    }
+
+    .car-gallery {
+        width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
+        text-align: center;
+        position: relative; 
+     
+    }
+    .main-image img {
+        width: 80%;
+        max-width: 400px; /* Limita a largura máxima da imagem */
+        height: auto;
+        border-radius: 15px !important; /* Bordas arredondadas na imagem principal */
+          margin: 0;  /* Remove margens laterais */
+    }
+
+    .thumbnail-carousel {
+        display: flex;
+        justify-content: center !important;
+        margin-top: 20px !important;
+        gap: 10px;
+        overflow-x: auto;
+        width: 50% !important; /* Ajusta o tamanho do container para 80% da largura da tela */
+        scroll-behavior: smooth;
+        max-width: calc(4 * 60px + 3 * 10px); /* Força a exibição de 4 miniaturas + espaços */
+        margin: 0 auto; /* Centraliza o cpadding-left: 10px; /* Garante que o container tenha espaço suficiente */
+        padding-left: 10px; /* Garante que o container tenha espaço suficiente */
+        padding-top: 10px
+        scroll-snap-type: x mandatory;  /* Força o alinhamento de cada item */
+    }
+
+    .thumbnail {
+        width: 45px !important;  /* Miniaturas com tamanho reduzido */
+        height: 45px !important; /* Mantendo proporção */
+        cursor: pointer;
+        border-radius: 10px;
+        object-fit: cover;
+        flex-shrink: 0; /* Impede que as miniaturas encolham */
+        transition: opacity 0.3s, border 0.3s;
+        border: 2px solid transparent; /* Sem borda por padrão */
+    }
+    /* Ajustes para telas grandes (computadores) */
+    @media screen and (min-width: 768px) {
+        .thumbnail {
+            width: 60px !important;  /* Ajuste para largura maior em desktops */
+            height: 60px !important; /* Altura igual à largura, mantendo a proporção 1:1 */
+        }
+    }
+         .car-details {
+        display: flex;
+        flex-direction: row;  /* Coloca as seções lado a lado */
+        align-items: flex-start;  /* Alinha as seções ao topo */
+        gap: 10px !important; /* Espaçamento entre as seções */
+        margin: 0;/* Remove margens extras na descrição */
+    padding: 0; /* Remove qualquer padding */
+    }
+
+    .car-gallery {
+        width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
+        margin: 0;
+        gap: 10px !important; /* Espaçamento entre as seções */
+        text-align: center;
+    }
+    /* Ajustes para telas pequenas (dispositivos móveis) */
+    @media screen and (max-width: 767px) {
+        .thumbnail-carousel {
+            padding-left: 63px;  /* Garante que o espaço à esquerda ainda exista */
+            padding-right: 15px; /* Espaço à direita para garantir que a primeira miniatura não seja cortada */
+           max-width: calc(4 * 45px + 3 * 10px) !important; /* Ajusta a largura para 4 miniaturas no carrossel */
+    }
+        }
+
+        .thumbnail {
+            width: 45px !important;  /* Tamanho pequeno para dispositivos móveis */
+            height: 45px !important; /* Mantém a proporção 1:1 */
+        }
+    }
+
+    .thumbnail:hover {
+        opacity: 0.7;
+    }
+
+    .thumbnail.active {
+        border: 2px solid #00aaff; /* Borda azul para a miniatura ativa */
+    }
+
+    .car-info {
+        width: 40%; /* Ajusta a largura da seção */
+        text-align: left; /* Alinha o texto à esquerda */
+        column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
+         padding: 0; /* Remove o espaçamento interno */
+    margin: 0; /* Remove as margens externas */
+ 
+    }
+
+    .car-info h1 {
+        color: #0088B5;
+    margin: 0; /* Remove a margem superior */
+    }
+
+.description {
+    margin-top: 10px;
+    font-size: 14px;
+    width: 100%;  /* Garante que ocupe toda a largura */
+    word-wrap: break-word;  /* Quebra palavras longas, se necessário */
+    line-height: 1.5;  /* Ajusta o espaçamento entre as linhas */
+    text-align: justify;
+}
+
+    .car-state {
+        margin-top: 20px;
+    }
+
+    .state-bar {
+        margin-bottom: 15px;
+    }
+
+    .state-bar span {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .bar-container {
+        background-color: #ddd;
+        border-radius: 5px;
+        width: 100%;
+        height: 20px;
+        position: relative;
+    }
+
+    .bar {
+        background-color: #0088B5;
+        height: 100%;
+        border-radius: 5px;
+        transition: width 1s ease-out;
+    }
+
+    .bar-label {
+        margin-top: 5px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    footer {
+        background-color: #fff;
+        color: black;
+        text-align: center;
+        padding: 10px;
+    }
+
+    footer p {
+        margin: 0;
+    }
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+        /* Empilha as seções no celular */
+        .car-details {
+            flex-direction: column; /* Altera a direção para empilhar */
+            align-items: center; /* Centraliza os elementos */
+        }
+ .car-info h1 {
+        color: #012063;
+    margin-top: 29px; /* Remove a margem superior */
+     text-align: center;
+    }
+        .car-gallery {
+            width: 100%; /* A galeria ocupa toda a largura */
+            text-align: center; /* Centraliza o conteúdo */
+        }
+        
+.thumbnail-carousel {
+         max-width: calc(4 * 50px + 3 * 10px); /* Ajusta a largura para 3 miniaturas no carrossel */
+       }
+        .car-info {
+            width: 100%; /* Informações do veículo ocupam toda a largura */
+            padding: 0 10px; /* Adiciona espaçamento interno */
+        }
+
+        .main-image img {
+            width: 100%; /* Ajusta a largura da imagem principal */
+            max-width: 400px !important; /* Define um limite máximo */
+            height: 300px !important; /* Mantém a proporção da imagem */
+            margin: 0; /* Remove margens extras da imagem */
+        }
+
+        .car-state {
+            width: 100%; /* As barras ocupam toda a largura disponível */
+        }
+
+        .state-bar {
+            width: 100%; /* Ajusta as barras de estado */
+        }
+
+        .bar-container {
+            width: 100%; /* A barra de estado ocupa toda a largura */
+        }
+    }
+/* Botão de alternância */
+.ficha-btn {
+    display: block;
+    margin: 10px auto; /* Menos margem */
+    text-align: center;
+    background-color: #0088B5; /* Cor azul clara */
+    color: white;
+    padding: 6px 12px; /* Menos preenchimento */
+    border: none;
+    border-radius: 3px; /* Menos arredondamento */
+    font-size: 14px; /* Tamanho de fonte menor */
+}
+/* Efeito de hover (passando o mouse sobre o botão) */
+.ficha-btn:hover {
+    background-color: #00729d; /* Escurece o azul claro */
+    transform: scale(1.05); /* Levemente aumenta o tamanho do botão */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+}
+
+/* Efeito de foco (quando o botão é clicado ou recebe foco) */
+.ficha-btn:focus {
+    outline: none; /* Remove a borda padrão de foco */
+    border: 2px solid #00b4e6; /* Borda azul clara para foco */
+}
+
+/* Efeito de clique */
+.ficha-btn:active {
+    transform: scale(0.98); /* Levemente diminui o tamanho ao clicar */
+    background-color: #006a8f; /* Escurece o fundo quando pressionado */
+}
+/* Estilo da ficha técnica */
+.ficha-tecnica {
+    display: none; /* Oculto por padrão */
+    background-color: #f1f9fc; /* Tom mais claro de azul */
+    padding: 20px;
+    border-left: 4px solid #0088B5;
+    border-radius: 5px;
+}
+
+.ficha-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ficha-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ficha-content li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.ficha-content li strong {
+    color: #0088B5;
+}
+
+p {
+    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
+    padding: 0.5px; /* Adiciona 2.5px de espaço dentro de cada parágrafo */
+}
+
+ .showroom-iframe {
+    visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
+}    
+/* Estilo geral da seção de contato */
+.contact-section {
+    background-color: #f1f1f1;
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact-section h2 {
+    color: #0088B5;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.contact-section p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Informações do telefone */
+.phone-info {
+    background-color: #25D366;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.phone-info:hover {
+    transform: scale(1.05);
+}
+
+.phone-info h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.phone-info p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.show-phone-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: bold;
+}
+
+.show-phone-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.phone-description {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Estilo do botão WhatsApp */
+.whatsapp-info {
+    background-color: #075E54;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.whatsapp-info:hover {
+    transform: scale(1.05);
+}
+
+.whatsapp-info h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #128C7E;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.whatsapp-btn i {
+    margin-right: 10px;
+}
+
+.whatsapp-btn:hover {
+    background-color: #075E54;
+    transform: scale(1.05);
+}
+
+.whatsapp-description {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Chamada para ação */
+.cta-section {
+    background-color: #ff6600;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.cta-section h3 {
+    font-size: 26px;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.cta-section p {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.cta-btn {
+    background-color: #ff3333;
+    color: white;
+    padding: 15px 25px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #e62e2e;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .phone-info, .whatsapp-info {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .cta-btn {
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="entreposto" border="0" style="max-width: 250px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+    </header>
+
+    <main>
+        <section class="car-details">
+            <div class="car-gallery">
+                <div class="main-image">
+                    <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
+                </div>
+                <div class="thumbnail-carousel">
+<img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+                  <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail"  onclick="changeImage(this)">
+<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            <div class="car-info">
+                <h1>Izuzu, Dmax</h1>
+                <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia em um design elegante e sofisticado. Equipado com um motor de 2.0L de 184 cv, oferece uma condução dinâmica e eficiente, com transmissão automática de 8 marchas. O interior é refinado, com acabamentos em couro e tecnologia de ponta, incluindo o sistema iDrive e conectividade Bluetooth.</p>
+
+                <div class="car-state">
+                    <div class="state-bar">
+                        <span>Quilometragem</span>
+                        <div class="bar-container">
+                            <div class="bar" id="km-bar"></div>
+                        </div>
+                        <p class="bar-label" id="km-label">60.000 km</p>
+                    </div>
+                    <div class="state-bar">
+                        <span>Condição</span>
+                        <div class="bar-container">
+                            <div class="bar" id="condition-bar"></div>
+                        </div>
+                        <p class="bar-label" id="condition-label">80% de boa condição</p>
+                    </div>
+                    <div class="state-bar">
+                        <span>Combustível</span>
+                        <div class="bar-container">
+                            <div class="bar" id="fuel-bar"></div>
+                        </div>
+                        <p class="bar-label" id="fuel-label">40% restante</p>
+                    </div>
+                </div>
+                <div>
+    <p></p>
+</div>
+
+                        <!-- Botão para exibir a ficha técnica -->
+<button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
+                
+        </section>
+        <div class="contact-section">
+    <h2>Está Pronto Para Transformar Sua Vida?</h2>
+    <p>Nosso número está esperando para conectar você com a solução dos seus problemas. !</p>
+
+    <div class="contact-info">
+        <!-- Contato por Telefone -->
+        <div class="phone-info">
+            <h3><i class="fas fa-phone-alt"></i> Seu Contato Direto</h3>
+            <p id="phone-number">8521*****</p>
+            <button id="show-phone" class="show-phone-btn">Clique para mostrar o número</button>
+            <p class="phone-description">Nosso número está esperando por sua ligação ou mensagem. Não fique para trás, entre em contato agora!</p>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="whatsapp-info">
+            <h3><i class="fab fa-whatsapp"></i> Fale Consco no WhatsApp</h3>
+            <a href="https://wa.me/+258852136558" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Vamos conversar agora!
+            </a>
+            <p class="whatsapp-description">Com um simples clique você entra diretamente em contato com a gente. Não perca tempo, estamos prontos para atender suas necessidades!</p>
+        </div>
+    </div>
+    
+    <div class="cta-section">
+        <h3>O Que Você Está Esperando?</h3>
+        <p>Entre em contato e descubra como podemos revolucionar o seu negócio com as soluções mais inovadoras. **NÃO ESPERE MAIS**!</p>
+        <a href="https://wa.me/+258852136558" target="_blank" class="cta-btn">Clique Aqui Para Falar Conosco Já!</a>
+    </div>
+</div>
+     
+</div>
+<div>
+      <p></p>
+</div>
+<div>
+      <p></p>
+</div>
+<!-- Seção da Ficha Técnica (oculta por padrão) -->
+<div id="fichaTecnica" class="ficha-tecnica">
+    <h2>FICHA TÉCNICA</h2>
+    <div class="ficha-content">
+        <ul>
+            <li><strong>Categoria:</strong> SUV</li>
+            <li><strong>Ano de fabrico:</strong> 2008</li>
+            <li><strong>Cilindrada:</strong> 2972 cc</li>
+            <li><strong>Combustível:</strong> Gasolina</li>
+            <li><strong>Quilometragem:</strong> 87.000 Km</li>
+            <li><strong>Tração:</strong> 4WD</li>
+            <li><strong>Transmissão:</strong> Automática</li>
+            <li><strong>Cor:</strong> Branca</li>
+        </ul>
+        <ul>
+            <li><strong>Portas:</strong> 3</li>
+            <li><strong>Lotação:</strong> 5 Lugares</li>
+            <li><strong>Potência:</strong> 176 Hp @ 5240 rpm</li>
+            <li><strong>Torque:</strong> 261 Nm @ 4000 rpm</li>
+            <li><strong>Velocidade máxima:</strong> 220 km/h</li>
+            <li><strong>Aceleração:</strong> 0 a 100km/h – 11,5 segundos</li>
+            <li><strong>Consumo cidade (l/100 km):</strong> 15,9</li>
+            <li><strong>Consumo estrada (l/100 km):</strong> 10,6</li>
+        </ul>
+    </div>
+</div>  
+<div style="width: 100%; height: 600px; overflow: hidden; position: relative;">
+    <div style="position: absolute; top: -130px; left: -100px; width: calc(100% + 100px); height: 100%; ">
+        <iframe class="showroom-iframe" allow="web-share" width="100%" height="100%" style="border:none;" 
+                src="https://carshow360.net/en/isuzu/d-max/podwojna-kabina-lse-v-cross-pack-iii-11381?iframe" 
+                title="BMW 360°">
+        </iframe>
+    </div>
+</div>
+<div style="width: 100%; height: 600px; overflow: hidden; position: relative;">
+    <div style="position: absolute; top: -170px; left: -100px; width: calc(100% + 100px); height: 100%; bottom: -250px !important; overflow: hidden; ">
+        <iframe class="showroom-iframe" allow="web-share" width="100%" height="100%" style="border:none;" 
+                scrolling="no" 
+                src="https://carshow360.net/en/isuzu/d-max/podwojna-kabina-lse-v-cross-pack-iii-11381?details=&iframe" 
+                title="BMW 360°">
+        </iframe>
+ </div>
+</div>
+    </main>
+    
+
+    <footer>
+        <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
+    </footer>
+    <script>
+document.getElementById("show-phone").addEventListener("click", function() {
+    var phoneNumber = document.getElementById("phone-number");
+    phoneNumber.textContent = "852136558"; // Exibe o número completo
+    this.style.display = "none"; // Esconde o botão após clicar
+});
+
+</script>
+
+<script>
+document.getElementById("toggleFicha").addEventListener("click", function() {
+    // Alternar a visibilidade da ficha técnica
+    var ficha = document.getElementById("fichaTecnica");
+    ficha.style.display = ficha.style.display === "none" ? "block" : "none";
+
+    // Selecionar somente os iframes do showroom
+    var iframes = document.querySelectorAll(".showroom-iframe");
+    
+    iframes.forEach(function(iframe) {
+        if (ficha.style.display === "none") {
+            iframe.style.visibility = "hidden";  // Ocultar os iframes
+        } else {
+            iframe.style.visibility = "visible"; // Mostrar os iframes
+        }
+    });
+});
+
+</script>
+             
+      <script>
+    // Função para mudar a imagem principal ou exibir um vídeo
+    function changeImage(thumbnail) {
+        const mainContainer = document.querySelector('.main-image');
+        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src; // Obtém o src da miniatura
+        const isVideo = thumbnail.getAttribute('data-type') === 'video'; // Verifica se é vídeo
+
+        // Limpar conteúdo anterior
+        mainContainer.innerHTML = '';
+
+        if (isVideo) {
+             // Extrair o ID do vídeo (ex: nl6IvMAI0qc) da URL
+        const videoId = newSrc.split('/')[4]; // Aqui você extrai o ID do vídeo
+            // Criar elemento <iframe> para vídeo do YouTube
+       const videoElement = document.createElement('iframe');
+videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_load_policy=1&hl=en&cc_lang_pref=en`;
+videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+videoElement.allowFullscreen = true;
+videoElement.style.width = '100%';  // O vídeo preenche 100% da largura do container
+videoElement.style.height = '100%';  // O vídeo preenche 100% da altura do container
+videoElement.style.borderRadius = '15px';
+videoElement.style.objectFit = 'cover' + ' !important';
+videoElement.style.transform = 'scale(1)';  // Ajusta o vídeo para não manter a proporção
+videoElement.style.transformOrigin = 'center'; // Faz o vídeo crescer a partir do centro
+mainContainer.appendChild(videoElement);
+// Criar o container para o vídeo
+const videoContainer = document.createElement('div');
+videoContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
+videoContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
+videoContainer.style.height = '400px';  // Altura automática
+videoContainer.style.borderRadius = '15px';  // Bordas arredondadas
+videoContainer.style.margin = '0';  // Remove margens laterais
+videoContainer.style.position = 'flex';  // Para garantir que o iframe ocupe todo o espaço
+videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapasse os limites do container
+videoContainer.style.display = 'block';
+videoContainer.style.textAlign = 'center';
+            
+       // Ajustes específicos para celulares
+if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
+    videoContainer.style.width = '100%';
+    videoContainer.style.maxWidth = '400px'; // Garantir que ocupa toda a largura da tela
+    videoContainer.style.height = '300px'; // Manter a proporção flexível
+} else {
+    // Para desktops, usar um tamanho fixo ou o comportamento padrão
+    videoContainer.style.maxWidth = '400px';
+    videoContainer.style.height = '400px'; // Proporção padrão para desktop
+}
+
+// Adicionar o vídeo ao container
+videoContainer.appendChild(videoElement);
+
+// Certificar-se de que o mainContainer está centralizado
+mainContainer.style.display = 'flex';
+mainContainer.style.justifyContent = 'center';
+mainContainer.style.alignItems = 'center';
+mainContainer.style.width = '100%';
+
+// Adicionar o container ao mainContainer
+mainContainer.appendChild(videoContainer);
+
+} else {
+    // Criar um container para a imagem, igual ao do vídeo
+    const imgContainer = document.createElement('div');
+    imgContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
+imgContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
+imgContainer.style.height = '400px'; 
+    imgContainer.style.display = 'flex';
+    imgContainer.style.justifyContent = 'center';
+    imgContainer.style.alignItems = 'center';
+    imgContainer.style.overflow = 'hidden';
+    imgContainer.style.borderRadius = '15px';
+    imgContainer.style.display = 'block';
+imgContainer.style.textAlign = 'center';
+imgContainer.style.margin = '0 auto';  // Centraliza o container
+
+    // Ajustar tamanhos para celular e desktop
+    if (window.innerWidth <= 600) {
+        imgContainer.style.width = '100%';
+        imgContainer.style.maxWidth = '400px';
+        imgContainer.style.height = '300px';
+    } else {
+        imgContainer.style.maxWidth = '400px';
+        imgContainer.style.height = '400px';
+    }
+
+    // Criar elemento <img> para imagens normais
+    const imgElement = document.createElement('img');
+    imgElement.src = newSrc;
+    imgElement.id = 'main-car-image';
+    imgElement.style.width = '100%';
+    imgElement.style.height = '100%';
+    imgElement.style.objectFit = 'cover'; // Para garantir que a imagem preencha corretamente o container
+
+    // Adicionar a imagem ao container
+    imgContainer.appendChild(imgElement);
+
+    
+    // Adicionar o container ao mainContainer
+    mainContainer.appendChild(imgContainer);
+}
+  
+        // Remover a classe 'active' de todas as miniaturas
+        let thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach(thumb => thumb.classList.remove('active'));
+
+        // Adicionar a classe 'active' à miniatura clicada
+        thumbnail.classList.add('active');
+    }
+
+    // Função para animar as barras
+    window.onload = function() {
+        animateBar('km-bar', 60, 'km-label', '60.000 km');
+        animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
+        animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
+    }
+
+    // Função para animar as barras
+    function animateBar(barId, percentage, labelId, labelText) {
+        let bar = document.getElementById(barId);
+        let label = document.getElementById(labelId);
+        bar.style.width = '0%';
+        setTimeout(function() {
+            bar.style.width = percentage + '%';
+            label.textContent = labelText;
+        }, 500);
+    }
+
+    // Tornar as miniaturas roláveis e limitar a exibição para 4 miniaturas
+    document.addEventListener("DOMContentLoaded", () => {
+        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        // Ajusta a largura das miniaturas para garantir que 4 apareçam de cada vez
+        thumbnailCarousel.style.overflowX = 'auto';
+        thumbnailCarousel.style.display = 'flex';
+        thumbnailCarousel.style.gap = '10px';
+        thumbnailCarousel.style.scrollBehavior = 'smooth';
+
+        // Impede que as miniaturas encolham e ajusta a largura
+        thumbnails.forEach(thumb => {
+            thumb.style.flexShrink = '0';
+            thumb.style.cursor = 'pointer';
+            thumb.style.width = 'calc(100% / 4)'; // Ajusta para exibir 4 miniaturas
+        });
+    });
+</script>
+
+       <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
+</body>
+</html>
+
