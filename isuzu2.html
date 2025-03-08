@@ -312,6 +312,78 @@ p {
  .showroom-iframe {
     visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
 }    
+
+     /* Torna as seções flexíveis e alinhadas lado a lado */
+.container {
+    display: flex;
+    flex-direction: row; /* Mantém os itens na horizontal */
+    justify-content: space-between; /* Distribui o espaço entre os elementos */
+    align-items: flex-start; /* Alinha ao topo */
+    flex-wrap: wrap; /* Permite quebra para telas menores */
+    gap: 20px; /* Espaço entre os itens */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cada seção dentro do container ocupa espaço proporcional */
+.car-gallery, .car-info, .contact-section {
+    flex: 1; /* Ocupa o mesmo espaço */
+    min-width: 300px; /* Evita que fique muito pequeno */
+}
+
+/* Carrossel de imagens */
+.thumbnail-carousel {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Barras de estado */
+.state-bar {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    position: relative;
+}
+
+.bar {
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* Cores das barras */
+#km-bar { width: 60%; background-color: blue; }
+#condition-bar { width: 80%; background-color: green; }
+#fuel-bar { width: 40%; background-color: orange; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Empilha os elementos em telas menores */
+        align-items: center;
+    }
+
+    .car-gallery, .car-info, .contact-section {
+        width: 100%;
+    }
+}
+
 /* Estilo geral da seção de contato */
 .contact-section {
     background-color: #f1f1f1;
@@ -516,88 +588,66 @@ p {
     </header>
 
     <main>
-        <section class="car-details">
-            <div class="car-gallery">
-                <div class="main-image">
-                    <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
+       <section class="container">
+    <div class="car-gallery">
+        <div class="main-image">
+            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
+        </div>
+        <div class="thumbnail-carousel">
+            <img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+            <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+            <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
+            <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+            <img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail" onclick="changeImage(this)">
+        </div>
+    </div>
+
+    <div class="car-info">
+        <h1>Izuzu, Dmax</h1>
+        <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia...</p>
+
+        <div class="car-state">
+            <div class="state-bar">
+                <span>Quilometragem</span>
+                <div class="bar-container">
+                    <div class="bar" id="km-bar"></div>
                 </div>
-                <div class="thumbnail-carousel">
-<img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-                  <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-<img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail"  onclick="changeImage(this)">
-<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-                </div>
+                <p class="bar-label" id="km-label">60.000 km</p>
             </div>
-            <div class="car-info">
-                <h1>Izuzu, Dmax</h1>
-                <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia em um design elegante e sofisticado. Equipado com um motor de 2.0L de 184 cv, oferece uma condução dinâmica e eficiente, com transmissão automática de 8 marchas. O interior é refinado, com acabamentos em couro e tecnologia de ponta, incluindo o sistema iDrive e conectividade Bluetooth.</p>
-
-                <div class="car-state">
-                    <div class="state-bar">
-                        <span>Quilometragem</span>
-                        <div class="bar-container">
-                            <div class="bar" id="km-bar"></div>
-                        </div>
-                        <p class="bar-label" id="km-label">60.000 km</p>
-                    </div>
-                    <div class="state-bar">
-                        <span>Condição</span>
-                        <div class="bar-container">
-                            <div class="bar" id="condition-bar"></div>
-                        </div>
-                        <p class="bar-label" id="condition-label">80% de boa condição</p>
-                    </div>
-                    <div class="state-bar">
-                        <span>Combustível</span>
-                        <div class="bar-container">
-                            <div class="bar" id="fuel-bar"></div>
-                        </div>
-                        <p class="bar-label" id="fuel-label">40% restante</p>
-                    </div>
+            <div class="state-bar">
+                <span>Condição</span>
+                <div class="bar-container">
+                    <div class="bar" id="condition-bar"></div>
                 </div>
-                <div>
-    <p></p>
-</div>
-
-                        <!-- Botão para exibir a ficha técnica -->
-<button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
-                
-        </section>
-        <div class="contact-section">
-    <h2>Está Pronto Para Transformar Sua Vida?</h2>
-    <p>Nosso número está esperando para conectar você com a solução dos seus problemas. !</p>
-
-    <div class="contact-info">
-        <!-- Contato por Telefone -->
-        <div class="phone-info">
-            <h3><i class="fas fa-phone-alt"></i> Seu Contato Direto</h3>
-            <p id="phone-number">8521*****</p>
-            <button id="show-phone" class="show-phone-btn">Clique para mostrar o número</button>
-            <p class="phone-description">Nosso número está esperando por sua ligação ou mensagem. Não fique para trás, entre em contato agora!</p>
-        </div>
-
-        <!-- WhatsApp -->
-        <div class="whatsapp-info">
-            <h3><i class="fab fa-whatsapp"></i> Fale Consco no WhatsApp</h3>
-            <a href="https://wa.me/+258852136558" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Vamos conversar agora!
-            </a>
-            <p class="whatsapp-description">Com um simples clique você entra diretamente em contato com a gente. Não perca tempo, estamos prontos para atender suas necessidades!</p>
+                <p class="bar-label" id="condition-label">80% de boa condição</p>
+            </div>
+            <div class="state-bar">
+                <span>Combustível</span>
+                <div class="bar-container">
+                    <div class="bar" id="fuel-bar"></div>
+                </div>
+                <p class="bar-label" id="fuel-label">40% restante</p>
+            </div>
         </div>
     </div>
-    
-    <div class="cta-section">
-        <h3>O Que Você Está Esperando?</h3>
-        <p>Entre em contato e descubra como podemos revolucionar o seu negócio com as soluções mais inovadoras. **NÃO ESPERE MAIS**!</p>
-        <a href="https://wa.me/+258852136558" target="_blank" class="cta-btn">Clique Aqui Para Falar Conosco Já!</a>
+
+    <div class="contact-section">
+        <div class="contact-header">
+            <h2>🚨 Entre em contato AGORA!</h2>
+            <p>Estamos prontos para atender você! Não perca tempo, fale conosco!</p>
+        </div>
+        <button class="contact-btn" id="call-btn" onclick="togglePhoneNumber()">
+            <i class="fas fa-phone-alt"></i> Ligar Agora
+            <span id="contact-hidden" class="contact-number" style="display:none;">+258 852136558</span>
+            <span id="contact-visible" class="contact-number">+258 852***558</span>
+        </button>
+        <a href="https://wa.me/258852136558" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Fale pelo WhatsApp
+        </a>
     </div>
-</div>
-     
-</div>
+</section>
+
 <div>
       <p></p>
 </div>
