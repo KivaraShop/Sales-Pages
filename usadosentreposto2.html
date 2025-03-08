@@ -363,10 +363,21 @@ button:hover {
 
 
 #no-results-message {
-    display: none; /* Esconde a mensagem "Sem resultados" inicialmente */
+    display: none; /* Escondido por padrão */
     text-align: center;
     margin-top: 20px;
+    opacity: 0;
+    transform: scale(0.7); /* Começa menor, como se estivesse distante */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+/* Quando a mensagem deve aparecer */
+#no-results-message.show {
+    display: block;
+    opacity: 1;
+    transform: scale(1); /* Volta ao tamanho normal */
+}
+
 
  /* Container do banner */
   .banner-container {
@@ -1496,7 +1507,18 @@ div, span, section, header, footer, main, article {
         <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
     </div>
 </footer>
+           <script>
+function showNoResultsMessage() {
+    const message = document.querySelector('#no-results-message');
+    message.classList.add('show'); // Ativa a animação
+}
 
+function hideNoResultsMessage() {
+    const message = document.querySelector('#no-results-message');
+    message.classList.remove('show'); // Esconde e reseta o efeito
+}
+           </script>
+    
        <script>
         // Seleciona o grid de produtos
 const productGrid = document.querySelector('.product-grid');
