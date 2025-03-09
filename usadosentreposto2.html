@@ -969,6 +969,86 @@ div, span, section, header, footer, main, article {
     .hidden {
       display: none;
     }
+
+
+/* Estilo para a seção de serviços */
+.services {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Estilo para cada card de serviço */
+.service-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service-card i {
+    font-size: 40px;
+    color: #0066cc;
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.service-link {
+    font-size: 16px;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.service-link:hover {
+    color: #ff66b2;
+}
+
+/* Efeito de hover no card */
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .service-card {
+        width: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        width: 100%;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -1544,7 +1624,37 @@ div, span, section, header, footer, main, article {
     </div>
   </div>
 </section>
-    
+
+<section class="services">
+    <h2>Nossos Serviços</h2>
+    <div class="services-container">
+        <div class="service-card">
+            <i class="fas fa-car"></i>
+            <h3>Aluguel de Viaturas</h3>
+            <p>Oferecemos uma frota variada de viaturas para alugar, de carros pequenos a veículos comerciais.</p>
+            <a href="#" class="service-link">Saiba mais</a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-truck"></i>
+            <h3>Venda de Máquinas Agrícolas</h3>
+            <p>Compre máquinas agrícolas de alta qualidade para melhorar sua produtividade no campo.</p>
+            <a href="#" class="service-link">Saiba mais</a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-cogs"></i>
+            <h3>Peças</h3>
+            <p>Disponibilizamos uma grande variedade de peças para manutenção e reparação de veículos e máquinas.</p>
+            <a href="#" class="service-link">Saiba mais</a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-tools"></i>
+            <h3>Oficina</h3>
+            <p>Serviços de manutenção e reparo para veículos e máquinas agrícolas com profissionais qualificados.</p>
+            <a href="#" class="service-link">Saiba mais</a>
+        </div>
+    </div>
+</section>
+
 <!-- Rodapé -->
 <footer class="footer">
     <!-- Logo e Slogan -->
