@@ -291,16 +291,16 @@
     }
      
 .contact-section {
-    background-color: #f4f4f4; /* Cor chamativa para atrair atenção */
+     background-color: transparent; /* Fundo transparente */
     color: white;
     padding: 20px;
-    border-radius: 10px;
     max-width: 25% !important; /* Terceira coluna ao lado das outras */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: none; /* Remover sombra */
+    border: none; /* Remover bordas */
 }
 
 /* Cabeçalho da seção */
@@ -479,32 +479,25 @@
     </section>
 
     <!-- Seção de contato -->
-<div class="contact-section">
-    <!-- Cabeçalho da seção -->
-    <div class="contact-header">
-        <h2>Contato</h2>
-        <p>Fale conosco para mais informações</p>
-    </div>
-
-    <!-- Botões de Contato -->
-    <div class="contact-buttons">
-        <!-- Botão Ligar para o Vendedor -->
-        <button class="contact-btn" id="contact-btn" onclick="togglePhoneNumber()">
-            <i class="fas fa-phone-alt"></i> 
-            <span id="contact-visible">85213****</span>
-            <span id="contact-hidden" style="display: none;">852136558</span>
-        </button>
-
-        <!-- Botão WhatsApp -->
-        <button class="whatsapp-btn" onclick="openWhatsApp()">
+<section class="contact-section">
+        <div class="contact-header">
+            <h2>Contato</h2>
+            <p>Fale conosco para mais informações</p>
+        </div>
+        <div class="contact-buttons">
+            <!-- Botão de celular com número parcial -->
+            <button class="contact-btn" id="contact-phone" onclick="togglePhoneNumber()">
+                <i class="fas fa-phone"></i> 85213****
+            </button>
+            
+            <!-- Botão de WhatsApp -->
+             <button class="whatsapp-btn" onclick="openWhatsApp()">
             <i class="fab fa-whatsapp"></i> WhatsApp
         </button>
-    </div>
-
-    <!-- Nota de urgência -->
-    <div class="urgency-note">
-        <p>Contato urgente? Chame no WhatsApp!</p>
-    </div>
+        </div>
+        <div class="urgency-note">
+            <p>Contato urgente? Chame no WhatsApp!</p>
+        </div>
     </section>
 </div>
 
@@ -794,4 +787,3 @@ imgContainer.style.margin = '0 auto';  // Centraliza o container
  </script>
 </body>
 </html>
-
