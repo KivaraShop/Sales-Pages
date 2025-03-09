@@ -437,6 +437,25 @@
     padding: 0px;
 }
 
+/* Estilo para o container do timer */
+.timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Estilo para o ícone */
+.timer-container i {
+    font-size: 24px;
+}
+
+/* Estilo do texto do timer em vermelho */
+#timer {
+    color: #FF0000; /* Vermelho */
+}
 
 </style>
 </head>
@@ -519,6 +538,11 @@
         <div class="urgency-note">
             <p>Disponiveis 24h para chamadas e Whatsapp</p>
         </div>
+    <!-- Timer -->
+<div class="timer-container">
+    <i class="fa fa-clock"></i>
+    <span id="timer">59:00</span>
+</div>
     </section>
 </div>
     <div>
@@ -576,6 +600,30 @@
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
+
+     <script>
+let timeLeft = 59 * 60; // Começa com 59 minutos em segundos
+let timerElement = document.getElementById("timer");
+
+function updateTimer() {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+
+    // Formata o tempo de forma "mm:ss"
+    timerElement.textContent = 
+        (minutes < 10 ? "0" : "") + minutes + ":" + 
+        (seconds < 10 ? "0" : "") + seconds;
+
+    if (timeLeft === 0) {
+        timeLeft = 59 * 60; // Reinicia o timer para 59 minutos
+    } else {
+        timeLeft--;
+    }
+}
+
+// Atualiza o timer a cada segundo
+setInterval(updateTimer, 1000);
+     </script>
     <script>
 // Função para alternar o número de telefone
 function togglePhoneNumber() {
