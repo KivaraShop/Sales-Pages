@@ -340,6 +340,25 @@
     align-items: center;
 }
 
+     /* Efeito de agitação para o botão de contato */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .contact-btn {
     background-color: #28A745; /* Verde chamativo */
     color: white;
@@ -356,6 +375,7 @@
     align-items: center;
     gap: 10px;
     font-weight: bold;
+    animation: shake 2s infinite; /* Animação de agitação */
 }
 
 /* Efeito de hover para os botões */
@@ -500,8 +520,6 @@
         </div>
     </section>
 </div>
-
-
     <div>
       <p></p>
 </div>
