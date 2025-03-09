@@ -479,25 +479,32 @@
     </section>
 
     <!-- Seção de contato -->
-<section class="contact-section">
-        <div class="contact-header">
-            <h2>Contato</h2>
-            <p>Fale conosco para mais informações</p>
-        </div>
-        <div class="contact-buttons">
-            <!-- Botão de celular com número parcial -->
-            <button class="contact-btn" id="contact-phone" onclick="togglePhoneNumber()">
-                <i class="fas fa-phone"></i> 85213****
-            </button>
-            
-            <!-- Botão de WhatsApp -->
-            <button class="whatsapp-btn" onclick="openWhatsApp()">
-                <img src="whatsapp-icon.png" alt="WhatsApp"> WhatsApp
-            </button>
-        </div>
-        <div class="urgency-note">
-            <p>Contato urgente? Chame no WhatsApp!</p>
-        </div>
+<div class="contact-section">
+    <!-- Cabeçalho da seção -->
+    <div class="contact-header">
+        <h2>Contato</h2>
+        <p>Fale conosco para mais informações</p>
+    </div>
+
+    <!-- Botões de Contato -->
+    <div class="contact-buttons">
+        <!-- Botão Ligar para o Vendedor -->
+        <button class="contact-btn" id="contact-btn" onclick="togglePhoneNumber()">
+            <i class="fas fa-phone-alt"></i> 
+            <span id="contact-visible">85213****</span>
+            <span id="contact-hidden" style="display: none;">852136558</span>
+        </button>
+
+        <!-- Botão WhatsApp -->
+        <button class="whatsapp-btn" onclick="openWhatsApp()">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </button>
+    </div>
+
+    <!-- Nota de urgência -->
+    <div class="urgency-note">
+        <p>Contato urgente? Chame no WhatsApp!</p>
+    </div>
     </section>
 </div>
 
