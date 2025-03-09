@@ -469,7 +469,7 @@
 }
 .sponsor-track {
     display: flex;
-    width: max-content; 
+    width: 200%; 
     animation: scrollBanner 15s linear infinite;
 }
 .sponsor-content {
@@ -480,6 +480,10 @@
     width: 79px; /* Ajuste conforme necessário */
     height: auto;
     margin: 0 20px;
+}
+/* Duplicando o conteúdo para rolar continuamente */
+.sponsor-track {
+    animation: scrollBanner 10s linear infinite;
 }
 
 /* Animação para rolar infinitamente */
@@ -500,7 +504,6 @@
         transform: translateX(-200%);
     }
 }
-
 
 </style>
 </head>
