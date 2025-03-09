@@ -462,48 +462,38 @@
      .sponsor-banner {
     width: 100%;
     overflow: hidden;
-    background: transparent; /* Fundo transparente */
-    padding: 0;
+    background: transparent;
+    padding: 10px 0;
     white-space: nowrap;
     position: relative;
 }
+
 .sponsor-track {
     display: flex;
-    width: 200%; 
-    animation: scrollBanner 15s linear infinite;
+    width: 500%; /* Agora calcula o tamanho automático! */
+    animation: scrollBanner 10s linear infinite;
 }
+
 .sponsor-content {
     display: flex;
 }
 
-.sponsor-track img {
-    width: 79px; /* Ajuste conforme necessário */
+.sponsor-content img {
+    width: 79px; /* Seu tamanho desejado */
     height: auto;
-    margin: 0 20px;
-}
-/* Duplicando o conteúdo para rolar continuamente */
-.sponsor-track {
-    animation: scrollBanner 10s linear infinite;
+    margin: 0 10px; /* Pequeno espaço entre as imagens */
 }
 
-/* Animação para rolar infinitamente */
+/* Rolagem contínua perfeita */
 @keyframes scrollBanner {
-    0% {
+    from {
         transform: translateX(0);
     }
-    25% {
-        transform: translateX(-50%);
-    }
-    50% {
-        transform: translateX(-100%);
-    }
-    75% {
-        transform: translateX(-150%);
-    }
-    100% {
-        transform: translateX(-200%);
+    to {
+        transform: translateX(-77%);
     }
 }
+
 
 </style>
 </head>
