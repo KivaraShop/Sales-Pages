@@ -988,7 +988,8 @@ div, span, section, header, footer, main, article {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    flex-wrap: wrap;
+    overflow-x: auto; /* Permite rolagem horizontal se necessário */
+    padding-bottom: 10px; /* Para ajustar o espaço ao final da seção */
 }
 
 /* Estilo para cada card de serviço */
@@ -1002,9 +1003,10 @@ div, span, section, header, footer, main, article {
     transition: transform 0.3s ease-in-out;
 }
 
-.service-card i {
-    font-size: 40px;
-    color: #0066cc;
+.service-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
     margin-bottom: 15px;
 }
 
@@ -1036,10 +1038,10 @@ div, span, section, header, footer, main, article {
     transform: translateY(-10px);
 }
 
-/* Responsividade */
+/* Responsividade para telas pequenas */
 @media (max-width: 768px) {
     .service-card {
-        width: 48%;
+        width: 45%;
     }
 }
 
@@ -1048,6 +1050,7 @@ div, span, section, header, footer, main, article {
         width: 100%;
     }
 }
+
 
     </style>
 </head>
@@ -1629,31 +1632,32 @@ div, span, section, header, footer, main, article {
     <h2>Nossos Serviços</h2>
     <div class="services-container">
         <div class="service-card">
-            <i class="fas fa-car"></i>
+            <img src="https://i.ibb.co/58mJ2zF/IMG-20250119-204005.jpg" alt="Alugar Viaturas">
             <h3>Aluguel de Viaturas</h3>
-            <p>Oferecemos uma frota variada de viaturas para alugar, de carros pequenos a veículos comerciais.</p>
+            <p>Alugue carros de qualidade para todas as necessidades, de viagens a negócios.</p>
             <a href="#" class="service-link">Saiba mais</a>
         </div>
         <div class="service-card">
-            <i class="fas fa-truck"></i>
+            <img src="https://i.ibb.co/MnM4pXR/IMG-20250119-204018.jpg" alt="Máquinas Agrícolas">
             <h3>Venda de Máquinas Agrícolas</h3>
-            <p>Compre máquinas agrícolas de alta qualidade para melhorar sua produtividade no campo.</p>
+            <p>Oferecemos as melhores máquinas agrícolas para melhorar sua produção.</p>
             <a href="#" class="service-link">Saiba mais</a>
         </div>
         <div class="service-card">
-            <i class="fas fa-cogs"></i>
+            <img src="https://i.ibb.co/wWKNyRs/IMG-20250119-204036.jpg" alt="Peças">
             <h3>Peças</h3>
-            <p>Disponibilizamos uma grande variedade de peças para manutenção e reparação de veículos e máquinas.</p>
+            <p>Encontre peças de qualidade para manutenção de viaturas e máquinas.</p>
             <a href="#" class="service-link">Saiba mais</a>
         </div>
         <div class="service-card">
-            <i class="fas fa-tools"></i>
+            <img src="https://i.ibb.co/YBQgb9R/IMG-20250119-204044.jpg" alt="Oficina">
             <h3>Oficina</h3>
-            <p>Serviços de manutenção e reparo para veículos e máquinas agrícolas com profissionais qualificados.</p>
+            <p>Conserto e manutenção de veículos e máquinas com profissionais especializados.</p>
             <a href="#" class="service-link">Saiba mais</a>
         </div>
     </div>
 </section>
+
 
 <!-- Rodapé -->
 <footer class="footer">
