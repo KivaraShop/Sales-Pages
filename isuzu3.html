@@ -289,9 +289,9 @@
     .showroom-iframe {
         visibility: hidden;
     }
-/* Estilos gerais para a seção de contato */
+     
 .contact-section {
-    background-color: #FF5733; /* Cor chamativa para atrair atenção */
+    background-color: #f4f4f4; /* Cor chamativa para atrair atenção */
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -340,7 +340,7 @@
     align-items: center;
 }
 
-.contact-btn, .whatsapp-btn {
+.contact-btn {
     background-color: #28A745; /* Verde chamativo */
     color: white;
     font-size: 18px;
@@ -363,23 +363,26 @@
     background-color: #218838; /* Verde mais escuro */
 }
 
-/* Escondendo o número de telefone parcialmente */
-.contact-number {
-    font-size: 16px;
-    color: #FFD700; /* Cor dourada */
-}
-
-#contact-visible {
-    display: inline;
-}
-
-#contact-hidden {
-    display: none;
-}
-
-/* Botão WhatsApp */
+/* Estilos para o botão de WhatsApp */
 .whatsapp-btn {
     background-color: #25D366; /* Verde do WhatsApp */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E; /* Cor mais escura do WhatsApp */
+}
+
+/* Ícones do botão */
+.whatsapp-btn i, .contact-btn i {
+    margin-right: 8px;
+    vertical-align: middle;
 }
 
 /* Alinhamento lado a lado com outras colunas */
@@ -401,7 +404,6 @@
         align-items: center;
     }
 }
-
 /* Torna as seções flexíveis e alinhadas lado a lado */
 .container {
     display: flex;
@@ -477,14 +479,19 @@
     </section>
 
     <!-- Seção de contato -->
-    <section class="contact-section">
+<section class="contact-section">
         <div class="contact-header">
             <h2>Contato</h2>
             <p>Fale conosco para mais informações</p>
         </div>
         <div class="contact-buttons">
-            <button class="contact-btn">Ligar para o vendedor</button>
-            <button class="whatsapp-btn">
+            <!-- Botão de celular com número parcial -->
+            <button class="contact-btn" id="contact-phone" onclick="togglePhoneNumber()">
+                <i class="fas fa-phone"></i> 85213****
+            </button>
+            
+            <!-- Botão de WhatsApp -->
+            <button class="whatsapp-btn" onclick="openWhatsApp()">
                 <img src="whatsapp-icon.png" alt="WhatsApp"> WhatsApp
             </button>
         </div>
@@ -493,6 +500,7 @@
         </div>
     </section>
 </div>
+
 
     <div>
       <p></p>
@@ -550,11 +558,25 @@
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
     <script>
-document.getElementById("show-phone").addEventListener("click", function() {
-    var phoneNumber = document.getElementById("phone-number");
-    phoneNumber.textContent = "852136558"; // Exibe o número completo
-    this.style.display = "none"; // Esconde o botão após clicar
-});
+// Função para alternar o número de telefone
+function togglePhoneNumber() {
+    const phoneButton = document.getElementById('contact-phone');
+    if (phoneButton.textContent.trim() === "85213****") {
+        phoneButton.innerHTML = '<i class="fas fa-phone"></i> 852136558';
+    } else {
+        phoneButton.innerHTML = '<i class="fas fa-phone"></i> 85213****';
+    }
+}
+
+// Função para abrir o WhatsApp com mensagem predefinida
+function openWhatsApp() {
+    const carTitle = document.querySelector('.car-info h1').innerText;
+    const message = `Boa tarde, estou interessado na viatura (${carTitle}) como proceder?`;
+    const phoneNumber = "+258852136558";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
 
 </script>
 
