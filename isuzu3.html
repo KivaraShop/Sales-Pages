@@ -652,22 +652,14 @@ function openWhatsApp() {
 
 <script>
 document.getElementById("toggleFicha").addEventListener("click", function() {
-    // Alternar a visibilidade da ficha técnica
     var ficha = document.getElementById("fichaTecnica");
-    ficha.style.display = ficha.style.display === "none" ? "block" : "none";
 
-    // Selecionar somente os iframes do showroom
-    var iframes = document.querySelectorAll(".showroom-iframe");
-    
-    iframes.forEach(function(iframe) {
-        if (ficha.style.display === "none") {
-            iframe.style.visibility = "hidden";  // Ocultar os iframes
-        } else {
-            iframe.style.visibility = "visible"; // Mostrar os iframes
-        }
-    });
+    // Tornar a ficha visível (caso esteja oculta)
+    ficha.style.display = "block";
+
+    // Fazer a rolagem suave até a ficha técnica
+    ficha.scrollIntoView({ behavior: "smooth" });
 });
-
 </script>
              
       <script>
