@@ -971,71 +971,102 @@ div, span, section, header, footer, main, article {
     }
 
 
-/* Estilo para a seção de serviços */
+/* Estilo geral para a seção */
 .services {
-    padding: 50px 20px;
-    background-color: #f9f9f9;
+    padding: 60px 30px;
+    background-color: #f4f7fa;
     text-align: center;
 }
 
 .services h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
+    font-size: 32px;
     color: #333;
+    margin-bottom: 40px;
+    font-weight: bold;
+    position: relative;
 }
 
+.services h2::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: #ff66b2;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Container para os cards */
 .services-container {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    overflow-x: auto; /* Permite rolagem horizontal se necessário */
-    padding-bottom: 10px; /* Para ajustar o espaço ao final da seção */
+    overflow-x: auto;
+    padding-bottom: 10px;
 }
 
-/* Estilo para cada card de serviço */
 .service-card {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     width: 22%;
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
-.service-card img {
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para a imagem do serviço */
+.service-img {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.service-img img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.service-card h3 {
+.service-img:hover img {
+    transform: scale(1.1);
+}
+
+/* Informação sobre o serviço */
+.service-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.service-info h3 {
     font-size: 20px;
     color: #333;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.service-card p {
+.service-info p {
     font-size: 14px;
     color: #777;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .service-link {
     font-size: 16px;
-    color: #0066cc;
+    color: #ff66b2;
     text-decoration: none;
-    transition: color 0.3s;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .service-link:hover {
-    color: #ff66b2;
-}
-
-/* Efeito de hover no card */
-.service-card:hover {
-    transform: translateY(-10px);
+    color: #d13a8e;
 }
 
 /* Responsividade para telas pequenas */
@@ -1632,31 +1663,48 @@ div, span, section, header, footer, main, article {
     <h2>Nossos Serviços</h2>
     <div class="services-container">
         <div class="service-card">
-            <img src="https://i.ibb.co/58mJ2zF/IMG-20250119-204005.jpg" alt="Alugar Viaturas">
-            <h3>Aluguel de Viaturas</h3>
-            <p>Alugue carros de qualidade para todas as necessidades, de viagens a negócios.</p>
-            <a href="#" class="service-link">Saiba mais</a>
+            <div class="service-img">
+                <img src="imagem-alugar-viaturas.jpg" alt="Alugar Viaturas">
+            </div>
+            <div class="service-info">
+                <h3>Aluguel de Viaturas</h3>
+                <p>Alugue carros de qualidade para todas as necessidades, de viagens a negócios.</p>
+                <a href="#" class="service-link">Saiba mais</a>
+            </div>
         </div>
         <div class="service-card">
-            <img src="https://i.ibb.co/MnM4pXR/IMG-20250119-204018.jpg" alt="Máquinas Agrícolas">
-            <h3>Venda de Máquinas Agrícolas</h3>
-            <p>Oferecemos as melhores máquinas agrícolas para melhorar sua produção.</p>
-            <a href="#" class="service-link">Saiba mais</a>
+            <div class="service-img">
+                <img src="imagem-maquinas-agricolas.jpg" alt="Máquinas Agrícolas">
+            </div>
+            <div class="service-info">
+                <h3>Venda de Máquinas Agrícolas</h3>
+                <p>Oferecemos as melhores máquinas agrícolas para melhorar sua produção.</p>
+                <a href="#" class="service-link">Saiba mais</a>
+            </div>
         </div>
         <div class="service-card">
-            <img src="https://i.ibb.co/wWKNyRs/IMG-20250119-204036.jpg" alt="Peças">
-            <h3>Peças</h3>
-            <p>Encontre peças de qualidade para manutenção de viaturas e máquinas.</p>
-            <a href="#" class="service-link">Saiba mais</a>
+            <div class="service-img">
+                <img src="imagem-pecas.jpg" alt="Peças">
+            </div>
+            <div class="service-info">
+                <h3>Peças</h3>
+                <p>Encontre peças de qualidade para manutenção de viaturas e máquinas.</p>
+                <a href="#" class="service-link">Saiba mais</a>
+            </div>
         </div>
         <div class="service-card">
-            <img src="https://i.ibb.co/YBQgb9R/IMG-20250119-204044.jpg" alt="Oficina">
-            <h3>Oficina</h3>
-            <p>Conserto e manutenção de veículos e máquinas com profissionais especializados.</p>
-            <a href="#" class="service-link">Saiba mais</a>
+            <div class="service-img">
+                <img src="imagem-oficina.jpg" alt="Oficina">
+            </div>
+            <div class="service-info">
+                <h3>Oficina</h3>
+                <p>Conserto e manutenção de veículos e máquinas com profissionais especializados.</p>
+                <a href="#" class="service-link">Saiba mais</a>
+            </div>
         </div>
     </div>
 </section>
+
 
 
 <!-- Rodapé -->
