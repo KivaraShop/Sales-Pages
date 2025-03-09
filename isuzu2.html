@@ -3,125 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Veículo</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <title>Detalhes do Carro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
         }
-        .container {
-            margin-top: 30px;
-        }
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .brand-header {
-            background-color: #0088B5;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 10px 10px 0 0;
+        .main-container {
+            max-width: 1200px;
+            margin: auto;
         }
         .carousel img {
-            max-height: 350px;
-            object-fit: cover;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .thumb-container img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+        .details-container {
+            background-color: #f8f9fa;
+            padding: 20px;
             border-radius: 10px;
         }
-        .info h2 {
-            color: #0088B5;
-            font-weight: bold;
-        }
-        .details {
-            margin-top: 20px;
-        }
-        .details p {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        .progress {
-            height: 8px;
-            border-radius: 5px;
-        }
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px;
-            width: 100%;
-            border-radius: 5px;
-            margin-top: 20px;
+        .details-box {
+            background: white;
+            padding: 15px;
             text-align: center;
-            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .btn-whatsapp:hover {
-            background-color: #1ebe5d;
+        .btn-custom {
+            background-color: #0088B5;
+            color: white;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="product-card">
-        <div class="brand-header">BMW Série 3 - 2022</div>
-        
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://source.unsplash.com/600x400/?bmw" class="d-block w-100" alt="Carro 1">
+    <div class="container main-container py-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div id="carCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="carro1.jpg" alt="Carro">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="carro2.jpg" alt="Carro">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
                 </div>
-                <div class="carousel-item">
-                    <img src="https://source.unsplash.com/600x400/?bmw,interior" class="d-block w-100" alt="Carro 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://source.unsplash.com/600x400/?bmw,engine" class="d-block w-100" alt="Carro 3">
+                <div class="thumb-container mt-3 d-flex gap-2">
+                    <img src="carro1.jpg" alt="Thumb" onclick="changeImage(0)">
+                    <img src="carro2.jpg" alt="Thumb" onclick="changeImage(1)">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
+            <div class="col-md-4">
+                <h2>Hyundai Kona</h2>
+                <p><strong>Preço:</strong> 15.199€</p>
+                <button class="btn btn-custom w-100 mb-2">Comprar Agora</button>
+                <button class="btn btn-outline-secondary w-100">Contatar Vendedor</button>
+            </div>
         </div>
-
-        <div class="details">
-            <h2>Detalhes do Veículo</h2>
-            <p><i class="fas fa-car"></i> Modelo: BMW Série 3</p>
-            <p><i class="fas fa-calendar-alt"></i> Ano: 2022</p>
-            <p><i class="fas fa-gas-pump"></i> Combustível: Gasolina</p>
-            <p><i class="fas fa-tachometer-alt"></i> Quilometragem: 12.000 km</p>
-
-            <h5>Quilometragem</h5>
-            <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 20%;"></div>
+        <h3 class="mt-4">Detalhes do Carro</h3>
+        <div class="row details-container mt-3">
+            <div class="col-md-3 details-box">
+                <i class="fa fa-calendar"></i> <br>
+                <strong>Primeira matrícula</strong> <br>
+                09.07.2020
             </div>
-
-            <h5>Estado do Veículo</h5>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"></div>
+            <div class="col-md-3 details-box">
+                <i class="fa fa-road"></i> <br>
+                <strong>Quilometragem</strong> <br>
+                47.761 km
             </div>
-
-            <h5>Potência</h5>
-            <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;"></div>
+            <div class="col-md-3 details-box">
+                <i class="fa fa-gas-pump"></i> <br>
+                <strong>Combustível</strong> <br>
+                Gasolina
             </div>
-            
-            <a href="https://wa.me/258XXXXXXXXX?text=Olá, estou interessado no BMW Série 3 2022" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> Contatar pelo WhatsApp
-            </a>
+            <div class="col-md-3 details-box">
+                <i class="fa fa-gears"></i> <br>
+                <strong>Transmissão</strong> <br>
+                Manual
+            </div>
         </div>
     </div>
-</div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function changeImage(index) {
+            let carousel = new bootstrap.Carousel(document.getElementById('carCarousel'));
+            carousel.to(index);
+        }
+    </script>
 </body>
 </html>
