@@ -3,783 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Veículo</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Izuzu Dmax</title>
- <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        color: #333;
-        margin: 0;
-    }
-
-    header {
-        background-color: #0088B5;
-        padding: 1px;
-        text-align: center;
-    }
-
-    header .logo img {
-        width: 110px;
-    }
-    /* Logo */
-    .logo {
-        flex-grow: 1;
-        text-align: center;
-        background-color: transparent;
-    }
-
-    .logo img {
-        height: 35px;
-        padding: 0;
-        margin: 0;
-    }
-
-    main {
-        padding: 20px;
-    }
-
-  .car-details {
-    display: flex;
-    flex-direction: row; /* Mantém lado a lado */
-    align-items: flex-start; /* Alinha no topo */
-    gap: 0; /* Remove espaçamento extra */
-    width: 100%; /* Garante que a seção ocupe a largura correta */
-}
-
-.car-gallery {
-    flex: 1; /* Ajustado para 60% para melhor equilíbrio */
-    text-align: center;
-    position: relative;
-
-}
-    .main-image img {
-        width: 80%;
-        max-width: 400px; /* Limita a largura máxima da imagem */
-        height: auto;
-        border-radius: 15px !important; /* Bordas arredondadas na imagem principal */
-          margin: 0;  /* Remove margens laterais */
-    }
-
-    .thumbnail-carousel {
-        display: flex;
-        justify-content: center !important;
-        margin-top: 20px !important;
-        gap: 10px;
-        overflow-x: auto;
-        width: 50% !important; /* Ajusta o tamanho do container para 80% da largura da tela */
-        scroll-behavior: smooth;
-        max-width: calc(4 * 60px + 3 * 10px); /* Força a exibição de 4 miniaturas + espaços */
-        margin: 0 auto; /* Centraliza o cpadding-left: 10px; /* Garante que o container tenha espaço suficiente */
-        padding-left: 10px; /* Garante que o container tenha espaço suficiente */
-        padding-top: 10px
-        scroll-snap-type: x mandatory;  /* Força o alinhamento de cada item */
-    }
-
-    .thumbnail {
-        width: 45px !important;  /* Miniaturas com tamanho reduzido */
-        height: 45px !important; /* Mantendo proporção */
-        cursor: pointer;
-        border-radius: 10px;
-        object-fit: cover;
-        flex-shrink: 0; /* Impede que as miniaturas encolham */
-        transition: opacity 0.3s, border 0.3s;
-        border: 2px solid transparent; /* Sem borda por padrão */
-    }
-    /* Ajustes para telas grandes (computadores) */
-    @media screen and (min-width: 768px) {
-        .thumbnail {
-            width: 60px !important;  /* Ajuste para largura maior em desktops */
-            height: 60px !important; /* Altura igual à largura, mantendo a proporção 1:1 */
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
-    }
-         .car-details {
-        display: flex;
-        flex-direction: row;  /* Coloca as seções lado a lado */
-        align-items: flex-start;  /* Alinha as seções ao topo */
-        gap: 10px !important; /* Espaçamento entre as seções */
-        margin: 0;/* Remove margens extras na descrição */
-    padding: 0; /* Remove qualquer padding */
-    }
-
-    .car-gallery {
-        max-width: 50% !important; /* Ajuste de largura para exibir ao lado da info do carro */
-        margin: 0;
-        gap: 10px !important; /* Espaçamento entre as seções */
-        text-align: center;
-    }
-    /* Ajustes para telas pequenas (dispositivos móveis) */
-    @media screen and (max-width: 767px) {
-        .thumbnail-carousel {
-            padding-left: 63px;  /* Garante que o espaço à esquerda ainda exista */
-            padding-right: 15px; /* Espaço à direita para garantir que a primeira miniatura não seja cortada */
-           max-width: calc(4 * 45px + 3 * 10px) !important; /* Ajusta a largura para 4 miniaturas no carrossel */
-    }
+        .container {
+            margin-top: 30px;
         }
-
-        .thumbnail {
-            width: 45px !important;  /* Tamanho pequeno para dispositivos móveis */
-            height: 45px !important; /* Mantém a proporção 1:1 */
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-    }
-
-    .thumbnail:hover {
-        opacity: 0.7;
-    }
-
-    .thumbnail.active {
-        border: 2px solid #00aaff; /* Borda azul para a miniatura ativa */
-    }
-
-  .car-info {
-    flex: 1; /* Ajusta para ocupar o espaço restante */
-    text-align: left;
-    padding: 0;
-    margin: 0;
-}
-     
-    .car-info h1 {
-        color: #0088B5;
-    margin: 0; /* Remove a margem superior */
-    }
-
-.description {
-    margin-top: 10px;
-    font-size: 14px;
-    width: 30%;  /* Garante que ocupe toda a largura */
-    word-wrap: break-word;  /* Quebra palavras longas, se necessário */
-    line-height: 1.5;  /* Ajusta o espaçamento entre as linhas */
-    text-align: justify;
-}
-
-    .car-state {
-        margin-top: 20px;
-    }
-
-    .state-bar {
-        margin-bottom: 15px;
-    }
-
-    .state-bar span {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .bar-container {
-        background-color: #ddd;
-        border-radius: 5px;
-        width: 30%;
-        height: 20px;
-        position: relative;
-    }
-
-    .bar {
-        background-color: #0088B5;
-        height: 100%;
-        border-radius: 5px;
-        transition: width 1s ease-out;
-    }
-
-    .bar-label {
-        margin-top: 5px;
-        text-align: center;
-        font-size: 14px;
-    }
-
-    footer {
-        background-color: #fff;
-        color: black;
-        text-align: center;
-        padding: 10px;
-    }
-
-    footer p {
-        margin: 0;
-    }
-    /* Mobile responsive */
-    @media (max-width: 768px) {
-        /* Empilha as seções no celular */
-        .car-details {
-            flex-direction: column; /* Altera a direção para empilhar */
-            align-items: center; /* Centraliza os elementos */
+        .brand-header {
+            background-color: #0088B5;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
         }
- .car-info h1 {
-        color: #012063;
-    margin-top: 29px; /* Remove a margem superior */
-     text-align: center;
-    }
-        .car-gallery {
-            width: 100%; /* A galeria ocupa toda a largura */
-            text-align: center; /* Centraliza o conteúdo */
+        .carousel img {
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
         }
-        
-.thumbnail-carousel {
-         max-width: calc(4 * 50px + 3 * 10px); /* Ajusta a largura para 3 miniaturas no carrossel */
-       }
-        .car-info {
-            width: 100%; /* Informações do veículo ocupam toda a largura */
-            padding: 0 10px; /* Adiciona espaçamento interno */
+        .info h2 {
+            color: #0088B5;
+            font-weight: bold;
         }
-
-        .main-image img {
-            width: 100%; /* Ajusta a largura da imagem principal */
-            max-width: 400px !important; /* Define um limite máximo */
-            height: 300px !important; /* Mantém a proporção da imagem */
-            margin: 0; /* Remove margens extras da imagem */
+        .details {
+            margin-top: 20px;
         }
-
-        .car-state {
-            width: 100%; /* As barras ocupam toda a largura disponível */
+        .details p {
+            font-size: 16px;
+            margin-bottom: 5px;
         }
-
-        .state-bar {
-            width: 100%; /* Ajusta as barras de estado */
+        .progress {
+            height: 8px;
+            border-radius: 5px;
         }
-
-        .bar-container {
-            width: 100%; /* A barra de estado ocupa toda a largura */
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
         }
-    }
-/* Botão de alternância */
-.ficha-btn {
-    display: block;
-    margin: 10px auto; /* Menos margem */
-    text-align: center;
-    background-color: #0088B5; /* Cor azul clara */
-    color: white;
-    padding: 6px 12px; /* Menos preenchimento */
-    border: none;
-    border-radius: 3px; /* Menos arredondamento */
-    font-size: 14px; /* Tamanho de fonte menor */
-}
-/* Efeito de hover (passando o mouse sobre o botão) */
-.ficha-btn:hover {
-    background-color: #00729d; /* Escurece o azul claro */
-    transform: scale(1.05); /* Levemente aumenta o tamanho do botão */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
-}
-
-/* Efeito de foco (quando o botão é clicado ou recebe foco) */
-.ficha-btn:focus {
-    outline: none; /* Remove a borda padrão de foco */
-    border: 2px solid #00b4e6; /* Borda azul clara para foco */
-}
-
-/* Efeito de clique */
-.ficha-btn:active {
-    transform: scale(0.98); /* Levemente diminui o tamanho ao clicar */
-    background-color: #006a8f; /* Escurece o fundo quando pressionado */
-}
-/* Estilo da ficha técnica */
-.ficha-tecnica {
-    display: none; /* Oculto por padrão */
-    background-color: #f1f9fc; /* Tom mais claro de azul */
-    padding: 20px;
-    border-left: 4px solid #0088B5;
-    border-radius: 5px;
-}
-
-.ficha-content {
-    display: flex;
-    justify-content: space-between;
-}
-
-.ficha-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.ficha-content li {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.ficha-content li strong {
-    color: #0088B5;
-}
-
-p {
-    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
-    padding: 0.5px; /* Adiciona 2.5px de espaço dentro de cada parágrafo */
-}
-
- .showroom-iframe {
-    visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
-}    
-/* Estilos gerais para a seção de contato */
-.contact-section {
-    background-color: #FF5733; /* Cor chamativa para atrair atenção */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 25% !important; /* Terceira coluna ao lado das outras */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Cabeçalho da seção */
-.contact-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.contact-header h2 {
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #FFD700; /* Cor dourada */
-    margin-bottom: 10px;
-}
-
-.contact-header p {
-    font-size: 16px;
-    font-weight: normal;
-}
-
-/* Nota de urgência */
-.urgency-note {
-    font-size: 18px;
-    font-weight: bold;
-    color: #FFD700; /* Dourado */
-    margin-top: 15px;
-    text-align: center;
-}
-
-/* Estilos para os botões */
-.contact-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    align-items: center;
-}
-
-.contact-btn, .whatsapp-btn {
-    background-color: #28A745; /* Verde chamativo */
-    color: white;
-    font-size: 18px;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80%;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-}
-
-/* Efeito de hover para os botões */
-.contact-btn:hover, .whatsapp-btn:hover {
-    background-color: #218838; /* Verde mais escuro */
-}
-
-/* Escondendo o número de telefone parcialmente */
-.contact-number {
-    font-size: 16px;
-    color: #FFD700; /* Cor dourada */
-}
-
-#contact-visible {
-    display: inline;
-}
-
-#contact-hidden {
-    display: none;
-}
-
-/* Botão WhatsApp */
-.whatsapp-btn {
-    background-color: #25D366; /* Verde do WhatsApp */
-}
-
-/* Alinhamento lado a lado com outras colunas */
-.car-details {
-    display: flex;
-    flex-direction: row;  /* Coloca as seções lado a lado */
-    gap: 20px;
-    align-items: flex-start;
-}
-
-/* Responsividade: Ajustando para telas menores */
-@media (max-width: 768px) {
-    .contact-section {
-        width: 100%; /* Para telas pequenas, ocupa toda a largura */
-    }
-
-    .contact-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-/* Torna as seções flexíveis e alinhadas lado a lado */
-.container {
-    display: flex;
-    flex-direction: row; /* Mantém os itens na horizontal */
-    justify-content: center; /* Distribui o espaço entre os elementos */
-    align-items: flex-start; /* Alinha ao topo */
-    gap: 20px; /* Espaço entre os itens */
-    width: 100%;
-    margin: 0 auto;
-    padding: 0px;
-}
-
-
-</style>
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <a href="#" class="logo">
-            <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="entreposto" border="0" style="max-width: 250px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
-        </a>
-    </header>
 
-    <main>
-   <section class="container">
-    <div class="car-details">
-    <div class="car-gallery">
-        <div class="main-image">
-            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
-        </div>
-        <div class="thumbnail-carousel">
-            <img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-            <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-            <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
-            <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-            <img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail" onclick="changeImage(this)">
-        </div>
-    </div>
-  </div>
-    <div class="car-info">
-        <h1>Izuzu, Dmax</h1>
-        <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia...</p>
-
-        <div class="car-state">
-            <div class="state-bar">
-                <span>Quilometragem</span>
-                <div class="bar-container">
-                    <div class="bar" id="km-bar"></div>
-                </div>
-                <p class="bar-label" id="km-label">60.000 km</p>
-            </div>
-            <div class="state-bar">
-                <span>Condição</span>
-                <div class="bar-container">
-                    <div class="bar" id="condition-bar"></div>
-                </div>
-                <p class="bar-label" id="condition-label">80% de boa condição</p>
-            </div>
-            <div class="state-bar">
-                <span>Combustível</span>
-                <div class="bar-container">
-                    <div class="bar" id="fuel-bar"></div>
-                </div>
-                <p class="bar-label" id="fuel-label">40% restante</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="contact-section">
-        <div class="contact-header">
-            <h2>🚨 Entre em contato AGORA!</h2>
-            <p>Estamos prontos para atender você! Não perca tempo, fale conosco!</p>
-        </div>
-        <button class="contact-btn" id="call-btn" onclick="togglePhoneNumber()">
-            <i class="fas fa-phone-alt"></i> Ligar Agora
-            <span id="contact-hidden" class="contact-number" style="display:none;">+258 852136558</span>
-            <span id="contact-visible" class="contact-number">+258 852***558</span>
-        </button>
-        <a href="https://wa.me/258852136558" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Fale pelo WhatsApp
-        </a>
-    </div>
-</section>
-
+<div class="container">
+    <div class="product-card">
+        <div class="brand-header">BMW Série 3 - 2022</div>
         
-<div>
-      <p></p>
-</div>
-<!-- Seção da Ficha Técnica (oculta por padrão) -->
-<div id="fichaTecnica" class="ficha-tecnica">
-    <h2>FICHA TÉCNICA</h2>
-    <div class="ficha-content">
-        <ul>
-            <li><strong>Categoria:</strong> SUV</li>
-            <li><strong>Ano de fabrico:</strong> 2008</li>
-            <li><strong>Cilindrada:</strong> 2972 cc</li>
-            <li><strong>Combustível:</strong> Gasolina</li>
-            <li><strong>Quilometragem:</strong> 87.000 Km</li>
-            <li><strong>Tração:</strong> 4WD</li>
-            <li><strong>Transmissão:</strong> Automática</li>
-            <li><strong>Cor:</strong> Branca</li>
-        </ul>
-        <ul>
-            <li><strong>Portas:</strong> 3</li>
-            <li><strong>Lotação:</strong> 5 Lugares</li>
-            <li><strong>Potência:</strong> 176 Hp @ 5240 rpm</li>
-            <li><strong>Torque:</strong> 261 Nm @ 4000 rpm</li>
-            <li><strong>Velocidade máxima:</strong> 220 km/h</li>
-            <li><strong>Aceleração:</strong> 0 a 100km/h – 11,5 segundos</li>
-            <li><strong>Consumo cidade (l/100 km):</strong> 15,9</li>
-            <li><strong>Consumo estrada (l/100 km):</strong> 10,6</li>
-        </ul>
-    </div>
-</div>  
-<div style="width: 100%; height: 600px; overflow: hidden; position: relative;">
-    <div style="position: absolute; top: -130px; left: -100px; width: calc(100% + 100px); height: 100%; ">
-        <iframe class="showroom-iframe" allow="web-share" width="100%" height="100%" style="border:none;" 
-                src="https://carshow360.net/en/isuzu/d-max/podwojna-kabina-lse-v-cross-pack-iii-11381?iframe" 
-                title="BMW 360°">
-        </iframe>
-    </div>
-</div>
-<div style="width: 100%; height: 600px; overflow: hidden; position: relative;">
-    <div style="position: absolute; top: -170px; left: -100px; width: calc(100% + 100px); height: 100%; bottom: -250px !important; overflow: hidden; ">
-        <iframe class="showroom-iframe" allow="web-share" width="100%" height="100%" style="border:none;" 
-                scrolling="no" 
-                src="https://carshow360.net/en/isuzu/d-max/podwojna-kabina-lse-v-cross-pack-iii-11381?details=&iframe" 
-                title="BMW 360°">
-        </iframe>
- </div>
-</div>
-    </main>
-    
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://source.unsplash.com/600x400/?bmw" class="d-block w-100" alt="Carro 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://source.unsplash.com/600x400/?bmw,interior" class="d-block w-100" alt="Carro 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://source.unsplash.com/600x400/?bmw,engine" class="d-block w-100" alt="Carro 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
 
-    <footer>
-        <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
-    </footer>
-    <script>
-// Função para alternar a visibilidade do número de telefone
-function togglePhoneNumber() {
-    var hiddenNumber = document.getElementById("contact-hidden");
-    var visibleNumber = document.getElementById("contact-visible");
+        <div class="details">
+            <h2>Detalhes do Veículo</h2>
+            <p><i class="fas fa-car"></i> Modelo: BMW Série 3</p>
+            <p><i class="fas fa-calendar-alt"></i> Ano: 2022</p>
+            <p><i class="fas fa-gas-pump"></i> Combustível: Gasolina</p>
+            <p><i class="fas fa-tachometer-alt"></i> Quilometragem: 12.000 km</p>
 
-    // Alternar a exibição dos números
-    if (hiddenNumber.style.display === "none") {
-        hiddenNumber.style.display = "inline";
-        visibleNumber.style.display = "none";
-    } else {
-        hiddenNumber.style.display = "none";
-        visibleNumber.style.display = "inline";
-    }
-}
+            <h5>Quilometragem</h5>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 20%;"></div>
+            </div>
 
-</script>
+            <h5>Estado do Veículo</h5>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"></div>
+            </div>
 
-<script>
-document.getElementById("toggleFicha").addEventListener("click", function() {
-    // Alternar a visibilidade da ficha técnica
-    var ficha = document.getElementById("fichaTecnica");
-    ficha.style.display = ficha.style.display === "none" ? "block" : "none";
-
-    // Selecionar somente os iframes do showroom
-    var iframes = document.querySelectorAll(".showroom-iframe");
-    
-    iframes.forEach(function(iframe) {
-        if (ficha.style.display === "none") {
-            iframe.style.visibility = "hidden";  // Ocultar os iframes
-        } else {
-            iframe.style.visibility = "visible"; // Mostrar os iframes
-        }
-    });
-});
-
-</script>
-             
-      <script>
-    // Função para mudar a imagem principal ou exibir um vídeo
-    function changeImage(thumbnail) {
-        const mainContainer = document.querySelector('.main-image');
-        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src; // Obtém o src da miniatura
-        const isVideo = thumbnail.getAttribute('data-type') === 'video'; // Verifica se é vídeo
-
-        // Limpar conteúdo anterior
-        mainContainer.innerHTML = '';
-
-        if (isVideo) {
-             // Extrair o ID do vídeo (ex: nl6IvMAI0qc) da URL
-        const videoId = newSrc.split('/')[4]; // Aqui você extrai o ID do vídeo
-            // Criar elemento <iframe> para vídeo do YouTube
-       const videoElement = document.createElement('iframe');
-videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_load_policy=1&hl=en&cc_lang_pref=en`;
-videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-videoElement.allowFullscreen = true;
-videoElement.style.width = '100%';  // O vídeo preenche 100% da largura do container
-videoElement.style.height = '100%';  // O vídeo preenche 100% da altura do container
-videoElement.style.borderRadius = '15px';
-videoElement.style.objectFit = 'cover' + ' !important';
-videoElement.style.transform = 'scale(1)';  // Ajusta o vídeo para não manter a proporção
-videoElement.style.transformOrigin = 'center'; // Faz o vídeo crescer a partir do centro
-mainContainer.appendChild(videoElement);
-// Criar o container para o vídeo
-const videoContainer = document.createElement('div');
-videoContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
-videoContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
-videoContainer.style.height = '400px';  // Altura automática
-videoContainer.style.borderRadius = '15px';  // Bordas arredondadas
-videoContainer.style.margin = '0';  // Remove margens laterais
-videoContainer.style.position = 'flex';  // Para garantir que o iframe ocupe todo o espaço
-videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapasse os limites do container
-videoContainer.style.display = 'block';
-videoContainer.style.textAlign = 'center';
+            <h5>Potência</h5>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;"></div>
+            </div>
             
-       // Ajustes específicos para celulares
-if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
-    videoContainer.style.width = '100%';
-    videoContainer.style.maxWidth = '400px'; // Garantir que ocupa toda a largura da tela
-    videoContainer.style.height = '300px'; // Manter a proporção flexível
-} else {
-    // Para desktops, usar um tamanho fixo ou o comportamento padrão
-    videoContainer.style.maxWidth = '400px';
-    videoContainer.style.height = '400px'; // Proporção padrão para desktop
-}
+            <a href="https://wa.me/258XXXXXXXXX?text=Olá, estou interessado no BMW Série 3 2022" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Contatar pelo WhatsApp
+            </a>
+        </div>
+    </div>
+</div>
 
-// Adicionar o vídeo ao container
-videoContainer.appendChild(videoElement);
-
-// Certificar-se de que o mainContainer está centralizado
-mainContainer.style.display = 'flex';
-mainContainer.style.justifyContent = 'center';
-mainContainer.style.alignItems = 'center';
-mainContainer.style.width = '100%';
-
-// Adicionar o container ao mainContainer
-mainContainer.appendChild(videoContainer);
-
-} else {
-    // Criar um container para a imagem, igual ao do vídeo
-    const imgContainer = document.createElement('div');
-    imgContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
-imgContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
-imgContainer.style.height = '400px'; 
-    imgContainer.style.display = 'flex';
-    imgContainer.style.justifyContent = 'center';
-    imgContainer.style.alignItems = 'center';
-    imgContainer.style.overflow = 'hidden';
-    imgContainer.style.borderRadius = '15px';
-    imgContainer.style.display = 'block';
-imgContainer.style.textAlign = 'center';
-imgContainer.style.margin = '0 auto';  // Centraliza o container
-
-    // Ajustar tamanhos para celular e desktop
-    if (window.innerWidth <= 600) {
-        imgContainer.style.width = '100%';
-        imgContainer.style.maxWidth = '400px';
-        imgContainer.style.height = '300px';
-    } else {
-        imgContainer.style.maxWidth = '400px';
-        imgContainer.style.height = '400px';
-    }
-
-    // Criar elemento <img> para imagens normais
-    const imgElement = document.createElement('img');
-    imgElement.src = newSrc;
-    imgElement.id = 'main-car-image';
-    imgElement.style.width = '100%';
-    imgElement.style.height = '100%';
-    imgElement.style.objectFit = 'cover'; // Para garantir que a imagem preencha corretamente o container
-
-    // Adicionar a imagem ao container
-    imgContainer.appendChild(imgElement);
-
-    
-    // Adicionar o container ao mainContainer
-    mainContainer.appendChild(imgContainer);
-}
-  
-        // Remover a classe 'active' de todas as miniaturas
-        let thumbnails = document.querySelectorAll('.thumbnail');
-        thumbnails.forEach(thumb => thumb.classList.remove('active'));
-
-        // Adicionar a classe 'active' à miniatura clicada
-        thumbnail.classList.add('active');
-    }
-
-    // Função para animar as barras
-    window.onload = function() {
-        animateBar('km-bar', 60, 'km-label', '60.000 km');
-        animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
-        animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
-    }
-
-    // Função para animar as barras
-    function animateBar(barId, percentage, labelId, labelText) {
-        let bar = document.getElementById(barId);
-        let label = document.getElementById(labelId);
-        bar.style.width = '0%';
-        setTimeout(function() {
-            bar.style.width = percentage + '%';
-            label.textContent = labelText;
-        }, 500);
-    }
-
-    // Tornar as miniaturas roláveis e limitar a exibição para 4 miniaturas
-    document.addEventListener("DOMContentLoaded", () => {
-        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
-        const thumbnails = document.querySelectorAll('.thumbnail');
-
-        // Ajusta a largura das miniaturas para garantir que 4 apareçam de cada vez
-        thumbnailCarousel.style.overflowX = 'auto';
-        thumbnailCarousel.style.display = 'flex';
-        thumbnailCarousel.style.gap = '10px';
-        thumbnailCarousel.style.scrollBehavior = 'smooth';
-
-        // Impede que as miniaturas encolham e ajusta a largura
-        thumbnails.forEach(thumb => {
-            thumb.style.flexShrink = '0';
-            thumb.style.cursor = 'pointer';
-            thumb.style.width = 'calc(100% / 4)'; // Ajusta para exibir 4 miniaturas
-        });
-    });
-</script>
-
-       <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
-    const loadingWheel = document.getElementById('loadingWheel');
-    const contentContainer = document.getElementById('contentContainer');
-    let loadedGifs = 0;
-
-    gifs.forEach((gif) => {
-        const gifURL = gif.src;
-
-        // Força o carregamento criando múltiplas requisições
-        const aggressivePreload = new Image();
-        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
-
-        aggressivePreload.onload = () => {
-            loadedGifs++;
-            if (loadedGifs === gifs.length) {
-                // Todos os GIFs carregados
-                loadingWheel.style.display = 'none';
-                contentContainer.style.display = 'block';
-            }
-        };
-
-        aggressivePreload.onerror = () => {
-            loadedGifs++;
-            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
-            if (loadedGifs === gifs.length) {
-                // Mesmo com erro, consideramos o carregamento concluído
-                loadingWheel.style.display = 'none';
-                contentContainer.style.display = 'block';
-            }
-        };
-
-        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
-        gif.src = gifURL + `?cache-force=${Math.random()}`;
-    });
-});
- </script>
 </body>
 </html>
