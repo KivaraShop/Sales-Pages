@@ -37,8 +37,8 @@
             margin-bottom: 20px;
         }
         .main-image {
-            width: 60%;
-            max-width: 700px;
+            width: 50%;
+            max-width: 600px;
             border-radius: 10px;
         }
         .thumbnail-container {
@@ -48,8 +48,8 @@
             margin-top: 10px;
         }
         .thumbnail-container img {
-            width: 100px;
-            height: 70px;
+            width: 80px;
+            height: 60px;
             border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
@@ -112,12 +112,11 @@
             <h1 class="car-title">Hyundai Kona - 1.0 TGDI Klass 2WD</h1>
         </div>
         <div class="image-section">
-            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" class="main-image" id="mainImage" alt="Carro Principal">
+            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" class="main-image" id="mainImage" alt="Carro Principal">
             <div class="thumbnail-container">
-                <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Thumb1" onclick="changeImage('thumb1.jpg')">
-                <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Thumb2" onclick="changeImage('thumb2.jpg')">
-                <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Thumb3" onclick="changeImage('thumb3.jpg')">
-                 <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Thumb3" onclick="changeImage('thumb3.jpg')">
+                <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Thumb1" onclick="changeImage('https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg')">
+                <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Thumb2" onclick="changeImage('https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg')">
+                <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Thumb3" onclick="changeImage('https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg')">
             </div>
         </div>
         <div class="car-info">
@@ -130,7 +129,7 @@
         </div>
         <div class="buttons">
             <button class="buy-btn">Comprar Agora</button>
-            <button class="contact-btn">Entrar em Contato</button>
+            <button class="contact-btn" onclick="showContact()">Entrar em Contato</button>
         </div>
         <div class="description">
             <h3>Descrição do Veículo</h3>
@@ -140,9 +139,19 @@
     </div>
 
     <script>
+        let images = ["thumb1.jpg", "thumb2.jpg", "thumb3.jpg"];
+        let index = 0;
         function changeImage(imageSrc) {
             document.getElementById('mainImage').src = imageSrc;
         }
+        function showContact() {
+            alert("Telefone para contato: 852136558");
+        }
+        function autoChangeImage() {
+            document.getElementById('mainImage').src = images[index];
+            index = (index + 1) % images.length;
+        }
+        setInterval(autoChangeImage, 3000);
     </script>
 </body>
 </html>
