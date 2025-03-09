@@ -426,57 +426,58 @@
 
     <main>
         <div class="container">
-        <section class="car-details">
-            <div class="car-gallery">
-                <div class="main-image">
-                    <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
+    <!-- Seção de detalhes do carro -->
+    <section class="car-details">
+        <div class="car-gallery">
+            <div class="main-image">
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro Principal" id="main-car-image">
+            </div>
+            <div class="thumbnail-carousel">
+                <img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+                <img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+                <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
+                <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
+                <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+                <img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail"  onclick="changeImage(this)">
+                <img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+            </div>
+        </div>
+        <div class="car-info">
+            <h1>Izuzu, Dmax</h1>
+            <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia em um design elegante e sofisticado. Equipado com um motor de 2.0L de 184 cv, oferece uma condução dinâmica e eficiente, com transmissão automática de 8 marchas. O interior é refinado, com acabamentos em couro e tecnologia de ponta, incluindo o sistema iDrive e conectividade Bluetooth.</p>
+
+            <div class="car-state">
+                <div class="state-bar">
+                    <span>Quilometragem</span>
+                    <div class="bar-container">
+                        <div class="bar" id="km-bar"></div>
+                    </div>
+                    <p class="bar-label" id="km-label">60.000 km</p>
                 </div>
-                <div class="thumbnail-carousel">
-<img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/z7ZgSNC/GIF-20250124-210018-237.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-                  <img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-<img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail"  onclick="changeImage(this)">
-<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+                <div class="state-bar">
+                    <span>Condição</span>
+                    <div class="bar-container">
+                        <div class="bar" id="condition-bar"></div>
+                    </div>
+                    <p class="bar-label" id="condition-label">80% de boa condição</p>
+                </div>
+                <div class="state-bar">
+                    <span>Combustível</span>
+                    <div class="bar-container">
+                        <div class="bar" id="fuel-bar"></div>
+                    </div>
+                    <p class="bar-label" id="fuel-label">40% restante</p>
                 </div>
             </div>
-            <div class="car-info">
-                <h1>Izuzu, Dmax</h1>
-                <p class="description">A Izuzu Dmax combina desempenho, luxo e tecnologia em um design elegante e sofisticado. Equipado com um motor de 2.0L de 184 cv, oferece uma condução dinâmica e eficiente, com transmissão automática de 8 marchas. O interior é refinado, com acabamentos em couro e tecnologia de ponta, incluindo o sistema iDrive e conectividade Bluetooth.</p>
 
-                <div class="car-state">
-                    <div class="state-bar">
-                        <span>Quilometragem</span>
-                        <div class="bar-container">
-                            <div class="bar" id="km-bar"></div>
-                        </div>
-                        <p class="bar-label" id="km-label">60.000 km</p>
-                    </div>
-                    <div class="state-bar">
-                        <span>Condição</span>
-                        <div class="bar-container">
-                            <div class="bar" id="condition-bar"></div>
-                        </div>
-                        <p class="bar-label" id="condition-label">80% de boa condição</p>
-                    </div>
-                    <div class="state-bar">
-                        <span>Combustível</span>
-                        <div class="bar-container">
-                            <div class="bar" id="fuel-bar"></div>
-                        </div>
-                        <p class="bar-label" id="fuel-label">40% restante</p>
-                    </div>
-                <div>
-    <p></p>
-</div>
+            <!-- Botão para exibir a ficha técnica -->
+            <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
+        </div>
+    </section>
 
-                        <!-- Botão para exibir a ficha técnica -->
-<button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
-                
-     <!-- Seção de contato -->
-    <div class="contact-section">
+    <!-- Seção de contato -->
+    <section class="contact-section">
         <div class="contact-header">
             <h2>Contato</h2>
             <p>Fale conosco para mais informações</p>
@@ -490,9 +491,9 @@
         <div class="urgency-note">
             <p>Contato urgente? Chame no WhatsApp!</p>
         </div>
-    </div>
+    </section>
 </div>
-<div>
+
     <div>
       <p></p>
 </div>
