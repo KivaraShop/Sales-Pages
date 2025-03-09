@@ -485,16 +485,19 @@
 /* Animação para rolar infinitamente */
 @keyframes scrollBanner {
     0% {
-        transform: translateX(0); /* Início da animação */
+        transform: translateX(0);
     }
-    10% {
-        transform: translateX(0); /* Mantém a posição inicial para suavizar */
+    25% {
+        transform: translateX(-50%);
     }
-    90% {
-        transform: translateX(-77%); /* Move para a esquerda */
+    50% {
+        transform: translateX(-100%);
+    }
+    75% {
+        transform: translateX(-150%);
     }
     100% {
-        transform: translateX(-77%); /* Continua com a mesma posição */
+        transform: translateX(-200%);
     }
 }
 
