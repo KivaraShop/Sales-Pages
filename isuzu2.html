@@ -3,107 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Carro</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Detalhes do Veículo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
         }
-        .main-container {
+        .container {
+            width: 90%;
             max-width: 1200px;
             margin: auto;
-        }
-        .carousel img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .thumb-container img {
-            width: 100px;
-            height: auto;
-            cursor: pointer;
-        }
-        .details-container {
-            background-color: #f8f9fa;
             padding: 20px;
+        }
+        .car-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .car-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0088B5;
+        }
+        .image-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .main-image {
+            width: 70%;
+            max-width: 800px;
             border-radius: 10px;
         }
-        .details-box {
-            background: white;
-            padding: 15px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
         }
-        .btn-custom {
-            background-color: #0088B5;
+        .thumbnail-container img {
+            width: 100px;
+            height: 70px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .thumbnail-container img:hover {
+            transform: scale(1.1);
+        }
+        .car-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .info-box {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .buttons button {
+            width: 48%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .buy-btn {
+            background: #0088B5;
             color: white;
+        }
+        .contact-btn {
+            background: #f1a208;
+            color: white;
+        }
+        .description {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .description h3 {
+            color: #0088B5;
         }
     </style>
 </head>
 <body>
-    <div class="container main-container py-4">
-        <div class="row">
-            <div class="col-md-8">
-                <div id="carCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Carro">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-                </div>
-                <div class="thumb-container mt-3 d-flex gap-2">
-                    <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Thumb" onclick="changeImage(0)">
-                    <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Thumb" onclick="changeImage(1)">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h2>Hyundai Kona</h2>
-                <p><strong>Preço:</strong> 15.199€</p>
-                <button class="btn btn-custom w-100 mb-2">Comprar Agora</button>
-                <button class="btn btn-outline-secondary w-100">Contatar Vendedor</button>
+    <div class="container">
+        <div class="car-header">
+            <h1 class="car-title">Hyundai Kona - 1.0 TGDI Klass 2WD</h1>
+        </div>
+        <div class="image-section">
+            <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" class="main-image" alt="Carro Principal">
+            <div class="thumbnail-container">
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg" alt="Thumb1">
+                <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Thumb2">
+                <img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Thumb3">
             </div>
         </div>
-        <h3 class="mt-4">Detalhes do Carro</h3>
-        <div class="row details-container mt-3">
-            <div class="col-md-3 details-box">
-                <i class="fa fa-calendar"></i> <br>
-                <strong>Primeira matrícula</strong> <br>
-                09.07.2020
-            </div>
-            <div class="col-md-3 details-box">
-                <i class="fa fa-road"></i> <br>
-                <strong>Quilometragem</strong> <br>
-                47.761 km
-            </div>
-            <div class="col-md-3 details-box">
-                <i class="fa fa-gas-pump"></i> <br>
-                <strong>Combustível</strong> <br>
-                Gasolina
-            </div>
-            <div class="col-md-3 details-box">
-                <i class="fa fa-gears"></i> <br>
-                <strong>Transmissão</strong> <br>
-                Manual
-            </div>
+        <div class="car-info">
+            <div class="info-box">Data de matrícula: 09/07/2020</div>
+            <div class="info-box">Quilometragem: 47.763 km</div>
+            <div class="info-box">Combustível: Gasolina</div>
+            <div class="info-box">Potência: 120 CV / 88 kW</div>
+            <div class="info-box">Tração: Dianteira</div>
+            <div class="info-box">Transmissão: Câmbio manual</div>
+        </div>
+        <div class="buttons">
+            <button class="buy-btn">Comprar Agora</button>
+            <button class="contact-btn">Entrar em Contato</button>
+        </div>
+        <div class="description">
+            <h3>Descrição do Veículo</h3>
+            <p>Este Hyundai Kona é uma excelente escolha para quem busca um SUV moderno e eficiente. Com um motor 1.0 TGDI, tração dianteira e câmbio manual, oferece um desempenho equilibrado e economia de combustível. Seu design compacto permite fácil manobrabilidade na cidade, enquanto o interior espaçoso proporciona conforto para todos os passageiros.</p>
+            <p>O veículo possui um sistema multimídia integrado, ar-condicionado digital e sensores de estacionamento, garantindo mais praticidade no dia a dia. Além disso, conta com um histórico de manutenção impecável.</p>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function changeImage(index) {
-            let carousel = new bootstrap.Carousel(document.getElementById('carCarousel'));
-            carousel.to(index);
-        }
-    </script>
 </body>
 </html>
