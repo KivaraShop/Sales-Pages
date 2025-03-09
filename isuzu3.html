@@ -493,6 +493,75 @@
         transform: translateX(-75%);
     }
 }
+/* Estilo para a seção de carros similares */
+.similar-cars {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.similar-cars h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.car-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Estilo para cada card de carro */
+.car-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-info {
+    padding: 15px;
+}
+
+.car-info h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.car-info p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.car-link {
+    font-size: 16px;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.car-link:hover {
+    color: #ff66b2;
+}
+
+/* Efeito de hover no card */
+.car-card:hover {
+    transform: translateY(-10px);
+}
 
 
 </style>
@@ -671,6 +740,45 @@
         </iframe>
  </div>
 </div>
+
+<section class="similar-cars">
+    <h2>Carros Similares</h2>
+    <div class="car-cards">
+        <div class="car-card">
+            <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+            <div class="car-info">
+                <h3>Carro Modelo 1</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+            <div class="car-info">
+                <h3>Carro Modelo 2</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg/300" alt="Carro 3">
+            <div class="car-info">
+                <h3>Carro Modelo 3</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300">
+            <img src="car4.jpg" alt="Carro 4">
+            <div class="car-info">
+                <h3>Carro Modelo 4</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+</section>
+
     </main>
     
 
