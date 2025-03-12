@@ -277,6 +277,43 @@ nav ul li a:hover {
         font-size: 14px;
         color: #666;
     }
+
+    /* Estilo para o parágrafo de introdução */
+.introducao-texto {
+    font-family: 'Arial', sans-serif; /* Fonte limpa e moderna */
+    font-size: 18px; /* Tamanho de fonte agradável */
+    line-height: 1.6; /* Altura de linha para melhor legibilidade */
+    color: #333; /* Cor de texto escura */
+    max-width: 800px; /* Limita a largura do texto para não ficar muito espalhado */
+    margin: 30px auto; /* Espaçamento superior e inferior, centralizado na página */
+    padding: 0 20px; /* Espaçamento interno para evitar que o texto fique muito colado nas bordas */
+    text-align: center; /* Alinha o texto ao centro */
+    background-color: #f9f9f9; /* Cor de fundo suave para destacar o texto */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+}
+
+/* Estilo para o título (caso queira adicionar um título acima) */
+.introducao-titulo {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px; /* Tamanho maior para o título */
+    font-weight: bold;
+    color: #4a90e2; /* Cor do título em azul claro */
+    margin-bottom: 20px; /* Espaçamento inferior do título */
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .introducao-texto {
+        font-size: 16px; /* Ajuste do tamanho da fonte em telas menores */
+        padding: 0 15px; /* Reduz o espaçamento interno */
+    }
+
+    .introducao-titulo {
+        font-size: 20px; /* Tamanho do título ajustado */
+    }
+}
+
       </style>
 <body>
 
@@ -318,8 +355,8 @@ nav ul li a:hover {
         <div class="overlay"></div>
         <div class="content">
             <h2>Máquinas Agrícolas</h2>
-            <p>Nossas máquinas agrícolas são projetadas para oferecer máxima eficiência e durabilidade em qualquer tipo de operação no campo. Com tecnologia de ponta e excelente capacidade de manuseio, elas são ideais para atender às necessidades das atividades agrícolas mais desafiadoras.</p>
-            <a href="#" class="cta-button">SHOW MORE</a>
+          <p class="introducao-texto"> Nossas máquinas agrícolas são projetadas para oferecer máxima eficiência e durabilidade em qualquer tipo de operação no campo. Com tecnologia de ponta e excelente capacidade de manuseio, elas são ideais para atender às necessidades das atividades agrícolas mais desafiadoras.</p>
+            <a href="#" class="cta-button">VER MAIS</a>
         </div>
     </section>
 <section class="industry-section">
