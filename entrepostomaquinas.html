@@ -309,7 +309,78 @@ nav ul li a:hover {
     }
 }
 
-
+    .footer {
+            background-color: #000;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-column h3 {
+            color: #0088B5;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-column p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer-column a {
+            color: #0088B5;
+            text-decoration: none;
+        }
+        .contact-info b {
+            color: #0088B5;
+        }
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            color: white;
+            background: #0088B5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: white;
+            color: #0088B5;
+        }
+        .photo-gallery {
+            display: flex;
+            gap: 10px;
+        }
+        .photo-gallery img {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .subscribe {
+            display: flex;
+            align-items: center;
+        }
+        .subscribe input {
+            padding: 10px;
+            width: 200px;
+            border: none;
+            outline: none;
+        }
+        .subscribe button {
+            background: #0088B5;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            color: white;
+        }
       </style>
 <body>
 
@@ -443,5 +514,60 @@ nav ul li a:hover {
             </div>
         </div>
     </div>
+    <div class="footer">
+    <div class="footer-column">
+        <h3>MOTORS HEAVY EQUIPMENTS</h3>
+        <p>As the leading dealer in Chicago, IL, we are confident that we will save you time and money. Motors is ultimate Car Dealer, Automotive, Auto Dealer WordPress theme.</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>CONTACT INFO</h3>
+        <p><b>Service Department:</b> 1 (323) 938-5798</p>
+        <p><b>Body Repair Service:</b> 1 (888) 637-7262</p>
+        <p><b>Email:</b> <a href="mailto:info@stylemixthemes.com">info@stylemixthemes.com</a></p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>SERVICE HOURS</h3>
+        <p><b>Monday - Friday:</b> 09:00AM – 09:00PM</p>
+        <p><b>Saturday:</b> 09:00AM – 07:00PM</p>
+        <p><b>Sunday:</b> Closed</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>SOCIAL NETWORK</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-column">
+        <h3>OUR LOCATION</h3>
+        <p>1840 E Garvey Avenue S, West Covina, CA 91791, USA</p>
+        <a href="#">Show on map</a>
+    </div>
+
+    <div class="footer-column">
+        <h3>PHOTO GALLERY</h3>
+        <div class="photo-gallery">
+            <img src="img1.jpg" alt="Gallery 1">
+            <img src="img2.jpg" alt="Gallery 2">
+            <img src="img3.jpg" alt="Gallery 3">
+        </div>
+    </div>
+
+    <div class="footer-column">
+        <h3>SUBSCRIBE</h3>
+        <div class="subscribe">
+            <input type="email" placeholder="Enter your email...">
+            <button><i class="fa fa-envelope"></i></button>
+        </div>
+        <p>Get latest updates and offers.</p>
+    </div>
+</div>
+
 </body>
 </html>
