@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articulated Trucks</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+    background: #0088B5;
+    color: white;
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.top-left span {
+    margin-right: 15px;
+}
+
+.top-left i {
+    margin-right: 5px;
+}
+
+.top-right a {
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    padding: 15px 5%;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700; /* Amarelo para destacar */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #0088B5;
+}
+
+.contact-info {
+    text-align: right;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 12px;
+    color: #BBB;
+}
+
+.contact-info strong {
+    font-size: 16px;
+    color: white;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: url('https://motors.stylemixthemes.com/equipment/wp-content/uploads/sites/16/2020/01/bulldozer-1978282_1920.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 136, 181, 0.7); /* Azul da sua marca */
+}
+
+.content {
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.content h2 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.content p {
+    font-size: 16px;
+    margin: 15px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #FFD700; /* Dourado para destaque */
+    color: #000;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background: #FFA500; /* Laranja no hover */
+}
+
+      </style>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-left">
+            <span><i class="fas fa-phone"></i> +1 212-226-3126</span>
+            <span><i class="fas fa-map-marker-alt"></i> 1010 Moon Ave, New York, NY, US</span>
+            <span><i class="far fa-clock"></i> MON - SAT 8:00 - 18:00</span>
+        </div>
+        <div class="top-right">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">Máquinas</div>
+        <nav>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">INVENTORY</a></li>
+                <li><a href="#">SERVICES</a></li>
+                <li><a href="#">MEGAMENU</a></li>
+                <li><a href="#">OUR TEAM</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="#">COMPARE</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info">
+            <span>PHONE NUMBER</span>
+            <strong>878-9671-4455</strong>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>ARTICULATED TRUCKS</h2>
+            <p>The articulated joint dumpers with three axles combine high handling capacity with state-of-the-art drive technology.</p>
+            <a href="#" class="cta-button">SHOW MORE</a>
+        </div>
+    </section>
+
+</body>
+</html>
