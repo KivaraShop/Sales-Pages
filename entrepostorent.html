@@ -7,6 +7,157 @@
       </head>
 
 <style>
+
+	  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+    background: #0088B5;
+    color: white;
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.top-left span {
+    margin-right: 15px;
+}
+
+.top-left i {
+    margin-right: 5px;
+}
+
+.top-right a {
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+      
+.top-right i {
+color: white;
+    margin-left: 10px;
+    font-size: 14px;
+}
+      
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    padding: 15px 5%;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700; /* Amarelo para destacar */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+.contact-info {
+    text-align: right;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 12px;
+    color: #BBB;
+}
+
+.contact-info strong {
+    font-size: 16px;
+    color: white;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    background: url('https://www.easycars.com.au/media/4263/what-you-need-to-become-a-car-dealer-australia.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 136, 181, 0.7); /* Azul da sua marca */
+}
+
+.content {
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.content h2 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.content p {
+    font-size: 16px;
+    margin: 15px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #FFD700; /* Dourado para destaque */
+    color: #000;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background: #FFA500; /* Laranja no hover */
+}
+     body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #f5f5f5; /* Fundo suave e neutro */
+}
   /* General Styles */
 .ftco-section {
     padding: 60px 0;
@@ -114,9 +265,49 @@
 
 </style>
 
+  <body>
+ <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-left">
+            <span><i class="fas fa-phone"></i> +258 852136558</span>
+            <span><i class="fas fa-map-marker-alt"></i> Avenida do Trabalho, Maputo, MT, MZ</span>
+            <span><i class="far fa-clock"></i> SEG - SEX 8:00 - 18:00</span>
+        </div>
+        <div class="top-right">
+            <a href="https://web.facebook.com/Entreposto.MZ"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
 
-  <bod
-
+    <!-- Navigation Bar -->
+    <header>
+         <a href="#" class="logo">
+            <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">ESTOQUE</a></li>
+                <li><a href="#">SERVIÇOS</a></li>
+                <li><a href="#">MEGAMENU</a></li>
+                <li><a href="#">NOSSA EQUIPA</a></li>
+                <li><a href="#">CONTACTO</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info">
+            <span>TELEFONE</span>
+       <div class="logo">+258 852136558</div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+     
+    <section class="hero-section">
+        <div class="overlay"></div>
+        <div class="content">
+        </div>
+    </section>
 <section class="ftco-section ftco-cart">
 			<div class="container">
 				<div class="row">
