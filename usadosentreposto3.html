@@ -633,104 +633,106 @@ button:hover {
 }    
 
 /* Estilos do Rodapé */
-.footer {
-    background-color: #0088B5;
-    color: #fff;
-    padding: 20px 10px;
-    margin-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.footer-logo-slogan {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 10px;
-}
-
-.footer-logo {
+   .footer {
+            background-color: #0088B5; /* Azul escuro para contraste */
+            color: white;
+            padding: 40px 10%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+        .footer-logo {
     border-radius: 50%;
     width: 80px;
     height: 80px;
 }
-
-.footer-title {
-    margin: 0;
-}
-
-.footer-slogan {
-    margin: 0;
-    font-style: italic;
-    font-size: 14px;
-}
-
-.footer-contacts, .footer-socials, .footer-navigation {
+        .footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 10px;
 }
-
-.footer-section-title {
-    margin-bottom: 5px;
-}
-
-.footer-contact-item {
-    margin: 0;
-}
-
-.footer-social-links {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-social-icon {
-    color: #fff;
-    font-size: 20px;
-    transition: color 0.3s ease;
-}
-
-.footer-social-icon:hover {
-    color: #ff66b2 !important;
-}
-
-.footer-navigation ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-nav-list .footer-nav-item {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.footer-nav-item:hover {
-    color: #ff66b2 !important;
-    text-decoration: underline;
-}
-
-.footer-copyright {
-    width: 100%;
-    text-align: center;
-    margin-top: 15px;
-    border-top: 1px solid #fff;
-    padding-top: 10px;
-}
-
-.footer-copyright p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/* Cor específica para o WhatsApp */
-.footer-social-icon.whatsapp {
-    color: #25D366;
-}
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-column p, .footer-column a {
+            font-size: 14px;
+            line-height: 1.6;
+            color: white;
+            text-decoration: none;
+        }
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+        .contact-info b {
+            color: #0088B5;
+        }
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            color: white;
+            background: #0088B5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: white;
+            color: #0088B5;
+        }
+        .photo-gallery {
+            display: flex;
+            gap: 10px;
+        }
+        .photo-gallery img {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .subscribe {
+            display: flex;
+            align-items: center;
+        }
+        .subscribe input {
+            padding: 10px;
+            width: 200px;
+            border: none;
+            outline: none;
+        }
+        .subscribe button {
+            background: #0088B5;
+            border: none;
+            padding: 10px;
+            color: white;
+        }
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .footer {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 40px 5%;
+            }
+        }
+        @media (max-width: 500px) {
+            .footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
 
 html, body, *, *::before, *::after {
     cursor: default !important; /* Força cursor normal para tudo */
@@ -1867,60 +1869,50 @@ div, span, section, header, footer, main, article {
         </div>
     </div>
 
-    <!-- Contatos -->
-    <div class="footer-contacts">
-        <h4 class="footer-section-title">Contatos</h4>
-        <p class="footer-contact-item"><i class="fas fa-phone-alt"></i>+258 852136558</p>
-        <p class="footer-contact-item"><i class="fas fa-envelope"></i>eugenioalbertocumbane02@gmail.com</p>
+  <div class="footer-column">
+        <h3>MOTORS HEAVY EQUIPMENTS</h3>
+        <p>As the leading dealer in Chicago, IL, we are confident that we will save you time and money. Motors is ultimate Car Dealer, Automotive, Auto Dealer WordPress theme.</p>
     </div>
-
-    <!-- Redes Sociais -->
-    <div class="footer-socials">
-        <h4 class="footer-section-title">Redes Sociais</h4>
-        <div class="footer-social-links">
-         <a href="fb://page/Entreposto.MZ" target="_blank" class="footer-social-icon">
-  <i class="fab fa-facebook"></i> <!-- Ícone do Facebook -->
-</a>
-            <a href="#" target="_blank" class="footer-social-icon">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/258852136558" target="_blank" class="footer-social-icon whatsapp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+    
+    <div class="footer-column">
+        <h3>CONTACT INFO</h3>
+        <p><b>Service Department:</b> 1 (323) 938-5798</p>
+        <p><b>Body Repair Service:</b> 1 (888) 637-7262</p>
+        <p><b>Email:</b> <a href="mailto:info@stylemixthemes.com">info@stylemixthemes.com</a></p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>SERVICE HOURS</h3>
+        <p><b>Monday - Friday:</b> 09:00AM – 09:00PM</p>
+        <p><b>Saturday:</b> 09:00AM – 07:00PM</p>
+        <p><b>Sunday:</b> Closed</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>SOCIAL NETWORK</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
 
-    <!-- Navegação Rápida -->
-    <div class="footer-navigation">
-        <h4 class="footer-section-title">Navegação Rápida</h4>
-        <ul class="footer-nav-list">
-            <li>
-                <a href="#" class="footer-nav-item">
-                    <i class="fas fa-home"></i> Início
-                </a>
-            </li>
-            <li>
-                <a href="sobrenosentreposto.html" class="footer-nav-item">
-                    <i class="fas fa-info-circle"></i> Sobre Nós
-                </a>
-            </li>
-            <li>
-                <a href="#" class="footer-nav-item">
-                    <i class="fas fa-concierge-bell"></i> Serviços
-                </a>
-            </li>
-            <li>
-                <a href="#" class="footer-nav-item">
-                    <i class="fas fa-phone-alt"></i> Contato
-                </a>
-            </li>
-        </ul>
+    <div class="footer-column">
+        <h3>OUR LOCATION</h3>
+        <p>1840 E Garvey Avenue S, West Covina, CA 91791, USA</p>
+        <a href="#">Show on map</a>
     </div>
 
-    <!-- Direitos Autorais -->
-    <div class="footer-copyright">
-        <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
+    <div class="footer-column">
+        <h3>PHOTO GALLERY</h3>
+        <div class="photo-gallery">
+            <img src="https://motors.stylemixthemes.com/equipment/wp-content/uploads/sites/16/2019/12/ind-8.jpg" alt="Gallery 1">
+            <img src="https://motors.stylemixthemes.com/equipment/wp-content/uploads/sites/16/2019/12/ind-3.jpg" alt="Gallery 2">
+            <img src="https://motors.stylemixthemes.com/equipment/wp-content/uploads/sites/16/2019/12/ind-1.jpg" alt="Gallery 3">
+        </div>
     </div>
+</div>
 </footer>
 
  <script>
