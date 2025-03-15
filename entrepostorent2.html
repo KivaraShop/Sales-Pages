@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Service</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #003566, #0077b6);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #90e0ef;
+        }
+
+        .home-section {
+            background: linear-gradient(to bottom, rgba(0, 53, 102, 0.9), rgba(0, 119, 182, 0.8)), url('hero.jpg') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .home-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .home-section p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .home-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .home-buttons button {
+            background: #90e0ef;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            color: #003566;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .home-buttons button:hover {
+            background: #0077b6;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .home-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .cars-section {
+            padding: 2rem;
+            background-color: #f4f4f9;
+        }
+
+        .cars-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .cars-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card h3 {
+            font-size: 1.5rem;
+            margin: 1rem;
+        }
+
+        .car-card p {
+            margin: 0 1rem 1rem;
+        }
+
+        .car-card button {
+            display: block;
+            width: calc(100% - 2rem);
+            margin: 0 1rem 1rem;
+            padding: 0.8rem;
+            background: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .car-card button:hover {
+            background: #003566;
+        }
+
+        .about-section {
+            padding: 2rem;
+            background: linear-gradient(90deg, #90e0ef, #0077b6);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-section {
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .contact-panel {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .contact-panel h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-options {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-option {
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-option a {
+            text-decoration: none;
+            color: #0077b6;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-option img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .contact-option:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #003566;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #90e0ef;
+        }
+
+        .location {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CarRental</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="home-section">
+        <h1>Welcome to CarRental</h1>
+        <p>Your trusted partner in car rentals for every journey.</p>
+        <div class="home-buttons">
+            <button onclick="scrollToSection('cars')">Browse Cars</button>
+            <button onclick="scrollToSection('contact')">Contact Us</button>
+        </div>
+
+        <div class="home-features">
+            <div class="feature-card">
+                <h3>Affordable Prices</h3>
+                <p>We offer competitive pricing to fit your budget.</p>
+            </div>
+            <div class="feature-card">
+                <h3>24/7 Support</h3>
+                <p>Our team is here to assist you at any time.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Easy Booking</h3>
+                <p>Enjoy a seamless online booking experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cars" class="cars-section">
+        <h2>Our Cars</h2>
+        <div class="cars-container">
+            <div class="car-card">
+                <img src="Images/Swift.jpg" alt="Swift">
+                <h3>Swift</h3>
+                <p>Price: ₹2000/day</p>
+                <button onclick="rentCar('Swift')">Rent Now</button>
+            </div>            
+            <div class="car-card">
+                <img src="Images/Swift Desire.jpg" alt="Swift Desire">
+                <h3>Swift Desire</h3>
+                <p>Price: ₹3000/day</p>
+                <button onclick="rentCar('Swift Desire')">Rent Now</button>
+            </div>
+            <div class="car-card">
+                <img src="Images/Creata.jpg" alt="Creta">
+                <h3>Creta</h3>
+                <p>Price: ₹3500/day</p>
+                <button onclick="rentCar('Creta')">Rent Now</button>
+            </div>
+            <div class="car-card">
+                <img src="Images/Brezz.jpg" alt="Brezza">
+                <h3>Brezza</h3>
+                <p>Price: ₹4000/day</p>
+                <button onclick="rentCar('Brezza')">Rent Now</button>
+            </div>
+            <div class="car-card">
+                <img src="Images/Thar.jpg" alt="Thar">
+                <h3>Thar</h3>
+                <p>Price: ₹4500/day</p>
+                <button onclick="rentCar('Thar')">Rent Now</button>
+            </div>
+            <div class="car-card">
+                <img src="Images/Scorpio N.jpg" alt="Scorpio N">
+                <h3>Scorpio N</h3>
+                <p>Price: ₹5000/day</p>
+                <button onclick="rentCar('Scorpio N')">Rent Now</button>
+            </div>
+            <div class="car-card">
+                <img src="Images/Scorpio S11.jpg" alt="Scorpio S11 Classic">
+                <h3>Scorpio S11 Classic</h3>
+                <p>Price: ₹5500/day</p>
+                <button onclick="rentCar('Scorpio S11 Classic')">Rent Now</button>
+            </div>
+            <div class="car-card">
+                <img src="Images/Fortuner.jpg" alt="Fortuner">
+                <h3>Fortuner</h3>
+                <p>Price: ₹7000/day</p>
+                <button onclick="rentCar('Fortuner')">Rent Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>CarRental is a leading car rental service offering a wide range of vehicles to suit your needs. Whether it's a short trip or a long journey, we've got you covered.</p>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-panel">
+            <h2>Get in Touch</h2>
+            <p>We'd love to hear from you! Reach out to us through any of the options below:</p>
+            <div class="contact-options">
+                <div class="contact-option">
+                    <a href="https://wa.me/+918619810822" target="_blank">
+                        <img src="Images/Whatsapp.png" alt="WhatsApp Icon" />
+                        <span>WhatsApp Us</span>
+                    </a>
+                </div>
+                <div class="contact-option">
+                    <a href="tel:+918619810822">
+                        <img src="Images/Call.png" alt="Phone Icon" />
+                        <span>Call Us</span>
+                    </a>
+                </div>
+                <div class="contact-option">
+                    <a href="mailto:aaak4sh@gmail.com">
+                        <img src="Images/Mail.png" alt="Email Icon" />
+                        <span>Mail Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+            </div>
+            <div class="location">
+                <p>Jaipur, Rajasthan, India</p>
+            </div>
+            <p>&copy; 2025 CarRental. All rights reserved.</p>
+        </footer>
+
+  <script>
+    // Helper function to scroll to a section
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Simulate renting a car
+function rentCar(carName) {
+    let phoneNumber = "+918619810822"; // Your WhatsApp Number
+    let message = `Hello, I would like to book the ${carName} for rent. Please provide more details.`;
+    
+    let whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappURL, "_blank");
+}
+// Form submission logic
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        if (name && email && message) {
+            alert('Thank you for contacting us, ' + name + '! We will get back to you shortly.');
+            contactForm.reset();
+        } else {
+            alert('Please fill in all the fields.');
+        }
+    });
+}
+  </script>
+    </body>
+    </html>
+  
