@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Entreposto - Usados</title>
+    <style>
+     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+    background: #0088B5;
+    color: white;
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.top-left span {
+    margin-right: 15px;
+}
+
+.top-left i {
+    margin-right: 5px;
+}
+
+.top-right a {
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+      
+.top-right i {
+color: white;
+    margin-left: 10px;
+    font-size: 14px;
+}
+      
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    padding: 15px 5%;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700; /* Amarelo para destacar */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #0088B5;
+}
+
+.contact-info {
+    text-align: right;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 12px;
+    color: #BBB;
+}
+
+.contact-info strong {
+    font-size: 16px;
+    color: white;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: url('https://motors.stylemixthemes.com/equipment/wp-content/uploads/sites/16/2020/01/139.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 136, 181, 0.7); /* Azul da sua marca */
+}
+
+.content {
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.content h2 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.content p {
+    font-size: 16px;
+    margin: 15px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #FFD700; /* Dourado para destaque */
+    color: #000;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background: #FFA500; /* Laranja no hover */
+}
+     body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #f5f5f5; /* Fundo suave e neutro */
+}
+
+/* Cabeçalho */
+header {
+    background-color: #0088B5; /* Azul escuro da marca */
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .toggle-theme {
+    font-size: 24px;
+    cursor: pointer;
+    color: #FFFF; /* Cor branca para o ícone */
+}
+        
+ /* Logo */
+                .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
+
+        }
+
+        .logo img {
+            height: 35px;
+            padding: 0;
+            margin: 0;
+        }
+   /* Estilização do sininho */
+    .notification {
+      position: relative;
+      cursor: pointer;
+      font-size: 24px;
+      color: white;
+    }
+
+    .notification .badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Menu de notificações */
+    .notification-menu {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      display: none;
+      flex-direction: column;
+      width: 300px;
+      z-index: 9999;
+      padding: 10px 0;
+    }
+
+    .notification-menu a {
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+      font-weight: bold;
+      color: #0288d1;
+      background: #eaf0f8; /* Cor de notificações não visualizadas */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .notification-menu a.read {
+      background: #f7f7f7; /* Cor de notificações visualizadas */
+      color: #666; /* Texto mais discreto */
+    }
+
+    .notification-menu a:hover {
+      background-color: #dce6f2;
+      transform: scale(1.02); /* Efeito sutil ao passar o mouse */
+    }
+
+    .notification-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .notification-menu i {
+      font-size: 18px;
+      color: #012063;
+    }
+/* Estilo para o slogan */
+.slogan-container {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.slogan {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; /* Tamanho da fonte pode ser ajustado conforme necessário */
+    font-weight: 700; /* Deixe o texto mais forte */
+    color: #012063; /* Cor que combina com o cabeçalho */
+    letter-spacing: 2px; /* Espaçamento entre as letras para um efeito mais elegante */
+    font-style: italic; /* Estilo em itálico para um toque mais sofisticado */
+    margin: 0;
+}
+
+        
+/* Layout de Produtos */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0088B5; /* Azul escuro da marca */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    flex-grow: 1;
+    opacity: 0; /* Inicialmente invisível */
+    transform: translateX(-50px); /* Começa deslocado para a esquerda */
+    transition: opacity 1s ease-out, transform 1.5s ease-out; /* Animação */
+}
+
+/* Classe ativada quando o grid entra na tela */
+.product-grid.show {
+    opacity: 1;
+    transform: translateX(0); /* Move para a posição original */
+}
+
+
+
+.product-card {
+    background-color: #FFFF; /* Branco */
+    border: 1px solid #dddfe1; /* Borda sutil e sofisticada */
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Efeito de destaque mais suave */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    color: #012063; /* Azul escuro da marca */
+    margin: 10px 0;
+}
+
+.product-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2AA7E7; /* Azul claro da marca para preço */
+    margin: 10px 0;
+}
+
+.more-info {
+    margin-bottom: 10px;
+}
+
+.more-info a {
+    text-decoration: none;
+    color: #2AA7E7; /* Azul claro da marca para links */
+    font-size: 14px;
+}
+
+button {
+    background-color: #2AA7E7; /* Azul claro da marca */
+    border: none;
+    color: #FFFF; /* Cor branca para o texto do botão */
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #012063; /* Azul escuro da marca para efeito hover */
+}
+
+/* Popup do Modo Noturno */
+.dark-mode {
+    background-color: #121212;
+    color: #FFFF; /* Branco */
+}
+
+.dark-mode header {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .toggle-theme {
+    color: #2AA7E7; /* Azul claro da marca para o ícone no modo noturno */
+}
+
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* Container de Rótulos */
+.product-labels {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+/* Estilo Base dos Rótulos */
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #34495e; /* Rótulos com cor de fundo sóbria */
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo Específico para Cada Rótulo */
+.label.spicy {
+    background-color: #e74c3c; /* Vermelho mais elegante */
+}
+
+.label.organic {
+    background-color: #2ecc71; /* Verde sofisticado */
+}
+
+.label.highlight {
+    background-color: #f39c12; /* Dourado, mas não exagerado */
+}
+
+.label.sugar-free {
+    background-color: #8e44ad; /* Roxo sutil */
+}
+
+.label.loved {
+    background-color: #ff66b2; /* Rosa suave e elegante */
+}
+
+.label.sold {
+    background-color: #e74c3c; /* Vermelho mais vibrante para "vendido" */
+}
+
+/* Ajuste de Posição no Card */
+.product-card {
+    position: relative;
+}
+
+
+/* Flexbox para o container que envolve ambos */
+.parent {
+  display: flex !important; /* Faz com que os elementos filhos fiquem lado a lado */
+  justify-content: space-between !important; /* Espaça os filhos igualmente entre os extremos */
+  align-items: center !important; /* Alinha verticalmente os elementos */
+  width: 100% !important; /* Garantir que o container ocupe toda a largura */
+  padding-bottom: 20px !important; /* Remover qualquer padding extra */
+  margin: 0 !important; /* Remover qualquer margem extra */
+}
+/* A barra de pesquisa à esquerda */
+.search-bar {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important; /* Remove qualquer margem extra */
+  padding: 0 !important; /* Remove qualquer padding extra */
+}
+
+/* Os botões de navegação à direita */
+.navigation-buttons {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important; /* Remove qualquer margem extra */
+ padding-left: 20px;/* Remove qualquer padding extra */
+}
+
+#search-input {
+  padding: 10px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px 0 0 4px !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+  height: 40px !important; /* Altura fixa */
+  box-sizing: border-box !important; /* Garante que padding não aumente a altura total */
+}
+
+#search-btn {
+  background-color: #0288d1 !important;
+  border: none !important;
+  padding: 10px 15px !important;
+  cursor: pointer !important;
+  border-radius: 0 4px 4px 0 !important;
+  color: white !important;
+  font-size: 18px !important;
+  height: 40px !important; /* Mesma altura do input */
+  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px !important; /* Espaço à direita */
+}
+
+
+.navigation-buttons a {
+  background: #0288d1 !important; /* Azul claro */
+  color: white !important;
+  font-size: 16px !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  border-radius: 20px !important;
+  margin: 0 10px !important; /* Adiciona algum espaço entre os links */
+  display: inline-block !important;
+  transition: background 0.3s !important;
+}
+
+.navigation-buttons a:hover {
+  background: #012063 !important; /* Tom mais escuro de azul */
+}
+
+
+#no-results-message {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateX(50px); /* Começa deslocado para a direita */
+    transition: opacity 1.1s ease-out, transform 1.4s ease-out;
+}
+
+#no-results-message.show {
+    opacity: 1;
+    transform: translateX(0); /* Move suavemente para a posição original */
+}
+
+
+ /* Estilo inicial do botão */
+.menu-toggle {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #ffff;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s; /* Transições suaves */
+}
+
+/* Efeito de clique - mudando a cor */
+.menu-toggle.clicked {
+  color:#FFFACD;
+  transform: scale(1.1); /* Aumenta o tamanho do botão */
+}
+
+      .nav-menu {
+    display: none; /* Inicialmente oculto */
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 61px;
+    left: 0;
+    width: 250px; /* Ajuste conforme necessário */
+    height: 100vh;
+    background-color: #0088B5; /* Cor principal da brand */
+    padding: 15px 0;
+    padding-left: 10px;
+    z-index: 999;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+.nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu ul li {
+    margin: 10px 0;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #E0F7FF; /* Azul claro para contraste */
+    font-size: 18px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Submenu (subcategorias) */
+.submenu {
+    display: none; /* Inicialmente escondido */
+    flex-direction: column;
+    background-color: #006F99; /* Tom mais escuro para diferenciação */
+    padding-left: 15px;
+    margin-top: 5px;
+    border-left: 3px solid #00A3CC; /* Tom intermediário para um detalhe moderno */
+}
+
+.submenu a {
+    font-size: 16px;
+    color: #B3E5FC; /* Azul bem claro para legibilidade */
+    padding: 5px 10px;
+}
+
+.submenu a:hover {
+    color: white; /* Destaque total no hover */
+}
+
+/* Efeito Hover */
+.nav-menu ul li a:hover {
+    color: #005577; /* Azul mais escuro para contraste */
+    background-color: #E0F7FF; /* Azul claro no fundo para efeito suave */
+    padding-left: 10px; /* Efeito sutil de deslocamento */
+    border-radius: 4px; /* Arredondamento para um visual moderno */
+}
+
+.nav-menu.active {
+    display: flex; /* Exibir quando ativado */
+}
+ 
+        
+.hide-elements {
+    display: none; /* Classe que oculta elementos */
+}
+        
+/* Estilo normal do botão */
+#order-car-btn {
+  background-color: #0088B5; /* Cor de fundo original */
+  color: white; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: none; /* Sem borda */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor em forma de mão */
+  border-radius: 4px; /* Bordas arredondadas */
+  transition: background-color 0.3s, transform 0.3s; /* Transição suave */
+}
+
+/* Efeito hover */
+#order-car-btn:hover {
+  background-color: #357ab7; /* Cor de fundo ao passar o mouse */
+  transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+}    
+
+/* Estilos do Rodapé */
+.footer {
+    background-color: #0088B5;
+    color: #fff;
+    padding: 20px 10px;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.footer-logo {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.footer-title {
+    margin: 0;
+}
+
+.footer-slogan {
+    margin: 0;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.footer-contacts, .footer-socials, .footer-navigation {
+    margin-bottom: 10px;
+}
+
+.footer-section-title {
+    margin-bottom: 5px;
+}
+
+.footer-contact-item {
+    margin: 0;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social-icon {
+    color: #fff;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-social-icon:hover {
+    color: #ff66b2 !important;
+}
+
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav-list .footer-nav-item {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-nav-item:hover {
+    color: #ff66b2 !important;
+    text-decoration: underline;
+}
+
+.footer-copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    border-top: 1px solid #fff;
+    padding-top: 10px;
+}
+
+.footer-copyright p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Cor específica para o WhatsApp */
+.footer-social-icon.whatsapp {
+    color: #25D366;
+}
+
+html, body, *, *::before, *::after {
+    cursor: default !important; /* Força cursor normal para tudo */
+    user-select: none !important; /* Impede seleção de texto */
+}
+div, span, section, header, footer, main, article {
+    pointer-events: auto !important;
+}
+
+
+.content-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.brand-search, .model-search {
+    background-color: white; /* Alterado para fundo branco */
+    padding: 15px;
+    border-radius: 8px;
+    color: #333; /* Cor do texto para contraste adequado */
+}
+
+.brand-search h3, .model-search h3 {
+    font-size: 18px;
+    margin-top: 0; 
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #0088B5; /* Azul apenas no fundo do título */
+    color: white; /* Cor do texto no título */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.brand-search ul, .model-search ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.brand-search li, .model-search li {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0; /* Cor de borda suave */
+    cursor: pointer;
+    font-size: 14px;
+    background-color: white; /* Fundo branco para as opções da lista */
+    color: #333; /* Contraste adequado para o texto */
+    opacity: 0;
+    transform: translateX(-100px); /* Inicia fora da tela, à esquerda */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave */
+}
+        
+.brand-search li.visible {
+    opacity: 1;
+    transform: translateX(0); /* Quando visível, volta à posição original */
+}
+
+.brand-search li:last-child, .model-search li:last-child {
+    border-bottom: none;
+}
+
+.brand-search li:hover, .model-search li:hover {
+    background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+}
+
+.brand-search img, .model-search img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+.price-search {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que o conteúdo ocupe o máximo de espaço possível */
+    flex-grow: 1; /* Faz com que a seção cresça para ocupar o espaço disponível */
+    height: 100%; /* A altura será igual à do grid */
+}
+
+.price-search h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #0088B5; /* Azul apenas no fundo do título */
+    color: white; /* Cor do texto no título */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.price-search ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Garante que a lista ocupe o máximo de espaço disponível */
+    overflow-y: auto; /* Caso haja mais itens, habilita o scroll */
+}
+
+.price-search li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: white;
+    color: #333;
+}
+
+.price-search li:last-child {
+    border-bottom: none;
+}
+
+.price-search li:hover {
+    background-color: #f0f0f0;
+}
+
+.price-search i {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background: url('https://motors.stylemixthemes.com/elementor-classified-three/wp-content/uploads/sites/26/2022/12/listing_three_bann.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    overflow: hidden;
+    transition: background-image 1s ease-in-out;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h2 {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.features span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+/* Adicionando transições de fade para as imagens */
+.hero-section.fade {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+   .brands-section {
+            display: flex;
+            width: 100%;
+        }
+        .brand-card {
+            position: relative;
+            flex: 1;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .brand-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 51, 102, 0.7); /* Azul escuro semi-transparente */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            padding: 20px;
+        }
+        .brand-card:hover .overlay {
+            opacity: 1;
+        }
+        .brand-card .overlay p {
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: normal;
+        }
+        .brand-card .overlay a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            display: inline-block;
+            border: 1px solid white;
+            padding: 5px 10px;
+            transition: background 0.3s;
+        }
+        .brand-card .overlay a:hover {
+            background: white;
+            color: #003366;
+        }
+        
+
+.google-reviews .container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #0088B5;
+    margin-bottom: 30px;
+}
+
+.reviews-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.reviews {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.author-info {
+    display: flex; /* Usando flexbox para alinhar horizontalmente */
+    align-items: center; /* Alinha a foto e o nome verticalmente */
+    justify-content: center; /* Opcional, se quiser centralizar o conteúdo */
+    margin-bottom: 10px;
+}
+
+.author-photo {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px; /* Espaço entre a foto e o nome */
+}
+
+.review-author {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.review-rating {
+    color: #ffcc00;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.star {
+    margin-right: 3px;
+}
+
+.review-text {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+.more-reviews-link {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #0088B5;
+    text-decoration: none;
+    font-weight: normal;
+    transition: color 0.3s ease;
+}
+
+.more-reviews-link:hover {
+    color: #005f8d;
+    text-decoration: underline;
+}
+
+
+  /* Estilo para dispositivos móveis */
+  @media (max-width: 768px) {
+    .reviews {
+      flex-direction: column;
+    }
+  }
+
+     .parceiros-section {
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+    
+    .parceiros-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .parceiro {
+      text-align: center;
+      width: 120px;
+    }
+    
+    .parceiro img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    
+    .ver-mais {
+      text-align: center;
+      margin-top: 10px;
+      cursor: pointer;
+      color: #007BFF;
+      font-weight: bold;
+    }
+    
+    .hidden {
+      display: none;
+    }
+
+
+/* Estilo geral para a seção */
+.services {
+    padding: 60px 30px;
+    background-color: #f4f7fa;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: bold;
+    position: relative;
+}
+
+.services h2::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: #ff66b2;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Container para os cards */
+.services-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.service-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para a imagem do serviço */
+.service-img {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.service-img:hover img {
+    transform: scale(1.1);
+}
+
+/* Informação sobre o serviço */
+.service-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.service-info h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.service-info p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.service-link {
+    font-size: 16px;
+    color: #ff66b2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.service-link:hover {
+    color: #d13a8e;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    .service-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        width: 100%;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+ <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-left">
+            <span><i class="fas fa-phone"></i> +258 852136558</span>
+            <span><i class="fas fa-map-marker-alt"></i> Avenida do Trabalho, Maputo, MT, MZ</span>
+            <span><i class="far fa-clock"></i> SEG - SEX 8:00 - 18:00</span>
+        </div>
+        <div class="top-right">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">Entreposto Máquinas</div>
+        <nav>
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">ESTOQUE</a></li>
+                <li><a href="#">SERVIÇOS</a></li>
+                <li><a href="#">MEGAMENU</a></li>
+                <li><a href="#">NOSSA EQUIPA</a></li>
+                <li><a href="#">CONTACTO</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info">
+            <span>TELEFONE</span>
+       <div class="logo">+258 852136558</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Máquinas Agrícolas</h2>
+          <p class="introducao-texto"> Nossas máquinas agrícolas são projetadas para oferecer máxima eficiência e durabilidade em qualquer tipo de operação no campo. Com tecnologia de ponta e excelente capacidade de manuseio, elas são ideais para atender às necessidades das atividades agrícolas mais desafiadoras.</p>
+            <a href="#" class="cta-button">VER MAIS</a>
+        </div>
+    </section>
+    <!-- Cabeçalho -->
+    <header>
+    <div class="menu-toggle">
+    <i class="fas fa-bars"></i> <!-- Toggle icon -->
+     </div>
+     <a href="#" class="logo">
+            <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+ <div class="notification" onclick="toggleNotificationMenu()">
+      <i class="fas fa-bell"></i>
+      <span class="badge" id="notification-badge">3</span>
+      <div class="notification-menu" id="notification-menu">
+        <a href="novidades.html" class="notification-item" onclick="markAsRead(0)">
+          <i class="fas fa-gift"></i> Novidades para você!
+        </a>
+        <a href="ofertas.html" class="notification-item" onclick="markAsRead(1)">
+          <i class="fas fa-tag"></i> Oferta especial!
+        </a>
+        <a href="dicas.html" class="notification-item" onclick="markAsRead(2)">
+          <i class="fas fa-lightbulb"></i> Confira nossas dicas!
+        </a>
+      </div>
+    </div>
+    </header>
+
+    <section class="hero-section">
+    <div class="overlay">
+        <div class="hero-content">
+            <h2><br></h2>
+            <p>Visite-nos e venha fazer parte da revolução.</p>
+            <div class="features">
+                <span>Motor 1.6 Turbo GDi com 180 cavalos</span>
+                <span>Caixa Auto 7 Velocidades DCT</span>
+                <span>1ª luzes ocultas paramétricas do mundo</span>
+                <span>Painel 10,25" Touch Screen 100% Digital</span>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="brands-section">
+    <div class="brand-card" style="background-image: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/BMW.jpg');">
+        <div class="overlay">
+            <h2>BMW</h2>
+            <p>A BMW é uma das marcas de luxo mais icônicas do mundo.</p>
+            <a href="#">READ MORE</a>
+        </div>
+    </div>
+    <div class="brand-card" style="background-image: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/HYUNDAI.jpg');">
+        <div class="overlay">
+            <h2>HYUNDAI</h2>
+            <p>Hyundai Motor Company, sediada em Seul na Coreia do Sul, fundada em 1967.</p>
+            <a href="#">READ MORE</a>
+        </div>
+    </div>
+    <div class="brand-card" style="background-image: url('https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/MAZDA.jpg');">
+        <div class="overlay">
+            <h2>MAZDA</h2>
+            <p>A Mazda é reconhecida por sua engenharia inovadora e design arrojado.</p>
+            <a href="#">READ MORE</a>
+        </div>
+    </div>
+</div>
+<section class="parceiros-section">
+    <h2>Nossos Parceiros</h2>
+    <div class="parceiros-container" id="parceiros-container">
+      <!-- Exibindo 7 parceiros inicialmente -->
+      <div class="parceiro">
+        <img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/mVKg6sJD/Peugeot-logo-2010-1920x1080.png" alt="Peugeot">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/Rp6xsbBK/toyota-logo-2020-europe-640.png" alt="Toyota">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/HT0ppYzb/Proton-logo-2016-2048x2048.png" alt="Proton">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/GvHfjQrx/nissan-logo-2020-black-show.png" alt="Nissan">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda">
+      </div>
+      <div class="parceiro">
+        <img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mercedes">
+      </div>
+         <div class="parceiro">
+        <img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Audi">
+      </div>
+     <div class="parceiro">
+        <img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Hyundai">
+      </div>
+      <!-- Logotipos ocultos -->
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/QFGxfnbk/ford-logo-2017-640.png" alt="Ford">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/C5dmDsWR/bmw-logo-2020-gray.png" alt="BMW">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/C3GwMKQj/Volvo-logo-2014-1920x1080.png" alt="Volvo">
+      </div>
+      <div class="parceiro hidden">
+        <img src="https://i.ibb.co/YTBmjcVm/jeep-logo-1993-640.png" alt="Jeep">
+      </div>
+    </div>
+  <div id="ver-mais" class="ver-mais" onclick="mostrarParceiros()">Ver mais</div>
+  </section>
+
+
+
+<!-- Hidden menu items, will toggle on click -->
+    <div class="nav-menu">
+        <ul>
+            <!-- Menu items moved here, they will be toggled by the button -->
+             <li>
+                <a href="#" class="category">Marca</a>
+                <ul class="submenu">
+                    <li><a href="automatica.html">Toyota</a></li>
+                    <li><a href="manual.html">Isuzu</a></li>
+                    <li><a href="manual.html">BMW</a></li>
+                    <li><a href="mercedes.html">Mercedes-Benz</a></li>
+                    <li><a href="manual.html">Ford</a></li>
+                    <li><a href="manual.html">Audi</a></li>
+                    <li><a href="manual.html">Honda</a></li>
+                </ul>
+            </li>
+              <li>
+                <a href="#" class="category">Modelo</a>
+                <ul class="submenu">
+                    <li><a href="automatica.html">SUV</a></li>
+                    <li><a href="manual.html">Sedan</a></li>
+                    <li><a href="automatica.html">Pickup</a></li>
+                    <li><a href="manual.html">Minivan</a></li>
+                    <li><a href="manual.html">Esportivo</a></li>
+                    <li><a href="manual.html">Conversível</a></li>
+                    <li><a href="manual.html">Caminhonetas</a></li>
+                    <li><a href="manual.html">Caminhões</a></li>
+                </ul>
+            </li>
+              <li>
+                <a href="#" class="category">Transmissão</a>
+                <ul class="submenu">
+                    <li><a href="automatica.html">Automática</a></li>
+                    <li><a href="manual.html">Manual</a></li>
+                </ul>
+            </li>
+               <li>
+                <a href="#" class="category">Viaturas Comerciais</a>
+                <ul class="submenu">
+                       <li><a href="manual.html">Caminhonetas</a></li>
+                </ul>
+               </li>
+            <li><a href="sobrenos.html">Máquinas Agrícolas</a></li>
+            <li><a href="sobrenos.html">Ofertas e Novidades</a></li>
+            <li><a href="alugarviatura.html">Alugar Viatura</a></li>
+    </div>
+
+    <div class="container">
+   
+        <div class="slogan-container">
+    <p class="slogan">"Seu futuro começa aqui!"</p>
+</div>
+  </div>
+    
+ <div class="parent">
+ <div class="navigation-buttons">
+    <a href="novos.html">Novos</a>
+    <a href="usados.html" id="usadosButton">Usados</a>
+  </div>
+     
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+</div>
+        
+<!-- Área de Resultados -->
+<div id="search-results"></div>
+    
+<!-- Mensagem de "Sem Resultados" -->
+<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
+  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
+</div>
+  </div>
+    
+ <div class="content-container">
+    <div class="sidebar">
+        <!-- Busca por Marca -->
+        <div class="brand-search">
+            <h3>Busca por Marca</h3>
+            <ul>
+                 <li><img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu"> Isuzu </li>
+                <li><img src="https://i.ibb.co/mVKg6sJD/Peugeot-logo-2010-1920x1080.png" alt="Isuzu"> Peugeot</li>
+                <li><img src="https://i.ibb.co/Rp6xsbBK/toyota-logo-2020-europe-640.png" alt="Toyota"> Toyota</li>
+                <li><img src="https://i.ibb.co/HT0ppYzb/Proton-logo-2016-2048x2048.png" alt="Honda"> Proton</li>
+                <li><img src="https://i.ibb.co/GvHfjQrx/nissan-logo-2020-black-show.png" alt="Nissan"> Nissan</li>
+                <li><img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda"> Mazda</li>
+                <li><img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mitsubishi"> Mercedes</li>
+                <li><img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Daihatsu"> Audi</li>
+                <li><img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Subaru"> Hyundai</li>
+                   <li><img src="https://i.ibb.co/QFGxfnbk/ford-logo-2017-640.png" alt="Subaru"> Ford</li>
+                   <li><img src="https://i.ibb.co/C5dmDsWR/bmw-logo-2020-gray.png" alt="Subaru"> BMW</li>
+                   <li><img src="https://i.ibb.co/C3GwMKQj/Volvo-logo-2014-1920x1080.png" alt="Subaru"> Volvo</li>
+                <li><img src="https://i.ibb.co/YTBmjcVm/jeep-logo-1993-640.png" alt="Subaru"> Jeep</li>
+            </ul>
+        </div>
+
+               <!-- Busca por PREÇO-->
+      <div class="price-search">
+    <h3>Busca por Preço</h3>
+    <ul>
+        <li><i class="fas fa-dollar-sign"></i> Menos de 10,000 MZN</li>
+        <li><i class="fas fa-dollar-sign"></i> 10,000 - 20,000 MZN</li>
+        <li><i class="fas fa-dollar-sign"></i> 20,000 - 30,000 MZN</li>
+        <li><i class="fas fa-dollar-sign"></i> 30,000 - 40,000 MZN</li>
+        <li><i class="fas fa-dollar-sign"></i> Acima de 40,000 MZN</li>
+    </ul>
+</div>
+    </div>
+        <div class="product-grid">
+            <!-- Exemplo de produto -->
+            <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg/300" alt="Carro 1">
+                <h3>Audi Q5, 2018</h3>
+                <p class="price">Preço: 1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+               <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg/300" alt="Carro 2">
+                <h3>Proton X70</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="protonentreposto.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+              <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg/300" alt="Carro 1">
+                <h3>Audi Q7, 2017</h3>
+                <p class="price">Preço: 1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+              <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+             <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+                <p class="price">Preço: 1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+           <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+                <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+              <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg/300" alt="Carro 1">
+                <h3>Audi Q7, 2017</h3>
+                <p class="price">Preço: 1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">Preço: 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <!-- Mais produtos podem ser adicionados aqui -->
+        </div>
+    </div>
+
+<!-- Seção de Avaliações do Google -->
+<section class="google-reviews">
+  <div class="container">
+    <h2 class="section-title">O que nossos clientes dizem</h2>
+    <div class="reviews-wrapper">
+      <div class="reviews">
+        <div class="review-card">
+          <div class="author-info">
+            <img src="https://i.ibb.co/9MbZ8vG/fernando-paulino-review.png/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">Fernando Paulino</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+          </div>
+          <p class="review-text">"Excelentes instalações, atendimento muito profissional e simpatia!"</p>
+          <a href="https://www.google.com/search?si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzR6XjMGPoS3N-zEbDCot_JqwtKyGZPO8OzX5oNJXJG4DIsvQGRxA3dmljPr8o3-FQfwZ_D8CN7qHgTRX9EeXZ4XACTHB6J_84oUJqJkQw8PDmq93apjDc_HIOU3oXA-oSUaOqnE%3D&hl=pt-PT&q=avalia%C3%A7%C3%B5es+sobre+mais+vida+companhia+de+seguros&shndl=30&shem=lcuac&source=sh/x/loc/osrp/m5/2&kgs=7bfa89df8e73fbf5" class="more-reviews-link">Ver mais avaliações</a>
+        </div>
+        <div class="review-card">
+          <div class="author-info">
+            <img src="https://i.ibb.co/8LTrJVb7/rui-riview-miniatura.png/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">Rui Rakesh Khimji</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9734;</span>
+            <span class="star">&#9734;</span>
+          </div>
+          <p class="review-text">"Apenas um showroom de carros. Deve visitar se você é amante de ISUZU"</p>
+          <a href="https://www.google.com/search?si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzR6XjMGPoS3N-zEbDCot_JqwtKyGZPO8OzX5oNJXJG4DIsvQGRxA3dmljPr8o3-FQfwZ_D8CN7qHgTRX9EeXZ4XACTHB6J_84oUJqJkQw8PDmq93apjDc_HIOU3oXA-oSUaOqnE%3D&hl=pt-PT&q=avalia%C3%A7%C3%B5es+sobre+mais+vida+companhia+de+seguros&shndl=30&shem=lcuac&source=sh/x/loc/osrp/m5/2&kgs=7bfa89df8e73fbf5" class="more-reviews-link">Ver mais avaliações</a>
+        </div>
+           <div class="review-card">
+          <div class="author-info">
+            <img src="https://i.ibb.co/Ps4s7JV6/jonas-sitoe-review.png/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">Jonas Sitoe</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+          </div>
+          <p class="review-text">"Já estive neste local a 6 dia está disponível a venda de viaturas e acessorios novas"</p>
+          <a href="https://www.google.com/search?si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzR6XjMGPoS3N-zEbDCot_JqwtKyGZPO8OzX5oNJXJG4DIsvQGRxA3dmljPr8o3-FQfwZ_D8CN7qHgTRX9EeXZ4XACTHB6J_84oUJqJkQw8PDmq93apjDc_HIOU3oXA-oSUaOqnE%3D&hl=pt-PT&q=avalia%C3%A7%C3%B5es+sobre+mais+vida+companhia+de+seguros&shndl=30&shem=lcuac&source=sh/x/loc/osrp/m5/2&kgs=7bfa89df8e73fbf5" class="more-reviews-link">Ver mais avaliações</a>
+        </div>
+           <div class="review-card">
+          <div class="author-info">
+            <img src="https://i.ibb.co/FLxzftYc/amilton-muhosse-review.png/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">Amilton Muhosse</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+          </div>
+          <p class="review-text">"Gostei imenso"</p>
+          <a href="https://www.google.com/search?si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzR6XjMGPoS3N-zEbDCot_JqwtKyGZPO8OzX5oNJXJG4DIsvQGRxA3dmljPr8o3-FQfwZ_D8CN7qHgTRX9EeXZ4XACTHB6J_84oUJqJkQw8PDmq93apjDc_HIOU3oXA-oSUaOqnE%3D&hl=pt-PT&q=avalia%C3%A7%C3%B5es+sobre+mais+vida+companhia+de+seguros&shndl=30&shem=lcuac&source=sh/x/loc/osrp/m5/2&kgs=7bfa89df8e73fbf5" class="more-reviews-link">Ver mais avaliações</a>
+        </div>
+        <div class="review-card">
+          <div class="author-info">
+            <img src="https://i.ibb.co/XxKDs8cK/juvenal-dengo-review.png/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">Juvenal Dengo</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+          </div>
+          <p class="review-text">"Empresa secular que se adapta mo tempo e jo espaço, que avança na integração da mulher em áreas tidas por masculinas. Parabéns!"</p>
+          <a href="https://www.google.com/search?si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzR6XjMGPoS3N-zEbDCot_JqwtKyGZPO8OzX5oNJXJG4DIsvQGRxA3dmljPr8o3-FQfwZ_D8CN7qHgTRX9EeXZ4XACTHB6J_84oUJqJkQw8PDmq93apjDc_HIOU3oXA-oSUaOqnE%3D&hl=pt-PT&q=avalia%C3%A7%C3%B5es+sobre+mais+vida+companhia+de+seguros&shndl=30&shem=lcuac&source=sh/x/loc/osrp/m5/2&kgs=7bfa89df8e73fbf5" class="more-reviews-link">Ver mais avaliações</a>
+        </div>
+           <div class="review-card">
+          <div class="author-info">
+            <img src="https://i.ibb.co/9MbZ8vG/fernando-paulino-review.png/50" alt="Foto do avaliador" class="author-photo">
+            <p class="review-author">Fernando Paulino</p>
+          </div>
+          <div class="review-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+          </div>
+          <p class="review-text">"Excelentes instalações, atendimento muito profissional e simpatia!"</p>
+          <a href="https://www.google.com/search?si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzR6XjMGPoS3N-zEbDCot_JqwtKyGZPO8OzX5oNJXJG4DIsvQGRxA3dmljPr8o3-FQfwZ_D8CN7qHgTRX9EeXZ4XACTHB6J_84oUJqJkQw8PDmq93apjDc_HIOU3oXA-oSUaOqnE%3D&hl=pt-PT&q=avalia%C3%A7%C3%B5es+sobre+mais+vida+companhia+de+seguros&shndl=30&shem=lcuac&source=sh/x/loc/osrp/m5/2&kgs=7bfa89df8e73fbf5" class="more-reviews-link">Ver mais avaliações</a>
+        </div>
+        <!-- Adicione mais cards de avaliação conforme necessário -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+    <h2>Nossos Serviços</h2>
+    <div class="services-container">
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://img.sixt.com/1600/2deff7b2-bfee-4dd6-8a54-201721c40706.png" alt="Alugar Viaturas">
+            </div>
+            <div class="service-info">
+                <h3>Aluguel de Viaturas</h3>
+                <p>Alugue carros de qualidade para todas as necessidades, de viagens a negócios.</p>
+                <a href="#" class="service-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://motors.stylemixthemes.com/equipment/wp-content/uploads/sites/16/2020/01/139.jpg" alt="Máquinas Agrícolas">
+            </div>
+            <div class="service-info">
+                <h3>Venda de Máquinas Agrícolas</h3>
+                <p>Oferecemos as melhores máquinas agrícolas para melhorar sua produção.</p>
+                <a href="entrepostomaquinas.html" class="service-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://motors.stylemixthemes.com/equipment/wp-content/uploads/sites/16/2019/12/ind-8.jpg" alt="Peças">
+            </div>
+            <div class="service-info">
+                <h3>Peças</h3>
+                <p>Encontre peças de qualidade para manutenção de viaturas e máquinas.</p>
+                <a href="#" class="service-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://motors.stylemixthemes.com/car-repair-service/wp-content/uploads/sites/3/2016/01/Fotolia_93172108_Subscription_Monthly_M-999x665.jpg" alt="Oficina">
+            </div>
+            <div class="service-info">
+                <h3>Oficina</h3>
+                <p>Conserto e manutenção de veículos e máquinas com profissionais especializados.</p>
+                <a href="https://motors.stylemixthemes.com/car-repair-service/" class="service-link">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Rodapé -->
+<footer class="footer">
+    <!-- Logo e Slogan -->
+    <div class="footer-logo-slogan">
+        <img src="https://i.ibb.co/Rp4kzky/Logopit-1736106739595.png/160x80" alt="Logo" class="footer-logo">
+        <div>
+            <h3 class="footer-title">Grupo Entreposto</h3>
+            <p class="footer-slogan">"Seu futuro começa aqui!"</p>
+        </div>
+    </div>
+
+    <!-- Contatos -->
+    <div class="footer-contacts">
+        <h4 class="footer-section-title">Contatos</h4>
+        <p class="footer-contact-item"><i class="fas fa-phone-alt"></i>+258 852136558</p>
+        <p class="footer-contact-item"><i class="fas fa-envelope"></i>eugenioalbertocumbane02@gmail.com</p>
+    </div>
+
+    <!-- Redes Sociais -->
+    <div class="footer-socials">
+        <h4 class="footer-section-title">Redes Sociais</h4>
+        <div class="footer-social-links">
+         <a href="fb://page/Entreposto.MZ" target="_blank" class="footer-social-icon">
+  <i class="fab fa-facebook"></i> <!-- Ícone do Facebook -->
+</a>
+            <a href="#" target="_blank" class="footer-social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/258852136558" target="_blank" class="footer-social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Navegação Rápida -->
+    <div class="footer-navigation">
+        <h4 class="footer-section-title">Navegação Rápida</h4>
+        <ul class="footer-nav-list">
+            <li>
+                <a href="#" class="footer-nav-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+            </li>
+            <li>
+                <a href="sobrenosentreposto.html" class="footer-nav-item">
+                    <i class="fas fa-info-circle"></i> Sobre Nós
+                </a>
+            </li>
+            <li>
+                <a href="#" class="footer-nav-item">
+                    <i class="fas fa-concierge-bell"></i> Serviços
+                </a>
+            </li>
+            <li>
+                <a href="#" class="footer-nav-item">
+                    <i class="fas fa-phone-alt"></i> Contato
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Direitos Autorais -->
+    <div class="footer-copyright">
+        <p>© 2025 Entreposto Comercial. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+ <script>
+// Observador para as marcas
+const brandObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // Atraso para cada marca baseado no seu índice
+            setTimeout(() => {
+                // Adiciona a classe 'visible' após o delay para animar
+                entry.target.classList.add('visible');
+            }, index * 300); // 300ms de atraso entre as marcas
+        } else {
+            // Se sair da tela, remove a classe 'visible'
+            entry.target.classList.remove('visible');
+        }
+    });
+}, {
+    threshold: 0.25  // A animação começa quando 25% da marca estiver visível
+});
+
+// Seleciona todas as marcas na lista e começa a observá-las
+const brands = document.querySelectorAll('.brand-search li');
+brands.forEach(brand => brandObserver.observe(brand));
+
+// Observador para o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Criar observador para grid de produtos
+const gridObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Adiciona a classe 'show' apenas para o grid de produtos
+            entry.target.classList.add('show');
+        } else {
+            // Remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 25% do grid estiver visível
+
+// Inicia a observação para o grid de produtos
+gridObserver.observe(productGrid);
+     </script>
+       <script>
+        // Seleciona o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Cria o observador para detectar quando o grid entra ou sai da tela
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
+            entry.target.classList.add('show');
+        } else {
+            // Se o grid sai da tela, remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
+
+// Inicia a observação
+observer.observe(productGrid);
+            </script>
+     <script>
+function mostrarParceiros() {
+  // Seleciona todos os parceiros que têm a classe 'hidden'
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
+
+  // Itera por cada parceiro oculto e remove a classe 'hidden' para exibi-los
+  parceirosOcultos.forEach(parceiro => {
+    parceiro.classList.remove('hidden');
+  });
+
+  // Esconde o botão "Ver mais" após exibir os parceiros
+  const verMais = document.getElementById('ver-mais');
+  verMais.style.display = 'none'; // Torna o botão invisível após o clique
+}
+  </script>
+      <script>
+let currentIndex = 0;
+const reviewsContainer = document.querySelector('.reviews');
+const reviewCards = document.querySelectorAll('.review-card');
+const totalReviews = reviewCards.length;
+const cardWidth = reviewCards[0].offsetWidth + 15; // Largura do card + espaçamento (margin-right)
+const containerWidth = reviewsContainer.offsetWidth; // Largura do container
+
+function scrollReviews() {
+  // A largura total dos cards no container
+  const totalScrollWidth = totalReviews * cardWidth;
+
+  // Verifica se a posição do scroll atingiu o ponto em que o último card estará completamente visível
+  const currentTransform = Math.abs(parseInt(reviewsContainer.style.transform.replace('translateX(', '').replace('px)', '')) || 0);
+  
+  if (currentTransform >= totalScrollWidth - containerWidth) {
+    currentIndex = 0;  // Reinicia quando o último card estiver completamente visível
+  } else {
+    currentIndex++;  // Avança para o próximo card
+  }
+
+  // Aplica a transformação para mover os cards
+  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+}
+
+// Definir um intervalo para rolar automaticamente
+setInterval(scrollReviews, 3000);  // A cada 3 segundos
+
+</script>
+    
+  <script>
+// Array de imagens para o slider
+const images = [
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/MAZDA.jpg',
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/BMW.jpg',
+    'https://www.ronil-auto.co.mz/templates/g5_myriad/custom/images/home/HYUNDAI.jpg'
+];
+
+let currentImageIndex = 0;
+const heroSection = document.querySelector('.hero-section');
+
+// Função para trocar a imagem do background com fade
+function changeImage() {
+    heroSection.classList.add('fade'); // Ativa a transição de fade
+    setTimeout(() => {
+        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
+        heroSection.classList.remove('fade'); // Remove o fade após a troca da imagem
+        currentImageIndex = (currentImageIndex + 1) % images.length; // Incrementa o índice, voltando para 0 se ultrapassar o número de imagens
+    }, 1000); // Tempo de duração da transição
+}
+
+// Troca a imagem automaticamente a cada 5 segundos
+setInterval(changeImage, 5000);
+     </script>
+    </script>
+
+<!-- Inclua a biblioteca Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+
+  <script>
+        // Seleciona todos os itens principais de categoria
+        const categories = document.querySelectorAll('.category');
+
+        categories.forEach(category => {
+            category.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita redirecionamento
+
+                // Seleciona o submenu relacionado
+                const submenu = this.nextElementSibling;
+
+                // Alterna a exibição do submenu
+                if (submenu.style.display === 'flex') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+
+</script>
+        
+
+<script>
+function filterProducts(searchTerm) {
+    const search = searchTerm.toLowerCase();
+    const productCards = document.querySelectorAll(".product-card");
+    const noResultsMessage = document.getElementById('no-results-message');
+    const navigationButtons = document.querySelector('.navigation-buttons');
+    const footer = document.querySelector('footer');
+    const googleReviewsContainer = document.querySelector('.google-reviews .container');
+    const brandSearch = document.querySelector('.brand-search');
+    const priceSearch = document.querySelector('.price-search'); // Substituído aqui
+    let resultsFound = false;
+
+    // Resetando os elementos para estado padrão antes da filtragem
+    noResultsMessage.style.display = 'none'; 
+    noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
+    navigationButtons.style.visibility = 'visible';
+    footer.style.visibility = 'visible';
+    googleReviewsContainer.style.visibility = 'visible';
+    brandSearch.style.visibility = 'visible';
+    priceSearch.style.visibility = 'visible'; // Substituído aqui
+
+    // Filtra os produtos
+    productCards.forEach(card => {
+        const productName = card.querySelector("h3").textContent.toLowerCase();
+        if (productName.includes(search)) {
+            card.style.display = "block";
+            resultsFound = true;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
+    if (!resultsFound && searchTerm !== '') {
+        noResultsMessage.style.display = 'block'; // Garante que ele está visível
+        setTimeout(() => {
+            noResultsMessage.classList.add('show'); // Ativa a animação
+        }, 10);
+
+        navigationButtons.style.visibility = 'hidden';
+        footer.style.visibility = 'hidden';
+        googleReviewsContainer.style.visibility = 'hidden';
+        brandSearch.style.visibility = 'hidden';
+        priceSearch.style.visibility = 'hidden'; // Substituído aqui
+    } else if (resultsFound || searchTerm === '') {
+        noResultsMessage.classList.remove('show'); // Remove o efeito
+        setTimeout(() => {
+            noResultsMessage.style.display = 'none'; // Esconde após a animação
+        }, 600);
+
+        navigationButtons.style.visibility = 'visible';
+        footer.style.visibility = 'visible';
+        googleReviewsContainer.style.visibility = 'visible';
+        brandSearch.style.visibility = 'visible';
+        priceSearch.style.visibility = 'visible'; // Substituído aqui
+    }
+}
+</script>
+
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
+
+     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
+</body>
+</html>
