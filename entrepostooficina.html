@@ -404,18 +404,18 @@ color: white;
     transform: scale(1.05);
 }
         
- .logo {
-            flex-grow: 1;
-            text-align: center;
-            background-color: transparent;
+.logo {
+    flex-grow: 0; /* Remove o crescimento flexível */
+    text-align: left; /* Alinha a logo à esquerda */
+    background-color: transparent;
+}
 
-        }
+.logo img {
+    height: 35px;
+    padding: 0;
+    margin: 0;
+}
 
-        .logo img {
-            height: 35px;
-            padding: 0;
-            margin: 0;
-        }
               .footer-logo-slogan {
     display: flex;
     align-items: center;
