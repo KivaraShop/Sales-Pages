@@ -136,8 +136,25 @@
             font-size: 24px;
             font-weight: bold;
             margin: 10px 0;
+            animation: shake 0.5s ease-in-out infinite;
         }
-
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
         .banner .btn {
             display: inline-block;
             margin-top: 10px;
@@ -365,7 +382,7 @@ color: white;
             <a href="#">GALLERY</a>
             <a href="#">FEEDBACK</a>
         </div>
-<a href="#" class="appointment-btn" id="appointmentBtn"><i class="far fa-calendar"></i> Make an Appointment</a>
+<a href="#" class="appointment-btn" id="appointmentBtn"><i class="far fa-calendar"></i> Fazer Marcação</a>
     </div>
     
     <div class="hero">
