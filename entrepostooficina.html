@@ -40,7 +40,7 @@
             color: white;
         }
         .logo { font-size: 30px; font-weight: bold; color: white; }
-        .nav { display: flex; gap: 20px; }
+        .nav { display: flex; gap: 20px; z-index: 1000;}
         .nav a { text-decoration: none; color: white; font-weight: bold; }
         .appointment-btn {
             background: #00bfff;
@@ -363,6 +363,7 @@ color: white;
 .dropdown {
     position: relative;
     display: inline-block;
+    z-index: 999;
 }
 
 /* Caixa de benefícios (ESCONDIDO por padrão) */
