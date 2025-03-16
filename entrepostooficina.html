@@ -22,7 +22,7 @@
         header {
             position: relative;
             height: 100vh;
-            background-image: url('https://via.placeholder.com/1920x1080'); /* Adicione uma imagem de sua oficina */
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Substitua com a imagem de sua oficina */
             background-size: cover;
             background-position: center;
             color: white;
@@ -31,6 +31,23 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
+        }
+
+        .header-info {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size: 0.9em;
+            padding: 0 20px;
+        }
+
+        .header-info div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         header h1 {
@@ -90,28 +107,24 @@
             margin-bottom: 20px;
         }
 
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
+        .info-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        .contact-form button {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 15px;
+        .info-box h3 {
+            font-size: 1.8em;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
             font-size: 1.2em;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .contact-form button:hover {
-            background-color: #c0392b;
+            color: #666;
         }
 
         footer {
@@ -125,6 +138,11 @@
 <body>
 
     <header>
+        <div class="header-info">
+            <div><strong>📞</strong> (11) 1234-5678</div>
+            <div><strong>📍</strong> Rua da Oficina, 123 - Cidade, Estado</div>
+            <div><strong>⏰</strong> Seg a Sex: 8h - 18h | Sáb: 8h - 12h</div>
+        </div>
         <div>
             <h1>Bem-vindo à Oficina X</h1>
             <p>Seu carro em boas mãos. Serviços rápidos e confiáveis.</p>
@@ -166,13 +184,11 @@
 
     <section id="contact">
         <h2 style="text-align:center; margin-bottom: 50px;">Entre em Contato</h2>
-        <div style="max-width: 600px; margin: 0 auto;">
-            <form class="contact-form">
-                <input type="text" placeholder="Nome" required>
-                <input type="email" placeholder="E-mail" required>
-                <textarea placeholder="Mensagem" rows="5" required></textarea>
-                <button type="submit">Enviar Mensagem</button>
-            </form>
+        <div class="info-box">
+            <h3>Entre em Contato Conosco!</h3>
+            <p>Para agendar um serviço ou esclarecer dúvidas, ligue para nós ou visite-nos!</p>
+            <p><strong>Telefone:</strong> (11) 1234-5678</p>
+            <p><strong>Endereço:</strong> Rua da Oficina, 123 - Cidade, Estado</p>
         </div>
     </section>
 
