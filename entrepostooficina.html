@@ -435,23 +435,25 @@ color: white;
 </footer>
     <div class="scroll-top">⬆</div>
 
-     <script>
+      <script>
         document.addEventListener("DOMContentLoaded", () => {
             const items = document.querySelectorAll(".services-column li");
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && !entry.target.classList.contains("visible")) {
-                        const index = Array.from(items).indexOf(entry.target);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
                         setTimeout(() => {
                             entry.target.classList.add("visible");
-                        }, index * 200); // Delay progressivo para cada item
+                        }, index * 200); // Delay progressivo
+                    } else {
+                        entry.target.classList.remove("visible"); // Remove para repetir a animação
                     }
                 });
-            }, { threshold: 0.3 }); // Ativa quando 50% do elemento estiver visível
+            }, { threshold: 0.3 }); // Ativa quando 30% do elemento estiver visível
 
             items.forEach(item => observer.observe(item));
         });
     </script>
+
 </body>
 </html>
