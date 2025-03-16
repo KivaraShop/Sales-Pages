@@ -72,6 +72,72 @@
             margin-top: 10px;
             font-weight: bold;
         }
+
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .banner {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            background: url('https://source.unsplash.com/1200x400/?car,engine') no-repeat center;
+            background-size: cover;
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h2 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #f5a623;
+        }
+
+        .banner p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .banner .contact-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .banner .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .banner .btn:hover {
+            background: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +172,15 @@
             <div class="price-tag">FROM $290</div>
         </div>
     </div>
-    
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Danos no veículo?</h2>
+            <p>Temos a nossa oficina especializada em reparação de automóveis com danos provocados por acidente.</p>
+            <p class="contact-number">(+351) 218 003 679</p>
+            <a href="#" class="btn">Contate para mais informações</a>
+        </div>
+    </section>
+
     <script>
         window.addEventListener("scroll", function() {
             var header = document.getElementById("header");
