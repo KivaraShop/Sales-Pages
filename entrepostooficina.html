@@ -365,49 +365,55 @@ color: white;
     display: inline-block;
 }
 
-/* Lista oculta inicialmente */
-.benefits-list {
+/* Container principal do dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Caixa de benefícios */
+.benefits-box {
     display: none;
     position: absolute;
     background: rgba(0, 0, 0, 0.9); /* Fundo escuro */
-    color: #FFD700; /* Letra dourada */
+    color: white; /* Texto branco */
     padding: 15px;
     border-radius: 8px;
-    width: 280px;
-    top: 35px;
+    width: 320px;
+    top: 40px;
     left: -50px;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     display: flex;
     justify-content: space-between;
 }
 
 /* Exibir a lista suavemente */
-.dropdown:hover .benefits-list {
+.dropdown:hover .benefits-box {
     display: flex;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Listas dentro do dropdown */
-.benefits-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Colunas dentro do dropdown */
+.benefits-box .column {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
 }
 
 /* Itens dos benefícios */
-.benefits-list li {
-    padding: 5px 10px;
+.benefits-box p {
     font-size: 14px;
+    margin: 5px 0;
     white-space: nowrap;
 }
 
 /* Efeito de hover nos benefícios */
-.benefits-list li:hover {
-    color: #FF4500; /* Laranja forte */
+.benefits-box p:hover {
+    color: #FFD700; /* Dourado */
     transform: scale(1.05);
     transition: 0.2s;
 }
