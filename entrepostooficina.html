@@ -379,7 +379,7 @@ color: white;
             <h2>Danos no veículo?</h2>
             <p>Temos a nossa oficina especializada em reparação de automóveis com danos provocados por acidente.</p>
             <p class="contact-number">(+351) 218 003 679</p>
-            <a href="#" class="btn">Contate para mais informações</a>
+            <a href="#" class="btn" class="banner .btn" id="bannerBtn">Contate para mais informações</a>
         </div>
     </section>
     <section class="services-section">
@@ -456,6 +456,7 @@ color: white;
     <div class="scroll-top">⬆</div>
     
 <script>
+// Para o botão "Make an Appointment" no primeiro caso
 document.getElementById('appointmentBtn').addEventListener('click', function(event) {
     event.preventDefault(); // Evita o comportamento padrão do link
     
@@ -470,7 +471,23 @@ document.getElementById('appointmentBtn').addEventListener('click', function(eve
     }
 });
 
+// Para o botão "Make an Appointment" na classe .services-text .btn
 document.getElementById('servicesBtn').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita o comportamento padrão do link
+    
+    // Muda o conteúdo do botão para o número com o ícone de telefone
+    this.innerHTML = '<i class="fas fa-phone-alt"></i> +258 852136558'; // Adiciona o ícone de telefone
+
+    // Aumenta o tamanho da fonte e do ícone
+    this.style.fontSize = '20px';  // Aumenta o tamanho da fonte
+    const icon = this.querySelector('i'); 
+    if (icon) {
+        icon.style.fontSize = '1.5em'; // Aumenta o tamanho do ícone proporcionalmente
+    }
+});
+
+// Para o botão no banner .banner .btn
+document.getElementById('bannerBtn').addEventListener('click', function(event) {
     event.preventDefault(); // Evita o comportamento padrão do link
     
     // Muda o conteúdo do botão para o número com o ícone de telefone
