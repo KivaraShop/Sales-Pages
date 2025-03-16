@@ -1,210 +1,99 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oficina X - Serviços Rápidos e Profissionais</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Entreposto Oficina </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #F2F2F2;
-            color: #333;
-        }
-
-        /* Cabeçalho */
-        header {
-            background-color: #2C3E50;
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .top-bar {
+            background: #1a1a1a;
             color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-        }
-
-        header .contact-info {
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
-        header .contact-info div {
-            margin-bottom: 10px;
-        }
-
-        /* Seção Hero */
-        .hero {
-            background: url('https://via.placeholder.com/1920x800') no-repeat center center;
-            background-size: cover;
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-        }
-
-        .cta-btn {
-            padding: 15px 30px;
-            background-color: #E74C3C;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            background-color: #C0392B;
-        }
-
-        /* Serviços */
-        .services {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
+            padding: 10px 20px;
+            font-size: 14px;
             align-items: center;
-            background-color: #34495E;
+        }
+        .top-bar div {
+            display: flex;
+            gap: 20px;
+        }
+        .top-bar a { color: white; text-decoration: none; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #ffa500; }
+        .nav { display: flex; gap: 20px; }
+        .nav a { text-decoration: none; color: black; font-weight: bold; }
+        .appointment-btn {
+            background: #00bfff;
             color: white;
-            padding: 50px 0;
-            text-align: center;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
         }
-
-        .service-item {
-            background-color: #1F2A3B;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 250px;
-            text-align: center;
-        }
-
-        .service-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .service-item p {
-            font-size: 1.1rem;
-        }
-
-        /* Testemunhos */
-        .testimonials {
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .testimonials h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        .testimonial-item {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            padding: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .testimonial-item h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #E74C3C;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-item p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        /* Rodapé */
-        footer {
-            background-color: #2C3E50;
+        .hero {
+            position: relative;
+            background: url('https://editorialge.com/wp-content/uploads/2023/12/The-Anatomy-of-an-Auto-Repair-Manual.jpg') no-repeat center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
             color: white;
-            padding: 20px 0;
-            text-align: center;
         }
-
-        footer p {
-            font-size: 1.1rem;
+        .hero .content {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            max-width: 350px;
         }
-
+        .hero .content h1 { font-size: 28px; }
+        .hero .content span { color: #ffd700; }
+        .hero .price-tag {
+            background: #00bfff;
+            padding: 5px 10px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-
-    <!-- Cabeçalho -->
-    <header>
-        <h1>Oficina X</h1>
-        <div class="contact-info">
-            <div>📞 (11) 1234-5678</div>
-            <div>📍 Rua da Oficina, 123 - Cidade, Estado</div>
-            <div>⏰ Seg a Sex: 8h - 18h | Sáb: 8h - 12h</div>
+    <div class="top-bar">
+        <div>
+            <span><i class="fas fa-phone"></i> +1 212-226-3126</span>
+            <span><i class="fas fa-map-marker-alt"></i> 1010 Moon Ave, New York, NY US</span>
+            <span><i class="far fa-calendar"></i> MON - SAT 8.00 - 18.00</span>
         </div>
-    </header>
-
-    <!-- Seção Hero -->
-    <section class="hero">
-        <h2>Seu Carro em Boas Mãos</h2>
-        <p>Serviços rápidos, eficientes e com a qualidade que seu veículo merece!</p>
-        <a href="#services" class="cta-btn">Saiba Mais</a>
-    </section>
-
-    <!-- Seção Serviços -->
-    <section id="services" class="services">
-        <div class="service-item">
-            <h3>Manutenção Preventiva</h3>
-            <p>Mantenha seu carro em ótimo estado com manutenções periódicas.</p>
+        <div>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-        <div class="service-item">
-            <h3>Troca de Óleo</h3>
-            <p>Troca de óleo eficiente para garantir o bom funcionamento do motor.</p>
+    </div>
+    
+    <div class="header">
+        <div class="logo">motors</div>
+        <div class="nav">
+            <a href="#">ADVANTAGES</a>
+            <a href="#">SERVICES</a>
+            <a href="#">HISTORY</a>
+            <a href="#">GALLERY</a>
+            <a href="#">FEEDBACK</a>
         </div>
-        <div class="service-item">
-            <h3>Reparo de Motor</h3>
-            <p>Identificamos e resolvemos problemas no motor do seu veículo.</p>
+        <a href="#" class="appointment-btn"><i class="far fa-calendar"></i> Make an Appointment</a>
+    </div>
+    
+    <div class="hero">
+        <div class="content">
+            <h1>WINTER <span>CHECK-UP</span> FOR YOUR CAR</h1>
+            <div class="price-tag">FROM $290</div>
         </div>
-    </section>
-
-    <!-- Seção Testemunhos -->
-    <section class="testimonials">
-        <h2>O que Nossos Clientes Dizem</h2>
-        <div class="testimonial-item">
-            <h3>João Silva</h3>
-            <p>"A Oficina X me surpreendeu pela rapidez e pela qualidade do serviço! Sempre que preciso, confio neles."</p>
-        </div>
-        <div class="testimonial-item">
-            <h3>Maria Oliveira</h3>
-            <p>"Excelente atendimento, profissionais super qualificados. Recomendo a todos que precisam de serviços de confiança."</p>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2025 Oficina X - Todos os direitos reservados</p>
-    </footer>
-
+    </div>
 </body>
 </html>
