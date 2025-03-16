@@ -63,11 +63,6 @@
     font-size: 20px; /* Aumenta o tamanho da fonte */
 }
 
-.appointment-btn i {
-    margin-right: 10px; /* Espaçamento entre o ícone e o texto */
-    font-size: 1.2em; /* Aumenta o tamanho do ícone proporcionalmente ao texto */
-}
-
         .hero {
             position: relative;
             background: url('https://www.htsaves.com/wp-content/uploads/2023/10/Two-Professional-Car-Mechanics.jpg') no-repeat center/cover;
@@ -466,8 +461,14 @@ document.getElementById('appointmentBtn').addEventListener('click', function(eve
     
     // Muda o conteúdo do botão para o número com o ícone de telefone
     this.innerHTML = '<i class="fas fa-phone-alt"></i> +258 852136558'; // Adiciona o ícone de telefone
-});
 
+    // Aumenta o tamanho da fonte e do ícone
+    this.style.fontSize = '20px';  // Aumenta o tamanho da fonte
+    const icon = this.querySelector('i'); 
+    if (icon) {
+        icon.style.fontSize = '1em'; // Aumenta o tamanho do ícone proporcionalmente
+    }
+});
 </script>
     
       <script>
