@@ -359,59 +359,63 @@ color: white;
         }
 
         /* Estiliza a lista oculta */
-//* Container principal do dropdown */
+/* Container do dropdown */
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Caixa de benefícios */
+/* Caixa de benefícios (ESCONDIDO por padrão) */
 .benefits-box {
-    display: none;
     position: absolute;
-    background: rgba(0, 0, 0, 0.9); /* Fundo escuro */
-    color: white; /* Texto branco */
+    background: rgba(0, 0, 0, 0.95); /* Fundo escuro */
+    color: white;
     padding: 15px;
     border-radius: 8px;
-    width: 320px;
+    width: 350px;
     top: 40px;
     left: -50px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    display: none; /* Escondido */
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-    display: flex;
-    justify-content: space-between;
+    z-index: 1000;
 }
 
-/* Exibir a lista suavemente */
+/* Só aparece quando passar o mouse */
 .dropdown:hover .benefits-box {
     display: flex;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Colunas dentro do dropdown */
+/* Organizar colunas */
+.benefits-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Colunas dos benefícios */
 .benefits-box .column {
     display: flex;
     flex-direction: column;
     padding: 0 10px;
 }
 
-/* Itens dos benefícios */
+/* Itens de benefício */
 .benefits-box p {
     font-size: 14px;
     margin: 5px 0;
     white-space: nowrap;
 }
 
-/* Efeito de hover nos benefícios */
+/* Hover nos benefícios */
 .benefits-box p:hover {
     color: #FFD700; /* Dourado */
     transform: scale(1.05);
     transition: 0.2s;
 }
-
 
     </style>
 </head>
