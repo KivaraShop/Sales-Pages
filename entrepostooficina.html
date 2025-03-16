@@ -471,7 +471,15 @@ color: white;
 </footer>
     
     <div class="scroll-top">⬆</div>
-    
+
+<script>
+    document.querySelector(".scroll-top").addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Rolagem suave para uma melhor experiência do usuário
+    });
+});
+</script>
 <script>
 // Para o botão "Make an Appointment" no primeiro caso
 document.getElementById('appointmentBtn').addEventListener('click', function(event) {
