@@ -403,7 +403,25 @@ color: white;
     color: #FFD700; /* Cor dourada ao passar o mouse */
     transform: scale(1.05);
 }
+        
+ .logo {
+            flex-grow: 1;
+            text-align: center;
+            background-color: transparent;
 
+        }
+
+        .logo img {
+            height: 35px;
+            padding: 0;
+            margin: 0;
+        }
+              .footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
     </style>
 </head>
 <body>
@@ -480,11 +498,13 @@ color: white;
           <div class="separator"></div>
 <!-- Rodapé -->
 <footer class="footer">
-    <div class="footer-column">
-        <h3 class="footer-title">Mecânica Auto</h3>
-        <p class="footer-slogan">"Seu carro em boas mãos!"</p>
+<div class="footer-logo-slogan">
+        <img src="https://i.ibb.co/Rp4kzky/Logopit-1736106739595.png/160x80" alt="Logo" class="footer-logo">
+        <div>
+            <h3 class="footer-title">Grupo Entreposto</h3>
+            <p class="footer-slogan">"O carro dos seus sonhos está aqui!"</p>
+        </div>
     </div>
-
     <div class="footer-column">
         <h3>NOSSOS SERVIÇOS</h3>
         <p>Somos especialistas em manutenção e reparo de veículos. Oferecemos serviços completos, desde troca de óleo até diagnósticos avançados, garantindo segurança e performance para o seu carro.</p>
