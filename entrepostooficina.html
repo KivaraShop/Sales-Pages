@@ -449,7 +449,7 @@ color: white;
                         entry.target.classList.remove("visible"); // Remove para repetir a animação
                     }
                 });
-            }, { threshold: 0.3 }); // Ativa quando 30% do elemento estiver visível
+            }, { threshold: 0.5 }); // Ativa quando 30% do elemento estiver visível
 
             items.forEach(item => observer.observe(item));
         });
