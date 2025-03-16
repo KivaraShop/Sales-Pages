@@ -386,7 +386,7 @@ color: white;
         <div class="services-text">
             <h2><span>Serviços de reparação que nós temos</span></h2>
             <p>Fornecemos uma gama completa de reparações mecânicas da parte dianteira para todas as marcas e modelos de automóveis, independentemente da causa. Isto inclui tudo, desde amortecedores, choques e terminais de tirantes a juntas esféricas, molas e, basicamente, tudo o que está incluído na reparação da extremidade dianteira do veículo.</p>
-            <a href="#" class="btn">Faça uma marcação</a>
+            <a href="#" class="btn" id="servicesBtn" class="services-text .btn">Faça uma marcação</a>
         </div>
         <div class="services-list">
             <ul class="services-column">
@@ -466,9 +466,24 @@ document.getElementById('appointmentBtn').addEventListener('click', function(eve
     this.style.fontSize = '20px';  // Aumenta o tamanho da fonte
     const icon = this.querySelector('i'); 
     if (icon) {
-        icon.style.fontSize = '1em'; // Aumenta o tamanho do ícone proporcionalmente
+        icon.style.fontSize = '1.5em'; // Aumenta o tamanho do ícone proporcionalmente
     }
 });
+
+document.getElementById('servicesBtn').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita o comportamento padrão do link
+    
+    // Muda o conteúdo do botão para o número com o ícone de telefone
+    this.innerHTML = '<i class="fas fa-phone-alt"></i> +258 852136558'; // Adiciona o ícone de telefone
+
+    // Aumenta o tamanho da fonte e do ícone
+    this.style.fontSize = '20px';  // Aumenta o tamanho da fonte
+    const icon = this.querySelector('i'); 
+    if (icon) {
+        icon.style.fontSize = '1.5em'; // Aumenta o tamanho do ícone proporcionalmente
+    }
+});
+
 </script>
     
       <script>
