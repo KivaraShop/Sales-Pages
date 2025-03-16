@@ -210,8 +210,15 @@
             display: flex;
             align-items: center;
             color: white;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-
+        
+          .services-column li.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
         .services-column li::before {
             content: "✔";
             color: #f5a623;
@@ -429,6 +436,24 @@ color: white;
 </footer>
     <div class="scroll-top">⬆</div>
 
+   <script>
+        function animateOnScroll() {
+            const items = document.querySelectorAll(".services-column li");
 
+            items.forEach((item, index) => {
+                const itemPosition = item.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (itemPosition < windowHeight - 50) {
+                    setTimeout(() => {
+                        item.classList.add("visible");
+                    }, index * 200); // Delay progressivo
+                }
+            });
+        }
+
+        document.addEventListener("scroll", animateOnScroll);
+        document.addEventListener("DOMContentLoaded", animateOnScroll);
+    </script>
 </body>
 </html>
