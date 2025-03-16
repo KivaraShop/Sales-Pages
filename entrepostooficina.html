@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficina X - Seu Carro em Boas Mãos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Adicione uma imagem de sua oficina */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        header .cta-button {
+            padding: 15px 30px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header .cta-button:hover {
+            background-color: #c0392b;
+        }
+
+        section {
+            padding: 50px 20px;
+        }
+
+        .services, .testimonials {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .service-card, .testimonial-card {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .service-card h3, .testimonial-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #e74c3c;
+        }
+
+        .service-card p, .testimonial-card p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .contact-form button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #c0392b;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>Bem-vindo à Oficina X</h1>
+            <p>Seu carro em boas mãos. Serviços rápidos e confiáveis.</p>
+            <a href="#contact" class="cta-button">Agende Agora</a>
+        </div>
+    </header>
+
+    <section id="services">
+        <h2 style="text-align:center; margin-bottom: 50px;">Nossos Serviços</h2>
+        <div class="services">
+            <div class="service-card">
+                <h3>Manutenção Preventiva</h3>
+                <p>Mantenha seu carro em perfeito estado com nossas manutenções periódicas.</p>
+            </div>
+            <div class="service-card">
+                <h3>Troca de Óleo</h3>
+                <p>Garantimos a troca de óleo de forma rápida e eficiente, sem complicação.</p>
+            </div>
+            <div class="service-card">
+                <h3>Reparo de Motor</h3>
+                <p>Experiência e tecnologia para corrigir qualquer falha no seu motor.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2 style="text-align:center; margin-bottom: 50px;">O que Nossos Clientes Dizem</h2>
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <h3>João Silva</h3>
+                <p>"A melhor oficina que já passei! Atendimento impecável e rapidez no serviço. Super recomendo!"</p>
+            </div>
+            <div class="testimonial-card">
+                <h3>Maria Oliveira</h3>
+                <p>"Profissionais muito qualificados e sempre prontos para ajudar. Fiquei muito satisfeita com o serviço."</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 style="text-align:center; margin-bottom: 50px;">Entre em Contato</h2>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <form class="contact-form">
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="E-mail" required>
+                <textarea placeholder="Mensagem" rows="5" required></textarea>
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Oficina X. Todos os direitos reservados.</p>
+        <p>Rua da Oficina, 123 - Cidade, Estado</p>
+    </footer>
+
+</body>
+</html>
