@@ -353,7 +353,7 @@ color: white;
             <a href="#">GALLERY</a>
             <a href="#">FEEDBACK</a>
         </div>
-        <a href="#" class="appointment-btn"><i class="far fa-calendar"></i> Make an Appointment</a>
+<a href="#" class="appointment-btn" id="appointmentBtn"><i class="far fa-calendar"></i> Make an Appointment</a>
     </div>
     
     <div class="hero">
@@ -442,7 +442,14 @@ color: white;
     </div>
 </footer>
     <div class="scroll-top">⬆</div>
-
+    
+<script>
+    document.getElementById('appointmentBtn').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita o comportamento padrão do link
+    this.textContent = '+258 852136558'; // Muda o texto do botão para o número
+});
+</script>
+    
       <script>
         document.addEventListener("DOMContentLoaded", () => {
             const items = document.querySelectorAll(".services-column li");
