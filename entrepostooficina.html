@@ -140,6 +140,108 @@
             background: white;
             color: black;
         }
+
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            padding: 40px;
+        }
+
+        .services-section {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            align-items: flex-start;
+        }
+
+        .services-text {
+            width: 35%;
+        }
+
+        .services-text h2 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .services-text h2 span {
+            color: #f5a623;
+        }
+
+        .services-text p {
+            margin: 15px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .services-text .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: 2px solid black;
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .services-text .btn:hover {
+            background: black;
+            color: white;
+        }
+
+        .services-list {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .services-column {
+            list-style: none;
+            padding: 0;
+        }
+
+        .services-column li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: #333;
+        }
+
+        .services-column li::before {
+            content: "✔";
+            color: #f5a623;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #f5a623;
+            color: white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top:hover {
+            background: #e6951d;
+        }
     </style>
 </head>
 <body>
@@ -182,6 +284,40 @@
             <a href="#" class="btn">Contate para mais informações</a>
         </div>
     </section>
+    <section class="services-section">
+        <div class="services-text">
+            <h2>Serviços de reparação que <span>nós temos</span></h2>
+            <p>Fornecemos uma gama completa de reparações mecânicas da parte dianteira para todas as marcas e modelos de automóveis, independentemente da causa. Isto inclui tudo, desde amortecedores, choques e terminais de tirantes a juntas esféricas, molas e, basicamente, tudo o que está incluído na reparação da extremidade dianteira do veículo.</p>
+            <a href="#" class="btn">Faça uma marcação</a>
+        </div>
+        <div class="services-list">
+            <ul class="services-column">
+                <li>Reparação e manutenção geral de automóveis</li>
+                <li>Reparação e substituição de transmissões</li>
+                <li>Reparação do sistema de combustível</li>
+                <li>Reparação do sistema de escape</li>
+                <li>Manutenção do sistema de arrefecimento do motor</li>
+                <li>Diagnóstico elétrico</li>
+                <li>Reparação de arranque e carregamento</li>
+                <li>Alinhamento das rodas</li>
+                <li>Eixos das rodas</li>
+                <li>Teste de diagnóstico por computador</li>
+            </ul>
+            <ul class="services-column">
+                <li>Serviço Recomendado pelo Fabricante</li>
+                <li>Reparação e Substituição de travões</li>
+                <li>Reparação de Ar Condicionado A/C</li>
+                <li>Reparação e Substituição de Pneus</li>
+                <li>Manutenção preventiva do Veículo</li>
+                <li>Afinamento</li>
+                <li>Troca de Óleo</li>
+                <li>Reparação do Sistema de Arrefecimento do Motor</li>
+                <li>Serviço de Direção e Suspensão</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="scroll-top">⬆</div>
 
     <script>
         window.addEventListener("scroll", function() {
