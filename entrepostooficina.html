@@ -372,9 +372,9 @@ color: white;
     color: white;
     padding: 15px;
     border-radius: 8px;
-    width: 320px;  /* Largura ajustada para caber bem */
+    width: 250px;  /* Largura ajustada */
     top: 40px;
-    left: -50px;
+    left: 0; /* Ajuste para não afetar a estrutura do cabeçalho */
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     display: none; /* Escondido */
     opacity: 0;
@@ -385,7 +385,7 @@ color: white;
 
 /* Só aparece quando passar o mouse */
 .dropdown:hover .benefits-box {
-    display: flex;
+    display: block;
     opacity: 1;
     transform: translateY(0);
 }
@@ -393,25 +393,18 @@ color: white;
 /* Organizar colunas */
 .benefits-box {
     display: flex;
-    justify-content: space-between;
-    overflow: hidden; /* Garante que não ultrapasse a borda */
-}
-
-/* Colunas dos benefícios */
-.benefits-box .column {
-    display: flex;
-    flex-direction: column;
-    padding: 0 10px;
-    width: 100%;  /* Ajustado para usar o espaço corretamente */
+    flex-direction: column; /* Ajuste para exibir os itens em coluna */
+    gap: 10px; /* Espaço entre os itens */
+    max-height: 250px; /* Evitar que o box ocupe muito espaço */
+    overflow-y: auto; /* Caso o conteúdo seja maior, rolará */
 }
 
 /* Itens de benefício */
 .benefits-box p {
     font-size: 14px;
     margin: 5px 0;
-    white-space: nowrap;
-    overflow: hidden;  /* Impede o texto de sair da área */
-    text-overflow: ellipsis; /* Adiciona '...' caso o texto seja muito longo */
+    color: white;
+    transition: color 0.2s ease;
 }
 
 /* Hover nos benefícios */
