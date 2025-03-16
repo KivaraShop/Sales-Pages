@@ -357,6 +357,41 @@ color: white;
             margin-top: 80px;
           box-sizing: border-box;
         }
+
+        /* Estiliza a lista oculta */
+.benefits-list {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    list-style: none;
+    padding: 10px;
+    margin-top: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+/* Mostra a lista ao passar o mouse */
+.dropdown:hover .benefits-list {
+    display: block;
+}
+
+/* Estiliza os itens da lista */
+.benefits-list li {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.benefits-list li:last-child {
+    border-bottom: none;
+}
+
+.benefits-list li:hover {
+    background: #f5f5f5;
+}
+
     </style>
 </head>
 <body>
@@ -376,7 +411,15 @@ color: white;
     <div class="header" id="header">
         <div class="logo">Mecânica Auto</div>
         <div class="nav">
-            <a href="#">BENEFÍCIOS </a>
+            <div class="dropdown">
+            <a href="#">BENEFÍCIOS</a>
+            <ul class="benefits-list">
+                <li>Atendimento rápido e eficiente</li>
+                <li>Garantia de serviço especializado</li>
+                <li>Peças de reposição de alta qualidade</li>
+                <li>Orçamento transparente e justo</li>
+                <li>Satisfação garantida</li>
+            </ul>
             <a href="#">NOSSOS SERVIÇOS</a>
             <a href="#">QUEM SOMOS</a>
             <a href="#">SUPORTE AO CLIENTE</a>
