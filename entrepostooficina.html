@@ -372,7 +372,7 @@ color: white;
     color: white;
     padding: 15px;
     border-radius: 8px;
-    width: 350px;
+    width: 320px;  /* Largura ajustada para caber bem */
     top: 40px;
     left: -50px;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
@@ -394,6 +394,7 @@ color: white;
 .benefits-box {
     display: flex;
     justify-content: space-between;
+    overflow: hidden; /* Garante que não ultrapasse a borda */
 }
 
 /* Colunas dos benefícios */
@@ -401,6 +402,7 @@ color: white;
     display: flex;
     flex-direction: column;
     padding: 0 10px;
+    width: 100%;  /* Ajustado para usar o espaço corretamente */
 }
 
 /* Itens de benefício */
@@ -408,6 +410,8 @@ color: white;
     font-size: 14px;
     margin: 5px 0;
     white-space: nowrap;
+    overflow: hidden;  /* Impede o texto de sair da área */
+    text-overflow: ellipsis; /* Adiciona '...' caso o texto seja muito longo */
 }
 
 /* Hover nos benefícios */
