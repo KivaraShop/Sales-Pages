@@ -51,6 +51,23 @@
             border-radius: 5px;
             margin-right: 25px;
         }
+
+        .appointment-btn {
+    background: #00bfff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 25px;
+    font-size: 20px; /* Aumenta o tamanho da fonte */
+}
+
+.appointment-btn i {
+    margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+    font-size: 1.2em; /* Aumenta o tamanho do ícone proporcionalmente ao texto */
+}
+
         .hero {
             position: relative;
             background: url('https://www.htsaves.com/wp-content/uploads/2023/10/Two-Professional-Car-Mechanics.jpg') no-repeat center/cover;
@@ -444,10 +461,13 @@ color: white;
     <div class="scroll-top">⬆</div>
     
 <script>
-    document.getElementById('appointmentBtn').addEventListener('click', function(event) {
+document.getElementById('appointmentBtn').addEventListener('click', function(event) {
     event.preventDefault(); // Evita o comportamento padrão do link
-    this.textContent = '+258 852136558'; // Muda o texto do botão para o número
+    
+    // Muda o conteúdo do botão para o número com o ícone de telefone
+    this.innerHTML = '<i class="fas fa-phone-alt"></i> +258 852136558'; // Adiciona o ícone de telefone
 });
+
 </script>
     
       <script>
