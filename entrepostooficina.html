@@ -358,7 +358,51 @@ color: white;
           box-sizing: border-box;
         }
 
-        /* Estiliza a lista oculta */
+     /* Estilo para o link de benefícios */
+.benefits-btn {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+    position: relative; /* Necessário para o posicionamento correto do box */
+    text-decoration: none;
+}
+
+/* Estilo para o box de benefícios (oculto inicialmente) */
+.benefits-box {
+    display: none;
+    position: absolute;
+    top: 100%; /* Coloca abaixo do botão */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo escuro */
+    color: white;
+    padding: 15px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    z-index: 999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Quando o botão for hover, o box de benefícios ficará visível */
+.benefits-box.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo para os itens da lista de benefícios */
+.benefits-box p {
+    font-size: 14px;
+    color: white;
+    margin: 5px 0;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeito de hover nos itens */
+.benefits-box p:hover {
+    color: #FFD700; /* Cor dourada ao passar o mouse */
+    transform: scale(1.05);
+}
 
     </style>
 </head>
@@ -379,7 +423,7 @@ color: white;
      <div class="header" id="header">
         <div class="logo">Mecânica Auto</div>
         <div class="nav">
-            <a href="#">BENEFÌCIOS</a>
+            <a href="#" class="benefits-btn">BENEFÌCIOS</a>
             <a href="#">NOSSOS SERVIÇOS</a>
             <a href="#">SUPORTE AO CLIENTE</a>
             <a href="#">QUEM SOMOS</a>
@@ -474,6 +518,39 @@ color: white;
 </footer>
     
     <div class="scroll-top">⬆</div>
+
+
+    <script>
+        // Criando a caixa de benefícios dinamicamente
+document.addEventListener("DOMContentLoaded", function () {
+    // Localizando o link de BENEFÍCIOS
+    const benefitsBtn = document.querySelector('.benefits-btn');
+
+    // Criando o box de benefícios
+    const benefitsBox = document.createElement('div');
+    benefitsBox.classList.add('benefits-box');
+    benefitsBox.innerHTML = `
+        <p>✔ Atendimento personalizado</p>
+        <p>✔ Reparos rápidos e de qualidade</p>
+        <p>✔ Preços acessíveis</p>
+        <p>✔ Garantia de 1 ano nos serviços</p>
+        <p>✔ Apoio 24/7 para emergências</p>
+    `;
+
+    // Inserindo o box de benefícios dentro do botão de BENEFÍCIOS
+    benefitsBtn.appendChild(benefitsBox);
+
+    // Função para mostrar os benefícios ao passar o mouse
+    benefitsBtn.addEventListener('mouseenter', function () {
+        benefitsBox.classList.add('show'); // Torna o box visível
+    });
+
+    // Função para esconder os benefícios ao sair com o mouse
+    benefitsBtn.addEventListener('mouseleave', function () {
+        benefitsBox.classList.remove('show'); // Esconde o box
+    });
+});
+    </script>
 
 <script>
     document.querySelector(".scroll-top").addEventListener("click", function () {
