@@ -436,24 +436,22 @@ color: white;
 </footer>
     <div class="scroll-top">⬆</div>
 
-   <script>
-        function animateOnScroll() {
+ <script>
+        document.addEventListener("DOMContentLoaded", () => {
             const items = document.querySelectorAll(".services-column li");
 
-            items.forEach((item, index) => {
-                const itemPosition = item.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add("visible");
+                        }, index * 200); // Delay progressivo
+                    }
+                });
+            }, { threshold: 0.2 }); // Ativa quando 30% do elemento estiver visível
 
-                if (itemPosition < windowHeight - 50) {
-                    setTimeout(() => {
-                        item.classList.add("visible");
-                    }, index * 200); // Delay progressivo
-                }
-            });
-        }
-
-        document.addEventListener("scroll", animateOnScroll);
-        document.addEventListener("DOMContentLoaded", animateOnScroll);
+            items.forEach(item => observer.observe(item));
+        });
     </script>
 </body>
 </html>
