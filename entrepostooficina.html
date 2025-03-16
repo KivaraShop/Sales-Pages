@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oficina X - Seu Carro em Boas Mãos</title>
+    <title>Oficina X - Serviços Rápidos e Profissionais</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,187 +14,196 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #F2F2F2;
             color: #333;
-            line-height: 1.6;
         }
 
+        /* Cabeçalho */
         header {
-            position: relative;
-            height: 100vh;
-            background-image: url('https://via.placeholder.com/1920x1080'); /* Substitua com a imagem de sua oficina */
-            background-size: cover;
-            background-position: center;
+            background-color: #2C3E50;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px 0;
             text-align: center;
-            padding: 0 20px;
-        }
-
-        .header-info {
-            position: absolute;
-            top: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            color: white;
-            font-size: 0.9em;
-            padding: 0 20px;
-        }
-
-        .header-info div {
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         header h1 {
-            font-size: 3.5em;
-            font-weight: 600;
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        header .contact-info {
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        header .contact-info div {
             margin-bottom: 10px;
         }
 
-        header p {
-            font-size: 1.2em;
+        /* Seção Hero */
+        .hero {
+            background: url('https://via.placeholder.com/1920x800') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 700;
             margin-bottom: 20px;
         }
 
-        header .cta-button {
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
             padding: 15px 30px;
-            background-color: #e74c3c;
+            background-color: #E74C3C;
             color: white;
             text-decoration: none;
-            font-weight: 500;
+            font-size: 1.2rem;
+            font-weight: 600;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
-        header .cta-button:hover {
-            background-color: #c0392b;
+        .cta-btn:hover {
+            background-color: #C0392B;
         }
 
-        section {
-            padding: 50px 20px;
-        }
-
-        .services, .testimonials {
+        /* Serviços */
+        .services {
             display: flex;
             justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .service-card, .testimonial-card {
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            padding: 20px;
-            border-radius: 8px;
+            align-items: center;
+            background-color: #34495E;
+            color: white;
+            padding: 50px 0;
             text-align: center;
         }
 
-        .service-card h3, .testimonial-card h3 {
-            font-size: 1.6em;
-            margin-bottom: 10px;
-            color: #e74c3c;
-        }
-
-        .service-card p, .testimonial-card p {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .info-box {
-            background-color: #fff;
-            padding: 20px;
+        .service-item {
+            background-color: #1F2A3B;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px;
             text-align: center;
         }
 
-        .info-box h3 {
-            font-size: 1.8em;
-            color: #e74c3c;
+        .service-item h3 {
+            font-size: 1.8rem;
             margin-bottom: 15px;
         }
 
-        .info-box p {
-            font-size: 1.2em;
-            color: #666;
+        .service-item p {
+            font-size: 1.1rem;
         }
 
-        footer {
-            background-color: #333;
-            color: white;
+        /* Testemunhos */
+        .testimonials {
+            padding: 80px 20px;
             text-align: center;
-            padding: 20px;
         }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonial-item h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #E74C3C;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-item p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #2C3E50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+        }
+
     </style>
 </head>
 <body>
 
+    <!-- Cabeçalho -->
     <header>
-        <div class="header-info">
-            <div><strong>📞</strong> (11) 1234-5678</div>
-            <div><strong>📍</strong> Rua da Oficina, 123 - Cidade, Estado</div>
-            <div><strong>⏰</strong> Seg a Sex: 8h - 18h | Sáb: 8h - 12h</div>
-        </div>
-        <div>
-            <h1>Bem-vindo à Oficina X</h1>
-            <p>Seu carro em boas mãos. Serviços rápidos e confiáveis.</p>
-            <a href="#contact" class="cta-button">Agende Agora</a>
+        <h1>Oficina X</h1>
+        <div class="contact-info">
+            <div>📞 (11) 1234-5678</div>
+            <div>📍 Rua da Oficina, 123 - Cidade, Estado</div>
+            <div>⏰ Seg a Sex: 8h - 18h | Sáb: 8h - 12h</div>
         </div>
     </header>
 
-    <section id="services">
-        <h2 style="text-align:center; margin-bottom: 50px;">Nossos Serviços</h2>
-        <div class="services">
-            <div class="service-card">
-                <h3>Manutenção Preventiva</h3>
-                <p>Mantenha seu carro em perfeito estado com nossas manutenções periódicas.</p>
-            </div>
-            <div class="service-card">
-                <h3>Troca de Óleo</h3>
-                <p>Garantimos a troca de óleo de forma rápida e eficiente, sem complicação.</p>
-            </div>
-            <div class="service-card">
-                <h3>Reparo de Motor</h3>
-                <p>Experiência e tecnologia para corrigir qualquer falha no seu motor.</p>
-            </div>
+    <!-- Seção Hero -->
+    <section class="hero">
+        <h2>Seu Carro em Boas Mãos</h2>
+        <p>Serviços rápidos, eficientes e com a qualidade que seu veículo merece!</p>
+        <a href="#services" class="cta-btn">Saiba Mais</a>
+    </section>
+
+    <!-- Seção Serviços -->
+    <section id="services" class="services">
+        <div class="service-item">
+            <h3>Manutenção Preventiva</h3>
+            <p>Mantenha seu carro em ótimo estado com manutenções periódicas.</p>
+        </div>
+        <div class="service-item">
+            <h3>Troca de Óleo</h3>
+            <p>Troca de óleo eficiente para garantir o bom funcionamento do motor.</p>
+        </div>
+        <div class="service-item">
+            <h3>Reparo de Motor</h3>
+            <p>Identificamos e resolvemos problemas no motor do seu veículo.</p>
         </div>
     </section>
 
-    <section id="testimonials">
-        <h2 style="text-align:center; margin-bottom: 50px;">O que Nossos Clientes Dizem</h2>
-        <div class="testimonials">
-            <div class="testimonial-card">
-                <h3>João Silva</h3>
-                <p>"A melhor oficina que já passei! Atendimento impecável e rapidez no serviço. Super recomendo!"</p>
-            </div>
-            <div class="testimonial-card">
-                <h3>Maria Oliveira</h3>
-                <p>"Profissionais muito qualificados e sempre prontos para ajudar. Fiquei muito satisfeita com o serviço."</p>
-            </div>
+    <!-- Seção Testemunhos -->
+    <section class="testimonials">
+        <h2>O que Nossos Clientes Dizem</h2>
+        <div class="testimonial-item">
+            <h3>João Silva</h3>
+            <p>"A Oficina X me surpreendeu pela rapidez e pela qualidade do serviço! Sempre que preciso, confio neles."</p>
+        </div>
+        <div class="testimonial-item">
+            <h3>Maria Oliveira</h3>
+            <p>"Excelente atendimento, profissionais super qualificados. Recomendo a todos que precisam de serviços de confiança."</p>
         </div>
     </section>
 
-    <section id="contact">
-        <h2 style="text-align:center; margin-bottom: 50px;">Entre em Contato</h2>
-        <div class="info-box">
-            <h3>Entre em Contato Conosco!</h3>
-            <p>Para agendar um serviço ou esclarecer dúvidas, ligue para nós ou visite-nos!</p>
-            <p><strong>Telefone:</strong> (11) 1234-5678</p>
-            <p><strong>Endereço:</strong> Rua da Oficina, 123 - Cidade, Estado</p>
-        </div>
-    </section>
-
+    <!-- Rodapé -->
     <footer>
-        <p>&copy; 2025 Oficina X. Todos os direitos reservados.</p>
-        <p>Rua da Oficina, 123 - Cidade, Estado</p>
+        <p>&copy; 2025 Oficina X - Todos os direitos reservados</p>
     </footer>
 
 </body>
