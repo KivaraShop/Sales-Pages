@@ -239,6 +239,71 @@
         .scroll-top:hover {
             background: #e6951d;
         }
+
+        /* Estilos do Rodapé */
+
+   .footer {
+            background-color: #003B50; /* Azul escuro para contraste */
+            color: white;
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+    .footer i {
+color: white;
+    margin-left: 10px;
+    font-size: 16px;
+}
+        .footer-logo {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+        .footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-column p, .footer-column a {
+            font-size: 14px;
+            line-height: 1.6;
+            color: white;
+            text-decoration: none;
+        }
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+        .contact-info b {
+            color: #0088B5;
+        }
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            color: white;
+            background: #0088B5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: white;
+            color: #0088B5;
+        }
     </style>
 </head>
 <body>
@@ -313,7 +378,44 @@
             </ul>
         </div>
     </section>
+<!-- Rodapé -->
+<footer class="footer">
+            <h3 class="footer-title">Grupo Entreposto</h3>
+            <p class="footer-slogan">"O carro dos seus sonhos está aqui!"</p>
+        </div>
+    </div>
 
+    <div class="footer-column">
+        <h3>VIATURAS</h3>
+        <p>Como líder de vendas de veículos em Maputo, Moçambique, temos certeza de que economizamos seu tempo e dinheiro. O Grupo Entreposto oferece uma ampla gama de veículos novos e seminovos, além de uma experiência de compra incomparável.</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>CONTATO <i class="fas fa-phone"></i></h3>
+        <p><b>Departamento de Vendas:</b>+258 852136558</p>
+        <p><b>Serviço de Reparos de Carros:</b>+258 852136558</p>
+        <p><b>Email:</b> <a href="mailto:info@grupoentreposto.com">info@grupoentreposto.com</a></p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>HORÁRIOS DE ATENDIMENTO</h3>
+        <p><b>Segunda a Sexta:</b> 09:00AM – 06:00PM</p>
+        <p><b>Sábado:</b> 09:00AM – 02:00PM</p>
+        <p><b>Domingo:</b> Fechado</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>REDES SOCIAIS</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <h3>NOSSA LOCALIZAÇÂO</h3>
+        <p>Av. do Trabalho, Nº 1856, CP 1153 Cidade De MAPUTO, Moçambique</p>
+    </div>
+</footer>
     <div class="scroll-top">⬆</div>
 
 
