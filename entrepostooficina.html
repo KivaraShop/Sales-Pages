@@ -76,6 +76,7 @@
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             max-width: 350px;
+            margin-left: 30px;
         }
         .hero .content h1 { font-size: 28px; }
         .hero .content span { color: #ffd700; }
@@ -423,21 +424,25 @@ color: white;
     margin-bottom: 10px;
 }
 
-         * {
+      * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         .service-section {
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: space-between;
-            background-color: #1e3a66;
+            background-color: transparent;
             color: white;
             padding: 50px;
+            height: 100vh;
         }
         .service-text {
             width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .service-text h2 {
             font-size: 24px;
@@ -455,10 +460,12 @@ color: white;
         }
         .service-image {
             width: 50%;
+            display: flex;
         }
         .service-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -501,6 +508,19 @@ color: white;
             <a href="#" class="btn" class="banner .btn" id="bannerBtn">Contate para mais informações</a>
         </div>
     </section>
+
+         <section class="service-section">
+        <div class="service-text">
+            <h2>Na AutoRepair, Nós Oferecemos</h2>
+            <h1>SERVIÇOS QUE VOCÊ PODE CONFIAR!</h1>
+            <p>Nosso compromisso é garantir que seu veículo esteja sempre em perfeitas condições. Contamos com uma equipe de especialistas prontos para oferecer manutenção, diagnóstico e reparos eficientes.</p>
+            <p>Seja uma revisão completa, troca de óleo ou reparos mecânicos, estamos preparados para oferecer o melhor atendimento com qualidade e rapidez. Confie em nós para cuidar do seu carro como se fosse nosso!</p>
+        </div>
+        <div class="service-image">
+            <img src="https://autodoc.templines.org/wp-content/uploads/2020/09/bgimage001.jpg?id=18871" alt="Equipe de mecânicos realizando reparos">
+        </div>
+    </section>
+    
     <section class="services-section">
         <div class="services-text">
             <h2><span>Serviços de Reparação</span></h2>
@@ -531,17 +551,6 @@ color: white;
                 <li>Reparação do Sistema de Arrefecimento do Motor</li>
                 <li>Serviço de Direção e Suspensão</li>
             </ul>
-        </div>
-    </section>
-     <section class="service-section">
-        <div class="service-text">
-            <h2>Na AutoRepair, Nós Oferecemos</h2>
-            <h1>SERVIÇOS QUE VOCÊ PODE CONFIAR!</h1>
-            <p>Nosso compromisso é garantir que seu veículo esteja sempre em perfeitas condições. Contamos com uma equipe de especialistas prontos para oferecer manutenção, diagnóstico e reparos eficientes.</p>
-            <p>Seja uma revisão completa, troca de óleo ou reparos mecânicos, estamos preparados para oferecer o melhor atendimento com qualidade e rapidez. Confie em nós para cuidar do seu carro como se fosse nosso!</p>
-        </div>
-        <div class="service-image">
-            <img src="https://autodoc.templines.org/wp-content/uploads/2020/09/bgimage001.jpg?id=18871" alt="Equipe de mecânicos realizando reparos">
         </div>
     </section>
           <div class="separator"></div>
