@@ -452,6 +452,113 @@ nav ul li a:hover {
         transform: translateX(-75%);
     }
 }
+
+
+      /* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .top-left span, .top-right a {
+        margin: 5px 0;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 3%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    .hero-section {
+        height: 400px;
+        padding: 0 5%;
+        text-align: center;
+    }
+
+    .content h2 {
+        font-size: 28px;
+    }
+
+    .content p {
+        font-size: 14px;
+    }
+
+    .cta-button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .industry-item h3 {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .introducao-texto {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+
+    .footer {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 30px 5%;
+    }
+}
+
+@media (max-width: 500px) {
+    .top-bar {
+        padding: 8px 3%;
+    }
+
+    .hero-section {
+        height: 300px;
+    }
+
+    .content h2 {
+        font-size: 24px;
+    }
+
+    .content p {
+        font-size: 12px;
+    }
+
+    .cta-button {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .industry-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
       </style>
 <body>
 
