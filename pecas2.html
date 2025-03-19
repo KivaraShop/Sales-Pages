@@ -1277,7 +1277,7 @@ header .cart-icon {
             height: 100%;
             background-color: #fff;
             box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
-            z-index: 999;
+            z-index: 1;
             overflow-y: auto;
             padding: 20px;
             display: none;
@@ -1875,20 +1875,15 @@ header .cart-icon {
 </footer>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const cartIcon = document.querySelector(".cart-icon"); // Ícone do carrinho
-    const cartPopup = document.querySelector(".cart-popup"); // Pop-up do carrinho
-    const navButtons = document.querySelector(".navigation-buttons"); // Bloco de navegação
+    const cartPopup = document.querySelector(".cart-popup");
+    const priceSearch = document.querySelector(".price-search");
+    const navButtons = document.querySelector(".navigation-buttons");
 
-    cartIcon.addEventListener("click", function () {
-        // Obtém a posição do navigation-buttons na página
-        const navRect = navButtons.getBoundingClientRect();
-
-        // Posiciona o pop-up abaixo do navigation-buttons
-        cartPopup.style.position = "absolute";
-        cartPopup.style.top = `${navRect.bottom + window.scrollY}px`; // Começa abaixo do navigation-buttons
-        cartPopup.style.left = `${navRect.left}px`; // Alinha à esquerda do navigation-buttons
-        cartPopup.style.display = cartPopup.style.display === "block" ? "none" : "block";
-    });
+    // Garante que o pop-up fique abaixo de tudo, exceto os dois blocos
+    cartPopup.style.zIndex = Math.min(
+        window.getComputedStyle(priceSearch).zIndex,
+        window.getComputedStyle(navButtons).zIndex
+    ) - 1;
 });
 
 </script>
