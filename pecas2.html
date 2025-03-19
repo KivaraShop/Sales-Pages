@@ -1873,7 +1873,37 @@ header .cart-icon {
         <p>Av. do Trabalho, Nº 1856, CP 1153 Cidade De MAPUTO, Moçambique</p>
     </div>
 </footer>
+<script>
+    
+document.addEventListener("DOMContentLoaded", function () {
+    const cartIcon = document.querySelector(".cart-icon"); // Ícone do carrinho
+    const cartPopup = document.querySelector(".cart-popup"); // Pop-up do carrinho
+    const navButtons = document.querySelector(".navigation-buttons"); // Bloco de navegação
 
+    cartIcon.addEventListener("click", function () {
+        if (cartPopup.style.display === "block") {
+            cartPopup.style.display = "none"; // Fecha o pop-up se já estiver aberto
+        } else {
+            // Obtém a posição do navigation-buttons na página
+            const navRect = navButtons.getBoundingClientRect();
+            const scrollOffset = window.scrollY; // Pega a posição de rolagem
+
+            // Define a posição do pop-up abaixo do navigation-buttons
+            cartPopup.style.position = "absolute";
+            cartPopup.style.top = `${navRect.bottom + scrollOffset}px`; // Posiciona abaixo do navigation-buttons
+            cartPopup.style.left = `${navRect.left}px`; // Alinha com o navigation-buttons
+            cartPopup.style.display = "block"; // Exibe o pop-up
+        }
+    });
+
+    // Fecha o pop-up se clicar fora dele
+    document.addEventListener("click", function (event) {
+        if (!cartPopup.contains(event.target) && !cartIcon.contains(event.target)) {
+            cartPopup.style.display = "none";
+        }
+    });
+});
+</script>
 
  <script>
 // Observador para as marcas
