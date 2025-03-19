@@ -2286,7 +2286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const fazerPedidoButton = document.createElement('button');
         fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#3c8d3f';
+        fazerPedidoButton.style.background = '#003B50';
         fazerPedidoButton.style.color = 'white';
         fazerPedidoButton.style.border = 'none';
         fazerPedidoButton.style.padding = '10px';
@@ -2300,7 +2300,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#3c8d3f';
+        closeButton.style.background = '#003B50';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
         closeButton.style.padding = '5px 10px';
