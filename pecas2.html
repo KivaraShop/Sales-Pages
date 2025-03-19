@@ -1481,8 +1481,7 @@ header .cart-icon {
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-badge">3</span>
         </a>
-  </div>
-       <!-- Pop-up do Carrinho -->
+      <!-- Pop-up do Carrinho -->
     <div class="cart-popup">
         <div class="cart-popup-content">
             <ul>
@@ -1498,6 +1497,8 @@ header .cart-icon {
             <button>Finalizar Compra</button>
         </div>
         </div>
+  </div>
+      
   <div class="search-bar">
     <input 
       type="text" 
@@ -1873,20 +1874,6 @@ header .cart-icon {
         <p>Av. do Trabalho, Nº 1856, CP 1153 Cidade De MAPUTO, Moçambique</p>
     </div>
 </footer>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const cartPopup = document.querySelector(".cart-popup");
-    const priceSearch = document.querySelector(".price-search");
-    const navButtons = document.querySelector(".navigation-buttons");
-
-    // Garante que o pop-up fique abaixo de tudo, exceto os dois blocos
-    cartPopup.style.zIndex = Math.min(
-        window.getComputedStyle(priceSearch).zIndex,
-        window.getComputedStyle(navButtons).zIndex
-    ) - 1;
-});
-
-</script>
 
  <script>
 // Observador para as marcas
