@@ -457,6 +457,7 @@ button:hover {
   width: 100% !important; /* Garantir que o container ocupe toda a largura */
   padding-bottom: 20px !important; /* Remover qualquer padding extra */
   margin: 0 !important; /* Remover qualquer margem extra */
+z-index: 900;
 }
 /* A barra de pesquisa à esquerda */
 .search-bar {
@@ -468,12 +469,12 @@ button:hover {
 
 /* Os botões de navegação à direita */
 .navigation-buttons {
-    display: flex !important;
-    align-items: center !important;
-    margin: 0 !important; /* Remove qualquer margem extra */
-    padding-left: 20px; /* Ajusta o espaço */
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important; /* Remove qualquer margem extra */
+ padding-left: 20px;/* Remove qualquer padding extra */
     z-index: 997 !important;
-    position: relative; /* Permite que o pop-up fique dentro */
+    position: relative; 
 }
 
 #search-input {
@@ -1268,19 +1269,19 @@ header .cart-icon {
             padding: 2px 6px;
             font-size: 12px;
         }
-       .cart-popup {
-    position: absolute; /* Posiciona o pop-up dentro do .navigation-buttons */
-    top: 100%; /* Faz o pop-up aparecer logo abaixo do navigation-buttons */
-    left: 0; /* Alinha o pop-up com a esquerda do navigation-buttons */
-    width: 300px;
-    background-color: #fff;
-    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
-    z-index: 998 !important; /* Certifique-se de que está acima do navigation-buttons */
-    overflow-y: auto;
-    padding: 20px;
-    display: none; /* Começa oculto */
-    border-radius: 10px; /* Bordas arredondadas para um visual melhor */
-}
+        .cart-popup {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10 !important;
+            overflow-y: auto;
+            padding: 20px;
+            display: none;
+        }
 
         .cart-popup-content {
             padding: 20px;
