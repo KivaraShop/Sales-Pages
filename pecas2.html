@@ -1927,7 +1927,7 @@ header .cart-icon.pulse {
 
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
+   document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.product-card button');
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
@@ -1958,11 +1958,21 @@ header .cart-icon.pulse {
 
             imgClone.style.transform = `translate(${deltaX}px, ${deltaY}px)`; // Animação para mover a imagem
 
-            // Rolar a página até o ícone do carrinho
-            window.scrollTo({
-                top: cartIconRect.top + window.scrollY - window.innerHeight / 2, // Centralizar o carrinho na tela
-                behavior: 'smooth' // Rolar suavemente
-            });
+            // Verificar se o ícone do carrinho está visível na tela
+            const isCartIconVisible = (
+                cartIconRect.top >= 0 &&
+                cartIconRect.left >= 0 &&
+                cartIconRect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                cartIconRect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+
+            // Só rolar para o carrinho se ele não estiver visível
+            if (!isCartIconVisible) {
+                window.scrollTo({
+                    top: cartIconRect.top + window.scrollY - window.innerHeight / 2, // Centralizar o carrinho na tela
+                    behavior: 'smooth' // Rolar suavemente
+                });
+            }
 
             // Ao final da animação, remover a imagem e atualizar o carrinho
             imgClone.addEventListener('transitionend', () => {
@@ -1994,6 +2004,7 @@ header .cart-icon.pulse {
         });
     });
 });
+
 
     </script>
  <script>
