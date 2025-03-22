@@ -1275,6 +1275,36 @@ header .cart-icon {
             padding: 2px 6px;
             font-size: 12px;
         }
+        /* Animação de "arraste" do item para o carrinho */
+@keyframes moveToCart {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-50px) translateX(100px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-50px) translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animação de pulso no ícone do carrinho */
+@keyframes cartIconPulse {
+    0% {
+        transform: scale(1);
+        background-color: #ff6b6b;
+    }
+    50% {
+        transform: scale(1.2);
+        background-color: #FF4C4C;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #ff6b6b;
+    }
+}
         
  .cart-popup {
     position: fixed;
@@ -1577,7 +1607,7 @@ header .cart-icon {
                     <i class="fas fa-info-circle"></i>
                     <a href="pecasproduto.html">Saber Mais</a>
                 </div>
-                <button>Adicionar ao Pedido</button>
+              <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
 
       <div class="product-card">
@@ -1591,7 +1621,7 @@ header .cart-icon {
                     <i class="fas fa-info-circle"></i>
                     <a href="productpage.html">Saber Mais</a>
                 </div>
-                <button>Adicionar ao Pedido</button>
+          <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
 
               <div class="product-card">
@@ -1602,7 +1632,7 @@ header .cart-icon {
                     <i class="fas fa-info-circle"></i>
                     <a href="productpage.html">Saber Mais</a>
                 </div>
-                <button>Adicionar ao Pedido</button>
+              <button class="add-to-cart">Adicionar ao Pedido</button>
             
               </div>
        <div class="product-card">
@@ -1616,7 +1646,7 @@ header .cart-icon {
                     <i class="fas fa-info-circle"></i>
                     <a href="productpage.html">Saber Mais</a>
                 </div>
-                <button>Adicionar ao Pedido</button>
+             <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
    <div class="product-card">
              <div class="product-labels">
@@ -1629,7 +1659,7 @@ header .cart-icon {
                     <i class="fas fa-info-circle"></i>
                     <a href="productpage.html">Saber Mais</a>
                 </div>
-                <button>Adicionar ao Pedido</button>
+           <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
 
               <div class="product-card">
@@ -1640,7 +1670,7 @@ header .cart-icon {
                     <i class="fas fa-info-circle"></i>
                     <a href="productpage.html">Saber Mais</a>
                 </div>
-                <button>Adicionar ao Pedido</button>
+       <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
             
       <div class="product-card">
@@ -1889,6 +1919,63 @@ header .cart-icon {
     </div>
 </footer>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const productCard = event.target.closest('.product-card');
+            const img = productCard.querySelector('img');
+            
+            // Criar uma cópia da imagem para animar
+            const imgClone = img.cloneNode();
+            imgClone.style.position = 'absolute';
+            imgClone.style.zIndex = '1000';
+            imgClone.style.width = '100px'; // Defina o tamanho desejado da imagem
+            imgClone.style.height = 'auto';
+            imgClone.style.left = `${img.getBoundingClientRect().left}px`;
+            imgClone.style.top = `${img.getBoundingClientRect().top}px`;
+            document.body.appendChild(imgClone);
+
+            // Animação de "arraste" da imagem para o carrinho
+            const cartIconRect = cartIcon.getBoundingClientRect();
+            imgClone.style.transition = 'transform 1s ease, opacity 0.5s ease';
+            imgClone.style.transform = `translate(${cartIconRect.left - imgClone.getBoundingClientRect().left}px, ${cartIconRect.top - imgClone.getBoundingClientRect().top}px)`;
+
+            // Ao final da animação, remove a imagem e atualiza o carrinho
+            imgClone.addEventListener('transitionend', () => {
+                imgClone.remove();
+                // Atualizar o badge do carrinho
+                cartBadge.textContent = parseInt(cartBadge.textContent) + 1; // Incrementa o número de itens no carrinho
+
+                // Adicionar animação no ícone do carrinho
+                cartIcon.classList.add('pulse');
+                setTimeout(() => {
+                    cartIcon.classList.remove('pulse');
+                }, 1000);
+            });
+
+            // Simula adicionar o produto ao carrinho
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const productName = productCard.querySelector('h3').textContent;
+            const productPrice = productCard.querySelector('.price').textContent;
+            const productImage = img.src;
+
+            cart.push({
+                name: productName,
+                price: productPrice,
+                img: productImage
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+        });
+    });
+});
+    </script>
  <script>
 // Observador para as marcas
 const brandObserver = new IntersectionObserver((entries, observer) => {
