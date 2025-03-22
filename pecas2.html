@@ -1425,6 +1425,11 @@ header .cart-icon.pulse {
         .whatsapp-container:hover .whatsapp-popup {
             content: "WhatsApp";
         }
+
+        .category.selected {
+    background-color: #f5a623;  /* Cor de fundo para a categoria selecionada */
+    color: white;  /* Cor do texto para o item selecionado */
+}
     </style>
 </head>
 <body>
@@ -1980,45 +1985,47 @@ header .cart-icon.pulse {
     </div>
 </footer>
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    let categories = document.querySelectorAll('.category');
-    let productCards = document.querySelectorAll('.product-card');
+   // Seleciona todas as categorias e o container do grid de produtos
+const categories = document.querySelectorAll('.category');
+const productGrid = document.querySelector('.product-grid');
 
-    // Função para filtrar os produtos
-    function filterProducts(category) {
-        productCards.forEach(card => {
-            if (category === "all") {
-                // Exibe todos os produtos, incluindo os não categorizados
-                card.style.display = "block";
-            } else if (category === "uncategorized") {
-                // Exibe apenas os produtos não categorizados
-                if (!card.hasAttribute('data-category')) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+// Função para filtrar os produtos com base na categoria selecionada
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product-card');
+    
+    products.forEach(product => {
+        // Se a categoria for 'uncategorized', filtra os produtos sem categoria
+        if (category === 'uncategorized') {
+            if (!product.dataset.category) {
+                product.style.display = 'block';
             } else {
-                // Exibe produtos de acordo com a categoria
-                if (card.getAttribute('data-category') === category) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+                product.style.display = 'none';
             }
-        });
-    }
-
-    // Adiciona o evento de clique para cada categoria
-    categories.forEach(item => {
-        item.addEventListener('click', function () {
-            let category = this.getAttribute('data-category');
-            filterProducts(category);
-        });
+        } else {
+            // Se a categoria não for 'uncategorized', filtra os produtos com a categoria correspondente
+            if (product.dataset.category === category || category === 'all') {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        }
     });
+}
 
-    // Exibe os produtos não categorizados por padrão
-    filterProducts("uncategorized");
+// Adiciona um evento de clique em cada categoria
+categories.forEach(category => {
+    category.addEventListener('click', () => {
+        // Remove a classe 'selected' de todas as categorias
+        categories.forEach(cat => cat.classList.remove('selected'));
+        
+        // Adiciona a classe 'selected' à categoria clicada
+        category.classList.add('selected');
+        
+        // Filtra os produtos com base na categoria clicada
+        filterProducts(category.dataset.category);
+    });
 });
+
 
 </script>
 <script>
