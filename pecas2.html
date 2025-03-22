@@ -1921,45 +1921,52 @@ header .cart-icon {
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
     
     addToCartButtons.forEach(button => {
         button.addEventListener('click', (event) => {
+            // Encontrar o card do produto e o botão clicado
             const productCard = event.target.closest('.product-card');
             const img = productCard.querySelector('img');
             
-            // Criar uma cópia da imagem para animar
+            // Criar uma cópia da imagem do produto
             const imgClone = img.cloneNode();
             imgClone.style.position = 'absolute';
             imgClone.style.zIndex = '1000';
-            imgClone.style.width = '100px'; // Defina o tamanho desejado da imagem
+            imgClone.style.width = '100px'; // Ajustar o tamanho da imagem para o clone
             imgClone.style.height = 'auto';
-            imgClone.style.left = `${img.getBoundingClientRect().left}px`;
-            imgClone.style.top = `${img.getBoundingClientRect().top}px`;
+            imgClone.style.left = `${productCard.querySelector('button').getBoundingClientRect().left + window.scrollX}px`;
+            imgClone.style.top = `${productCard.querySelector('button').getBoundingClientRect().top + window.scrollY}px`;
+            imgClone.style.transition = 'transform 1s ease, opacity 0.5s ease';
+            imgClone.style.opacity = '0.7'; // Reduzir a opacidade para dar o efeito desejado
             document.body.appendChild(imgClone);
 
-            // Animação de "arraste" da imagem para o carrinho
+            // Animação para mover a imagem até o ícone do carrinho
             const cartIconRect = cartIcon.getBoundingClientRect();
-            imgClone.style.transition = 'transform 1s ease, opacity 0.5s ease';
-            imgClone.style.transform = `translate(${cartIconRect.left - imgClone.getBoundingClientRect().left}px, ${cartIconRect.top - imgClone.getBoundingClientRect().top}px)`;
+            const imgCloneRect = imgClone.getBoundingClientRect();
+            const deltaX = cartIconRect.left - imgCloneRect.left;
+            const deltaY = cartIconRect.top - imgCloneRect.top;
 
-            // Ao final da animação, remove a imagem e atualiza o carrinho
+            imgClone.style.transform = `translate(${deltaX}px, ${deltaY}px)`; // Animação para mover a imagem
+
+            // Ao final da animação, remover a imagem e atualizar o carrinho
             imgClone.addEventListener('transitionend', () => {
                 imgClone.remove();
-                // Atualizar o badge do carrinho
-                cartBadge.textContent = parseInt(cartBadge.textContent) + 1; // Incrementa o número de itens no carrinho
+                // Atualizar o número de itens no carrinho
+                let currentCount = parseInt(cartBadge.textContent) || 0;
+                cartBadge.textContent = currentCount + 1; // Incrementar o número de itens no carrinho
 
-                // Adicionar animação no ícone do carrinho
+                // Animar o ícone do carrinho para indicar que um item foi adicionado
                 cartIcon.classList.add('pulse');
                 setTimeout(() => {
                     cartIcon.classList.remove('pulse');
                 }, 1000);
             });
 
-            // Simula adicionar o produto ao carrinho
+            // Adicionar produto ao carrinho (salvando no localStorage)
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const productName = productCard.querySelector('h3').textContent;
             const productPrice = productCard.querySelector('.price').textContent;
@@ -1975,6 +1982,7 @@ header .cart-icon {
         });
     });
 });
+
     </script>
  <script>
 // Observador para as marcas
