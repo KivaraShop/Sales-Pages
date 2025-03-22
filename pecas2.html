@@ -198,7 +198,7 @@ header .toggle-theme {
 
 /* Estilo para a imagem do logo */
 .logo img {
-    height: 40px;             /* Definir a altura do logo */
+    height: 41px;             /* Definir a altura do logo */
     width: auto;              /* Garantir que a largura seja proporcional à altura */
     padding: 0;               /* Remover qualquer padding */
     margin-right: 120px;     /* Remover qualquer margem */
@@ -666,11 +666,22 @@ color: white;
     margin-left: 10px;
     font-size: 16px;
 }
-        .footer-logo {
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
+      .footer .logo {
+    display: flex;            /* Definir como flex para controle de alinhamento */
+    justify-content: flex-start; /* Alinhar o conteúdo à esquerda */
+    background-color: transparent;
+    padding: 0;               /* Remover qualquer padding */
+    margin: 0;                /* Remover qualquer margem */
 }
+
+/* Estilo para a imagem do logo */
+.logo img {
+    height: 60px;             /* Definir a altura do logo */
+    width: auto;              /* Garantir que a largura seja proporcional à altura */
+    padding: 0;               /* Remover qualquer padding */
+    max-width: 150px;         /* Definir o tamanho máximo para a largura do logo */
+}
+
         .footer-logo-slogan {
     display: flex;
     align-items: center;
