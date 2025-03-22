@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <title>Pecas</title>
+     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
@@ -1373,6 +1374,44 @@ header .cart-icon.pulse {
             background-color: #2f6c32;
         }
 
+
+         .whatsapp-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            align-items: center;
+        }
+
+        .whatsapp-popup {
+            background-color: red;
+            color: yellow;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin-right: 5px;
+            transition: 0.3s;
+        }
+
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-container:hover .whatsapp-popup {
+            content: "WhatsApp";
+        }
     </style>
 </head>
 <body>
@@ -1879,7 +1918,12 @@ header .cart-icon.pulse {
     </div>
 </section>
 
-
+ <div class="whatsapp-container" id="whatsapp-popup">
+        <div class="whatsapp-popup" id="whatsapp-text">Fale Connosco</div>
+        <div class="whatsapp-icon" id="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </div>
 
 <!-- Rodapé -->
 <footer class="footer">
@@ -1923,6 +1967,23 @@ header .cart-icon.pulse {
     </div>
 </footer>
 
+<script>
+        setTimeout(() => {
+            document.getElementById('whatsapp-popup').style.display = 'flex';
+        }, 60000); // 1 minuto (60000ms)
+
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+            window.open('https://wa.me/258852136558?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20serviço.', '_blank');
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseover', () => {
+            document.getElementById('whatsapp-text').innerText = 'WhatsApp';
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseout', () => {
+            document.getElementById('whatsapp-text').innerText = 'Fale Connosco';
+        });
+    </script>
 
     <script>
 document.addEventListener('DOMContentLoaded', () => {
