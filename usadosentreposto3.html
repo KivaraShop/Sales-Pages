@@ -184,18 +184,24 @@ header .toggle-theme {
 }
         
  /* Logo */
-                .logo {
-            flex-grow: 1;
-            text-align: center;
-            background-color: transparent;
+        .logo {
+    display: flex;            /* Definir como flex para controle de alinhamento */
+    justify-content: flex-start; /* Alinhar o conteúdo à esquerda */
+    background-color: transparent;
+    padding: 0;               /* Remover qualquer padding */
+    margin: 0;                /* Remover qualquer margem */
+}
 
-        }
+/* Estilo para a imagem do logo */
+.logo img {
+    height: 41px;             /* Definir a altura do logo */
+    width: auto;              /* Garantir que a largura seja proporcional à altura */
+    padding: 0;               /* Remover qualquer padding */
+    margin-right: 120px;     /* Remover qualquer margem */
+    margin-left: 70px;
+    max-width: 150px;         /* Definir o tamanho máximo para a largura do logo */
+}
 
-        .logo img {
-            height: 37px;
-            padding: 0;
-            margin: 0;
-        }
    /* Estilização do sininho */
     .notification {
       position: relative;
