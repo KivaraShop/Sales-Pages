@@ -2409,7 +2409,7 @@ function filterProducts(searchTerm) {
         footer.style.visibility = 'hidden';
         googleReviewsContainer.style.visibility = 'hidden';
         brandSearch.style.visibility = 'hidden';
-        priceSearch.style.visibility = 'hidden'; // Substituído aqui
+        priceSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
         noResultsMessage.classList.remove('show'); // Remove o efeito
         setTimeout(() => {
@@ -2420,7 +2420,7 @@ function filterProducts(searchTerm) {
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
         brandSearch.style.visibility = 'visible';
-        priceSearch.style.visibility = 'visible'; // Substituído aqui
+        priceSearch.style.visibility = 'visible';
     }
 }
 
@@ -2437,6 +2437,16 @@ document.querySelectorAll('.category').forEach(item => {
         setCategory(category);  // Atualiza a categoria ao clicar
     });
 });
+
+// Função para atualizar a pesquisa
+function searchProducts(event) {
+    const searchTerm = event.target.value;
+    filterProducts(searchTerm);
+}
+
+// Adiciona a funcionalidade de pesquisa
+document.querySelector('#search-input').addEventListener('input', searchProducts);
+
 
 </script>
 
