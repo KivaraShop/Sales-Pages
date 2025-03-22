@@ -2371,7 +2371,7 @@ function filterProducts(searchTerm) {
     const footer = document.querySelector('footer');
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
     const brandSearch = document.querySelector('.brand-search');
-    const priceSearch = document.querySelector('.price-search'); // Substituído aqui
+    const priceSearch = document.querySelector('.price-search');
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
@@ -2381,15 +2381,16 @@ function filterProducts(searchTerm) {
     footer.style.visibility = 'visible';
     googleReviewsContainer.style.visibility = 'visible';
     brandSearch.style.visibility = 'visible';
-    priceSearch.style.visibility = 'visible'; // Substituído aqui
+    priceSearch.style.visibility = 'visible';
 
     // Filtra os produtos pela categoria e pesquisa
     productCards.forEach(card => {
         const productCategory = card.getAttribute('data-category');
         const productName = card.querySelector("h3").textContent.toLowerCase();
 
-        // Verifica se o produto corresponde à categoria e à pesquisa
-        if ((currentCategory === "all" || currentCategory === productCategory) && productName.includes(search)) {
+        // Se a pesquisa não estiver vazia, mostramos produtos que combinem com a pesquisa
+        // Caso contrário, mostramos os produtos da categoria selecionada
+        if ((searchTerm === '' || productName.includes(search)) && (currentCategory === "all" || currentCategory === productCategory || !productCategory)) {
             card.style.display = "block";
             resultsFound = true;
         } else {
