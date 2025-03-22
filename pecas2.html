@@ -320,6 +320,12 @@ h2 {
     transform: translateX(0); /* Move para a posição original */
 }
 
+.product-grid {
+    display: none; /* Esconde todos por padrão */
+}
+.product-grid.active {
+    display: grid; /* Só exibe o que tiver a classe 'active' */
+}
 
 
 .product-card {
@@ -1630,7 +1636,7 @@ header .cart-icon.pulse {
         <div class="brand-search">
             <h3>Busca por Categoria</h3>
             <ul>
-               <li class="category" data-grid="grid-suspensao">Suspensão</li>
+        <li class="category" data-grid="grid-suspensao">Suspensão</li>
         <li class="category" data-grid="grid-carroceria">Carroçaria</li>
         <li class="category" data-grid="grid-mecanica">Mecânica e Motor</li>
         <li class="category" data-grid="grid-acessorios">Acessórios</li>
@@ -1654,7 +1660,7 @@ header .cart-icon.pulse {
     </ul>
 </div>
     </div>
-        <div class="product-grid" id="grid-principal">
+        <div class="product-grid active" id="grid-principal">
             <!-- Exemplo de produto -->
           <div class="product-card">
                 <img src="https://i.ibb.co/GQnPmMP/images-1.jpg" draggable="false">
@@ -2045,20 +2051,17 @@ header .cart-icon.pulse {
     </div>
 </footer>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const categories = document.querySelectorAll(".category");
-    const grids = document.querySelectorAll(".product-grid");
+document.querySelectorAll('.category').forEach(item => {
+    item.addEventListener('click', function () {
+        let selectedGrid = this.getAttribute('data-grid');
 
-    categories.forEach(category => {
-        category.addEventListener("click", function() {
-            const targetGrid = this.getAttribute("data-grid");
-
-            grids.forEach(grid => {
-                grid.style.display = "none"; // Esconde todas as grids
-            });
-
-            document.getElementById(targetGrid).style.display = "flex"; // Mostra a grid selecionada
+        // Esconder todos os grids
+        document.querySelectorAll('.product-grid').forEach(grid => {
+            grid.classList.remove('active');
         });
+
+        // Exibir somente a grid da categoria selecionada
+        document.getElementById(selectedGrid).classList.add('active');
     });
 });
 
