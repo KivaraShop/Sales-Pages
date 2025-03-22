@@ -1291,6 +1291,7 @@ header .cart-icon {
 }
 
 /* Animação de pulso no ícone do carrinho */
+/* Animação de pulso no ícone do carrinho */
 @keyframes cartIconPulse {
     0% {
         transform: scale(1);
@@ -1305,6 +1306,11 @@ header .cart-icon {
         background-color: #ff6b6b;
     }
 }
+
+header .cart-icon.pulse {
+    animation: cartIconPulse 1s ease;
+}
+
         
  .cart-popup {
     position: fixed;
