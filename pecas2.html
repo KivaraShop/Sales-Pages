@@ -304,7 +304,7 @@ h2 {
 }
 
 .product-grid {
-        display: none; 
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
     margin-bottom: 40px;
@@ -320,9 +320,6 @@ h2 {
     transform: translateX(0); /* Move para a posição original */
 }
 
-.product-grid.active {
-    display: grid; /* Só exibe o que tiver a classe 'active' */
-}
 
 
 .product-card {
@@ -1633,10 +1630,10 @@ header .cart-icon.pulse {
         <div class="brand-search">
             <h3>Busca por Categoria</h3>
             <ul>
-        <li class="category" data-grid="grid-suspensao">Suspensão</li>
-        <li class="category" data-grid="grid-carroceria">Carroçaria</li>
-        <li class="category" data-grid="grid-mecanica">Mecânica e Motor</li>
-        <li class="category" data-grid="grid-acessorios">Acessórios</li>
+                        <li class="category" data-category="suspensao">Suspensão</li>
+        <li class="category" data-category="carroceria">Carroçaria</li>
+        <li class="category" data-category="interior">Interior e Conforto</li>
+        <li class="category" data-category="mecanica">Mecânica e Motor</li>
                 <li> Freios</li></li>
                 <li>Ferramentas e Equipamentos</li>
                 <li>Segurança</li>
@@ -1657,7 +1654,7 @@ header .cart-icon.pulse {
     </ul>
 </div>
     </div>
-        <div class="product-grid active" id="grid-principal">
+        <div class="product-grid">
             <!-- Exemplo de produto -->
           <div class="product-card">
                 <img src="https://i.ibb.co/GQnPmMP/images-1.jpg" draggable="false">
@@ -1670,7 +1667,7 @@ header .cart-icon.pulse {
               <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="suspensao">
               <div class="product-labels">
         <span class="label spicy">NOVO</span>
     </div>
@@ -1684,7 +1681,7 @@ header .cart-icon.pulse {
           <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
 
-              <div class="product-card">
+              <div class="product-card" data-category="suspensao">
                 <img src="https://i.ibb.co/1TgPVPL/IMG-20250107-153630.jpg" draggable="false">
                 <h3>Velas</h3>
                 <div class="price">R$ 39,90</div>
@@ -1733,7 +1730,7 @@ header .cart-icon.pulse {
        <button class="add-to-cart">Adicionar ao Pedido</button>
             </div>
             
-      <div class="product-card">
+      <div class="product-card" data-category="suspensao">
              <div class="product-labels">
         <span class="label spicy">NOVA</span>
     </div>
@@ -1785,67 +1782,6 @@ header .cart-icon.pulse {
         </div>
     </div>
 
-
-
-
-
-   <div id="grid-suspensao" class="product-grid">
-        <div class="product-card">
-                <img src="https://i.ibb.co/GQnPmMP/images-1.jpg" draggable="false">
-                <h3>Condutor</h3>
-                <div class="price">R$ 39,90</div>
-                <div class="more-info">
-                    <i class="fas fa-info-circle"></i>
-                    <a href="pecasproduto.html">Saber Mais</a>
-                </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
-
-      <div class="product-card">
-              <div class="product-labels">
-        <span class="label spicy">NOVO</span>
-    </div>
-                <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg"draggable="false">
-                <h3>Faról</h3>
-                <div class="price">R$ 39,90</div>
-                <div class="more-info">
-                    <i class="fas fa-info-circle"></i>
-                    <a href="productpage.html">Saber Mais</a>
-                </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
-        <!-- Outros produtos... -->
-    </div>
-
-    <div id="grid-carroceria" class="product-grid">
-        <div class="product-card">
-            <img src="https://i.ibb.co/VjxCkXQ/images.jpg" draggable="false">
-            <h3>Paralama Dianteiro</h3>
-            <div class="price">R$ 89,90</div>
-            <button class="add-to-cart">Adicionar ao Pedido</button>
-        </div>
-        <!-- Outros produtos... -->
-    </div>
-
-    <div id="grid-mecanica" class="product-grid">
-        <div class="product-card">
-            <img src="https://i.ibb.co/1TgPVPL/IMG-20250107-153630.jpg" draggable="false">
-            <h3>Velas de Ignição</h3>
-            <div class="price">R$ 29,90</div>
-            <button class="add-to-cart">Adicionar ao Pedido</button>
-        </div>
-        <!-- Outros produtos... -->
-    </div>
-
-    <div id="grid-acessorios" class="product-grid">
-        <div class="product-card">
-            <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg" draggable="false">
-            <h3>Farol de LED</h3>
-            <div class="price">R$ 119,90</div>
-            <button class="add-to-cart">Adicionar ao Pedido</button>
-        </div>
-        <!-- Outros produtos... -->
-    </div>
 <!-- Seção de Avaliações do Google -->
 <section class="google-reviews">
   <div class="container">
@@ -2043,35 +1979,33 @@ header .cart-icon.pulse {
     </div>
 </footer>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
-    
-    // Função para mostrar a categoria
-    function showCategory(categoryId) {
-        // Esconde todas as grids
-        let grids = document.querySelectorAll('.product-grid');
-        grids.forEach(grid => {
-            grid.classList.remove('active');
-        });
+    let productCards = document.querySelectorAll('.product-card');
 
-        // Mostra a grid da categoria
-        let selectedGrid = document.getElementById(categoryId);
-        selectedGrid.classList.add('active');
+    // Função para filtrar os produtos
+    function filterProducts(category) {
+        productCards.forEach(card => {
+            // Verifica a categoria do produto e mostra ou esconde o card
+            if (category === "all" || card.getAttribute('data-category') === category) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
     }
 
     // Adiciona o evento de clique para cada categoria
     categories.forEach(item => {
         item.addEventListener('click', function () {
-            let categoryId = this.getAttribute('data-category');
-            showCategory(categoryId);
+            let category = this.getAttribute('data-category');
+            filterProducts(category);
         });
     });
 
-    // Exibe a grid "Suspensão" por padrão
-    showCategory('suspensao');
+    // Exibe todos os produtos por padrão
+    filterProducts("all");
 });
-
-
 </script>
 <script>
         setTimeout(() => {
