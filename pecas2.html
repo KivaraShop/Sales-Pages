@@ -2051,18 +2051,28 @@ header .cart-icon.pulse {
     </div>
 </footer>
 <script>
-document.querySelectorAll('.category').forEach(item => {
-    item.addEventListener('click', function () {
-        let selectedGrid = this.getAttribute('data-grid');
+document.addEventListener("DOMContentLoaded", function () {
+    let categorias = document.querySelectorAll('.category');
 
-        // Esconder todos os grids
-        document.querySelectorAll('.product-grid').forEach(grid => {
-            grid.classList.remove('active');
+    categorias.forEach(item => {
+        item.addEventListener('click', function () {
+            let selectedGrid = this.getAttribute('data-grid');
+
+            // Esconder todas as grids
+            document.querySelectorAll('.product-grid').forEach(grid => {
+                grid.classList.remove('active');
+            });
+
+            // Exibir a grid da categoria selecionada
+            let gridSelecionado = document.getElementById(selectedGrid);
+            if (gridSelecionado) {
+                gridSelecionado.classList.add('active');
+            }
         });
-
-        // Exibir somente a grid da categoria selecionada
-        document.getElementById(selectedGrid).classList.add('active');
     });
+
+    // Ativar a grid principal ao carregar a página
+    document.getElementById('grid-principal').classList.add('active');
 });
 
 </script>
