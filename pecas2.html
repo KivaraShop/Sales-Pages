@@ -2371,7 +2371,7 @@ function filterProducts(searchTerm) {
     const footer = document.querySelector('footer');
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
     const brandSearch = document.querySelector('.brand-search');
-    const priceSearch = document.querySelector('.price-search'); // Substituído aqui
+    const priceSearch = document.querySelector('.price-search');
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
@@ -2381,7 +2381,7 @@ function filterProducts(searchTerm) {
     footer.style.visibility = 'visible';
     googleReviewsContainer.style.visibility = 'visible';
     brandSearch.style.visibility = 'visible';
-    priceSearch.style.visibility = 'visible'; // Substituído aqui
+    priceSearch.style.visibility = 'visible';
 
     // Filtra os produtos pela categoria e pesquisa
     productCards.forEach(card => {
@@ -2389,7 +2389,7 @@ function filterProducts(searchTerm) {
         const productName = card.querySelector("h3").textContent.toLowerCase();
 
         // Verifica se o produto corresponde à categoria e à pesquisa
-        if ((currentCategory === "all" || currentCategory === productCategory) && productName.includes(search)) {
+        if ((currentCategory === "all" || currentCategory === productCategory || currentCategory === "uncategorized" && !productCategory) && productName.includes(search)) {
             card.style.display = "block";
             resultsFound = true;
         } else {
@@ -2408,7 +2408,7 @@ function filterProducts(searchTerm) {
         footer.style.visibility = 'hidden';
         googleReviewsContainer.style.visibility = 'hidden';
         brandSearch.style.visibility = 'hidden';
-        priceSearch.style.visibility = 'hidden'; // Substituído aqui
+        priceSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
         noResultsMessage.classList.remove('show'); // Remove o efeito
         setTimeout(() => {
@@ -2419,7 +2419,7 @@ function filterProducts(searchTerm) {
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
         brandSearch.style.visibility = 'visible';
-        priceSearch.style.visibility = 'visible'; // Substituído aqui
+        priceSearch.style.visibility = 'visible';
     }
 }
 
@@ -2436,6 +2436,15 @@ document.querySelectorAll('.category').forEach(item => {
         setCategory(category);  // Atualiza a categoria ao clicar
     });
 });
+
+// Função para lidar com a pesquisa
+const searchInput = document.querySelector('.search-input'); // Supondo que a barra de pesquisa tenha essa classe
+
+searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.trim();
+    filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
+});
+
 
 </script>
 
