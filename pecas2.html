@@ -2361,7 +2361,7 @@ console.log('Menu found:', navMenu !== null);
         
 
 <script>
-let currentCategory = "uncategorized";  // Inicia com a categoria "não categorizada"
+let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
 
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
@@ -2371,27 +2371,25 @@ function filterProducts(searchTerm) {
     const footer = document.querySelector('footer');
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
     const brandSearch = document.querySelector('.brand-search');
-    const priceSearch = document.querySelector('.price-search');
+    const priceSearch = document.querySelector('.price-search'); // Substituído aqui
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
     noResultsMessage.style.display = 'none'; 
-    noResultsMessage.classList.remove('show');
+    noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
     googleReviewsContainer.style.visibility = 'visible';
     brandSearch.style.visibility = 'visible';
-    priceSearch.style.visibility = 'visible';
+    priceSearch.style.visibility = 'visible'; // Substituído aqui
 
     // Filtra os produtos pela categoria e pesquisa
     productCards.forEach(card => {
         const productCategory = card.getAttribute('data-category');
         const productName = card.querySelector("h3").textContent.toLowerCase();
 
-        // Se a pesquisa estiver vazia, mostramos apenas os produtos da categoria selecionada
-        // Caso contrário, mostramos produtos que combinem com a pesquisa
-        if ((searchTerm === '' || productName.includes(search)) && 
-            (currentCategory === "all" || currentCategory === productCategory || !productCategory)) {
+        // Verifica se o produto corresponde à categoria e à pesquisa
+        if ((currentCategory === "all" || currentCategory === productCategory) && productName.includes(search)) {
             card.style.display = "block";
             resultsFound = true;
         } else {
@@ -2401,27 +2399,27 @@ function filterProducts(searchTerm) {
 
     // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
     if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block'; 
+        noResultsMessage.style.display = 'block'; // Garante que ele está visível
         setTimeout(() => {
-            noResultsMessage.classList.add('show');
+            noResultsMessage.classList.add('show'); // Ativa a animação
         }, 10);
 
         navigationButtons.style.visibility = 'hidden';
         footer.style.visibility = 'hidden';
         googleReviewsContainer.style.visibility = 'hidden';
         brandSearch.style.visibility = 'hidden';
-        priceSearch.style.visibility = 'hidden';
+        priceSearch.style.visibility = 'hidden'; // Substituído aqui
     } else if (resultsFound || searchTerm === '') {
-        noResultsMessage.classList.remove('show'); 
+        noResultsMessage.classList.remove('show'); // Remove o efeito
         setTimeout(() => {
-            noResultsMessage.style.display = 'none';
+            noResultsMessage.style.display = 'none'; // Esconde após a animação
         }, 600);
 
         navigationButtons.style.visibility = 'visible';
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
         brandSearch.style.visibility = 'visible';
-        priceSearch.style.visibility = 'visible';
+        priceSearch.style.visibility = 'visible'; // Substituído aqui
     }
 }
 
@@ -2431,23 +2429,13 @@ function setCategory(category) {
     filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
 }
 
-// Exemplo de como chamar a função para alterar a categoria ao clicar
+// Exemplo de como chamar a função para alterar a categoria ao clicar:
 document.querySelectorAll('.category').forEach(item => {
     item.addEventListener('click', function() {
         const category = this.getAttribute('data-category');
         setCategory(category);  // Atualiza a categoria ao clicar
     });
 });
-
-// Função para atualizar a pesquisa
-function searchProducts(event) {
-    const searchTerm = event.target.value;
-    filterProducts(searchTerm);
-}
-
-// Adiciona a funcionalidade de pesquisa
-document.querySelector('#search-input').addEventListener('input', searchProducts);
-
 
 </script>
 
