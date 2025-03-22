@@ -2244,11 +2244,31 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotal();
     }
 
-    function renderCart() {
-        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>';
-        const ul = document.createElement('ul');
-        ul.style.listStyleType = 'none';
-        ul.style.padding = '0';
+ function renderCart() {
+    // Criando o contêiner do logotipo e centralizando
+    const logoContainer = document.createElement('div');
+    logoContainer.style.display = 'flex';
+    logoContainer.style.justifyContent = 'center'; // Centralizar horizontalmente
+    logoContainer.style.marginBottom = '10px'; // Espaço entre o logo e o título
+
+    // Criando o elemento de imagem do logotipo
+    const logoImg = document.createElement('img');
+    logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png'; // Altere para o caminho correto da sua imagem
+    logoImg.alt = 'Logo'; // Adicione um texto alternativo para a imagem
+    logoImg.style.height = '60px'; // Defina a altura do logo (ajuste conforme necessário)
+    logoImg.style.width = 'auto'; // Para manter a proporção da imagem
+
+    // Adicionando a imagem dentro do contêiner
+    logoContainer.appendChild(logoImg);
+
+    // Criando o título
+    const title = document.createElement('h2');
+    title.textContent = 'Seu Carrinho';
+
+    // Adicionando o contêiner do logotipo e o título ao conteúdo
+    cartPopupContent.innerHTML = ''; // Limpa o conteúdo anterior
+    cartPopupContent.appendChild(logoContainer); // Adiciona o contêiner do logo
+    cartPopupContent.appendChild(title); // Adiciona o título
 
         if (cart.length === 0) {
             ul.innerHTML = '<li>O carrinho está vazio.</li>';
