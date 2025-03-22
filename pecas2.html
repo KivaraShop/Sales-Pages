@@ -2361,6 +2361,8 @@ console.log('Menu found:', navMenu !== null);
         
 
 <script>
+let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
+
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const productCards = document.querySelectorAll(".product-card");
@@ -2381,10 +2383,13 @@ function filterProducts(searchTerm) {
     brandSearch.style.visibility = 'visible';
     priceSearch.style.visibility = 'visible'; // Substituído aqui
 
-    // Filtra os produtos
+    // Filtra os produtos pela categoria e pesquisa
     productCards.forEach(card => {
+        const productCategory = card.getAttribute('data-category');
         const productName = card.querySelector("h3").textContent.toLowerCase();
-        if (productName.includes(search)) {
+
+        // Verifica se o produto corresponde à categoria e à pesquisa
+        if ((currentCategory === "all" || currentCategory === productCategory) && productName.includes(search)) {
             card.style.display = "block";
             resultsFound = true;
         } else {
@@ -2417,6 +2422,21 @@ function filterProducts(searchTerm) {
         priceSearch.style.visibility = 'visible'; // Substituído aqui
     }
 }
+
+// Função para atualizar a categoria selecionada
+function setCategory(category) {
+    currentCategory = category;
+    filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
+}
+
+// Exemplo de como chamar a função para alterar a categoria ao clicar:
+document.querySelectorAll('.category').forEach(item => {
+    item.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        setCategory(category);  // Atualiza a categoria ao clicar
+    });
+});
+
 </script>
 
 <script>
