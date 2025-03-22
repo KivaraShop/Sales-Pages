@@ -1979,18 +1979,30 @@ header .cart-icon.pulse {
     </div>
 </footer>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+   document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
     let productCards = document.querySelectorAll('.product-card');
 
     // Função para filtrar os produtos
     function filterProducts(category) {
         productCards.forEach(card => {
-            // Verifica a categoria do produto e mostra ou esconde o card
-            if (category === "all" || card.getAttribute('data-category') === category) {
+            if (category === "all") {
+                // Exibe todos os produtos, incluindo os não categorizados
                 card.style.display = "block";
+            } else if (category === "uncategorized") {
+                // Exibe apenas os produtos não categorizados
+                if (!card.hasAttribute('data-category')) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
             } else {
-                card.style.display = "none";
+                // Exibe produtos de acordo com a categoria
+                if (card.getAttribute('data-category') === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
             }
         });
     }
@@ -2003,9 +2015,10 @@ header .cart-icon.pulse {
         });
     });
 
-    // Exibe todos os produtos por padrão
-    filterProducts("all");
+    // Exibe os produtos não categorizados por padrão
+    filterProducts("uncategorized");
 });
+
 </script>
 <script>
         setTimeout(() => {
