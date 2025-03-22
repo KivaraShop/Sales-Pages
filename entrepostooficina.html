@@ -605,7 +605,63 @@ color: white;
 h3 {
     color: #FFD700;
 }
+.assistance-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #E6F2F5;
+}
 
+.assistance-section h2 {
+    color: #0088B5;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.intro-text {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.assistance-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.assistance-box {
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 136, 181, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.assistance-box:hover {
+    transform: translateY(-5px);
+}
+
+.assistance-box i {
+    font-size: 40px;
+    color: #0088B5;
+    margin-bottom: 10px;
+}
+
+.assistance-box h3 {
+    font-size: 18px;
+    color: #005F80;
+    margin-bottom: 10px;
+}
+
+.assistance-box p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
     </style>
 </head>
 <body>
@@ -654,7 +710,43 @@ h3 {
         </div>
     </section>
 </section>
+<section class="assistance-section">
+    <h2>SOMOS A MELHOR SOLUÇÃO PARA O SEU VEÍCULO</h2>
+    <p class="intro-text">
+        Com uma equipa de profissionais qualificados, garantimos um trabalho de excelência pelo melhor preço do mercado. 
+        Aqui na The Legend trabalhamos com as melhores marcas e produtos certificados, além de equipamentos de última geração 
+        com um resultado final além das expectativas.
+    </p>
 
+    <div class="assistance-container">
+        <div class="assistance-box">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>LINHA DE SOCORRO EMERGENCIAL</h3>
+            <p>
+                Atendemos em toda a região de Maputo a todos os chamados de emergência. Fazemos a deslocação até o local de avaria 
+                para garantir que seu veículo tenha todo o suporte necessário a tempo e hora.
+            </p>
+        </div>
+
+        <div class="assistance-box">
+            <i class="fas fa-dollar-sign"></i>
+            <h3>PREÇO QUE CABE NO SEU BOLSO</h3>
+            <p>
+                Não menos importante, aqui na The Legend você tem a melhor assistência técnica pelo melhor preço do mercado. 
+                Tudo isso para garantir o melhor resultado e a satisfação dos nossos clientes.
+            </p>
+        </div>
+
+        <div class="assistance-box">
+            <i class="fas fa-star"></i>
+            <h3>PROFISSIONAIS QUALIFICADOS</h3>
+            <p>
+                Nossa equipa recebe toda a formação necessária para atender a todas as marcas e modelos disponíveis em Moçambique. 
+                A The Legend investe em seus profissionais, pois eles são muito importantes para toda a nossa estrutura.
+            </p>
+        </div>
+    </div>
+</section>
     <section class="service-section">
         <div class="service-text">
              <a href="#" class="logo">
