@@ -1927,7 +1927,7 @@ header .cart-icon.pulse {
 
 
     <script>
-     document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.product-card button');
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
@@ -1958,12 +1958,18 @@ header .cart-icon.pulse {
 
             imgClone.style.transform = `translate(${deltaX}px, ${deltaY}px)`; // Animação para mover a imagem
 
+            // Rolar a página até o ícone do carrinho
+            window.scrollTo({
+                top: cartIconRect.top + window.scrollY - window.innerHeight / 2, // Centralizar o carrinho na tela
+                behavior: 'smooth' // Rolar suavemente
+            });
+
             // Ao final da animação, remover a imagem e atualizar o carrinho
             imgClone.addEventListener('transitionend', () => {
                 imgClone.remove();
                 // Atualizar o número de itens no carrinho
                 let currentCount = parseInt(cartBadge.textContent) || 0;
-                cartBadge.textContent = currentCount + 1; // Incrementar o número de itens no carrinho
+                cartBadge.textContent = currentCount + 0; // Incrementar o número de itens no carrinho
 
                 // Animar o ícone do carrinho para indicar que um item foi adicionado
                 cartIcon.classList.add('pulse');
