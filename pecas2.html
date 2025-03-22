@@ -1957,7 +1957,7 @@ header .cart-icon {
                 imgClone.remove();
                 // Atualizar o número de itens no carrinho
                 let currentCount = parseInt(cartBadge.textContent) || 0;
-                cartBadge.textContent = currentCount + 1; // Incrementar o número de itens no carrinho
+                cartBadge.textContent = currentCount + 0; // Incrementar o número de itens no carrinho
 
                 // Animar o ícone do carrinho para indicar que um item foi adicionado
                 cartIcon.classList.add('pulse');
