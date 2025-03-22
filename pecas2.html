@@ -2044,28 +2044,33 @@ header .cart-icon.pulse {
 </footer>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    let categorias = document.querySelectorAll('.category');
+    let categories = document.querySelectorAll('.category');
+    
+    // Função para mostrar a categoria
+    function showCategory(categoryId) {
+        // Esconde todas as grids
+        let grids = document.querySelectorAll('.product-grid');
+        grids.forEach(grid => {
+            grid.classList.remove('active');
+        });
 
-    categorias.forEach(item => {
+        // Mostra a grid da categoria
+        let selectedGrid = document.getElementById(categoryId);
+        selectedGrid.classList.add('active');
+    }
+
+    // Adiciona o evento de clique para cada categoria
+    categories.forEach(item => {
         item.addEventListener('click', function () {
-            let selectedGrid = this.getAttribute('data-grid');
-
-            // Esconder todas as grids
-            document.querySelectorAll('.product-grid').forEach(grid => {
-                grid.classList.remove('active');
-            });
-
-            // Exibir a grid da categoria selecionada
-            let gridSelecionado = document.getElementById(selectedGrid);
-            if (gridSelecionado) {
-                gridSelecionado.classList.add('active');
-            }
+            let categoryId = this.getAttribute('data-category');
+            showCategory(categoryId);
         });
     });
 
-    // Ativar a grid principal ao carregar a página
-    document.getElementById('grid-principal').classList.add('active');
+    // Exibe a grid "Suspensão" por padrão
+    showCategory('suspensao');
 });
+
 
 </script>
 <script>
