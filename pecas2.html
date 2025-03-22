@@ -2390,7 +2390,8 @@ function filterProducts(searchTerm) {
 
         // Se a pesquisa não estiver vazia, mostramos produtos que combinem com a pesquisa
         // Caso contrário, mostramos os produtos da categoria selecionada
-        if ((searchTerm === '' || productName.includes(search)) && (currentCategory === "all" || currentCategory === productCategory || !productCategory)) {
+        if ((searchTerm === '' || productName.includes(search)) && 
+            (currentCategory === "all" || currentCategory === productCategory || !productCategory)) {
             card.style.display = "block";
             resultsFound = true;
         } else {
