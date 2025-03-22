@@ -1942,8 +1942,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Criar uma cópia da imagem do produto
             const imgClone = img.cloneNode();
             imgClone.style.position = 'absolute';
-            imgClone.style.zIndex = '1000';
-            imgClone.style.width = '100px'; // Ajustar o tamanho da imagem para o clone
+            imgClone.style.zIndex = '999';
+            imgClone.style.width = '90px'; // Ajustar o tamanho da imagem para o clone
             imgClone.style.height = 'auto';
             imgClone.style.left = `${productCard.querySelector('button').getBoundingClientRect().left + window.scrollX}px`;
             imgClone.style.top = `${productCard.querySelector('button').getBoundingClientRect().top + window.scrollY}px`;
