@@ -277,17 +277,32 @@ nav ul li a:hover {
             color: white;
             padding: 40px 5%;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
             width: 100%;
-            margin: 0 !important;
         }
+    .footer i {
+color: white;
+    margin-left: 10px;
+    font-size: 16px;
+}
+        .footer-logo {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+        .footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
         .footer-column {
             display: flex;
             flex-direction: column;
         }
         .footer-column h3 {
-            color: #0088B5;
+            color: white;
             margin-bottom: 15px;
             font-size: 18px;
         }
@@ -318,6 +333,32 @@ nav ul li a:hover {
         .social-icons a:hover {
             background: white;
             color: #0088B5;
+        }
+        .photo-gallery {
+            display: flex;
+            gap: 10px;
+        }
+        .photo-gallery img {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .subscribe {
+            display: flex;
+            align-items: center;
+        }
+        .subscribe input {
+            padding: 10px;
+            width: 200px;
+            border: none;
+            outline: none;
+        }
+        .subscribe button {
+            background: #0088B5;
+            border: none;
+            padding: 10px;
+            color: white;
         }
         /* Responsivo */
         @media (max-width: 768px) {
