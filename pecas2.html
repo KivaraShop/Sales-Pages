@@ -1927,7 +1927,7 @@ header .cart-icon.pulse {
 
 
     <script>
-   document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.product-card button');
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
@@ -1968,8 +1968,14 @@ header .cart-icon.pulse {
 
             // Só rolar para o carrinho se ele não estiver visível
             if (!isCartIconVisible) {
+                // Calcula o valor que a página precisa rolar para trazer o ícone até a área visível
+                const scrollToPosition = cartIconRect.top + window.scrollY - window.innerHeight / 2;
+                
+                // Garante que a rolagem não ultrapasse o ícone, parando quando ele aparecer
+                const maxScrollPosition = Math.min(scrollToPosition, document.body.scrollHeight - window.innerHeight);
+                
                 window.scrollTo({
-                    top: cartIconRect.top + window.scrollY - window.innerHeight / 2, // Centralizar o carrinho na tela
+                    top: maxScrollPosition, // Rolagem até o ícone, sem ultrapassar
                     behavior: 'smooth' // Rolar suavemente
                 });
             }
@@ -2004,7 +2010,6 @@ header .cart-icon.pulse {
         });
     });
 });
-
 
     </script>
  <script>
