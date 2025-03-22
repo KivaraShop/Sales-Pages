@@ -179,41 +179,61 @@
             font-family: Arial, sans-serif;
         }
 
-        .services-section {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 20px 30px;
-            align-items: flex-start;
-          background: url('https://i.imgur.com/UjlbOaF.jpg') no-repeat center center;
+      .services-section {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 20px 30px;
+    align-items: flex-start;
+    background: url('https://i.imgur.com/UjlbOaF.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
-        }
+}
 
-        .services-text {
-            width: 35%;
-        }
+.services-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 136, 181, 0.7); /* Azul semitransparente */
+    z-index: 1;
+}
 
-        .services-text h2 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #000;
-        }
+.services-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 30px;
+}
 
-        .services-text h2 span {
-            color: white;
-        }
+.services-text {
+    width: 35%;
+}
 
-        .services-text p {
-            margin: 15px 0;
-            font-size: 16px;
-            color: white;
-            line-height: 1.6;
-            text-align: justify;
-        }
+.services-text h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
 
-        .services-text .btn {
-                display: inline-block;
+.services-text h2 span {
+    color: #f5a623;
+}
+
+.services-text p {
+    margin: 15px 0;
+    font-size: 16px;
+    color: white;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.services-text .btn {
+    display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
     border: 2px solid white;
@@ -231,43 +251,45 @@
     75% { transform: translateX(-3px); }  /* Reduzi o deslocamento */
     100% { transform: translateX(0); }
 }
-        .services-text .btn:hover {
-            background: black;
-            color: white;
-        }
 
-        .services-list {
-            width: 60%;
-            display: flex;
-            justify-content: space-between;
-        }
+.services-text .btn:hover {
+    background: black;
+    color: white;
+}
 
-        .services-column {
-            list-style: none;
-            padding: 0;
-        }
+.services-list {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
 
-        .services-column li {
-            font-size: 16px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            color: white;
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-          .services-column li.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .services-column li::before {
-            content: "✔";
-            color: #f5a623;
-            margin-right: 8px;
-            font-weight: bold;
-        }
+.services-column {
+    list-style: none;
+    padding: 0;
+}
+
+.services-column li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.services-column li.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.services-column li::before {
+    content: "✔";
+    color: #f5a623;
+    margin-right: 8px;
+    font-weight: bold;
+}
 
         .scroll-top {
             position: fixed;
@@ -803,7 +825,7 @@ h3 {
 
         
     <section class="services-section">
-          <div class="assistance-overlay"></div>
+        <div class="services-overlay"></div>
         <div class="services-text">
             <h2><span>Serviços de Reparação</span></h2>
             <p>Fornecemos uma gama completa de reparações mecânicas da parte dianteira para todas as marcas e modelos de automóveis, independentemente da causa. Isto inclui tudo, desde amortecedores, choques e terminais de tirantes a juntas esféricas, molas e, basicamente, tudo o que está incluído na reparação da extremidade dianteira do veículo.</p>
