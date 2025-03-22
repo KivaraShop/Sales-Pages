@@ -1931,6 +1931,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.product-card button');
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
+    const header = document.querySelector('header'); // Seleciona o header fixo
     
     addToCartButtons.forEach(button => {
         button.addEventListener('click', (event) => {
@@ -1969,8 +1970,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Só rolar para o carrinho se ele não estiver visível
             if (!isCartIconVisible) {
                 // Calcula o valor que a página precisa rolar para trazer o ícone até a área visível
-                const scrollToPosition = cartIconRect.top + window.scrollY - window.innerHeight / 2;
-                
+                const headerHeight = header.offsetHeight; // Altura do header
+                const scrollToPosition = cartIconRect.top + window.scrollY - headerHeight; // Ajusta para o header
+
                 // Garante que a rolagem não ultrapasse o ícone, parando quando ele aparecer
                 const maxScrollPosition = Math.min(scrollToPosition, document.body.scrollHeight - window.innerHeight);
                 
