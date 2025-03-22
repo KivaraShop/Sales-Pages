@@ -1630,11 +1630,10 @@ header .cart-icon.pulse {
         <div class="brand-search">
             <h3>Busca por Categoria</h3>
             <ul>
-                 <li>Suspensão </li>
-                <li>Carroçaria</li>
-                <li>Interior e Conforto</li>
-                <li>Mecânica e Motor</li>
-                <li>Acessórios</li>
+               <li class="category" data-grid="grid-suspensao">Suspensão</li>
+        <li class="category" data-grid="grid-carroceria">Carroçaria</li>
+        <li class="category" data-grid="grid-mecanica">Mecânica e Motor</li>
+        <li class="category" data-grid="grid-acessorios">Acessórios</li>
                 <li> Freios</li></li>
                 <li>Ferramentas e Equipamentos</li>
                 <li>Segurança</li>
@@ -1655,7 +1654,7 @@ header .cart-icon.pulse {
     </ul>
 </div>
     </div>
-        <div class="product-grid">
+        <div class="product-grid" id="grid-principal">
             <!-- Exemplo de produto -->
           <div class="product-card">
                 <img src="https://i.ibb.co/GQnPmMP/images-1.jpg" draggable="false">
@@ -1783,6 +1782,72 @@ header .cart-icon.pulse {
         </div>
     </div>
 
+
+
+
+
+    <div class="product-grid" id="grid-suspensao" style="display: none;">
+    <div class="product-card">
+        <img src="https://i.ibb.co/gzjyG3f/sg-11134201-7rbl0-lpfhva49og2f3a.jpg" draggable="false">
+        <h3>Suspensão Turbo</h3>
+        <div class="price">R$ 59,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+    <div class="product-card">
+        <img src="https://i.ibb.co/kBQ6vgF/suspensao2.jpg" draggable="false">
+        <h3>Amortecedor Dianteiro</h3>
+        <div class="price">R$ 99,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+</div>
+
+<!-- Grid Carroçaria -->
+<div class="product-grid" id="grid-carroceria" style="display: none;">
+    <div class="product-card">
+        <img src="https://i.ibb.co/VjxCkXQ/images.jpg" draggable="false">
+        <h3>Paralama Dianteiro</h3>
+        <div class="price">R$ 89,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+    <div class="product-card">
+        <img src="https://i.ibb.co/y59ysMC/parachoque.jpg" draggable="false">
+        <h3>Para-choque Traseiro</h3>
+        <div class="price">R$ 129,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+</div>
+
+<!-- Grid Mecânica e Motor -->
+<div class="product-grid" id="grid-mecanica" style="display: none;">
+    <div class="product-card">
+        <img src="https://i.ibb.co/1TgPVPL/IMG-20250107-153630.jpg" draggable="false">
+        <h3>Velas de Ignição</h3>
+        <div class="price">R$ 29,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+    <div class="product-card">
+        <img src="https://i.ibb.co/h8cTcP3/correia-dentada.jpg" draggable="false">
+        <h3>Correia Dentada</h3>
+        <div class="price">R$ 59,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+</div>
+
+<!-- Grid Acessórios -->
+<div class="product-grid" id="grid-acessorios" style="display: none;">
+    <div class="product-card">
+        <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg" draggable="false">
+        <h3>Farol de LED</h3>
+        <div class="price">R$ 119,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+    <div class="product-card">
+        <img src="https://i.ibb.co/Zm3jK0F/volante.jpg" draggable="false">
+        <h3>Volante Esportivo</h3>
+        <div class="price">R$ 249,90</div>
+        <button class="add-to-cart">Adicionar ao Pedido</button>
+    </div>
+</div>
 <!-- Seção de Avaliações do Google -->
 <section class="google-reviews">
   <div class="container">
@@ -1979,7 +2044,25 @@ header .cart-icon.pulse {
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const categories = document.querySelectorAll(".category");
+    const grids = document.querySelectorAll(".product-grid");
 
+    categories.forEach(category => {
+        category.addEventListener("click", function() {
+            const targetGrid = this.getAttribute("data-grid");
+
+            grids.forEach(grid => {
+                grid.style.display = "none"; // Esconde todas as grids
+            });
+
+            document.getElementById(targetGrid).style.display = "flex"; // Mostra a grid selecionada
+        });
+    });
+});
+
+</script>
 <script>
         setTimeout(() => {
             document.getElementById('whatsapp-popup').style.display = 'flex';
