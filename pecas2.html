@@ -1608,14 +1608,14 @@ header .cart-icon.pulse {
       placeholder="Pesquisar Marca, Modelo, Transmissão ..."
       oninput="filterProducts(this.value)" 
     />
-    <button id="search-btn" onclick="filterProducts(document.getElementById('-input').value)">
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
       🔍
     </button>
   </div>
 </div>
         
 <!-- Área de Resultados -->
-<div id="-results"></div>
+<div id="search-results"></div>
     
 <!-- Mensagem de "Sem Resultados" -->
 <div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
@@ -1624,23 +1624,24 @@ header .cart-icon.pulse {
 </div>
   </div>
     
-<div class="content-container">
+ <div class="content-container">
     <div class="sidebar">
-        <h3>Busca por Categoria</h3>
-        <ul id="category-list">
-            <li data-category="suspensao">Suspensão</li>
-            <li data-category="carroceria">Carroçaria</li>
-            <li data-category="interior">Interior e Conforto</li>
-            <li data-category="mecanica">Mecânica e Motor</li>
-            <li data-category="acessorios">Acessórios</li>
-            <li data-category="freios">Freios</li>
-            <li data-category="ferramentas">Ferramentas e Equipamentos</li>
-            <li data-category="seguranca">Segurança</li>
-            <li data-category="transmissao">Transmissão</li>
-            <li data-category="ofertas">Ofertas Especiais</li>
-        </ul>
-    </div>
-
+        <!-- Busca por Marca -->
+        <div class="brand-search">
+            <h3>Busca por Categoria</h3>
+            <ul>
+                 <li>Suspensão </li>
+                <li>Carroçaria</li>
+                <li>Interior e Conforto</li>
+                <li>Mecânica e Motor</li>
+                <li>Acessórios</li>
+                <li> Freios</li></li>
+                <li>Ferramentas e Equipamentos</li>
+                <li>Segurança</li>
+                <li>Transmissâo</li>
+                   <li>Ofertas especiais</li>
+            </ul>
+        </div>
 
                <!-- Busca por PREÇO-->
       <div class="price-search">
@@ -1654,7 +1655,7 @@ header .cart-icon.pulse {
     </ul>
 </div>
     </div>
-        <div class="product-grid" id="product-grid">
+        <div class="product-grid">
             <!-- Exemplo de produto -->
           <div class="product-card">
                 <img src="https://i.ibb.co/GQnPmMP/images-1.jpg" draggable="false">
@@ -1978,55 +1979,7 @@ header .cart-icon.pulse {
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
-<script>
-    // Definição dos produtos por categoria
-    const products = {
-        suspensao: [
-            { name: "Suspensão", price: "R$ 39,90", img: "https://i.ibb.co/gzjyG3f/sg-11134201-7rbl0-lpfhva49og2f3a.jpg" },
-            { name: "Amortecedor", price: "R$ 49,90", img: "https://i.ibb.co/VjxCkXQ/images.jpg" }
-        ],
-        carroceria: [
-            { name: "Para-lama", price: "R$ 89,90", img: "https://i.ibb.co/GQnPmMP/images-1.jpg" },
-            { name: "Porta", price: "R$ 120,00", img: "https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg" }
-        ],
-        interior: [
-            { name: "Volante", price: "R$ 150,00", img: "https://i.ibb.co/1TgPVPL/IMG-20250107-153630.jpg" },
-            { name: "Banco Couro", price: "R$ 299,00", img: "https://i.ibb.co/VjxCkXQ/images.jpg" }
-        ]
-    };
 
-    // Função para carregar os produtos na grid
-    function loadProducts(category) {
-        const productGrid = document.getElementById("product-grid");
-        productGrid.innerHTML = ""; // Limpa os produtos atuais
-
-        if (products[category]) {
-            products[category].forEach(prod => {
-                productGrid.innerHTML += `
-                    <div class="product-card">
-                        <img src="${prod.img}" draggable="false">
-                        <h3>${prod.name}</h3>
-                        <div class="price">${prod.price}</div>
-                        <button class="add-to-cart">Adicionar ao Pedido</button>
-                    </div>
-                `;
-            });
-        } else {
-            productGrid.innerHTML = "<p>Nenhum produto encontrado para esta categoria.</p>";
-        }
-    }
-
-    // Evento de clique nos itens da sidebar
-    document.querySelectorAll("#category-list li").forEach(item => {
-        item.addEventListener("click", function() {
-            const category = this.getAttribute("data-category");
-            loadProducts(category);
-        });
-    });
-
-    // Carregar a primeira categoria como padrão
-    loadProducts("suspensao");
-</script>
 <script>
         setTimeout(() => {
             document.getElementById('whatsapp-popup').style.display = 'flex';
