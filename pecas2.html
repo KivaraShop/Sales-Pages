@@ -2361,7 +2361,7 @@ console.log('Menu found:', navMenu !== null);
         
 
 <script>
-let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
+let currentCategory = "uncategorized";  // Inicia com a categoria "não categorizada"
 
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
@@ -2376,7 +2376,7 @@ function filterProducts(searchTerm) {
 
     // Resetando os elementos para estado padrão antes da filtragem
     noResultsMessage.style.display = 'none'; 
-    noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
+    noResultsMessage.classList.remove('show');
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
     googleReviewsContainer.style.visibility = 'visible';
@@ -2388,8 +2388,8 @@ function filterProducts(searchTerm) {
         const productCategory = card.getAttribute('data-category');
         const productName = card.querySelector("h3").textContent.toLowerCase();
 
-        // Se a pesquisa não estiver vazia, mostramos produtos que combinem com a pesquisa
-        // Caso contrário, mostramos os produtos da categoria selecionada
+        // Se a pesquisa estiver vazia, mostramos apenas os produtos da categoria selecionada
+        // Caso contrário, mostramos produtos que combinem com a pesquisa
         if ((searchTerm === '' || productName.includes(search)) && 
             (currentCategory === "all" || currentCategory === productCategory || !productCategory)) {
             card.style.display = "block";
@@ -2401,9 +2401,9 @@ function filterProducts(searchTerm) {
 
     // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
     if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block'; // Garante que ele está visível
+        noResultsMessage.style.display = 'block'; 
         setTimeout(() => {
-            noResultsMessage.classList.add('show'); // Ativa a animação
+            noResultsMessage.classList.add('show');
         }, 10);
 
         navigationButtons.style.visibility = 'hidden';
@@ -2412,9 +2412,9 @@ function filterProducts(searchTerm) {
         brandSearch.style.visibility = 'hidden';
         priceSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
-        noResultsMessage.classList.remove('show'); // Remove o efeito
+        noResultsMessage.classList.remove('show'); 
         setTimeout(() => {
-            noResultsMessage.style.display = 'none'; // Esconde após a animação
+            noResultsMessage.style.display = 'none';
         }, 600);
 
         navigationButtons.style.visibility = 'visible';
@@ -2431,7 +2431,7 @@ function setCategory(category) {
     filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
 }
 
-// Exemplo de como chamar a função para alterar a categoria ao clicar:
+// Exemplo de como chamar a função para alterar a categoria ao clicar
 document.querySelectorAll('.category').forEach(item => {
     item.addEventListener('click', function() {
         const category = this.getAttribute('data-category');
