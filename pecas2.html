@@ -320,9 +320,6 @@ h2 {
     transform: translateX(0); /* Move para a posição original */
 }
 
-.product-grid {
-    display: none; /* Esconde todos por padrão */
-}
 .product-grid.active {
     display: grid; /* Só exibe o que tiver a classe 'active' */
 }
@@ -1792,9 +1789,20 @@ header .cart-icon.pulse {
 
 
 
-    <div class="product-grid" id="grid-suspensao" style="display: none;" >
-    <div class="product-card">
-               <div class="product-labels">
+   <div id="grid-suspensao" class="product-grid">
+        <div class="product-card">
+                <img src="https://i.ibb.co/GQnPmMP/images-1.jpg" draggable="false">
+                <h3>Condutor</h3>
+                <div class="price">R$ 39,90</div>
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="pecasproduto.html">Saber Mais</a>
+                </div>
+                <button>Adicionar ao Pedido</button>
+            </div>
+
+      <div class="product-card">
+              <div class="product-labels">
         <span class="label spicy">NOVO</span>
     </div>
                 <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg"draggable="false">
@@ -1806,79 +1814,38 @@ header .cart-icon.pulse {
                 </div>
                 <button>Adicionar ao Pedido</button>
             </div>
-               <div class="product-labels">
-        <span class="label spicy">NOVO</span>
+        <!-- Outros produtos... -->
     </div>
-                <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg"draggable="false">
-                <h3>Faról</h3>
-                <div class="price">R$ 39,90</div>
-                <div class="more-info">
-                    <i class="fas fa-info-circle"></i>
-                    <a href="productpage.html">Saber Mais</a>
-                </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
-           <div class="product-labels">
-        <span class="label spicy">NOVO</span>
-    </div>
-                <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg"draggable="false">
-                <h3>Faról</h3>
-                <div class="price">R$ 39,90</div>
-                <div class="more-info">
-                    <i class="fas fa-info-circle"></i>
-                    <a href="productpage.html">Saber Mais</a>
-                </div>
-                <button>Adicionar ao Pedido</button>
-            </div>
-</div>
 
-<!-- Grid Carroçaria -->
-<div class="product-grid" id="grid-carroceria">
-    <div class="product-card">
-        <img src="https://i.ibb.co/VjxCkXQ/images.jpg" draggable="false">
-        <h3>Paralama Dianteiro</h3>
-        <div class="price">R$ 89,90</div>
-        <button class="add-to-cart">Adicionar ao Pedido</button>
+    <div id="grid-carroceria" class="product-grid">
+        <div class="product-card">
+            <img src="https://i.ibb.co/VjxCkXQ/images.jpg" draggable="false">
+            <h3>Paralama Dianteiro</h3>
+            <div class="price">R$ 89,90</div>
+            <button class="add-to-cart">Adicionar ao Pedido</button>
+        </div>
+        <!-- Outros produtos... -->
     </div>
-    <div class="product-card">
-        <img src="https://i.ibb.co/y59ysMC/parachoque.jpg" draggable="false">
-        <h3>Para-choque Traseiro</h3>
-        <div class="price">R$ 129,90</div>
-        <button class="add-to-cart">Adicionar ao Pedido</button>
-    </div>
-</div>
 
-<!-- Grid Mecânica e Motor -->
-<div class="product-grid" id="grid-mecanica">
-    <div class="product-card">
-        <img src="https://i.ibb.co/1TgPVPL/IMG-20250107-153630.jpg" draggable="false">
-        <h3>Velas de Ignição</h3>
-        <div class="price">R$ 29,90</div>
-        <button class="add-to-cart">Adicionar ao Pedido</button>
+    <div id="grid-mecanica" class="product-grid">
+        <div class="product-card">
+            <img src="https://i.ibb.co/1TgPVPL/IMG-20250107-153630.jpg" draggable="false">
+            <h3>Velas de Ignição</h3>
+            <div class="price">R$ 29,90</div>
+            <button class="add-to-cart">Adicionar ao Pedido</button>
+        </div>
+        <!-- Outros produtos... -->
     </div>
-    <div class="product-card">
-        <img src="https://i.ibb.co/h8cTcP3/correia-dentada.jpg" draggable="false">
-        <h3>Correia Dentada</h3>
-        <div class="price">R$ 59,90</div>
-        <button class="add-to-cart">Adicionar ao Pedido</button>
-    </div>
-</div>
 
-<!-- Grid Acessórios -->
-<div class="product-grid" id="grid-acessorios" style="display: none;">
-    <div class="product-card">
-        <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg" draggable="false">
-        <h3>Farol de LED</h3>
-        <div class="price">R$ 119,90</div>
-        <button class="add-to-cart">Adicionar ao Pedido</button>
+    <div id="grid-acessorios" class="product-grid">
+        <div class="product-card">
+            <img src="https://i.ibb.co/vsHCTJK/farol-dianteiro-lado-motorista-veiculos-ltz-s10-nova-2012-ate-2016-trailblazer-2013-ate-2016-6693930.jpg" draggable="false">
+            <h3>Farol de LED</h3>
+            <div class="price">R$ 119,90</div>
+            <button class="add-to-cart">Adicionar ao Pedido</button>
+        </div>
+        <!-- Outros produtos... -->
     </div>
-    <div class="product-card">
-        <img src="https://i.ibb.co/Zm3jK0F/volante.jpg" draggable="false">
-        <h3>Volante Esportivo</h3>
-        <div class="price">R$ 249,90</div>
-        <button class="add-to-cart">Adicionar ao Pedido</button>
-    </div>
-</div>
 <!-- Seção de Avaliações do Google -->
 <section class="google-reviews">
   <div class="container">
