@@ -1985,45 +1985,55 @@ header .cart-icon.pulse {
     </div>
 </footer>
 <script>
-  // Seleciona todas as categorias e o container do grid de produtos
-const categories = document.querySelectorAll('.category');
-const productGrid = document.querySelector('.product-grid');
+  document.addEventListener("DOMContentLoaded", function () {
+    let categories = document.querySelectorAll('.category');
+    let productCards = document.querySelectorAll('.product-card');
 
-// Função para filtrar os produtos com base na categoria selecionada
-function filterProducts(category) {
-    const products = document.querySelectorAll('.product-card');
-    
-    products.forEach(product => {
-        // Se a categoria for 'uncategorized', filtra os produtos sem categoria
-        if (category === 'uncategorized') {
-            if (!product.dataset.category) {
-                product.style.display = 'block';
+    // Função para filtrar os produtos
+    function filterProducts(category) {
+        productCards.forEach(card => {
+            if (category === "all") {
+                // Exibe todos os produtos, incluindo os não categorizados
+                card.style.display = "block";
+            } else if (category === "uncategorized") {
+                // Exibe apenas os produtos não categorizados
+                if (!card.hasAttribute('data-category')) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
             } else {
-                product.style.display = 'none';
+                // Exibe produtos de acordo com a categoria
+                if (card.getAttribute('data-category') === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
             }
-        } else {
-            // Se a categoria não for 'uncategorized', filtra os produtos com a categoria correspondente
-            if (product.dataset.category === category || category === 'all') {
-                product.style.display = 'block';
-            } else {
-                product.style.display = 'none';
-            }
-        }
-    });
-}
+        });
+    }
 
-// Adiciona um evento de clique em cada categoria
-categories.forEach(category => {
-    category.addEventListener('click', () => {
-        // Remove a classe 'selected' de todas as categorias
-        categories.forEach(cat => cat.classList.remove('selected'));
-        
-        // Adiciona a classe 'selected' à categoria clicada
-        category.classList.add('selected');
-        
-        // Filtra os produtos com base na categoria clicada
-        filterProducts(category.dataset.category);
+    // Adiciona o evento de clique para cada categoria
+    categories.forEach(item => {
+        item.addEventListener('click', function () {
+            // Remove a classe 'selected' de todas as categorias
+            categories.forEach(cat => cat.classList.remove('selected'));
+
+            // Adiciona a classe 'selected' à categoria clicada
+            this.classList.add('selected');
+
+            // Filtra os produtos com base na categoria clicada
+            let category = this.getAttribute('data-category');
+            filterProducts(category);
+        });
     });
+
+    // Exibe os produtos não categorizados por padrão
+    filterProducts("uncategorized");
+
+    // Define a categoria "Não Categorizados" como selecionada por padrão
+    let uncategorizedCategory = document.querySelector('.category[data-category="uncategorized"]');
+    uncategorizedCategory.classList.add('selected');
 });
 
 </script>
