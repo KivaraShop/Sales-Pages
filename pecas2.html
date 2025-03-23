@@ -2430,23 +2430,6 @@ header .cart-icon.pulse {
     </div>
 </footer>
 
-
-
-    <script>
-    document.querySelectorAll('.category').forEach(item => {
-        item.addEventListener('click', function() {
-            // Pega a categoria selecionada
-            const category = this.getAttribute('data-category');
-
-            // Aqui você pode adicionar a lógica para filtrar os produtos dessa categoria
-            console.log("Categoria selecionada:", category);
-            
-            // Se você estiver usando alguma lógica que esconda categorias, remova-a
-            // Exemplo: Desmarca qualquer outro item ou evita o comportamento de ocultar os elementos
-        });
-    });
-</script>
-    
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
@@ -2873,8 +2856,17 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 
-
+// Evitar o comportamento de toggle nas categorias e manter todas visíveis
+document.querySelectorAll('.category').forEach(item => {
+    item.addEventListener('click', function(event) {
+        // Previne qualquer comportamento de toggle/ocultação das categorias
+        event.stopPropagation();  // Impede que o clique afete outros elementos (como ocultar categorias)
+        const category = this.getAttribute('data-category');
+        setCategory(category);  // Atualiza a categoria sem esconder outras
+    });
+});
 </script>
+
 
 <script>
     // Contador inicial de notificações no localStorage
