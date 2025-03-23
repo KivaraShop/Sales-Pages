@@ -289,21 +289,26 @@ header .toggle-theme {
     margin: 0;
     position: relative;
     display: inline-block;
-    animation: glowEffect 2s infinite; /* Aplica a animação de brilho */
+    background: linear-gradient(90deg, #ff6347, #32cd32, #1e90ff); /* Gradiente */
+    background-size: 200% 100%; /* Define o tamanho do gradiente para animar */
+    background-clip: text; /* Aplica o gradiente no texto */
+    -webkit-background-clip: text; /* Suporte para navegadores Webkit, como Chrome */
+    animation: gradientEffect 3s linear infinite; /* Aplica a animação do gradiente */
 }
 
-/* Animação de brilho passando sobre o texto */
-@keyframes glowEffect {
+/* Animação para mover o gradiente */
+@keyframes gradientEffect {
     0% {
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        background-position: 200% 0;
     }
     50% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.6);
+        background-position: -200% 0;
     }
     100% {
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        background-position: 200% 0;
     }
 }
+
 
 
         
