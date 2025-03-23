@@ -2429,6 +2429,24 @@ header .cart-icon.pulse {
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+
+
+
+    <script>
+    document.querySelectorAll('.category').forEach(item => {
+        item.addEventListener('click', function() {
+            // Pega a categoria selecionada
+            const category = this.getAttribute('data-category');
+
+            // Aqui você pode adicionar a lógica para filtrar os produtos dessa categoria
+            console.log("Categoria selecionada:", category);
+            
+            // Se você estiver usando alguma lógica que esconda categorias, remova-a
+            // Exemplo: Desmarca qualquer outro item ou evita o comportamento de ocultar os elementos
+        });
+    });
+</script>
+    
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
