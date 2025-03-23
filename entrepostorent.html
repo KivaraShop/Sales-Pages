@@ -158,15 +158,8 @@ nav ul li a:hover {
     box-sizing: border-box;
     background-color: #f5f5f5; /* Fundo suave e neutro */
 }
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
-    padding: 20px;
-}
-
 .rental-container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: auto;
     background: white;
     padding: 20px;
@@ -197,7 +190,7 @@ body {
 
 .rental-list {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 20px;
 }
 
@@ -206,30 +199,35 @@ body {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 220px;
+    text-align: left;
 }
 
 .car-image {
-    width: 150px;
-    height: auto;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-radius: 10px;
 }
 
 h3 {
-    margin: 10px 0;
-    font-size: 16px;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
-.rating {
-    font-size: 18px;
-    color: gold;
+.rated {
+    color: orange;
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
-.rental-prices {
+.rated i {
+    color: gold;
+}
+
+.rental-options {
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    gap: 20px;
 }
 
 .price-card {
@@ -238,6 +236,7 @@ h3 {
     border-radius: 5px;
     text-align: center;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 180px;
 }
 
 .rent-btn {
@@ -264,7 +263,6 @@ p {
 small {
     color: gray;
 }
-
 </style>
 
   <body>
@@ -309,61 +307,116 @@ small {
         <div class="content">
         </div>
     </section>
-    <div class="rental-container">
+     <div class="rental-container">
         <div class="rental-header">
-            <button class="tab active">Por Hora</button>
-            <button class="tab">Por Dia</button>
+            <button class="tab active">Per Hour Rate</button>
+            <button class="tab">Per Day Rate</button>
             <button class="tab">Leasing</button>
         </div>
 
         <div class="rental-list">
             <div class="rental-item">
-                <img src="https://th.bing.com/th/id/OIP.p9vjCs1Bg84PKibZEHKGhwHaFj?rs=1&pid=ImgDetMain" alt="Chevrolet SUV" class="car-image">
-                <h3>Chevrolet SUV</h3>
-                <div class="rating">★★★★★</div>
-                <div class="rental-prices">
+                <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="Chevrolet SUV" class="car-image">
+                <h3>Chevrolet SUV Car</h3>
+                
+                <p class="rated">
+                    rated: 
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </p>
+
+                <div class="rental-options">
                     <div class="price-card">
-                        <button class="rent-btn">Alugar</button>
-                        <p><strong>10.99$</strong> /hora</p>
-                        <small>+3$/hora de combustível</small>
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$10.99</strong> /per hour</p>
+                        <small>$3/hour fuel surcharges</small>
                     </div>
+
                     <div class="price-card">
-                        <button class="rent-btn">Alugar</button>
-                        <p><strong>60.99$</strong> /dia</p>
-                        <small>+3$/hora de combustível</small>
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$60.99</strong> /per day</p>
+                        <small>$3/hour fuel surcharges</small>
                     </div>
+
                     <div class="price-card">
-                        <button class="rent-btn">Alugar</button>
-                        <p><strong>995.99$</strong> /mês</p>
-                        <small>+3$/hora de combustível</small>
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$995.99</strong> /per month</p>
+                        <small>$3/hour fuel surcharges</small>
                     </div>
                 </div>
             </div>
 
             <div class="rental-item">
-                <img src="https://th.bing.com/th/id/OIP.GjkSCcekbaLIJXgTYWyF5AHaF7?rs=1&pid=ImgDetMain" alt="Toyota SUV" class="car-image">
-                <h3>Toyota SUV</h3>
-                <div class="rating">★★★★☆</div>
-                <div class="rental-prices">
+                <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="Ford Mustang" class="car-image">
+                <h3>Ford Mustang</h3>
+
+                <p class="rated">
+                    rated: 
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </p>
+
+                <div class="rental-options">
                     <div class="price-card">
-                        <button class="rent-btn">Alugar</button>
-                        <p><strong>12.99$</strong> /hora</p>
-                        <small>+3$/hora de combustível</small>
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$15.99</strong> /per hour</p>
+                        <small>$3/hour fuel surcharges</small>
                     </div>
+
                     <div class="price-card">
-                        <button class="rent-btn">Alugar</button>
-                        <p><strong>70.99$</strong> /dia</p>
-                        <small>+3$/hora de combustível</small>
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$75.99</strong> /per day</p>
+                        <small>$3/hour fuel surcharges</small>
                     </div>
+
                     <div class="price-card">
-                        <button class="rent-btn">Alugar</button>
-                        <p><strong>1095.99$</strong> /mês</p>
-                        <small>+3$/hora de combustível</small>
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$1200.99</strong> /per month</p>
+                        <small>$3/hour fuel surcharges</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rental-item">
+                <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="BMW M5" class="car-image">
+                <h3>BMW M5</h3>
+
+                <p class="rated">
+                    rated: 
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </p>
+
+                <div class="rental-options">
+                    <div class="price-card">
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$18.99</strong> /per hour</p>
+                        <small>$3/hour fuel surcharges</small>
+                    </div>
+
+                    <div class="price-card">
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$90.99</strong> /per day</p>
+                        <small>$3/hour fuel surcharges</small>
+                    </div>
+
+                    <div class="price-card">
+                        <button class="rent-btn">Rent a car</button>
+                        <p><strong>$1500.99</strong> /per month</p>
+                        <small>$3/hour fuel surcharges</small>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
   </body>
