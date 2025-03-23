@@ -2491,6 +2491,36 @@ header .cart-icon.pulse {
     </div>
 </footer>
 
+    <script>
+        // Seleciona o link "ESTOQUE" (2º link da lista no header)
+document.querySelectorAll('header nav a')[1].addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o comportamento padrão de navegação do link
+
+    // Seleciona a seção com a classe "product-grid"
+    const targetSection = document.querySelector('.product-grid');
+
+    // Rola suavemente até a seção
+    targetSection.scrollIntoView({
+        behavior: 'smooth',  // Rolar suavemente
+        block: 'start'       // A rolagem começa no topo da seção
+    });
+});
+
+// Seleciona o link "SERVIÇOS" (3º link da lista no header)
+document.querySelectorAll('header nav a')[2].addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o comportamento padrão de navegação do link
+
+    // Seleciona a seção com a classe "services"
+    const targetSection = document.querySelector('.services');
+
+    // Rola suavemente até a seção
+    targetSection.scrollIntoView({
+        behavior: 'smooth',  // Rolar suavemente
+        block: 'start'       // A rolagem começa no topo da seção
+    });
+});
+
+    </script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
