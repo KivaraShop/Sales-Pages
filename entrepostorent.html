@@ -158,111 +158,64 @@ nav ul li a:hover {
     box-sizing: border-box;
     background-color: #f5f5f5; /* Fundo suave e neutro */
 }
-.rental-container {
-    max-width: 900px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.rental-header {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.tab {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-}
-
-.tab.active {
-    background: #0056b3;
-}
-
-.rental-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.rental-item {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-align: left;
-}
-
-.car-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-h3 {
-    font-size: 18px;
-    margin-top: 10px;
-}
-
-.rated {
-    color: orange;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.rated i {
-    color: gold;
-}
-
-.rental-options {
-    display: flex;
-    justify-content: start;
-    gap: 20px;
-}
-
-.price-card {
-    background: #f8f8f8;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    width: 180px;
-}
-
-.rent-btn {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-    width: 100%;
-    margin-bottom: 5px;
-}
-
-.rent-btn:hover {
-    background: #0056b3;
-}
-
-p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-small {
-    color: gray;
-}
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        th:nth-child(2) {
+            background: black;
+        }
+        th:nth-child(3) {
+            background: #333;
+        }
+        .car-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+        .car-info img {
+            width: 80px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .stars {
+            color: gold;
+        }
+        .rent-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .rent-btn:hover {
+            background: #0056b3;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .surcharge {
+            font-size: 12px;
+            color: gray;
+        }
 </style>
 
   <body>
@@ -307,117 +260,92 @@ small {
         <div class="content">
         </div>
     </section>
-     <div class="rental-container">
-        <div class="rental-header">
-            <button class="tab active">Per Hour Rate</button>
-            <button class="tab">Per Day Rate</button>
-            <button class="tab">Leasing</button>
-        </div>
+   <table>
+        <tr>
+            <th>Carro</th>
+            <th>Por Hora</th>
+            <th>Por Dia</th>
+            <th>Mensal</th>
+        </tr>
 
-        <div class="rental-list">
-            <div class="rental-item">
-                <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="Chevrolet SUV" class="car-image">
-                <h3>Chevrolet SUV Car</h3>
-                
-                <p class="rated">
-                    rated: 
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                </p>
-
-                <div class="rental-options">
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$10.99</strong> /per hour</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
-
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$60.99</strong> /per day</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
-
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$995.99</strong> /per month</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
+        <tr>
+            <td class="car-info">
+                <img src="carro1.jpg" alt="Chevrolet SUV">
+                <div>
+                    <strong>Chevrolet SUV Car</strong><br>
+                    <span class="stars">★★★★★</span><br>
+                    <span style="color: orange;">rated:</span>
                 </div>
-            </div>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$10.99 /per hour</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$60.99 /per day</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$995.99 /per month</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+        </tr>
 
-            <div class="rental-item">
-                <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="Ford Mustang" class="car-image">
-                <h3>Ford Mustang</h3>
-
-                <p class="rated">
-                    rated: 
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </p>
-
-                <div class="rental-options">
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$15.99</strong> /per hour</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
-
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$75.99</strong> /per day</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
-
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$1200.99</strong> /per month</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
+        <tr>
+            <td class="car-info">
+                <img src="carro2.jpg" alt="Ford Mustang">
+                <div>
+                    <strong>Ford Mustang</strong><br>
+                    <span class="stars">★★★★☆</span><br>
+                    <span style="color: orange;">rated:</span>
                 </div>
-            </div>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$12.99 /per hour</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$70.99 /per day</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$1100.99 /per month</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+        </tr>
 
-            <div class="rental-item">
-                <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="BMW M5" class="car-image">
-                <h3>BMW M5</h3>
-
-                <p class="rated">
-                    rated: 
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                </p>
-
-                <div class="rental-options">
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$18.99</strong> /per hour</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
-
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$90.99</strong> /per day</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
-
-                    <div class="price-card">
-                        <button class="rent-btn">Rent a car</button>
-                        <p><strong>$1500.99</strong> /per month</p>
-                        <small>$3/hour fuel surcharges</small>
-                    </div>
+        <tr>
+            <td class="car-info">
+                <img src="carro3.jpg" alt="BMW M5">
+                <div>
+                    <strong>BMW M5</strong><br>
+                    <span class="stars">★★★☆☆</span><br>
+                    <span style="color: orange;">rated:</span>
                 </div>
-            </div>
-        </div>
-    </div>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$15.99 /per hour</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$80.99 /per day</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+            <td>
+                <button class="rent-btn">Rent a car</button><br>
+                <span class="price">$1200.99 /per month</span><br>
+                <span class="surcharge">$3/hour fuel surcharges</span>
+            </td>
+        </tr>
 
+    </table>
   </body>
 </html>
