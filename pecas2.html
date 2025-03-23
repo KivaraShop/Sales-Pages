@@ -2856,13 +2856,15 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 
-// Evitar o comportamento de toggle nas categorias e manter todas visíveis
+// Garantir que as categorias não desapareçam ao serem clicadas
 document.querySelectorAll('.category').forEach(item => {
     item.addEventListener('click', function(event) {
-        // Previne qualquer comportamento de toggle/ocultação das categorias
-        event.stopPropagation();  // Impede que o clique afete outros elementos (como ocultar categorias)
+        // Impede que qualquer ação de toggle afete as categorias
+        event.preventDefault();  // Impede qualquer comportamento padrão (como toggle)
+        event.stopPropagation(); // Impede que o evento se propague e afete outros elementos
+
         const category = this.getAttribute('data-category');
-        setCategory(category);  // Atualiza a categoria sem esconder outras
+        setCategory(category);  // Atualiza a categoria ao clicar
     });
 });
 </script>
