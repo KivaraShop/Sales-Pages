@@ -283,10 +283,30 @@ header .toggle-theme {
     font-family: 'Playfair Display', serif;
     font-size: 19px; /* Tamanho da fonte pode ser ajustado conforme necessário */
     font-weight: 700; /* Deixe o texto mais forte */
-    color: #012063; /* Cor que combina com o cabeçalho */
+    color: #012063; /* Cor inicial do texto */
     letter-spacing: 2px; /* Espaçamento entre as letras para um efeito mais elegante */
     font-style: italic; /* Estilo em itálico para um toque mais sofisticado */
     margin: 0;
+    animation: colorChange 3s infinite; /* Aplica a animação */
+}
+
+/* Definição da animação para alterar a cor */
+@keyframes colorChange {
+    0% {
+        color: #012063; /* Cor inicial */
+    }
+    25% {
+        color: #ff6347; /* Cor no primeiro intervalo */
+    }
+    50% {
+        color: #32cd32; /* Cor no meio */
+    }
+    75% {
+        color: #1e90ff; /* Cor no terceiro intervalo */
+    }
+    100% {
+        color: #012063; /* Retorna à cor inicial */
+    }
 }
 
         
