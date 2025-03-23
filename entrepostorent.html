@@ -158,8 +158,15 @@ nav ul li a:hover {
     box-sizing: border-box;
     background-color: #f5f5f5; /* Fundo suave e neutro */
 }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
 .rental-container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
     background: white;
     padding: 20px;
@@ -184,30 +191,23 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-.tab:nth-child(2) {
-    background: #333;
-}
-
-.tab:nth-child(3) {
-    background: black;
-}
-
 .tab.active {
     background: #0056b3;
 }
 
 .rental-list {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: 20px;
 }
 
 .rental-item {
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-align: center;
+    width: 220px;
 }
 
 .car-image {
@@ -218,6 +218,7 @@ nav ul li a:hover {
 
 h3 {
     margin: 10px 0;
+    font-size: 16px;
 }
 
 .rating {
@@ -229,15 +230,12 @@ h3 {
 .rental-prices {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
 }
 
 .price-card {
     background: #f8f8f8;
     padding: 15px;
     border-radius: 5px;
-    width: 150px;
     text-align: center;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
@@ -266,6 +264,7 @@ p {
 small {
     color: gray;
 }
+
 </style>
 
   <body>
