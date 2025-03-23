@@ -158,22 +158,19 @@ nav ul li a:hover {
     box-sizing: border-box;
     background-color: #f5f5f5; /* Fundo suave e neutro */
 }
-        table {
-            width: 90%;
-            margin: auto;
+         table {
+            width: 100%;
             border-collapse: collapse;
             background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            padding: 15px;
+            padding: 20px;
             text-align: center;
         }
         th {
             background: #007bff;
             color: white;
+            font-size: 18px;
         }
         th:nth-child(2) {
             background: black;
@@ -183,24 +180,25 @@ nav ul li a:hover {
         }
         .car-info {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            text-align: left;
+            text-align: center;
         }
         .car-info img {
-            width: 80px;
-            height: 50px;
+            width: 120px;
+            height: 80px;
             object-fit: cover;
             border-radius: 5px;
         }
         .stars {
             color: gold;
+            font-size: 18px;
         }
         .rent-btn {
             background: #007bff;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 15px;
             cursor: pointer;
             font-size: 14px;
             border-radius: 5px;
@@ -260,7 +258,7 @@ nav ul li a:hover {
         <div class="content">
         </div>
     </section>
-   <table>
+  <table>
         <tr>
             <th>Carro</th>
             <th>Por Hora</th>
@@ -271,10 +269,13 @@ nav ul li a:hover {
         <tr>
             <td class="car-info">
                 <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="Chevrolet SUV">
-                <div>
-                    <strong>Chevrolet SUV Car</strong><br>
-                    <span class="stars">★★★★★</span><br>
-                    <span style="color: orange;">rated:</span>
+                <strong>Chevrolet SUV Car</strong>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
                 </div>
             </td>
             <td>
@@ -297,10 +298,13 @@ nav ul li a:hover {
         <tr>
             <td class="car-info">
                 <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="Ford Mustang">
-                <div>
-                    <strong>Ford Mustang</strong><br>
-                    <span class="stars">★★★★☆</span><br>
-                    <span style="color: orange;">rated:</span>
+                <strong>Ford Mustang</strong>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
                 </div>
             </td>
             <td>
@@ -323,10 +327,13 @@ nav ul li a:hover {
         <tr>
             <td class="car-info">
                 <img src="https://static.vecteezy.com/system/resources/previews/025/312/258/large_2x/white-suv-on-transparent-background-3d-rendering-illustration-free-png.png" alt="BMW M5">
-                <div>
-                    <strong>BMW M5</strong><br>
-                    <span class="stars">★★★☆☆</span><br>
-                    <span style="color: orange;">rated:</span>
+                <strong>BMW M5</strong>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
                 </div>
             </td>
             <td>
@@ -347,5 +354,6 @@ nav ul li a:hover {
         </tr>
 
     </table>
+     
   </body>
 </html>
