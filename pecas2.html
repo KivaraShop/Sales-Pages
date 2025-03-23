@@ -281,33 +281,34 @@ header .toggle-theme {
 
 .slogan {
     font-family: 'Playfair Display', serif;
-    font-size: 19px;
-    font-weight: 700;
-    color: #012063; /* Cor original do texto */
-    letter-spacing: 2px;
-    font-style: italic;
+    font-size: 19px; /* Tamanho da fonte pode ser ajustado conforme necessário */
+    font-weight: 700; /* Deixe o texto mais forte */
+    color: #012063; /* Cor inicial do texto */
+    letter-spacing: 2px; /* Espaçamento entre as letras para um efeito mais elegante */
+    font-style: italic; /* Estilo em itálico para um toque mais sofisticado */
     margin: 0;
-    position: relative;
-    display: inline-block;
-    background: linear-gradient(90deg, #ff6347, #32cd32, #1e90ff); /* Gradiente visível */
-    background-size: 200% 100%; /* Define o tamanho do gradiente para animar */
-    background-clip: text; /* Aplica o gradiente no texto */
-    -webkit-background-clip: text; /* Suporte para navegadores Webkit, como Chrome */
-    animation: gradientEffect 3s linear infinite; /* Aplica a animação do gradiente */
+    animation: colorChange 3s infinite; /* Aplica a animação */
 }
 
-/* Animação para mover o gradiente */
-@keyframes gradientEffect {
+/* Definição da animação para alterar a cor */
+@keyframes colorChange {
     0% {
-        background-position: 200% 0;
+        color: #012063; /* Cor inicial */
+    }
+    25% {
+        color: #ff6347; /* Cor no primeiro intervalo */
     }
     50% {
-        background-position: -200% 0;
+        color: #32cd32; /* Cor no meio */
+    }
+    75% {
+        color: #1e90ff; /* Cor no terceiro intervalo */
     }
     100% {
-        background-position: 200% 0;
+        color: #012063; /* Retorna à cor inicial */
     }
 }
+
 
         
 /* Layout de Produtos */
