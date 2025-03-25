@@ -4,148 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entreposto Rent</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-<style>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            background-color: #f8f8f8;
         }
         header {
-            background-color: #d4001a;
+            background-color: #d50000;
             color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
+            padding: 15px 0;
+            text-align: center;
             font-size: 24px;
             font-weight: bold;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .fleet {
-            text-align: center;
-            padding: 20px;
-        }
-        .grid {
+        nav {
             display: flex;
             justify-content: center;
+            background-color: #d50000;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
-        .car-card {
+        .card {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 300px;
         }
-        .car-card img {
+        .card img {
             width: 100%;
+            height: auto;
             border-radius: 5px;
         }
-        .price {
-            font-weight: bold;
-            color: #d4001a;
+        .card h2 {
+            font-size: 22px;
+            margin: 10px 0;
         }
-        ul {
-            list-style: none;
-            padding: 0;
+        .card p {
+            font-size: 16px;
+            margin: 5px 0;
         }
-        button {
-            background-color: #d4001a;
+        .card .icons {
+            color: #d50000;
+            margin-top: 10px;
+        }
+        .card button {
+            background: #d50000;
             color: white;
-            padding: 10px;
+            padding: 10px 15px;
             border: none;
-            cursor: pointer;
-            width: 100%;
             border-radius: 5px;
-        }
-        footer {
-            background: black;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
         }
     </style>
   </head>
 <body>
-    <header>
-        <div class="logo">DRIVEPRO FLEET</div>
-        <nav>
-            <ul>
-                <li><a href="#">LUXURY</a></li>
-                <li><a href="#">BOOK ▼</a></li>
-                <li><a href="#">FLEET ▼</a></li>
-                <li><a href="#">TURO</a></li>
-                <li><a href="#">CONTACT</a></li>
-                <li><a href="#">OUR LOCATION ▼</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section class="fleet">
-        <h1>OUR FLEET</h1>
+    <header>DRIVEPRO FROTA</header>
+    <nav>
+        <a href="#">Luxo</a>
+        <a href="#">Reservas</a>
+        <a href="#">Frota</a>
+        <a href="#">Contato</a>
+        <a href="#">Localização</a>
+    </nav>
+    <div class="container">
+        <h1 style="text-align: center; color: #d50000;">Nossa Frota</h1>
         <div class="grid">
-            <div class="car-card">
+            <div class="card">
                 <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/6pznitjn-yrwt-kwja-h7aw-ilwaojtaus2o/vehicle-class" alt="Mercedes Benz S580">
                 <h2>Mercedes Benz S580</h2>
-                <p class="price">$800.00/Day</p>
-                <ul>
-                    <li>🚗 Automatic Transmission</li>
-                    <li>❄️ Airconditioning</li>
-                    <li>🛞 Power Steering</li>
-                    <li>🚪 4-doors</li>
-                </ul>
-                <button>Book now</button>
+                <p><strong>Preço:</strong> 50.000 MZN/dia</p>
+                <p class="icons"><i class="fa-solid fa-car"></i> Automático | <i class="fa-solid fa-fan"></i> Ar-condicionado | <i class="fa-solid fa-door-open"></i> 4 Portas</p>
+                <button>Reservar Agora</button>
             </div>
-            <div class="car-card">
+            <div class="card">
                 <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/gsmse0is-bdar-iftt-jrh3-ntjm0uqbkipp/vehicle-class" alt="Audi A3">
                 <h2>Audi A3</h2>
-                <p class="price">$125.00/Day</p>
-                <ul>
-                    <li>🚗 Automatic Transmission</li>
-                    <li>❄️ Airconditioning</li>
-                    <li>🛞 Power Steering</li>
-                    <li>🚪 4-doors</li>
-                </ul>
-                <button>Book now</button>
+                <p><strong>Preço:</strong> 10.000 MZN/dia</p>
+                <p class="icons"><i class="fa-solid fa-car"></i> Automático | <i class="fa-solid fa-fan"></i> Ar-condicionado | <i class="fa-solid fa-door-open"></i> 4 Portas</p>
+                <button>Reservar Agora</button>
             </div>
-            <div class="car-card">
+            <div class="card">
                 <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/1e47fa1w-7wae-psuj-qras-hy7p5qtlt1jy/vehicle-class" alt="Chevrolet Corvette">
                 <h2>Chevrolet Corvette</h2>
-                <p class="price">$500.00/Day</p>
-                <ul>
-                    <li>🕹 Manual Transmission</li>
-                    <li>❄️ Airconditioning</li>
-                    <li>🛞 Power Steering</li>
-                </ul>
-                <button>Book now</button>
+                <p><strong>Preço:</strong> 35.000 MZN/dia</p>
+                <p class="icons"><i class="fa-solid fa-car"></i> Manual | <i class="fa-solid fa-fan"></i> Ar-condicionado | <i class="fa-solid fa-door-open"></i> 2 Portas</p>
+                <button>Reservar Agora</button>
             </div>
         </div>
-    </section>
-    
-    <footer>
-        <p>GET 10% OFF YOUR FIRST BOOKING!</p>
-    </footer>
+    </div>
 </body>
 </html>
