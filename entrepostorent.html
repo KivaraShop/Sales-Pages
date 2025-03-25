@@ -81,6 +81,69 @@
             margin-top: 10px;
             align-self: flex-start;
         }
+
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .rental-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #fff;
+            padding: 50px 10%;
+            border-top: 4px solid red;
+        }
+
+        .rental-text {
+            max-width: 50%;
+        }
+
+        .rental-text h2 {
+            color: red;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .rental-text p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .rental-text strong {
+            color: red;
+        }
+
+        .rental-logo {
+            max-width: 40%;
+            text-align: right;
+        }
+
+        .rental-logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .rental-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rental-text, .rental-logo {
+                max-width: 100%;
+            }
+
+            .rental-logo {
+                margin-top: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -94,6 +157,21 @@
             <a href="#">Localização</a>
         </nav>
     </header>
+      <section class="rental-section">
+        <div class="rental-text">
+            <h2>Aluguer de Carros em Maputo com Qualidade e Conforto</h2>
+            <p>
+                Descubra Maputo e além com total liberdade e segurança! Oferecemos um serviço 
+                de <strong>aluguer de carros</strong> confiável e acessível para atender às suas necessidades, 
+                seja para negócios ou lazer. Com preços competitivos e veículos de alto padrão, 
+                garantimos uma experiência confortável e eficiente. Escolha a opção ideal para sua viagem 
+                e aproveite cada momento sem preocupações!
+            </p>
+        </div>
+        <div class="rental-logo">
+            <img src="https://driveprofleet.com/wp-content/uploads/2024/11/DrivePro-LOGO-FA_COLORED.svg" alt="DriveProFleet Logo">
+        </div>
+    </section>
     <div class="container">
         <h1 style="text-align: center; color: #d50000;">Nossa Frota</h1>
         <div class="grid">
