@@ -194,7 +194,7 @@
     font-size: 16px;
 }
 
-        .faq {
+       .faq {
     text-align: center;
     padding: 40px;
 }
@@ -209,11 +209,19 @@
 
 .faq-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    max-width: 800px;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
+    background: white;
+}
+
+.faq-column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 details {
@@ -235,6 +243,17 @@ details p {
     margin-top: 10px;
     color: #333;
     font-size: 14px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .faq-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .faq-column {
+        width: 100%;
+    }
 }
     </style>
 </head>
@@ -328,39 +347,44 @@ details p {
         </div>
     </div>
 
-          <section class="faq">
+         <section class="faq">
         <h2>Perguntas Frequentes</h2>
         <div class="faq-container">
-            <details>
-                <summary>Quais documentos são necessários para alugar um carro?</summary>
-                <p>Para alugar um carro conosco, você precisa apresentar um documento de identificação válido (BI ou passaporte) e uma carta de condução válida.</p>
-            </details>
-            
-            <details>
-                <summary>Quais são as opções de pagamento disponíveis?</summary>
-                <p>Aceitamos pagamentos via M-Pesa, cartão de crédito, débito e transferências bancárias. O pagamento deve ser feito no ato da reserva ou na retirada do veículo.</p>
-            </details>
+            <div class="faq-column">
+                <details>
+                    <summary>Quais documentos são necessários para alugar um carro?</summary>
+                    <p>Para alugar um carro conosco, você precisa apresentar um documento de identificação válido (BI ou passaporte) e uma carta de condução válida.</p>
+                </details>
+                
+                <details>
+                    <summary>Quais são as opções de pagamento disponíveis?</summary>
+                    <p>Aceitamos pagamentos via M-Pesa, cartão de crédito, débito e transferências bancárias. O pagamento deve ser feito no ato da reserva ou na retirada do veículo.</p>
+                </details>
 
-            <details>
-                <summary>O aluguer inclui seguro?</summary>
-                <p>Sim, todos os nossos veículos incluem um seguro básico. Para maior proteção, oferecemos opções adicionais de cobertura contra acidentes e danos.</p>
-            </details>
+                <details>
+                    <summary>O aluguer inclui seguro?</summary>
+                    <p>Sim, todos os nossos veículos incluem um seguro básico. Para maior proteção, oferecemos opções adicionais de cobertura contra acidentes e danos.</p>
+                </details>
+            </div>
 
-            <details>
-                <summary>Posso devolver o carro em um local diferente?</summary>
-                <p>Sim, oferecemos a opção de devolução em locais diferentes, mediante taxa adicional. Consulte-nos para mais detalhes.</p>
-            </details>
+            <div class="faq-column">
+                <details>
+                    <summary>Posso devolver o carro em um local diferente?</summary>
+                    <p>Sim, oferecemos a opção de devolução em locais diferentes, mediante taxa adicional. Consulte-nos para mais detalhes.</p>
+                </details>
 
-            <details>
-                <summary>Há um limite de quilometragem no aluguer?</summary>
-                <p>Oferecemos planos com e sem limite de quilometragem. Verifique os detalhes ao fazer sua reserva.</p>
-            </details>
+                <details>
+                    <summary>Há um limite de quilometragem no aluguer?</summary>
+                    <p>Oferecemos planos com e sem limite de quilometragem. Verifique os detalhes ao fazer sua reserva.</p>
+                </details>
 
-            <details>
-                <summary>O que acontece se eu atrasar a devolução do veículo?</summary>
-                <p>Se houver atraso na devolução, aplicamos uma taxa adicional por hora ou por dia, dependendo da duração do atraso. Recomendamos entrar em contato conosco em caso de imprevistos.</p>
-            </details>
+                <details>
+                    <summary>O que acontece se eu atrasar a devolução do veículo?</summary>
+                    <p>Se houver atraso na devolução, aplicamos uma taxa adicional por hora ou por dia, dependendo da duração do atraso. Recomendamos entrar em contato conosco em caso de imprevistos.</p>
+                </details>
+            </div>
         </div>
     </section>
+
 </body>
 </html>
