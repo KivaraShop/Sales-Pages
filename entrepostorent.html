@@ -146,6 +146,53 @@
                 margin-top: 20px;
             }
         }
+
+        .horarios {
+    background-color: #1a2332;
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.horarios h2 {
+    color: #ff1e42;
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.tabela-horarios {
+    display: inline-block;
+    border: 1px solid #ff1e42;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ff1e42;
+}
+
+.linha:last-child {
+    border-bottom: none;
+}
+
+.dias {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.horario {
+    background-color: #ff1e42;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-size: 16px;
+}
     </style>
 </head>
 <body>
@@ -171,6 +218,24 @@
         </div>
         <div class="rental-logo">
             <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/gsmse0is-bdar-iftt-jrh3-ntjm0uqbkipp/vehicle-class" alt="DriveProFleet Logo">
+        </div>
+    </section>
+
+     <section class="horarios">
+        <h2>ESTAMOS DISPONÍVEIS PARA VOCÊ!</h2>
+        <div class="tabela-horarios">
+            <div class="linha">
+                <span class="dias">SEGUNDA | QUINTA | SEXTA</span>
+                <span class="horario">7:00 AM - 6:00 PM</span>
+            </div>
+            <div class="linha">
+                <span class="dias">TERÇA | QUARTA</span>
+                <span class="horario">7:00 AM - 5:00 PM</span>
+            </div>
+            <div class="linha">
+                <span class="dias">SÁBADO | DOMINGO</span>
+                <span class="horario">7:00 AM - 3:00 PM</span>
+            </div>
         </div>
     </section>
     <div class="container">
