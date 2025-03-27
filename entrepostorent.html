@@ -297,13 +297,13 @@ details p {
         }
 
 
-     .luxury-rentals {
+ .luxury-rentals {
     background-color: #fff;
     color: #333;
     padding: 80px 5%;
     font-family: 'Arial', sans-serif;
     text-align: center;
-    z-index:1000;
+    z-index: 1000;
 }
 
 .luxury-content h1 {
@@ -318,10 +318,11 @@ details p {
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+    transition: all 0.3s ease;
 }
 
 .luxury-item.reverse {
-    flex-direction: row-reverse;  /* Inverte a direção dos itens */
+    flex-direction: row-reverse;  /* Inverte a direção do conteúdo */
 }
 
 .luxury-image {
@@ -415,13 +416,21 @@ details p {
     }
 }
 
-/* Adicionando a alternância de imagens */
+/* Alternando as imagens e textos */
 .luxury-item:nth-child(odd) .luxury-image {
     order: 1;  /* Imagem à esquerda */
 }
 
+.luxury-item:nth-child(odd) .luxury-text {
+    order: 2;  /* Texto à direita */
+}
+
 .luxury-item:nth-child(even) .luxury-image {
-    order: -1;  /* Imagem à direita */
+    order: 2;  /* Imagem à direita */
+}
+
+.luxury-item:nth-child(even) .luxury-text {
+    order: 1;  /* Texto à esquerda */
 }
 
     </style>
