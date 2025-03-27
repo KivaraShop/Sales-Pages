@@ -297,123 +297,133 @@ details p {
         }
 
 
-         .luxury-rentals {
-        background-color: #fff;
-        color: #333;
-        padding: 80px 5%;
-        font-family: 'Arial', sans-serif;
-        text-align: center;
-        z-index:1000;
-    }
+     .luxury-rentals {
+    background-color: #fff;
+    color: #333;
+    padding: 80px 5%;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    z-index:1000;
+}
 
+.luxury-content h1 {
+    font-size: 2.5em;
+    color: #f8a300;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.luxury-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.luxury-item.reverse {
+    flex-direction: row-reverse;  /* Inverte a direção dos itens */
+}
+
+.luxury-image {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.luxury-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.luxury-text {
+    flex: 1;
+    text-align: left;
+    padding: 0 20px;
+}
+
+.luxury-text h2 {
+    font-size: 2em;
+    color: #f8a300;
+    margin: 20px 0;
+}
+
+.luxury-text p, .luxury-text ul {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+}
+
+.luxury-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.luxury-text ul li {
+    margin: 10px 0;
+}
+
+.luxury-action {
+    background-color: #f8a300;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.cta-button {
+    background-color: #fff;
+    color: #f8a300;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #f8a300;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
     .luxury-content h1 {
-        font-size: 2.5em;
-        color: #f8a300;
-        margin-bottom: 20px;
-        font-weight: bold;
+        font-size: 2em;
     }
 
     .luxury-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 50px;
+        flex-direction: column;
+        text-align: center;
     }
 
     .luxury-item.reverse {
-        flex-direction: row-reverse;
-    }
-
-    .luxury-image {
-        flex: 1;
-        padding: 0 20px;
-    }
-
-    .luxury-image img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-    }
-
-    .luxury-text {
-        flex: 1;
-        text-align: left;
-        padding: 0 20px;
+        flex-direction: column-reverse;
     }
 
     .luxury-text h2 {
-        font-size: 2em;
-        color: #f8a300;
-        margin: 20px 0;
+        font-size: 1.5em;
     }
 
     .luxury-text p, .luxury-text ul {
+        font-size: 1em;
+    }
+
+    .luxury-action p {
         font-size: 1.2em;
-        line-height: 1.6;
-        color: #555;
     }
+}
 
-    .luxury-text ul {
-        list-style: none;
-        padding: 0;
-    }
+/* Adicionando a alternância de imagens */
+.luxury-item:nth-child(odd) .luxury-image {
+    order: 1;  /* Imagem à esquerda */
+}
 
-    .luxury-text ul li {
-        margin: 10px 0;
-    }
+.luxury-item:nth-child(even) .luxury-image {
+    order: -1;  /* Imagem à direita */
+}
 
-    .luxury-action {
-        background-color: #f8a300;
-        color: #fff;
-        padding: 40px 20px;
-        text-align: center;
-        border-radius: 8px;
-    }
-
-    .cta-button {
-        background-color: #fff;
-        color: #f8a300;
-        padding: 15px 30px;
-        font-size: 1.2em;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-transform: uppercase;
-        margin-top: 20px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .cta-button:hover {
-        background-color: #f8a300;
-        color: #fff;
-    }
-
-    @media (max-width: 768px) {
-        .luxury-content h1 {
-            font-size: 2em;
-        }
-
-        .luxury-item {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .luxury-item.reverse {
-            flex-direction: column-reverse;
-        }
-
-        .luxury-text h2 {
-            font-size: 1.5em;
-        }
-
-        .luxury-text p, .luxury-text ul {
-            font-size: 1em;
-        }
-
-        .luxury-action p {
-            font-size: 1.2em;
-        }
-    }
     </style>
 </head>
 <body>
