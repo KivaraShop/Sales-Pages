@@ -1269,11 +1269,12 @@ div, span, section, header, footer, main, article {
     }
 }
 
- .faq-section {
-            background-color: #0088B5;
+.faq-section {
+            background-color: rgba(0, 136, 181, 0.9); /* Transparente com cor */
             color: white;
             padding: 50px 10%;
             text-align: center;
+            border-bottom: 5px solid #005f7f;
         }
 
         .faq-section h1 {
@@ -1283,26 +1284,28 @@ div, span, section, header, footer, main, article {
         }
 
         .faq-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Duas colunas */
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
         }
 
         .faq-item {
-            width: 100%;
-            max-width: 800px;
             background-color: #005f7f;
-            margin-bottom: 20px;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
         }
 
         .faq-item h2 {
             font-size: 1.5em;
             margin-bottom: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            color: #00c3e2;
+            transition: color 0.3s;
         }
 
         .faq-item p {
@@ -1316,13 +1319,21 @@ div, span, section, header, footer, main, article {
             display: block;
         }
 
+        .faq-item:hover {
+            background-color: #00c3e2;
+        }
+
         .faq-item h2:hover {
-            color: #00c3e2;
+            color: #fff;
         }
 
         @media (max-width: 768px) {
             .faq-section {
                 padding: 30px 5%;
+            }
+
+            .faq-container {
+                grid-template-columns: 1fr; /* Uma coluna em telas menores */
             }
 
             .faq-item h2 {
@@ -1915,7 +1926,7 @@ div, span, section, header, footer, main, article {
 
 
 
-     <section class="faq-section">
+ <section class="faq-section">
         <h1>FAQ - Perguntas Frequentes</h1>
         <div class="faq-container">
             <div class="faq-item">
@@ -1959,7 +1970,6 @@ div, span, section, header, footer, main, article {
             </div>
         </div>
     </section>
-
 
 
     
@@ -2054,7 +2064,7 @@ div, span, section, header, footer, main, article {
     </div>
 </footer>
 
- <script>
+  <script>
         const faqItems = document.querySelectorAll('.faq-item');
 
         faqItems.forEach(item => {
