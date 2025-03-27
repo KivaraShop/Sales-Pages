@@ -1270,81 +1270,89 @@ div, span, section, header, footer, main, article {
 }
 
 .faq-section {
-            background-color: transparent; /* Sem fundo *//* Transparente com cor */
-            color: white;
-            padding: 50px 10%;
-            text-align: center;
-            border-bottom: 5px solid #005f7f;
-        }
+    background-color: transparent; /* Sem fundo */
+    color: white;
+    padding: 50px 10%;
+    text-align: center;
+    border-bottom: 5px solid #005f7f;
+}
 
-        .faq-section h1 {
-            font-size: 1.7em;
-            margin-bottom: 30px;
-            font-weight: bold;
-            color: #0088B5;
-        }
+.faq-section h1 {
+    font-size: 1.7em;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #0088B5;
+}
 
-        .faq-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Duas colunas */
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: flex-start;
-        }
+.faq-container {
+    display: flex; /* Usar Flexbox ao invés de grid */
+    flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .faq-item {
-            background-color: #e1f5fe;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s;
-        }
+.faq-item {
+    background-color: #e1f5fe;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    flex: 1 1 calc(50% - 10px); /* 50% do espaço, com margem */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Garante que o conteúdo se empilhe corretamente */
+}
 
-        .faq-item h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            cursor: pointer;
-            color: #0088B5;
-            transition: color 0.3s;
-        }
+.faq-item h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #0088B5;
+    transition: color 0.3s;
+}
 
-        .faq-item p {
-            font-size: 1.1em;
-            line-height: 1.5;
-            display: none;
-            color: #d9f0f7;
-        }
+.faq-item p {
+    font-size: 1.1em;
+    line-height: 1.5;
+    display: none;
+    color: #d9f0f7;
+}
 
-        .faq-item.active p {
-            display: block;
-        }
+.faq-item.active p {
+    display: block;
+}
 
- .faq-item:hover {
-            background-color: #0088B5; /* Um tom mais escuro do que o fundo original */
-        }
+.faq-item:hover {
+    background-color: #0088B5; /* Um tom mais escuro do que o fundo original */
+}
 
-        .faq-item h2:hover {
-            color: #fff; /* Troca a cor da questão para branco */
-        }
+.faq-item h2:hover {
+    color: #fff; /* Troca a cor da questão para branco */
+}
 
-        @media (max-width: 768px) {
-            .faq-section {
-                padding: 30px 5%;
-            }
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 30px 5%;
+    }
 
-            .faq-container {
-                grid-template-columns: 1fr; /* Uma coluna em telas menores */
-            }
+    .faq-container {
+        flex-direction: column; /* Alinha os itens em uma coluna em telas pequenas */
+    }
 
-            .faq-item h2 {
-                font-size: 1.3em;
-            }
+    .faq-item {
+        flex: 1 1 100%; /* Cada item ocupa 100% do espaço em telas pequenas */
+    }
 
-            .faq-item p {
-                font-size: 1em;
-            }
-        }
+    .faq-item h2 {
+        font-size: 1.3em;
+    }
+
+    .faq-item p {
+        font-size: 1em;
+    }
+}
+
     </style>
 </head>
 <body>
