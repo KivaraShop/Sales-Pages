@@ -408,13 +408,12 @@ details p {
 
 /* Alternando a posição das imagens e textos */
 .luxury-item:nth-child(odd) {
-    flex-direction: row;  /* Imagem à esquerda, texto à direita */
+    flex-direction: row;  /* Para ímpares: imagem à esquerda e texto à direita */
 }
 
 .luxury-item:nth-child(even) {
-    flex-direction: row-reverse;  /* Imagem à direita, texto à esquerda */
+    flex-direction: row-reverse;  /* Para pares: imagem à direita e texto à esquerda */
 }
-
 
     </style>
 </head>
@@ -443,7 +442,7 @@ details p {
             <img src="https://ak-automotive.nl/wp-content/uploads/2022/02/Audi-a3-e1645803467435.png" alt="DriveProFleet Logo">
         </div>
 </section>
-       <section class="luxury-rentals">
+     <section class="luxury-rentals">
     <div class="luxury-content">
         <h1>Viva o Estilo de Vida de Luxo</h1>
         <p>Experimente o requinte e a sofisticação que só os nossos veículos podem oferecer. Alugue um carro de luxo e deixe-se envolver pelo prazer de dirigir com conforto, desempenho e estilo. Seja para uma ocasião especial ou para simplesmente viver a experiência de dirigir um carro de prestígio, temos a opção perfeita para você.</p>
@@ -458,7 +457,7 @@ details p {
             </div>
         </div>
 
-        <div class="luxury-item reverse">
+        <div class="luxury-item">
             <div class="luxury-text">
                 <h2>Conforto e Sofisticação ao Seu Alcance</h2>
                 <p>Não se trata apenas de um carro, mas de uma experiência única. Nossos veículos são cuidadosamente escolhidos para oferecer a você o máximo em conforto, tecnologia de ponta e desempenho excepcional. Imagine-se atrás do volante de um carro que não só impressiona pela estética, mas também pela performance incomparável. O luxo é o novo normal.</p>
@@ -467,6 +466,7 @@ details p {
                 <img src="https://media.assets.sincrod.com/websites/content/gmps-haggerty/progressive-2.0/28151842794d406fa89419c5377bf767_c70x0-1258x707.jpg" alt="Carro de luxo 2">
             </div>
         </div>
+
         <div class="luxury-item">
             <div class="luxury-image">
                 <img src="https://www.lincoln.com/is/image/content/dam/brand_lincoln/en_us/brand/homepage/dm/22_LCN_COR_58368_DF.tif?croppathe=7x8&wid=690&fit=crop&hei=736" alt="Carro de luxo 3">
@@ -482,7 +482,7 @@ details p {
             </div>
         </div>
 
-        <div class="luxury-item reverse">
+        <div class="luxury-item">
             <div class="luxury-text">
                 <h2>Deixe-se Levar Pelo Estilo</h2>
                 <p>Com um carro de luxo, você não só chega ao seu destino, mas faz uma entrada imbatível. Sinta a emoção de dirigir um veículo que reflete sua personalidade e exige respeito. A vida é curta demais para não viver com estilo, e nós estamos aqui para garantir que você viva a experiência da melhor maneira possível.</p>
@@ -498,6 +498,7 @@ details p {
         </div>
     </div>
 </section>
+
 
     </section>
 <section class="rental-section2">
