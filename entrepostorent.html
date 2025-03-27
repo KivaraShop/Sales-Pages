@@ -18,24 +18,69 @@
             background-color: #f8f8f8;
             overflow-x: hidden; 
         }
-        header {
-            background-color: #f8a300;
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
             color: white;
-            padding: 15px 20px;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .content p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #f8a300;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: #f8a300;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .header .logo {
             font-size: 24px;
             font-weight: bold;
+            color: white;
         }
-        nav {
-            display: flex;
-            gap: 15px;
-        }
-        nav a {
+        .header nav a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            margin-left: 20px;
+            font-size: 16px;
         }
         .container {
             width: 95%;
@@ -446,16 +491,21 @@ background-color: #fff;
     </style>
 </head>
 <body>
-    <header>
-        DRIVEPRO FROTA
+     <header class="header">
+        <div class="logo">ENTREPOSTO RENT</div>
         <nav>
-            <a href="#">Luxo</a>
-            <a href="#">Reservas</a>
-            <a href="#">Frota</a>
-            <a href="#">Contato</a>
-            <a href="#">Localização</a>
+            <a href="#fleet">FROTA</a>
+            <a href="#contact">CONTACTO</a>
         </nav>
     </header>
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>BEM VINDO À SIXT MOÇAMBIQUE</h1>
+            <p>With a vast selection of vehicles and flexible pick-up and drop-off options, we are confident that you will find the perfect car for your needs.</p>
+            <a href="#" class="btn">LEARN MORE</a>
+        </div>
+    </section>
       <section class="rental-section">
         <div class="rental-text">
             <h2>Aluguer de Carros em Maputo com Qualidade Premium</h2>
