@@ -297,10 +297,10 @@ details p {
         }
 
 
-            .luxury-rentals {
+         .luxury-rentals {
         background-color: #fff;
         color: #333;
-        padding: 60px 5%;
+        padding: 80px 5%;
         font-family: 'Arial', sans-serif;
         text-align: center;
     }
@@ -312,36 +312,52 @@ details p {
         font-weight: bold;
     }
 
-    .luxury-content h2 {
-        font-size: 2em;
-        color: #f8a300;
-        margin: 40px 0 20px;
+    .luxury-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
     }
 
-    .luxury-content p {
-        font-size: 1.2em;
-        line-height: 1.6;
-        margin-bottom: 30px;
-        color: #555;
+    .luxury-item.reverse {
+        flex-direction: row-reverse;
     }
 
-    .luxury-content .luxury-image img {
+    .luxury-image {
+        flex: 1;
+        padding: 0 20px;
+    }
+
+    .luxury-image img {
         width: 100%;
         height: auto;
         border-radius: 8px;
-        margin-bottom: 30px;
     }
 
-    .luxury-content ul {
+    .luxury-text {
+        flex: 1;
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    .luxury-text h2 {
+        font-size: 2em;
+        color: #f8a300;
+        margin: 20px 0;
+    }
+
+    .luxury-text p, .luxury-text ul {
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .luxury-text ul {
         list-style: none;
         padding: 0;
-        text-align: left;
-        margin-bottom: 40px;
     }
 
-    .luxury-content ul li {
-        font-size: 1.2em;
-        color: #555;
+    .luxury-text ul li {
         margin: 10px 0;
     }
 
@@ -376,11 +392,20 @@ details p {
             font-size: 2em;
         }
 
-        .luxury-content h2 {
+        .luxury-item {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .luxury-item.reverse {
+            flex-direction: column-reverse;
+        }
+
+        .luxury-text h2 {
             font-size: 1.5em;
         }
 
-        .luxury-content p {
+        .luxury-text p, .luxury-text ul {
             font-size: 1em;
         }
 
@@ -415,48 +440,60 @@ details p {
             <img src="https://ak-automotive.nl/wp-content/uploads/2022/02/Audi-a3-e1645803467435.png" alt="DriveProFleet Logo">
         </div>
 
-          <section class="luxury-rentals">
+       <section class="luxury-rentals">
     <div class="luxury-content">
         <h1>Viva o Estilo de Vida de Luxo</h1>
         <p>Experimente o requinte e a sofisticação que só os nossos veículos podem oferecer. Alugue um carro de luxo e deixe-se envolver pelo prazer de dirigir com conforto, desempenho e estilo. Seja para uma ocasião especial ou para simplesmente viver a experiência de dirigir um carro de prestígio, temos a opção perfeita para você.</p>
         
-        <div class="luxury-image">
-            <img src="https://www.germanspecialists.co.uk/news/wp-content/uploads/2019/03/bmw-car-city-transportation-traffic-0ddf3e-1024.jpg" alt="Carro de luxo 1">
+        <div class="luxury-item">
+            <div class="luxury-image">
+                <img src="https://www.germanspecialists.co.uk/news/wp-content/uploads/2019/03/bmw-car-city-transportation-traffic-0ddf3e-1024.jpg" alt="Carro de luxo 1">
+            </div>
+            <div class="luxury-text">
+                <h2>Alugue o Seu Sonho</h2>
+                <p>Nosso serviço de aluguel de carros de luxo é ideal para quem busca exclusividade. Seja um evento especial, uma viagem de negócios ou apenas um momento para se mimar, a nossa frota premium garante que você chegue onde deseja com muito mais elegância e classe.</p>
+            </div>
         </div>
 
-        <h2>Alugue o Seu Sonho</h2>
-        <p>Nosso serviço de aluguel de carros de luxo é ideal para quem busca exclusividade. Seja um evento especial, uma viagem de negócios ou apenas um momento para se mimar, a nossa frota premium garante que você chegue onde deseja com muito mais elegância e classe.</p>
-        
-        <div class="luxury-image">
-            <img src="https://media.assets.sincrod.com/websites/content/gmps-haggerty/progressive-2.0/28151842794d406fa89419c5377bf767_c70x0-1258x707.jpg" alt="Carro de luxo 2">
+        <div class="luxury-item reverse">
+            <div class="luxury-text">
+                <h2>Conforto e Sofisticação ao Seu Alcance</h2>
+                <p>Não se trata apenas de um carro, mas de uma experiência única. Nossos veículos são cuidadosamente escolhidos para oferecer a você o máximo em conforto, tecnologia de ponta e desempenho excepcional. Imagine-se atrás do volante de um carro que não só impressiona pela estética, mas também pela performance incomparável. O luxo é o novo normal.</p>
+            </div>
+            <div class="luxury-image">
+                <img src="https://media.assets.sincrod.com/websites/content/gmps-haggerty/progressive-2.0/28151842794d406fa89419c5377bf767_c70x0-1258x707.jpg" alt="Carro de luxo 2">
+            </div>
         </div>
 
-        <h2>Conforto e Sofisticação ao Seu Alcance</h2>
-        <p>Não se trata apenas de um carro, mas de uma experiência única. Nossos veículos são cuidadosamente escolhidos para oferecer a você o máximo em conforto, tecnologia de ponta e desempenho excepcional. Imagine-se atrás do volante de um carro que não só impressiona pela estética, mas também pela performance incomparável. O luxo é o novo normal.</p>
-        
-        <div class="luxury-image">
-            <img src="https://www.lincoln.com/is/image/content/dam/brand_lincoln/en_us/brand/homepage/dm/22_LCN_COR_58368_DF.tif?croppathe=7x8&wid=690&fit=crop&hei=736" alt="Carro de luxo 3">
+        <div class="luxury-item">
+            <div class="luxury-image">
+                <img src="https://www.lincoln.com/is/image/content/dam/brand_lincoln/en_us/brand/homepage/dm/22_LCN_COR_58368_DF.tif?croppathe=7x8&wid=690&fit=crop&hei=736" alt="Carro de luxo 3">
+            </div>
+            <div class="luxury-text">
+                <h2>Por Que Escolher o Nosso Aluguel de Carros de Luxo?</h2>
+                <ul>
+                    <li><strong>Variedade de Modelos:</strong> Desde sedãs sofisticados até superesportivos de tirar o fôlego.</li>
+                    <li><strong>Experiência Exclusiva:</strong> Desfrute de um atendimento personalizado, com a garantia de uma experiência única.</li>
+                    <li><strong>Veículos Sempre Impecáveis:</strong> Nossa frota é mantida em perfeitas condições, garantindo conforto e segurança.</li>
+                    <li><strong>Serviço Premium:</strong> A entrega e a retirada do seu carro podem ser feitas diretamente no seu local de preferência, sem complicações.</li>
+                </ul>
+            </div>
         </div>
 
-        <h2>Por Que Escolher o Nosso Aluguel de Carros de Luxo?</h2>
-        <ul>
-            <li><strong>Variedade de Modelos:</strong> Desde sedãs sofisticados até superesportivos de tirar o fôlego.</li>
-            <li><strong>Experiência Exclusiva:</strong> Desfrute de um atendimento personalizado, com a garantia de uma experiência única.</li>
-            <li><strong>Veículos Sempre Impecáveis:</strong> Nossa frota é mantida em perfeitas condições, garantindo conforto e segurança.</li>
-            <li><strong>Serviço Premium:</strong> A entrega e a retirada do seu carro podem ser feitas diretamente no seu local de preferência, sem complicações.</li>
-        </ul>
-
-        <div class="luxury-image">
-            <img src="https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp" alt="Carro de luxo 4">
+        <div class="luxury-item reverse">
+            <div class="luxury-text">
+                <h2>Deixe-se Levar Pelo Estilo</h2>
+                <p>Com um carro de luxo, você não só chega ao seu destino, mas faz uma entrada imbatível. Sinta a emoção de dirigir um veículo que reflete sua personalidade e exige respeito. A vida é curta demais para não viver com estilo, e nós estamos aqui para garantir que você viva a experiência da melhor maneira possível.</p>
+            </div>
+            <div class="luxury-image">
+                <img src="https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp" alt="Carro de luxo 4">
+            </div>
         </div>
 
-        <h2>Deixe-se Levar Pelo Estilo</h2>
-        <p>Com um carro de luxo, você não só chega ao seu destino, mas faz uma entrada imbatível. Sinta a emoção de dirigir um veículo que reflete sua personalidade e exige respeito. A vida é curta demais para não viver com estilo, e nós estamos aqui para garantir que você viva a experiência da melhor maneira possível.</p>
-    </div>
-
-    <div class="luxury-action">
-        <p><strong>Pronto para começar a sua jornada de luxo?</strong> Entre em contato agora para alugar o seu carro dos sonhos e viver uma experiência única. Não espere mais para viver o melhor da vida.</p>
-        <button class="cta-button">Alugue Agora</button>
+        <div class="luxury-action">
+            <p><strong>Pronto para começar a sua jornada de luxo?</strong> Entre em contato agora para alugar o seu carro dos sonhos e viver uma experiência única. Não espere mais para viver o melhor da vida.</p>
+            <button class="cta-button">Alugue Agora</button>
+        </div>
     </div>
 </section>
 
