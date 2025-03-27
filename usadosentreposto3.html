@@ -1285,9 +1285,9 @@ div, span, section, header, footer, main, article {
 }
 
 .faq-container {
-    display: flex; /* Usar Flexbox ao invés de grid */
-    flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 20px; /* Espaço entre as colunas */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -1298,10 +1298,8 @@ div, span, section, header, footer, main, article {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
-    flex: 1 1 calc(50% - 10px); /* 50% do espaço, com margem */
-    margin-bottom: 20px;
     display: flex;
-    flex-direction: column; /* Garante que o conteúdo se empilhe corretamente */
+    flex-direction: column;
 }
 
 .faq-item h2 {
@@ -1337,7 +1335,7 @@ div, span, section, header, footer, main, article {
     }
 
     .faq-container {
-        flex-direction: column; /* Alinha os itens em uma coluna em telas pequenas */
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
     }
 
     .faq-item {
@@ -1352,6 +1350,7 @@ div, span, section, header, footer, main, article {
         font-size: 1em;
     }
 }
+
 
     </style>
 </head>
