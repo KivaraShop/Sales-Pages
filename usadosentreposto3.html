@@ -1269,7 +1269,70 @@ div, span, section, header, footer, main, article {
     }
 }
 
+ .faq-section {
+            background-color: #0088B5;
+            color: white;
+            padding: 50px 10%;
+            text-align: center;
+        }
 
+        .faq-section h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .faq-item {
+            width: 100%;
+            max-width: 800px;
+            background-color: #005f7f;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item p {
+            font-size: 1.1em;
+            line-height: 1.5;
+            display: none;
+            color: #d9f0f7;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        .faq-item h2:hover {
+            color: #00c3e2;
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 30px 5%;
+            }
+
+            .faq-item h2 {
+                font-size: 1.3em;
+            }
+
+            .faq-item p {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1849,6 +1912,57 @@ div, span, section, header, footer, main, article {
   </div>
 </section>
 
+
+
+
+     <section class="faq-section">
+        <h1>FAQ - Perguntas Frequentes</h1>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h2>1. Como posso comprar um carro usado da sua empresa?</h2>
+                <p>Aqui na nossa empresa, o processo de compra de carros usados é simples. Você pode visitar uma de nossas filiais espalhadas por Moçambique, fazer uma consulta online ou agendar uma visita ao nosso showroom. Nossos consultores estão prontos para ajudá-lo em cada passo do processo.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>2. Os carros vendidos são revisados antes da venda?</h2>
+                <p>Sim! Todos os carros usados que vendemos passam por uma revisão completa em nossas oficinas, que estão localizadas em diversas cidades de Moçambique. Garantimos que todos os carros estão em ótimo estado de funcionamento antes de chegarem até você.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>3. Qual é a garantia oferecida para os carros usados?</h2>
+                <p>Oferecemos garantia de até 6 meses para todos os carros usados adquiridos em nossas lojas. Além disso, caso você precise de assistência após a compra, nossas oficinas estão sempre à disposição para realizar manutenções e reparos.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>4. Como posso financiar meu carro usado?</h2>
+                <p>Disponibilizamos diversas opções de financiamento, com parcerias com bancos e instituições financeiras. Nossos consultores de vendas estão preparados para orientá-lo sobre as melhores opções de crédito para o seu perfil.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>5. Como posso saber se o carro está com a documentação em ordem?</h2>
+                <p>Todos os nossos carros usados têm a documentação regularizada e podem ser verificados por você antes de finalizar a compra. Garantimos que os veículos estão totalmente legalizados, para que você não tenha surpresas no futuro.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>6. Quais são as formas de pagamento disponíveis?</h2>
+                <p>Oferecemos diversas formas de pagamento, incluindo dinheiro, transferência bancária, cartão de crédito, além das opções de financiamento. Nossos vendedores podem ajudá-lo a escolher a forma que melhor se adapta às suas necessidades.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>7. Posso trocar meu carro usado por outro mais novo?</h2>
+                <p>Sim, aceitamos veículos como parte do pagamento para a compra de um carro mais novo. Avaliamos o seu veículo e, com base no seu valor de mercado, oferecemos descontos ou facilitamos o processo de troca.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>8. Como posso agendar uma revisão ou manutenção no meu carro?</h2>
+                <p>Você pode agendar uma revisão ou manutenção em uma de nossas oficinas em Moçambique, seja por telefone, online ou diretamente em nossa loja. Estamos à disposição para garantir que seu carro continue em perfeito estado.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    
 <section class="services">
     <h2>Nossos Serviços</h2>
     <div class="services-container">
@@ -1940,7 +2054,16 @@ div, span, section, header, footer, main, article {
     </div>
 </footer>
 
+ <script>
+        const faqItems = document.querySelectorAll('.faq-item');
 
+        faqItems.forEach(item => {
+            const question = item.querySelector('h2');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
  <script>
 // Observador para as marcas
 const brandObserver = new IntersectionObserver((entries, observer) => {
