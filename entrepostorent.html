@@ -576,6 +576,98 @@ background-color: #1a2332;
             font-size: 1.1em;
             line-height: 1.5;
         }
+
+          /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+        footer .logo {
+            flex: 1;
+        }
+        footer .logo img {
+            width: 150px;
+        }
+        footer .links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        footer .links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        footer .links ul li {
+            margin: 10px 0;
+        }
+        footer .links ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        footer .links ul li a:hover {
+            color: #f8a300;
+        }
+        footer .social-media {
+            flex: 1;
+            text-align: center;
+        }
+        footer .social-media i {
+            font-size: 2em;
+            margin: 0 10px;
+            color: white;
+            transition: color 0.3s ease;
+        }
+        footer .social-media i:hover {
+            color: #f8a300;
+        }
+        footer .newsletter {
+            flex: 1;
+            text-align: center;
+        }
+        footer .newsletter input[type="email"] {
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        footer .newsletter button {
+            padding: 10px 20px;
+            background-color: #f8a300;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+        }
+        footer .newsletter button:hover {
+            background-color: #e08900;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                flex-direction: column;
+                align-items: center;
+            }
+            footer .links {
+                justify-content: center;
+                margin-top: 20px;
+            }
+            footer .logo {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -767,6 +859,40 @@ background-color: #1a2332;
             </div>
         </div>
     </section>
+
+
+        <footer>
+        <!-- Logotipo -->
+        <div class="logo">
+            <img src="https://i.ibb.co/v4NGKqPR/Logopit-1743148031634.png" alt="Logotipo da Empresa">
+        </div>
+
+        <!-- Links de navegação -->
+        <div class="links">
+            <ul>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+                <li><a href="#">Termos de Uso</a></li>
+            </ul>
+        </div>
+
+        <!-- Redes sociais -->
+        <div class="social-media">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <!-- Inscrição para Newsletter -->
+        <div class="newsletter">
+            <h3>Receba Novidades!</h3>
+            <input type="email" placeholder="Digite seu e-mail" required>
+            <button type="submit">Inscrever-se</button>
+        </div>
+    </footer>
 
 </body>
 </html>
