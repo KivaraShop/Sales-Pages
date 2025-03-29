@@ -10,11 +10,55 @@
     <style>
      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-            * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+    background: #0088B5;
+    color: white;
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    z-index: 1000;
+}
+
+.top-left span {
+    margin-right: 15px;
+}
+
+.top-left i {
+    margin-right: 5px;
+}
+
+.top-right a {
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+      
+.top-right i {
+color: white;
+    margin-left: 10px;
+    font-size: 14px;
+}
+      
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8a300;
+    padding: 15px 5%;
+    color: white;
+    z-index: 1000;
+}
      body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -75,17 +119,6 @@ body footer p {
             font-weight: bold;
             text-decoration: none;
             border-radius: 5px;
-        }
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #f8a300;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 3;
         }
         .header .logo {
             font-size: 24px;
