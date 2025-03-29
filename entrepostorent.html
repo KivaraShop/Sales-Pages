@@ -711,109 +711,68 @@ color: white;
         }
 
 
-         /* Estilos gerais */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Garantir que o body e html ocupem 100% da altura e largura */
-        html, body {
-            height: 100%;
-            width: 100%;
-            overflow-x: hidden; /* Impede o scroll horizontal */
-        }
-/* Header */
-header {
-    display: flex;
-    position: sticky;
-    width: 100%;
-    top: 0;
-    justify-content: space-between;
-    align-items: center;
-    background: #f8a300;
-    padding: 15px 5%;
-    color: white;
-    z-index: 1000;
-}
-      
-
-        /* Ajuste o espaçamento do conteúdo para compensar o header fixo */
-        .content {
-            padding-top: 80px; /* Espaço suficiente para o header */
-        }
-
-        /* Wrapper para o footer */
-        .footer-wrapper {
-            width: 100%;
-            background-color: #1a2332; /* Azul escuro */
-            padding: 40px 0; /* Ajuste de padding para o footer */
-            box-sizing: border-box;
-        }
-
-        /* Estilos para o footer */
-        .footer {
+   .footer {
+            background-color: #f8a300; /* Azul escuro para contraste */
+            color: white;
+            padding: 40px 5%;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 30px;
-            color: white;
-            max-width: 100%; /* Garantir que a largura do footer ocupe toda a tela */
+            width: 100%;
         }
+    .footer i {
+color: white;
+    margin-left: 10px;
+    font-size: 16px;
+}
+      .footer .logo {
+    display: flex;            /* Definir como flex para controle de alinhamento */
+    justify-content: flex-start; /* Alinhar o conteúdo à esquerda */
+    background-color: transparent;
+    padding: 0;               /* Remover qualquer padding */
+    margin: 0;                /* Remover qualquer margem */
+}
 
-        .footer i {
-            color: white;
-            margin-left: 10px;
-            font-size: 16px;
-        }
+/* Estilo para a imagem do logo */
+.footer .logo img {
+    height: 45px;             /* Definir a altura do logo */
+    width: auto;              /* Garantir que a largura seja proporcional à altura */
+    padding-left: 20px;               /* Remover qualquer padding */
+    margin-left: 10px;
+    max-width: 150px;         /* Definir o tamanho máximo para a largura do logo */
+}
 
-        .footer .logo {
-            display: flex;            
-            justify-content: flex-start; 
-            background-color: transparent;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer .logo img {
-            height: 45px;
-            width: auto;
-            padding-left: 20px;
-            margin-left: 10px;
-            max-width: 150px;
-        }
-
+        .footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
         .footer-column {
             display: flex;
             flex-direction: column;
         }
-
         .footer-column h3 {
             color: white;
             margin-bottom: 15px;
             font-size: 18px;
         }
-
         .footer-column p, .footer-column a {
             font-size: 14px;
             line-height: 1.6;
             color: white;
             text-decoration: none;
         }
-
         .footer-column a:hover {
             text-decoration: underline;
         }
-
         .contact-info b {
             color: #0088B5;
         }
-
         .social-icons {
             display: flex;
             gap: 10px;
         }
-
         .social-icons a {
             color: white;
             background: #0088B5;
@@ -822,43 +781,9 @@ header {
             font-size: 16px;
             transition: 0.3s;
         }
-
         .social-icons a:hover {
             background: white;
             color: #0088B5;
-        }
-
-        /* Responsividade para telas menores */
-        @media screen and (max-width: 768px) {
-            .footer {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-column h3 {
-                font-size: 16px;
-            }
-
-            .footer-column p, .footer-column a {
-                font-size: 13px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .footer {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-column h3 {
-                font-size: 15px;
-            }
-
-            .footer-column p, .footer-column a {
-                font-size: 12px;
-            }
-
-            .social-icons a {
-                font-size: 14px;
-            }
         }
     </style>
 </head>
@@ -1037,7 +962,7 @@ header {
                 <button>Reservar Agora</button>
         </div>
     </div>
-
+ </div>
          <section class="faq">
         <h2>Perguntas Frequentes</h2>
         <div class="faq-container">
@@ -1077,54 +1002,48 @@ header {
         </div>
     </section>
 
-
-       <div class="footer-wrapper">
-        <!-- Rodapé -->
-        <footer class="footer">
-            <!-- Logo e Slogan -->
-            <div class="footer-column">
-                <div class="logo">
-                    <img src="https://i.ibb.co/v4NGKqPR/Logopit-1743148031634.png" alt="Logo">
-                </div>
-                <h3 class="footer-title"></h3>
-                <p class="footer-slogan">"O seu carro em boas mãos!"</p>
-            </div>
-
-            <!-- Coluna de Serviços -->
-            <div class="footer-column">
-                <h3>NOSSOS SERVIÇOS</h3>
-                <p>Somos especialistas em manutenção e reparo de veículos. Oferecemos serviços completos, desde troca de óleo até diagnósticos avançados, garantindo segurança e performance para o seu carro.</p>
-            </div>
-            
-            <!-- Coluna de Contato -->
-            <div class="footer-column">
-                <h3>CONTATO <i class="fas fa-phone"></i></h3>
-                <p><b>Agendamento de Serviços:</b> +258 852136558</p>
-                <p><b>Atendimento ao Cliente:</b> +258 852136558</p>
-                <p><b>Email:</b> <a href="mailto:contato@mecanicaauto.com">contato@mecanicaauto.com</a></p>
-            </div>
-            
-            <!-- Coluna de Horário de Funcionamento -->
-            <div class="footer-column">
-                <h3>HORÁRIO DE FUNCIONAMENTO</h3>
-                <p><b>Segunda a Sexta:</b> 08:00 – 18:00</p>
-                <p><b>Sábado:</b> 08:00 – 14:00</p>
-                <p><b>Domingo:</b> Fechado</p>
-            </div>
-            
-            <!-- Coluna de Redes Sociais -->
-            <div class="footer-column">
-                <h3>REDES SOCIAIS</h3>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-                <h3>ONDE ESTAMOS</h3>
-                <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
-            </div>
-        </footer>
+<!-- Rodapé -->
+<footer class="footer">
+        <div class="footer-column">
+  <div class="logo">
+        <img src="https://i.ibb.co/v4NGKqPR/Logopit-1743148031634.png" alt="Logo">
     </div>
+            <h3 class="footer-title"></h3>
+            <p class="footer-slogan">"O seu carro em boas mãos!"</p>
+        </div>
+    </div>
+    <div class="footer-column">
+        <h3>NOSSOS SERVIÇOS</h3>
+        <p>Somos especialistas em manutenção e reparo de veículos. Oferecemos serviços completos, desde troca de óleo até diagnósticos avançados, garantindo segurança e performance para o seu carro.</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>CONTATO <i class="fas fa-phone"></i></h3>
+        <p><b>Agendamento de Serviços:</b> +258 852136558</p>
+        <p><b>Atendimento ao Cliente:</b> +258 852136558</p>
+        <p><b>Email:</b> <a href="mailto:contato@mecanicaauto.com">contato@mecanicaauto.com</a></p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>HORÁRIO DE FUNCIONAMENTO</h3>
+        <p><b>Segunda a Sexta:</b> 08:00 – 18:00</p>
+        <p><b>Sábado:</b> 08:00 – 14:00</p>
+        <p><b>Domingo:</b> Fechado</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>REDES SOCIAIS</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <h3>ONDE ESTAMOS</h3>
+        <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
+    </div>
+</footer>
+
+    
 </body>
 </html>
