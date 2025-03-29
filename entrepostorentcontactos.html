@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos - Aluguel de Viaturas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #f8a300;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .contact-info div {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h3 {
+            color: #f8a300;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info p {
+            font-size: 1.1em;
+        }
+        
+        .btn-contact {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #f8a300;
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-contact:hover {
+            background-color: #d88c00;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f8a300;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contatos - Aluguel de Viaturas</h1>
+    </header>
+    
+    <div class="container">
+        <section class="contact-info">
+            <!-- Atendimento ao Cliente -->
+            <div>
+                <h3>Atendimento ao Cliente</h3>
+                <p><strong>Telefone:</strong> +258 8211 2222</p>
+                <p><strong>Email:</strong> atendimento@viaturas.com</p>
+                <a href="mailto:atendimento@viaturas.com" class="btn-contact">Enviar Email</a>
+            </div>
+
+            <!-- Departamento de Vendas -->
+            <div>
+                <h3>Departamento de Vendas</h3>
+                <p><strong>Telefone:</strong> +258 8211 3333</p>
+                <p><strong>Email:</strong> vendas@viaturas.com</p>
+                <a href="mailto:vendas@viaturas.com" class="btn-contact">Enviar Email</a>
+            </div>
+            
+            <!-- Reclamações -->
+            <div>
+                <h3>Reclamações</h3>
+                <p><strong>Email:</strong> reclamacoes@viaturas.com</p>
+                <a href="mailto:reclamacoes@viaturas.com" class="btn-contact">Enviar Email</a>
+            </div>
+
+            <!-- João (Gestor de Frota) -->
+            <div>
+                <h3>João (Gestor de Frota)</h3>
+                <p><strong>Telefone:</strong> +258 8521 36558</p>
+                <p><strong>Email:</strong> joao@viaturas.com</p>
+                <a href="mailto:joao@viaturas.com" class="btn-contact">Enviar Email</a>
+            </div>
+
+            <!-- Outro Colega - Lucas (Suporte Técnico) -->
+            <div>
+                <h3>Lucas (Suporte Técnico)</h3>
+                <p><strong>Telefone:</strong> +258 8521 98765</p>
+                <p><strong>Email:</strong> lucas@viaturas.com</p>
+                <a href="mailto:lucas@viaturas.com" class="btn-contact">Enviar Email</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Aluguel de Viaturas | Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
