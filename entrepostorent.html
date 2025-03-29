@@ -665,82 +665,7 @@ background-color: #1a2332;
           /* Rodapé */
        /* Estilos do Rodapé */
 
-   .footer {
-            background-color: #1a2332; /* Azul escuro para contraste */
-            color: white;
-            padding: 40px 5%;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 30px;
-            width: 100%
-        }
-        
-    .footer i {
-color: white;
-    margin-left: 10px;
-    font-size: 16px;
-}
-        
-      .footer .logo {
-    display: flex;            /* Definir como flex para controle de alinhamento */
-    justify-content: flex-start; /* Alinhar o conteúdo à esquerda */
-    background-color: transparent;
-    padding: 0;               /* Remover qualquer padding */
-    margin: 0;                /* Remover qualquer margem */
-}
 
-/* Estilo para a imagem do logo */
-.footer .logo img {
-    height: 45px;             /* Definir a altura do logo */
-    width: auto;              /* Garantir que a largura seja proporcional à altura */
-    padding-left: 20px;               /* Remover qualquer padding */
-    margin-left: 10px;
-    max-width: 150px;         /* Definir o tamanho máximo para a largura do logo */
-}
-
-        .footer-logo-slogan {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 10px;
-}
-        .footer-column {
-            display: flex;
-            flex-direction: column;
-        }
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-        .footer-column p, .footer-column a {
-            font-size: 14px;
-            line-height: 1.6;
-            color: white;
-            text-decoration: none;
-        }
-        .footer-column a:hover {
-            text-decoration: underline;
-        }
-        .contact-info b {
-            color: #0088B5;
-        }
-        .social-icons {
-            display: flex;
-            gap: 10px;
-        }
-        .social-icons a {
-            color: white;
-            background: #0088B5;
-            padding: 10px;
-            border-radius: 50%;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-        .social-icons a:hover {
-            background: white;
-            color: #0088B5;
-        }
 
           /* Top Bar */
 .top-bar {
@@ -784,7 +709,137 @@ color: white;
             letter-spacing: 2px; /* Espaçamento entre as letras */
             margin: 30px 0; /* Margem superior e inferior */
         }
-        
+
+
+         /* Estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Wrapper para o footer */
+        .footer-wrapper {
+            width: 100%;
+            background-color: #1a2332; /* Azul escuro */
+            padding: 40px 5%;
+            box-sizing: border-box;
+        }
+
+        /* Estilos para o footer */
+        .footer {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            color: white;
+        }
+
+        .footer i {
+            color: white;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        .footer .logo {
+            display: flex;            
+            justify-content: flex-start; 
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer .logo img {
+            height: 45px;
+            width: auto;
+            padding-left: 20px;
+            margin-left: 10px;
+            max-width: 150px;
+        }
+
+        .footer-logo-slogan {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-column p, .footer-column a {
+            font-size: 14px;
+            line-height: 1.6;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info b {
+            color: #0088B5;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: white;
+            background: #0088B5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: #0088B5;
+        }
+
+        /* Responsividade para telas menores */
+        @media screen and (max-width: 768px) {
+            .footer {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-column h3 {
+                font-size: 16px;
+            }
+
+            .footer-column p, .footer-column a {
+                font-size: 13px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .footer {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-column h3 {
+                font-size: 15px;
+            }
+
+            .footer-column p, .footer-column a {
+                font-size: 12px;
+            }
+
+            .social-icons a {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1003,8 +1058,8 @@ color: white;
     </section>
 
 
-<!-- Rodapé -->
-<footer class="footer">
+<div class="footer-wrapper">
+        <footer class="footer">
         <div class="footer-column">
   <div class="logo">
         <img src="https://i.ibb.co/v6vF7bxB/MB-PARTS-LOGO-BRANCO-Prancheta-1-c-pia-5.png" alt="Logo">
@@ -1044,6 +1099,6 @@ color: white;
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
-
+ </div>
 </body>
 </html>
