@@ -712,18 +712,23 @@ color: white;
 
 
          /* Estilos gerais */
-        * {
+    * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Garantir que o body e html ocupem 100% da altura e largura */
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
         /* Wrapper para o footer */
         .footer-wrapper {
-            width: 100% !important;
+            width: 100%;
             background-color: #1a2332; /* Azul escuro */
-            padding: 0;
-            margin: 0;
+            padding: 40px 5%;
             box-sizing: border-box;
         }
 
@@ -733,7 +738,6 @@ color: white;
             grid-template-columns: repeat(5, 1fr);
             gap: 30px;
             color: white;
-            width: 100%;
         }
 
         .footer i {
@@ -756,13 +760,6 @@ color: white;
             padding-left: 20px;
             margin-left: 10px;
             max-width: 150px;
-        }
-
-        .footer-logo-slogan {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
         }
 
         .footer-column {
