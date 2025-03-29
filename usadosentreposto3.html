@@ -2206,7 +2206,7 @@ details p {
     </div>
 </footer>
 <script>
- document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
     let productCards = document.querySelectorAll('.product-card');
 
@@ -2256,6 +2256,7 @@ details p {
     let uncategorizedCategory = document.querySelector('.category[data-category="uncategorized"]');
     uncategorizedCategory.classList.add('selected');
 });
+
 
 </script>
   <script>
@@ -2442,6 +2443,8 @@ console.log('Menu found:', navMenu !== null);
         
 
 <script>
+let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
+
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const productCards = document.querySelectorAll(".product-card");
@@ -2450,7 +2453,7 @@ function filterProducts(searchTerm) {
     const footer = document.querySelector('footer');
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
     const brandSearch = document.querySelector('.brand-search');
-    const priceSearch = document.querySelector('.price-search'); // Substituído aqui
+    const priceSearch = document.querySelector('.price-search');
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
@@ -2460,14 +2463,26 @@ function filterProducts(searchTerm) {
     footer.style.visibility = 'visible';
     googleReviewsContainer.style.visibility = 'visible';
     brandSearch.style.visibility = 'visible';
-    priceSearch.style.visibility = 'visible'; // Substituído aqui
+    priceSearch.style.visibility = 'visible';
 
-    // Filtra os produtos
+    // Filtra os produtos com base na pesquisa
     productCards.forEach(card => {
+        const productCategory = card.getAttribute('data-category');
         const productName = card.querySelector("h3").textContent.toLowerCase();
-        if (productName.includes(search)) {
+
+        // Se a pesquisa não estiver vazia, filtra os produtos pela pesquisa
+        if (searchTerm !== '' && productName.includes(search)) {
             card.style.display = "block";
             resultsFound = true;
+        } 
+        // Caso contrário, se a pesquisa estiver vazia, filtra os produtos pela categoria
+        else if (searchTerm === '') {
+            if (currentCategory === "all" || currentCategory === productCategory || (currentCategory === "uncategorized" && !productCategory)) {
+                card.style.display = "block";
+                resultsFound = true;
+            } else {
+                card.style.display = "none";
+            }
         } else {
             card.style.display = "none";
         }
@@ -2484,7 +2499,7 @@ function filterProducts(searchTerm) {
         footer.style.visibility = 'hidden';
         googleReviewsContainer.style.visibility = 'hidden';
         brandSearch.style.visibility = 'hidden';
-        priceSearch.style.visibility = 'hidden'; // Substituído aqui
+        priceSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
         noResultsMessage.classList.remove('show'); // Remove o efeito
         setTimeout(() => {
@@ -2495,9 +2510,33 @@ function filterProducts(searchTerm) {
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
         brandSearch.style.visibility = 'visible';
-        priceSearch.style.visibility = 'visible'; // Substituído aqui
+        priceSearch.style.visibility = 'visible';
     }
 }
+
+// Função para atualizar a categoria selecionada
+function setCategory(category) {
+    currentCategory = category;
+    filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
+}
+
+// Exemplo de como chamar a função para alterar a categoria ao clicar:
+document.querySelectorAll('.category').forEach(item => {
+    item.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        setCategory(category);  // Atualiza a categoria ao clicar
+    });
+});
+
+// Função para lidar com a pesquisa
+const searchInput = document.querySelector('.search-input'); // Supondo que a barra de pesquisa tenha essa classe
+
+searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.trim();
+    filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
+});
+
+
 </script>
 
 <script>
