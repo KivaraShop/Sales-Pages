@@ -1333,7 +1333,19 @@ details p {
     .faq-column {
         width: 100%;
     }
+
+    /* Categoria Selecionada */
+.category.selected {
+    background-color: #00B4CC;  /* Cor que combina bem com o azul claro da sua marca (#0088B5) */
+    color: white;  /* Cor do texto para o item selecionado */
 }
+
+/* Efeito Hover */
+.category.selected:hover {
+    background-color: #007A8F;  /* Tom mais escuro para o hover, criando um bom contraste com o azul */
+    color: white;  /* Mantém a cor branca do texto no hover */
+}
+
     </style>
 </head>
 <body>
@@ -1541,21 +1553,21 @@ details p {
         <!-- Busca por Marca -->
         <div class="brand-search">
             <h3>Busca por Marca</h3>
-            <ul>
-                 <li><img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu"> Isuzu </li>
-                <li><img src="https://i.ibb.co/mVKg6sJD/Peugeot-logo-2010-1920x1080.png" alt="Isuzu"> Peugeot</li>
-                <li><img src="https://i.ibb.co/Rp6xsbBK/toyota-logo-2020-europe-640.png" alt="Toyota"> Toyota</li>
-                <li><img src="https://i.ibb.co/HT0ppYzb/Proton-logo-2016-2048x2048.png" alt="Honda"> Proton</li>
-                <li><img src="https://i.ibb.co/GvHfjQrx/nissan-logo-2020-black-show.png" alt="Nissan"> Nissan</li>
-                <li><img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda"> Mazda</li>
-                <li><img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mitsubishi"> Mercedes</li>
-                <li><img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Daihatsu"> Audi</li>
-                <li><img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Subaru"> Hyundai</li>
-                   <li><img src="https://i.ibb.co/QFGxfnbk/ford-logo-2017-640.png" alt="Subaru"> Ford</li>
-                   <li><img src="https://i.ibb.co/C5dmDsWR/bmw-logo-2020-gray.png" alt="Subaru"> BMW</li>
-                   <li><img src="https://i.ibb.co/C3GwMKQj/Volvo-logo-2014-1920x1080.png" alt="Subaru"> Volvo</li>
-                <li><img src="https://i.ibb.co/YTBmjcVm/jeep-logo-1993-640.png" alt="Subaru"> Jeep</li>
-            </ul>
+           <ul>
+    <li class="category" data-category="isuzu"><img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu"> Isuzu </li>
+    <li class="category" data-category="peugeot"><img src="https://i.ibb.co/mVKg6sJD/Peugeot-logo-2010-1920x1080.png" alt="Peugeot"> Peugeot</li>
+    <li class="category" data-category="toyota"><img src="https://i.ibb.co/Rp6xsbBK/toyota-logo-2020-europe-640.png" alt="Toyota"> Toyota</li>
+    <li class="category" data-category="proton"><img src="https://i.ibb.co/HT0ppYzb/Proton-logo-2016-2048x2048.png" alt="Proton"> Proton</li>
+    <li class="category" data-category="nissan"><img src="https://i.ibb.co/GvHfjQrx/nissan-logo-2020-black-show.png" alt="Nissan"> Nissan</li>
+    <li class="category" data-category="mazda"><img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda"> Mazda</li>
+    <li class="category" data-category="mercedes"><img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mercedes"> Mercedes</li>
+    <li class="category" data-category="audi"><img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Audi"> Audi</li>
+    <li class="category" data-category="hyundai"><img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Hyundai"> Hyundai</li>
+    <li class="category" data-category="ford"><img src="https://i.ibb.co/QFGxfnbk/ford-logo-2017-640.png" alt="Ford"> Ford</li>
+    <li class="category" data-category="bmw"><img src="https://i.ibb.co/C5dmDsWR/bmw-logo-2020-gray.png" alt="BMW"> BMW</li>
+    <li class="category" data-category="volvo"><img src="https://i.ibb.co/C3GwMKQj/Volvo-logo-2014-1920x1080.png" alt="Volvo"> Volvo</li>
+    <li class="category" data-category="jeep"><img src="https://i.ibb.co/YTBmjcVm/jeep-logo-1993-640.png" alt="Jeep"> Jeep</li>
+</ul>
         </div>
 
                <!-- Busca por PREÇO-->
@@ -1808,6 +1820,93 @@ details p {
             </div>
 
             <!-- Mais produtos podem ser adicionados aqui -->
+
+
+
+        
+            <!-- ISUZU -->
+            <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="isuzu">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+              <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 1">
+                <h3>Audi Q7, 2017</h3>
+                <p class="price">1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="isuzu">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price"> 1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+        
+            <!-- Mais produtos podem ser adicionados aqui -->
+
         </div>
     </div>
 
@@ -2105,7 +2204,59 @@ details p {
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let categories = document.querySelectorAll('.category');
+    let productCards = document.querySelectorAll('.product-card');
 
+    // Função para filtrar os produtos
+    function filterProducts(category) {
+        productCards.forEach(card => {
+            if (category === "all") {
+                // Exibe todos os produtos, incluindo os não categorizados
+                card.style.display = "block";
+            } else if (category === "uncategorized") {
+                // Exibe apenas os produtos não categorizados
+                if (!card.hasAttribute('data-category')) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            } else {
+                // Exibe produtos de acordo com a categoria
+                if (card.getAttribute('data-category') === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        });
+    }
+
+    // Adiciona o evento de clique para cada categoria
+    categories.forEach(item => {
+        item.addEventListener('click', function () {
+            // Remove a classe 'selected' de todas as categorias
+            categories.forEach(cat => cat.classList.remove('selected'));
+
+            // Adiciona a classe 'selected' à categoria clicada
+            this.classList.add('selected');
+
+            // Filtra os produtos com base na categoria clicada
+            let category = this.getAttribute('data-category');
+            filterProducts(category);
+        });
+    });
+
+    // Exibe os produtos não categorizados por padrão
+    filterProducts("uncategorized");
+
+    // Define a categoria "Não Categorizados" como selecionada por padrão
+    let uncategorizedCategory = document.querySelector('.category[data-category="uncategorized"]');
+    uncategorizedCategory.classList.add('selected');
+});
+
+</script>
   <script>
         const faqItems = document.querySelectorAll('.faq-item');
 
