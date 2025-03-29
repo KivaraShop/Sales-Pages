@@ -1337,15 +1337,49 @@ details p {
     font-size: 14px;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    .faq-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .faq-column {
-        width: 100%;
-    }
+
+
+
+    #loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo do Logo */
+#logo {
+    max-width: 135px; /* ajuste conforme necessário */
+    margin-bottom: 30px; /* espaço entre o logo e o spinner */
+}
+
+#spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #d89c02;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-overlay p {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a004e;
+}
 
     </style>
 </head>
@@ -1664,7 +1698,14 @@ details p {
                     Falar com o Vendedor
                 </button>
             </div>
-
+            
+<div id="loading-overlay" style="display: none;">
+    <!-- Logo do restaurante -->
+    <img id="logo" src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="Logo do Restaurante">
+    <!-- Spinner -->
+    <div id="spinner"></div>
+    <p>Um momento !</p>
+</div>
             <div class="product-card">
                <div class="product-labels">
                     <span class="label organic">Usado</span>
@@ -2210,6 +2251,7 @@ details p {
   document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
     let productCards = document.querySelectorAll('.product-card');
+    let loadingOverlay = document.getElementById('loading-overlay'); // Spinner e Logo
 
     // Função para filtrar os produtos
     function filterProducts(category) {
@@ -2235,6 +2277,14 @@ details p {
         });
     }
 
+    // Função para mostrar o spinner e o overlay por 3 segundos
+    function showSpinner() {
+        loadingOverlay.style.display = 'flex'; // Exibe o overlay e o spinner
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none'; // Oculta o overlay e o spinner após 3 segundos
+        }, 3000); // 3000ms = 3 segundos
+    }
+
     // Adiciona o evento de clique para cada categoria
     categories.forEach(item => {
         item.addEventListener('click', function () {
@@ -2244,9 +2294,14 @@ details p {
             // Adiciona a classe 'selected' à categoria clicada
             this.classList.add('selected');
 
+            // Exibe o spinner antes de filtrar os produtos
+            showSpinner();
+
             // Filtra os produtos com base na categoria clicada
             let category = this.getAttribute('data-category');
-            filterProducts(category);
+            setTimeout(() => {
+                filterProducts(category);
+            }, 3000); // Aguarda 3 segundos para filtrar os produtos
         });
     });
 
