@@ -4,128 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contatos - Aluguel de Viaturas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+        /* Reset de margin e padding */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        
+
+        /* Cor de fundo da página */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Cabeçalho com fundo degradê */
         header {
-            background-color: #f8a300;
-            padding: 20px;
-            text-align: center;
+            background: linear-gradient(135deg, #f8a300, #e67800);
             color: white;
+            text-align: center;
+            padding: 60px 20px;
         }
-        
+
         header h1 {
-            margin: 0;
-            font-size: 2.5em;
+            font-size: 3em;
+            font-weight: 500;
+            margin-bottom: 10px;
         }
-        
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* Contêiner de contato */
         .container {
-            width: 80%;
-            margin: 30px auto;
+            width: 85%;
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
-        .contact-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .contact-info div {
-            background-color: #f8f8f8;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contact-info h3 {
+
+        /* Título das seções de contato */
+        .contact-section h2 {
+            font-size: 2.2em;
             color: #f8a300;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
         }
-        
-        .contact-info p {
+
+        /* Layout de Grid para contatos */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 10px;
+        }
+
+        .contact-box {
+            background-color: #f8f8f8;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-box h3 {
+            font-size: 1.8em;
+            color: #f8a300;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
             font-size: 1.1em;
+            margin-bottom: 20px;
         }
-        
-        .btn-contact {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 20px;
+
+        .contact-box .btn-contact {
             background-color: #f8a300;
             color: white;
-            font-size: 1.2em;
+            padding: 12px 25px;
+            font-size: 1.1em;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        
-        .btn-contact:hover {
-            background-color: #d88c00;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #f8a300;
-            color: white;
+
+        .contact-box .btn-contact:hover {
+            background-color: #e67800;
         }
 
+        footer {
+            text-align: center;
+            background-color: #f8a300;
+            padding: 20px;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Contatos - Aluguel de Viaturas</h1>
+        <p>Entre em contato conosco para mais informações</p>
     </header>
-    
+
     <div class="container">
-        <section class="contact-info">
-            <!-- Atendimento ao Cliente -->
-            <div>
-                <h3>Atendimento ao Cliente</h3>
-                <p><strong>Telefone:</strong> +258 8211 2222</p>
-                <p><strong>Email:</strong> atendimento@viaturas.com</p>
-                <a href="mailto:atendimento@viaturas.com" class="btn-contact">Enviar Email</a>
-            </div>
+        <section class="contact-section">
+            <h2>Nosso Atendimento</h2>
+            <div class="contact-grid">
+                <!-- Atendimento ao Cliente -->
+                <div class="contact-box">
+                    <h3>Atendimento ao Cliente</h3>
+                    <p><strong>Telefone:</strong> +258 8211 2222</p>
+                    <p><strong>Email:</strong> <a href="mailto:atendimento@viaturas.com">atendimento@viaturas.com</a></p>
+                    <a href="mailto:atendimento@viaturas.com" class="btn-contact">Enviar Email</a>
+                </div>
 
-            <!-- Departamento de Vendas -->
-            <div>
-                <h3>Departamento de Vendas</h3>
-                <p><strong>Telefone:</strong> +258 8211 3333</p>
-                <p><strong>Email:</strong> vendas@viaturas.com</p>
-                <a href="mailto:vendas@viaturas.com" class="btn-contact">Enviar Email</a>
-            </div>
-            
-            <!-- Reclamações -->
-            <div>
-                <h3>Reclamações</h3>
-                <p><strong>Email:</strong> reclamacoes@viaturas.com</p>
-                <a href="mailto:reclamacoes@viaturas.com" class="btn-contact">Enviar Email</a>
-            </div>
+                <!-- Departamento de Vendas -->
+                <div class="contact-box">
+                    <h3>Departamento de Vendas</h3>
+                    <p><strong>Telefone:</strong> +258 8211 3333</p>
+                    <p><strong>Email:</strong> <a href="mailto:vendas@viaturas.com">vendas@viaturas.com</a></p>
+                    <a href="mailto:vendas@viaturas.com" class="btn-contact">Enviar Email</a>
+                </div>
 
-            <!-- João (Gestor de Frota) -->
-            <div>
-                <h3>João (Gestor de Frota)</h3>
-                <p><strong>Telefone:</strong> +258 8521 36558</p>
-                <p><strong>Email:</strong> joao@viaturas.com</p>
-                <a href="mailto:joao@viaturas.com" class="btn-contact">Enviar Email</a>
-            </div>
+                <!-- Reclamações -->
+                <div class="contact-box">
+                    <h3>Reclamações</h3>
+                    <p><strong>Email:</strong> <a href="mailto:reclamacoes@viaturas.com">reclamacoes@viaturas.com</a></p>
+                    <a href="mailto:reclamacoes@viaturas.com" class="btn-contact">Enviar Email</a>
+                </div>
 
-            <!-- Outro Colega - Lucas (Suporte Técnico) -->
-            <div>
-                <h3>Lucas (Suporte Técnico)</h3>
-                <p><strong>Telefone:</strong> +258 8521 98765</p>
-                <p><strong>Email:</strong> lucas@viaturas.com</p>
-                <a href="mailto:lucas@viaturas.com" class="btn-contact">Enviar Email</a>
+                <!-- João (Gestor de Frota) -->
+                <div class="contact-box">
+                    <h3>João (Gestor de Frota)</h3>
+                    <p><strong>Telefone:</strong> +258 8521 36558</p>
+                    <p><strong>Email:</strong> <a href="mailto:joao@viaturas.com">joao@viaturas.com</a></p>
+                    <a href="mailto:joao@viaturas.com" class="btn-contact">Enviar Email</a>
+                </div>
+
+                <!-- Lucas (Suporte Técnico) -->
+                <div class="contact-box">
+                    <h3>Lucas (Suporte Técnico)</h3>
+                    <p><strong>Telefone:</strong> +258 8521 98765</p>
+                    <p><strong>Email:</strong> <a href="mailto:lucas@viaturas.com">lucas@viaturas.com</a></p>
+                    <a href="mailto:lucas@viaturas.com" class="btn-contact">Enviar Email</a>
+                </div>
             </div>
         </section>
     </div>
