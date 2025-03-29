@@ -75,7 +75,40 @@ body footer p {
   margin: 0; /* Remove margens extras que podem interferir */
   padding: 0; /* Remove o padding para evitar espaçamento adicional */
 }
+nav ul {
+    list-style: none;
+    display: flex;
+}
 
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+.contact-info {
+    text-align: right;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 12px;
+    color: #1a2332;
+}
+
+.contact-info strong {
+    font-size: 16px;
+    color: white;
+}
         .hero {
             position: relative;
             width: 100%;
@@ -766,14 +799,25 @@ color: white;
             <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
-     <header class="header">
-             <a href="#" class="logo">
-            <img src="https://i.ibb.co/v4NGKqPR/Logopit-1743148031634.png" alt="Shabe motors" border="0" style="max-width: 150px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+ <!-- Navigation Bar -->
+    <header>
+         <a href="#" class="logo">
+            <img src="https://i.ibb.co/v4NGKqPR/Logopit-1743148031634.png" alt="Shabe motors" border="0" style="max-width: 400px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
         </a>
         <nav>
-            <a href="#fleet">FROTA</a>
-            <a href="#contact">CONTACTO</a>
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">ESTOQUE</a></li>
+                <li><a href="#">SERVIÇOS</a></li>
+                <li><a href="#">MEGAMENU</a></li>
+                <li><a href="#">NOSSA EQUIPA</a></li>
+                <li><a href="#">CONTACTO</a></li>
+            </ul>
         </nav>
+        <div class="contact-info">
+            <span>TELEFONE</span>
+       <div class="logo">+258 852136558</div>
+        </div>
     </header>
 <section class="hero">
     <div class="overlay"></div>
