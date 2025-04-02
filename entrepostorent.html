@@ -806,6 +806,93 @@ color: white;
             background: white;
             color: #0088B5 !important;
         }
+
+
+        /* Flexbox para o container que envolve ambos */
+.parent {
+  display: flex !important; /* Faz com que os elementos filhos fiquem lado a lado */
+  justify-content: space-between !important; /* Espaça os filhos igualmente entre os extremos */
+  align-items: center !important; /* Alinha verticalmente os elementos */
+  width: 100% !important; /* Garantir que o container ocupe toda a largura */
+  padding-bottom: 20px !important; /* Remover qualquer padding extra */
+  margin: 0 !important; /* Remover qualquer margem extra */
+z-index: 900;
+}
+/* A barra de pesquisa à esquerda */
+.search-bar {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important; /* Remove qualquer margem extra */
+  padding: 0 !important; /* Remove qualquer padding extra */
+}
+        /* Os botões de navegação à direita */
+.navigation-buttons {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important; /* Remove qualquer margem extra */
+ padding-left: 20px;/* Remove qualquer padding extra */
+    z-index: 997 !important;
+    position: relative; 
+}
+
+#search-input {
+  padding: 10px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px 0 0 4px !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+  height: 40px !important; /* Altura fixa */
+  box-sizing: border-box !important; /* Garante que padding não aumente a altura total */
+}
+
+#search-btn {
+  background-color: #003B50 !important;
+  border: none !important;
+  padding: 10px 15px !important;
+  cursor: pointer !important;
+  border-radius: 0 4px 4px 0 !important;
+  color: white !important;
+  font-size: 18px !important;
+  height: 40px !important; /* Mesma altura do input */
+  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px !important; /* Espaço à direita */
+}
+
+
+.navigation-buttons a {
+  background: #0288d1 !important; /* Azul claro */
+  color: white !important;
+  font-size: 16px !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  border-radius: 20px !important;
+  margin: 0 10px !important; /* Adiciona algum espaço entre os links */
+  display: inline-block !important;
+  transition: background 0.3s !important;
+}
+
+.navigation-buttons a:hover {
+  background: #012063 !important; /* Tom mais escuro de azul */
+}
+
+
+#no-results-message {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateX(50px); /* Começa deslocado para a direita */
+    transition: opacity 1.1s ease-out, transform 1.4s ease-out;
+}
+
+#no-results-message.show {
+    opacity: 1;
+    transform: translateX(0); /* Move suavemente para a posição original */
+}
+
     </style>
 </head>
 <body>
@@ -939,6 +1026,25 @@ color: white;
     </section>
     <div class="container">
         <h1 style="text-align: center; color: #f8a300; margin-bottom: 30px;">Nossa Frota</h1>
+      <div class="parent">
+ <div class="navigation-buttons">
+    <a href="novos.html">Casamentos</a>
+    <a href="usados.html" id="usadosButton">Laser</a>
+    <a href="usados.html" id="usadosButton">Negócios</a>
+  </div>
+     
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+</div>
         <div class="grid">
             <div class="card">
                 <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/6pznitjn-yrwt-kwja-h7aw-ilwaojtaus2o/vehicle-class" alt="Mercedes Benz S580">
