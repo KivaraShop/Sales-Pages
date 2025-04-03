@@ -1945,7 +1945,6 @@ z-index: 900;
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
-
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
@@ -2293,5 +2292,89 @@ searchInput.addEventListener('input', function() {
 
 
 </script>
+
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
+
+     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
 </body>
 </html>
