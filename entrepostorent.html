@@ -984,6 +984,60 @@ z-index: 900;
     align-items: flex-start;
     gap: 20px;
 }
+
+        /* Container de Rótulos */
+.product-labels {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+/* Estilo Base dos Rótulos */
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #34495e; /* Rótulos com cor de fundo sóbria */
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo Específico para Cada Rótulo */
+.label.spicy {
+    background-color: #e74c3c; /* Vermelho mais elegante */
+}
+
+.label.organic {
+    background-color: #2ecc71; /* Verde sofisticado */
+}
+
+.label.highlight {
+    background-color: #f39c12; /* Dourado, mas não exagerado */
+}
+
+.label.sugar-free {
+    background-color: #8e44ad; /* Roxo sutil */
+}
+
+.label.loved {
+    background-color: #ff66b2; /* Rosa suave e elegante */
+}
+
+.label.sold {
+    background-color: #e74c3c; /* Vermelho mais vibrante para "vendido" */
+}
+
+/* Ajuste de Posição no Card */
+.product-card {
+    position: relative;
+}
+
     </style>
 </head>
 <body>
