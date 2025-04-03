@@ -1969,7 +1969,179 @@ z-index: 900;
         });
     </script>
  <script>
-    <script>
+// Observador para as marcas
+const brandObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // Atraso para cada marca baseado no seu índice
+            setTimeout(() => {
+                // Adiciona a classe 'visible' após o delay para animar
+                entry.target.classList.add('visible');
+            }, index * 300); // 300ms de atraso entre as marcas
+        } else {
+            // Se sair da tela, remove a classe 'visible'
+            entry.target.classList.remove('visible');
+        }
+    });
+}, {
+    threshold: 0.25  // A animação começa quando 25% da marca estiver visível
+});
+
+// Seleciona todas as marcas na lista e começa a observá-las
+const brands = document.querySelectorAll('.brand-search li');
+brands.forEach(brand => brandObserver.observe(brand));
+
+// Observador para o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Criar observador para grid de produtos
+const gridObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Adiciona a classe 'show' apenas para o grid de produtos
+            entry.target.classList.add('show');
+        } else {
+            // Remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 25% do grid estiver visível
+
+// Inicia a observação para o grid de produtos
+gridObserver.observe(productGrid);
+     </script>
+       <script>
+        // Seleciona o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Cria o observador para detectar quando o grid entra ou sai da tela
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
+            entry.target.classList.add('show');
+        } else {
+            // Se o grid sai da tela, remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
+
+// Inicia a observação
+observer.observe(productGrid);
+            </script>
+     <script>
+function mostrarParceiros() {
+  // Seleciona todos os parceiros que têm a classe 'hidden'
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
+
+  // Itera por cada parceiro oculto e remove a classe 'hidden' para exibi-los
+  parceirosOcultos.forEach(parceiro => {
+    parceiro.classList.remove('hidden');
+  });
+
+  // Esconde o botão "Ver mais" após exibir os parceiros
+  const verMais = document.getElementById('ver-mais');
+  verMais.style.display = 'none'; // Torna o botão invisível após o clique
+}
+  </script>
+      <script>
+let currentIndex = 0;
+const reviewsContainer = document.querySelector('.reviews');
+const reviewCards = document.querySelectorAll('.review-card');
+const totalReviews = reviewCards.length;
+const cardWidth = reviewCards[0].offsetWidth + 15; // Largura do card + espaçamento (margin-right)
+const containerWidth = reviewsContainer.offsetWidth; // Largura do container
+
+function scrollReviews() {
+  // A largura total dos cards no container
+  const totalScrollWidth = totalReviews * cardWidth;
+
+  // Verifica se a posição do scroll atingiu o ponto em que o último card estará completamente visível
+  const currentTransform = Math.abs(parseInt(reviewsContainer.style.transform.replace('translateX(', '').replace('px)', '')) || 0);
+  
+  if (currentTransform >= totalScrollWidth - containerWidth) {
+    currentIndex = 0;  // Reinicia quando o último card estiver completamente visível
+  } else {
+    currentIndex++;  // Avança para o próximo card
+  }
+
+  // Aplica a transformação para mover os cards
+  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+}
+
+// Definir um intervalo para rolar automaticamente
+setInterval(scrollReviews, 3000);  // A cada 3 segundos
+
+</script>
+    
+  <script>
+// Array de imagens para o slider
+const images = [
+    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg',
+    'https://cdn.whichcar.com.au/assets/w_1536/157e1203/2024-toyota-hybrid-lineup-01.jpg',
+    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg'
+];
+
+let currentImageIndex = 0;
+const heroSection = document.querySelector('.hero-section');
+
+// Função para trocar a imagem do background com fade
+function changeImage() {
+    heroSection.classList.add('fade'); // Ativa a transição de fade
+    setTimeout(() => {
+        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
+        heroSection.classList.remove('fade'); // Remove o fade após a troca da imagem
+        currentImageIndex = (currentImageIndex + 1) % images.length; // Incrementa o índice, voltando para 0 se ultrapassar o número de imagens
+    }, 1000); // Tempo de duração da transição
+}
+
+// Troca a imagem automaticamente a cada 5 segundos
+setInterval(changeImage, 5000);
+     </script>
+    </script>
+
+<!-- Inclua a biblioteca Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+
+  <script>
+        // Seleciona todos os itens principais de categoria
+        const categories = document.querySelectorAll('.category');
+
+        categories.forEach(category => {
+            category.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita redirecionamento
+
+                // Seleciona o submenu relacionado
+                const submenu = this.nextElementSibling;
+
+                // Alterna a exibição do submenu
+                if (submenu.style.display === 'flex') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+
+</script>
+        
+
+<script>
 let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
 
 function filterProducts(searchTerm) {
