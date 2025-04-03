@@ -233,68 +233,83 @@ nav ul li a:hover {
             max-width: 1400px;
             margin: 20px auto;
         }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-             gap: 20px;
+      .product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
     margin-bottom: 45px;
     flex-grow: 1;
     opacity: 0; /* Inicialmente invisível */
     transform: translateX(-50px); /* Começa deslocado para a esquerda */
     transition: opacity 1s ease-out, transform 1.5s ease-out; /* Animação */
-            z-index: 3;
-        }
+}
 
-        /* Classe ativada quando o grid entra na tela */
+/* Classe ativada quando o grid entra na tela */
 .product-grid.show {
     opacity: 1;
     transform: translateX(0); /* Move para a posição original */
 }
 
-        .product-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-      .product-card img {
-            width: 400px;       /* Define a largura fixa para a imagem */
-    height: 400px;      /* Define a altura fixa para manter a proporção quadrada */
-    object-fit: contain; 
-            border-radius: 5px;
-            margin-bottom: 15px;
-            align-self: center;
-            border-radius: 10px;
-        }
-        .product-card h3 {
-            font-size: 22px;
-            margin: 10px 0 5px;
-            text-align: left;
-        }
-        .product-card p {
-            font-size: 16px;
-            margin: 5px 0;
-            text-align: left;
-        }
-       .product-card .icons {
-            color: #0088B5;
-            margin-top: 10px;
-            text-align: left;
-        }
-    .product-card button {
-            background:  #f8a300;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            align-self: center;
-        }
+
+
+.product-card {
+    background-color: #FFFF; /* Branco */
+    border: 1px solid #dddfe1; /* Borda sutil e sofisticada */
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Efeito de destaque mais suave */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    color: #012063; /* Azul escuro da marca */
+    margin: 10px 0;
+}
+
+.product-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: black; /* Azul claro da marca para preço */
+    margin: 10px 0;
+}
+
+.more-info {
+    margin-bottom: 10px;
+}
+
+.more-info a {
+    text-decoration: none;
+    color: #2AA7E7; /* Azul claro da marca para links */
+    font-size: 14px;
+}
+        
+button {
+    background-color: #2AA7E7; /* Azul claro da marca */
+    border: none;
+    color: #FFFF; /* Cor branca para o texto do botão */
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #012063; /* Azul escuro da marca para efeito hover */
+}
 
         .rental-section {
             display: flex;
@@ -1103,9 +1118,8 @@ z-index: 900;
         <h1 style="text-align: center; color: #f8a300; margin-bottom: 30px;">Nossa Frota</h1>
       <div class="parent">
  <div class="navigation-buttons">
-   <a class="category" data-category="casamentos">Casamentos</a>
-     <a class="category" data-category="laser">Laser</a>
-    <a class="category" data-category="negocios">Negócios</a>
+    <a href="novos.html">Novos</a>
+    <a href="usados.html" id="usadosButton">Usados</a>
   </div>
      
   <div class="search-bar">
@@ -1120,32 +1134,97 @@ z-index: 900;
     </button>
   </div>
 </div>
-        <div class="product-grid">
-            <div class="product-card" data-category="laser">
-                <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/6pznitjn-yrwt-kwja-h7aw-ilwaojtaus2o/vehicle-class" alt="Mercedes Benz S580">
-                <h3>Mercedes Benz S580</h3>
-                <p><strong>Preço:</strong> 50.000 MZN/dia</p>
-                <p class="icons"><i class="fa-solid fa-car"></i> Automático<br><i class="fa-solid fa-fan"></i> Ar-condicionado<br><i class="fa-solid fa-door-open"></i> 4 Portas</p>
-                <button>Reservar Agora</button>
-            </div>
-            <div class="product-card" data-category="casamentos">
-                <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/gsmse0is-bdar-iftt-jrh3-ntjm0uqbkipp/vehicle-class" alt="Audi A3">
-                <h3>Audi A3</h3>
-                <p><strong>Preço:</strong> 10.000 MZN/dia</p>
-                <p class="icons"><i class="fa-solid fa-car"></i> Automático<br><i class="fa-solid fa-fan"></i> Ar-condicionado<br><i class="fa-solid fa-door-open"></i> 4 Portas</p>
-                <button>Reservar Agora</button>
-            </div>
+        
+<!-- Área de Resultados -->
+<div id="search-results"></div>
+    
+<!-- Mensagem de "Sem Resultados" -->
+<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
+  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
+</div>
+  </div>
+       <div class="product-grid">
+            <!-- Exemplo de produto -->
             <div class="product-card">
-                <img src="https://pngimg.com/uploads/mazda/mazda_PNG21.png" alt="Chevrolet Corvette">
-                <h3>Chevrolet Corvette</h3>
-                <p><strong>Preço:</strong> 35.000 MZN/dia</p>
-                <p class="icons"><i class="fa-solid fa-car"></i> Manual<br><i class="fa-solid fa-fan"></i> Ar-condicionado<br><i class="fa-solid fa-door-open"></i> 2 Portas</p>
-                <button>Reservar Agora</button>
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/k0tz9yQ/IMG-20250123-092757.jpg/300" alt="Carro 1">
+                <h3>Audi Q5, 2018</h3>
+                <p class="price">398,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
             </div>
 
+            <div class="product-card">
+               <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg/300" alt="Carro 2">
+                <h3>Proton X70</h3>
+                <p class="price">580,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="protonentreposto.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">385,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
 
+            <div class="product-card">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">511,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
 
-                        
+              <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg/300" alt="Carro 1">
+                <h3>Audi Q7, 2017</h3>
+                <p class="price">490,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+            
 <div id="loading-overlay" style="display: none;">
     <!-- Logo do restaurante -->
     <img id="logo" src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png/160x80" alt="Logo do Restaurante">
@@ -1153,33 +1232,583 @@ z-index: 900;
     <div id="spinner"></div>
     <p>Um momento !</p>
 </div>
+            <div class="product-card">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+           <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+              <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+                <h3>Audi A3 2016 2016</h3>
+                <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+             <div class="product-card">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg/300" alt="Carro 1">
+                <h3>BMW 320i 2015</h3>
+                <p class="price">1.150.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card">
+           <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://i.ibb.co/d4x5KjTj/IMG-20250303-001206.jpg/300" alt="Carro 2">
+                <h3>Isuzu, D-max</h3>
+                <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <!-- Mais produtos podem ser adicionados aqui -->
+
+
+
+        
+            <!-- ISUZU -->
+            
+            <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.y49DvNNnTzryAGfFKZhdZwHaE9?rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Isuzu Dmax</h3>
+           <p class="price">680,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="isuzu">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.I5edLXTG8oYhnZ_FjCBtHgHaFj?rs=1&pid=ImgDetMain/300" alt="Carro 2">
+                <h3>Isuzu MU-X</h3>
+                <p class="price">1.200.000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+              <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/R.18f8d4332aa035876848a9c9d92eaab1?rik=JosBTEe%2bGT%2fG0A&riu=http%3a%2f%2fimg.scgpix.com%2flistimg%2fimg1_0715%2f07%2fimg_G4aAiY2SXs.jpg&ehk=pUw%2fWMg28mS3Gb1iE%2fH0ZRFv5Jc26k6gztBwQTEeTpc%3d&risl=&pid=ImgRaw&r=0/300" alt="Carro 1">
+                <h3>Isuzu Trooper </h3>
+                <p class="price">410,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="isuzu">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://cdn.dealrimages.com/WP/RL/BC/Q60IXETCYJADAB.jpg?h=1000/300" alt="Carro 2">
+                <h3>Isuzu i-Series</h3>
+                <p class="price">510,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.NH396ih-BpWa-Q_yWuYspAAAAA?rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Isuzu F-Series</h3>
+           <p class="price"> 360,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+             <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://static.wixstatic.com/media/6a8f80_ec4ea90ea18844e3954cd6fa92fe4725~mv2.jpg/v1/fill/w_475,h_356,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/6a8f80_ec4ea90ea18844e3954cd6fa92fe4725~mv2.jpg/300" alt="Carro 1">
+                <h3>Isuzu Giga</h3>
+           <p class="price"> 520,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.A3rjmRYTvsCwDfvvy-M3aAHaFj?w=800&h=600&rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Isuzu Elf</h3>
+           <p class="price"> 430,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                     <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://eu.amcdn.co.za/trucks/isuzu-truck-dropside-npr-400-amt-dropside-2019-id-63663092-type-main.jpg?width=800/300" alt="Carro 1">
+                <h3>Isuzu N-Series</h3>
+           <p class="price"> 590,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                         <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.f0Et802dpi0Z1-z1MCcXHgHaFj?w=800&h=600&rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Isuzu KB</h3>
+           <p class="price"> 380,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                       <div class="product-card" data-category="isuzu">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.B-QO9EeT9_kjrfFYgqPqrQAAAA?rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Isuzu Crosswind</h3>
+           <p class="price"> 380,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+            <!-- Mais produtos podem ser adicionados aqui -->
+
+
+
+
+
+
+                   <!-- MAZDA -->
+            <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.2tFAM_-OUM_os2xJgzS4VgHaFj?w=1440&h=1080&rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>2012 Mazda Demio</h3>
+           <p class="price">300,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="mazda">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.KADN6V4iOgyFnUViws7XjwHaFj?w=780&h=585&rs=1&pid=ImgDetMain/300" alt="Carro 2">
+                <h3>Mazda CX-3</h3>
+                <p class="price">480,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+              <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.FKtFmgNdJN20V2mo8ww79wHaFj?rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Mazda CX-5 </h3>
+                <p class="price">460,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="mazda">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.Gvjw6F8APKqXNfcrSLTQLAHaEz?w=1024&h=665&rs=1&pid=ImgDetMain/300" alt="Carro 2">
+                <h3>Mazda CX-9</h3>
+                <p class="price">530,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.FIKv64RvosZbjj9tyc2SEQHaE7?rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Mazda CX-50</h3>
+           <p class="price"> 580,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+             <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.WarrLBaW60KR3YUiwJvnlQHaE3?w=820&h=539&rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Mazda CX-70</h3>
+           <p class="price"> 535,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.M9yFRL9a1bYDBV4EIdB41gHaFj?w=1008&h=756&rs=1&pid=ImgDetMain/300" alt="Carro 1">
+                <h3>Mazda 2 /Demio</h3>
+           <p class="price"> 300,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                     <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/R.02d60508c04c050f3014bf3ad5c47d0b?rik=3dOCQqaeDW5L9g&riu=http%3a%2f%2fwww.listadecarros.com%2fwp-content%2fuploads%2f2018%2f05%2fMazda5-2018-4.jpg&ehk=yZeoD03KOA4ERUqBpTqDxNW1PqJ5lbgrvl30MiqrUEk%3d&risl=&pid=ImgRaw&r=0/300" alt="Carro 1">
+                <h3>Mazda Serie 5</h3>
+           <p class="price"> 350,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                         <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img class="imagem-quadrada" src="https://res1.grays.com/handlers/imagehandler.ashx?t=sh&id=34063858&s=d&index=0&ts=637792323620000000/300" alt="Imagem quadrada" >
+                <h3>Mazda Tribute</h3>
+           <p class="price"> 410,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                       <div class="product-card" data-category="mazda">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://th.bing.com/th/id/R.e3fb527c8daa5db37920193e59606801?rik=YnAZw3iHGBw7Uw&riu=http%3a%2f%2fguatechivas.com%2fwp-content%2fuploads%2f2020%2f09%2fMazda-BT50-Pro-Modelo-2018-Pick-up.xxoh812bae346b23167a54fc37480a2e72d6oe5F8F918F.jpeg&ehk=wbVIw42v824Dh9RG5D9V%2brYSED8mFHR9p6UMZ6aWPIc%3d&risl=&pid=ImgRaw&r=0/300" alt="Carro 1">
+                <h3>Mazda BT-50</h3>
+           <p class="price"> 600,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+
 
 
             
-            <div class="product-card">
-                <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/6pznitjn-yrwt-kwja-h7aw-ilwaojtaus2o/vehicle-class" alt="Mercedes Benz S580">
-                <h2>Mercedes Benz S580</h2>
-                <p><strong>Preço:</strong> 50.000 MZN/dia</p>
-                <p class="icons"><i class="fa-solid fa-car"></i> Automático<br><i class="fa-solid fa-fan"></i> Ar-condicionado<br><i class="fa-solid fa-door-open"></i> 4 Portas</p>
-                <button>Reservar Agora</button>
-            </div>
-            <div class="product-card">
-                <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/gsmse0is-bdar-iftt-jrh3-ntjm0uqbkipp/vehicle-class" alt="Audi A3">
-                <h3>Audi A3</h3>
-                <p><strong>Preço:</strong> 10.000 MZN/dia</p>
-                <p class="icons"><i class="fa-solid fa-car"></i> Automático<br><i class="fa-solid fa-fan"></i> Ar-condicionado<br><i class="fa-solid fa-door-open"></i> 4 Portas</p>
-                <button>Reservar Agora</button>
-            </div>
-            <div class="product-card">
-                <img src="https://driveprofleet.driveprofleet.com/public/fleets/images/1e47fa1w-7wae-psuj-qras-hy7p5qtlt1jy/vehicle-class" alt="Chevrolet Corvette">
-                <h3>Chevrolet Corvette</h3>
-                <p><strong>Preço:</strong> 35.000 MZN/dia</p>
-                <p class="icons"><i class="fa-solid fa-car"></i> Manual<br><i class="fa-solid fa-fan"></i> Ar-condicionado<br><i class="fa-solid fa-door-open"></i> 2 Portas</p>
-                <button>Reservar Agora</button>
-        </div>
+                   <!-- NISSAN -->
+            <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
                 </div>
+                <img src="https://ctb-prod-s3.cartobike.com/owner_vehicles/24184/conversions/16946334280-medium.webp/300" alt="Carro 1">
+                <h3>Nissan Micra</h3>
+           <p class="price">299,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="nissan">
+          <div class="product-labels">
+                    <span class="label sold">Vendido</span>
+                </div>
+                <img src="https://www.autoquintagrande.com/wp-content/uploads/2024/10/9.jpg/300" alt="Carro 2">
+                <h3>Nissan Juke</h3>
+                <p class="price">340,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+              <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://eu.amcdn.co.za/cars/nissan-qashqai-2-0-acenta-2012-id-64827090-type-main.jpg?width=800/300" alt="Carro 1">
+                <h3>Nissan Qashqai </h3>
+                <p class="price">460,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="audiblue.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+            <div class="product-card" data-category="nissan">
+               <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://img.sbtjapan.com/dealercarphoto/DTY3323/f.jpg?v=1707432344&imwidth=640/300" alt="Carro 2">
+                <h3>Nissan X-Trail 2011</h3>
+                <p class="price">490,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="isuzu3.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20Audi%20A3%202016%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+       <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://img.tipcars.com/fotky_zdrojove/14743343_1/1741771050/E/nissan-pathfinder-2-5-dci-126-kw-7-mist.jpg/300" alt="Carro 1">
+                <h3>MazNissan Pathfinder</h3>
+           <p class="price"> 580,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+             <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://mkt.carrera.com.br/stock-images/141080-01-647792.jpg/300" alt="Carro 1">
+                <h3>Nissan Leaf</h3>
+           <p class="price"> 300,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://static.foxdealer.com/484/2024/03/2024_Nissan_Rogue_exterior-1.png/300" alt="Carro 1">
+                <h3>Nissan Rogue</h3>
+           <p class="price"> 300,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                     <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://http2.mlstatic.com/D_911223-MLB82840789458_032025-C.jpg/300" alt="Carro 1">
+                <h3>Nissan Frontier</h3>
+           <p class="price"> 520,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                         <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img class="imagem-quadrada" src="https://www.wheelworldreviews.co.uk/wp-content/uploads//Nissan-Juke-Nismo-RS-road-test-review-17.jpg/300" alt="Imagem quadrada" >
+                <h3> Nissan Nismo</h3>
+           <p class="price"> 370,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+
+                       <div class="product-card" data-category="nissan">
+                <div class="product-labels">
+                    <span class="label organic">Usado</span>
+                </div>
+                <img src="https://mercury.bid.cars/1-58735540/2009-Nissan-Altima-1N4AL24E49C133407-1.jpg/300" alt="Carro 1">
+                <h3>Nissan Altima</h3>
+           <p class="price"> 600,000 MZN</p> <!-- Preço adicionado -->
+                <div class="more-info">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="carroinfo.html">Saber Mais</a>
+                </div>
+                <button onclick="window.location.href='https://wa.me/258852136558?text=Estou%20interessado%20no%20BMW%20320i%202015%20-%20https://via.placeholder.com/300'">
+                    Falar com o Vendedor
+                </button>
+            </div>
+            <!-- Mais produtos podem ser adicionados aqui -->
+            <!-- Mais produtos podem ser adicionados aqui -->
+        </div>
     </div>
- </div>
          <section class="faq">
         <h2>Perguntas Frequentes</h2>
         <div class="faq-container">
