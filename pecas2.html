@@ -1501,69 +1501,123 @@ header .cart-icon.pulse {
     color: #4a004e;
 }
 
-.parent2 {
-            width: 100%;
-            margin: 30px auto;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-    display: grid;
-        }
-        .intro-text {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            width: 100%;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            font-size: 16px;
-            color: #333;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form-group textarea {
-            height: 150px;
-        }
-        .button2 {
-            background-color: #0088B5;
-            color: white;
-            padding: 14px 24px;
-            font-size: 18px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-        }
-        .button2:hover {
-            background-color: #006F8C;
-        }
-        .footer2 {
-               background-color: #0088B5;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    /* Remover o position: fixed; para não prender o rodapé */
-    position: relative; /* Deixe o rodapé ir para o final da página */
-    bottom: 0;
-    width: 100%;
+
+
+        
+/* Introdução */
+.intro-text {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    width: 100%; /* Garantir que o texto ocupe toda a largura disponível */
 }
+
+/* Título */
 h7 {
     font-size: 18px;
     color: #333;
     margin-bottom: 20px;
     width: 100%; /* Garantir que o título ocupe toda a largura disponível */
 }
+
+/* Ajuste do formulário */
+#quotationForm {
+    display: grid; /* Usando grid para organizar verticalmente */
+    gap: 20px; /* Espaçamento entre os campos */
+    width: 100%; /* Garante que o formulário ocupe toda a largura do contêiner onde for inserido */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+    opacity: 0; /* Inicialmente invisível */
+    visibility: hidden; /* Inicialmente invisível */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Suaviza a transição de visibilidade */
+}
+
+/* Estilos dos campos do formulário */
+.form-group {
+    display: block; /* Garante que o campo ocupe a largura inteira */
+    margin-bottom: 20px;
+    width: 100%; /* Garante que os campos ocupem 100% da largura disponível */
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    width: 100%;
+}
+
+/* Estilo dos campos de entrada */
+.form-group input, .form-group textarea {
+    width: 100%; /* Garantir que os campos ocupem toda a largura disponível */
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+.form-group textarea {
+    height: 150px; /* Altura do textarea */
+}
+
+/* Estilo do botão */
+.button2 {
+    background-color: #0088B5;
+    color: white;
+    padding: 14px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%; /* Garantir que o botão ocupe toda a largura disponível */
+    max-width: 400px; /* Limita a largura do botão */
+    margin: 0 auto; /* Centraliza o botão */
+}
+
+.button2:hover {
+    background-color: #006F8C;
+}
+
+/* Rodapé */
+.footer2 {
+    background-color: #0088B5;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Formulário dentro da grid - garantir que ocupe toda a largura do container sem ser restringido pela grid */
+.product-grid > .parent2 {
+    grid-column: span 5; /* Faz o formulário ocupar as 5 colunas do grid */
+    width: 100%; /* Garantir que ocupe toda a largura */
+    box-sizing: border-box; /* Para garantir que a largura total inclua o padding e as bordas */
+    padding: 0 15px; /* Adiciona um pequeno padding para não encostar nas bordas do contêiner */
+}
+
+/* Estilo do parent2 - não afeta a grid, mas organiza o conteúdo do formulário */
+.parent2 {
+    display: flex; /* Flex para manter os itens organizados verticalmente */
+    flex-direction: column;
+    gap: var(--margin-base);
+    width: 100%; /* Garante que o formulário ocupe toda a largura do contêiner */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+    padding: 20px; /* Adiciona um padding interno para o conteúdo do formulário */
+    background-color: #f9f9f9; /* Cor de fundo clara para o formulário */
+    border-radius: 8px; /* Bordas arredondadas para o formulário */
+}
+
+/* Quando o formulário deve ser visível, definimos a visibilidade e a opacidade */
+.product-grid > .parent2[data-category="encomendarpeca"] #quotationForm {
+    opacity: 1; /* Torna o formulário visível */
+    visibility: visible; /* Define a visibilidade do formulário */
+}
+
 
     </style>
 </head>
