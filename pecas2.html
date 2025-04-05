@@ -358,22 +358,6 @@ h2 {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Efeito de destaque mais suave */
 }
 
-.product-card .quotation-form {
-    display: grid; /* Usando grid para organizar verticalmente */
-    gap: 20px; /* Espaçamento entre os campos */
-    width: 100%; /* Garante que o formulário ocupe toda a largura do contêiner onde for inserido */
-    box-sizing: border-box; /* Inclui padding e border na largura total */
-    opacity: 0; /* Inicialmente invisível */
-    visibility: hidden; /* Inicialmente invisível */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Suaviza a transição de visibilidade */
-}
-
-/* Torna o formulário visível dentro do .product-card quando a data-category for "showProduct" */
-.product-card[data-category="encomendarpeca"] .quotation-form {
-    opacity: 1;
-    visibility: visible;
-}
-
 .product-card img {
     width: 100%;
     height: auto;
