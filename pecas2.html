@@ -1500,6 +1500,63 @@ header .cart-icon.pulse {
     font-weight: bold;
     color: #4a004e;
 }
+
+         .footer2 {
+               background-color: #0088B5;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    /* Remover o position: fixed; para não prender o rodapé */
+    position: relative; /* Deixe o rodapé ir para o final da página */
+    bottom: 0;
+    width: 100%;
+}
+
+        .container2 {
+            width: 80%;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+          .intro-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            height: 150px;
+        }
+        .button2 {
+            background-color: #0088B5;
+            color: white;
+            padding: 14px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .button2:hover {
+            background-color: #006F8C;
+        }
     </style>
 </head>
 <body>
@@ -1722,8 +1779,8 @@ header .cart-icon.pulse {
       <div class="price-search">
     <h3>Nâo Encontrou ?</h3>
     <ul>
-        <li><i class="fas fa-dollar-sign"></i> Menos de 10,000 MZN</li>
-        <li><i class="fas fa-dollar-sign"></i> 10,000 - 20,000 MZN</li>
+        <li class="category" data-category="encomendarpeca"><i class="fas fa-dollar-sign"></i> Encomendar Peça</li>
+        <li class="category" data-category="encomendarpeca"><i class="fas fa-dollar-sign"></i> 10,000 - 20,000 MZN</li>
         <li><i class="fas fa-dollar-sign"></i> 20,000 - 30,000 MZN</li>
         <li><i class="fas fa-dollar-sign"></i> 30,000 - 40,000 MZN</li>
         <li><i class="fas fa-dollar-sign"></i> Acima de 40,000 MZN</li>
@@ -2272,6 +2329,41 @@ header .cart-icon.pulse {
                 <button>Adicionar ao Pedido</button>
             </div>
 
+
+
+
+            <!-- FORMULÁRIO PEDIDO DE PEÇAS -->
+
+
+<div class="container2"  data-category="encomendarpeca">
+        <div class="intro-text">
+            <p>Na nossa empresa, trabalhamos com as melhores peças de viatura disponíveis no mercado, garantindo qualidade e durabilidade em cada produto. Nosso compromisso é oferecer soluções rápidas e confiáveis para atender às suas necessidades, com um serviço personalizado e transparente. Estamos aqui para garantir que você receba as peças certas, com o melhor preço e com a confiança de um atendimento profissional.</p>
+        </div>
+
+        <h2>Preencha o formulário abaixo para solicitar a cotação das peças que precisa:</h2>
+        
+        <form id="quotationForm">
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="carPart">Peça de Viatura</label>
+                <textarea id="carPart" name="carPart" placeholder="Descreva a peça ou peças que você deseja comprar" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <a id="whatsappLink" class="button2" href="" target="_blank">Enviar Solicitação</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer2">
+        <p>&copy; 2025 Sua Empresa - Todos os direitos reservados.</p>
+    </div>
+
+            
             <!-- Mais produtos podem ser adicionados aqui -->
         </div>
     </div>
@@ -2541,6 +2633,28 @@ header .cart-icon.pulse {
     </div>
 </footer>
 
+  <script>
+    const form = document.getElementById('quotationForm');
+    const whatsappLink = document.getElementById('whatsappLink');
+
+    // Usando o evento de clique para gerar o link do WhatsApp
+    whatsappLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Evitar o comportamento padrão de clicar no link
+
+        const name = document.getElementById('name').value;
+        const carPart = document.getElementById('carPart').value;
+
+        // Criação da mensagem com o nome do cliente e descrição da peça
+        const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nPeças: ${carPart}`;
+
+        // Criação do link do WhatsApp com a mensagem
+        const whatsappUrl = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
+
+        // Redirecionando para o WhatsApp
+        window.location.href = whatsappUrl;
+    });
+</script>
+    
     <script>
         // Seleciona o link "ESTOQUE" (2º link da lista no header)
 document.querySelectorAll('header nav a')[1].addEventListener('click', function(event) {
