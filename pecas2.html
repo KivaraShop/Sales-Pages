@@ -1501,62 +1501,79 @@ header .cart-icon.pulse {
     color: #4a004e;
 }
 
-         .footer2 {
-               background-color: #0088B5;
+   /* Variáveis para facilitar a manutenção */
+:root {
+    --primary-color: #0088B5;
+    --secondary-color: #006F8C;
+    --text-color: #333;
+    --border-color: #ccc;
+    --font-size-base: 16px;
+    --font-size-large: 18px;
+    --padding-base: 12px;
+    --padding-large: 14px;
+    --margin-base: 20px;
+    --margin-bottom-base: 30px;
+}
+
+/* Introdução */
+.intro-text {
+    font-size: var(--font-size-large);
+    color: var(--text-color);
+    margin-bottom: var(--margin-bottom-base);
+    line-height: 1.6;
+}
+
+/* Formulário */
+.form-group {
+    margin-bottom: var(--margin-base);
+}
+
+.form-group label {
+    font-size: var(--font-size-base);
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: var(--padding-base);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    height: 150px;
+}
+
+/* Botão */
+.button2 {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--padding-large) 24px;
+    font-size: var(--font-size-large);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.button2:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Rodapé */
+.footer2 {
+    background-color: var(--primary-color);
     color: white;
     text-align: center;
     padding: 20px 0;
-    /* Remover o position: fixed; para não prender o rodapé */
     position: relative; /* Deixe o rodapé ir para o final da página */
     bottom: 0;
     width: 100%;
 }
 
-        .container2 {
-            width: 80%;
-            margin: 30px auto;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-        }
-          .intro-text {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            font-size: 16px;
-            color: #333;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form-group textarea {
-            height: 150px;
-        }
-        .button2 {
-            background-color: #0088B5;
-            color: white;
-            padding: 14px 24px;
-            font-size: 18px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-        }
-        .button2:hover {
-            background-color: #006F8C;
-        }
     </style>
 </head>
 <body>
