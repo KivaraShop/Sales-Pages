@@ -1534,15 +1534,15 @@ h7 {
 /* Formulário */
 #quotationForm {
     display: flex;
-    flex-direction: column;
-    gap: var(--margin-base); /* Espaçamento entre os campos do formulário */
+    flex-direction: column;  /* Assegura que os elementos sejam organizados verticalmente */
+    gap: var(--margin-base);  /* Espaçamento entre os campos do formulário */
 }
 
 /* Estilos dos campos do formulário */
 .form-group {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: column;  /* Organiza os itens dentro do form-group em uma coluna */
+    gap: 8px;  /* Espaçamento entre o label e o campo de entrada */
 }
 
 .form-group label {
@@ -1552,7 +1552,7 @@ h7 {
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
+    width: 100%;  /* Garante que o campo ocupe toda a largura disponível */
     padding: var(--padding-base);
     font-size: var(--font-size-base);
     border: 1px solid var(--border-color);
@@ -1560,7 +1560,7 @@ h7 {
 }
 
 .form-group textarea {
-    height: 150px;
+    height: 150px;  /* Define a altura para a área de texto */
 }
 
 /* Botão */
@@ -1574,7 +1574,7 @@ h7 {
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
-    text-align: center; /* Alinhar texto ao centro */
+    text-align: center;  /* Alinha o texto ao centro */
 }
 
 .button2:hover {
@@ -1587,10 +1587,11 @@ h7 {
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: relative; /* Deixe o rodapé ir para o final da página */
+    position: relative;  /* Deixe o rodapé ir para o final da página */
     bottom: 0;
     width: 100%;
 }
+
 
 
     </style>
@@ -2392,7 +2393,7 @@ h7 {
             </div>
         </form>
 
-<div class="footer">
+<div class="footer2">
         <p>&copy; 2025 Sua Empresa - Todos os direitos reservados.</p>
     </div>
 
