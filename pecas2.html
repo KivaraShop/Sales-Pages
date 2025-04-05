@@ -1501,7 +1501,7 @@ header .cart-icon.pulse {
     color: #4a004e;
 }
 
-   /* Variáveis para facilitar a manutenção */
+/* Variáveis para facilitar a manutenção */
 :root {
     --primary-color: #0088B5;
     --secondary-color: #006F8C;
@@ -1515,6 +1515,7 @@ header .cart-icon.pulse {
     --margin-bottom-base: 30px;
 }
 
+
 /* Introdução */
 .intro-text {
     font-size: var(--font-size-large);
@@ -1523,9 +1524,25 @@ header .cart-icon.pulse {
     line-height: 1.6;
 }
 
+/* Título principal do formulário */
+h7 {
+    font-size: var(--font-size-large);
+    color: var(--text-color);
+    margin-bottom: var(--margin-base); /* Espaçamento entre o título e o formulário */
+}
+
 /* Formulário */
+#quotationForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-base); /* Espaçamento entre os campos do formulário */
+}
+
+/* Estilos dos campos do formulário */
 .form-group {
-    margin-bottom: var(--margin-base);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .form-group label {
@@ -1557,6 +1574,7 @@ header .cart-icon.pulse {
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
+    text-align: center; /* Alinhar texto ao centro */
 }
 
 .button2:hover {
@@ -1573,6 +1591,7 @@ header .cart-icon.pulse {
     bottom: 0;
     width: 100%;
 }
+
 
     </style>
 </head>
@@ -2355,7 +2374,7 @@ header .cart-icon.pulse {
             <p>Na nossa empresa, trabalhamos com as melhores peças de viatura disponíveis no mercado, garantindo qualidade e durabilidade em cada produto. Nosso compromisso é oferecer soluções rápidas e confiáveis para atender às suas necessidades, com um serviço personalizado e transparente. Estamos aqui para garantir que você receba as peças certas, com o melhor preço e com a confiança de um atendimento profissional.</p>
         </div>
 
-        <h2>Preencha o formulário abaixo para solicitar a cotação das peças que precisa:</h2>
+        <h7>Preencha o formulário abaixo para solicitar a cotação das peças que precisa:</h7>
         
         <form id="quotationForm">
             <div class="form-group">
