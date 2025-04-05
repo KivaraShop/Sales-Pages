@@ -1624,31 +1624,33 @@ h7 {
 
 
 
-        /* Impedir hover na .parent2 (product-card) */
+/* Bloquear a interação no .product-card para impedir hover e transformação */
 .parent2.product-card {
-    pointer-events: none; /* Desativa todas as interações (hover, clique) */
+    pointer-events: none; /* Desativa todas as interações no card (hover, clique) */
+    transform: none; /* Garante que a transformação de hover não seja aplicada */
+    transition: none; /* Remove qualquer transição associada ao hover */
 }
 
-/* Restaura a interatividade dentro do formulário */
+/* Permitir interação no formulário */
 .parent2.product-card #quotationForm {
     pointer-events: auto; /* Permite a interação dentro do formulário */
 }
 
-/* Caso o formulário esteja dentro da parent2, permita interação nos campos também */
+/* Garantir que os campos de input, textarea, e o botão também respondam */
 .parent2.product-card #quotationForm input, 
 .parent2.product-card #quotationForm textarea, 
 .parent2.product-card #quotationForm .button2 {
-    pointer-events: auto; /* Permite interação nos campos e botão */
+    pointer-events: auto; /* Permite a interação nos campos e botão */
 }
 
-/* Quando o formulário for visível (data-category="visible"), garantir que ele seja interativo */
-.parent2.product-card[data-category="encomendarpeca"] #quotationForm {
+/* Quando o formulário estiver visível (com data-category="visible"), o formulário será visível e interativo */
+.parent2.product-card[data-category="encomendarpeça"] #quotationForm {
     opacity: 1; /* Torna o formulário visível */
     visibility: visible; /* Torna o formulário visível */
     transition: opacity 0.3s ease, visibility 0.3s ease; /* Suaviza a transição */
 }
 
-/* Estilo do botão (se necessário) */
+/* Restabelece interatividade no botão, se necessário */
 .parent2.product-card .button2 {
     pointer-events: auto; /* Garante que o botão seja interativo */
 }
