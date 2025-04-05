@@ -1622,6 +1622,37 @@ h7 {
     visibility: visible; /* Define a visibilidade do formulário */
 }
 
+
+
+        /* Impedir hover na .parent2 (product-card) */
+.parent2.product-card {
+    pointer-events: none; /* Desativa todas as interações (hover, clique) */
+}
+
+/* Restaura a interatividade dentro do formulário */
+.parent2.product-card #quotationForm {
+    pointer-events: auto; /* Permite a interação dentro do formulário */
+}
+
+/* Caso o formulário esteja dentro da parent2, permita interação nos campos também */
+.parent2.product-card #quotationForm input, 
+.parent2.product-card #quotationForm textarea, 
+.parent2.product-card #quotationForm .button2 {
+    pointer-events: auto; /* Permite interação nos campos e botão */
+}
+
+/* Quando o formulário for visível (data-category="visible"), garantir que ele seja interativo */
+.parent2.product-card[data-category="encomendarpeca"] #quotationForm {
+    opacity: 1; /* Torna o formulário visível */
+    visibility: visible; /* Torna o formulário visível */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Suaviza a transição */
+}
+
+/* Estilo do botão (se necessário) */
+.parent2.product-card .button2 {
+    pointer-events: auto; /* Garante que o botão seja interativo */
+}
+
     </style>
 </head>
 <body>
