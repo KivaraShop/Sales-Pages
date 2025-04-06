@@ -1605,6 +1605,7 @@ h7 {
     text-align: center; /* Centraliza o texto */
     margin-top: 20px; /* Adiciona um pequeno espaçamento no topo */
     display: none; /* Inicialmente escondido */
+z-index: 1000;
 }
 
 /* Estilo do parent2 - não afeta a grid, mas organiza o conteúdo do formulário */
@@ -1674,11 +1675,13 @@ h7 {
     opacity: 0;
     transform: translateX(50px); /* Começa deslocado para a direita */
     transition: opacity 1.1s ease-out, transform 1.4s ease-out;
+    z-index:1000;
 }
 
 #no-results-message.show {
     opacity: 1;
     transform: translateX(0); /* Move suavemente para a posição original */
+        z-index:1000;
 }
 
 
