@@ -2266,7 +2266,7 @@ function filterProducts(searchTerm) {
     // Resetando os elementos para estado padrão antes da filtragem
     noResultsMessage.style.display = 'none'; 
     noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
-    navigationButtons.style.visibility = 'visible';
+    navigationButtons.style.visibility = 'visible';  // Os botões de navegação não vão desaparecer
     footer.style.visibility = 'visible';
 
     // Filtra os produtos com base na pesquisa
@@ -2299,7 +2299,8 @@ function filterProducts(searchTerm) {
             noResultsMessage.classList.add('show'); // Ativa a animação
         }, 10);
 
-        navigationButtons.style.visibility = 'hidden';
+        // Não vamos esconder os botões de navegação aqui, para que eles não sumam
+        // navigationButtons.style.visibility = 'hidden'; // Não mais esconder os botões de navegação
         footer.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
         noResultsMessage.classList.remove('show'); // Remove o efeito
@@ -2307,7 +2308,7 @@ function filterProducts(searchTerm) {
             noResultsMessage.style.display = 'none'; // Esconde após a animação
         }, 600);
 
-        navigationButtons.style.visibility = 'visible';
+        navigationButtons.style.visibility = 'visible';  // Garante que os botões de navegação fiquem visíveis
         footer.style.visibility = 'visible';
     }
 }
@@ -2333,9 +2334,8 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
-
-
 </script>
+
 
 <script>
     // Contador inicial de notificações no localStorage
