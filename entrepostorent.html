@@ -1960,6 +1960,11 @@ z-index: 900;
     
 <script>
   function setActiveCategory(element) {
+    // Verificar se o botão já está ativo. Se sim, não faz nada.
+    if (element.classList.contains('active')) {
+      return;
+    }
+
     // Remove a classe 'active' de todos os links
     const links = document.querySelectorAll('.navigation-buttons a');
     links.forEach(link => {
@@ -1968,8 +1973,28 @@ z-index: 900;
 
     // Adiciona a classe 'active' ao link clicado
     element.classList.add('active');
+
+    // Aqui você pode adicionar lógica para filtrar os produtos com base no data-category
+    const category = element.getAttribute('data-category');
+    filterProductsByCategory(category);
+  }
+
+  // Função para filtrar os produtos pela categoria
+  function filterProductsByCategory(category) {
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+      const productCategory = card.getAttribute('data-category');
+      if (category === 'uncategorized') {
+        // Exibir todos os produtos sem categoria
+        card.style.display = productCategory ? 'none' : 'block';
+      } else {
+        // Exibir produtos que correspondem à categoria
+        card.style.display = productCategory === category ? 'block' : 'none';
+      }
+    });
   }
 </script>
+
 
 
 <script>
