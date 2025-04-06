@@ -2306,6 +2306,10 @@ function filterProducts(searchTerm) {
 
 // Função para atualizar a categoria selecionada
 function setCategory(category) {
+    if (currentCategory === category) {
+        return; // Não faz nada se a categoria já estiver selecionada
+    }
+
     currentCategory = category;
     filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
 
