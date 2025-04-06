@@ -2209,9 +2209,6 @@ function filterProducts(searchTerm) {
     const noResultsMessage = document.getElementById('no-results-message');
     const navigationButtons = document.querySelector('.navigation-buttons');
     const footer = document.querySelector('footer');
-    const googleReviewsContainer = document.querySelector('.google-reviews .container');
-    const brandSearch = document.querySelector('.brand-search');
-    const priceSearch = document.querySelector('.price-search');
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
@@ -2219,9 +2216,6 @@ function filterProducts(searchTerm) {
     noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
-    googleReviewsContainer.style.visibility = 'visible';
-    brandSearch.style.visibility = 'visible';
-    priceSearch.style.visibility = 'visible';
 
     // Filtra os produtos com base na pesquisa
     productCards.forEach(card => {
@@ -2255,9 +2249,6 @@ function filterProducts(searchTerm) {
 
         navigationButtons.style.visibility = 'hidden';
         footer.style.visibility = 'hidden';
-        googleReviewsContainer.style.visibility = 'hidden';
-        brandSearch.style.visibility = 'hidden';
-        priceSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
         noResultsMessage.classList.remove('show'); // Remove o efeito
         setTimeout(() => {
@@ -2266,9 +2257,6 @@ function filterProducts(searchTerm) {
 
         navigationButtons.style.visibility = 'visible';
         footer.style.visibility = 'visible';
-        googleReviewsContainer.style.visibility = 'visible';
-        brandSearch.style.visibility = 'visible';
-        priceSearch.style.visibility = 'visible';
     }
 }
 
