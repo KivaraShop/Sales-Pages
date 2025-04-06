@@ -1668,7 +1668,6 @@ h7 {
 #no-results-message.show {
     opacity: 1;
     transform: translateX(0); /* Move suavemente para a posição original */
-     display: block;
 }
 
 
@@ -3182,8 +3181,7 @@ function filterProducts(searchTerm) {
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
-    noResultsMessage.classList.remove('show'); // Remove a animação de mostrar, se estava visível
-    noResultsMessage.style.display = 'none'; // Inicialmente oculto
+    noResultsMessage.style.display = 'none'; // Esconde a mensagem inicialmente
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
     googleReviewsContainer.style.visibility = 'visible';
@@ -3192,12 +3190,6 @@ function filterProducts(searchTerm) {
 
     // Filtra os produtos com base na pesquisa
     productCards.forEach(card => {
-        // Verifica se o produto possui o atributo data-search-ignore e ignora se for verdadeiro
-        if (card.hasAttribute('data-search-ignore')) {
-            card.style.display = "none"; // Esconde o produto para a pesquisa
-            return; // Ignora este produto completamente
-        }
-
         const productCategory = card.getAttribute('data-category');
         const productName = card.querySelector("h3").textContent.toLowerCase();
 
@@ -3219,13 +3211,10 @@ function filterProducts(searchTerm) {
         }
     });
 
-    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
+    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem "Sem Resultados"
     if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block'; // Garante que ele está visível
-        setTimeout(() => {
-            noResultsMessage.classList.add('show'); // Ativa a animação de exibição
-        }, 10);
-
+        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "Sem Resultados"
+        
         // Esconde outros elementos da página
         navigationButtons.style.visibility = 'hidden';
         footer.style.visibility = 'hidden';
@@ -3233,13 +3222,9 @@ function filterProducts(searchTerm) {
         brandSearch.style.visibility = 'hidden';
         priceSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
-        // Remove a animação e esconde a mensagem "Sem resultados"
-        noResultsMessage.classList.remove('show'); // Remove a animação
-        setTimeout(() => {
-            noResultsMessage.style.display = 'none'; // Esconde após a animação
-        }, 600);
+        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "Sem Resultados" caso haja resultados ou pesquisa vazia
 
-        // Garante que outros elementos da página sejam visíveis
+        // Reexibe os outros elementos da página
         navigationButtons.style.visibility = 'visible';
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
