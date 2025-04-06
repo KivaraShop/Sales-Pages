@@ -1063,9 +1063,14 @@ z-index: 900;
 }
 
 
-        h1 {
-    transition: color 0.3s ease; /* Para suavizar a transição de cor */
+
+        .h8 {
+    color: #f8a300; /* Cor original */
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 70px;
 }
+
     </style>
 </head>
 <body>
@@ -1198,7 +1203,7 @@ z-index: 900;
         </div>
     </section>
 
-        <h1 style="text-align: center; color: #f8a300; margin-bottom: 30px; margin-top: 70px;">Nossa Frota</h1>
+        <h8>Nossa Frota</h8>
     
       <div class="parent">
 <div class="navigation-buttons">
@@ -2346,7 +2351,7 @@ function setCategory(category) {
     // Alterar a cor do cabeçalho, footer, h1 e faq h2 quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
-    const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
+    const h8 = document.querySelector('h8'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
     
     // Verifica se a categoria selecionada é "isuzu"
@@ -2354,7 +2359,7 @@ function setCategory(category) {
         // Muda a cor de todos os elementos para rosa
         header.style.backgroundColor = "#FF69B4";  // Cor rosa para o header
         footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
-        h1.style.setProperty('color', '#FF69B4');  // Força a cor rosa para o h1 (Nossa Frota)
+        h8.style.setProperty('color', '#FF69B4');  // Força a cor rosa para o h1 (Nossa Frota)
 
         // Garantir que a cor de todos os h2 dentro de .faq também mude para rosa
         faqHeaders.forEach(h2 => h2.style.setProperty('color', '#FF69B4'));  // Cor rosa para todos os h2 dentro de .faq
@@ -2362,7 +2367,7 @@ function setCategory(category) {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
         footer.style.backgroundColor = "#f8a300";  // Cor original do footer
-        h1.style.setProperty('color', '#f8a300');  // Restaura a cor original para o h1
+        h8.style.setProperty('color', '#f8a300');  // Restaura a cor original para o h1
 
         // Restaurar a cor original para todos os h2 dentro de .faq
         faqHeaders.forEach(h2 => h2.style.setProperty('color', '#f8a300'));  // Cor original para todos os h2 dentro de .faq
