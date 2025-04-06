@@ -1864,7 +1864,7 @@ h7 {
 <div id="search-results"></div>
     
 <!-- Mensagem de "Sem Resultados" -->
-<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+<div id="no-results-message" data-category="noresults"  style="display: none; text-align: center; margin-top: 20px;">
   <p>Sem resultados, diga-nos por favor qual peça está a procura no botão abaixo.</p>
   <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
@@ -3172,7 +3172,7 @@ let currentCategory = "uncategorized";  // Inicializa com a categoria não categ
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const productCards = document.querySelectorAll(".product-card");
-    const noResultsMessage = document.getElementById('no-results-message');
+    const noResultsMessage = document.querySelector('[data-category="noresults"]');
     const navigationButtons = document.querySelector('.navigation-buttons');
     const footer = document.querySelector('footer');
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
