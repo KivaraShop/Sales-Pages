@@ -2359,7 +2359,7 @@ function setCategory(category) {
     // Alterar a cor do cabeçalho, footer, h1 e faq h2 quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
-    const h8 = document.querySelector('h8'); // Seleciona o h1 (Nossa Frota)
+    const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
     
     // Verifica se a categoria selecionada é "isuzu"
@@ -2367,18 +2367,14 @@ function setCategory(category) {
         // Muda a cor de todos os elementos para rosa
         header.style.backgroundColor = "#FF69B4";  // Cor rosa para o header
         footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
-        h8.style.setProperty('color', '#FF69B4');  // Força a cor rosa para o h1 (Nossa Frota)
-
-        // Garantir que a cor de todos os h2 dentro de .faq também mude para rosa
-        faqHeaders.forEach(h2 => h2.style.setProperty('color', '#FF69B4'));  // Cor rosa para todos os h2 dentro de .faq
+        h1.style.color = "#FF69B4";  // Cor rosa para o h1
+        faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");  // Cor rosa para todos os h2 dentro de .faq
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
         footer.style.backgroundColor = "#f8a300";  // Cor original do footer
-        h8.style.setProperty('color', '#f8a300');  // Restaura a cor original para o h1
-
-        // Restaurar a cor original para todos os h2 dentro de .faq
-        faqHeaders.forEach(h2 => h2.style.setProperty('color', '#f8a300'));  // Cor original para todos os h2 dentro de .faq
+        h1.style.color = "#f8a300";  // Cor original do h1
+        faqHeaders.forEach(h2 => h2.style.color = "#f8a300");  // Cor original para todos os h2 dentro de .faq
     }
 }
 
@@ -2397,6 +2393,7 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
+
 </script>
 
 
