@@ -3191,8 +3191,8 @@ function filterProducts(searchTerm) {
     productCards.forEach(card => {
         // Verifica se o produto possui o atributo data-search-ignore e ignora se for verdadeiro
         if (card.hasAttribute('data-search-ignore')) {
-            card.style.display = "none"; // Esconde o produto para a pesquisa
-            return;
+            card.style.display = "none"; // Esconde o produto para a pesquisa, mas ele não afetará a lógica
+            return; // Ignora este produto completamente
         }
 
         const productCategory = card.getAttribute('data-category');
@@ -3264,7 +3264,6 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 </script>
-
 
 <script>
     // Contador inicial de notificações no localStorage
