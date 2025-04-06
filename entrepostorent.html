@@ -780,6 +780,7 @@ color: white;
             grid-template-columns: repeat(5, 1fr);
             gap: 30px;
             width: 100%;
+       transition: background-color 0.3s ease;  /* Para suavizar a transição de cor */
         }
     .footer i {
 color: white;
@@ -1061,6 +1062,10 @@ z-index: 900;
     position: relative;
 }
 
+
+        h1 {
+    transition: color 0.3s ease; /* Para suavizar a transição de cor */
+}
     </style>
 </head>
 <body>
@@ -2275,7 +2280,7 @@ function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const productCards = document.querySelectorAll(".product-card");
     const noResultsMessage = document.getElementById('no-results-message');
-    const footer = document.querySelector('footer');
+    const footer = document.querySelector('.footer');
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
@@ -2338,12 +2343,19 @@ function setCategory(category) {
         }
     });
 
-    // Alterar a cor do cabeçalho quando a categoria "isuzu" for selecionada
+    // Alterar a cor do cabeçalho, footer e h1 quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
+    const footer = document.querySelector('.footer');
+    const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
+    
     if (category === "isuzu") {
-        header.style.backgroundColor = "#FF69B4";  // Cor rosa
+        header.style.backgroundColor = "#FF69B4";  // Cor rosa para o header
+        footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
+        h1.style.color = "#FF69B4";  // Cor rosa para o h1
     } else {
-        header.style.backgroundColor = "#f8a300";  // Cor original
+        header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
+        footer.style.backgroundColor = "#f8a300";  // Cor original do footer
+        h1.style.color = "#f8a300";  // Cor original do h1
     }
 }
 
@@ -2362,6 +2374,7 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
+
 
 </script>
 
