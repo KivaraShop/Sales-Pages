@@ -65,15 +65,11 @@ header {
     transition: background-color 0.3s ease;
 }
 
-        /* Quando o botão de categoria "isuzu" é clicado (tem a classe 'active') */
-.category[data-category="isuzu"].active {
+        /* Quando o botão com a categoria 'isuzu' for clicado, muda a cor do cabeçalho */
+header.isuzu-active {
     background-color: #FF69B4;  /* Cor rosa (HotPink) */
 }
 
-/* Alternativamente, alteramos o fundo do header quando o botão é ativo */
-.category[data-category="isuzu"].active ~ header {
-    background-color: #FF69B4;  /* Muda a cor do cabeçalho para rosa */
-}
         
      body {
     font-family: Arial, sans-serif;
@@ -1972,6 +1968,26 @@ z-index: 900;
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+
+    <script>
+        function setActiveCategory(element) {
+    // Remover a classe 'active' de todos os botões
+    document.querySelectorAll('.category').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Adicionar a classe 'active' ao botão clicado
+    element.classList.add('active');
+
+    // Seleciona o cabeçalho e adiciona a classe de acordo com o botão clicado
+    const header = document.querySelector('header');
+    if (element.getAttribute('data-category') === 'isuzu') {
+        header.classList.add('isuzu-active');
+    } else {
+        header.classList.remove('isuzu-active');
+    }
+}
+    </script>
 <script>
   function setActiveCategory(element) {
     // Verificar se o botão já está ativo, se sim, não faz nada
