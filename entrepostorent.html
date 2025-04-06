@@ -2337,10 +2337,8 @@ function setCategory(category) {
             item.classList.remove('selected');
         }
     });
-}
-    
 
-        // Alterar a cor do cabeçalho quando a categoria "isuzu" for selecionada
+    // Alterar a cor do cabeçalho quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
     if (category === "isuzu") {
         header.style.backgroundColor = "#FF69B4";  // Cor rosa
@@ -2349,7 +2347,6 @@ function setCategory(category) {
     }
 }
 
-    
 // Exemplo de como chamar a função para alterar a categoria ao clicar:
 document.querySelectorAll('.category').forEach(item => {
     item.addEventListener('click', function() {
@@ -2365,6 +2362,7 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
+
 </script>
 
 
