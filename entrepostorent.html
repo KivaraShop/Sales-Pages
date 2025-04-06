@@ -941,7 +941,7 @@ z-index: 900;
     transition: opacity 1.1s ease-out, transform 1.4s ease-out;
 }
 
-#no-results-message.show {
+#no--message.show {
     opacity: 1;
     transform: translateX(0); /* Move suavemente para a posição original */
 }
@@ -1225,10 +1225,10 @@ z-index: 900;
           
         
 <!-- Área de Resultados -->
-<div id="search-results"></div>
+<div id="search-"></div>
     
 <!-- Mensagem de "Sem Resultados" -->
-<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+<div id="no--message" style="display: none; text-align: center; margin-top: 20px;">
   <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
   <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
@@ -2279,7 +2279,7 @@ let currentCategory = "uncategorized";  // Inicializa com a categoria não categ
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const productCards = document.querySelectorAll(".product-card");
-    const noResultsMessage = document.getElementById('no-results-message');
+    const noMessage = document.getElementById('no-results-message');
     const footer = document.querySelector('.footer');
     let resultsFound = false;
 
@@ -2352,10 +2352,12 @@ function setCategory(category) {
         header.style.backgroundColor = "#FF69B4";  // Cor rosa para o header
         footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
         h1.style.color = "#FF69B4";  // Cor rosa para o h1
+        faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");
     } else {
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
         footer.style.backgroundColor = "#f8a300";  // Cor original do footer
         h1.style.color = "#f8a300";  // Cor original do h1
+        faqHeaders.forEach(h2 => h2.style.color = "#f8a300");    // Cor original do h1
     }
 }
 
