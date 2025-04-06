@@ -2208,7 +2208,6 @@ function filterProducts(searchTerm) {
     const noResultsMessage = document.getElementById('no-results-message');
     const navigationButtons = document.querySelector('.navigation-buttons');
     const footer = document.querySelector('footer');
-       const faq = document.querySelector('faq');
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
@@ -2216,7 +2215,6 @@ function filterProducts(searchTerm) {
     noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
-       faq.style.visibility = 'visible';
 
     // Filtra os produtos com base na pesquisa
     productCards.forEach(card => {
@@ -2250,7 +2248,6 @@ function filterProducts(searchTerm) {
 
         navigationButtons.style.visibility = 'hidden';
         footer.style.visibility = 'hidden';
-        faq.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
         noResultsMessage.classList.remove('show'); // Remove o efeito
         setTimeout(() => {
@@ -2259,7 +2256,6 @@ function filterProducts(searchTerm) {
 
         navigationButtons.style.visibility = 'visible';
         footer.style.visibility = 'visible';
-            faq.style.visibility = 'visible';
     }
 }
 
