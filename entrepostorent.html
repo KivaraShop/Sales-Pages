@@ -65,9 +65,14 @@ header {
     transition: background-color 0.3s ease;
 }
 
-        /* Quando o botão com a categoria 'isuzu' for clicado, muda a cor do cabeçalho */
-header.isuzu-active {
+/* Quando o botão de categoria "isuzu" é clicado (tem a classe 'active') */
+.category[data-category="isuzu"].active {
     background-color: #FF69B4;  /* Cor rosa (HotPink) */
+}
+
+/* Alternativamente, alteramos o fundo do header quando o botão é ativo */
+.category[data-category="isuzu"].active ~ header {
+    background-color: #FF69B4;  /* Muda a cor do cabeçalho para rosa */
 }
 
         
