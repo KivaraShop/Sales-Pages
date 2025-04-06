@@ -3179,7 +3179,7 @@ function filterProducts(searchTerm) {
     let resultsFound = false;
 
     // Resetando os elementos para estado padrão antes da filtragem
-    noResultsMessage.style.display = 'none'; 
+    noResultsMessage.style.display = 'none'; // Inicialmente oculto
     noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
     navigationButtons.style.visibility = 'visible';
     footer.style.visibility = 'visible';
@@ -3191,7 +3191,7 @@ function filterProducts(searchTerm) {
     productCards.forEach(card => {
         // Verifica se o produto possui o atributo data-search-ignore e ignora se for verdadeiro
         if (card.hasAttribute('data-search-ignore')) {
-            card.style.display = "none"; // Esconde o produto para a pesquisa, mas ele não afetará a lógica
+            card.style.display = "none"; // Esconde o produto para a pesquisa
             return; // Ignora este produto completamente
         }
 
@@ -3218,22 +3218,26 @@ function filterProducts(searchTerm) {
 
     // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
     if (!resultsFound && searchTerm !== '') {
+        // Exibe a mensagem "Sem resultados"
         noResultsMessage.style.display = 'block'; // Garante que ele está visível
         setTimeout(() => {
-            noResultsMessage.classList.add('show'); // Ativa a animação
+            noResultsMessage.classList.add('show'); // Ativa a animação de exibição
         }, 10);
 
+        // Esconde outros elementos da página
         navigationButtons.style.visibility = 'hidden';
         footer.style.visibility = 'hidden';
         googleReviewsContainer.style.visibility = 'hidden';
         brandSearch.style.visibility = 'hidden';
         priceSearch.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
-        noResultsMessage.classList.remove('show'); // Remove o efeito
+        // Remove a animação e esconde a mensagem "Sem resultados"
+        noResultsMessage.classList.remove('show'); // Remove a animação
         setTimeout(() => {
             noResultsMessage.style.display = 'none'; // Esconde após a animação
         }, 600);
 
+        // Garante que outros elementos da página sejam visíveis
         navigationButtons.style.visibility = 'visible';
         footer.style.visibility = 'visible';
         googleReviewsContainer.style.visibility = 'visible';
@@ -3264,6 +3268,7 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 </script>
+
 
 <script>
     // Contador inicial de notificações no localStorage
