@@ -1960,21 +1960,21 @@ z-index: 900;
     
 <script>
   function setActiveCategory(element) {
-    // Verificar se o botão já está ativo. Se sim, não faz nada.
+    // Verificar se o botão já está ativo, se sim, não faz nada
     if (element.classList.contains('active')) {
-      return;
+      return; // Se o botão já estiver ativo, não faz nada
     }
 
-    // Remove a classe 'active' de todos os links
+    // Remove a classe 'active' de todos os links de navegação
     const links = document.querySelectorAll('.navigation-buttons a');
     links.forEach(link => {
       link.classList.remove('active');
     });
 
-    // Adiciona a classe 'active' ao link clicado
+    // Adiciona a classe 'active' ao botão clicado
     element.classList.add('active');
 
-    // Aqui você pode adicionar lógica para filtrar os produtos com base no data-category
+    // Filtra os produtos com base na categoria selecionada
     const category = element.getAttribute('data-category');
     filterProductsByCategory(category);
   }
@@ -1982,13 +1982,17 @@ z-index: 900;
   // Função para filtrar os produtos pela categoria
   function filterProductsByCategory(category) {
     const productCards = document.querySelectorAll('.product-card');
+    
+    // Itera sobre todos os produtos e exibe ou oculta com base na categoria
     productCards.forEach(card => {
       const productCategory = card.getAttribute('data-category');
+      
+      // Exibe produtos da categoria selecionada e oculta os outros
       if (category === 'uncategorized') {
-        // Exibir todos os produtos sem categoria
+        // Exibe produtos sem categoria
         card.style.display = productCategory ? 'none' : 'block';
       } else {
-        // Exibir produtos que correspondem à categoria
+        // Exibe os produtos da categoria específica
         card.style.display = productCategory === category ? 'block' : 'none';
       }
     });
