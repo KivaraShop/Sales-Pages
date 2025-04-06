@@ -1596,6 +1596,17 @@ h7 {
     padding: 0 15px; /* Adiciona um pequeno padding para não encostar nas bordas do contêiner */
 }
 
+/* Mensagem de Sem Resultados dentro da grid */
+.product-grid > #no-results-message {
+    grid-column: span 6; /* Faz a mensagem ocupar as 6 colunas do grid */
+    width: 100%; /* Garantir que ocupe toda a largura do contêiner */
+    box-sizing: border-box; /* Para garantir que a largura total inclua o padding e as bordas */
+    padding: 0 15px; /* Adiciona um pequeno padding para não encostar nas bordas do contêiner */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 20px; /* Adiciona um pequeno espaçamento no topo */
+    display: none; /* Inicialmente escondido */
+}
+
 /* Estilo do parent2 - não afeta a grid, mas organiza o conteúdo do formulário */
 .parent2 {
  display: flex;/* Flex para manter os itens organizados verticalmente */
