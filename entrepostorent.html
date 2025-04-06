@@ -2375,7 +2375,10 @@ function setCategory(category) {
         luxuryRentals.style.backgroundColor = "#FF69B4"; // Cor rosa para o fundo da .luxury-rentals
         luxuryRentals.style.color = "#fff"; // Cor branca para o texto dentro de .luxury-rentals
         luxuryContentH1.style.color = "#FF69B4"; // Cor rosa para o h1 dentro de .luxury-content
-        luxuryTextH2.forEach(h2 => h2.style.color = "#FF69B4"); // Cor rosa para todos os h2 dentro de .luxury-text
+        // Garante que o h2 de .luxury-text também será alterado para rosa
+        luxuryTextH2.forEach(h2 => {
+            h2.style.color = "#FF69B4"; // Alterando cor para rosa
+        });
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
@@ -2385,7 +2388,9 @@ function setCategory(category) {
         luxuryRentals.style.backgroundColor = "#1a2332"; // Cor original para o fundo da .luxury-rentals
         luxuryRentals.style.color = "#333"; // Cor original para o texto dentro de .luxury-rentals
         luxuryContentH1.style.color = "#f8a300"; // Cor original para o h1 dentro de .luxury-content
-        luxuryTextH2.forEach(h2 => h2.style.color = "#f8a300"); // Cor original para todos os h2 dentro de .luxury-text
+        luxuryTextH2.forEach(h2 => {
+            h2.style.color = "#f8a300"; // Alterando cor para a cor original
+        });
     }
 }
 
@@ -2404,7 +2409,6 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
-
 
 </script>
 
