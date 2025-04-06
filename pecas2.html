@@ -2442,29 +2442,29 @@ h7 {
             <!-- FORMULÁRIO PEDIDO DE PEÇAS -->
 <div class="parent2 product-card" data-category="encomendarpeca" aria-hidden="true">
         <div class="intro-text">
-            <p style="color: #003B50; font-weight: bold; text-align: justify;">Preencha o formulário abaixo e receba uma cotação personalizada, com as melhores opções! Nossa equipe está pronta para oferecer um atendimento rápido e eficiente, garantindo que você encontre exatamente o que precisa, com o melhor preço e sem complicaçôes. Solicite sua cotação agora e tenha a solução que você procura em minutos!</p>
+            <p style="color: #003B50; font-weight: bold; text-align: justify;" data-search-ignore="true">Preencha o formulário abaixo e receba uma cotação personalizada, com as melhores opções! Nossa equipe está pronta para oferecer um atendimento rápido e eficiente, garantindo que você encontre exatamente o que precisa, com o melhor preço e sem complicaçôes. Solicite sua cotação agora e tenha a solução que você procura em minutos!</p>
         </div>
 
-        <h7 style="margin-bottom: 20px;">Preencha o formulário abaixo para solicitar a cotação das peças que precisa:</h7>
+        <h7 style="margin-bottom: 20px;" data-search-ignore="true">Preencha o formulário abaixo para solicitar a cotação das peças que precisa:</h7>
         
         <form id="quotationForm">
             <div class="form-group">
-                <label for="name" style="margin-bottom: 15px; margin-top: 20px;">Nome Completo</label>
+                <label for="name" style="margin-bottom: 15px; margin-top: 20px;" data-search-ignore="true">Nome Completo</label>
                 <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
             </div>
 
             <div class="form-group">
-                <label for="carPart" style= "margin-bottom: 15px;">Peça de Viatura</label>
+                <label for="carPart" style= "margin-bottom: 15px;" data-search-ignore="true">Peça de Viatura</label>
                 <textarea id="carPart" name="carPart" placeholder="Descreva a peça ou peças que você deseja comprar" required></textarea>
             </div>
 
             <div class="form-group">
-                <a id="whatsappLink" class="button2" href="" target="_blank"> <i class="fab fa-whatsapp" style="margin-right: 8px; margin-bottom: 0px; font-size: 20px; color: #25D366;"></i> Enviar Solicitação</a>
+                <a id="whatsappLink" class="button2" href="" target="_blank"> <i class="fab fa-whatsapp" style="margin-right: 8px; margin-bottom: 0px; font-size: 20px; color: #25D366;" data-search-ignore="true"></i> Enviar Solicitação</a>
             </div>
         </form>
 
 <div class="footer2">
-        <p>&copy; 2025 MB PARTS - Todos os direitos reservados.</p>
+        <p data-search-ignore="true">&copy; 2025 MB PARTS - Todos os direitos reservados.</p>
     </div>
    </div>
 
@@ -3164,6 +3164,12 @@ function filterProducts(searchTerm) {
 
     // Filtra os produtos com base na pesquisa
     productCards.forEach(card => {
+        // Verifica se o produto possui o atributo data-search-ignore e ignora se for verdadeiro
+        if (card.hasAttribute('data-search-ignore')) {
+            card.style.display = "none"; // Esconde o produto para a pesquisa
+            return;
+        }
+
         const productCategory = card.getAttribute('data-category');
         const productName = card.querySelector("h3").textContent.toLowerCase();
 
@@ -3232,9 +3238,8 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
-
-
 </script>
+
 <script>
     // Contador inicial de notificações no localStorage
     if (!localStorage.getItem('notifications')) {
