@@ -861,20 +861,33 @@ z-index: 900;
     z-index: 997 !important;
     position: relative; 
 }
-/* Estilo para o botão de navegação ativo */
-.navigation-buttons .active {
+/* Estilo base dos links de navegação */
+.navigation-buttons a {
+  padding: 10px 20px;
+  text-decoration: none; /* Remove o sublinhado padrão */
+  color: #003B50; /* Cor do texto padrão */
+  font-weight: bold;
+  display: inline-block; /* Para garantir que o link fique em linha */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+}
+
+/* Estilo para o link de navegação ativo */
+.navigation-buttons a.active {
   background-color: #003B50; /* Cor de fundo para indicar o botão ativo */
   color: #fff; /* Cor do texto para o botão ativo */
-  border-radius: 5px; /* Se você quiser arredondar as bordas */
-  padding: 10px 20px; /* Pode ajustar o padding conforme necessário */
-  transition: background-color 0.3s ease; /* Transição suave ao mudar de cor */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Padding para dar espaçamento */
 }
 
 /* Efeito de hover (opcional, para melhorar a interação) */
-.navigation-buttons button:hover {
-  background-color: #005f73; /* Cor de fundo quando o usuário passa o mouse sobre o botão */
+.navigation-buttons a:hover {
+  background-color: #005f73; /* Cor de fundo quando o usuário passa o mouse */
   color: #fff;
 }
+.navigation-buttons a:hover {
+  background: #012063 !important; /* Tom mais escuro de azul */
+}
+
 #search-input {
   padding: 10px !important;
   border: 1px solid #ccc !important;
@@ -901,36 +914,6 @@ z-index: 900;
   justify-content: center;
   margin-right: 8px !important; /* Espaço à direita */
       z-index: 997 !important;
-}
-
-
-.navigation-buttons a {
-  background: #0288d1 !important; /* Azul claro */
-  color: white !important;
-  font-size: 16px !important;
-  padding: 8px 16px !important;
-  text-decoration: none !important;
-  border-radius: 20px !important;
-  margin: 0 10px !important; /* Adiciona algum espaço entre os links */
-  display: inline-block !important;
-  transition: background 0.3s !important;
-}
-        
-/* Estilo para o link de navegação ativo */
-.navigation-buttons a.active {
-  background-color: #003B50; /* Cor de fundo para indicar o botão ativo */
-  color: #fff; /* Cor do texto para o botão ativo */
-  border-radius: 5px; /* Bordas arredondadas */
-  padding: 10px 20px; /* Padding para dar espaçamento */
-}
-
-/* Efeito de hover (opcional, para melhorar a interação) */
-.navigation-buttons a:hover {
-  background-color: #005f73; /* Cor de fundo quando o usuário passa o mouse */
-  color: #fff;
-}
-.navigation-buttons a:hover {
-  background: #012063 !important; /* Tom mais escuro de azul */
 }
 
 
@@ -1974,8 +1957,8 @@ z-index: 900;
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
-
-    <script>
+    
+<script>
   function setActiveCategory(element) {
     // Remove a classe 'active' de todos os links
     const links = document.querySelectorAll('.navigation-buttons a');
@@ -1987,6 +1970,7 @@ z-index: 900;
     element.classList.add('active');
   }
 </script>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
