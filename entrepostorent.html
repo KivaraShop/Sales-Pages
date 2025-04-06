@@ -2266,7 +2266,6 @@ function filterProducts(searchTerm) {
     // Resetando os elementos para estado padrão antes da filtragem
     noResultsMessage.style.display = 'none'; 
     noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
-    navigationButtons.style.visibility = 'visible';  // Os botões de navegação não vão desaparecer
     footer.style.visibility = 'visible';
 
     // Filtra os produtos com base na pesquisa
@@ -2299,8 +2298,7 @@ function filterProducts(searchTerm) {
             noResultsMessage.classList.add('show'); // Ativa a animação
         }, 10);
 
-        // Não vamos esconder os botões de navegação aqui, para que eles não sumam
-        // navigationButtons.style.visibility = 'hidden'; // Não mais esconder os botões de navegação
+        // Não esconder os botões de navegação aqui, para que eles fiquem sempre visíveis
         footer.style.visibility = 'hidden';
     } else if (resultsFound || searchTerm === '') {
         noResultsMessage.classList.remove('show'); // Remove o efeito
@@ -2308,7 +2306,6 @@ function filterProducts(searchTerm) {
             noResultsMessage.style.display = 'none'; // Esconde após a animação
         }, 600);
 
-        navigationButtons.style.visibility = 'visible';  // Garante que os botões de navegação fiquem visíveis
         footer.style.visibility = 'visible';
     }
 }
@@ -2317,6 +2314,15 @@ function filterProducts(searchTerm) {
 function setCategory(category) {
     currentCategory = category;
     filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
+
+    // Aqui você pode adicionar qualquer ação para destacar o botão selecionado, como a classe "selected"
+    document.querySelectorAll('.category').forEach(item => {
+        if (item.getAttribute('data-category') === category) {
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
 }
 
 // Exemplo de como chamar a função para alterar a categoria ao clicar:
