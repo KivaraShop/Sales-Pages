@@ -268,10 +268,11 @@ nav ul li a:hover {
 
 .product-card {
     background-color: #FFFF; /* Branco */
-    border: none; /* Borda sutil e sofisticada */
+    border: 1px solid #dddfe1; /* Borda sutil e sofisticada */
+    border-radius: 8px;
     padding: 15px;
     text-align: center;
-    box-shadow: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -2356,44 +2357,25 @@ function setCategory(category) {
         }
     });
 
-    // Alterar a cor do cabeçalho, footer, h1, faq h2, .luxury-rentals quando a categoria "isuzu" for selecionada
+    // Alterar a cor do cabeçalho, footer, h1 e faq h2 quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
     const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
-    const luxuryRentals = document.querySelector('.luxury-rentals'); // Seleciona o elemento .luxury-rentals
-    const luxuryContentH1 = document.querySelector('.luxury-content h1'); // Seleciona o h1 dentro de .luxury-content
-    const luxuryText = luxuryRentals.querySelectorAll('*'); // Seleciona todos os elementos dentro de .luxury-rentals (todos os tipos de texto)
-
+    
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
         // Muda a cor de todos os elementos para rosa
         header.style.backgroundColor = "#FF69B4";  // Cor rosa para o header
         footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
-        h1.style.color = "#FF69B4";  // Cor rosa para o h1 (Nossa Frota)
+        h1.style.color = "#FF69B4";  // Cor rosa para o h1
         faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");  // Cor rosa para todos os h2 dentro de .faq
-        luxuryRentals.style.backgroundColor = "#FF69B4"; // Cor rosa para o fundo da .luxury-rentals
-        luxuryRentals.style.color = "#fff"; // Cor branca para o texto dentro de .luxury-rentals
-        luxuryContentH1.style.color = "#FF69B4"; // Cor rosa para o h1 dentro de .luxury-content
-        
-        // Muda a cor de todo texto dentro de .luxury-rentals para branco
-        luxuryText.forEach(el => {
-            el.style.color = "#fff"; // Alterando cor de todo texto para branco
-        });
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
         footer.style.backgroundColor = "#f8a300";  // Cor original do footer
-        h1.style.color = "#f8a300";  // Cor original do h1 (Nossa Frota)
+        h1.style.color = "#f8a300";  // Cor original do h1
         faqHeaders.forEach(h2 => h2.style.color = "#f8a300");  // Cor original para todos os h2 dentro de .faq
-        luxuryRentals.style.backgroundColor = "#1a2332"; // Cor original para o fundo da .luxury-rentals
-        luxuryRentals.style.color = "#333"; // Cor original para o texto dentro de .luxury-rentals
-        luxuryContentH1.style.color = "#f8a300"; // Cor original para o h1 dentro de .luxury-content
-        
-        // Restaura a cor original de todo texto dentro de .luxury-rentals
-        luxuryText.forEach(el => {
-            el.style.color = "#333"; // Alterando cor de todo texto para a cor original
-        });
     }
 }
 
@@ -2412,7 +2394,6 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
-
 
 </script>
 
