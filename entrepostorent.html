@@ -2357,7 +2357,18 @@ function setCategory(category) {
         }
     });
 }
+    
 
+        // Alterar a cor do cabeçalho quando a categoria "isuzu" for selecionada
+    const header = document.querySelector('header');
+    if (category === "isuzu") {
+        header.style.backgroundColor = "#FF69B4";  // Cor rosa
+    } else {
+        header.style.backgroundColor = "#f8a300";  // Cor original
+    }
+}
+
+    
 // Exemplo de como chamar a função para alterar a categoria ao clicar:
 document.querySelectorAll('.category').forEach(item => {
     item.addEventListener('click', function() {
