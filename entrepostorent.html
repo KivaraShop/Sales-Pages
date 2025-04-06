@@ -861,7 +861,20 @@ z-index: 900;
     z-index: 997 !important;
     position: relative; 
 }
+/* Estilo para o botão de navegação ativo */
+.navigation-buttons .active {
+  background-color: #003B50; /* Cor de fundo para indicar o botão ativo */
+  color: #fff; /* Cor do texto para o botão ativo */
+  border-radius: 5px; /* Se você quiser arredondar as bordas */
+  padding: 10px 20px; /* Pode ajustar o padding conforme necessário */
+  transition: background-color 0.3s ease; /* Transição suave ao mudar de cor */
+}
 
+/* Efeito de hover (opcional, para melhorar a interação) */
+.navigation-buttons button:hover {
+  background-color: #005f73; /* Cor de fundo quando o usuário passa o mouse sobre o botão */
+  color: #fff;
+}
 #search-input {
   padding: 10px !important;
   border: 1px solid #ccc !important;
@@ -902,7 +915,20 @@ z-index: 900;
   display: inline-block !important;
   transition: background 0.3s !important;
 }
+        
+/* Estilo para o link de navegação ativo */
+.navigation-buttons a.active {
+  background-color: #003B50; /* Cor de fundo para indicar o botão ativo */
+  color: #fff; /* Cor do texto para o botão ativo */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Padding para dar espaçamento */
+}
 
+/* Efeito de hover (opcional, para melhorar a interação) */
+.navigation-buttons a:hover {
+  background-color: #005f73; /* Cor de fundo quando o usuário passa o mouse */
+  color: #fff;
+}
 .navigation-buttons a:hover {
   background: #012063 !important; /* Tom mais escuro de azul */
 }
@@ -1174,11 +1200,11 @@ z-index: 900;
         <h1 style="text-align: center; color: #f8a300; margin-bottom: 30px;">Nossa Frota</h1>
     
       <div class="parent">
- <div class="navigation-buttons">
- <a class="category" data-category="isuzu">Casamentos </a>
- <a class="category" data-category="mazda">Negócios </a>
-      <a class="category" data-category="uncategorized">Lazer </a>
-  </div>
+<div class="navigation-buttons">
+  <a class="category" data-category="isuzu" href="javascript:void(0);" onclick="setActiveCategory(this)">Casamentos</a>
+  <a class="category" data-category="mazda" href="javascript:void(0);" onclick="setActiveCategory(this)">Negócios</a>
+  <a class="category" data-category="uncategorized" href="javascript:void(0);" onclick="setActiveCategory(this)">Lazer</a>
+</div>
      
   <div class="search-bar">
     <input 
@@ -1948,6 +1974,20 @@ z-index: 900;
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+
+    <script>
+  function setActiveCategory(element) {
+    // Remove a classe 'active' de todos os links
+    const links = document.querySelectorAll('.navigation-buttons a');
+    links.forEach(link => {
+      link.classList.remove('active');
+    });
+
+    // Adiciona a classe 'active' ao link clicado
+    element.classList.add('active');
+  }
+</script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
