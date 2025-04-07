@@ -1079,42 +1079,56 @@ z-index: 900;
 }
 
 
- .viaturas-section {
+         /* Container da seção */
+        .viaturas-section {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            padding: 50px 20px;
-            background-color: #fff; /* Fundo branco da seção */
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #ffffff, #f2f2f2);
         }
+
+        /* Caixa de cada categoria de viatura */
         .viatura-box {
             width: 30%;
             text-align: center;
-            background-color: #f8f8f8; /* Fundo suave cinza claro */
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra mais suave para contraste */
-            border-radius: 10px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Sombra sutil */
             padding: 20px;
-            margin: 10px;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        /* Efeito de hover */
+        .viatura-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Efeito de profundidade ao passar o mouse */
+        }
+
+        /* Imagens */
         .viatura-box img {
             width: 100%;
-            border-radius: 8px;
             height: 200px;
             object-fit: cover;
+            border-radius: 10px;
             margin-bottom: 20px;
         }
+
+        /* Títulos */
         .viatura-box h3 {
-            font-size: 24px;
-            color: #333; /* Cor escura para o título, bom contraste */
-            margin-bottom: 10px;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
+
+        /* Descrição */
         .viatura-box p {
             font-size: 16px;
-            color: #666; /* Cor de texto mais suave para boa legibilidade */
+            color: #777;
+            line-height: 1.6;
         }
-        .viatura-box:hover {
-            transform: scale(1.05);
-        }
+
         
     </style>
 </head>
