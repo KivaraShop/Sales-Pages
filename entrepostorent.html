@@ -2462,13 +2462,14 @@ function setCategory(category) {
         }
     });
 
-    // Alterar a cor do cabeçalho, footer, h1, faq h2 e a seção .why-choose-us quando a categoria "isuzu" for selecionada
+    // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us e .top-bar quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
     const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
     const luxuryImage = document.querySelector('.luxury-image img');  // Seleciona a imagem de luxo
     const whyChooseUs = document.querySelector('.why-choose-us'); // Seleciona a seção .why-choose-us
+    const topBar = document.querySelector('.top-bar'); // Seleciona a barra superior .top-bar
 
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
@@ -2483,6 +2484,9 @@ function setCategory(category) {
         
         // Muda o fundo da seção .why-choose-us para rosa
         whyChooseUs.style.backgroundColor = "#FF69B4";  // Cor rosa para a seção .why-choose-us
+
+        // Muda o fundo da barra superior .top-bar para rosa
+        topBar.style.backgroundColor = "#FF69B4";  // Cor rosa para a .top-bar
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
@@ -2495,6 +2499,9 @@ function setCategory(category) {
         
         // Restaura o fundo da seção .why-choose-us para a cor original
         whyChooseUs.style.backgroundColor = "#f8a300";  // Cor original para a seção .why-choose-us
+
+        // Restaura o fundo da barra superior .top-bar para a cor original
+        topBar.style.backgroundColor = "#0088B5";  // Cor original para a .top-bar
     }
 }
 
@@ -2514,7 +2521,6 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 </script>
-
 
 
 
