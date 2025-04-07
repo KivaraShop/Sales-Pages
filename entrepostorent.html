@@ -2349,7 +2349,7 @@ setInterval(changeImage, 5000);
         });
     </script>
     
-  <script>
+ <script>
 let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
 
 function filterProducts(searchTerm) {
@@ -2428,7 +2428,7 @@ function setCategory(category) {
     const topBar = document.querySelector('.top-bar');
     const hero = document.querySelector('.hero'); 
     const btn = document.querySelector('.btn');
-    const socialIconsLinks = document.querySelector('.social-icons2'); // Seleciona o container de links dentro de .social-icons2
+    const socialIconsLinks = document.querySelectorAll('.social-icons2 a'); // Seleciona todos os links dentro de .social-icons2
 
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
@@ -2441,8 +2441,10 @@ function setCategory(category) {
         hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";  // Nova imagem de fundo
         btn.style.backgroundColor = "#FF69B4"; 
         
-        // Alterando o fundo dos links dentro de .social-icons2 diretamente (sem forEach)
-        socialIconsLinks.style.backgroundColor = "#FF69B4"; // Altera o fundo do container que contém os links
+        // Alterando o fundo dos links dentro de .social-icons2 para rosa
+        socialIconsLinks.forEach(link => {
+            link.style.backgroundColor = "#FF69B4";
+        });
 
     } else {
         // Caso contrário, volta para a cor original
@@ -2456,7 +2458,9 @@ function setCategory(category) {
         btn.style.backgroundColor = "#f8a300"; 
         
         // Restaurando o fundo dos links dentro de .social-icons2 para a cor original
-        socialIconsLinks.style.backgroundColor = "#f8a300"; // Restaura o fundo do container para a cor original
+        socialIconsLinks.forEach(link => {
+            link.style.backgroundColor = "#f8a300";
+        });
     }
 }
 
@@ -2476,6 +2480,7 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 </script>
+
 
 
 
