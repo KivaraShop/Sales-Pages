@@ -1079,37 +1079,39 @@ z-index: 900;
 }
 
 
-     /* Container principal */
+       /* Container principal */
         .viaturas-section {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 30px;
-            padding: 80px 10%;
-            background-color: #fff;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+            gap: 40px;
+            padding: 80px 5%;
+            background-color: #fafafa;
         }
 
         /* Cada card de viatura */
         .viatura-card {
             position: relative;
+            height: 500px; /* Aumentando a altura dos cards */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
         }
 
+        /* Efeito de hover nos cards */
         .viatura-card:hover {
-            transform: translateY(-10px); /* Efeito de elevação no hover */
+            transform: translateY(-10px); /* Elevação no hover */
         }
 
         /* Imagem de fundo de cada card */
         .viatura-card img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* Textos sobre a imagem */
+        /* Sobreposição de texto nos cards */
         .viatura-card .info-overlay {
             position: absolute;
             top: 50%;
@@ -1117,37 +1119,42 @@ z-index: 900;
             transform: translate(-50%, -50%);
             text-align: center;
             color: #fff;
-            padding: 20px;
+            padding: 30px;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             width: 80%;
         }
 
-        /* Título e descrição */
+        /* Título do card */
         .viatura-card h3 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             margin: 0;
         }
 
+        /* Descrição do card */
         .viatura-card p {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 300;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
-        /* Efeito hover na imagem */
+        /* Efeito de opacidade nas imagens ao passar o mouse */
         .viatura-card:hover img {
             opacity: 0.7;
         }
 
-        /* Responsividade */
+        /* Responsividade: ajustando os cards para telas menores */
         @media (max-width: 768px) {
             .viaturas-section {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 1 coluna em telas menores */
                 padding: 40px 5%;
             }
-        }
+
+            .viatura-card {
+                height: 400px; /* Ajustando a altura dos cards para telas menores */
+            }
+        }a
         
     </style>
 </head>
