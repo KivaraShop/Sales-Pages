@@ -1079,39 +1079,36 @@ z-index: 900;
 }
 
 
-       /* Container principal */
-        .viaturas-section {
+    .viaturas-section {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 colunas */
-            gap: 40px;
-            padding: 80px 5%;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 30px;
+            padding: 80px 10%;
             background-color: #fafafa;
         }
 
         /* Cada card de viatura */
         .viatura-card {
             position: relative;
-            height: 500px; /* Aumentando a altura dos cards */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
         }
 
-        /* Efeito de hover nos cards */
         .viatura-card:hover {
-            transform: translateY(-10px); /* Elevação no hover */
+            transform: translateY(-10px); /* Efeito de elevação no hover */
         }
 
         /* Imagem de fundo de cada card */
         .viatura-card img {
             width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* Sobreposição de texto nos cards */
+        /* Textos sobre a imagem */
         .viatura-card .info-overlay {
             position: absolute;
             top: 50%;
@@ -1119,43 +1116,37 @@ z-index: 900;
             transform: translate(-50%, -50%);
             text-align: center;
             color: #fff;
-            padding: 30px;
+            padding: 20px;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             width: 80%;
         }
 
-        /* Título do card */
+        /* Título e descrição */
         .viatura-card h3 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             margin: 0;
         }
 
-        /* Descrição do card */
         .viatura-card p {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 300;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
-        /* Efeito de opacidade nas imagens ao passar o mouse */
+        /* Efeito hover na imagem */
         .viatura-card:hover img {
             opacity: 0.7;
         }
 
-        /* Responsividade: ajustando os cards para telas menores */
+        /* Responsividade */
         @media (max-width: 768px) {
             .viaturas-section {
-                grid-template-columns: 1fr; /* 1 coluna em telas menores */
+                grid-template-columns: 1fr;
                 padding: 40px 5%;
             }
-
-            .viatura-card {
-                height: 400px; /* Ajustando a altura dos cards para telas menores */
-            }
-        }a
-        
+        }
     </style>
 </head>
 <body>
@@ -2476,7 +2467,8 @@ function setCategory(category) {
     const footer = document.querySelector('.footer');
     const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
-    
+    const luxuryImage = document.querySelector('.luxury-image img');  // Seleciona a imagem de luxo
+
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
         // Muda a cor de todos os elementos para rosa
@@ -2484,12 +2476,18 @@ function setCategory(category) {
         footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
         h1.style.color = "#FF69B4";  // Cor rosa para o h1
         faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");  // Cor rosa para todos os h2 dentro de .faq
+        
+        // Altera a imagem para a imagem fornecida
+        luxuryImage.src = "https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg";  // Novo link da imagem
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
         footer.style.backgroundColor = "#f8a300";  // Cor original do footer
         h1.style.color = "#f8a300";  // Cor original do h1
         faqHeaders.forEach(h2 => h2.style.color = "#f8a300");  // Cor original para todos os h2 dentro de .faq
+        
+        // Restaura a imagem original
+        luxuryImage.src = "https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp";  // Imagem original
     }
 }
 
@@ -2508,8 +2506,9 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
-
+    
 </script>
+
 
 
 <script>
