@@ -2400,7 +2400,10 @@ console.log('Menu found:', navMenu !== null);
         
 
 <script>
-let currentCategory = "mazda";  // Inicializa com a categoria não categorizada
+let currentCategory = "mazda";  // Inicializa com a categoria "mazda"
+
+// Chama a função de filtro automaticamente para a categoria "mazda" ao carregar a página
+setCategory(currentCategory);  // Chama a função para aplicar a categoria "mazda"
 
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
