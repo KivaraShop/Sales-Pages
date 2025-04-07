@@ -2349,7 +2349,7 @@ setInterval(changeImage, 5000);
         });
     </script>
     
-    <script>
+   <script>
 let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
 
 function filterProducts(searchTerm) {
@@ -2419,7 +2419,7 @@ function setCategory(category) {
         }
     });
 
-    // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us, .top-bar, imagem de fundo da .hero e fundo do .btn
+    // Seleciona os elementos
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
     const faqHeaders = document.querySelectorAll('.faq h2');
@@ -2427,8 +2427,8 @@ function setCategory(category) {
     const whyChooseUs = document.querySelector('.why-choose-us'); 
     const topBar = document.querySelector('.top-bar');
     const hero = document.querySelector('.hero'); 
-    const btn = document.querySelector('.btn'); 
-    const socialIcons2 = document.querySelector('.social-icons2'); 
+    const btn = document.querySelector('.btn');
+    const socialIcons2 = document.querySelector('.social-icons2'); // Seleciona o container dos ícones sociais
 
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
@@ -2440,8 +2440,7 @@ function setCategory(category) {
         topBar.style.backgroundColor = "#FF69B4";
         hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";  // Nova imagem de fundo
         btn.style.backgroundColor = "#FF69B4"; 
-   socialIcons2.style.backgroundColor = "#FF69B4"; 
-        
+        socialIcons2.style.backgroundColor = "#FF69B4"; // Mudando o fundo da .social-icons2 para rosa
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  
@@ -2452,8 +2451,8 @@ function setCategory(category) {
         topBar.style.backgroundColor = "#0088B5";
         hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";
         btn.style.backgroundColor = "#f8a300"; 
-        socialIcons2.style.backgroundColor = "#f8a300"; 
-
+        socialIcons2.style.backgroundColor = "#f8a300"; // Restaurando o fundo da .social-icons2 para a cor original
+    }
 }
 
 //  chamar a função para alterar a categoria ao clicar:
