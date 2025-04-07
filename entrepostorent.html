@@ -2430,7 +2430,7 @@ function filterProducts(searchTerm) {
         } 
         // Caso contrário, se a pesquisa estiver vazia, filtra os produtos pela categoria
         else if (searchTerm === '') {
-            if (currentCategory === "all" || currentCategory === productCategory || (currentCategory === "uncategorized" && !productCategory)) {
+            if (currentCategory === "all" || currentCategory === productCategory || (currentCategory === "mazda" && !productCategory)) {
                 card.style.display = "block";
                 resultsFound = true;
             } else {
