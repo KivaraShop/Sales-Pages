@@ -2383,150 +2383,125 @@ setInterval(changeImage, 5000);
             });
         });
     </script>
-      <script>
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
+    
+    <script>
+let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
 
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active'); // Show/hide menu
-    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
-});
+function filterProducts(searchTerm) {
+    const search = searchTerm.toLowerCase();
+    const productCards = document.querySelectorAll(".product-card");
+    const noResultsMessage = document.getElementById('no-results-message');
+    const footer = document.querySelector('.footer');
+    let resultsFound = false;
 
-// Debugging
-console.log('Toggle connected:', menuToggle !== null);
-console.log('Menu found:', navMenu !== null);
+    // Resetando os elementos para estado padrão antes da filtragem
+    noResultsMessage.style.display = 'none'; 
+    noResultsMessage.classList.remove('show'); // Remove a animação se já estava visível
+    footer.style.visibility = 'visible';
 
-</script>
-        
+    // Filtra os produtos com base na pesquisa
+    productCards.forEach(card => {
+        const productCategory = card.getAttribute('data-category');
+        const productName = card.querySelector("h3").textContent.toLowerCase();
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Função para simular o clique na categoria "mazda" ao carregar a página
-    function selectCategoryOnLoad() {
-        const mazdaCategory = document.querySelector('.category[data-category="mazda"]');  // Seleciona o item com data-category="mazda"
-        
-        if (mazdaCategory) {
-            mazdaCategory.click();  // Simula o clique nessa categoria
-        }
-    }
-
-    // Função para filtrar os produtos e atualizar os estilos conforme a categoria
-    function setCategory(category) {
-        let currentCategory = category;
-
-        // Filtra produtos e aplica a lógica de destaque
-        const productCards = document.querySelectorAll(".product-card");
-        productCards.forEach(card => {
-            const productCategory = card.getAttribute('data-category');
-            if (currentCategory === "all" || currentCategory === productCategory) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
-
-        // Atualiza o estilo da página conforme a categoria
-        const header = document.querySelector('header');
-        const footer = document.querySelector('.footer');
-        const faqHeaders = document.querySelectorAll('.faq h2');
-        const luxuryImage = document.querySelector('.luxury-image img');
-        const whyChooseUs = document.querySelector('.why-choose-us');
-        const topBar = document.querySelector('.top-bar');
-        const hero = document.querySelector('.hero');
-        const btn = document.querySelector('.btn');
-
-        // Se a categoria for "mazda"
-        if (category === "mazda") {
-            header.style.backgroundColor = "#f8a300";
-            footer.style.backgroundColor = "#f8a300";
-            faqHeaders.forEach(h2 => h2.style.color = "#f8a300");
-            luxuryImage.src = "https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp";
-            whyChooseUs.style.backgroundColor = "#f8a300";
-            topBar.style.backgroundColor = "#0088B5";
-            hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";
-            btn.style.backgroundColor = "#f8a300";
-        }
-
-        // Se a categoria for "isuzu"
-        else if (category === "isuzu") {
-            header.style.backgroundColor = "#FF69B4";
-            footer.style.backgroundColor = "#FF69B4";
-            faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");
-            luxuryImage.src = "https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg";
-            whyChooseUs.style.backgroundColor = "#FF69B4";
-            topBar.style.backgroundColor = "#FF69B4";
-            hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";
-            btn.style.backgroundColor = "#FF69B4";
-        }
-    }
-
-    // Chama a função para simular o clique na categoria "mazda" ao carregar a página
-    selectCategoryOnLoad();
-
-    // Adiciona evento de clique nas categorias
-    document.querySelectorAll('.category').forEach(item => {
-        item.addEventListener('click', function () {
-            const category = this.getAttribute('data-category');
-            setCategory(category);  // Chama a função para aplicar a categoria
-        });
-    });
-
-    // Função para lidar com a pesquisa
-    const searchInput = document.querySelector('.search-input');
-    searchInput.addEventListener('input', function () {
-        const searchTerm = searchInput.value.trim();
-        filterProducts(searchTerm);
-    });
-
-    // Função de filtragem de produtos
-    function filterProducts(searchTerm) {
-        const search = searchTerm.toLowerCase();
-        const productCards = document.querySelectorAll(".product-card");
-        const noResultsMessage = document.getElementById('no-results-message');
-        const footer = document.querySelector('.footer');
-        let resultsFound = false;
-
-        // Resetando os elementos para estado padrão antes da filtragem
-        noResultsMessage.style.display = 'none';
-        noResultsMessage.classList.remove('show');
-        footer.style.visibility = 'visible';
-
-        // Filtra os produtos com base na pesquisa
-        productCards.forEach(card => {
-            const productCategory = card.getAttribute('data-category');
-            const productName = card.querySelector("h3").textContent.toLowerCase();
-
-            if (searchTerm !== '' && productName.includes(search)) {
+        // Se a pesquisa não estiver vazia, filtra os produtos pela pesquisa
+        if (searchTerm !== '' && productName.includes(search)) {
+            card.style.display = "block";
+            resultsFound = true;
+        } 
+        // Caso contrário, se a pesquisa estiver vazia, filtra os produtos pela categoria
+        else if (searchTerm === '') {
+            if (currentCategory === "all" || currentCategory === productCategory || (currentCategory === "uncategorized" && !productCategory)) {
                 card.style.display = "block";
                 resultsFound = true;
-            } else if (searchTerm === '') {
-                if (currentCategory === "all" || currentCategory === productCategory) {
-                    card.style.display = "block";
-                    resultsFound = true;
-                } else {
-                    card.style.display = "none";
-                }
             } else {
                 card.style.display = "none";
             }
-        });
-
-        // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
-        if (!resultsFound && searchTerm !== '') {
-            noResultsMessage.style.display = 'block';
-            setTimeout(() => {
-                noResultsMessage.classList.add('show');
-            }, 10);
-        } else if (resultsFound || searchTerm === '') {
-            noResultsMessage.classList.remove('show');
-            setTimeout(() => {
-                noResultsMessage.style.display = 'none';
-            }, 600);
+        } else {
+            card.style.display = "none";
         }
+    });
+
+    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
+    if (!resultsFound && searchTerm !== '') {
+        noResultsMessage.style.display = 'block'; // Garante que ele está visível
+        setTimeout(() => {
+            noResultsMessage.classList.add('show'); // Ativa a animação
+        }, 10);
+    } else if (resultsFound || searchTerm === '') {
+        noResultsMessage.classList.remove('show'); // Remove o efeito
+        setTimeout(() => {
+            noResultsMessage.style.display = 'none'; // Esconde após a animação
+        }, 600);
     }
+}
+
+// Função para atualizar a categoria selecionada
+function setCategory(category) {
+    if (currentCategory === category) {
+        return; // Não faz nada se a categoria já estiver selecionada
+    }
+
+    currentCategory = category;
+    filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
+
+    // Aqui você pode adicionar qualquer ação para destacar o botão selecionado, como a classe "selected"
+    document.querySelectorAll('.category').forEach(item => {
+        if (item.getAttribute('data-category') === category) {
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
+
+    // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us, .top-bar, imagem de fundo da .hero e fundo do .btn
+    const header = document.querySelector('header');
+    const footer = document.querySelector('.footer');
+    const faqHeaders = document.querySelectorAll('.faq h2');
+    const luxuryImage = document.querySelector('.luxury-image img'); 
+    const whyChooseUs = document.querySelector('.why-choose-us'); 
+    const topBar = document.querySelector('.top-bar');
+    const hero = document.querySelector('.hero'); 
+    const btn = document.querySelector('.btn'); 
+
+    // Verifica se a categoria selecionada é "isuzu"
+    if (category === "isuzu") {
+        header.style.backgroundColor = "#FF69B4";  
+        footer.style.backgroundColor = "#FF69B4";  
+        faqHeaders.forEach(h2 => h2.style.color = "#FF69B4"); 
+        luxuryImage.src = "https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg";
+        whyChooseUs.style.backgroundColor = "#FF69B4";  
+        topBar.style.backgroundColor = "#FF69B4";
+        hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";  // Nova imagem de fundo
+        btn.style.backgroundColor = "#FF69B4"; 
+    } else {
+        // Caso contrário, volta para a cor original
+        header.style.backgroundColor = "#f8a300";  
+        footer.style.backgroundColor = "#f8a300"; 
+        faqHeaders.forEach(h2 => h2.style.color = "#f8a300");  
+        luxuryImage.src = "https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp";
+        whyChooseUs.style.backgroundColor = "#f8a300";
+        topBar.style.backgroundColor = "#0088B5";
+        hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";
+        btn.style.backgroundColor = "#f8a300"; 
+    }
+}
+
+//  chamar a função para alterar a categoria ao clicar:
+document.querySelectorAll('.category').forEach(item => {
+    item.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        setCategory(category);  // Atualiza a categoria ao clicar
+    });
 });
 
+// Função para lidar com a pesquisa
+const searchInput = document.querySelector('.search-input'); // Supondo que a barra de pesquisa tenha essa classe
 
+searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.trim();
+    filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
+});
 </script>
 
 
