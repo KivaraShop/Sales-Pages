@@ -2425,6 +2425,7 @@ function setCategory(category) {
     const btn = document.querySelector('.btn');
     const socialIconsLinks = document.querySelectorAll('.social-icons2 a'); // Seleciona todos os links dentro de .social-icons2
     const rentalTextHeaders = document.querySelectorAll('.rental-text h2');
+    const rentalTextStrong = document.querySelectorAll('.rental-text strong');
 
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
@@ -2444,6 +2445,10 @@ function setCategory(category) {
    rentalTextHeaders.forEach(header => {
             header.style.color = "black";
         });
+
+          rentalTextStrong.forEach(strong => {
+            strong.style.color = "#FF69B4";
+        });
         
     } else {
         // Caso contrário, volta para a cor original
@@ -2462,6 +2467,10 @@ function setCategory(category) {
 
         rentalTextHeaders.forEach(header => {
             header.style.color = "black";
+        });
+
+   rentalTextStrong.forEach(strong => {
+            strong.style.color = "black";
         });
     }
 }
