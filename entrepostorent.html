@@ -2462,7 +2462,7 @@ function setCategory(category) {
         }
     });
 
-    // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us, .top-bar e imagem de fundo da .hero
+    // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us, .top-bar, imagem de fundo da .hero e fundo do .btn
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
@@ -2470,6 +2470,7 @@ function setCategory(category) {
     const whyChooseUs = document.querySelector('.why-choose-us'); // Seleciona a seção .why-choose-us
     const topBar = document.querySelector('.top-bar'); // Seleciona a barra superior .top-bar
     const hero = document.querySelector('.hero'); // Seleciona a seção hero para alterar a imagem de fundo
+    const btn = document.querySelector('.btn'); // Seleciona o botão
 
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
@@ -2489,6 +2490,9 @@ function setCategory(category) {
 
         // Muda a imagem de fundo da .hero para a nova imagem
         hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";  // Nova imagem de fundo
+
+        // Muda o fundo do botão .btn para rosa
+        btn.style.backgroundColor = "#FF69B4";  // Cor rosa para o fundo do botão .btn
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
@@ -2506,6 +2510,9 @@ function setCategory(category) {
 
         // Restaura a imagem de fundo da .hero para a original
         hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";  // Imagem de fundo original
+
+        // Restaura o fundo do botão .btn para a cor original
+        btn.style.backgroundColor = "#f8a300";  // Cor original para o botão .btn
     }
 }
 
@@ -2525,6 +2532,7 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 </script>
+
 
 
 
