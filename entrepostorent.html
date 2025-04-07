@@ -2439,12 +2439,7 @@ function setCategory(category) {
         topBar.style.backgroundColor = "#FF69B4";
         hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";  // Nova imagem de fundo
         btn.style.backgroundColor = "#FF69B4"; 
-
-         // Mudando o fundo dos links de social-icons2 para rosa
-    const socialIcons = document.querySelectorAll('.social-icons2 a');
-    socialIcons.forEach(icon => {
-        icon.style.backgroundColor = "#FF69B4";  // Definindo a cor de fundo rosa
-    });
+   socialIcons2.style.backgroundColor = "#FF69B4"; 
         
     } else {
         // Caso contrário, volta para a cor original
@@ -2456,12 +2451,8 @@ function setCategory(category) {
         topBar.style.backgroundColor = "#0088B5";
         hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";
         btn.style.backgroundColor = "#f8a300"; 
+        socialIcons2.style.backgroundColor = "#f8a300"; 
 
-     // Restaurando o fundo dos links para a cor original
-    const socialIcons = document.querySelectorAll('.social-icons2 a');
-    socialIcons.forEach(icon => {
-        icon.style.backgroundColor = "#f8a300";  // Definindo a cor de fundo original
-    });
 }
 
 //  chamar a função para alterar a categoria ao clicar:
