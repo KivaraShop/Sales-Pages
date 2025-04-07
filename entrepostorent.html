@@ -1079,56 +1079,75 @@ z-index: 900;
 }
 
 
-         /* Container da seção */
+     /* Container principal */
         .viaturas-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 60px 5%;
-            background: linear-gradient(135deg, #ffffff, #f2f2f2);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 30px;
+            padding: 80px 10%;
+            background-color: #fafafa;
         }
 
-        /* Caixa de cada categoria de viatura */
-        .viatura-box {
-            width: 30%;
-            text-align: center;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Cada card de viatura */
+        .viatura-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
         }
 
-        /* Efeito de hover */
-        .viatura-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Efeito de profundidade ao passar o mouse */
+        .viatura-card:hover {
+            transform: translateY(-10px); /* Efeito de elevação no hover */
         }
 
-        /* Imagens */
-        .viatura-box img {
+        /* Imagem de fundo de cada card */
+        .viatura-card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Textos sobre a imagem */
+        .viatura-card .info-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
-            margin-bottom: 20px;
+            width: 80%;
         }
 
-        /* Títulos */
-        .viatura-box h3 {
+        /* Título e descrição */
+        .viatura-card h3 {
             font-size: 28px;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-weight: bold;
+            margin: 0;
         }
 
-        /* Descrição */
-        .viatura-box p {
+        .viatura-card p {
             font-size: 16px;
-            color: #777;
-            line-height: 1.6;
+            font-weight: 300;
+            margin-top: 10px;
         }
 
+        /* Efeito hover na imagem */
+        .viatura-card:hover img {
+            opacity: 0.7;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .viaturas-section {
+                grid-template-columns: 1fr;
+                padding: 40px 5%;
+            }
+        }
         
     </style>
 </head>
@@ -1202,26 +1221,34 @@ z-index: 900;
 
    <!-- Seção de Aluguel de Viaturas -->
     <div class="viaturas-section">
-        <!-- Casamentos -->
-        <div class="viatura-box">
+        
+        <!-- Card Casamentos -->
+        <div class="viatura-card">
             <img src="https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg" alt="Viatura para Casamento">
-            <h3>Casamentos</h3>
-            <p>Oferecemos viaturas de luxo e elegância para tornar o seu dia especial ainda mais inesquecível. Viaturas confortáveis, com todo o glamour que o seu casamento merece.</p>
+            <div class="info-overlay">
+                <h3>Casamentos</h3>
+                <p>Transforme seu dia especial em uma experiência única com nossas viaturas de luxo e conforto.</p>
+            </div>
         </div>
         
-        <!-- Negócios -->
-        <div class="viatura-box">
+        <!-- Card Negócios -->
+        <div class="viatura-card">
             <img src="https://mpics.mgronline.com/pics/Images/559000002000101.JPEG" alt="Viatura para Negócios">
-            <h3>Negócios</h3>
-            <p>Para os seus compromissos profissionais, temos viaturas modernas e práticas, que proporcionam o máximo de conforto e pontualidade. Perfeitas para viagens corporativas ou encontros importantes.</p>
+            <div class="info-overlay">
+                <h3>Negócios</h3>
+                <p>Para compromissos profissionais, oferecemos viaturas elegantes e práticas para garantir seu sucesso.</p>
+            </div>
         </div>
-        
-        <!-- Lazer -->
-        <div class="viatura-box">
+
+        <!-- Card Lazer/Familiar -->
+        <div class="viatura-card">
             <img src="https://th.bing.com/th/id/R.61457a6f8d7d4384778b634efa9d9a02?rik=yIQelaBbTI97qA&riu=http%3a%2f%2falphacars.fr%2fwp-content%2fuploads%2f2021%2f03%2fQuelle-voiture-familiale-choisir-1.jpeg&ehk=QWyq3IIeiQYXgdxM8zpf16U6rMbcX1r7qwAPranHdhs%3d&risl=&pid=ImgRaw&r=0" alt="Viatura para Lazer">
-            <h3>Lazer/Familiar</h3>
-            <p>Se procura uma experiência divertida e confortável para as suas férias ou passeios, temos as viaturas ideais. Explore novas cidades ou paisagens com estilo e conforto.</p>
+            <div class="info-overlay">
+                <h3>Lazer/Familiar</h3>
+                <p>Viva momentos incríveis com nossas viaturas para lazer e passeios familiares, com espaço e conforto.</p>
+            </div>
         </div>
+
     </div>
 
 
