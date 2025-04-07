@@ -2462,19 +2462,22 @@ function setCategory(category) {
         }
     });
 
-    // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us e .top-bar quando a categoria "isuzu" for selecionada
+    // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us, .top-bar e imagem de fundo da .hero
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
+    const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
     const luxuryImage = document.querySelector('.luxury-image img');  // Seleciona a imagem de luxo
     const whyChooseUs = document.querySelector('.why-choose-us'); // Seleciona a seção .why-choose-us
     const topBar = document.querySelector('.top-bar'); // Seleciona a barra superior .top-bar
+    const hero = document.querySelector('.hero'); // Seleciona a seção hero para alterar a imagem de fundo
 
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
         // Muda a cor de todos os elementos para rosa
         header.style.backgroundColor = "#FF69B4";  // Cor rosa para o header
         footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
+        h1.style.color = "#FF69B4";  // Cor rosa para o h1
         faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");  // Cor rosa para todos os h2 dentro de .faq
         
         // Altera a imagem para a imagem fornecida
@@ -2485,10 +2488,14 @@ function setCategory(category) {
 
         // Muda o fundo da barra superior .top-bar para rosa
         topBar.style.backgroundColor = "#FF69B4";  // Cor rosa para a .top-bar
+
+        // Muda a imagem de fundo da .hero para a nova imagem
+        hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";  // Nova imagem de fundo
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
         footer.style.backgroundColor = "#f8a300";  // Cor original do footer
+        h1.style.color = "#f8a300";  // Cor original do h1
         faqHeaders.forEach(h2 => h2.style.color = "#f8a300");  // Cor original para todos os h2 dentro de .faq
         
         // Restaura a imagem original
@@ -2499,6 +2506,9 @@ function setCategory(category) {
 
         // Restaura o fundo da barra superior .top-bar para a cor original
         topBar.style.backgroundColor = "#0088B5";  // Cor original para a .top-bar
+
+        // Restaura a imagem de fundo da .hero para a original
+        hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";  // Imagem de fundo original
     }
 }
 
