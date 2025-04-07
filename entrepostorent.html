@@ -2462,12 +2462,13 @@ function setCategory(category) {
         }
     });
 
-    // Alterar a cor do cabeçalho, footer, h1 e faq h2 quando a categoria "isuzu" for selecionada
+    // Alterar a cor do cabeçalho, footer, h1, faq h2 e a seção .why-choose-us quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
     const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
     const luxuryImage = document.querySelector('.luxury-image img');  // Seleciona a imagem de luxo
+    const whyChooseUs = document.querySelector('.why-choose-us'); // Seleciona a seção .why-choose-us
 
     // Verifica se a categoria selecionada é "isuzu"
     if (category === "isuzu") {
@@ -2479,6 +2480,9 @@ function setCategory(category) {
         
         // Altera a imagem para a imagem fornecida
         luxuryImage.src = "https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg";  // Novo link da imagem
+        
+        // Muda o fundo da seção .why-choose-us para rosa
+        whyChooseUs.style.backgroundColor = "#FF69B4";  // Cor rosa para a seção .why-choose-us
     } else {
         // Caso contrário, volta para a cor original
         header.style.backgroundColor = "#f8a300";  // Cor original do cabeçalho
@@ -2488,6 +2492,9 @@ function setCategory(category) {
         
         // Restaura a imagem original
         luxuryImage.src = "https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp";  // Imagem original
+        
+        // Restaura o fundo da seção .why-choose-us para a cor original
+        whyChooseUs.style.backgroundColor = "#f8a300";  // Cor original para a seção .why-choose-us
     }
 }
 
@@ -2506,8 +2513,8 @@ searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.trim();
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
-    
 </script>
+
 
 
 
