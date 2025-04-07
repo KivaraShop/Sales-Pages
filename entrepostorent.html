@@ -2401,13 +2401,84 @@ console.log('Menu found:', navMenu !== null);
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // Inicializa com a categoria "mazda"
-    const defaultCategory = "mazda";
+    // Função para simular o clique na categoria "mazda" ao carregar a página
+    function selectCategoryOnLoad() {
+        const mazdaCategory = document.querySelector('.category[data-category="mazda"]');  // Seleciona o item com data-category="mazda"
+        
+        if (mazdaCategory) {
+            mazdaCategory.click();  // Simula o clique nessa categoria
+        }
+    }
 
-    // Chama a função setCategory para aplicar a categoria ao carregar a página
-    setCategory(defaultCategory);
+    // Função para filtrar os produtos e atualizar os estilos conforme a categoria
+    function setCategory(category) {
+        let currentCategory = category;
 
-    // Função de filtro e seleção de categoria
+        // Filtra produtos e aplica a lógica de destaque
+        const productCards = document.querySelectorAll(".product-card");
+        productCards.forEach(card => {
+            const productCategory = card.getAttribute('data-category');
+            if (currentCategory === "all" || currentCategory === productCategory) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        // Atualiza o estilo da página conforme a categoria
+        const header = document.querySelector('header');
+        const footer = document.querySelector('.footer');
+        const faqHeaders = document.querySelectorAll('.faq h2');
+        const luxuryImage = document.querySelector('.luxury-image img');
+        const whyChooseUs = document.querySelector('.why-choose-us');
+        const topBar = document.querySelector('.top-bar');
+        const hero = document.querySelector('.hero');
+        const btn = document.querySelector('.btn');
+
+        // Se a categoria for "mazda"
+        if (category === "mazda") {
+            header.style.backgroundColor = "#f8a300";
+            footer.style.backgroundColor = "#f8a300";
+            faqHeaders.forEach(h2 => h2.style.color = "#f8a300");
+            luxuryImage.src = "https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp";
+            whyChooseUs.style.backgroundColor = "#f8a300";
+            topBar.style.backgroundColor = "#0088B5";
+            hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";
+            btn.style.backgroundColor = "#f8a300";
+        }
+
+        // Se a categoria for "isuzu"
+        else if (category === "isuzu") {
+            header.style.backgroundColor = "#FF69B4";
+            footer.style.backgroundColor = "#FF69B4";
+            faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");
+            luxuryImage.src = "https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg";
+            whyChooseUs.style.backgroundColor = "#FF69B4";
+            topBar.style.backgroundColor = "#FF69B4";
+            hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";
+            btn.style.backgroundColor = "#FF69B4";
+        }
+    }
+
+    // Chama a função para simular o clique na categoria "mazda" ao carregar a página
+    selectCategoryOnLoad();
+
+    // Adiciona evento de clique nas categorias
+    document.querySelectorAll('.category').forEach(item => {
+        item.addEventListener('click', function () {
+            const category = this.getAttribute('data-category');
+            setCategory(category);  // Chama a função para aplicar a categoria
+        });
+    });
+
+    // Função para lidar com a pesquisa
+    const searchInput = document.querySelector('.search-input');
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.trim();
+        filterProducts(searchTerm);
+    });
+
+    // Função de filtragem de produtos
     function filterProducts(searchTerm) {
         const search = searchTerm.toLowerCase();
         const productCards = document.querySelectorAll(".product-card");
@@ -2429,7 +2500,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.style.display = "block";
                 resultsFound = true;
             } else if (searchTerm === '') {
-                if (currentCategory === "all" || currentCategory === productCategory || (currentCategory === "uncategorized" && !productCategory)) {
+                if (currentCategory === "all" || currentCategory === productCategory) {
                     card.style.display = "block";
                     resultsFound = true;
                 } else {
@@ -2440,6 +2511,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
         if (!resultsFound && searchTerm !== '') {
             noResultsMessage.style.display = 'block';
             setTimeout(() => {
@@ -2452,74 +2524,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 600);
         }
     }
-
-    let currentCategory = "uncategorized"; // Inicializa com a categoria não categorizada
-
-    // Função para atualizar a categoria selecionada
-    function setCategory(category) {
-        if (currentCategory === category) {
-            return;
-        }
-
-        currentCategory = category;
-        filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
-
-        // Destaca o botão selecionado
-        document.querySelectorAll('.category').forEach(item => {
-            if (item.getAttribute('data-category') === category) {
-                item.classList.add('selected');
-            } else {
-                item.classList.remove('selected');
-            }
-        });
-
-        const header = document.querySelector('header');
-        const footer = document.querySelector('.footer');
-        const faqHeaders = document.querySelectorAll('.faq h2');
-        const luxuryImage = document.querySelector('.luxury-image img');
-        const whyChooseUs = document.querySelector('.why-choose-us');
-        const topBar = document.querySelector('.top-bar');
-        const hero = document.querySelector('.hero');
-        const btn = document.querySelector('.btn');
-
-        // Verifica se a categoria selecionada é "isuzu"
-        if (category === "isuzu") {
-            header.style.backgroundColor = "#FF69B4";
-            footer.style.backgroundColor = "#FF69B4";
-            faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");
-            luxuryImage.src = "https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg";
-            whyChooseUs.style.backgroundColor = "#FF69B4";
-            topBar.style.backgroundColor = "#FF69B4";
-            hero.style.background = "url('https://dreamlifeblog.com.au/wp-content/uploads/2019/08/SYD06270-031.jpg') no-repeat center center/cover";
-            btn.style.backgroundColor = "#FF69B4";
-        } else if (category === "mazda") {
-            header.style.backgroundColor = "#f8a300";
-            footer.style.backgroundColor = "#f8a300";
-            faqHeaders.forEach(h2 => h2.style.color = "#f8a300");
-            luxuryImage.src = "https://lucidmotors.com/media/image/main-nav/nav-lucid-ownership-desktop_2x.webp";
-            whyChooseUs.style.backgroundColor = "#f8a300";
-            topBar.style.backgroundColor = "#0088B5";
-            hero.style.background = "url('https://nypost.com/wp-content/uploads/sites/2/2022/12/iStock-1352237281.jpg') no-repeat center center/cover";
-            btn.style.backgroundColor = "#f8a300";
-        }
-    }
-
-    // Exemplo de como chamar a função para alterar a categoria ao clicar
-    document.querySelectorAll('.category').forEach(item => {
-        item.addEventListener('click', function () {
-            const category = this.getAttribute('data-category');
-            setCategory(category);
-        });
-    });
-
-    // Função para lidar com a pesquisa
-    const searchInput = document.querySelector('.search-input');
-    searchInput.addEventListener('input', function () {
-        const searchTerm = searchInput.value.trim();
-        filterProducts(searchTerm);
-    });
-
 });
+
 
 </script>
 
