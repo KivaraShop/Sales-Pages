@@ -2465,7 +2465,6 @@ function setCategory(category) {
     // Alterar a cor do cabeçalho, footer, h1, faq h2, .why-choose-us e .top-bar quando a categoria "isuzu" for selecionada
     const header = document.querySelector('header');
     const footer = document.querySelector('.footer');
-    const h1 = document.querySelector('h1'); // Seleciona o h1 (Nossa Frota)
     const faqHeaders = document.querySelectorAll('.faq h2'); // Seleciona todos os h2 dentro de .faq
     const luxuryImage = document.querySelector('.luxury-image img');  // Seleciona a imagem de luxo
     const whyChooseUs = document.querySelector('.why-choose-us'); // Seleciona a seção .why-choose-us
@@ -2476,7 +2475,6 @@ function setCategory(category) {
         // Muda a cor de todos os elementos para rosa
         header.style.backgroundColor = "#FF69B4";  // Cor rosa para o header
         footer.style.backgroundColor = "#FF69B4";  // Cor rosa para o footer
-        h1.style.color = "#FF69B4";  // Cor rosa para o h1
         faqHeaders.forEach(h2 => h2.style.color = "#FF69B4");  // Cor rosa para todos os h2 dentro de .faq
         
         // Altera a imagem para a imagem fornecida
