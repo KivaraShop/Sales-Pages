@@ -3225,25 +3225,17 @@ function filterProducts(searchTerm) {
         }
     });
 
-    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem "Sem Resultados"
+   // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem com efeito
     if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "Sem Resultados"
-        
-        // Esconde outros elementos da página
-        navigationButtons.style.visibility = 'hidden';
-        footer.style.visibility = 'hidden';
-        googleReviewsContainer.style.visibility = 'hidden';
-        brandSearch.style.visibility = 'hidden';
-        priceSearch.style.visibility = 'hidden';
+        noResultsMessage.style.display = 'block'; // Garante que ele está visível
+        setTimeout(() => {
+            noResultsMessage.classList.add('show'); // Ativa a animação
+        }, 10);
     } else if (resultsFound || searchTerm === '') {
-        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "Sem Resultados" caso haja resultados ou pesquisa vazia
-
-        // Reexibe os outros elementos da página
-        navigationButtons.style.visibility = 'visible';
-        footer.style.visibility = 'visible';
-        googleReviewsContainer.style.visibility = 'visible';
-        brandSearch.style.visibility = 'visible';
-        priceSearch.style.visibility = 'visible';
+        noResultsMessage.classList.remove('show'); // Remove o efeito
+        setTimeout(() => {
+            noResultsMessage.style.display = 'none'; // Esconde após a animação
+        }, 600);
     }
 }
 
