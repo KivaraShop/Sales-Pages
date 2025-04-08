@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Izuzu Dmax</title>
+    </head>
+ <style>
+   body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+    }
+
+    header {
+        background-color: #0088B5;
+        padding: 1px;
+        text-align: center;
+    }
+
+    header .logo img {
+        width: 110px;
+    }
+    /* Logo */
+    .logo {
+        flex-grow: 1;
+        text-align: center;
+        background-color: transparent;
+    }
+
+    .logo img {
+        height: 35px;
+        padding: 0;
+        margin: 0;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .car-details {
+        display: flex;
+        flex-direction: column;  /* Alterado para empilhar as seções */
+        align-items: center;  /* Alinha as seções ao centro */
+        gap: 20px; /* Espaçamento entre as seções */
+        margin: 0; /* Remove margens extras */
+        padding: 0; /* Remove padding extra */
+    }
+
+    .car-gallery, .car-info {
+        width: 100%; /* As duas seções ocuparão 100% da largura */
+        text-align: center;
+    }
+
+    .car-gallery {
+        margin: 0;
+        gap: 10px !important;
+    }
+
+    .main-image img {
+        width: 80%;
+        max-width: 400px;
+        height: auto;
+        border-radius: 15px !important;
+        margin: 0;
+    }
+
+    .thumbnail-carousel {
+        display: flex;
+        justify-content: center;
+        margin-top: 22px !important;
+        gap: 10px;
+        overflow-x: auto;
+        width: 80%;
+        scroll-behavior: smooth;
+        max-width: calc(4 * 60px + 3 * 10px);
+        margin: 0 auto;
+        padding-left: 10px;
+        scroll-snap-type: x mandatory;
+    }
+
+    .thumbnail {
+        width: 40px !important;
+        height: 40px !important;
+        cursor: pointer;
+        border-radius: 10px;
+        object-fit: cover;
+        flex-shrink: 0;
+        transition: opacity 0.3s, border 0.3s;
+        border: 2px solid transparent;
+    }
+
+    @media screen and (min-width: 768px) {
+        .thumbnail {
+            width: 60px !important;
+            height: 60px !important;
+        }
+    }
+
+    .thumbnail:hover {
+        opacity: 0.7;
+    }
+
+    .thumbnail.active {
+        border: 2px solid #00aaff;
+    }
+
+    .car-info {
+        width: 100%; /* Ajuste para ocupar toda a largura disponível */
+        text-align: left;
+        column-gap: 10px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .car-info h1 {
+        color: #0088B5;
+        margin: 0;
+    }
+
+    .description {
+        margin-top: 10px;
+        font-size: 14px;
+        width: 100%;
+        word-wrap: break-word;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    .car-state {
+        margin-top: 20px;
+    }
+
+    .state-bar {
+        margin-bottom: 15px;
+    }
+
+    .state-bar span {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .bar-container {
+        background-color: #ddd;
+        border-radius: 5px;
+        width: 100%;
+        height: 20px;
+        position: relative;
+    }
+
+    .bar {
+        background-color: #0088B5;
+        height: 100%;
+        border-radius: 5px;
+        transition: width 1s ease-out;
+    }
+
+    .bar-label {
+        margin-top: 5px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    footer {
+        background-color: #fff;
+        color: black;
+        text-align: center;
+        padding: 10px;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .car-details {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .car-info h1 {
+            color: #012063;
+            margin-top: 29px;
+            text-align: center;
+        }
+
+        .car-gallery {
+            width: 100%;
+        }
+
+        .thumbnail-carousel {
+            max-width: calc(4 * 50px + 3 * 10px);
+        }
+
+        .car-info {
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .main-image img {
+            width: 100%;
+            max-width: 400px !important;
+            height: 300px !important;
+            margin: 0;
+        }
+
+        .car-state {
+            width: 100%;
+        }
+
+        .state-bar {
+            width: 100%;
+        }
+
+        .bar-container {
+            width: 100%;
+        }
+    }
+
+    /* Botão de alternância */
+    .ficha-btn {
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        background-color: #0088B5;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+
+    /* Efeito de hover (passando o mouse sobre o botão) */
+    .ficha-btn:hover {
+        background-color: #00729d;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Efeito de foco (quando o botão é clicado ou recebe foco) */
+    .ficha-btn:focus {
+        outline: none;
+        border: 2px solid #00b4e6;
+    }
+
+    /* Efeito de clique */
+    .ficha-btn:active {
+        transform: scale(0.98);
+        background-color: #006a8f;
+    }
+
+    /* Estilo da ficha técnica */
+    .ficha-tecnica {
+        display: block;
+        background-color: #f1f9fc;
+        padding: 20px;
+        border-left: 4px solid #0088B5;
+        border-radius: 5px;
+    }
+
+    .ficha-content {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ficha-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ficha-content li {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .ficha-content li strong {
+        color: #0088B5;
+    }
+
+    p {
+        margin-bottom: 20px;
+        padding: 0.5px;
+    }
+
+    .showroom-iframe {
+        display: block;
+    }
+     
+.contact-section {
+     background-color: transparent; /* Fundo transparente */
+    color: white;
+    padding: 20px;
+    max-width: 25% !important; /* Terceira coluna ao lado das outras */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none; /* Remover sombra */
+    border: none; /* Remover bordas */
+}
+
+/* Cabeçalho da seção */
+.contact-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #FF0000; /* Cor dourada */
+    margin-bottom: 10px;
+}
+
+.contact-header p {
+    font-size: 16px;
+    font-weight: normal;
+    color: #000000;
+}
+
+/* Nota de urgência */
+.urgency-note {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF0000; /* Dourado */
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Estilos para os botões */
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+     /* Efeito de agitação para o botão de contato */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.contact-btn {
+    background-color: #128C7E; /* Verde chamativo */
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    animation: shake 2s infinite; /* Animação de agitação */
+}
+
+/* Efeito de hover para os botões */
+.contact-btn:hover, .whatsapp-btn:hover {
+    background-color: #25D366; /* Verde mais escuro */
+}
+
+/* Estilos para o botão de WhatsApp */
+.whatsapp-btn {
+    background-color: #25D366; /* Verde do WhatsApp */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E; /* Cor mais escura do WhatsApp */
+}
+
+/* Ícones do botão */
+.whatsapp-btn i, .contact-btn i {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Alinhamento lado a lado com outras colunas */
+.car-details {
+    display: flex;
+    flex-direction: row;  /* Coloca as seções lado a lado */
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Responsividade: Ajustando para telas menores */
+@media (max-width: 768px) {
+    .contact-section {
+        width: 100%; /* Para telas pequenas, ocupa toda a largura */
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* Torna as seções flexíveis e alinhadas lado a lado */
+.container {
+    display: flex;
+    flex-direction: row; /* Mantém os itens na horizontal */
+    justify-content: center; /* Distribui o espaço entre os elementos */
+    align-items: flex-start; /* Alinha ao topo */
+    gap: 20px; /* Espaço entre os itens */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+/* Estilo para o container do timer */
+.timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    font-size: 18px; /* Reduzi o tamanho da fonte dos números */
+    font-weight: bold;
+}
+
+/* Estilo para o ícone */
+.timer-container i {
+    font-size: 15px; /* Tamanho do ícone do relógio de alarme */
+    color: #128C7E; /* Cor do ícone */
+}
+
+/* Estilo do texto do timer em vermelho */
+#timer {
+    color: #FF0000; /* Vermelho para o timer */
+}
+
+     .sponsor-banner {
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    padding: 10px 0;
+    white-space: nowrap;
+    position: relative;
+}
+
+.sponsor-track {
+    display: flex;
+    width: 150%; /* Agora calcula o tamanho automático! */
+    animation: scrollBanner 20s linear infinite;
+}
+
+.sponsor-content {
+    display: flex;
+}
+
+.sponsor-content img {
+    width: 50px; /* Seu tamanho desejado */
+    height: auto;
+    margin: 0 10px; /* Pequeno espaço entre as imagens */
+}
+
+/* Rolagem contínua perfeita */
+@keyframes scrollBanner {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-75%);
+    }
+}
+/* Estilo para a seção de carros similares */
+.similar-cars {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.similar-cars h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.car-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Estilo para cada card de carro */
+.car-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-info {
+    padding: 15px;
+}
+
+.car-info h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.car-info p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.car-link {
+    font-size: 16px;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.car-link:hover {
+    color: #ff66b2;
+}
+
+/* Efeito de hover no card */
+.car-card:hover {
+    transform: translateY(-10px);
+}
+
+
+
+         .container2 {
+      display: flex;
+      max-width: 1200px;
+      margin: 30px auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      gap: 30px;
+    }
+    .gallery {
+      flex: 1;
+    }
+    .main-image {
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+    .thumbnails {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .thumbnails img {
+      width: 60px;
+      height: 40px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+    .details {
+      flex: 1.5;
+    }
+    .details h1 {
+      margin-bottom: 10px;
+      color: #003087;
+    }
+    .info-tags span {
+      background: #eee;
+      padding: 5px 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #003087;
+      margin: 20px 0;
+    }
+    .actions button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      background: #003087;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .features {
+      margin-top: 30px;
+    }
+    .accordion {
+      border-top: 1px solid #ddd;
+    }
+    .accordion-item {
+      cursor: pointer;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .accordion-item:hover {
+      background: #f0f0f0;
+    }
+    .accordion-item h3 {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .accordion-content {
+      display: none;
+      padding: 10px 0;
+      color: #555;
+    }
+    .return-home {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #003087;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .return-home i {
+      margin-right: 8px;
+    }
+
+</style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="entreposto" border="0" style="max-width: 250px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+    </header>
+
+<div class="container2">
+  <div class="gallery">
+    <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/04_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400" id="mainImg" class="main-image">
+    <div class="thumbnails">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/06_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400" onclick="changeImage(this)">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/05_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400/cccccc" onclick="changeImage(this)">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/03_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400/999999" onclick="changeImage(this)">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/02_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400/666666" onclick="changeImage(this)">
+    </div>
+  </div>
+
+  <div class="details">
+    <h1>Nissan JUKE - DIG-T (114 CV) 6M/T N-CONNECTA</h1>
+    <div class="info-tags">
+      <span>Gasolina</span><span>2024</span><span>24899 km</span><span>114 CV</span><span>Automática</span><span>5 lugares</span>
+    </div>
+    <div class="price">25 900 €</div>
+    <div>*+300 € em despesas logísticas</div>
+    <div class="actions">
+      <button>Reservar</button>
+      <button>Pedir Informações</button>
+    </div>
+
+    <div class="features">
+      <h2>Informações gerais</h2>
+      <div class="accordion">
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Primeiros passos para a compra <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">Explique o processo inicial de compra, incluindo a seleção do veículo, simulação de financiamento, e agendamento de visita ou test-drive.</div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Devolução da viatura <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">A devolução da viatura pode ser feita em até 14 dias após a compra, caso não esteja satisfeito.</div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Métodos de pagamento disponíveis <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">Aceitamos pagamentos por transferência bancária, cartão de crédito, e financiamento.</div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Entrega ao domicílio <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">Oferecemos entrega ao domicílio em todo o país, com agendamento personalizado.</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="vendas.html" class="return-home"><i class="fas fa-arrow-left"></i> Voltar</a>
+  </div>
+</div>
+<!-- Seção da Ficha Técnica (oculta por padrão) -->
+<div id="fichaTecnica" class="ficha-tecnica">
+    <h2>FICHA TÉCNICA</h2>
+    <div class="ficha-content">
+        <ul>
+            <li><strong>Categoria:</strong> SUV</li>
+            <li><strong>Ano de fabrico:</strong> 2008</li>
+            <li><strong>Cilindrada:</strong> 2972 cc</li>
+            <li><strong>Combustível:</strong> Gasolina</li>
+            <li><strong>Quilometragem:</strong> 87.000 Km</li>
+            <li><strong>Tração:</strong> 4WD</li>
+            <li><strong>Transmissão:</strong> Automática</li>
+            <li><strong>Cor:</strong> Branca</li>
+        </ul>
+        <ul>
+            <li><strong>Portas:</strong> 3</li>
+            <li><strong>Lotação:</strong> 5 Lugares</li>
+            <li><strong>Potência:</strong> 176 Hp @ 5240 rpm</li>
+            <li><strong>Torque:</strong> 261 Nm @ 4000 rpm</li>
+            <li><strong>Velocidade máxima:</strong> 220 km/h</li>
+            <li><strong>Aceleração:</strong> 0 a 100km/h – 11,5 segundos</li>
+            <li><strong>Consumo cidade (l/100 km):</strong> 15,9</li>
+            <li><strong>Consumo estrada (l/100 km):</strong> 10,6</li>
+        </ul>
+    </div>
+</div>  
+        
+<section class="similar-cars">
+    <h2>Carros Similares</h2>
+    <div class="car-cards">
+        <div class="car-card">
+            <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 1">
+            <div class="car-info">
+                <h3>Carro Modelo 1</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Carro 2">
+            <div class="car-info">
+                <h3>Carro Modelo 2</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg/300" alt="Carro 3">
+            <div class="car-info">
+                <h3>Carro Modelo 3</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="Carro 4">
+            <div class="car-info">
+                <h3>Carro Modelo 4</h3>
+                <p>Descrição do carro, características e mais...</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+
+    <footer>
+        <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
+    </footer>
+<script>
+  function changeImage(img) {
+    document.getElementById('mainImg').src = img.src;
+  }
+
+  function toggleAccordion(element) {
+    const content = element.querySelector('.accordion-content');
+    const icon = element.querySelector('i');
+    const isOpen = content.style.display === 'block';
+    document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.accordion-item i').forEach(i => i.classList.remove('fa-chevron-up'));
+    document.querySelectorAll('.accordion-item i').forEach(i => i.classList.add('fa-chevron-down'));
+
+    if (!isOpen) {
+      content.style.display = 'block';
+      icon.classList.remove('fa-chevron-down');
+      icon.classList.add('fa-chevron-up');
+    }
+  }
+</script>
+ 
+</body>
+</html>
