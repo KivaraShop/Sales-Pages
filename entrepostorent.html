@@ -1331,6 +1331,25 @@ z-index: 900;
 </div>
   </div>
        <div class="product-grid">
+
+
+           <!-- POPUP -->
+<div id="popup-desconto" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+z-index: 9999; background-color: white; border: 4px solid #d0002c; border-radius: 20px; padding: 40px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.3); font-family: Arial, sans-serif;">
+  
+  <button onclick="fecharPopup()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 20px; cursor: pointer; color: red;">&times;</button>
+
+  <h2 style="font-size: 24px; font-weight: bold;">OBTENHA 10% DE DESCONTO NA SUA PRIMEIRA RESERVA!</h2>
+  <p style="margin: 20px 0; font-size: 16px;">Aproveite esta oferta exclusiva. Desconto aplicado automaticamente no checkout.</p>
+
+  <button onclick="fecharPopup()" style="background-color: black; color: white; padding: 12px 20px; font-size: 16px; border-radius: 30px; border: none; cursor: pointer; width: 100%; max-width: 300px;">
+    APROVEITAR DESCONTO
+  </button>
+
+  <p style="margin-top: 15px; font-size: 14px; color: #444; cursor: pointer;" onclick="fecharPopup()">NÃO, OBRIGADO</p>
+</div>
+
+           
             <!-- Exemplo de produto -->
             <div class="product-card">
                 <div class="product-labels">
@@ -2075,7 +2094,17 @@ z-index: 900;
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+<script>
+// Função para mostrar o popup após 30 segundos
+setTimeout(() => {
+  document.getElementById('popup-desconto').style.display = 'block';
+}, 30000);
 
+// Função para fechar o popup
+function fecharPopup() {
+  document.getElementById('popup-desconto').style.display = 'none';
+}
+</script>
 <script>
   function setActiveCategory(element) {
     // Verificar se o botão já está ativo, se sim, não faz nada
