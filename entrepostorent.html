@@ -2449,6 +2449,16 @@ function setCategory(category) {
           rentalTextStrong.forEach(strong => {
             strong.style.color = "#FF69B4";
         });
+
+              // Alterando o texto da seção rental-text
+        const rentalTextHeader = document.querySelector('.rental-text h2');
+        const rentalTextParagraph = document.querySelector('.rental-text p');
+
+        if (rentalTextHeader && rentalTextParagraph) {
+            rentalTextHeader.textContent = "Aluguer de Viaturas para o seu Casamentos em Maputo";
+            rentalTextParagraph.textContent = "Oferecemos um serviço de aluguer de viaturas de luxo, ideal para quem procura um transporte elegante e seguro no dia do casamento. Com uma frota de veículos impecáveis e um atendimento exclusivo, garantimos que o seu trajeto até ao evento seja confortável, pontual e à altura da importância do momento. Escolha a viatura perfeita para o seu casamento e viaje com estilo e tranquilidade.";
+        }
+
         
     } else {
         // Caso contrário, volta para a cor original
