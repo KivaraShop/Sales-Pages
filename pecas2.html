@@ -2904,6 +2904,24 @@ document.querySelectorAll('header nav a')[2].addEventListener('click', function(
 
 </script>
     
+<script>
+        setTimeout(() => {
+            document.getElementById('whatsapp-popup').style.display = 'flex';
+        }, 30000); // 30s (30000ms)
+
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+            window.open('https://wa.me/258852136558?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20serviço.', '_blank');
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseover', () => {
+            document.getElementById('whatsapp-text').innerText = 'WhatsApp';
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseout', () => {
+            document.getElementById('whatsapp-text').innerText = 'Fale Connosco';
+        });
+    </script>
+
     <script>
 document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.product-card button');
@@ -3102,7 +3120,9 @@ setInterval(scrollReviews, 3000);  // A cada 3 segundos
   <script>
 // Array de imagens para o slider
 const images = [
-    'https://cdn.whichcar.com.au/assets/w_1536/157e1203/2024-toyota-hybrid-lineup-01.jpg'
+    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg',
+    'https://cdn.whichcar.com.au/assets/w_1536/157e1203/2024-toyota-hybrid-lineup-01.jpg',
+    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg'
 ];
 
 let currentImageIndex = 0;
@@ -3147,6 +3167,20 @@ setInterval(changeImage, 5000);
             });
         });
     </script>
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+
+</script>
         
 
 <script>
@@ -3239,6 +3273,52 @@ searchInput.addEventListener('input', function() {
 });
 </script>
 
+
+
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
 
      <script>
     document.addEventListener("DOMContentLoaded", () => {
