@@ -3187,6 +3187,7 @@ function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const productCards = document.querySelectorAll(".product-card");
     const noResultsMessage = document.querySelector('[data-category="noresults"]');
+     const noResultsMessage = document.getElementById('no-results-message');
     const navigationButtons = document.querySelector('.navigation-buttons');
     const footer = document.querySelector('footer');
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
