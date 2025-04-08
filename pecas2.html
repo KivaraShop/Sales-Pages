@@ -3186,7 +3186,7 @@ let currentCategory = "uncategorized";  // Inicializa com a categoria não categ
 function filterProducts(searchTerm) {
     const search = searchTerm.toLowerCase();
     const productCards = document.querySelectorAll(".product-card");
-    const noResultsMessage = document.querySelector('no-results-message');
+    const noResultsMessage = document.querySelector('[data-category="noresults"]');
     const navigationButtons = document.querySelector('.navigation-buttons');
     const footer = document.querySelector('footer');
     const googleReviewsContainer = document.querySelector('.google-reviews .container');
@@ -3269,6 +3269,7 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 </script>
+
 
 
 
