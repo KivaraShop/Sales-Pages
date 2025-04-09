@@ -3360,19 +3360,16 @@ searchInput.addEventListener('input', function() {
  </script>
     <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
-((function() {
+(function() {
     document.addEventListener('DOMContentLoaded', () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartIcon = document.querySelector('.cart-icon');
-        if (!cartIcon) return;
         const cartBadge = cartIcon.querySelector('.cart-badge');
         const cartPopup = document.querySelector('.cart-popup');
-        const cartPopupContent = cartPopup ? cartPopup.querySelector('.cart-popup-content') : null;
+        const cartPopupContent = cartPopup.querySelector('.cart-popup-content');
         const productCards = document.querySelectorAll('.product-card');
-        if (!cartBadge || !cartPopup || !cartPopupContent) return;
 
         function updateCartCount() {
-            if (!cartBadge) return;
             cartBadge.textContent = cart.length || '';
         }
 
@@ -3389,7 +3386,6 @@ searchInput.addEventListener('input', function() {
             let currentTotal = 0;
             const increment = total / 100;
             const totalElement = document.querySelector('.cart-total');
-            if (!totalElement) return;
 
             function updateTotal() {
                 currentTotal += increment;
@@ -3404,13 +3400,13 @@ searchInput.addEventListener('input', function() {
         }
 
         function renderCart() {
-            if (!cartPopupContent) return;
-            cartPopupContent.innerHTML = '';
+            cartPopupContent.innerHTML = ''; // Limpa o conteúdo atual
 
+            // Adicionando o logo acima do título
             const logoContainer = document.createElement('div');
             logoContainer.style.display = 'flex';
-            logoContainer.style.justifyContent = 'center';
-            logoContainer.style.marginBottom = '40px';
+            logoContainer.style.justifyContent = 'center'; // Centraliza o logo
+            logoContainer.style.marginBottom = '40px'; // Espaço entre o logo e o título
 
             const logoImg = document.createElement('img');
             logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png';
@@ -3446,16 +3442,13 @@ searchInput.addEventListener('input', function() {
                         <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
                     `;
 
-                    const removeBtn = li.querySelector('button');
-                    if (removeBtn) {
-                        removeBtn.addEventListener('click', (e) => {
-                            const indexToRemove = e.target.getAttribute('data-index');
-                            cart.splice(indexToRemove, 1);
-                            saveCart();
-                            updateCartCount();
-                            renderCart();
-                        });
-                    }
+                    li.querySelector('button').addEventListener('click', (e) => {
+                        const indexToRemove = e.target.getAttribute('data-index');
+                        cart.splice(indexToRemove, 1);
+                        saveCart();
+                        updateCartCount();
+                        renderCart();
+                    });
 
                     ul.appendChild(li);
                 });
@@ -3497,17 +3490,12 @@ searchInput.addEventListener('input', function() {
             closeButton.style.cursor = 'pointer';
             closeButton.style.marginTop = '10px';
             closeButton.addEventListener('click', () => {
-                if (cartPopup) cartPopup.style.display = 'none';
+                cartPopup.style.display = 'none';
             });
             cartPopupContent.appendChild(closeButton);
         }
 
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
         function showNextButtons() {
-            if (!cartPopupContent) return;
             cartPopupContent.innerHTML = '';
 
             const totalElement = document.createElement('div');
@@ -3545,6 +3533,52 @@ searchInput.addEventListener('input', function() {
             });
             cartPopupContent.appendChild(falarButton);
 
+            function generateWhatsappMessage() {
+                let message = 'Pedido de compra:\n\n';
+                cart.forEach(item => {
+                    message += `${item.name} - ${item.price}\n`;
+                });
+                message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+                message += 'Aguardo confirmação do pedido.';
+                return message;
+            }
+
+            function showMpesapayOption() {
+                const mpesaContainer = document.createElement('div');
+                cartPopupContent.appendChild(mpesaContainer);
+
+                const existingMpesaNumber = document.querySelector('.mpesa-number');
+                if (existingMpesaNumber) return;
+
+                const mpesaButton = document.createElement('button');
+                mpesaButton.textContent = 'Pagamento M-Pesa';
+                mpesaButton.style.backgroundColor = '#8B0000';
+                mpesaButton.style.color = 'white';
+                mpesaButton.style.border = 'none';
+                mpesaButton.style.padding = '10px';
+                mpesaButton.style.fontSize = '16px';
+                mpesaButton.style.cursor = 'pointer';
+                mpesaButton.style.width = '100%';
+                mpesaButton.style.marginTop = '10px';
+                mpesaButton.style.transition = 'opacity 0.5s ease';
+                mpesaContainer.appendChild(mpesaButton);
+
+                mpesaButton.addEventListener('click', () => {
+                    mpesaButton.style.opacity = '0';
+                    setTimeout(() => {
+                        mpesaButton.style.display = 'none';
+                        const mpesaNumber = document.createElement('div');
+                        mpesaNumber.textContent = 'Transferência: 85 21 36 558';
+                        mpesaNumber.style.fontSize = '18px';
+                        mpesaNumber.style.fontWeight = 'bold';
+                        mpesaNumber.style.marginTop = '10px';
+                        mpesaNumber.style.textAlign = 'center';
+                        mpesaNumber.classList.add('mpesa-number');
+                        mpesaContainer.appendChild(mpesaNumber);
+                    }, 500);
+                });
+            }
+
             const pagarButton = document.createElement('button');
             pagarButton.textContent = 'Efetuar Pagamento';
             pagarButton.style.background = '#0070ba';
@@ -3561,65 +3595,13 @@ searchInput.addEventListener('input', function() {
             cartPopupContent.appendChild(pagarButton);
         }
 
-        function generateWhatsappMessage() {
-            let message = 'Pedido de compra:\n\n';
-            cart.forEach(item => {
-                message += `${item.name} - ${item.price}\n`;
-            });
-            message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
-            message += 'Aguardo confirmação do pedido.';
-            return message;
-        }
-
-        function showMpesapayOption() {
-            if (!cartPopupContent) return;
-
-            const mpesaContainer = document.createElement('div');
-            cartPopupContent.appendChild(mpesaContainer);
-
-            const existingMpesaNumber = document.querySelector('.mpesa-number');
-            if (existingMpesaNumber) return;
-
-            const mpesaButton = document.createElement('button');
-            mpesaButton.textContent = 'Pagamento M-Pesa';
-            mpesaButton.style.backgroundColor = '#8B0000';
-            mpesaButton.style.color = 'white';
-            mpesaButton.style.border = 'none';
-            mpesaButton.style.padding = '10px';
-            mpesaButton.style.fontSize = '16px';
-            mpesaButton.style.cursor = 'pointer';
-            mpesaButton.style.width = '100%';
-            mpesaButton.style.marginTop = '10px';
-            mpesaButton.style.transition = 'opacity 0.5s ease';
-            mpesaContainer.appendChild(mpesaButton);
-
-            mpesaButton.addEventListener('click', () => {
-                mpesaButton.style.opacity = '0';
-                setTimeout(() => {
-                    mpesaButton.style.display = 'none';
-                    const mpesaNumber = document.createElement('div');
-                    mpesaNumber.textContent = 'Transferência: 85 21 36 558';
-                    mpesaNumber.style.fontSize = '18px';
-                    mpesaNumber.style.fontWeight = 'bold';
-                    mpesaNumber.style.marginTop = '10px';
-                    mpesaNumber.style.textAlign = 'center';
-                    mpesaNumber.classList.add('mpesa-number');
-                    mpesaContainer.appendChild(mpesaNumber);
-                }, 500);
-            });
-        }
-
         function showPaypalButton() {
-            if (!cartPopupContent) return;
-
             const existingPaypalButton = document.querySelector('.paypal-button-container');
             if (existingPaypalButton) return;
 
             const paypalButtonContainer = document.createElement('div');
             paypalButtonContainer.classList.add('paypal-button-container');
             cartPopupContent.appendChild(paypalButtonContainer);
-
-            if (typeof paypal === 'undefined') return;
 
             paypal.Buttons({
                 createOrder: function(data, actions) {
@@ -3645,16 +3627,25 @@ searchInput.addEventListener('input', function() {
         let countdownInterval;
         function startCountdown() {
             let timeRemaining = 120;
-            const existing = document.querySelector('.countdown');
-            if (existing) existing.remove();
-            // countdown logic pode ser adicionado aqui se quiser
+            const countdownElement = document.querySelector('.countdown');
+            if (countdownElement) countdownElement.remove();
+            // Resto do código omitido por estar fora do seu snippet original
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
 
         updateCartCount();
-        renderCart();
+
+        cartIcon.addEventListener('click', () => {
+            cartPopup.style.display = 'block';
+            renderCart();
+        });
     });
-})());
+})();
 </script>
+
 
 
 </body>
