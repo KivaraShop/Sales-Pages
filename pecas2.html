@@ -1394,7 +1394,45 @@ header .cart-icon.pulse {
         }
 
 
-        
+         .whatsapp-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            align-items: center;
+        }
+
+        .whatsapp-popup {
+            background-color: red;
+            color: yellow;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin-right: 5px;
+            transition: 0.3s;
+        }
+
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-container:hover .whatsapp-popup {
+            content: "WhatsApp";
+        }
+
+
 /* Categoria Selecionada */
 .category.selected {
     background-color: #00B4CC;  /* Cor que combina bem com o azul claro da sua marca (#0088B5) */
@@ -1558,6 +1596,75 @@ h7 {
     padding: 0 15px; /* Adiciona um pequeno padding para não encostar nas bordas do contêiner */
 }
 
+/* Mensagem de Sem Resultados dentro da grid */
+.product-grid > #no-results-message {
+    grid-column: span 6; /* Faz a mensagem ocupar as 6 colunas do grid */
+    width: 100%; /* Garantir que ocupe toda a largura do contêiner */
+    box-sizing: border-box; /* Para garantir que a largura total inclua o padding e as bordas */
+    padding: 0 15px; /* Adiciona um pequeno padding para não encostar nas bordas do contêiner */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 20px; /* Adiciona um pequeno espaçamento no topo */
+    display: none; /* Inicialmente escondido */
+z-index: 1000;
+}
+
+/* Estilo do parent2 - não afeta a grid, mas organiza o conteúdo do formulário */
+.parent2 {
+ display: flex;/* Flex para manter os itens organizados verticalmente */
+    flex-direction: column;
+    gap: var(--margin-base);
+    width: 80%; /* Garante que o formulário ocupe toda a largura do contêiner */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+    padding: 20px; /* Adiciona um padding interno para o conteúdo do formulário */
+    background-color: transparent !important; /* Cor de fundo clara para o formulário */
+    border-radius: 8px; /* Bordas arredondadas para o formulário */
+    margin-top: 15px;
+    margin-right: 50px !important;
+    border:none !important;
+}
+        
+/* Quando o formulário deve ser visível, definimos a visibilidade e a opacidade */
+.product-grid > .parent2[data-category="encomendarpeca"] #quotationForm {
+    opacity: 1; /* Torna o formulário visível */
+    visibility: visible; /* Define a visibilidade do formulário */
+}
+
+
+
+/* Bloquear a interação no .product-card para impedir hover e transformação */
+.parent2.product-card {
+    pointer-events: none; /* Desativa todas as interações no card (hover, clique) */
+    transform: none; /* Garante que a transformação de hover não seja aplicada */
+    transition: none; /* Remove qualquer transição associada ao hover */
+    hover: none;
+    box-shadow: none;
+    border: none;
+    margin-right: 50px;
+}
+
+/* Permitir interação no formulário */
+.parent2.product-card #quotationForm {
+    pointer-events: auto; /* Permite a interação dentro do formulário */
+}
+
+/* Garantir que os campos de input, textarea, e o botão também respondam */
+.parent2.product-card #quotationForm input, 
+.parent2.product-card #quotationForm textarea, 
+.parent2.product-card #quotationForm .button2 {
+    pointer-events: auto; /* Permite a interação nos campos e botão */
+}
+
+/* Quando o formulário estiver visível (com data-category="visible"), o formulário será visível e interativo */
+.parent2.product-card[data-category="encomendarpeça"] #quotationForm {
+    opacity: 1; /* Torna o formulário visível */
+    visibility: visible; /* Torna o formulário visível */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Suaviza a transição */
+}
+
+/* Restabelece interatividade no botão, se necessário */
+.parent2.product-card .button2 {
+    pointer-events: auto; /* Garante que o botão seja interativo */
+}
 
 
 
@@ -1736,8 +1843,7 @@ h7 {
         <span class="cart-badge">3</span>
     </a>
 </div>
-     </div>
-
+</div>
 <!-- Pop-up do Carrinho FORA da navigation-buttons -->
 <div class="cart-popup">
     <div class="cart-popup-content">
@@ -1766,7 +1872,7 @@ h7 {
       🔍
     </button>
   </div>
-</div>
+
         
 <!-- Área de Resultados -->
 <div id="search-results"></div>
@@ -1776,7 +1882,7 @@ h7 {
   <p>Sem resultados, diga-nos por favor qual peça está a procura no botão abaixo.</p>
   <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
-  </div>
+
     
  <div class="content-container">
     <div class="sidebar">
@@ -2676,7 +2782,234 @@ h7 {
     </div>
 </footer>
 
+  <script>
+    const form = document.getElementById('quotationForm');
+    const whatsappLink = document.getElementById('whatsappLink');
 
+    // Usando o evento de clique para gerar o link do WhatsApp
+    whatsappLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Evitar o comportamento padrão de clicar no link
+
+        const name = document.getElementById('name').value;
+        const carPart = document.getElementById('carPart').value;
+
+        // Criação da mensagem com o nome do cliente e descrição da peça
+        const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nPeças: ${carPart}`;
+
+        // Criação do link do WhatsApp com a mensagem
+        const whatsappUrl = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
+
+        // Redirecionando para o WhatsApp
+        window.location.href = whatsappUrl;
+    });
+</script>
+    
+    <script>
+        // Seleciona o link "ESTOQUE" (2º link da lista no header)
+document.querySelectorAll('header nav a')[1].addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o comportamento padrão de navegação do link
+
+    // Seleciona a seção com a classe "product-grid"
+    const targetSection = document.querySelector('.product-grid');
+
+    // Rola suavemente até a seção
+    targetSection.scrollIntoView({
+        behavior: 'smooth',  // Rolar suavemente
+        block: 'start'       // A rolagem começa no topo da seção
+    });
+});
+
+// Seleciona o link "SERVIÇOS" (3º link da lista no header)
+document.querySelectorAll('header nav a')[2].addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o comportamento padrão de navegação do link
+
+    // Seleciona a seção com a classe "services"
+    const targetSection = document.querySelector('.services');
+
+    // Rola suavemente até a seção
+    targetSection.scrollIntoView({
+        behavior: 'smooth',  // Rolar suavemente
+        block: 'start'       // A rolagem começa no topo da seção
+    });
+});
+
+    </script>
+
+
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+    let categories = document.querySelectorAll('.category');
+    let productCards = document.querySelectorAll('.product-card');
+    let loadingOverlay = document.getElementById('loading-overlay'); // Spinner e Logo
+
+    // Função para filtrar os produtos
+    function filterProducts(category) {
+        productCards.forEach(card => {
+            if (category === "all") {
+                // Exibe todos os produtos, incluindo os não categorizados
+                card.style.display = "block";
+            } else if (category === "uncategorized") {
+                // Exibe apenas os produtos não categorizados
+                if (!card.hasAttribute('data-category')) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            } else {
+                // Exibe produtos de acordo com a categoria
+                if (card.getAttribute('data-category') === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        });
+    }
+
+    // Função para mostrar o spinner e o overlay por 3 segundos
+    function showSpinner() {
+        loadingOverlay.style.display = 'flex'; // Exibe o overlay e o spinner
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none'; // Oculta o overlay e o spinner após 3 segundos
+        }, 3000); // 3000ms = 3 segundos
+    }
+
+    // Adiciona o evento de clique para cada categoria
+    categories.forEach(item => {
+        item.addEventListener('click', function () {
+            // Remove a classe 'selected' de todas as categorias
+            categories.forEach(cat => cat.classList.remove('selected'));
+
+            // Adiciona a classe 'selected' à categoria clicada
+            this.classList.add('selected');
+
+            // Exibe o spinner antes de filtrar os produtos
+            showSpinner();
+
+            // Filtra os produtos com base na categoria clicada
+            let category = this.getAttribute('data-category');
+            setTimeout(() => {
+                filterProducts(category);
+            }, 1000); // Aguarda 3 segundos para filtrar os produtos
+        });
+    });
+
+    // Exibe os produtos não categorizados por padrão
+    filterProducts("uncategorized");
+
+    // Define a categoria "Não Categorizados" como selecionada por padrão
+    let uncategorizedCategory = document.querySelector('.category[data-category="uncategorized"]');
+    uncategorizedCategory.classList.add('selected');
+});
+
+</script>
+    
+<script>
+        setTimeout(() => {
+            document.getElementById('whatsapp-popup').style.display = 'flex';
+        }, 30000); // 30s (30000ms)
+
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+            window.open('https://wa.me/258852136558?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20serviço.', '_blank');
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseover', () => {
+            document.getElementById('whatsapp-text').innerText = 'WhatsApp';
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseout', () => {
+            document.getElementById('whatsapp-text').innerText = 'Fale Connosco';
+        });
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('.product-card button');
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const header = document.querySelector('header'); // Seleciona o header fixo
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            // Encontrar o card do produto e o botão clicado
+            const productCard = event.target.closest('.product-card');
+            const img = productCard.querySelector('img');
+            
+            // Criar uma cópia da imagem do produto
+            const imgClone = img.cloneNode();
+            imgClone.style.position = 'absolute';
+            imgClone.style.zIndex = '999';
+            imgClone.style.width = '90px'; // Ajustar o tamanho da imagem para o clone
+            imgClone.style.height = 'auto';
+            imgClone.style.left = `${productCard.querySelector('button').getBoundingClientRect().left + window.scrollX}px`;
+            imgClone.style.top = `${productCard.querySelector('button').getBoundingClientRect().top + window.scrollY}px`;
+            imgClone.style.transition = 'transform 1s ease, opacity 0.5s ease';
+            imgClone.style.opacity = '0.7'; // Reduzir a opacidade para dar o efeito desejado
+            document.body.appendChild(imgClone);
+
+            // Animação para mover a imagem até o ícone do carrinho
+            const cartIconRect = cartIcon.getBoundingClientRect();
+            const imgCloneRect = imgClone.getBoundingClientRect();
+            const deltaX = cartIconRect.left - imgCloneRect.left;
+            const deltaY = cartIconRect.top - imgCloneRect.top;
+
+            imgClone.style.transform = `translate(${deltaX}px, ${deltaY}px)`; // Animação para mover a imagem
+
+            // Verificar se o ícone do carrinho está visível na tela
+            const isCartIconVisible = (
+                cartIconRect.top >= 0 &&
+                cartIconRect.left >= 0 &&
+                cartIconRect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                cartIconRect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+
+            // Só rolar para o carrinho se ele não estiver visível
+            if (!isCartIconVisible) {
+                // Calcula o valor que a página precisa rolar para trazer o ícone até a área visível
+                const headerHeight = header.offsetHeight; // Altura do header
+                const scrollToPosition = cartIconRect.top + window.scrollY - headerHeight; // Ajusta para o header
+
+                // Garante que a rolagem não ultrapasse o ícone, parando quando ele aparecer
+                const maxScrollPosition = Math.min(scrollToPosition, document.body.scrollHeight - window.innerHeight);
+                
+                window.scrollTo({
+                    top: maxScrollPosition, // Rolagem até o ícone, sem ultrapassar
+                    behavior: 'smooth' // Rolar suavemente
+                });
+            }
+
+            // Ao final da animação, remover a imagem e atualizar o carrinho
+            imgClone.addEventListener('transitionend', () => {
+                imgClone.remove();
+                // Atualizar o número de itens no carrinho
+                let currentCount = parseInt(cartBadge.textContent) || 0;
+                cartBadge.textContent = currentCount + 0; // Incrementar o número de itens no carrinho
+
+                // Animar o ícone do carrinho para indicar que um item foi adicionado
+                cartIcon.classList.add('pulse');
+                setTimeout(() => {
+                    cartIcon.classList.remove('pulse');
+                }, 1000);
+            });
+
+            // Adicionar produto ao carrinho (salvando no localStorage)
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const productName = productCard.querySelector('h3').textContent;
+            const productPrice = productCard.querySelector('.price').textContent;
+            const productImage = img.src;
+
+            cart.push({
+                name: productName,
+                price: productPrice,
+                img: productImage
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+        });
+    });
+});
+
+    </script>
  <script>
 // Observador para as marcas
 const brandObserver = new IntersectionObserver((entries, observer) => {
@@ -2939,6 +3272,53 @@ searchInput.addEventListener('input', function() {
     filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
 });
 </script>
+
+
+
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
 
      <script>
     document.addEventListener("DOMContentLoaded", () => {
