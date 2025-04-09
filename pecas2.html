@@ -2939,53 +2939,6 @@ searchInput.addEventListener('input', function() {
 });
 </script>
 
-
-
-<script>
-    // Contador inicial de notificações no localStorage
-    if (!localStorage.getItem('notifications')) {
-      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
-    }
-
-    // Atualiza o contador no sininho
-    function updateNotificationBadge() {
-      const notifications = JSON.parse(localStorage.getItem('notifications'));
-      const unreadCount = notifications.filter(n => n).length;
-      const badge = document.getElementById('notification-badge');
-      badge.textContent = unreadCount;
-
-      // Esconde o badge se todas notificações foram lidas
-      badge.style.display = unreadCount > 0 ? 'block' : 'none';
-
-      // Atualiza o estilo das notificações
-      const notificationItems = document.querySelectorAll('.notification-item');
-      notifications.forEach((isUnread, index) => {
-        if (isUnread) {
-          notificationItems[index].classList.remove('read');
-        } else {
-          notificationItems[index].classList.add('read');
-        }
-      });
-    }
-
-    // Alterna o menu de notificações
-    function toggleNotificationMenu() {
-      const menu = document.getElementById('notification-menu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    // Marca notificações como lidas
-    function markAsRead(index) {
-      const notifications = JSON.parse(localStorage.getItem('notifications'));
-      notifications[index] = false;
-      localStorage.setItem('notifications', JSON.stringify(notifications));
-      updateNotificationBadge();
-    }
-
-    // Atualiza o contador ao carregar a página
-    window.onload = updateNotificationBadge;
-  </script>
-
      <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
