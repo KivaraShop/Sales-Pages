@@ -3399,26 +3399,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderCart() {
-        cartPopupContent.innerHTML = ''; // Limpa o conteúdo atual
-
-        // Adicionando o logo acima do título
-        const logoContainer = document.createElement('div');
-        logoContainer.style.display = 'flex';
-        logoContainer.style.justifyContent = 'center'; // Centraliza o logo
-        logoContainer.style.marginBottom = '40px'; // Espaço entre o logo e o título
-
-        const logoImg = document.createElement('img');
-        logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png'; // Altere para o caminho correto do logo
-        logoImg.alt = 'Logo';
-        logoImg.style.height = '35px'; // Ajuste a altura conforme necessário
-        logoImg.style.width = 'auto'; // Mantém a proporção do logo
-        logoContainer.appendChild(logoImg); // Adiciona a imagem ao contêiner
-
-        const title = document.createElement('h2');
-        title.textContent = '';
-        cartPopupContent.appendChild(logoContainer); // Adiciona o logo acima do título
-        cartPopupContent.appendChild(title); // Adiciona o título "Seu Carrinho"
-
+        cartPopupContent.innerHTML = '<h2>Seu Carrinho</h2>';
         const ul = document.createElement('ul');
         ul.style.listStyleType = 'none';
         ul.style.padding = '0';
@@ -3452,7 +3433,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ul.appendChild(li);
             });
         }
-
         cartPopupContent.appendChild(ul);
 
         const totalElement = document.createElement('div');
@@ -3466,7 +3446,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const fazerPedidoButton = document.createElement('button');
         fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#003B50';
+        fazerPedidoButton.style.background = '#3c8d3f';
         fazerPedidoButton.style.color = 'white';
         fazerPedidoButton.style.border = 'none';
         fazerPedidoButton.style.padding = '10px';
@@ -3480,7 +3460,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
-        closeButton.style.background = '#003B50';
+        closeButton.style.background = '#3c8d3f';
         closeButton.style.color = 'white';
         closeButton.style.border = 'none';
         closeButton.style.padding = '5px 10px';
@@ -3526,13 +3506,13 @@ document.addEventListener('DOMContentLoaded', () => {
         falarButton.style.cursor = 'pointer';
         falarButton.style.marginTop = '10px';
         falarButton.addEventListener('click', () => {
-            const message = generateWhatsappMessage();
-            const encodedMessage = encodeURIComponent(message);
-            window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
-        });
-        cartPopupContent.appendChild(falarButton);
+         const message = generateWhatsappMessage();
+    const encodedMessage = encodeURIComponent(message);
+    window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+});
+cartPopupContent.appendChild(falarButton);
 
-      // Function to generate the message for WhatsApp
+// Function to generate the message for WhatsApp
 function generateWhatsappMessage() {
     let message = 'Pedido de compra:\n\n';
     cart.forEach(item => {
@@ -3577,7 +3557,7 @@ function showMpesapayOption() {
 
             // Show the M-Pesa transfer number
             const mpesaNumber = document.createElement('div');
-            mpesaNumber.textContent = 'Transferência: 85 21 36 558'; // Number to display
+            mpesaNumber.textContent = '852136558'; // Number to display
             mpesaNumber.style.fontSize = '18px';
             mpesaNumber.style.fontWeight = 'bold';
             mpesaNumber.style.marginTop = '10px'; // Maintain spacing
@@ -3591,7 +3571,7 @@ function showMpesapayOption() {
 
 // Pagar Conta button logic
 const pagarButton = document.createElement('button');
-pagarButton.textContent = 'Efetuar Pagamento';
+pagarButton.textContent = 'Pagar Conta';
 pagarButton.style.background = '#0070ba';
 pagarButton.style.color = 'white';
 pagarButton.style.border = 'none';
@@ -3697,7 +3677,5 @@ cartPopupContent.appendChild(pagarButton);
     updateCartCount();
 });
 </script>
-    
-
 </body>
 </html>
