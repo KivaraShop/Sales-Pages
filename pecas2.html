@@ -2782,7 +2782,582 @@ z-index: 1000;
     </div>
 </footer>
 
+  <script>
+    const form = document.getElementById('quotationForm');
+    const whatsappLink = document.getElementById('whatsappLink');
 
+    // Usando o evento de clique para gerar o link do WhatsApp
+    whatsappLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Evitar o comportamento padrão de clicar no link
+
+        const name = document.getElementById('name').value;
+        const carPart = document.getElementById('carPart').value;
+
+        // Criação da mensagem com o nome do cliente e descrição da peça
+        const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nPeças: ${carPart}`;
+
+        // Criação do link do WhatsApp com a mensagem
+        const whatsappUrl = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
+
+        // Redirecionando para o WhatsApp
+        window.location.href = whatsappUrl;
+    });
+</script>
+    
+    <script>
+        // Seleciona o link "ESTOQUE" (2º link da lista no header)
+document.querySelectorAll('header nav a')[1].addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o comportamento padrão de navegação do link
+
+    // Seleciona a seção com a classe "product-grid"
+    const targetSection = document.querySelector('.product-grid');
+
+    // Rola suavemente até a seção
+    targetSection.scrollIntoView({
+        behavior: 'smooth',  // Rolar suavemente
+        block: 'start'       // A rolagem começa no topo da seção
+    });
+});
+
+// Seleciona o link "SERVIÇOS" (3º link da lista no header)
+document.querySelectorAll('header nav a')[2].addEventListener('click', function(event) {
+    event.preventDefault();  // Impede o comportamento padrão de navegação do link
+
+    // Seleciona a seção com a classe "services"
+    const targetSection = document.querySelector('.services');
+
+    // Rola suavemente até a seção
+    targetSection.scrollIntoView({
+        behavior: 'smooth',  // Rolar suavemente
+        block: 'start'       // A rolagem começa no topo da seção
+    });
+});
+
+    </script>
+
+
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+    let categories = document.querySelectorAll('.category');
+    let productCards = document.querySelectorAll('.product-card');
+    let loadingOverlay = document.getElementById('loading-overlay'); // Spinner e Logo
+
+    // Função para filtrar os produtos
+    function filterProducts(category) {
+        productCards.forEach(card => {
+            if (category === "all") {
+                // Exibe todos os produtos, incluindo os não categorizados
+                card.style.display = "block";
+            } else if (category === "uncategorized") {
+                // Exibe apenas os produtos não categorizados
+                if (!card.hasAttribute('data-category')) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            } else {
+                // Exibe produtos de acordo com a categoria
+                if (card.getAttribute('data-category') === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        });
+    }
+
+    // Função para mostrar o spinner e o overlay por 3 segundos
+    function showSpinner() {
+        loadingOverlay.style.display = 'flex'; // Exibe o overlay e o spinner
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none'; // Oculta o overlay e o spinner após 3 segundos
+        }, 3000); // 3000ms = 3 segundos
+    }
+
+    // Adiciona o evento de clique para cada categoria
+    categories.forEach(item => {
+        item.addEventListener('click', function () {
+            // Remove a classe 'selected' de todas as categorias
+            categories.forEach(cat => cat.classList.remove('selected'));
+
+            // Adiciona a classe 'selected' à categoria clicada
+            this.classList.add('selected');
+
+            // Exibe o spinner antes de filtrar os produtos
+            showSpinner();
+
+            // Filtra os produtos com base na categoria clicada
+            let category = this.getAttribute('data-category');
+            setTimeout(() => {
+                filterProducts(category);
+            }, 1000); // Aguarda 3 segundos para filtrar os produtos
+        });
+    });
+
+    // Exibe os produtos não categorizados por padrão
+    filterProducts("uncategorized");
+
+    // Define a categoria "Não Categorizados" como selecionada por padrão
+    let uncategorizedCategory = document.querySelector('.category[data-category="uncategorized"]');
+    uncategorizedCategory.classList.add('selected');
+});
+
+</script>
+    
+<script>
+        setTimeout(() => {
+            document.getElementById('whatsapp-popup').style.display = 'flex';
+        }, 30000); // 30s (30000ms)
+
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+            window.open('https://wa.me/258852136558?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20serviço.', '_blank');
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseover', () => {
+            document.getElementById('whatsapp-text').innerText = 'WhatsApp';
+        });
+
+        document.querySelector('.whatsapp-container').addEventListener('mouseout', () => {
+            document.getElementById('whatsapp-text').innerText = 'Fale Connosco';
+        });
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('.product-card button');
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartBadge = cartIcon.querySelector('.cart-badge');
+    const header = document.querySelector('header'); // Seleciona o header fixo
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            // Encontrar o card do produto e o botão clicado
+            const productCard = event.target.closest('.product-card');
+            const img = productCard.querySelector('img');
+            
+            // Criar uma cópia da imagem do produto
+            const imgClone = img.cloneNode();
+            imgClone.style.position = 'absolute';
+            imgClone.style.zIndex = '999';
+            imgClone.style.width = '90px'; // Ajustar o tamanho da imagem para o clone
+            imgClone.style.height = 'auto';
+            imgClone.style.left = `${productCard.querySelector('button').getBoundingClientRect().left + window.scrollX}px`;
+            imgClone.style.top = `${productCard.querySelector('button').getBoundingClientRect().top + window.scrollY}px`;
+            imgClone.style.transition = 'transform 1s ease, opacity 0.5s ease';
+            imgClone.style.opacity = '0.7'; // Reduzir a opacidade para dar o efeito desejado
+            document.body.appendChild(imgClone);
+
+            // Animação para mover a imagem até o ícone do carrinho
+            const cartIconRect = cartIcon.getBoundingClientRect();
+            const imgCloneRect = imgClone.getBoundingClientRect();
+            const deltaX = cartIconRect.left - imgCloneRect.left;
+            const deltaY = cartIconRect.top - imgCloneRect.top;
+
+            imgClone.style.transform = `translate(${deltaX}px, ${deltaY}px)`; // Animação para mover a imagem
+
+            // Verificar se o ícone do carrinho está visível na tela
+            const isCartIconVisible = (
+                cartIconRect.top >= 0 &&
+                cartIconRect.left >= 0 &&
+                cartIconRect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                cartIconRect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+
+            // Só rolar para o carrinho se ele não estiver visível
+            if (!isCartIconVisible) {
+                // Calcula o valor que a página precisa rolar para trazer o ícone até a área visível
+                const headerHeight = header.offsetHeight; // Altura do header
+                const scrollToPosition = cartIconRect.top + window.scrollY - headerHeight; // Ajusta para o header
+
+                // Garante que a rolagem não ultrapasse o ícone, parando quando ele aparecer
+                const maxScrollPosition = Math.min(scrollToPosition, document.body.scrollHeight - window.innerHeight);
+                
+                window.scrollTo({
+                    top: maxScrollPosition, // Rolagem até o ícone, sem ultrapassar
+                    behavior: 'smooth' // Rolar suavemente
+                });
+            }
+
+            // Ao final da animação, remover a imagem e atualizar o carrinho
+            imgClone.addEventListener('transitionend', () => {
+                imgClone.remove();
+                // Atualizar o número de itens no carrinho
+                let currentCount = parseInt(cartBadge.textContent) || 0;
+                cartBadge.textContent = currentCount + 0; // Incrementar o número de itens no carrinho
+
+                // Animar o ícone do carrinho para indicar que um item foi adicionado
+                cartIcon.classList.add('pulse');
+                setTimeout(() => {
+                    cartIcon.classList.remove('pulse');
+                }, 1000);
+            });
+
+            // Adicionar produto ao carrinho (salvando no localStorage)
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const productName = productCard.querySelector('h3').textContent;
+            const productPrice = productCard.querySelector('.price').textContent;
+            const productImage = img.src;
+
+            cart.push({
+                name: productName,
+                price: productPrice,
+                img: productImage
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+        });
+    });
+});
+
+    </script>
+ <script>
+// Observador para as marcas
+const brandObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // Atraso para cada marca baseado no seu índice
+            setTimeout(() => {
+                // Adiciona a classe 'visible' após o delay para animar
+                entry.target.classList.add('visible');
+            }, index * 300); // 300ms de atraso entre as marcas
+        } else {
+            // Se sair da tela, remove a classe 'visible'
+            entry.target.classList.remove('visible');
+        }
+    });
+}, {
+    threshold: 0.25  // A animação começa quando 25% da marca estiver visível
+});
+
+// Seleciona todas as marcas na lista e começa a observá-las
+const brands = document.querySelectorAll('.brand-search li');
+brands.forEach(brand => brandObserver.observe(brand));
+
+// Observador para o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Criar observador para grid de produtos
+const gridObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Adiciona a classe 'show' apenas para o grid de produtos
+            entry.target.classList.add('show');
+        } else {
+            // Remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 25% do grid estiver visível
+
+// Inicia a observação para o grid de produtos
+gridObserver.observe(productGrid);
+     </script>
+       <script>
+        // Seleciona o grid de produtos
+const productGrid = document.querySelector('.product-grid');
+
+// Cria o observador para detectar quando o grid entra ou sai da tela
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
+            entry.target.classList.add('show');
+        } else {
+            // Se o grid sai da tela, remove a classe para permitir a animação novamente
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
+
+// Inicia a observação
+observer.observe(productGrid);
+            </script>
+     <script>
+function mostrarParceiros() {
+  // Seleciona todos os parceiros que têm a classe 'hidden'
+  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
+
+  // Itera por cada parceiro oculto e remove a classe 'hidden' para exibi-los
+  parceirosOcultos.forEach(parceiro => {
+    parceiro.classList.remove('hidden');
+  });
+
+  // Esconde o botão "Ver mais" após exibir os parceiros
+  const verMais = document.getElementById('ver-mais');
+  verMais.style.display = 'none'; // Torna o botão invisível após o clique
+}
+  </script>
+      <script>
+let currentIndex = 0;
+const reviewsContainer = document.querySelector('.reviews');
+const reviewCards = document.querySelectorAll('.review-card');
+const totalReviews = reviewCards.length;
+const cardWidth = reviewCards[0].offsetWidth + 15; // Largura do card + espaçamento (margin-right)
+const containerWidth = reviewsContainer.offsetWidth; // Largura do container
+
+function scrollReviews() {
+  // A largura total dos cards no container
+  const totalScrollWidth = totalReviews * cardWidth;
+
+  // Verifica se a posição do scroll atingiu o ponto em que o último card estará completamente visível
+  const currentTransform = Math.abs(parseInt(reviewsContainer.style.transform.replace('translateX(', '').replace('px)', '')) || 0);
+  
+  if (currentTransform >= totalScrollWidth - containerWidth) {
+    currentIndex = 0;  // Reinicia quando o último card estiver completamente visível
+  } else {
+    currentIndex++;  // Avança para o próximo card
+  }
+
+  // Aplica a transformação para mover os cards
+  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+}
+
+// Definir um intervalo para rolar automaticamente
+setInterval(scrollReviews, 3000);  // A cada 3 segundos
+
+</script>
+    
+  <script>
+// Array de imagens para o slider
+const images = [
+    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg',
+    'https://cdn.whichcar.com.au/assets/w_1536/157e1203/2024-toyota-hybrid-lineup-01.jpg',
+    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg'
+];
+
+let currentImageIndex = 0;
+const heroSection = document.querySelector('.hero-section');
+
+// Função para trocar a imagem do background com fade
+function changeImage() {
+    heroSection.classList.add('fade'); // Ativa a transição de fade
+    setTimeout(() => {
+        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
+        heroSection.classList.remove('fade'); // Remove o fade após a troca da imagem
+        currentImageIndex = (currentImageIndex + 1) % images.length; // Incrementa o índice, voltando para 0 se ultrapassar o número de imagens
+    }, 1000); // Tempo de duração da transição
+}
+
+// Troca a imagem automaticamente a cada 5 segundos
+setInterval(changeImage, 5000);
+     </script>
+    </script>
+
+<!-- Inclua a biblioteca Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+
+  <script>
+        // Seleciona todos os itens principais de categoria
+        const categories = document.querySelectorAll('.category');
+
+        categories.forEach(category => {
+            category.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita redirecionamento
+
+                // Seleciona o submenu relacionado
+                const submenu = this.nextElementSibling;
+
+                // Alterna a exibição do submenu
+                if (submenu.style.display === 'flex') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+      <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active'); // Show/hide menu
+    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
+});
+
+// Debugging
+console.log('Toggle connected:', menuToggle !== null);
+console.log('Menu found:', navMenu !== null);
+
+</script>
+        
+
+<script>
+let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
+
+function filterProducts(searchTerm) {
+    const search = searchTerm.toLowerCase();
+    const productCards = document.querySelectorAll(".product-card");
+    const noResultsMessage = document.querySelector('[data-category="noresults"]');
+    const navigationButtons = document.querySelector('.navigation-buttons');
+    const footer = document.querySelector('footer');
+    const googleReviewsContainer = document.querySelector('.google-reviews .container');
+    const brandSearch = document.querySelector('.brand-search');
+    const priceSearch = document.querySelector('.price-search');
+    let resultsFound = false;
+
+    // Resetando os elementos para estado padrão antes da filtragem
+    noResultsMessage.style.display = 'none'; // Esconde a mensagem inicialmente
+    navigationButtons.style.visibility = 'visible';
+    footer.style.visibility = 'visible';
+    googleReviewsContainer.style.visibility = 'visible';
+    brandSearch.style.visibility = 'visible';
+    priceSearch.style.visibility = 'visible';
+
+    // Filtra os produtos com base na pesquisa
+    productCards.forEach(card => {
+        const productCategory = card.getAttribute('data-category');
+        const productName = card.querySelector("h3").textContent.toLowerCase();
+
+        // Se a pesquisa não estiver vazia, filtra os produtos pela pesquisa
+        if (searchTerm !== '' && productName.includes(search)) {
+            card.style.display = "block";
+            resultsFound = true;
+        } 
+        // Caso contrário, se a pesquisa estiver vazia, filtra os produtos pela categoria
+        else if (searchTerm === '') {
+            if (currentCategory === "all" || currentCategory === productCategory || (currentCategory === "uncategorized" && !productCategory)) {
+                card.style.display = "block";
+                resultsFound = true;
+            } else {
+                card.style.display = "none";
+            }
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem "Sem Resultados"
+    if (!resultsFound && searchTerm !== '') {
+        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "Sem Resultados"
+        
+        // Esconde outros elementos da página
+        navigationButtons.style.visibility = 'hidden';
+        footer.style.visibility = 'hidden';
+        googleReviewsContainer.style.visibility = 'hidden';
+        brandSearch.style.visibility = 'hidden';
+        priceSearch.style.visibility = 'hidden';
+    } else if (resultsFound || searchTerm === '') {
+        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "Sem Resultados" caso haja resultados ou pesquisa vazia
+
+        // Reexibe os outros elementos da página
+        navigationButtons.style.visibility = 'visible';
+        footer.style.visibility = 'visible';
+        googleReviewsContainer.style.visibility = 'visible';
+        brandSearch.style.visibility = 'visible';
+        priceSearch.style.visibility = 'visible';
+    }
+}
+
+// Função para atualizar a categoria selecionada
+function setCategory(category) {
+    currentCategory = category;
+    filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
+}
+
+// Exemplo de como chamar a função para alterar a categoria ao clicar:
+document.querySelectorAll('.category').forEach(item => {
+    item.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        setCategory(category);  // Atualiza a categoria ao clicar
+    });
+});
+
+// Função para lidar com a pesquisa
+const searchInput = document.querySelector('.search-input'); // Supondo que a barra de pesquisa tenha essa classe
+
+searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.trim();
+    filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
+});
+</script>
+
+
+
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
+
+     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
     <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
