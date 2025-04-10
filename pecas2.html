@@ -3367,9 +3367,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartPopupElement = document.querySelector('.cart-popup');
     const cartPopupContentElement = cartPopupElement.querySelector('.cart-popup-content');
     const productCardsElements = document.querySelectorAll('.product-card');
+    const orderButton = document.querySelector('#orderButton'); // Botão de "Fazer pedido"
 
     function updateCartItemCount() {
-        cartBadgeElement.textContent = shoppingCart.length || '';
+        cartBadgeElement.textContent = shoppingCart.length || ''; // Atualiza o badge com o número de itens
     }
 
     function calculateTotalPrice() {
@@ -3395,7 +3396,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderCart() {
-        cartPopupContentElement.innerHTML = '';
+        cartPopupContentElement.innerHTML = ''; // Limpa o conteúdo anterior
 
         const logoContainer = document.createElement('div');
         logoContainer.style.display = 'flex';
@@ -3650,7 +3651,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartItemCount();
 });
 </script>
-
 
 
 
