@@ -3359,92 +3359,74 @@ searchInput.addEventListener('input', function() {
 });
  </script>
     <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
-<script> 
+<script>
 document.addEventListener('DOMContentLoaded', () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const shoppingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartIconElement = document.querySelector('.cart-icon');
+    const cartBadgeElement = cartIconElement.querySelector('.cart-badge');
+    const cartPopupElement = document.querySelector('.cart-popup');
+    const cartPopupContentElement = cartPopupElement.querySelector('.cart-popup-content');
+    const productCardsElements = document.querySelectorAll('.product-card');
 
-    const cartIcon = document.querySelector('.cart-icon');
-    if (!cartIcon) return;
-
-    const cartBadge = cartIcon.querySelector('.cart-badge');
-    if (!cartBadge) return;
-
-    const cartPopup = document.querySelector('.cart-popup');
-    if (!cartPopup) return;
-
-    const cartPopupContent = cartPopup.querySelector('.cart-popup-content');
-    if (!cartPopupContent) return;
-
-    const productCards = document.querySelectorAll('.product-card');
-
-    function updateCartCount() {
-        if (!cartBadge) return;
-        cartBadge.textContent = cart.length || '';
+    function updateCartItemCount() {
+        cartBadgeElement.textContent = shoppingCart.length || '';
     }
 
-    function calculateTotal() {
-        let total = 0;
-        cart.forEach(item => {
-            total += parseFloat(item.price.replace('R$', '').trim());
-        });
-        return total;
+    function calculateTotalPrice() {
+        return shoppingCart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0);
     }
 
-    function animateTotalSum() {
-        const total = calculateTotal();
-        let currentTotal = 0;
-        const increment = total / 100;
+    function animatePrice() {
+        const totalAmount = calculateTotalPrice();
+        let currentAmount = 0;
+        const increment = totalAmount / 100;
         const totalElement = document.querySelector('.cart-total');
-        if (!totalElement) return;
 
         function updateTotal() {
-            currentTotal += increment;
-            if (currentTotal < total) {
-                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
+            currentAmount += increment;
+            if (currentAmount < totalAmount) {
+                totalElement.innerHTML = `Total: R$ ${currentAmount.toFixed(2)}`;
                 requestAnimationFrame(updateTotal);
             } else {
-                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+                totalElement.innerHTML = `Total: R$ ${totalAmount.toFixed(2)}`;
             }
         }
         updateTotal();
     }
 
     function renderCart() {
-        if (!cartPopupContent) return;
-        cartPopupContent.innerHTML = '';
+        cartPopupContentElement.innerHTML = '';
 
         const logoContainer = document.createElement('div');
         logoContainer.style.display = 'flex';
         logoContainer.style.justifyContent = 'center';
         logoContainer.style.marginBottom = '40px';
 
-        const logoImg = document.createElement('img');
-        logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png';
-        logoImg.alt = 'Logo';
-        logoImg.style.height = '35px';
-        logoImg.style.width = 'auto';
-        logoContainer.appendChild(logoImg);
+        const logoImage = document.createElement('img');
+        logoImage.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png';
+        logoImage.alt = 'Logo';
+        logoImage.style.height = '35px';
+        logoImage.style.width = 'auto';
+        logoContainer.appendChild(logoImage);
 
-        const title = document.createElement('h2');
-        title.textContent = '';
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = '';
+        cartPopupContentElement.appendChild(logoContainer);
+        cartPopupContentElement.appendChild(titleElement);
 
-        cartPopupContent.appendChild(logoContainer);
-        cartPopupContent.appendChild(title);
+        const ulElement = document.createElement('ul');
+        ulElement.style.listStyleType = 'none';
+        ulElement.style.padding = '0';
 
-        const ul = document.createElement('ul');
-        ul.style.listStyleType = 'none';
-        ul.style.padding = '0';
-
-        if (cart.length === 0) {
-            ul.innerHTML = '<li>O carrinho está vazio.</li>';
+        if (shoppingCart.length === 0) {
+            ulElement.innerHTML = '<li>O carrinho está vazio.</li>';
         } else {
-            cart.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.style.display = 'flex';
-                li.style.alignItems = 'center';
-                li.style.marginBottom = '10px';
-
-                li.innerHTML = ` 
+            shoppingCart.forEach((item, index) => {
+                const listItem = document.createElement('li');
+                listItem.style.display = 'flex';
+                listItem.style.alignItems = 'center';
+                listItem.style.marginBottom = '10px';
+                listItem.innerHTML = `
                     <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                     <div>
                         <p>${item.name}</p>
@@ -3452,45 +3434,45 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
                 `;
-
-                const button = li.querySelector('button');
-                if (!button) return;
-                button.addEventListener('click', (e) => {
-                    const indexToRemove = e.target.getAttribute('data-index');
-                    cart.splice(indexToRemove, 1);
+                listItem.querySelector('button').addEventListener('click', (event) => {
+                    const indexToRemove = event.target.getAttribute('data-index');
+                    shoppingCart.splice(indexToRemove, 1);
                     saveCart();
-                    updateCartCount();
+                    updateCartItemCount();
                     renderCart();
                 });
-
-                ul.appendChild(li);
+                ulElement.appendChild(listItem);
             });
         }
 
-        cartPopupContent.appendChild(ul);
+        cartPopupContentElement.appendChild(ulElement);
 
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
         totalElement.innerHTML = `Total: R$ 0.00`;
-        cartPopupContent.appendChild(totalElement);
+        cartPopupContentElement.appendChild(totalElement);
 
-        animateTotalSum();
+        animatePrice();
 
-        const fazerPedidoButton = document.createElement('button');
-        fazerPedidoButton.textContent = 'Fazer pedido';
-        fazerPedidoButton.style.background = '#003B50';
-        fazerPedidoButton.style.color = 'white';
-        fazerPedidoButton.style.border = 'none';
-        fazerPedidoButton.style.padding = '10px';
-        fazerPedidoButton.style.width = '100%';
-        fazerPedidoButton.style.cursor = 'pointer';
-        fazerPedidoButton.style.marginTop = '10px';
-        fazerPedidoButton.addEventListener('click', () => {
-            showNextButtons();
+        createCartButtons();
+    }
+
+    function createCartButtons() {
+        const orderButton = document.createElement('button');
+        orderButton.textContent = 'Fazer pedido';
+        orderButton.style.background = '#003B50';
+        orderButton.style.color = 'white';
+        orderButton.style.border = 'none';
+        orderButton.style.padding = '10px';
+        orderButton.style.width = '100%';
+        orderButton.style.cursor = 'pointer';
+        orderButton.style.marginTop = '10px';
+        orderButton.addEventListener('click', () => {
+            displayNextButtons();
         });
-        cartPopupContent.appendChild(fazerPedidoButton);
+        cartPopupContentElement.appendChild(orderButton);
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
@@ -3503,161 +3485,172 @@ document.addEventListener('DOMContentLoaded', () => {
         closeButton.style.cursor = 'pointer';
         closeButton.style.marginTop = '10px';
         closeButton.addEventListener('click', () => {
-            if (!cartPopup) return;
-            cartPopup.style.display = 'none';
+            cartPopupElement.style.display = 'none';
         });
-        cartPopupContent.appendChild(closeButton);
+        cartPopupContentElement.appendChild(closeButton);
     }
 
-    function showNextButtons() {
-        if (!cartPopupContent) return;
-        cartPopupContent.innerHTML = '';
+    function displayNextButtons() {
+        cartPopupContentElement.innerHTML = '';
 
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`;
-        cartPopupContent.appendChild(totalElement);
+        totalElement.innerHTML = `Total: R$ ${calculateTotalPrice().toFixed(2)}`;
+        cartPopupContentElement.appendChild(totalElement);
 
-        const aguardarButton = document.createElement('button');
-        aguardarButton.textContent = 'Aguardar';
-        aguardarButton.style.background = '#4CAF50';
-        aguardarButton.style.color = 'white';
-        aguardarButton.style.border = 'none';
-        aguardarButton.style.padding = '10px';
-        aguardarButton.style.width = '100%';
-        aguardarButton.style.cursor = 'pointer';
-        aguardarButton.style.marginTop = '10px';
-        aguardarButton.addEventListener('click', () => startCountdown());
-        cartPopupContent.appendChild(aguardarButton);
+        createPaymentButtons();
+    }
 
-        const falarButton = document.createElement('button');
-        falarButton.textContent = 'Falar com atendente';
-        falarButton.style.background = '#000000';
-        falarButton.style.color = 'white';
-        falarButton.style.border = 'none';
-        falarButton.style.padding = '10px';
-        falarButton.style.width = '100%';
-        falarButton.style.cursor = 'pointer';
-        falarButton.style.marginTop = '10px';
-        falarButton.addEventListener('click', () => {
+    function createPaymentButtons() {
+        const waitingButton = document.createElement('button');
+        waitingButton.textContent = 'Aguardar';
+        waitingButton.style.background = '#4CAF50';
+        waitingButton.style.color = 'white';
+        waitingButton.style.border = 'none';
+        waitingButton.style.padding = '10px';
+        waitingButton.style.width = '100%';
+        waitingButton.style.cursor = 'pointer';
+        waitingButton.style.marginTop = '10px';
+        waitingButton.addEventListener('click', () => startCountdown());
+        cartPopupContentElement.appendChild(waitingButton);
+
+        const talkButton = document.createElement('button');
+        talkButton.textContent = 'Falar com atendente';
+        talkButton.style.background = '#000000';
+        talkButton.style.color = 'white';
+        talkButton.style.border = 'none';
+        talkButton.style.padding = '10px';
+        talkButton.style.width = '100%';
+        talkButton.style.cursor = 'pointer';
+        talkButton.style.marginTop = '10px';
+        talkButton.addEventListener('click', () => {
             const message = generateWhatsappMessage();
             const encodedMessage = encodeURIComponent(message);
             window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
         });
-        cartPopupContent.appendChild(falarButton);
+        cartPopupContentElement.appendChild(talkButton);
 
-        // Gerador de mensagem para o WhatsApp
-        function generateWhatsappMessage() {
-            let message = 'Pedido de compra:\n\n';
-            cart.forEach(item => {
-                message += `${item.name} - ${item.price}\n`;
-            });
-            message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
-            message += 'Aguardo confirmação do pedido.';
-            return message;
-        }
+        createPaymentOptions();
+    }
 
-        function showMpesapayOption() {
-            if (!cartPopupContent) return;
+    function generateWhatsappMessage() {
+        let message = 'Pedido de compra:\n\n';
+        shoppingCart.forEach(item => {
+            message += `${item.name} - ${item.price}\n`;
+        });
+        message += `\nTotal: R$ ${calculateTotalPrice().toFixed(2)}\n\n`;
+        message += 'Aguardo confirmação do pedido.';
+        return message;
+    }
 
-            const mpesaContainer = document.createElement('div');
-            cartPopupContent.appendChild(mpesaContainer);
-
-            const existingMpesaNumber = document.querySelector('.mpesa-number');
-            if (existingMpesaNumber) return;
-
-            const mpesaButton = document.createElement('button');
-            mpesaButton.textContent = 'Pagamento M-Pesa';
-            mpesaButton.style.backgroundColor = '#8B0000';
-            mpesaButton.style.color = 'white';
-            mpesaButton.style.border = 'none';
-            mpesaButton.style.padding = '10px';
-            mpesaButton.style.fontSize = '16px';
-            mpesaButton.style.cursor = 'pointer';
-            mpesaButton.style.width = '100%';
-            mpesaButton.style.marginTop = '10px';
-            mpesaButton.style.transition = 'opacity 0.5s ease';
-            mpesaContainer.appendChild(mpesaButton);
-
-            mpesaButton.addEventListener('click', () => {
-                mpesaButton.style.opacity = '0';
-
-                setTimeout(() => {
-                    mpesaButton.style.display = 'none';
-
-                    const mpesaNumber = document.createElement('div');
-                    mpesaNumber.textContent = 'Transferência: 85 21 36 558';
-                    mpesaNumber.style.fontSize = '18px';
-                    mpesaNumber.style.fontWeight = 'bold';
-                    mpesaNumber.style.marginTop = '10px';
-                    mpesaNumber.style.textAlign = 'center';
-                    mpesaNumber.classList.add('mpesa-number');
-                    mpesaContainer.appendChild(mpesaNumber);
-                }, 500);
-            });
-        }
-
-        const pagarButton = document.createElement('button');
-        pagarButton.textContent = 'Efetuar Pagamento';
-        pagarButton.style.background = '#0070ba';
-        pagarButton.style.color = 'white';
-        pagarButton.style.border = 'none';
-        pagarButton.style.padding = '10px';
-        pagarButton.style.width = '100%';
-        pagarButton.style.cursor = 'pointer';
-        pagarButton.style.marginTop = '10px';
-        pagarButton.addEventListener('click', () => {
+    function createPaymentOptions() {
+        const paymentButton = document.createElement('button');
+        paymentButton.textContent = 'Efetuar Pagamento';
+        paymentButton.style.background = '#0070ba';
+        paymentButton.style.color = 'white';
+        paymentButton.style.border = 'none';
+        paymentButton.style.padding = '10px';
+        paymentButton.style.width = '100%';
+        paymentButton.style.cursor = 'pointer';
+        paymentButton.style.marginTop = '10px';
+        paymentButton.addEventListener('click', () => {
             showPaypalButton();
             showMpesapayOption();
         });
-        cartPopupContent.appendChild(pagarButton);
+        cartPopupContentElement.appendChild(paymentButton);
     }
 
     function showPaypalButton() {
-        if (!cartPopupContent) return;
-
-        const existingPaypalButton = document.querySelector('.paypal-button-container');
-        if (existingPaypalButton) return;
-
         const paypalButtonContainer = document.createElement('div');
         paypalButtonContainer.classList.add('paypal-button-container');
-        cartPopupContent.appendChild(paypalButtonContainer);
+        cartPopupContentElement.appendChild(paypalButtonContainer);
 
-        if (typeof paypal !== 'undefined') {
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: calculateTotal().toFixed(2)
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Pagamento efetuado com sucesso por ' + details.payer.name.given_name);
-                    });
-                }
-            }).render(paypalButtonContainer);
-        }
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: calculateTotalPrice().toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    window.location.href = 'checkout.html';
+                });
+            },
+            onError: function(err) {
+                console.error("Payment Error: ", err);
+            }
+        }).render(paypalButtonContainer);
+    }
+
+    function showMpesapayOption() {
+        const mpesaContainer = document.createElement('div');
+        cartPopupContentElement.appendChild(mpesaContainer);
+
+        const existingMpesaNumber = document.querySelector('.mpesa-number');
+        if (existingMpesaNumber) return;
+
+        const mpesaButton = document.createElement('button');
+        mpesaButton.textContent = 'Pagamento M-Pesa';
+        mpesaButton.style.backgroundColor = '#8B0000';
+        mpesaButton.style.color = 'white';
+        mpesaButton.style.border = 'none';
+        mpesaButton.style.padding = '10px';
+        mpesaButton.style.fontSize = '16px';
+        mpesaButton.style.cursor = 'pointer';
+        mpesaButton.style.width = '100%';
+        mpesaButton.style.marginTop = '10px';
+        mpesaButton.style.transition = 'opacity 0.5s ease';
+        mpesaContainer.appendChild(mpesaButton);
+
+        mpesaButton.addEventListener('click', () => {
+            mpesaButton.style.opacity = '0';
+            setTimeout(() => {
+                mpesaButton.style.display = 'none';
+
+                const mpesaNumber = document.createElement('div');
+                mpesaNumber.textContent = 'Transferência: 85 21 36 558';
+                mpesaNumber.style.fontSize = '18px';
+                mpesaNumber.style.fontWeight = 'bold';
+                mpesaNumber.classList.add('mpesa-number');
+                mpesaContainer.appendChild(mpesaNumber);
+            }, 500);
+        });
     }
 
     function saveCart() {
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('cart', JSON.stringify(shoppingCart));
     }
 
-    cartIcon.addEventListener('click', () => {
-        if (!cartPopup) return;
-        cartPopup.style.display = 'block';
+    function handleProductSelection() {
+        productCardsElements.forEach((card) => {
+            card.addEventListener('click', (event) => {
+                const productName = event.target.closest('.product-card').querySelector('.product-title').textContent;
+                const productPrice = event.target.closest('.product-card').querySelector('.product-price').textContent;
+                const productImage = event.target.closest('.product-card').querySelector('img').src;
+
+                shoppingCart.push({ name: productName, price: productPrice, img: productImage });
+                saveCart();
+                updateCartItemCount();
+            });
+        });
+    }
+
+    cartIconElement.addEventListener('click', () => {
+        cartPopupElement.style.display = 'block';
         renderCart();
     });
 
-    updateCartCount();
+    handleProductSelection();
+    updateCartItemCount();
 });
 </script>
+
 
 
 
