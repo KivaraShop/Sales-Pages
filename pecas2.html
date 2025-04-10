@@ -2782,613 +2782,82 @@ z-index: 1000;
     </div>
 </footer>
 
-  <script>
-    const form = document.getElementById('quotationForm');
-    const whatsappLink = document.getElementById('whatsappLink');
 
-    // Usando o evento de clique para gerar o link do WhatsApp
-    whatsappLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Evitar o comportamento padrão de clicar no link
-
-        const name = document.getElementById('name').value;
-        const carPart = document.getElementById('carPart').value;
-
-        // Criação da mensagem com o nome do cliente e descrição da peça
-        const message = `Olá! Gostaria de solicitar uma cotação para as seguintes peças de viatura:\n\nNome: ${name}\nPeças: ${carPart}`;
-
-        // Criação do link do WhatsApp com a mensagem
-        const whatsappUrl = `https://wa.me/258852136558?text=${encodeURIComponent(message)}`;
-
-        // Redirecionando para o WhatsApp
-        window.location.href = whatsappUrl;
-    });
-</script>
-    
-    <script>
-        // Seleciona o link "ESTOQUE" (2º link da lista no header)
-document.querySelectorAll('header nav a')[1].addEventListener('click', function(event) {
-    event.preventDefault();  // Impede o comportamento padrão de navegação do link
-
-    // Seleciona a seção com a classe "product-grid"
-    const targetSection = document.querySelector('.product-grid');
-
-    // Rola suavemente até a seção
-    targetSection.scrollIntoView({
-        behavior: 'smooth',  // Rolar suavemente
-        block: 'start'       // A rolagem começa no topo da seção
-    });
-});
-
-// Seleciona o link "SERVIÇOS" (3º link da lista no header)
-document.querySelectorAll('header nav a')[2].addEventListener('click', function(event) {
-    event.preventDefault();  // Impede o comportamento padrão de navegação do link
-
-    // Seleciona a seção com a classe "services"
-    const targetSection = document.querySelector('.services');
-
-    // Rola suavemente até a seção
-    targetSection.scrollIntoView({
-        behavior: 'smooth',  // Rolar suavemente
-        block: 'start'       // A rolagem começa no topo da seção
-    });
-});
-
-    </script>
-
-
+    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
- document.addEventListener("DOMContentLoaded", function () {
-    let categories = document.querySelectorAll('.category');
-    let productCards = document.querySelectorAll('.product-card');
-    let loadingOverlay = document.getElementById('loading-overlay'); // Spinner e Logo
-
-    // Função para filtrar os produtos
-    function filterProducts(category) {
-        productCards.forEach(card => {
-            if (category === "all") {
-                // Exibe todos os produtos, incluindo os não categorizados
-                card.style.display = "block";
-            } else if (category === "uncategorized") {
-                // Exibe apenas os produtos não categorizados
-                if (!card.hasAttribute('data-category')) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            } else {
-                // Exibe produtos de acordo com a categoria
-                if (card.getAttribute('data-category') === category) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            }
-        });
-    }
-
-    // Função para mostrar o spinner e o overlay por 3 segundos
-    function showSpinner() {
-        loadingOverlay.style.display = 'flex'; // Exibe o overlay e o spinner
-        setTimeout(() => {
-            loadingOverlay.style.display = 'none'; // Oculta o overlay e o spinner após 3 segundos
-        }, 3000); // 3000ms = 3 segundos
-    }
-
-    // Adiciona o evento de clique para cada categoria
-    categories.forEach(item => {
-        item.addEventListener('click', function () {
-            // Remove a classe 'selected' de todas as categorias
-            categories.forEach(cat => cat.classList.remove('selected'));
-
-            // Adiciona a classe 'selected' à categoria clicada
-            this.classList.add('selected');
-
-            // Exibe o spinner antes de filtrar os produtos
-            showSpinner();
-
-            // Filtra os produtos com base na categoria clicada
-            let category = this.getAttribute('data-category');
-            setTimeout(() => {
-                filterProducts(category);
-            }, 1000); // Aguarda 3 segundos para filtrar os produtos
-        });
-    });
-
-    // Exibe os produtos não categorizados por padrão
-    filterProducts("uncategorized");
-
-    // Define a categoria "Não Categorizados" como selecionada por padrão
-    let uncategorizedCategory = document.querySelector('.category[data-category="uncategorized"]');
-    uncategorizedCategory.classList.add('selected');
-});
-
-</script>
-    
-<script>
-        setTimeout(() => {
-            document.getElementById('whatsapp-popup').style.display = 'flex';
-        }, 30000); // 30s (30000ms)
-
-        document.getElementById('whatsapp-btn').addEventListener('click', () => {
-            window.open('https://wa.me/258852136558?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20serviço.', '_blank');
-        });
-
-        document.querySelector('.whatsapp-container').addEventListener('mouseover', () => {
-            document.getElementById('whatsapp-text').innerText = 'WhatsApp';
-        });
-
-        document.querySelector('.whatsapp-container').addEventListener('mouseout', () => {
-            document.getElementById('whatsapp-text').innerText = 'Fale Connosco';
-        });
-    </script>
-
-    <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const addToCartButtons = document.querySelectorAll('.product-card button');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartIcon = document.querySelector('.cart-icon');
     const cartBadge = cartIcon.querySelector('.cart-badge');
-    const header = document.querySelector('header'); // Seleciona o header fixo
-    
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-            // Encontrar o card do produto e o botão clicado
-            const productCard = event.target.closest('.product-card');
-            const img = productCard.querySelector('img');
-            
-            // Criar uma cópia da imagem do produto
-            const imgClone = img.cloneNode();
-            imgClone.style.position = 'absolute';
-            imgClone.style.zIndex = '999';
-            imgClone.style.width = '90px'; // Ajustar o tamanho da imagem para o clone
-            imgClone.style.height = 'auto';
-            imgClone.style.left = `${productCard.querySelector('button').getBoundingClientRect().left + window.scrollX}px`;
-            imgClone.style.top = `${productCard.querySelector('button').getBoundingClientRect().top + window.scrollY}px`;
-            imgClone.style.transition = 'transform 1s ease, opacity 0.5s ease';
-            imgClone.style.opacity = '0.7'; // Reduzir a opacidade para dar o efeito desejado
-            document.body.appendChild(imgClone);
+    const cartPopup = document.querySelector('.cart-popup');
+    const cartPopupContent = cartPopup.querySelector('.cart-popup-content');
+    const productCards = document.querySelectorAll('.product-card');
 
-            // Animação para mover a imagem até o ícone do carrinho
-            const cartIconRect = cartIcon.getBoundingClientRect();
-            const imgCloneRect = imgClone.getBoundingClientRect();
-            const deltaX = cartIconRect.left - imgCloneRect.left;
-            const deltaY = cartIconRect.top - imgCloneRect.top;
+    function updateCartCount() {
+        cartBadge.textContent = cart.length || '';
+    }
 
-            imgClone.style.transform = `translate(${deltaX}px, ${deltaY}px)`; // Animação para mover a imagem
-
-            // Verificar se o ícone do carrinho está visível na tela
-            const isCartIconVisible = (
-                cartIconRect.top >= 0 &&
-                cartIconRect.left >= 0 &&
-                cartIconRect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                cartIconRect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-
-            // Só rolar para o carrinho se ele não estiver visível
-            if (!isCartIconVisible) {
-                // Calcula o valor que a página precisa rolar para trazer o ícone até a área visível
-                const headerHeight = header.offsetHeight; // Altura do header
-                const scrollToPosition = cartIconRect.top + window.scrollY - headerHeight; // Ajusta para o header
-
-                // Garante que a rolagem não ultrapasse o ícone, parando quando ele aparecer
-                const maxScrollPosition = Math.min(scrollToPosition, document.body.scrollHeight - window.innerHeight);
-                
-                window.scrollTo({
-                    top: maxScrollPosition, // Rolagem até o ícone, sem ultrapassar
-                    behavior: 'smooth' // Rolar suavemente
-                });
-            }
-
-            // Ao final da animação, remover a imagem e atualizar o carrinho
-            imgClone.addEventListener('transitionend', () => {
-                imgClone.remove();
-                // Atualizar o número de itens no carrinho
-                let currentCount = parseInt(cartBadge.textContent) || 0;
-                cartBadge.textContent = currentCount + 0; // Incrementar o número de itens no carrinho
-
-                // Animar o ícone do carrinho para indicar que um item foi adicionado
-                cartIcon.classList.add('pulse');
-                setTimeout(() => {
-                    cartIcon.classList.remove('pulse');
-                }, 1000);
-            });
-
-            // Adicionar produto ao carrinho (salvando no localStorage)
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const productName = productCard.querySelector('h3').textContent;
-            const productPrice = productCard.querySelector('.price').textContent;
-            const productImage = img.src;
-
-            cart.push({
-                name: productName,
-                price: productPrice,
-                img: productImage
-            });
-
-            localStorage.setItem('cart', JSON.stringify(cart));
+    function calculateTotal() {
+        let total = 0;
+        cart.forEach(item => {
+            total += parseFloat(item.price.replace('R$', '').trim());
         });
-    });
-});
-
-    </script>
- <script>
-// Observador para as marcas
-const brandObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            // Atraso para cada marca baseado no seu índice
-            setTimeout(() => {
-                // Adiciona a classe 'visible' após o delay para animar
-                entry.target.classList.add('visible');
-            }, index * 300); // 300ms de atraso entre as marcas
-        } else {
-            // Se sair da tela, remove a classe 'visible'
-            entry.target.classList.remove('visible');
-        }
-    });
-}, {
-    threshold: 0.25  // A animação começa quando 25% da marca estiver visível
-});
-
-// Seleciona todas as marcas na lista e começa a observá-las
-const brands = document.querySelectorAll('.brand-search li');
-brands.forEach(brand => brandObserver.observe(brand));
-
-// Observador para o grid de produtos
-const productGrid = document.querySelector('.product-grid');
-
-// Criar observador para grid de produtos
-const gridObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Adiciona a classe 'show' apenas para o grid de produtos
-            entry.target.classList.add('show');
-        } else {
-            // Remove a classe para permitir a animação novamente
-            entry.target.classList.remove('show');
-        }
-    });
-}, { threshold: 0.25 }); // Ativa quando 25% do grid estiver visível
-
-// Inicia a observação para o grid de produtos
-gridObserver.observe(productGrid);
-     </script>
-       <script>
-        // Seleciona o grid de produtos
-const productGrid = document.querySelector('.product-grid');
-
-// Cria o observador para detectar quando o grid entra ou sai da tela
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Se o grid está visível, adiciona a classe 'show' para ativar a animação
-            entry.target.classList.add('show');
-        } else {
-            // Se o grid sai da tela, remove a classe para permitir a animação novamente
-            entry.target.classList.remove('show');
-        }
-    });
-}, { threshold: 0.25 }); // Ativa quando 30% do grid estiver visível
-
-// Inicia a observação
-observer.observe(productGrid);
-            </script>
-     <script>
-function mostrarParceiros() {
-  // Seleciona todos os parceiros que têm a classe 'hidden'
-  const parceirosOcultos = document.querySelectorAll('.parceiro.hidden');
-
-  // Itera por cada parceiro oculto e remove a classe 'hidden' para exibi-los
-  parceirosOcultos.forEach(parceiro => {
-    parceiro.classList.remove('hidden');
-  });
-
-  // Esconde o botão "Ver mais" após exibir os parceiros
-  const verMais = document.getElementById('ver-mais');
-  verMais.style.display = 'none'; // Torna o botão invisível após o clique
-}
-  </script>
-      <script>
-let currentIndex = 0;
-const reviewsContainer = document.querySelector('.reviews');
-const reviewCards = document.querySelectorAll('.review-card');
-const totalReviews = reviewCards.length;
-const cardWidth = reviewCards[0].offsetWidth + 15; // Largura do card + espaçamento (margin-right)
-const containerWidth = reviewsContainer.offsetWidth; // Largura do container
-
-function scrollReviews() {
-  // A largura total dos cards no container
-  const totalScrollWidth = totalReviews * cardWidth;
-
-  // Verifica se a posição do scroll atingiu o ponto em que o último card estará completamente visível
-  const currentTransform = Math.abs(parseInt(reviewsContainer.style.transform.replace('translateX(', '').replace('px)', '')) || 0);
-  
-  if (currentTransform >= totalScrollWidth - containerWidth) {
-    currentIndex = 0;  // Reinicia quando o último card estiver completamente visível
-  } else {
-    currentIndex++;  // Avança para o próximo card
-  }
-
-  // Aplica a transformação para mover os cards
-  reviewsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-}
-
-// Definir um intervalo para rolar automaticamente
-setInterval(scrollReviews, 3000);  // A cada 3 segundos
-
-</script>
-    
-  <script>
-// Array de imagens para o slider
-const images = [
-    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg',
-    'https://cdn.whichcar.com.au/assets/w_1536/157e1203/2024-toyota-hybrid-lineup-01.jpg',
-    'https://www.reflexvehiclehire.com/uploads/blog/1.jpg'
-];
-
-let currentImageIndex = 0;
-const heroSection = document.querySelector('.hero-section');
-
-// Função para trocar a imagem do background com fade
-function changeImage() {
-    heroSection.classList.add('fade'); // Ativa a transição de fade
-    setTimeout(() => {
-        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
-        heroSection.classList.remove('fade'); // Remove o fade após a troca da imagem
-        currentImageIndex = (currentImageIndex + 1) % images.length; // Incrementa o índice, voltando para 0 se ultrapassar o número de imagens
-    }, 1000); // Tempo de duração da transição
-}
-
-// Troca a imagem automaticamente a cada 5 segundos
-setInterval(changeImage, 5000);
-     </script>
-    </script>
-
-<!-- Inclua a biblioteca Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-
-
-  <script>
-        // Seleciona todos os itens principais de categoria
-        const categories = document.querySelectorAll('.category');
-
-        categories.forEach(category => {
-            category.addEventListener('click', function (event) {
-                event.preventDefault(); // Evita redirecionamento
-
-                // Seleciona o submenu relacionado
-                const submenu = this.nextElementSibling;
-
-                // Alterna a exibição do submenu
-                if (submenu.style.display === 'flex') {
-                    submenu.style.display = 'none';
-                } else {
-                    submenu.style.display = 'flex';
-                }
-            });
-        });
-    </script>
-      <script>
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active'); // Show/hide menu
-    menuToggle.classList.toggle('clicked'); // Adiciona o efeito de cor e tamanho ao botão
-});
-
-// Debugging
-console.log('Toggle connected:', menuToggle !== null);
-console.log('Menu found:', navMenu !== null);
-
-</script>
-        
-
-<script>
-let currentCategory = "uncategorized";  // Inicializa com a categoria não categorizada
-
-function filterProducts(searchTerm) {
-    const search = searchTerm.toLowerCase();
-    const productCards = document.querySelectorAll(".product-card");
-    const noResultsMessage = document.querySelector('[data-category="noresults"]');
-    const navigationButtons = document.querySelector('.navigation-buttons');
-    const footer = document.querySelector('footer');
-    const googleReviewsContainer = document.querySelector('.google-reviews .container');
-    const brandSearch = document.querySelector('.brand-search');
-    const priceSearch = document.querySelector('.price-search');
-    let resultsFound = false;
-
-    // Resetando os elementos para estado padrão antes da filtragem
-    noResultsMessage.style.display = 'none'; // Esconde a mensagem inicialmente
-    navigationButtons.style.visibility = 'visible';
-    footer.style.visibility = 'visible';
-    googleReviewsContainer.style.visibility = 'visible';
-    brandSearch.style.visibility = 'visible';
-    priceSearch.style.visibility = 'visible';
-
-    // Filtra os produtos com base na pesquisa
-    productCards.forEach(card => {
-        const productCategory = card.getAttribute('data-category');
-        const productName = card.querySelector("h3").textContent.toLowerCase();
-
-        // Se a pesquisa não estiver vazia, filtra os produtos pela pesquisa
-        if (searchTerm !== '' && productName.includes(search)) {
-            card.style.display = "block";
-            resultsFound = true;
-        } 
-        // Caso contrário, se a pesquisa estiver vazia, filtra os produtos pela categoria
-        else if (searchTerm === '') {
-            if (currentCategory === "all" || currentCategory === productCategory || (currentCategory === "uncategorized" && !productCategory)) {
-                card.style.display = "block";
-                resultsFound = true;
-            } else {
-                card.style.display = "none";
-            }
-        } else {
-            card.style.display = "none";
-        }
-    });
-
-    // Se não encontrou resultados e a pesquisa não está vazia, exibe a mensagem "Sem Resultados"
-    if (!resultsFound && searchTerm !== '') {
-        noResultsMessage.style.display = 'block'; // Exibe a mensagem de "Sem Resultados"
-        
-        // Esconde outros elementos da página
-        navigationButtons.style.visibility = 'hidden';
-        footer.style.visibility = 'hidden';
-        googleReviewsContainer.style.visibility = 'hidden';
-        brandSearch.style.visibility = 'hidden';
-        priceSearch.style.visibility = 'hidden';
-    } else if (resultsFound || searchTerm === '') {
-        noResultsMessage.style.display = 'none'; // Esconde a mensagem de "Sem Resultados" caso haja resultados ou pesquisa vazia
-
-        // Reexibe os outros elementos da página
-        navigationButtons.style.visibility = 'visible';
-        footer.style.visibility = 'visible';
-        googleReviewsContainer.style.visibility = 'visible';
-        brandSearch.style.visibility = 'visible';
-        priceSearch.style.visibility = 'visible';
-    }
-}
-
-// Função para atualizar a categoria selecionada
-function setCategory(category) {
-    currentCategory = category;
-    filterProducts("");  // Chama a função de filtro com uma pesquisa vazia para aplicar a categoria
-}
-
-// Exemplo de como chamar a função para alterar a categoria ao clicar:
-document.querySelectorAll('.category').forEach(item => {
-    item.addEventListener('click', function() {
-        const category = this.getAttribute('data-category');
-        setCategory(category);  // Atualiza a categoria ao clicar
-    });
-});
-
-// Função para lidar com a pesquisa
-const searchInput = document.querySelector('.search-input'); // Supondo que a barra de pesquisa tenha essa classe
-
-searchInput.addEventListener('input', function() {
-    const searchTerm = searchInput.value.trim();
-    filterProducts(searchTerm);  // Filtra os produtos com base no termo de pesquisa
-});
-</script>
-
-
-
-<script>
-    // Contador inicial de notificações no localStorage
-    if (!localStorage.getItem('notifications')) {
-      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+        return total;
     }
 
-    // Atualiza o contador no sininho
-    function updateNotificationBadge() {
-      const notifications = JSON.parse(localStorage.getItem('notifications'));
-      const unreadCount = notifications.filter(n => n).length;
-      const badge = document.getElementById('notification-badge');
-      badge.textContent = unreadCount;
-
-      // Esconde o badge se todas notificações foram lidas
-      badge.style.display = unreadCount > 0 ? 'block' : 'none';
-
-      // Atualiza o estilo das notificações
-      const notificationItems = document.querySelectorAll('.notification-item');
-      notifications.forEach((isUnread, index) => {
-        if (isUnread) {
-          notificationItems[index].classList.remove('read');
-        } else {
-          notificationItems[index].classList.add('read');
-        }
-      });
-    }
-
-    // Alterna o menu de notificações
-    function toggleNotificationMenu() {
-      const menu = document.getElementById('notification-menu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    // Marca notificações como lidas
-    function markAsRead(index) {
-      const notifications = JSON.parse(localStorage.getItem('notifications'));
-      notifications[index] = false;
-      localStorage.setItem('notifications', JSON.stringify(notifications));
-      updateNotificationBadge();
-    }
-
-    // Atualiza o contador ao carregar a página
-    window.onload = updateNotificationBadge;
-  </script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const shoppingCart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartIconElement = document.querySelector('.cart-icon');
-    const cartBadgeElement = cartIconElement.querySelector('.cart-badge');
-    const cartPopupElement = document.querySelector('.cart-popup');
-    const cartPopupContentElement = cartPopupElement.querySelector('.cart-popup-content');
-    const productCardsElements = document.querySelectorAll('.product-card');
-    const orderButton = document.querySelector('#orderButton'); // Botão de "Fazer pedido"
-
-    function updateCartItemCount() {
-        cartBadgeElement.textContent = shoppingCart.length || ''; // Atualiza o badge com o número de itens
-    }
-
-    function calculateTotalPrice() {
-        return shoppingCart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0);
-    }
-
-    function animatePrice() {
-        const totalAmount = calculateTotalPrice();
-        let currentAmount = 0;
-        const increment = totalAmount / 100;
+    function animateTotalSum() {
+        const total = calculateTotal();
+        let currentTotal = 0;
+        const increment = total / 100;
         const totalElement = document.querySelector('.cart-total');
 
         function updateTotal() {
-            currentAmount += increment;
-            if (currentAmount < totalAmount) {
-                totalElement.innerHTML = `Total: R$ ${currentAmount.toFixed(2)}`;
+            currentTotal += increment;
+            if (currentTotal < total) {
+                totalElement.innerHTML = `Total: R$ ${currentTotal.toFixed(2)}`;
                 requestAnimationFrame(updateTotal);
             } else {
-                totalElement.innerHTML = `Total: R$ ${totalAmount.toFixed(2)}`;
+                totalElement.innerHTML = `Total: R$ ${total.toFixed(2)}`;
             }
         }
         updateTotal();
     }
 
     function renderCart() {
-        cartPopupContentElement.innerHTML = ''; // Limpa o conteúdo anterior
+        cartPopupContent.innerHTML = ''; // Limpa o conteúdo atual
 
+        // Adicionando o logo acima do título
         const logoContainer = document.createElement('div');
         logoContainer.style.display = 'flex';
-        logoContainer.style.justifyContent = 'center';
-        logoContainer.style.marginBottom = '40px';
+        logoContainer.style.justifyContent = 'center'; // Centraliza o logo
+        logoContainer.style.marginBottom = '40px'; // Espaço entre o logo e o título
 
-        const logoImage = document.createElement('img');
-        logoImage.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png';
-        logoImage.alt = 'Logo';
-        logoImage.style.height = '35px';
-        logoImage.style.width = 'auto';
-        logoContainer.appendChild(logoImage);
+        const logoImg = document.createElement('img');
+        logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png'; // Altere para o caminho correto do logo
+        logoImg.alt = 'Logo';
+        logoImg.style.height = '35px'; // Ajuste a altura conforme necessário
+        logoImg.style.width = 'auto'; // Mantém a proporção do logo
+        logoContainer.appendChild(logoImg); // Adiciona a imagem ao contêiner
 
-        const titleElement = document.createElement('h2');
-        titleElement.textContent = '';
-        cartPopupContentElement.appendChild(logoContainer);
-        cartPopupContentElement.appendChild(titleElement);
+        const title = document.createElement('h2');
+        title.textContent = '';
+        cartPopupContent.appendChild(logoContainer); // Adiciona o logo acima do título
+        cartPopupContent.appendChild(title); // Adiciona o título "Seu Carrinho"
 
-        const ulElement = document.createElement('ul');
-        ulElement.style.listStyleType = 'none';
-        ulElement.style.padding = '0';
+        const ul = document.createElement('ul');
+        ul.style.listStyleType = 'none';
+        ul.style.padding = '0';
 
-        if (shoppingCart.length === 0) {
-            ulElement.innerHTML = '<li>O carrinho está vazio.</li>';
+        if (cart.length === 0) {
+            ul.innerHTML = '<li>O carrinho está vazio.</li>';
         } else {
-            shoppingCart.forEach((item, index) => {
-                const listItem = document.createElement('li');
-                listItem.style.display = 'flex';
-                listItem.style.alignItems = 'center';
-                listItem.style.marginBottom = '10px';
-                listItem.innerHTML = `
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '10px';
+
+                li.innerHTML = ` 
                     <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                     <div>
                         <p>${item.name}</p>
@@ -3396,45 +2865,43 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
                 `;
-                listItem.querySelector('button').addEventListener('click', (event) => {
-                    const indexToRemove = event.target.getAttribute('data-index');
-                    shoppingCart.splice(indexToRemove, 1);
+
+                li.querySelector('button').addEventListener('click', (e) => {
+                    const indexToRemove = e.target.getAttribute('data-index');
+                    cart.splice(indexToRemove, 1);
                     saveCart();
-                    updateCartItemCount();
+                    updateCartCount();
                     renderCart();
                 });
-                ulElement.appendChild(listItem);
+
+                ul.appendChild(li);
             });
         }
 
-        cartPopupContentElement.appendChild(ulElement);
+        cartPopupContent.appendChild(ul);
 
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
         totalElement.innerHTML = `Total: R$ 0.00`;
-        cartPopupContentElement.appendChild(totalElement);
+        cartPopupContent.appendChild(totalElement);
 
-        animatePrice();
+        animateTotalSum();
 
-        createCartButtons();
-    }
-
-    function createCartButtons() {
-        const orderButton = document.createElement('button');
-        orderButton.textContent = 'Fazer pedido';
-        orderButton.style.background = '#003B50';
-        orderButton.style.color = 'white';
-        orderButton.style.border = 'none';
-        orderButton.style.padding = '10px';
-        orderButton.style.width = '100%';
-        orderButton.style.cursor = 'pointer';
-        orderButton.style.marginTop = '10px';
-        orderButton.addEventListener('click', () => {
-            displayNextButtons();
+        const fazerPedidoButton = document.createElement('button');
+        fazerPedidoButton.textContent = 'Fazer pedido';
+        fazerPedidoButton.style.background = '#003B50';
+        fazerPedidoButton.style.color = 'white';
+        fazerPedidoButton.style.border = 'none';
+        fazerPedidoButton.style.padding = '10px';
+        fazerPedidoButton.style.width = '100%';
+        fazerPedidoButton.style.cursor = 'pointer';
+        fazerPedidoButton.style.marginTop = '10px';
+        fazerPedidoButton.addEventListener('click', () => {
+            showNextButtons();
         });
-        cartPopupContentElement.appendChild(orderButton);
+        cartPopupContent.appendChild(fazerPedidoButton);
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'Fechar';
@@ -3447,94 +2914,140 @@ document.addEventListener('DOMContentLoaded', () => {
         closeButton.style.cursor = 'pointer';
         closeButton.style.marginTop = '10px';
         closeButton.addEventListener('click', () => {
-            cartPopupElement.style.display = 'none';
+            cartPopup.style.display = 'none';
         });
-        cartPopupContentElement.appendChild(closeButton);
+        cartPopupContent.appendChild(closeButton);
     }
 
-    function displayNextButtons() {
-        cartPopupContentElement.innerHTML = '';
+    function showNextButtons() {
+        cartPopupContent.innerHTML = '';
 
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
         totalElement.style.marginTop = '20px';
-        totalElement.innerHTML = `Total: R$ ${calculateTotalPrice().toFixed(2)}`;
-        cartPopupContentElement.appendChild(totalElement);
+        totalElement.innerHTML = `Total: R$ ${calculateTotal().toFixed(2)}`;
+        cartPopupContent.appendChild(totalElement);
 
-        createPaymentButtons();
-    }
+        const aguardarButton = document.createElement('button');
+        aguardarButton.textContent = 'Aguardar';
+        aguardarButton.style.background = '#4CAF50';
+        aguardarButton.style.color = 'white';
+        aguardarButton.style.border = 'none';
+        aguardarButton.style.padding = '10px';
+        aguardarButton.style.width = '100%';
+        aguardarButton.style.cursor = 'pointer';
+        aguardarButton.style.marginTop = '10px';
+        aguardarButton.addEventListener('click', () => startCountdown());
+        cartPopupContent.appendChild(aguardarButton);
 
-    function createPaymentButtons() {
-        const waitingButton = document.createElement('button');
-        waitingButton.textContent = 'Aguardar';
-        waitingButton.style.background = '#4CAF50';
-        waitingButton.style.color = 'white';
-        waitingButton.style.border = 'none';
-        waitingButton.style.padding = '10px';
-        waitingButton.style.width = '100%';
-        waitingButton.style.cursor = 'pointer';
-        waitingButton.style.marginTop = '10px';
-        waitingButton.addEventListener('click', () => startCountdown());
-        cartPopupContentElement.appendChild(waitingButton);
-
-        const talkButton = document.createElement('button');
-        talkButton.textContent = 'Falar com atendente';
-        talkButton.style.background = '#000000';
-        talkButton.style.color = 'white';
-        talkButton.style.border = 'none';
-        talkButton.style.padding = '10px';
-        talkButton.style.width = '100%';
-        talkButton.style.cursor = 'pointer';
-        talkButton.style.marginTop = '10px';
-        talkButton.addEventListener('click', () => {
+        const falarButton = document.createElement('button');
+        falarButton.textContent = 'Falar com atendente';
+        falarButton.style.background = '#000000';
+        falarButton.style.color = 'white';
+        falarButton.style.border = 'none';
+        falarButton.style.padding = '10px';
+        falarButton.style.width = '100%';
+        falarButton.style.cursor = 'pointer';
+        falarButton.style.marginTop = '10px';
+        falarButton.addEventListener('click', () => {
             const message = generateWhatsappMessage();
             const encodedMessage = encodeURIComponent(message);
             window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
         });
-        cartPopupContentElement.appendChild(talkButton);
+        cartPopupContent.appendChild(falarButton);
 
-        createPaymentOptions();
-    }
+      // Function to generate the message for WhatsApp
+function generateWhatsappMessage() {
+    let message = 'Pedido de compra:\n\n';
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price}\n`;
+    });
+    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
+    message += 'Aguardo confirmação do pedido.';
+    return message;
+}
 
-    function generateWhatsappMessage() {
-        let message = 'Pedido de compra:\n\n';
-        shoppingCart.forEach(item => {
-            message += `${item.name} - ${item.price}\n`;
-        });
-        message += `\nTotal: R$ ${calculateTotalPrice().toFixed(2)}\n\n`;
-        message += 'Aguardo confirmação do pedido.';
-        return message;
-    }
+// M-Pesa payment option with effects and no duplication
+function showMpesapayOption() {
+    const mpesaContainer = document.createElement('div');
+    cartPopupContent.appendChild(mpesaContainer);
 
-    function createPaymentOptions() {
-        const paymentButton = document.createElement('button');
-        paymentButton.textContent = 'Efetuar Pagamento';
-        paymentButton.style.background = '#0070ba';
-        paymentButton.style.color = 'white';
-        paymentButton.style.border = 'none';
-        paymentButton.style.padding = '10px';
-        paymentButton.style.width = '100%';
-        paymentButton.style.cursor = 'pointer';
-        paymentButton.style.marginTop = '10px';
-        paymentButton.addEventListener('click', () => {
-            showPaypalButton();
-            showMpesapayOption();
-        });
-        cartPopupContentElement.appendChild(paymentButton);
+    // Check if the M-Pesa number has already been displayed to avoid duplication
+    const existingMpesaNumber = document.querySelector('.mpesa-number');
+    if (existingMpesaNumber) return; // Exit the function if the number already exists
+
+    // Create the M-Pesa payment button
+    const mpesaButton = document.createElement('button');
+    mpesaButton.textContent = 'Pagamento M-Pesa';
+    mpesaButton.style.backgroundColor = '#8B0000'; // Darker red background
+    mpesaButton.style.color = 'white'; // White text
+    mpesaButton.style.border = 'none';
+    mpesaButton.style.padding = '10px';
+    mpesaButton.style.fontSize = '16px';
+    mpesaButton.style.cursor = 'pointer';
+    mpesaButton.style.width = '100%';
+    mpesaButton.style.marginTop = '10px'; // Add some spacing
+    mpesaButton.style.transition = 'opacity 0.5s ease'; // Add fade-out transition
+    mpesaContainer.appendChild(mpesaButton);
+
+    // Add event listener for the M-Pesa button click
+    mpesaButton.addEventListener('click', () => {
+        // Fade out the button
+        mpesaButton.style.opacity = '0';
+
+        // Wait for the fade-out effect to finish, then replace the button with the number
+        setTimeout(() => {
+            mpesaButton.style.display = 'none'; // Hide the button after fade-out
+
+            // Show the M-Pesa transfer number
+            const mpesaNumber = document.createElement('div');
+            mpesaNumber.textContent = 'Transferência: 85 21 36 558'; // Number to display
+            mpesaNumber.style.fontSize = '18px';
+            mpesaNumber.style.fontWeight = 'bold';
+            mpesaNumber.style.marginTop = '10px'; // Maintain spacing
+            mpesaNumber.style.textAlign = 'center'; // Center the number
+            mpesaNumber.classList.add('mpesa-number'); // Add a class to easily check if number already exists
+            mpesaContainer.appendChild(mpesaNumber);
+        }, 500); // Match the transition duration
+    });
+}
+
+
+// Pagar Conta button logic
+const pagarButton = document.createElement('button');
+pagarButton.textContent = 'Efetuar Pagamento';
+pagarButton.style.background = '#0070ba';
+pagarButton.style.color = 'white';
+pagarButton.style.border = 'none';
+pagarButton.style.padding = '10px';
+pagarButton.style.width = '100%';
+pagarButton.style.cursor = 'pointer';
+pagarButton.style.marginTop = '10px';
+pagarButton.addEventListener('click', () => {
+    showPaypalButton();
+    showMpesapayOption(); // Show M-Pesa payment option below PayPal
+});
+cartPopupContent.appendChild(pagarButton);
+
     }
 
     function showPaypalButton() {
+        const existingPaypalButton = document.querySelector('.paypal-button-container');
+        if (existingPaypalButton) {
+            return; // Do not add another PayPal button if one already exists
+        }
+
         const paypalButtonContainer = document.createElement('div');
         paypalButtonContainer.classList.add('paypal-button-container');
-        cartPopupContentElement.appendChild(paypalButtonContainer);
+        cartPopupContent.appendChild(paypalButtonContainer);
 
         paypal.Buttons({
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: calculateTotalPrice().toFixed(2)
+                            value: calculateTotal().toFixed(2)
                         }
                     }]
                 });
@@ -3550,72 +3063,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }).render(paypalButtonContainer);
     }
 
-    function showMpesapayOption() {
-        const mpesaContainer = document.createElement('div');
-        cartPopupContentElement.appendChild(mpesaContainer);
+    let countdownInterval;
+    function startCountdown() {
+        let timeRemaining = 120; // 2 minutes
+        const countdownElement = document.querySelector('.countdown');
+        
+        if (countdownElement) {
+            countdownElement.remove(); // Remove previous countdown if it exists
+        }
 
-        const existingMpesaNumber = document.querySelector('.mpesa-number');
-        if (existingMpesaNumber) return;
+        const newCountdownElement = document.createElement('div');
+        newCountdownElement.classList.add('countdown');
+        newCountdownElement.style.marginTop = '20px';
+        cartPopupContent.appendChild(newCountdownElement);
 
-        const mpesaButton = document.createElement('button');
-        mpesaButton.textContent = 'Pagamento M-Pesa';
-        mpesaButton.style.backgroundColor = '#8B0000';
-        mpesaButton.style.color = 'white';
-        mpesaButton.style.border = 'none';
-        mpesaButton.style.padding = '10px';
-        mpesaButton.style.fontSize = '16px';
-        mpesaButton.style.cursor = 'pointer';
-        mpesaButton.style.width = '100%';
-        mpesaButton.style.marginTop = '10px';
-        mpesaButton.style.transition = 'opacity 0.5s ease';
-        mpesaContainer.appendChild(mpesaButton);
+        function updateCountdown() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            newCountdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                newCountdownElement.innerHTML = 'Tempo esgotado!';
+                setTimeout(startCountdown, 1000); // Restart countdown
+            }
+        }
+        updateCountdown();
+    }
 
-        mpesaButton.addEventListener('click', () => {
-            mpesaButton.style.opacity = '0';
-            setTimeout(() => {
-                mpesaButton.style.display = 'none';
+    productCards.forEach(card => {
+        const button = card.querySelector('button');
+        button.addEventListener('click', () => {
+            const img = card.querySelector('img').src;
+            const name = card.querySelector('h3').textContent;
+            const price = card.querySelector('.price').textContent;
 
-                const mpesaNumber = document.createElement('div');
-                mpesaNumber.textContent = 'Transferência: 85 21 36 558';
-                mpesaNumber.style.fontSize = '18px';
-                mpesaNumber.style.fontWeight = 'bold';
-                mpesaNumber.classList.add('mpesa-number');
-                mpesaContainer.appendChild(mpesaNumber);
-            }, 500);
+            cart.push({ img, name, price });
+            saveCart();
+            updateCartCount();
+            renderCart();
         });
-    }
-
-    function saveCart() {
-        localStorage.setItem('cart', JSON.stringify(shoppingCart));
-    }
-
-    function handleProductSelection() {
-        productCardsElements.forEach((card) => {
-            const addButton = card.querySelector('.add-to-cart');
-            addButton.addEventListener('click', () => {
-                const productName = card.querySelector('.product-title').textContent;
-                const productPrice = card.querySelector('.product-price').textContent;
-                const productImage = card.querySelector('.product-image').src;
-
-                shoppingCart.push({ name: productName, price: productPrice, img: productImage });
-                saveCart();
-                updateCartItemCount();
-            });
-        });
-    }
-
-    cartIconElement.addEventListener('click', () => {
-        cartPopupElement.style.display = 'block';
-        renderCart();
     });
 
-    handleProductSelection();
-    updateCartItemCount();
+    cartIcon.addEventListener('click', () => {
+        if (cartPopup.style.display === 'block') {
+            cartPopup.style.display = 'none';
+        } else {
+            renderCart();
+            cartPopup.style.display = 'block';
+        }
+    });
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    updateCartCount();
 });
 </script>
-
-
-
 
 </body>
 </html>
