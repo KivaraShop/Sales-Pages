@@ -3320,45 +3320,6 @@ searchInput.addEventListener('input', function() {
     window.onload = updateNotificationBadge;
   </script>
 
-     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
-    const loadingWheel = document.getElementById('loadingWheel');
-    const contentContainer = document.getElementById('contentContainer');
-    let loadedGifs = 0;
-
-    gifs.forEach((gif) => {
-        const gifURL = gif.src;
-
-        // Força o carregamento criando múltiplas requisições
-        const aggressivePreload = new Image();
-        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
-
-        aggressivePreload.onload = () => {
-            loadedGifs++;
-            if (loadedGifs === gifs.length) {
-                // Todos os GIFs carregados
-                loadingWheel.style.display = 'none';
-                contentContainer.style.display = 'block';
-            }
-        };
-
-        aggressivePreload.onerror = () => {
-            loadedGifs++;
-            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
-            if (loadedGifs === gifs.length) {
-                // Mesmo com erro, consideramos o carregamento concluído
-                loadingWheel.style.display = 'none';
-                contentContainer.style.display = 'block';
-            }
-        };
-
-        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
-        gif.src = gifURL + `?cache-force=${Math.random()}`;
-    });
-});
- </script>
-    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const shoppingCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -3630,10 +3591,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleProductSelection() {
         productCardsElements.forEach((card) => {
-            card.addEventListener('click', (event) => {
-                const productName = event.target.closest('.product-card').querySelector('.product-title').textContent;
-                const productPrice = event.target.closest('.product-card').querySelector('.product-price').textContent;
-                const productImage = event.target.closest('.product-card').querySelector('img').src;
+            const addButton = card.querySelector('.add-to-cart');
+            addButton.addEventListener('click', () => {
+                const productName = card.querySelector('.product-title').textContent;
+                const productPrice = card.querySelector('.product-price').textContent;
+                const productImage = card.querySelector('.product-image').src;
 
                 shoppingCart.push({ name: productName, price: productPrice, img: productImage });
                 saveCart();
