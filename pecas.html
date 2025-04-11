@@ -512,9 +512,17 @@
 
 
 
+<iframe id="tiktok-video" src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
 
+<script>
+    const iframe = document.getElementById('tiktok-video');
 
-       <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    iframe.onload = function() {
+        iframe.contentWindow.document.addEventListener('ended', function() {
+            iframe.contentWindow.location.reload(); // Isso reiniciaria a página dentro do iframe
+        });
+    }
+</script>
 
         <script>
 // Função para ajustar o tamanho dos produtos filtrados
