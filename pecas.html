@@ -336,6 +336,44 @@
   font-size: 18px;
 }
 
+        #tiktok-videos {
+    text-align: center;
+    margin: 50px 0;
+}
+
+#tiktok-videos h2 {
+    font-size: 24px;
+    color: #4a004e; /* Cor que combine com o tema da sua página */
+    margin-bottom: 30px;
+}
+
+.tiktok-videos-container {
+    display: flex;
+    overflow-x: auto; /* Permite rolagem horizontal */
+    gap: 20px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory; /* Snap para vídeos */
+    -webkit-overflow-scrolling: touch; /* Suaviza a rolagem em dispositivos móveis */
+    
+    /* Remove a barra de rolagem */
+    scrollbar-width: none;  /* Para Firefox */
+    -ms-overflow-style: none;  /* Para Internet Explorer 10+ */
+}
+
+.tiktok-videos-container::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari, e Edge */
+}
+
+.video-item {
+    flex-shrink: 0; /* Impede o vídeo de encolher */
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: center; /* Alinha o vídeo no centro durante a rolagem */
+}
+
+
     </style>
 </head>
 <body>
@@ -510,9 +548,27 @@
     </div>
 
 
+<section id="tiktok-videos">
+    <h2>Vídeos do TikTok - Confira Nossos Carros em Ação!</h2>
+    <div class="tiktok-videos-container">
+        <!-- Vídeo 1 -->
+        <div class="video-item">
+            <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        </div>
 
+        <!-- Vídeo 2 -->
+        <div class="video-item">
+            <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        </div>
 
-<iframe id="tiktok-video" src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        <!-- Vídeo 3 -->
+        <div class="video-item">
+            <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        </div>
+        
+        <!-- Adicione mais vídeos conforme necessário -->
+    </div>
+</section>
 
 <script>
     const iframe = document.getElementById('tiktok-video');
