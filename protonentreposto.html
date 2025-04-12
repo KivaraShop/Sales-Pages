@@ -312,6 +312,94 @@ p {
     visibility: hidden; /* Inicialmente os iframes estarão invisíveis */
 }    
 
+
+
+      .gallery {
+      flex: 1;
+    }
+    .main-image {
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+    .thumbnails {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .thumbnails img {
+      width: 60px;
+      height: 40px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+    .details {
+      flex: 1.5;
+    }
+    .details h1 {
+      margin-bottom: 10px;
+      color: #003087;
+    }
+    .info-tags span {
+      background: #eee;
+      padding: 5px 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #003087;
+      margin: 20px 0;
+    }
+    .actions button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      background: #003087;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .features {
+      margin-top: 30px;
+    }
+    .accordion {
+      border-top: 1px solid #ddd;
+    }
+    .accordion-item {
+      cursor: pointer;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .accordion-item:hover {
+      background: #f0f0f0;
+    }
+    .accordion-item h3 {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .accordion-content {
+      display: none;
+      padding: 10px 0;
+      color: #555;
+    }
+    .return-home {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #003087;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .return-home i {
+      margin-right: 8px;
+    }
 </style>
 </head>
 <body>
@@ -376,6 +464,54 @@ p {
             </div>
         </section>
 <div>
+    
+  <div class="gallery">
+    <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/04_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400" id="mainImg" class="main-image">
+    <div class="thumbnails">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/06_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400" onclick="changeImage(this)">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/05_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400/cccccc" onclick="changeImage(this)">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/03_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400/999999" onclick="changeImage(this)">
+      <img src="https://eu.cdn.autosonshow.tv/6203/14743/BH40FH/02_sm.jpg?538350b1b6865f042a22bc8ccf27a4ed/600x400/666666" onclick="changeImage(this)">
+    </div>
+  </div>
+
+  <div class="details">
+    <h1>Nissan JUKE - DIG-T (114 CV) 6M/T N-CONNECTA</h1>
+    <div class="info-tags">
+      <span>Gasolina</span><span>2024</span><span>24899 km</span><span>114 CV</span><span>Automática</span><span>5 lugares</span>
+    </div>
+    <div class="price">25 900 €</div>
+    <div>*+300 € em despesas logísticas</div>
+    <div class="actions">
+      <button>Reservar</button>
+      <button>Pedir Informações</button>
+    </div>
+
+    <div class="features">
+      <h2>Informações gerais</h2>
+      <div class="accordion">
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Primeiros passos para a compra <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">Explique o processo inicial de compra, incluindo a seleção do veículo, simulação de financiamento, e agendamento de visita ou test-drive.</div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Devolução da viatura <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">A devolução da viatura pode ser feita em até 14 dias após a compra, caso não esteja satisfeito.</div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Métodos de pagamento disponíveis <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">Aceitamos pagamentos por transferência bancária, cartão de crédito, e financiamento.</div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <h3>Entrega ao domicílio <i class="fas fa-chevron-down"></i></h3>
+          <div class="accordion-content">Oferecemos entrega ao domicílio em todo o país, com agendamento personalizado.</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="vendas.html" class="return-home"><i class="fas fa-arrow-left"></i> Voltar</a>
+  </div>
+</div>
       <p></p>
 </div>
 <div>
