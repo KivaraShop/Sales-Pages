@@ -345,6 +345,140 @@
     font-size: 18px;
     margin-right: 20px;
 }
+
+        /* Estilo para o slogan */
+.slogan-container {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.slogan {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; /* Tamanho da fonte pode ser ajustado conforme necessário */
+    font-weight: 700; /* Deixe o texto mais forte */
+    color: #012063; /* Cor inicial do texto */
+    letter-spacing: 2px; /* Espaçamento entre as letras para um efeito mais elegante */
+    font-style: italic; /* Estilo em itálico para um toque mais sofisticado */
+    margin: 0;
+    animation: colorChange 3s infinite; /* Aplica a animação */
+}
+
+        header .cart-icon {
+            color: white;
+            font-size: 22px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        header .cart-icon .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+        /* Animação de "arraste" do item para o carrinho */
+@keyframes moveToCart {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-50px) translateX(100px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-50px) translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animação de pulso no ícone do carrinho */
+/* Animação de pulso no ícone do carrinho */
+@keyframes cartIconPulse {
+    0% {
+        transform: scale(1);
+        background-color: #ff6b6b;
+    }
+    50% {
+        transform: scale(1.2);
+        background-color: #FF4C4C;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #ff6b6b;
+    }
+}
+
+header .cart-icon.pulse {
+    animation: cartIconPulse 1s ease;
+}
+
+         .cart-popup {
+    position: fixed;
+    top: 66%;
+    left: 50%;
+    width: 90vw; /* 80% da largura da tela */
+    height: 90vh; /* 80% da altura da tela */
+    max-width: 800px; /* Para evitar que fique muito largo em telas grandes */
+    max-height: 800px; /* Para manter uma boa proporção */
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 20px;
+    display: none;
+    border-radius: 10px;
+    
+    /* Centralizando no meio da tela */
+    transform: translate(-50%, -50%);
+}
+
+        .cart-popup-content {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .cart-popup ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-popup li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .cart-popup img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .cart-popup button {
+            background-color: #3c8d3f;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cart-popup button:hover {
+            background-color: #2f6c32;
+        }
+
+
         
         /* Footer */
         footer {
@@ -393,14 +527,37 @@
         <div class="special-offer">
             限定オファー！今なら全商品20％OFF！お早めにどうぞ！
         </div>
-
-    <div class="container">
- <div class="parent">
- <div class="navigation-buttons">
-    <a href="novos.html">Novos</a>
-    <a href="usados.html" id="usadosButton">Usados</a>
+   
+        <div class="slogan-container">
+    <p class="slogan">"Mais potência, mais emoção, mais estrada!"</p>
+</div>
   </div>
-     
+    
+ <div class="parent">
+<div class="navigation-buttons">
+    <a href="#" class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">3</span>
+    </a>
+</div>
+
+<!-- Pop-up do Carrinho FORA da navigation-buttons -->
+<div class="cart-popup">
+    <div class="cart-popup-content">
+        <ul>
+            <li>
+                <img src="https://via.placeholder.com/40" alt="Produto">
+                Produto 1 - R$ 29,90
+            </li>
+            <li>
+                <img src="https://via.placeholder.com/40" alt="Produto">
+                Produto 2 - R$ 39,90
+            </li>
+        </ul>
+        <button>Finalizar Compra</button>
+    </div>
+</div>
+      
   <div class="search-bar">
     <input 
       type="text" 
@@ -418,8 +575,8 @@
 <div id="search-results"></div>
     
 <!-- Mensagem de "Sem Resultados" -->
-<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
-  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
+<div id="no-results-message product-card" data-category="noresults"  style="display: none; text-align: center; margin-top: 20px;">
+  <p>Sem resultados, diga-nos por favor qual peça está a procura no botão abaixo.</p>
   <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
   </div>
@@ -428,29 +585,27 @@
     <div class="sidebar">
         <!-- Busca por Marca -->
         <div class="brand-search">
-            <h3>Busca por Marca</h3>
-           <ul>
-     <li class="category" data-category="uncategorized" style="color: red; font-weight: bold;"><img src="https://i.ibb.co/XxkByjxW/logo-cfao-white-footer-2.png" alt="comprados"> Em Promoção </li>
-    <li class="category" data-category="isuzu"><img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu"> Isuzu </li>
-    <li class="category" data-category="peugeot"><img src="https://i.ibb.co/mVKg6sJD/Peugeot-logo-2010-1920x1080.png" alt="Peugeot"> Peugeot</li>
-    <li class="category" data-category="toyota"><img src="https://i.ibb.co/Rp6xsbBK/toyota-logo-2020-europe-640.png" alt="Toyota"> Toyota</li>
-    <li class="category" data-category="proton"><img src="https://i.ibb.co/HT0ppYzb/Proton-logo-2016-2048x2048.png" alt="Proton"> Proton</li>
-    <li class="category" data-category="nissan"><img src="https://i.ibb.co/GvHfjQrx/nissan-logo-2020-black-show.png" alt="Nissan"> Nissan</li>
-    <li class="category" data-category="mazda"><img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda"> Mazda</li>
-    <li class="category" data-category="mercedes"><img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mercedes"> Mercedes</li>
-    <li class="category" data-category="audi"><img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Audi"> Audi</li>
-    <li class="category" data-category="hyundai"><img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Hyundai"> Hyundai</li>
-    <li class="category" data-category="bmw"><img src="https://i.ibb.co/C5dmDsWR/bmw-logo-2020-gray.png" alt="BMW"> BMW</li>
-    <li class="category" data-category="volvo"><img src="https://i.ibb.co/C3GwMKQj/Volvo-logo-2014-1920x1080.png" alt="Volvo"> Volvo</li>
-</ul>
+            <h3>Busca por Categoria</h3>
+            <ul>
+                <li class="category" data-category="uncategorized">Mais comprados 🛒 </li>
+                        <li class="category" data-category="suspensao">Suspensão</li>
+        <li class="category" data-category="carroceria">Carroçaria</li>
+        <li class="category" data-category="interior">Interior e Conforto</li>
+        <li class="category" data-category="mecanica">Mecânica e Motor</li>
+            <li class="category" data-category="freios">Freios</li>
+                <li>Ferramentas e Equipamentos</li>
+                <li>Segurança</li>
+                <li>Transmissâo</li>
+                   <li>Ofertas especiais</li>
+            </ul>
         </div>
 
                <!-- Busca por PREÇO-->
       <div class="price-search">
-    <h3>Busca por Preço</h3>
+    <h3>Nâo Encontrou ?</h3>
     <ul>
-        <li><i class="fas fa-dollar-sign"></i> Menos de 300,000 MZN</li>
-        <li><i class="fas fa-dollar-sign"></i> Acima de 40,000 MZN</li>
+        <li class="category" data-category="encomendarpeca" style="color:black; font-weight: bold; align-self: center; width: 100%;">Encomendar Peça</li>
+     <li style="text-align: justify;">Encontre a peça perfeita para o seu veículo e solicite agora com facilidade. Garantimos qualidade e os melhores preços!</li>
     </ul>
 </div>
     </div>
