@@ -212,13 +212,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Função para exibir o spinner e tocar o áudio após o carregamento
+    // Função para exibir o spinner e tocar o áudio
     function showSpinner() {
         let loadingOverlay = document.getElementById('loading-overlay'); // Spinner
         loadingOverlay.style.display = 'flex'; // Exibe o overlay e o spinner
-        playAudio(); // Toca o áudio
+
+        playAudio(); // Toca o áudio logo que o spinner aparece
+
+        // Esconde o spinner após 3 segundos
         setTimeout(() => {
-            loadingOverlay.style.display = 'none'; // Oculta o overlay e o spinner após 3 segundos
+            loadingOverlay.style.display = 'none';
         }, 3000); // 3000ms = 3 segundos
     }
 
@@ -226,6 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showSpinner();
 });
 </script>
+
 
 </body>
 </html>
