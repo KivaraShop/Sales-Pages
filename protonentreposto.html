@@ -595,19 +595,19 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
 
             const videoContainer = document.createElement('div');
             videoContainer.style.width = '100%';
-            videoContainer.style.maxWidth = '400px';
-            videoContainer.style.height = '400px';
+            videoContainer.style.maxWidth = '600px';  // Atualizando para 600px
+            videoContainer.style.height = '600px';    // Ajuste de altura para 600px
             videoContainer.style.borderRadius = '15px';
             videoContainer.style.overflow = 'hidden';
             videoContainer.style.display = 'block';
-            videoContainer.style.margin = '0'; // <-- Não centraliza
-            videoContainer.style.textAlign = 'left'; // <-- Alinha com CSS novo
+            videoContainer.style.margin = '0';  // Não centraliza
+            videoContainer.style.textAlign = 'left';  // Alinha com CSS novo
 
             // Adiciona a margem esquerda de 20px
-            videoContainer.style.marginLeft = '20px';  // Margem à esquerda
+            videoContainer.style.marginLeft = '20px';
 
             if (window.innerWidth <= 600) {
-                videoContainer.style.height = '300px';
+                videoContainer.style.height = '400px';  // Ajuste de altura para dispositivos móveis
             }
 
             videoContainer.appendChild(videoElement);
@@ -615,19 +615,19 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
         } else {
             const imgContainer = document.createElement('div');
             imgContainer.style.width = '100%';
-            imgContainer.style.maxWidth = '400px';
-            imgContainer.style.height = '400px';
+            imgContainer.style.maxWidth = '600px';  // Atualizando para 600px
+            imgContainer.style.height = '600px';    // Ajuste de altura para 600px
             imgContainer.style.overflow = 'hidden';
             imgContainer.style.borderRadius = '15px';
             imgContainer.style.display = 'block';
-            imgContainer.style.margin = '0'; // <-- Não centraliza
+            imgContainer.style.margin = '0';  // Não centraliza
             imgContainer.style.textAlign = 'left';
 
             // Adiciona a margem esquerda de 20px
-            imgContainer.style.marginLeft = '20px';  // Margem à esquerda
+            imgContainer.style.marginLeft = '20px';
 
             if (window.innerWidth <= 600) {
-                imgContainer.style.height = '300px';
+                imgContainer.style.height = '400px';  // Ajuste de altura para dispositivos móveis
             }
 
             const imgElement = document.createElement('img');
@@ -672,7 +672,7 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
 
         thumbnailCarousel.style.overflowX = 'auto';
         thumbnailCarousel.style.display = 'flex';
-        thumbnailCarousel.style.gap = '10px';
+        thumbnailCarousel.style.gap = '15px';  // Aumentando o gap entre miniaturas
         thumbnailCarousel.style.scrollBehavior = 'smooth';
 
         thumbnails.forEach(thumb => {
