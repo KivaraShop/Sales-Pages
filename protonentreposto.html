@@ -76,7 +76,7 @@
     justify-content: center; /* Mantém as thumbnails centralizadas */
     gap: 15px; /* Aumenta o espaço entre as miniaturas */
     overflow-x: auto;            /* Acarreta para que ocupe toda a largura da galeria */
-  width: calc(4 * 90px + 3 * 15px); /* Mostra exatamente 4 miniaturas visíveis */
+    width: 100%;
     margin-top: 20px; /* Adiciona mais espaço entre o carrossel de miniaturas e a imagem */
     margin-left: 45px; /* Remove o margin-left extra */
     padding-left: 0;
@@ -95,9 +95,9 @@
     scrollbar-width: none;  /* Oculta a barra de rolagem no Firefox */
 }
 
-.thumbnail {
-    width: 90px !important;  /* Aumenta o tamanho das miniaturas */
-    height: 90px !important; /* Mantém a proporção 1:1 */
+.thumbnail-carousel .thumbnail {
+    width: 90px;  /* Aumenta o tamanho das miniaturas */
+    height: 90px; /* Mantém a proporção 1:1 */
     cursor: pointer;
     border-radius: 7px;
     object-fit: cover;
@@ -109,7 +109,9 @@
     user-drag: none; /* Para navegadores modernos */
 }
 
-
+.thumbnail-carousel {
+    max-width: calc(4 * 90px + 3 * 15px);  /* Calculando a largura máxima para 4 miniaturas (90px + espaço de 15px) */
+}
     /* Ajustes para telas grandes (computadores) */
     @media screen and (min-width: 768px) {
         .thumbnail {
