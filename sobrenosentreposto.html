@@ -207,7 +207,7 @@
         </section>
     </div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
     // Carrega o áudio
     const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
     
@@ -229,13 +229,14 @@ document.addEventListener("DOMContentLoaded", function () {
         // Esconde o spinner após 3 segundos
         setTimeout(() => {
             loadingOverlay.style.display = 'none';
-        }, 3000); // 3000ms = 3 segundos
+        }, 5000); // 3000ms = 3 segundos
     }
 
-    // Chama a função para exibir o spinner e tocar o áudio logo ao carregar a página
+    // Chama a função para exibir o spinner e tocar o áudio sempre que a página for carregada
     showSpinner();
 });
 </script>
+
 
 
 </body>
