@@ -539,7 +539,7 @@ p {
 </div>
     </main>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+     document.addEventListener("DOMContentLoaded", () => {
     const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
     let isMouseDown = false; // Verifica se o botão do mouse está pressionado
     let startX, scrollLeft;
@@ -548,14 +548,17 @@ p {
         isMouseDown = true;
         startX = e.pageX - thumbnailCarousel.offsetLeft; // Posição inicial do mouse
         scrollLeft = thumbnailCarousel.scrollLeft; // Posição inicial do carrossel
+        thumbnailCarousel.style.userSelect = 'none'; // Desabilita a seleção de texto durante o arraste
     });
 
     thumbnailCarousel.addEventListener('mouseleave', () => {
         isMouseDown = false;
+        thumbnailCarousel.style.userSelect = 'auto'; // Restaura o comportamento normal após o mouse sair
     });
 
     thumbnailCarousel.addEventListener('mouseup', () => {
         isMouseDown = false;
+        thumbnailCarousel.style.userSelect = 'auto'; // Restaura o comportamento normal após o clique
     });
 
     thumbnailCarousel.addEventListener('mousemove', (e) => {
@@ -567,6 +570,7 @@ p {
         thumbnailCarousel.scrollLeft = scrollLeft - walk; // Move o carrossel com base no movimento
     });
 });
+
     </script>
 
     <footer>
