@@ -160,6 +160,7 @@
             <a href="novos.html">Novos</a>
             <a href="usados.html" id="usadosButton">Usados</a>
         </div>
+<audio id="music" src="https://www.tones7.com/media/see_you_again.mp3" preload="auto"></audio>
 
         <!-- Cards de Automóveis -->
         <div class="cards">
@@ -227,27 +228,11 @@
 });
  </script>
     
-    <script>
-        // Quando o botão "Usados" for clicado
-        document.getElementById("usadosButton").addEventListener("click", function(e) {
-            // Impede o comportamento padrão do link (para evitar redirecionamento imediato)
-            e.preventDefault();
-
-            // Cria um objeto de áudio
-            var audio = new Audio("https://www.tones7.com/media/see_you_again.mp3");
-
-            // Toca o áudio imediatamente após o clique
-            audio.play();
-
-            // Redireciona para a página de "usados" após o áudio iniciar
-            setTimeout(function() {
-                window.location.href = "usados.html";
-            }, 500); // Atraso de 500ms para garantir que o áudio comece a tocar antes do redirecionamento
-        });
-    </script>
 <script>
     document.getElementById('usadosButton').addEventListener('click', function(event) {
         event.preventDefault();  // Impede o redirecionamento imediato
+        var music = document.getElementById('music');
+        music.play();  // Começa a tocar a música
         setTimeout(function() {
             window.location.href = 'usados.html';  // Redireciona após 10 segundos
         }, 10000); // 10 segundos (10000 milissegundos)
