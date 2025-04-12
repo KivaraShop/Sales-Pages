@@ -2590,6 +2590,12 @@ document.addEventListener("DOMContentLoaded", function () {
         audio.play();
     }
 
+    // Função para parar o áudio
+    function stopAudio() {
+        audio.pause();
+        audio.currentTime = 0; // Reseta o tempo para o início
+    }
+
     // Função para filtrar os produtos
     function filterProducts(category) {
         productCards.forEach(card => {
@@ -2620,6 +2626,7 @@ document.addEventListener("DOMContentLoaded", function () {
         playAudio(); // Toca a música enquanto o spinner gira
         setTimeout(() => {
             loadingOverlay.style.display = 'none'; // Oculta o overlay e o spinner após 3 segundos
+            stopAudio(); // Para a música quando o spinner terminar
         }, 3000); // 3000ms = 3 segundos
     }
 
