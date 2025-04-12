@@ -2577,10 +2577,18 @@ details p:hover {
     </div>
 </footer>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
     let productCards = document.querySelectorAll('.product-card');
     let loadingOverlay = document.getElementById('loading-overlay'); // Spinner e Logo
+
+    // Carrega o áudio
+    const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
+
+    // Função para tocar o áudio
+    function playAudio() {
+        audio.play();
+    }
 
     // Função para filtrar os produtos
     function filterProducts(category) {
@@ -2609,6 +2617,7 @@ details p:hover {
     // Função para mostrar o spinner e o overlay por 3 segundos
     function showSpinner() {
         loadingOverlay.style.display = 'flex'; // Exibe o overlay e o spinner
+        playAudio(); // Toca a música enquanto o spinner gira
         setTimeout(() => {
             loadingOverlay.style.display = 'none'; // Oculta o overlay e o spinner após 3 segundos
         }, 3000); // 3000ms = 3 segundos
@@ -2630,7 +2639,7 @@ details p:hover {
             let category = this.getAttribute('data-category');
             setTimeout(() => {
                 filterProducts(category);
-            }, 1000); // Aguarda 3 segundos para filtrar os produtos
+            }, 1000); // Aguarda 1 segundo para filtrar os produtos
         });
     });
 
@@ -2641,9 +2650,8 @@ details p:hover {
     let uncategorizedCategory = document.querySelector('.category[data-category="uncategorized"]');
     uncategorizedCategory.classList.add('selected');
 });
-
-
 </script>
+
   <script>
         const faqItems = document.querySelectorAll('.faq-item');
 
