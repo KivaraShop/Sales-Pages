@@ -564,8 +564,20 @@ header .cart-icon.pulse {
         <span class="cart-badge">3</span>
     </a>
 </div>
-
-<!-- Pop-up do Carrinho FORA da navigation-buttons -->
+      
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+</div>
+    <!-- Pop-up do Carrinho FORA da navigation-buttons -->
 <div class="cart-popup">
     <div class="cart-popup-content">
         <ul>
@@ -581,20 +593,7 @@ header .cart-icon.pulse {
         <button>Finalizar Compra</button>
     </div>
 </div>
-      
-  <div class="search-bar">
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
-      oninput="filterProducts(this.value)" 
-    />
-    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
-      🔍
-    </button>
-  </div>
-</div>
-        </div>      
+ 
 <!-- Área de Resultados -->
 <div id="search-results"></div>
     
