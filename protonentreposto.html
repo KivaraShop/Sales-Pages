@@ -597,6 +597,9 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
             videoContainer.style.margin = '0'; // <-- Não centraliza
             videoContainer.style.textAlign = 'left'; // <-- Alinha com CSS novo
 
+            // Adiciona a margem esquerda de 20px
+            videoContainer.style.marginLeft = '20px';  // Margem à esquerda
+
             if (window.innerWidth <= 600) {
                 videoContainer.style.height = '300px';
             }
@@ -613,6 +616,9 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
             imgContainer.style.display = 'block';
             imgContainer.style.margin = '0'; // <-- Não centraliza
             imgContainer.style.textAlign = 'left';
+
+            // Adiciona a margem esquerda de 20px
+            imgContainer.style.marginLeft = '20px';  // Margem à esquerda
 
             if (window.innerWidth <= 600) {
                 imgContainer.style.height = '300px';
@@ -670,6 +676,7 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
         });
     });
 </script>
+
 
 
        <script>
