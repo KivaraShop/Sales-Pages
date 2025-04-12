@@ -50,35 +50,36 @@
         background: yellow;
     }
 
-    .car-gallery {
-        width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
-            left:0;
-        text-align: center;
-        position: relative; 
-     
-    }
-    .main-image img {
-        width: 80%;
-        max-width: 400px; /* Limita a largura máxima da imagem */
-        height: auto;
-        border-radius: 15px !important; /* Bordas arredondadas na imagem principal */
-          margin: 0;  /* Remove margens laterais */
-    }
+.car-gallery {
+    width: 50%;
+    position: relative;
+    text-align: left; /* <- tira a centralização geral */
+    padding: 0;
+    margin: 0;
+}
 
-    .thumbnail-carousel {
-        display: flex;
-        justify-content: center !important;
-        margin-top: 20px !important;
-        gap: 10px;
-        overflow-x: auto;
-        width: 50% !important; /* Ajusta o tamanho do container para 80% da largura da tela */
-        scroll-behavior: smooth;
-        max-width: calc(4 * 60px + 3 * 10px); /* Força a exibição de 4 miniaturas + espaços */
-        margin: 0 auto; /* Centraliza o cpadding-left: 10px; /* Garante que o container tenha espaço suficiente */
-        padding-left: 10px; /* Garante que o container tenha espaço suficiente */
-        padding-top: 10px
-        scroll-snap-type: x mandatory;  /* Força o alinhamento de cada item */
-    }
+.main-image img {
+    width: 100%;           /* ocupa toda a largura da galeria */
+    max-width: 400px;      /* opcional: limita o tamanho máximo */
+    height: auto;
+    border-radius: 15px;
+    display: block;        /* evita espaço por inline */
+    margin: 0;             /* sem margem lateral */
+    padding: 0;
+}
+
+.thumbnail-carousel {
+    display: flex;
+    justify-content: center; /* <-- mantém as thumbnails centralizadas */
+    gap: 10px;
+    overflow-x: auto;
+    width: 100%;             /* ocupa toda a largura da galeria */
+    max-width: calc(4 * 60px + 3 * 10px);
+    margin-top: 10px;
+    padding-left: 0;
+    scroll-snap-type: x mandatory;
+}
+
 
     .thumbnail {
         width: 45px !important;  /* Miniaturas com tamanho reduzido */
