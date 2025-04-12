@@ -105,6 +105,8 @@
     transition: opacity 0.3s, border 0.3s;
     border: 2px solid transparent; /* Sem borda por padrão */
     scroll-snap-align: start;
+        -webkit-user-drag: none; /* Para navegadores Webkit (Chrome, Safari) */
+    user-drag: none; /* Para navegadores modernos */
 }
 
 
@@ -539,42 +541,32 @@ p {
 </div>
     </main>
     <script>
-   document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
     const thumbnails = document.querySelectorAll('.thumbnail');
     let isMouseDown = false; // Verifica se o botão do mouse está pressionado
     let startX, scrollLeft;
+
+    // Impede o comportamento de "arraste e solte"
+    thumbnails.forEach(thumb => {
+        thumb.setAttribute('draggable', 'false'); // Impede o comportamento de "drag" nas miniaturas
+    });
 
     thumbnailCarousel.addEventListener('mousedown', (e) => {
         isMouseDown = true;
         startX = e.pageX - thumbnailCarousel.offsetLeft; // Posição inicial do mouse
         scrollLeft = thumbnailCarousel.scrollLeft; // Posição inicial do carrossel
         thumbnailCarousel.style.userSelect = 'none'; // Desabilita a seleção de texto durante o arraste
-        
-        // Impede o "arrasto" das miniaturas durante o movimento do carrossel
-        thumbnails.forEach(thumb => {
-            thumb.style.userDrag = 'none';
-        });
     });
 
     thumbnailCarousel.addEventListener('mouseleave', () => {
         isMouseDown = false;
         thumbnailCarousel.style.userSelect = 'auto'; // Restaura o comportamento normal após o mouse sair
-        
-        // Restaura o comportamento de "arrasto" das miniaturas
-        thumbnails.forEach(thumb => {
-            thumb.style.userDrag = 'auto';
-        });
     });
 
     thumbnailCarousel.addEventListener('mouseup', () => {
         isMouseDown = false;
         thumbnailCarousel.style.userSelect = 'auto'; // Restaura o comportamento normal após o clique
-        
-        // Restaura o comportamento de "arrasto" das miniaturas
-        thumbnails.forEach(thumb => {
-            thumb.style.userDrag = 'auto';
-        });
     });
 
     thumbnailCarousel.addEventListener('mousemove', (e) => {
@@ -586,7 +578,6 @@ p {
         thumbnailCarousel.scrollLeft = scrollLeft - walk; // Move o carrossel com base no movimento
     });
 });
-
 
     </script>
 
