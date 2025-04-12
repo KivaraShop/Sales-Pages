@@ -66,12 +66,22 @@
 
 
         /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
+       .product-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-grow: 1;
+    opacity: 0; /* Inicialmente invisível */
+    transform: translateX(-50px); /* Começa deslocado para a esquerda */
+    transition: opacity 1s ease-out, transform 1.5s ease-out; /* Animação */
+}
+
+/* Classe ativada quando o grid entra na tela */
+.product-grid.show {
+    opacity: 1;
+    transform: translateX(0); /* Move para a posição original */
+}
 
         .product-card {
             background-color: white;
