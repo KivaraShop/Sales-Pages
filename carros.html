@@ -246,21 +246,12 @@
         });
     </script>
 <script>
-        // Seleciona o botão/link
-        const button = document.getElementById('usadosButton');
-
-        // Adiciona um evento de clique no botão
-        button.addEventListener('click', function(event) {
-            event.preventDefault(); // Impede o redirecionamento imediato
-
-            // Exibe uma mensagem ou aguarda o tempo desejado
-            alert('Aguarde 10 segundos...');
-
-            // Após 10 segundos (10000 milissegundos), redireciona para a página
-            setTimeout(function() {
-                window.location.href = 'usados.html';  // Redireciona para o link do botão
-            }, 10000);  // 10 segundos
-        });
-    </script>
+    document.getElementById('usadosButton').addEventListener('click', function(event) {
+        event.preventDefault();  // Impede o redirecionamento imediato
+        setTimeout(function() {
+            window.location.href = 'usados.html';  // Redireciona após 10 segundos
+        }, 10000); // 10 segundos (10000 milissegundos)
+    });
+</script>
 </body>
 </html>
