@@ -139,15 +139,16 @@
         border: 2px solid #00aaff; /* Borda azul para a miniatura ativa */
     }
 
-    .car-info {
-        width: 40%; /* Ajusta a largura da seção */
-        text-align: left; /* Alinha o texto à esquerda */
-        column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
-         padding: 0; /* Remove o espaçamento interno */
+ .car-info {
+    width: 40%; /* Ajusta a largura da seção */
+    text-align: left; /* Alinha o texto à esquerda */
+    column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
+    padding: 0; /* Remove o espaçamento interno */
     margin: 0; /* Remove as margens externas */
-    gap:0px;
- 
-    }
+    margin-left: 0; /* Garante que a seção fique grudada à esquerda */
+    position: relative; /* Garante que o conteúdo fique no fluxo normal do layout */
+}
+
 
     .car-info h1 {
         color: #0088B5;
@@ -325,6 +326,7 @@ p {
 
     .details {
       flex: 1.5;
+        margin-left: 0px;
     }
     .details h1 {
       margin-bottom: 10px;
