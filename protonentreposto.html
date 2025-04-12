@@ -75,7 +75,7 @@
     display: flex;
     justify-content: center; /* Mantém as thumbnails centralizadas */
     gap: 15px; /* Aumenta o espaço entre as miniaturas */
-    overflow-x: hidden;
+    overflow-x: auto;
     width: 100%;             /* Acarreta para que ocupe toda a largura da galeria */
     max-width: calc(5 * 70px + 4 * 15px); /* Aumenta a largura máxima das miniaturas */
     margin-top: 20px; /* Adiciona mais espaço entre o carrossel de miniaturas e a imagem */
@@ -83,6 +83,16 @@
     padding-left: 0;
     scroll-snap-type: x mandatory;
      scroll-behavior: smooth; /* Permite rolagem suave sem a barra */
+}
+
+     /* Esconde a barra de rolagem, mas mantém a rolagem funcional */
+.thumbnail-carousel::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem no Webkit (Chrome, Safari) */
+}
+
+.thumbnail-carousel {
+    -ms-overflow-style: none;  /* Oculta a barra de rolagem no Internet Explorer 10+ */
+    scrollbar-width: none;  /* Oculta a barra de rolagem no Firefox */
 }
 
 .thumbnail {
