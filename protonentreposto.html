@@ -540,7 +540,26 @@ p {
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
     </footer>
-    
+    <script>
+  function changeImage(img) {
+    document.getElementById('mainImg').src = img.src;
+  }
+
+  function toggleAccordion(element) {
+    const content = element.querySelector('.accordion-content');
+    const icon = element.querySelector('i');
+    const isOpen = content.style.display === 'block';
+    document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.accordion-item i').forEach(i => i.classList.remove('fa-chevron-up'));
+    document.querySelectorAll('.accordion-item i').forEach(i => i.classList.add('fa-chevron-down'));
+
+    if (!isOpen) {
+      content.style.display = 'block';
+      icon.classList.remove('fa-chevron-down');
+      icon.classList.add('fa-chevron-up');
+    }
+  }
+</script>
 <script>
 document.getElementById("toggleFicha").addEventListener("click", function() {
     // Alternar a visibilidade da ficha técnica
