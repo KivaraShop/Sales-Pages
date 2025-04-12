@@ -901,6 +901,297 @@ searchInput.addEventListener('input', function() {
 
 
 </script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const shoppingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartIconElement = document.querySelector('.cart-icon');
+    const cartBadgeElement = cartIconElement.querySelector('.cart-badge');
+    const cartPopupElement = document.querySelector('.cart-popup');
+    const cartPopupContentElement = cartPopupElement.querySelector('.cart-popup-content');
+    const productCardsElements = document.querySelectorAll('.product-card');
 
+    function updateCartItemCount() {
+        cartBadgeElement.textContent = shoppingCart.length || '';
+    }
+
+    function calculateTotalPrice() {
+        return shoppingCart.reduce((total, item) => total + parseFloat(item.price.replace('R$', '').trim()), 0);
+    }
+
+    function animatePrice() {
+        const totalAmount = calculateTotalPrice();
+        let currentAmount = 0;
+        const increment = totalAmount / 100;
+        const totalElement = document.querySelector('.cart-total');
+
+        function updateTotal() {
+            currentAmount += increment;
+            if (currentAmount < totalAmount) {
+                totalElement.innerHTML = `Total: R$ ${currentAmount.toFixed(2)}`;
+                requestAnimationFrame(updateTotal);
+            } else {
+                totalElement.innerHTML = `Total: R$ ${totalAmount.toFixed(2)}`;
+            }
+        }
+        updateTotal();
+    }
+
+    function renderCart() {
+        cartPopupContentElement.innerHTML = '';
+
+        const logoContainer = document.createElement('div');
+        logoContainer.style.display = 'flex';
+        logoContainer.style.justifyContent = 'center';
+        logoContainer.style.marginBottom = '40px';
+
+        const logoImage = document.createElement('img');
+        logoImage.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png';
+        logoImage.alt = 'Logo';
+        logoImage.style.height = '35px';
+        logoImage.style.width = 'auto';
+        logoContainer.appendChild(logoImage);
+
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = '';
+        cartPopupContentElement.appendChild(logoContainer);
+        cartPopupContentElement.appendChild(titleElement);
+
+        const ulElement = document.createElement('ul');
+        ulElement.style.listStyleType = 'none';
+        ulElement.style.padding = '0';
+
+        if (shoppingCart.length === 0) {
+            ulElement.innerHTML = '<li>O carrinho está vazio.</li>';
+        } else {
+            shoppingCart.forEach((item, index) => {
+                const listItem = document.createElement('li');
+                listItem.style.display = 'flex';
+                listItem.style.alignItems = 'center';
+                listItem.style.marginBottom = '10px';
+                listItem.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <p>${item.name}</p>
+                        <p class="price">${item.price}</p>
+                    </div>
+                    <button style="margin-left: auto; background: white; color: red; border: none; padding: 3px 8px; font-size: 24px; font-weight: bold; cursor: pointer;" data-index="${index}">-</button>
+                `;
+                listItem.querySelector('button').addEventListener('click', (event) => {
+                    const indexToRemove = event.target.getAttribute('data-index');
+                    shoppingCart.splice(indexToRemove, 1);
+                    saveCart();
+                    updateCartItemCount();
+                    renderCart();
+                });
+                ulElement.appendChild(listItem);
+            });
+        }
+
+        cartPopupContentElement.appendChild(ulElement);
+
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ 0.00`;
+        cartPopupContentElement.appendChild(totalElement);
+
+        animatePrice();
+
+        createCartButtons();
+    }
+
+    function createCartButtons() {
+        const orderButton = document.createElement('button');
+        orderButton.textContent = 'Fazer pedido';
+        orderButton.style.background = '#003B50';
+        orderButton.style.color = 'white';
+        orderButton.style.border = 'none';
+        orderButton.style.padding = '10px';
+        orderButton.style.width = '100%';
+        orderButton.style.cursor = 'pointer';
+        orderButton.style.marginTop = '10px';
+        orderButton.addEventListener('click', () => {
+            displayNextButtons();
+        });
+        cartPopupContentElement.appendChild(orderButton);
+
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Fechar';
+        closeButton.style.background = '#003B50';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '5px 10px';
+        closeButton.style.fontSize = '12px';
+        closeButton.style.width = 'auto';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', () => {
+            cartPopupElement.style.display = 'none';
+        });
+        cartPopupContentElement.appendChild(closeButton);
+    }
+
+    function displayNextButtons() {
+        cartPopupContentElement.innerHTML = '';
+
+        const totalElement = document.createElement('div');
+        totalElement.classList.add('cart-total');
+        totalElement.style.fontWeight = 'bold';
+        totalElement.style.marginTop = '20px';
+        totalElement.innerHTML = `Total: R$ ${calculateTotalPrice().toFixed(2)}`;
+        cartPopupContentElement.appendChild(totalElement);
+
+        createPaymentButtons();
+    }
+
+    function createPaymentButtons() {
+        const waitingButton = document.createElement('button');
+        waitingButton.textContent = 'Aguardar';
+        waitingButton.style.background = '#4CAF50';
+        waitingButton.style.color = 'white';
+        waitingButton.style.border = 'none';
+        waitingButton.style.padding = '10px';
+        waitingButton.style.width = '100%';
+        waitingButton.style.cursor = 'pointer';
+        waitingButton.style.marginTop = '10px';
+        waitingButton.addEventListener('click', () => startCountdown());
+        cartPopupContentElement.appendChild(waitingButton);
+
+        const talkButton = document.createElement('button');
+        talkButton.textContent = 'Falar com atendente';
+        talkButton.style.background = '#000000';
+        talkButton.style.color = 'white';
+        talkButton.style.border = 'none';
+        talkButton.style.padding = '10px';
+        talkButton.style.width = '100%';
+        talkButton.style.cursor = 'pointer';
+        talkButton.style.marginTop = '10px';
+        talkButton.addEventListener('click', () => {
+            const message = generateWhatsappMessage();
+            const encodedMessage = encodeURIComponent(message);
+            window.location.href = `https://wa.me/258852136558?text=${encodedMessage}`;
+        });
+        cartPopupContentElement.appendChild(talkButton);
+
+        createPaymentOptions();
+    }
+
+    function generateWhatsappMessage() {
+        let message = 'Pedido de compra:\n\n';
+        shoppingCart.forEach(item => {
+            message += `${item.name} - ${item.price}\n`;
+        });
+        message += `\nTotal: R$ ${calculateTotalPrice().toFixed(2)}\n\n`;
+        message += 'Aguardo confirmação do pedido.';
+        return message;
+    }
+
+    function createPaymentOptions() {
+        const paymentButton = document.createElement('button');
+        paymentButton.textContent = 'Efetuar Pagamento';
+        paymentButton.style.background = '#0070ba';
+        paymentButton.style.color = 'white';
+        paymentButton.style.border = 'none';
+        paymentButton.style.padding = '10px';
+        paymentButton.style.width = '100%';
+        paymentButton.style.cursor = 'pointer';
+        paymentButton.style.marginTop = '10px';
+        paymentButton.addEventListener('click', () => {
+            showPaypalButton();
+            showMpesapayOption();
+        });
+        cartPopupContentElement.appendChild(paymentButton);
+    }
+
+    function showPaypalButton() {
+        const paypalButtonContainer = document.createElement('div');
+        paypalButtonContainer.classList.add('paypal-button-container');
+        cartPopupContentElement.appendChild(paypalButtonContainer);
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: calculateTotalPrice().toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    window.location.href = 'checkout.html';
+                });
+            },
+            onError: function(err) {
+                console.error("Payment Error: ", err);
+            }
+        }).render(paypalButtonContainer);
+    }
+
+    function showMpesapayOption() {
+        const mpesaContainer = document.createElement('div');
+        cartPopupContentElement.appendChild(mpesaContainer);
+
+        const existingMpesaNumber = document.querySelector('.mpesa-number');
+        if (existingMpesaNumber) return;
+
+        const mpesaButton = document.createElement('button');
+        mpesaButton.textContent = 'Pagamento M-Pesa';
+        mpesaButton.style.backgroundColor = '#8B0000';
+        mpesaButton.style.color = 'white';
+        mpesaButton.style.border = 'none';
+        mpesaButton.style.padding = '10px';
+        mpesaButton.style.fontSize = '16px';
+        mpesaButton.style.cursor = 'pointer';
+        mpesaButton.style.width = '100%';
+        mpesaButton.style.marginTop = '10px';
+        mpesaButton.style.transition = 'opacity 0.5s ease';
+        mpesaContainer.appendChild(mpesaButton);
+
+        mpesaButton.addEventListener('click', () => {
+            mpesaButton.style.opacity = '0';
+            setTimeout(() => {
+                mpesaButton.style.display = 'none';
+
+                const mpesaNumber = document.createElement('div');
+                mpesaNumber.textContent = 'Transferência: 85 21 36 558';
+                mpesaNumber.style.fontSize = '18px';
+                mpesaNumber.style.fontWeight = 'bold';
+                mpesaNumber.classList.add('mpesa-number');
+                mpesaContainer.appendChild(mpesaNumber);
+            }, 500);
+        });
+    }
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(shoppingCart));
+    }
+
+    function handleProductSelection() {
+        productCardsElements.forEach((card) => {
+            card.addEventListener('click', (event) => {
+                const productName = event.target.closest('.product-card').querySelector('.product-title').textContent;
+                const productPrice = event.target.closest('.product-card').querySelector('.product-price').textContent;
+                const productImage = event.target.closest('.product-card').querySelector('img').src;
+
+                shoppingCart.push({ name: productName, price: productPrice, img: productImage });
+                saveCart();
+                updateCartItemCount();
+            });
+        });
+    }
+
+    cartIconElement.addEventListener('click', () => {
+        cartPopupElement.style.display = 'block';
+        renderCart();
+    });
+
+    handleProductSelection();
+    updateCartItemCount();
+});
+</script>
 </body>
 </html>
