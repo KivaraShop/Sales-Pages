@@ -75,13 +75,14 @@
     display: flex;
     justify-content: center; /* Mantém as thumbnails centralizadas */
     gap: 15px; /* Aumenta o espaço entre as miniaturas */
-    overflow-x: auto;
+    overflow-x: hidden;
     width: 100%;             /* Acarreta para que ocupe toda a largura da galeria */
     max-width: calc(5 * 70px + 4 * 15px); /* Aumenta a largura máxima das miniaturas */
     margin-top: 20px; /* Adiciona mais espaço entre o carrossel de miniaturas e a imagem */
     margin-left: 55px; /* Remove o margin-left extra */
     padding-left: 0;
     scroll-snap-type: x mandatory;
+     scroll-behavior: smooth; /* Permite rolagem suave sem a barra */
 }
 
 .thumbnail {
@@ -93,6 +94,7 @@
     flex-shrink: 0; /* Impede que as miniaturas encolham */
     transition: opacity 0.3s, border 0.3s;
     border: 2px solid transparent; /* Sem borda por padrão */
+    scroll-snap-align: start;
 }
 
 
