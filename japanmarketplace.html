@@ -59,6 +59,11 @@
             padding: 40px 20px;
         }
 
+        .container2 {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
         /* Product Grid */
         .product-grid {
             display: grid;
@@ -148,6 +153,202 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+
+        .parent {
+  display: flex !important; /* Faz com que os elementos filhos fiquem lado a lado */
+  justify-content: space-between !important; /* Espaça os filhos igualmente entre os extremos */
+  align-items: center !important; /* Alinha verticalmente os elementos */
+  width: 100% !important; /* Garantir que o container ocupe toda a largura */
+  padding-bottom: 20px !important; /* Remover qualquer padding extra */
+  margin: 0 !important; /* Remover qualquer margem extra */
+}
+/* A barra de pesquisa à esquerda */
+.search-bar {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important; /* Remove qualquer margem extra */
+  padding: 0 !important; /* Remove qualquer padding extra */
+}
+
+/* Os botões de navegação à direita */
+.navigation-buttons {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important; /* Remove qualquer margem extra */
+ padding-left: 20px;/* Remove qualquer padding extra */
+}
+
+#search-input {
+  padding: 10px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px 0 0 4px !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+  height: 40px !important; /* Altura fixa */
+  box-sizing: border-box !important; /* Garante que padding não aumente a altura total */
+}
+
+#search-btn {
+  background-color: #0288d1 !important;
+  border: none !important;
+  padding: 10px 15px !important;
+  cursor: pointer !important;
+  border-radius: 0 4px 4px 0 !important;
+  color: white !important;
+  font-size: 18px !important;
+  height: 40px !important; /* Mesma altura do input */
+  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px !important; /* Espaço à direita */
+}
+
+
+.navigation-buttons a {
+  background: #0288d1 !important; /* Azul claro */
+  color: white !important;
+  font-size: 16px !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  border-radius: 20px !important;
+  margin: 0 10px !important; /* Adiciona algum espaço entre os links */
+  display: inline-block !important;
+  transition: background 0.3s !important;
+}
+
+.navigation-buttons a:hover {
+  background: #012063 !important; /* Tom mais escuro de azul */
+}
+
+
+
+.content-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.brand-search, .model-search {
+    background-color: white; /* Alterado para fundo branco */
+    padding: 15px;
+    border-radius: 8px;
+    color: #333; /* Cor do texto para contraste adequado */
+}
+
+.brand-search h3, .model-search h3 {
+    font-size: 18px;
+    margin-top: 0; 
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #0088B5; /* Azul apenas no fundo do título */
+    color: white; /* Cor do texto no título */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.brand-search ul, .model-search ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.brand-search li, .model-search li {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0; /* Cor de borda suave */
+    cursor: pointer;
+    font-size: 14px;
+    background-color: white; /* Fundo branco para as opções da lista */
+    color: #333; /* Contraste adequado para o texto */
+    opacity: 0;
+    transform: translateX(-100px); /* Inicia fora da tela, à esquerda */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave */
+}
+        
+.brand-search li.visible {
+    opacity: 1;
+    transform: translateX(0); /* Quando visível, volta à posição original */
+}
+
+.brand-search li:last-child, .model-search li:last-child {
+    border-bottom: none;
+}
+
+.brand-search li:hover, .model-search li:hover {
+    background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+}
+
+.brand-search img, .model-search img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+.price-search {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que o conteúdo ocupe o máximo de espaço possível */
+    flex-grow: 1; /* Faz com que a seção cresça para ocupar o espaço disponível */
+    height: 100%; /* A altura será igual à do grid */
+}
+
+.price-search h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #0088B5; /* Azul apenas no fundo do título */
+    color: white; /* Cor do texto no título */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.price-search ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Garante que a lista ocupe o máximo de espaço disponível */
+    overflow-y: auto; /* Caso haja mais itens, habilita o scroll */
+}
+
+.price-search li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: white;
+    color: #333;
+}
+
+.price-search li:last-child {
+    border-bottom: none;
+}
+
+.price-search li:hover {
+    background-color: #f0f0f0;
+}
+
+.price-search i {
+    font-size: 18px;
+    margin-right: 20px;
+}
+        
         /* Footer */
         footer {
             background-color: #004f89;
@@ -196,6 +397,74 @@
             限定オファー！今なら全商品20％OFF！お早めにどうぞ！
         </div>
 
+
+
+            <div class="container2">
+   
+        <div class="slogan-container">
+    <p class="slogan">"O carro dos seus sonhos está aqui!"</p>
+</div>
+  </div>
+    
+ <div class="parent">
+ <div class="navigation-buttons">
+    <a href="novos.html">Novos</a>
+    <a href="usados.html" id="usadosButton">Usados</a>
+  </div>
+     
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+</div>
+        
+<!-- Área de Resultados -->
+<div id="search-results"></div>
+    
+<!-- Mensagem de "Sem Resultados" -->
+<div id="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+  <p>Sem resultados, diga-nos por favor qual viatura está a procura no botão abaixo.</p>
+  <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
+</div>
+  </div>
+    
+ <div class="content-container">
+    <div class="sidebar">
+        <!-- Busca por Marca -->
+        <div class="brand-search">
+            <h3>Busca por Marca</h3>
+           <ul>
+     <li class="category" data-category="uncategorized" style="color: red; font-weight: bold;"><img src="https://i.ibb.co/XxkByjxW/logo-cfao-white-footer-2.png" alt="comprados"> Em Promoção </li>
+    <li class="category" data-category="isuzu"><img src="https://i.ibb.co/7dBft4gB/Isuzu-logo-1991-3840x2160.png" alt="Isuzu"> Isuzu </li>
+    <li class="category" data-category="peugeot"><img src="https://i.ibb.co/mVKg6sJD/Peugeot-logo-2010-1920x1080.png" alt="Peugeot"> Peugeot</li>
+    <li class="category" data-category="toyota"><img src="https://i.ibb.co/Rp6xsbBK/toyota-logo-2020-europe-640.png" alt="Toyota"> Toyota</li>
+    <li class="category" data-category="proton"><img src="https://i.ibb.co/HT0ppYzb/Proton-logo-2016-2048x2048.png" alt="Proton"> Proton</li>
+    <li class="category" data-category="nissan"><img src="https://i.ibb.co/GvHfjQrx/nissan-logo-2020-black-show.png" alt="Nissan"> Nissan</li>
+    <li class="category" data-category="mazda"><img src="https://i.ibb.co/dsgYwVrB/mazda-logo-2018-vertical-640.png" alt="Mazda"> Mazda</li>
+    <li class="category" data-category="mercedes"><img src="https://i.ibb.co/PGjNhS3s/Mercedes-Benz-logo-2008-1920x1080.png" alt="Mercedes"> Mercedes</li>
+    <li class="category" data-category="audi"><img src="https://i.ibb.co/JWzYXh11/audi-logo-2016-640.png" alt="Audi"> Audi</li>
+    <li class="category" data-category="hyundai"><img src="https://i.ibb.co/k2qsT0R4/hyundai-logo-2011-640.png" alt="Hyundai"> Hyundai</li>
+    <li class="category" data-category="bmw"><img src="https://i.ibb.co/C5dmDsWR/bmw-logo-2020-gray.png" alt="BMW"> BMW</li>
+    <li class="category" data-category="volvo"><img src="https://i.ibb.co/C3GwMKQj/Volvo-logo-2014-1920x1080.png" alt="Volvo"> Volvo</li>
+</ul>
+        </div>
+
+               <!-- Busca por PREÇO-->
+      <div class="price-search">
+    <h3>Busca por Preço</h3>
+    <ul>
+        <li><i class="fas fa-dollar-sign"></i> Menos de 300,000 MZN</li>
+        <li><i class="fas fa-dollar-sign"></i> Acima de 40,000 MZN</li>
+    </ul>
+</div>
+    </div>
         <!-- Product Grid -->
         <section class="product-grid">
             <!-- Product 1 -->
