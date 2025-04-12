@@ -245,12 +245,22 @@
             }, 500); // Atraso de 500ms para garantir que o áudio comece a tocar antes do redirecionamento
         });
     </script>
+<script>
+        // Seleciona o botão/link
+        const button = document.getElementById('usadosButton');
 
-                  <script>
-        // A função setTimeout aguarda 10 segundos e depois redireciona
-        setTimeout(function() {
-            window.location.href = "usados.html";  // Substitua pelo URL desejado
-        }, 10000);  // 10000 milissegundos = 10 segundos
+        // Adiciona um evento de clique no botão
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Impede o redirecionamento imediato
+
+            // Exibe uma mensagem ou aguarda o tempo desejado
+            alert('Aguarde 10 segundos...');
+
+            // Após 10 segundos (10000 milissegundos), redireciona para a página
+            setTimeout(function() {
+                window.location.href = button.href;  // Redireciona para o link do botão
+            }, 10000);  // 10 segundos
+        });
     </script>
 </body>
 </html>
