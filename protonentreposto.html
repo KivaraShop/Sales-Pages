@@ -538,7 +538,36 @@ p {
  </div>
 </div>
     </main>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+    let isMouseDown = false; // Verifica se o botão do mouse está pressionado
+    let startX, scrollLeft;
+
+    thumbnailCarousel.addEventListener('mousedown', (e) => {
+        isMouseDown = true;
+        startX = e.pageX - thumbnailCarousel.offsetLeft; // Posição inicial do mouse
+        scrollLeft = thumbnailCarousel.scrollLeft; // Posição inicial do carrossel
+    });
+
+    thumbnailCarousel.addEventListener('mouseleave', () => {
+        isMouseDown = false;
+    });
+
+    thumbnailCarousel.addEventListener('mouseup', () => {
+        isMouseDown = false;
+    });
+
+    thumbnailCarousel.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return; // Se o mouse não estiver pressionado, não faz nada
+        e.preventDefault(); // Impede o comportamento padrão de seleção de texto
+
+        const x = e.pageX - thumbnailCarousel.offsetLeft; // Posição atual do mouse
+        const walk = (x - startX) * 2; // Multiplica por 2 para tornar o movimento mais sensível
+        thumbnailCarousel.scrollLeft = scrollLeft - walk; // Move o carrossel com base no movimento
+    });
+});
+    </script>
 
     <footer>
         <p>&copy; 2025 Entreposto Comercial - Todos os direitos reservados</p>
