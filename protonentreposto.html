@@ -567,152 +567,110 @@ document.getElementById("toggleFicha").addEventListener("click", function() {
 
 </script>
              
-      <script>
-    // Função para mudar a imagem principal ou exibir um vídeo
+<script>
     function changeImage(thumbnail) {
         const mainContainer = document.querySelector('.main-image');
-        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src; // Obtém o src da miniatura
-        const isVideo = thumbnail.getAttribute('data-type') === 'video'; // Verifica se é vídeo
+        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src;
+        const isVideo = thumbnail.getAttribute('data-type') === 'video';
 
-        // Limpar conteúdo anterior
+        // Limpa conteúdo anterior
         mainContainer.innerHTML = '';
 
         if (isVideo) {
-             // Extrair o ID do vídeo (ex: nl6IvMAI0qc) da URL
-        const videoId = newSrc.split('/')[4]; // Aqui você extrai o ID do vídeo
-            // Criar elemento <iframe> para vídeo do YouTube
-       const videoElement = document.createElement('iframe');
-videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_load_policy=1&hl=en&cc_lang_pref=en`;
-videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-videoElement.allowFullscreen = true;
-videoElement.style.width = '100%';  // O vídeo preenche 100% da largura do container
-videoElement.style.height = '100%';  // O vídeo preenche 100% da altura do container
-videoElement.style.borderRadius = '15px';
-videoElement.style.objectFit = 'cover' + ' !important';
-videoElement.style.transform = 'scale(1)';  // Ajusta o vídeo para não manter a proporção
-videoElement.style.transformOrigin = 'center'; // Faz o vídeo crescer a partir do centro
-mainContainer.appendChild(videoElement);
-// Criar o container para o vídeo
-const videoContainer = document.createElement('div');
-videoContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
-videoContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
-videoContainer.style.height = '400px';  // Altura automática
-videoContainer.style.borderRadius = '15px';  // Bordas arredondadas
-videoContainer.style.margin = '0';  // Remove margens laterais
-videoContainer.style.position = 'flex';  // Para garantir que o iframe ocupe todo o espaço
-videoContainer.style.overflow = 'hidden';  // Garante que o vídeo não ultrapasse os limites do container
-videoContainer.style.display = 'block';
-videoContainer.style.textAlign = 'center';
-            
-       // Ajustes específicos para celulares
-if (window.innerWidth <= 600) { // Se a tela for menor que 600px (celular)
-    videoContainer.style.width = '100%';
-    videoContainer.style.maxWidth = '400px'; // Garantir que ocupa toda a largura da tela
-    videoContainer.style.height = '300px'; // Manter a proporção flexível
-} else {
-    // Para desktops, usar um tamanho fixo ou o comportamento padrão
-    videoContainer.style.maxWidth = '400px';
-    videoContainer.style.height = '400px'; // Proporção padrão para desktop
-}
+            const videoId = newSrc.split('/')[4];
+            const videoElement = document.createElement('iframe');
+            videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}`;
+            videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+            videoElement.allowFullscreen = true;
+            videoElement.style.width = '100%';
+            videoElement.style.height = '100%';
+            videoElement.style.borderRadius = '15px';
+            videoElement.style.objectFit = 'cover';
 
-// Adicionar o vídeo ao container
-videoContainer.appendChild(videoElement);
+            const videoContainer = document.createElement('div');
+            videoContainer.style.width = '100%';
+            videoContainer.style.maxWidth = '400px';
+            videoContainer.style.height = '400px';
+            videoContainer.style.borderRadius = '15px';
+            videoContainer.style.overflow = 'hidden';
+            videoContainer.style.display = 'block';
+            videoContainer.style.margin = '0'; // <-- Não centraliza
+            videoContainer.style.textAlign = 'left'; // <-- Alinha com CSS novo
 
-// Certificar-se de que o mainContainer está centralizado
-mainContainer.style.display = 'flex';
-mainContainer.style.justifyContent = 'center';
-mainContainer.style.alignItems = 'center';
-mainContainer.style.width = '100%';
+            if (window.innerWidth <= 600) {
+                videoContainer.style.height = '300px';
+            }
 
-// Adicionar o container ao mainContainer
-mainContainer.appendChild(videoContainer);
+            videoContainer.appendChild(videoElement);
+            mainContainer.appendChild(videoContainer);
+        } else {
+            const imgContainer = document.createElement('div');
+            imgContainer.style.width = '100%';
+            imgContainer.style.maxWidth = '400px';
+            imgContainer.style.height = '400px';
+            imgContainer.style.overflow = 'hidden';
+            imgContainer.style.borderRadius = '15px';
+            imgContainer.style.display = 'block';
+            imgContainer.style.margin = '0'; // <-- Não centraliza
+            imgContainer.style.textAlign = 'left';
 
-} else {
-    // Criar um container para a imagem, igual ao do vídeo
-    const imgContainer = document.createElement('div');
-    imgContainer.style.width = '80%';  // Largura do container em 80% da largura da tela
-imgContainer.style.maxWidth = '400px';  // Limita a largura máxima do container a 400px
-imgContainer.style.height = '400px'; 
-    imgContainer.style.display = 'flex';
-    imgContainer.style.justifyContent = 'center';
-    imgContainer.style.alignItems = 'center';
-    imgContainer.style.overflow = 'hidden';
-    imgContainer.style.borderRadius = '15px';
-    imgContainer.style.display = 'block';
-imgContainer.style.textAlign = 'center';
-imgContainer.style.margin = '0 auto';  // Centraliza o container
+            if (window.innerWidth <= 600) {
+                imgContainer.style.height = '300px';
+            }
 
-    // Ajustar tamanhos para celular e desktop
-    if (window.innerWidth <= 600) {
-        imgContainer.style.width = '100%';
-        imgContainer.style.maxWidth = '400px';
-        imgContainer.style.height = '300px';
-    } else {
-        imgContainer.style.maxWidth = '400px';
-        imgContainer.style.height = '400px';
-    }
+            const imgElement = document.createElement('img');
+            imgElement.src = newSrc;
+            imgElement.id = 'main-car-image';
+            imgElement.style.width = '100%';
+            imgElement.style.height = '100%';
+            imgElement.style.objectFit = 'cover';
 
-    // Criar elemento <img> para imagens normais
-    const imgElement = document.createElement('img');
-    imgElement.src = newSrc;
-    imgElement.id = 'main-car-image';
-    imgElement.style.width = '100%';
-    imgElement.style.height = '100%';
-    imgElement.style.objectFit = 'cover'; // Para garantir que a imagem preencha corretamente o container
+            imgContainer.appendChild(imgElement);
+            mainContainer.appendChild(imgContainer);
+        }
 
-    // Adicionar a imagem ao container
-    imgContainer.appendChild(imgElement);
+        // Remove classe ativa das miniaturas
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+        });
 
-    
-    // Adicionar o container ao mainContainer
-    mainContainer.appendChild(imgContainer);
-}
-  
-        // Remover a classe 'active' de todas as miniaturas
-        let thumbnails = document.querySelectorAll('.thumbnail');
-        thumbnails.forEach(thumb => thumb.classList.remove('active'));
-
-        // Adicionar a classe 'active' à miniatura clicada
+        // Adiciona a classe ativa à miniatura clicada
         thumbnail.classList.add('active');
     }
 
-    // Função para animar as barras
     window.onload = function() {
         animateBar('km-bar', 60, 'km-label', '60.000 km');
         animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
         animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
-    }
+    };
 
-    // Função para animar as barras
     function animateBar(barId, percentage, labelId, labelText) {
         let bar = document.getElementById(barId);
         let label = document.getElementById(labelId);
         bar.style.width = '0%';
-        setTimeout(function() {
+        setTimeout(() => {
             bar.style.width = percentage + '%';
             label.textContent = labelText;
         }, 500);
     }
 
-    // Tornar as miniaturas roláveis e limitar a exibição para 4 miniaturas
     document.addEventListener("DOMContentLoaded", () => {
         const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
         const thumbnails = document.querySelectorAll('.thumbnail');
 
-        // Ajusta a largura das miniaturas para garantir que 4 apareçam de cada vez
         thumbnailCarousel.style.overflowX = 'auto';
         thumbnailCarousel.style.display = 'flex';
         thumbnailCarousel.style.gap = '10px';
         thumbnailCarousel.style.scrollBehavior = 'smooth';
 
-        // Impede que as miniaturas encolham e ajusta a largura
         thumbnails.forEach(thumb => {
             thumb.style.flexShrink = '0';
             thumb.style.cursor = 'pointer';
-            thumb.style.width = 'calc(100% / 4)'; // Ajusta para exibir 4 miniaturas
+            // Deixe a largura como está ou adapte ao seu CSS, se necessário
         });
     });
 </script>
+
 
        <script>
     document.addEventListener("DOMContentLoaded", () => {
