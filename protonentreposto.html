@@ -111,6 +111,8 @@
 
 .thumbnail-carousel {
        max-width: calc(5 * 60px + 4 * 10px); /* Calculando a largura máxima para 4 miniaturas (90px + espaço de 15px) */
+   box-sizing: border-box;
+
 }
     /* Ajustes para telas grandes (computadores) */
     @media screen and (min-width: 768px) {
@@ -142,6 +144,7 @@
             padding-left: 63px;  /* Garante que o espaço à esquerda ainda exista */
             padding-right: 15px; /* Espaço à direita para garantir que a primeira miniatura não seja cortada */
            max-width: calc(4 * 45px + 3 * 10px) !important; /* Ajusta a largura para 4 miniaturas no carrossel */
+               box-sizing: border-box;
     }
         }
 
