@@ -621,6 +621,16 @@ p {
  </div>
 </div>
     </main>
+
+     <script>
+    function toggleInfo(element) {
+      const icon = element.querySelector('i');
+      const content = element.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      icon.classList.toggle('rotate');
+    }
+  </script>
+
     <script>
   document.addEventListener("DOMContentLoaded", () => {
     const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
