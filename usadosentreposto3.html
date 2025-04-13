@@ -902,49 +902,58 @@ div, span, section, header, footer, main, article {
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.4); /* Leve escurecimento para aumentar a legibilidade */
+    background: rgba(0, 0, 0, 0.4); /* Escurecimento para melhorar contraste */
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 40px;
+    flex-direction: column;
+    text-align: center;
 }
 
 .hero-content {
-    max-width: 50%;
+    max-width: 60%;
     animation: fadeIn 1.5s ease-out, slideUp 1s ease-out;
+    transform: translateY(30px);
 }
 
 .hero-content h2 {
-    font-size: 50px; /* Tamanho maior para destaque */
-    font-weight: bold;
+    font-size: 60px; /* Tamanho maior e mais impactante */
+    font-weight: 700;
     line-height: 1.2;
     margin-bottom: 20px;
     opacity: 0;
-    animation: fadeIn 2s ease-out forwards;
+    animation: fadeIn 2s ease-out forwards, slideUp 1s ease-out forwards;
+    animation-delay: 0.5s;
 }
 
 .hero-content p {
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 20px;
     opacity: 0;
     animation: fadeIn 2s ease-out 0.5s forwards; /* Delay para o parágrafo */
+    animation-delay: 1s;
 }
 
 .hero-content .cta-button {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 15px 25px;
     background-color: #ff6600;
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    border-radius: 5px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 30px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .hero-content .cta-button:hover {
     background-color: #e65c00;
+    transform: scale(1.1);
 }
 
 /* Animações */
@@ -965,6 +974,7 @@ div, span, section, header, footer, main, article {
         transform: translateY(0);
     }
 }
+
 
         
 .features {
@@ -1448,11 +1458,16 @@ details p:hover {
 <section class="hero-section">
     <div class="overlay"></div>
     <div class="hero-content">
-        <h2>Descubra o Carro dos Seus Sonhos</h2>
-        <p>Compre viaturas usadas com qualidade garantida e preços acessíveis. Encontre ofertas imperdíveis, em um processo fácil e seguro.</p>
-        <a href="#cars" class="cta-button">Veja as Ofertas</a>
+        <h2>🚗 Encontre Seu Carro Perfeito Agora! 🚗</h2>
+        <p>Temos as melhores ofertas em veículos usados, com garantia de qualidade e preços irresistíveis! Não perca tempo, seu carro novo está a um clique de distância.</p>
+        <a href="#cars" class="cta-button">Compre Já o Seu!</a>
+        <div class="additional-info">
+            <p>Mais de 1000 carros em estoque. Ofertas especiais para quem compra hoje!</p>
+            <p><strong>Financiamento rápido e sem burocracia!</strong></p>
+        </div>
     </div>
 </section>
+
 
     
 <div class="brands-section">
