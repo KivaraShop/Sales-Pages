@@ -429,8 +429,7 @@ p {
 
 
 
-
-  .price-box {
+   .price-box {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -481,11 +480,23 @@ p {
       font-size: 16px;
       font-weight: 600;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
     }
     .info-toggle i {
       margin-right: 8px;
+      transition: transform 0.3s;
     }
-
+    .info-content {
+      display: none;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 15px;
+      padding-left: 24px;
+    }
+    .rotate {
+      transform: rotate(180deg);
+    }
 
      
 </style>
