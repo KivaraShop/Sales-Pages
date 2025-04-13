@@ -657,29 +657,32 @@ p {
 
     
 <script>
-  let currentAudio = null; // Variável global para controlar o áudio atual
+  let audioEmExecucao = null; // Variável global para controlar o áudio atual
 
-  // Função para trocar a imagem e tocar o som
-  function changeImage(imageElement) {
-    // Verifica se o src não pertence a um vídeo do YouTube
-    if (!imageElement.src.includes('youtube.com') && !imageElement.src.includes('img.youtube.com')) {
-      
-      // Se já houver um áudio tocando, pausa-o
-      if (currentAudio && !currentAudio.paused) {
-        currentAudio.pause();
+  function changeImage(el) {
+    const tipoConteudo = el.getAttribute('data-type');
+
+    // Se for vídeo, não tocar som
+    if (tipoConteudo === 'video') {
+      if (audioEmExecucao) {
+        audioEmExecucao.pause();
+        audioEmExecucao = null;
       }
-
-      // Cria um novo áudio e define-o como o áudio atual
-      currentAudio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
-      currentAudio.play();
+      return;
     }
 
-    // Aqui você pode adicionar o código para trocar a imagem. Exemplo:
-    console.log('Imagem de carro clicada:', imageElement.alt);
-    // Se você quiser alterar a imagem em outro lugar, pode usar o código abaixo:
-    // document.getElementById("imageDisplay").src = imageElement.src;
+    // Pausar qualquer áudio que esteja tocando
+    if (audioEmExecucao && !audioEmExecucao.paused) {
+      audioEmExecucao.pause();
+      audioEmExecucao.currentTime = 0;
+    }
+
+    // Tocar o áudio para imagens
+    audioEmExecucao = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
+    audioEmExecucao.play();
   }
 </script>
+
 <script>
   const overlayMusicBtn = document.getElementById('click-overlay-music');
   const musicPlayer = new Audio('https://www.tones7.com/media/see_you_again.mp3');
