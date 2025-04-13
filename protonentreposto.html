@@ -673,6 +673,9 @@ function showWarranty() {
   const button = document.getElementById('btn-garantia');
   const isGarantia = button.innerText.trim().includes('Garantia');
 
+    const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
+    audio.play();
+    
   if (isGarantia) {
     button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> 1 Ano';
   } else {
