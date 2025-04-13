@@ -224,16 +224,90 @@
         font-size: 14px;
     }
 
-    footer {
-        background-color: #fff;
-        color: black;
-        text-align: center;
-        padding: 10px;
-    }
+   .footer {
+            background-color: #0088B5; /* Azul escuro para contraste */
+            color: white;
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+    .footer i {
+color: white;
+    margin-left: 10px;
+    font-size: 16px;
+}
+     .footer .logo {
+    display: flex;            /* Definir como flex para controle de alinhamento */
+    justify-content: flex-start; /* Alinhar o conteúdo à esquerda */
+    background-color: transparent;
+    padding: 0;               /* Remover qualquer padding */
+    margin: 0;                /* Remover qualquer margem */
+}
 
-    footer p {
-        margin: 0;
-    }
+/* Estilo para a imagem do logo */
+.footer .logo img {
+    height: 50px;             /* Definir a altura do logo */
+    width: auto;              /* Garantir que a largura seja proporcional à altura */
+    padding-left: 50px;               /* Remover qualquer padding */
+    margin-left: 10px;
+    max-width: 150px;         /* Definir o tamanho máximo para a largura do logo */
+}
+
+        .footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+            margin-top: 0;
+            padding-top: 0;
+}
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-column .logo img {
+    height: 41px;             /* Definir a altura do logo */
+    width: auto;              /* Garantir que a largura seja proporcional à altura */
+    padding-left: 30px;               /* Remover qualquer padding */
+    margin-left: 10px;
+    max-width: 200px;         /* Definir o tamanho máximo para a largura do logo */
+}
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-column p, .footer-column a {
+            font-size: 14px;
+            line-height: 1.6;
+            color: white;
+            text-decoration: none;
+        }
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+        .contact-info b {
+            color: #0088B5;
+        }
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            color: white;
+            background: #0088B5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: white;
+            color: #0088B5;
+        }
     /* Mobile responsive */
     @media (max-width: 768px) {
         /* Empilha as seções no celular */
@@ -760,6 +834,49 @@ p {
         </div>
     </div>
 </section>
+
+    <!-- Rodapé -->
+    
+<footer class="footer">
+      <div class="footer-column">
+  <div class="logo">
+        <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Logo">
+    </div>
+            <h3 class="footer-title"></h3>
+            <p class="footer-slogan">"O carro dos seus sonhos está aqui!"</p>
+        </div>
+    </div>
+    <div class="footer-column">
+        <h3>VIATURAS</h3>
+        <p>Como líder de vendas de veículos em Maputo, Moçambique, temos certeza de que economizamos seu tempo e dinheiro. O Grupo Entreposto oferece uma ampla gama de veículos novos e seminovos, além de uma experiência de compra incomparável.</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>CONTATO <i class="fas fa-phone"></i></h3>
+        <p><b>Agendamento de Serviços:</b> +258 852136558</p>
+        <p><b>Atendimento ao Cliente:</b> +258 852136558</p>
+        <p><b>Email:</b> <a href="mailto:contato@mecanicaauto.com">contato@mecanicaauto.com</a></p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>HORÁRIO DE FUNCIONAMENTO</h3>
+        <p><b>Segunda a Sexta:</b> 08:00 – 18:00</p>
+        <p><b>Sábado:</b> 08:00 – 14:00</p>
+        <p><b>Domingo:</b> Fechado</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>REDES SOCIAIS</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <h3>ONDE ESTAMOS</h3>
+        <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
+    </div>
+</footer>
 <script>
   // Criar o áudio uma vez para todos os botões
   const audio = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
