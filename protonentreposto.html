@@ -649,8 +649,8 @@ p {
 </div>
     </main>
 
-   <script>
-  // Criar o áudio apenas uma vez
+<script>
+  // Criar o áudio uma vez para todos os botões
   const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
 
   function toggleInfo(element) {
@@ -664,7 +664,12 @@ p {
     const btn = document.getElementById('btn-reserve');
     const originalText = 'Marcar Test-drive';
     const phoneNumber = '+258 852136558';
-    
+
+    // Tocar o som ao clicar
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+
     if (btn.textContent === originalText) {
       btn.textContent = phoneNumber;
     } else {
@@ -676,12 +681,11 @@ p {
     const button = document.getElementById('btn-garantia');
     const isGarantia = button.innerText.trim().includes('Garantia');
 
-    // Parar e reiniciar o áudio corretamente
+    // Tocar o som ao clicar
     audio.pause();
     audio.currentTime = 0;
     audio.play();
 
-    // Trocar o texto do botão
     if (isGarantia) {
       button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> 1 Ano';
     } else {
@@ -689,6 +693,7 @@ p {
     }
   }
 </script>
+
 
 
     <script>
