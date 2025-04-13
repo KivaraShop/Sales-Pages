@@ -523,9 +523,9 @@ p {
                     <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
                 <div class="thumbnail-carousel">
-<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3"  class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" data-type="audio" data-src="https://www.tones7.com/media/-car_Lock-.mp3"  class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" data-type="audio" data-src="https://www.tones7.com/media/-car_Lock-.mp3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" data-type="audio" data-src="https://www.tones7.com/media/-car_Lock-.mp3" class="thumbnail" onclick="changeImage(this)">
 <img src="https://img.youtube.com/vi/idgHV7rG06s/0.jpg" data-src="https://www.youtube.com/embed/idgHV7rG06s" data-type="video" class="thumbnail"  onclick="changeImage(this)">
 <img src="https://img.youtube.com/vi/dXPH7eL2tJI/0.jpg" data-src="https://www.youtube.com/embed/dXPH7eL2tJI" data-type="video" class="thumbnail"  onclick="changeImage(this)">
 <img src="https://img.youtube.com/vi/sxYHIQZkI4k/0.jpg" data-src="https://www.youtube.com/embed/sxYHIQZkI4k" data-type="video" class="thumbnail"  onclick="changeImage(this)">
@@ -834,23 +834,16 @@ p {
 
              
 <script>
-    // Controle do som
-    let somAtivo = null;
-
     function changeImage(thumbnail) {
         const mainContainer = document.querySelector('.main-image');
         const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src;
         const isVideo = thumbnail.getAttribute('data-type') === 'video';
+        const isAudio = thumbnail.getAttribute('data-type') === 'audio'; // ← Novo
 
         // Limpa conteúdo anterior
         mainContainer.innerHTML = '';
 
         if (isVideo) {
-            if (somAtivo) {
-                somAtivo.pause();
-                somAtivo.currentTime = 0;
-            }
-
             const videoId = newSrc.split('/')[4];
             const videoElement = document.createElement('iframe');
             videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}`;
@@ -878,16 +871,21 @@ p {
 
             videoContainer.appendChild(videoElement);
             mainContainer.appendChild(videoContainer);
+
+        } else if (isAudio) {
+            // ← Novo bloco
+            const audioElement = document.createElement('audio');
+            audioElement.controls = true;
+            audioElement.autoplay = true;
+            audioElement.style.width = '100%';
+            audioElement.style.maxWidth = '520px';
+            audioElement.style.marginLeft = '20px';
+            audioElement.style.marginTop = '40px';
+            audioElement.src = newSrc;
+
+            mainContainer.appendChild(audioElement);
+
         } else {
-            // Toca o som ao clicar em imagem
-            if (somAtivo) {
-                somAtivo.pause();
-                somAtivo.currentTime = 0;
-            }
-
-            somAtivo = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
-            somAtivo.play();
-
             const imgContainer = document.createElement('div');
             imgContainer.style.width = '100%';
             imgContainer.style.maxWidth = '520px';
@@ -914,14 +912,15 @@ p {
             mainContainer.appendChild(imgContainer);
         }
 
-        // Atualiza miniatura ativa
+        // Remove classe ativa das miniaturas
         document.querySelectorAll('.thumbnail').forEach(thumb => {
             thumb.classList.remove('active');
         });
+
+        // Adiciona a classe ativa à miniatura clicada
         thumbnail.classList.add('active');
     }
 
-    // Funções auxiliares
     window.onload = function() {
         animateBar('km-bar', 60, 'km-label', '60.000 km');
         animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
@@ -953,6 +952,7 @@ p {
         });
     });
 </script>
+
 
 
 
