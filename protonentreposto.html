@@ -892,31 +892,38 @@ p {
 </footer>
 
 <script>
-    function updateViewerCount() {
-    // Gera um número aleatório entre 5 e 12 para o número de visualizações
-    const newViewerCount = Math.floor(Math.random() * (12 - 5 + 1)) + 5;
+   function updateViewerCount() {
+    // Gera um número aleatório entre 5 e 15 para o número de visualizações
+    const targetCount = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
 
     // Seleciona o elemento que contém o número de visualizações
     const viewerCountElement = document.getElementById('viewer-count');
 
-    // Anima a alteração do número
+    // Obtém o número atual de visualizações
     let currentCount = parseInt(viewerCountElement.innerText);
-    let increment = currentCount < newViewerCount ? 1 : -1;
 
-    // Atualiza o número com um efeito de oscilação
+    // Controla a diferença máxima permitida para uma alteração realista
+    const maxDifference = 2;
+
+    // Calcula a nova direção para a oscilação (aumento ou diminuição)
+    let difference = targetCount - currentCount;
+    difference = Math.max(-maxDifference, Math.min(difference, maxDifference));
+
+    // Atualiza o número com um efeito de oscilação mais controlado
     const interval = setInterval(() => {
-        currentCount += increment;
+        currentCount += Math.sign(difference); // Incrementa ou decrementa de forma controlada
         viewerCountElement.innerText = currentCount;
 
-        // Quando atingir o número alvo, pare a animação
-        if (currentCount === newViewerCount) {
+        // Se a diferença atingir o valor alvo, para a animação
+        if (Math.abs(targetCount - currentCount) <= 1) {
             clearInterval(interval);
         }
-    }, 50); // A cada 50ms o número é incrementado/decrementado
+    }, 100); // A cada 100ms o número é atualizado, mais suave
 }
 
 // Atualiza o número de visualizações a cada 2 segundos
 setInterval(updateViewerCount, 2000);
+
 </script>
     
 <script>
