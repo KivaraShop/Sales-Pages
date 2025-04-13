@@ -669,19 +669,25 @@ p {
     }
   }
 
-function showWarranty() {
-  const button = document.getElementById('btn-garantia');
-  const isGarantia = button.innerText.trim().includes('Garantia');
+/ Criar o áudio só uma vez
+  const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
 
-    const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
+  function showWarranty() {
+    const button = document.getElementById('btn-garantia');
+    const isGarantia = button.innerText.trim().includes('Garantia');
+
+    // Parar e reiniciar o som do começo
+    audio.pause();
+    audio.currentTime = 0;
     audio.play();
-    
-  if (isGarantia) {
-    button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> 1 Ano';
-  } else {
-    button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> Garantia';
+
+    // Trocar o texto
+    if (isGarantia) {
+      button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> 3 Anos';
+    } else {
+      button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> Garantia';
+    }
   }
-}
 
 </script>
 
