@@ -646,10 +646,17 @@ p {
       icon.classList.toggle('rotate');
     }
 
-    function showContactNumber() {
-      const btn = document.getElementById('btn-reserve');
-      btn.textContent = '+258 852136558';
+   function showContactNumber() {
+    const btn = document.getElementById('btn-reserve');
+    const originalText = 'Reservar';
+    const phoneNumber = '+258 852136558';
+    
+    if (btn.textContent === originalText) {
+      btn.textContent = phoneNumber;
+    } else {
+      btn.textContent = originalText;
     }
+  }
   </script>
     <script>
   document.addEventListener("DOMContentLoaded", () => {
