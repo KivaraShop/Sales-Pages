@@ -895,68 +895,102 @@ div, span, section, header, footer, main, article {
     background: url('https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     color: white;
     overflow: hidden;
     transition: background-image 1s ease-in-out;
+    text-align: center;
+    padding: 20px;
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.4); /* Escurecimento para melhorar contraste */
+    background: rgba(0, 0, 0, 0.6);
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    flex-direction: column;
-    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .hero-content {
-    max-width: 60%;
-    animation: fadeIn 1.5s ease-out, slideUp 1s ease-out;
+    position: relative;
+    max-width: 80%;
+    z-index: 1;
+    text-align: center;
+    animation: fadeIn 1s ease-out, slideUp 0.8s ease-out;
+    opacity: 0;
     transform: translateY(30px);
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
 }
 
-.hero-content h2 {
-    font-size: 60px; /* Tamanho maior e mais impactante */
-    font-weight: 700;
+.hero-content h1 {
+    font-size: 60px;
+    font-weight: bold;
     line-height: 1.2;
     margin-bottom: 20px;
+    animation: slideFromLeft 1.5s ease-out forwards;
     opacity: 0;
-    animation: fadeIn 2s ease-out forwards, slideUp 1s ease-out forwards;
     animation-delay: 0.5s;
 }
 
-.hero-content p {
+.hero-content p.subheadline {
     font-size: 24px;
-    font-weight: 600;
-    margin-top: 20px;
+    margin-top: 10px;
     opacity: 0;
-    animation: fadeIn 2s ease-out 0.5s forwards; /* Delay para o parágrafo */
+    animation: fadeIn 1.5s ease-out forwards;
     animation-delay: 1s;
 }
 
-.hero-content .cta-button {
-    display: inline-block;
-    padding: 15px 25px;
+.cta-container {
+    margin-top: 30px;
+    animation: fadeIn 2s ease-out;
+    opacity: 0;
+    animation-delay: 1.5s;
+}
+
+.cta-button {
+    padding: 16px 30px;
     background-color: #ff6600;
     color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
-    border-radius: 8px;
-    margin-top: 30px;
+    border-radius: 50px;
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.hero-content .cta-button:hover {
+.cta-button:hover {
     background-color: #e65c00;
     transform: scale(1.1);
 }
 
-/* Animações */
+.urgency-info {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    animation: fadeIn 2.5s ease-out;
+    opacity: 0;
+    animation-delay: 2s;
+}
+
+.urgency-info .countdown {
+    font-size: 28px;
+    color: #f2a900;
+    font-weight: bold;
+    animation: blink 1s infinite alternate;
+}
+
+.testimonial {
+    font-style: italic;
+    margin-top: 40px;
+    font-size: 18px;
+    color: #f8f8f8;
+    animation: fadeIn 3s ease-out;
+    opacity: 0;
+    animation-delay: 2.5s;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -972,6 +1006,24 @@ div, span, section, header, footer, main, article {
     }
     to {
         transform: translateY(0);
+    }
+}
+
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes blink {
+    0% {
+        color: #f2a900;
+    }
+    100% {
+        color: #fff;
     }
 }
 
@@ -1454,16 +1506,20 @@ details p:hover {
         </div>
     </header>
     
-    <!-- Hero Section -->
 <section class="hero-section">
     <div class="overlay"></div>
     <div class="hero-content">
-        <h2>🚗 Encontre Seu Carro Perfeito Agora! 🚗</h2>
-        <p>Temos as melhores ofertas em veículos usados, com garantia de qualidade e preços irresistíveis! Não perca tempo, seu carro novo está a um clique de distância.</p>
-        <a href="#cars" class="cta-button">Compre Já o Seu!</a>
-        <div class="additional-info">
-            <p>Mais de 1000 carros em estoque. Ofertas especiais para quem compra hoje!</p>
-            <p><strong>Financiamento rápido e sem burocracia!</strong></p>
+        <h1 class="headline">Seu próximo carro está a um clique de distância!</h1>
+        <p class="subheadline">Ofertas imperdíveis em carros usados de alta qualidade. Não perca a chance de encontrar o veículo perfeito por um preço incrível.</p>
+        <div class="cta-container">
+            <a href="#cars" class="cta-button">Confira as ofertas agora!</a>
+        </div>
+        <div class="urgency-info">
+            <p><strong>Últimas unidades disponíveis</strong></p>
+            <p><span class="countdown">Preços que você não vai encontrar em nenhum outro lugar.</span></p>
+        </div>
+        <div class="testimonial">
+            <p>"Mais de 10.000 clientes satisfeitos! Não fique de fora dessa. Encontre seu carro agora!"</p>
         </div>
     </div>
 </section>
