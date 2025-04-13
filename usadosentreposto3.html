@@ -1031,6 +1031,25 @@ div, span, section, header, footer, main, article {
 }
 
 
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1s ease-in-out;
+    z-index: 0;
+}
+
+.slider-image.next {
+    z-index: 1;
+}
+
+.slider-image.slide-out {
+    transform: translateX(-100%);
+}
 
         
 .features {
@@ -1511,6 +1530,8 @@ details p:hover {
     </header>
     
 <section class="hero-section">
+    <div class="slider-image current"></div>
+<div class="slider-image next"></div>
     <div class="overlay"></div>
     <div class="hero-content">
         <h1 class="headline">Seu próximo carro está a um clique de distância!</h1>
@@ -2877,30 +2898,40 @@ setInterval(scrollReviews, 3000);  // A cada 3 segundos
 </script>
     
   <script>
-// Array de imagens para o slider
 const images = [
     'https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg',
-    'https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg',
-    'https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg'
+    'https://cdn.motor1.com/images/mgl/0ANJk/s1/bmw-x6-m-competition.jpg',
+    'https://cdn.motor1.com/images/mgl/y9VZ0/s1/bmw-x5-m-competition.webp'
 ];
 
 let currentImageIndex = 0;
-const heroSection = document.querySelector('.hero-section');
+const currentSlide = document.querySelector('.slider-image.current');
+const nextSlide = document.querySelector('.slider-image.next');
 
-// Função para trocar a imagem do background com fade
+currentSlide.style.backgroundImage = `url(${images[currentImageIndex]})`;
+
 function changeImage() {
-    heroSection.classList.add('fade'); // Ativa a transição de fade
+    const nextIndex = (currentImageIndex + 1) % images.length;
+    nextSlide.style.backgroundImage = `url(${images[nextIndex]})`;
+
+    // Move current image to the left
+    currentSlide.classList.add('slide-out');
+
+    // Após a animação (1s), troca e reinicia
     setTimeout(() => {
-        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
-        heroSection.classList.remove('fade'); // Remove o fade após a troca da imagem
-        currentImageIndex = (currentImageIndex + 1) % images.length; // Incrementa o índice, voltando para 0 se ultrapassar o número de imagens
-    }, 1000); // Tempo de duração da transição
+        currentSlide.style.backgroundImage = `url(${images[nextIndex]})`;
+        currentSlide.classList.remove('slide-out');
+
+        // Alterna o índice
+        currentImageIndex = nextIndex;
+    }, 1000);
 }
 
-// Troca a imagem automaticamente a cada 5 segundos
+// Troca a imagem a cada 5s
 setInterval(changeImage, 5000);
-     </script>
-    </script>
+</script>
+
+
 
 <!-- Inclua a biblioteca Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
