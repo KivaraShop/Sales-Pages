@@ -726,7 +726,15 @@ p {
     }
 }
 
-
+/* Estilo opcional para melhorar o ícone */
+.action-icons i {
+    font-size: 20px;
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+.action-icons i:hover {
+    transform: scale(1.2);
+}
 </style>
 </head>
 <body>
@@ -788,10 +796,11 @@ p {
   </div>
 
 
-  <div class="action-icons mt-3 text-secondary">
-  <span style="color: #dc3545;">
-  <i class="fas fa-eye"></i> 8 pessoas a visualizar &nbsp;&nbsp;
-</span>
+<div class="action-icons mt-3 text-secondary">
+    <span style="color: #dc3545;">
+        <i class="fas fa-eye"></i> <span id="viewer-count">8</span> pessoas a visualizar
+    </span>
+</div>
     <i class="fas fa-calendar-check"></i> Marcar Test-drive &nbsp;&nbsp;
     <i class="fas fa-share-alt"></i> Partilhar
   </div>
@@ -991,6 +1000,35 @@ p {
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+
+<script>
+    function updateViewerCount() {
+    // Gera um número aleatório entre 5 e 12 para o número de visualizações
+    const newViewerCount = Math.floor(Math.random() * (12 - 5 + 1)) + 5;
+
+    // Seleciona o elemento que contém o número de visualizações
+    const viewerCountElement = document.getElementById('viewer-count');
+
+    // Anima a alteração do número
+    let currentCount = parseInt(viewerCountElement.innerText);
+    let increment = currentCount < newViewerCount ? 1 : -1;
+
+    // Atualiza o número com um efeito de oscilação
+    const interval = setInterval(() => {
+        currentCount += increment;
+        viewerCountElement.innerText = currentCount;
+
+        // Quando atingir o número alvo, pare a animação
+        if (currentCount === newViewerCount) {
+            clearInterval(interval);
+        }
+    }, 50); // A cada 50ms o número é incrementado/decrementado
+}
+
+// Atualiza o número de visualizações a cada 2 segundos
+setInterval(updateViewerCount, 2000);
+</script>
+    
 <script>
   // Criar o áudio uma vez para todos os botões
   const audio = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
