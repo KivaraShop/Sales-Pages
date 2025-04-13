@@ -278,42 +278,44 @@
             width: 100%; /* A barra de estado ocupa toda a largura */
         }
     }
-/* Botão de alternância */
+/* Botão de alternância com estilo danger */
 .ficha-btn {
     display: block;
-    margin: 10px auto; /* Menos margem */
+    margin: 10px auto;
     text-align: center;
-    background-color: #0088B5; /* Cor azul clara */
+    background-color: #dc3545; /* Vermelho danger */
     color: white;
-    padding: 6px 12px; /* Menos preenchimento */
+    padding: 6px 12px;
     border: none;
-    border-radius: 3px; /* Menos arredondamento */
-    font-size: 14px; /* Tamanho de fonte menor */
+    border-radius: 3px;
+    font-size: 14px;
 }
-/* Efeito de hover (passando o mouse sobre o botão) */
+
+/* Hover: tom mais escuro do danger */
 .ficha-btn:hover {
-    background-color: #00729d; /* Escurece o azul claro */
-    transform: scale(1.05); /* Levemente aumenta o tamanho do botão */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+    background-color: #bb2d3b;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Efeito de foco (quando o botão é clicado ou recebe foco) */
+/* Foco: borda com tom mais claro do vermelho */
 .ficha-btn:focus {
-    outline: none; /* Remove a borda padrão de foco */
-    border: 2px solid #00b4e6; /* Borda azul clara para foco */
+    outline: none;
+    border: 2px solid #e35d6a;
 }
 
-/* Efeito de clique */
+/* Clique: tom mais fechado ainda */
 .ficha-btn:active {
-    transform: scale(0.98); /* Levemente diminui o tamanho ao clicar */
-    background-color: #006a8f; /* Escurece o fundo quando pressionado */
+    transform: scale(0.98);
+    background-color: #a52834;
 }
-/* Estilo da ficha técnica */
+
+/* Estilo da ficha técnica (ajustada para combinar com o vermelho) */
 .ficha-tecnica {
-    display: none; /* Oculto por padrão */
-    background-color: #f1f9fc; /* Tom mais claro de azul */
+    display: none;
+    background-color: #fef2f4; /* Fundo claro puxando pro vermelho */
     padding: 20px;
-    border-left: 4px solid #0088B5;
+    border-left: 4px solid #dc3545;
     border-radius: 5px;
 }
 
@@ -335,12 +337,12 @@
 }
 
 .ficha-content li strong {
-    color: #0088B5;
+    color: #dc3545;
 }
 
 p {
-    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
-    padding: 0.5px; /* Adiciona 2.5px de espaço dentro de cada parágrafo */
+    margin-bottom: 20px;
+    padding: 0.5px;
 }
 
  .showroom-iframe {
