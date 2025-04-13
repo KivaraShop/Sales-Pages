@@ -834,6 +834,9 @@ p {
 
              
 <script>
+    // Controle do som
+    let somAtivo = null;
+
     function changeImage(thumbnail) {
         const mainContainer = document.querySelector('.main-image');
         const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src;
@@ -843,6 +846,11 @@ p {
         mainContainer.innerHTML = '';
 
         if (isVideo) {
+            if (somAtivo) {
+                somAtivo.pause();
+                somAtivo.currentTime = 0;
+            }
+
             const videoId = newSrc.split('/')[4];
             const videoElement = document.createElement('iframe');
             videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}`;
@@ -855,39 +863,44 @@ p {
 
             const videoContainer = document.createElement('div');
             videoContainer.style.width = '100%';
-            videoContainer.style.maxWidth = '520px';  // Atualizando para 600px
-            videoContainer.style.height = '520px';    // Ajuste de altura para 600px
+            videoContainer.style.maxWidth = '520px';
+            videoContainer.style.height = '520px';
             videoContainer.style.borderRadius = '8px';
             videoContainer.style.overflow = 'hidden';
             videoContainer.style.display = 'block';
-            videoContainer.style.margin = '0';  // Não centraliza
-            videoContainer.style.textAlign = 'left';  // Alinha com CSS novo
-
-            // Adiciona a margem esquerda de 20px
+            videoContainer.style.margin = '0';
+            videoContainer.style.textAlign = 'left';
             videoContainer.style.marginLeft = '20px';
 
             if (window.innerWidth <= 600) {
-                videoContainer.style.height = '400px';  // Ajuste de altura para dispositivos móveis
+                videoContainer.style.height = '400px';
             }
 
             videoContainer.appendChild(videoElement);
             mainContainer.appendChild(videoContainer);
         } else {
+            // Toca o som ao clicar em imagem
+            if (somAtivo) {
+                somAtivo.pause();
+                somAtivo.currentTime = 0;
+            }
+
+            somAtivo = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
+            somAtivo.play();
+
             const imgContainer = document.createElement('div');
             imgContainer.style.width = '100%';
-            imgContainer.style.maxWidth = '520px';  // Atualizando para 600px
-            imgContainer.style.height = '520px';    // Ajuste de altura para 600px
+            imgContainer.style.maxWidth = '520px';
+            imgContainer.style.height = '520px';
             imgContainer.style.overflow = 'hidden';
             imgContainer.style.borderRadius = '8px';
             imgContainer.style.display = 'block';
-            imgContainer.style.margin = '0';  // Não centraliza
+            imgContainer.style.margin = '0';
             imgContainer.style.textAlign = 'left';
-
-            // Adiciona a margem esquerda de 20px
             imgContainer.style.marginLeft = '20px';
 
             if (window.innerWidth <= 600) {
-                imgContainer.style.height = '400px';  // Ajuste de altura para dispositivos móveis
+                imgContainer.style.height = '400px';
             }
 
             const imgElement = document.createElement('img');
@@ -901,15 +914,14 @@ p {
             mainContainer.appendChild(imgContainer);
         }
 
-        // Remove classe ativa das miniaturas
+        // Atualiza miniatura ativa
         document.querySelectorAll('.thumbnail').forEach(thumb => {
             thumb.classList.remove('active');
         });
-
-        // Adiciona a classe ativa à miniatura clicada
         thumbnail.classList.add('active');
     }
 
+    // Funções auxiliares
     window.onload = function() {
         animateBar('km-bar', 60, 'km-label', '60.000 km');
         animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
@@ -932,16 +944,16 @@ p {
 
         thumbnailCarousel.style.overflowX = 'auto';
         thumbnailCarousel.style.display = 'flex';
-        thumbnailCarousel.style.gap = '15px';  // Aumentando o gap entre miniaturas
+        thumbnailCarousel.style.gap = '15px';
         thumbnailCarousel.style.scrollBehavior = 'smooth';
 
         thumbnails.forEach(thumb => {
             thumb.style.flexShrink = '0';
             thumb.style.cursor = 'pointer';
-            // Deixe a largura como está ou adapte ao seu CSS, se necessário
         });
     });
 </script>
+
 
 
 
