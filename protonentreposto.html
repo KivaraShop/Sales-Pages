@@ -607,8 +607,6 @@ p {
 
             </div>
         </section>
-        <button id="toggleFicha" class="ficha-btn">Ficha Técnica</button>
-    
       <p></p>
 </div>
 <div>
@@ -743,25 +741,7 @@ p {
     }
   }
 </script>
-<script>
-document.getElementById("toggleFicha").addEventListener("click", function() {
-    // Alternar a visibilidade da ficha técnica
-    var ficha = document.getElementById("fichaTecnica");
-    ficha.style.display = ficha.style.display === "none" ? "block" : "none";
 
-    // Selecionar somente os iframes do showroom
-    var iframes = document.querySelectorAll(".showroom-iframe");
-    
-    iframes.forEach(function(iframe) {
-        if (ficha.style.display === "none") {
-            iframe.style.visibility = "hidden";  // Ocultar os iframes
-        } else {
-            iframe.style.visibility = "visible"; // Mostrar os iframes
-        }
-    });
-});
-
-</script>
              
 <script>
     function changeImage(thumbnail) {
