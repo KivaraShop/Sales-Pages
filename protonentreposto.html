@@ -657,29 +657,32 @@ p {
 
     
 <script>
-  let audioEmExecucao = null; // Variável global para controlar o áudio atual
+  // Controle global de áudio
+  let somAtual = null;
 
   function changeImage(el) {
-    const tipoConteudo = el.getAttribute('data-type');
+    // Verifica se o elemento é um vídeo
+    const ehVideo = el.dataset.type === "video";
 
-    // Se for vídeo, não tocar som
-    if (tipoConteudo === 'video') {
-      if (audioEmExecucao) {
-        audioEmExecucao.pause();
-        audioEmExecucao = null;
+    // Se for vídeo, pausa o som atual (se houver) e sai
+    if (ehVideo) {
+      if (somAtual && !somAtual.paused) {
+        somAtual.pause();
+        somAtual.currentTime = 0;
+        somAtual = null;
       }
       return;
     }
 
-    // Pausar qualquer áudio que esteja tocando
-    if (audioEmExecucao && !audioEmExecucao.paused) {
-      audioEmExecucao.pause();
-      audioEmExecucao.currentTime = 0;
+    // Se houver som tocando, pausa
+    if (somAtual && !somAtual.paused) {
+      somAtual.pause();
+      somAtual.currentTime = 0;
     }
 
-    // Tocar o áudio para imagens
-    audioEmExecucao = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
-    audioEmExecucao.play();
+    // Cria e toca novo som para imagem
+    somAtual = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
+    somAtual.play();
   }
 </script>
 
