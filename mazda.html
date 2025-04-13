@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proton</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+ <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+    }
+
+    header {
+        background-color: #0088B5;
+        padding: 1px;
+        text-align: center;
+    }
+
+    header .logo img {
+        width: 110px;
+    }
+    /* Logo */
+    .logo {
+        flex-grow: 1;
+        text-align: center;
+        background-color: transparent;
+    }
+
+    .logo img {
+        height: 35px;
+        padding: 0;
+        margin: 0;
+    }
+
+    main {
+        padding-top: 20px;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+
+    .car-details {
+        display: flex;
+          position: relative; 
+        left:0;
+        flex-direction: row;  /* Coloca as seções lado a lado */
+        align-items: flex-start;  /* Alinha as seções ao topo */
+       gap: 0; /* Remove o espaçamento entre as seções */
+    margin: 0; /* Remove margens extras */
+    padding: 0; /* Remove qualquer padding */
+    }
+
+.car-gallery {
+    width: 70%; /* Aumenta a largura da galeria para 70% da área disponível */
+    position: relative;
+    text-align: left; /* Tira a centralização geral */
+    padding: 0;
+    margin: 0;
+    /* Se você quiser ainda mais controle sobre o tamanho da galeria, pode adicionar um max-width */
+    max-width: 600px; /* Define um tamanho máximo para a galeria */
+}
+
+.main-image img {
+    width: 100%;           /* A imagem ocupa 100% da largura da galeria */
+    max-width: 520px;      /* Aumenta a largura máxima da imagem */
+    height: auto;
+    border-radius: 8px;
+    display: block;        /* Evita espaço por inline */
+    margin-left: 20px;     /* Mantém uma margem à esquerda */
+    padding: 0;
+}
+
+.thumbnail-carousel {
+    display: flex;
+    justify-content: center; /* Mantém as thumbnails centralizadas */
+    gap: 15px; /* Aumenta o espaço entre as miniaturas */
+    overflow-x: auto;            /* Acarreta para que ocupe toda a largura da galeria */
+    width: 100%;
+    margin-top: 20px; /* Adiciona mais espaço entre o carrossel de miniaturas e a imagem */
+    margin-left: 61px; /* Remove o margin-left extra */
+    padding-left: 195px;
+    scroll-snap-type: x mandatory;
+     scroll-behavior: smooth; /* Permite rolagem suave sem a barra */
+    box-sizing: border-box;
+}
+
+     /* Esconde a barra de rolagem, mas mantém a rolagem funcional */
+.thumbnail-carousel::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem no Webkit (Chrome, Safari) */
+}
+
+.thumbnail-carousel {
+    -ms-overflow-style: none;  /* Oculta a barra de rolagem no Internet Explorer 10+ */
+    scrollbar-width: none;  /* Oculta a barra de rolagem no Firefox */
+}
+
+.thumbnail-carousel .thumbnail {
+    width: 150px;  /* Aumenta o tamanho das miniaturas */
+    height: 150px; /* Mantém a proporção 1:1 */
+    cursor: pointer;
+    border-radius: 7px;
+    object-fit: cover;
+    flex-shrink: 0; /* Impede que as miniaturas encolham */
+    transition: opacity 0.3s, border 0.3s;
+    border: 2px solid transparent; /* Sem borda por padrão */
+    scroll-snap-align: start;
+        -webkit-user-drag: none; /* Para navegadores Webkit (Chrome, Safari) */
+    user-drag: none; /* Para navegadores modernos */
+}
+
+.thumbnail-carousel {
+       max-width: calc(6 * 63px + 4 * 10px); /* Calculando a largura máxima para 4 miniaturas (90px + espaço de 15px) */
+   box-sizing: border-box;
+
+}
+    /* Ajustes para telas grandes (computadores) */
+    @media screen and (min-width: 768px) {
+        .thumbnail {
+            width: 60px !important;  /* Ajuste para largura maior em desktops */
+            height: 60px !important; /* Altura igual à largura, mantendo a proporção 1:1 */
+        }
+    }
+         .car-details {
+        display: flex;
+             left: 0;
+        flex-direction: row;  /* Coloca as seções lado a lado */
+        align-items: flex-start;  /* Alinha as seções ao topo */
+        gap: 0px !important; /* Espaçamento entre as seções */
+        margin: 0;/* Remove margens extras na descrição */
+    padding: 0; /* Remove qualquer padding */
+    }
+
+    .car-gallery {
+        width: 50%; /* Ajuste de largura para exibir ao lado da info do carro */
+        left:0;
+        margin: 0;
+        gap: 0px !important; /* Espaçamento entre as seções */
+        text-align: center;
+    }
+    /* Ajustes para telas pequenas (dispositivos móveis) */
+    @media screen and (max-width: 767px) {
+        .thumbnail-carousel {
+            padding-left: 63px;  /* Garante que o espaço à esquerda ainda exista */
+            padding-right: 15px; /* Espaço à direita para garantir que a primeira miniatura não seja cortada */
+           max-width: calc(4 * 45px + 3 * 10px) !important; /* Ajusta a largura para 4 miniaturas no carrossel */
+               box-sizing: border-box;
+    }
+        }
+
+        .thumbnail {
+            width: 60px !important;  /* Tamanho pequeno para dispositivos móveis */
+            height: 60px !important; /* Mantém a proporção 1:1 */
+        }
+    }
+
+    .thumbnail:hover {
+        opacity: 0.7;
+    }
+
+    .thumbnail.active {
+        border: 5px solid #00aaff; /* Borda azul para a miniatura ativa */
+    }
+
+ .car-info {
+    width: 50%; /* Ajusta a largura da seção */
+    text-align: left; /* Alinha o texto à esquerda */
+    column-gap: 10px; /* Ajusta o espaçamento entre as colunas */
+    padding: 0; /* Remove o espaçamento interno */
+    margin: 0; /* Remove as margens externas */
+    margin-left: 45px; /* Garante que a seção fique grudada à esquerda */
+    position: relative; /* Garante que o conteúdo fique no fluxo normal do layout */
+}
+
+
+    .car-info h1 {
+        color: #0088B5;
+    margin: 0; /* Remove a margem superior */
+    }
+
+.description {
+    margin-top: 10px;
+    font-size: 14px;
+    width: 100%;  /* Garante que ocupe toda a largura */
+    word-wrap: break-word;  /* Quebra palavras longas, se necessário */
+    line-height: 1.5;  /* Ajusta o espaçamento entre as linhas */
+    text-align: justify;
+}
+
+    .car-state {
+        margin-top: 20px;
+    }
+
+    .state-bar {
+        margin-bottom: 15px;
+    }
+
+    .state-bar span {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .bar-container {
+        background-color: #ddd;
+        border-radius: 5px;
+        width: 100%;
+        height: 20px;
+        position: relative;
+    }
+
+    .bar {
+        background-color: #0088B5;
+        height: 100%;
+        border-radius: 5px;
+        transition: width 1s ease-out;
+    }
+
+    .bar-label {
+        margin-top: 5px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+   .footer {
+            background-color: #0088B5; /* Azul escuro para contraste */
+            color: white;
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+    .footer i {
+color: white;
+    margin-left: 10px;
+    font-size: 16px;
+}
+     .footer .logo {
+    display: flex;            /* Definir como flex para controle de alinhamento */
+    justify-content: flex-start; /* Alinhar o conteúdo à esquerda */
+    background-color: transparent;
+    padding: 0;               /* Remover qualquer padding */
+    margin: 0;                /* Remover qualquer margem */
+}
+
+/* Estilo para a imagem do logo */
+.footer .logo img {
+    height: 50px;             /* Definir a altura do logo */
+    width: auto;              /* Garantir que a largura seja proporcional à altura */
+    padding-left: 50px;               /* Remover qualquer padding */
+    margin-left: 10px;
+    max-width: 150px;         /* Definir o tamanho máximo para a largura do logo */
+}
+
+        .footer-logo-slogan {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+            margin-top: 0;
+            padding-top: 0;
+}
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-column .logo img {
+    height: 41px;             /* Definir a altura do logo */
+    width: auto;              /* Garantir que a largura seja proporcional à altura */
+    padding-left: 30px;               /* Remover qualquer padding */
+    margin-left: 10px;
+    max-width: 200px;         /* Definir o tamanho máximo para a largura do logo */
+}
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-column p, .footer-column a {
+            font-size: 14px;
+            line-height: 1.6;
+            color: white;
+            text-decoration: none;
+        }
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+        .contact-info b {
+            color: #0088B5;
+        }
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            color: white;
+            background: #0088B5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: white;
+            color: #0088B5;
+        }
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+        /* Empilha as seções no celular */
+        .car-details {
+            flex-direction: column; /* Altera a direção para empilhar */
+            align-items: center; /* Centraliza os elementos */
+        }
+ .car-info h1 {
+        color: #012063;
+    margin-top: 29px; /* Remove a margem superior */
+     text-align: center;
+    }
+        .car-gallery {
+            width: 100%; /* A galeria ocupa toda a largura */
+            text-align: center; /* Centraliza o conteúdo */
+        }
+        
+.thumbnail-carousel {
+         max-width: calc(4 * 50px + 3 * 10px); /* Ajusta a largura para 3 miniaturas no carrossel */
+       }
+        .car-info {
+            width: 100%; /* Informações do veículo ocupam toda a largura */
+            padding: 0 10px; /* Adiciona espaçamento interno */
+        }
+
+        .main-image img {
+            width: 100%; /* Ajusta a largura da imagem principal */
+            max-width: 400px !important; /* Define um limite máximo */
+            height: 300px !important; /* Mantém a proporção da imagem */
+            margin: 0; /* Remove margens extras da imagem */
+        }
+
+        .car-state {
+            width: 100%; /* As barras ocupam toda a largura disponível */
+        }
+
+        .state-bar {
+            width: 100%; /* Ajusta as barras de estado */
+        }
+
+        .bar-container {
+            width: 100%; /* A barra de estado ocupa toda a largura */
+        }
+    }
+/* Botão de alternância com estilo danger */
+.ficha-btn {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #dc3545; /* Vermelho danger */
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+/* Hover: tom mais escuro do danger */
+.ficha-btn:hover {
+    background-color: #bb2d3b;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Foco: borda com tom mais claro do vermelho */
+.ficha-btn:focus {
+    outline: none;
+    border: 2px solid #e35d6a;
+}
+
+/* Clique: tom mais fechado ainda */
+.ficha-btn:active {
+    transform: scale(0.98);
+    background-color: #a52834;
+}
+
+/* Estilo da ficha técnica (ajustada para combinar com o vermelho) */
+.ficha-tecnica {
+    display: block;
+    background-color: #fef2f4; /* Fundo claro puxando pro vermelho */
+    padding: 20px;
+    border-left: 4px solid #dc3545;
+    border-radius: 5px;
+}
+
+.ficha-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ficha-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ficha-content li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.ficha-content li strong {
+    color: #dc3545;
+}
+
+p {
+    margin-bottom: 20px;
+    padding: 0.5px;
+}
+
+ .showroom-iframe {
+    display: block; /* Inicialmente os iframes estarão invisíveis */
+}    
+
+
+
+    .details {
+      flex: 1.5;
+        margin-left: 0px;
+    }
+    .details h1 {
+      margin-bottom: 10px;
+      color: #003087;
+    }
+    .info-tags span {
+      background: #eee;
+      padding: 5px 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #003087;
+      margin: 20px 0;
+    }
+    .actions button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      background: #003087;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .features {
+      margin-top: 30px;
+    }
+    .accordion {
+      border-top: 1px solid #ddd;
+    }
+    .accordion-item {
+      cursor: pointer;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .accordion-item:hover {
+      background: #f0f0f0;
+    }
+    .accordion-item h3 {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .accordion-content {
+      display: none;
+      padding: 10px 0;
+      color: #555;
+    }
+    .return-home {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #003087;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .return-home i {
+      margin-right: 8px;
+    }
+ .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 30px auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      gap: 30px;
+    }
+
+
+
+   .price-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .monthly {
+      font-size: 14px;
+      color: #333;
+    }
+    .tag {
+      font-size: 13px;
+      color: #7c7c7c;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #001b3f;
+    }
+    .gray-box {
+      background: #f2f2f2;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 13px;
+      margin-right: 10px;
+      display: inline-block;
+    }
+    .btn-reserve, .btn-info {
+      padding: 12px;
+      font-weight: 600;
+      border-radius: 0;
+    }
+    .btn-reserve {
+      background-color: #007bff;
+      color: white;
+    }
+    .btn-info {
+      background-color: #001b3f;
+      color: white;
+    }
+    .action-icons i {
+      margin-right: 8px;
+    }
+    .info-section {
+      border-top: 1px solid #ccc;
+      margin-top: 20px;
+      padding-top: 15px;
+    }
+    .info-toggle {
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .info-toggle i {
+      margin-right: 8px;
+      transition: transform 0.3s;
+    }
+    .info-content {
+      display: none;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 15px;
+      padding-left: 24px;
+    }
+    .rotate {
+      transform: rotate(180deg);
+    }
+
+
+     .fomo-alert {
+  background-color: #fff3f3;
+  border: 1px solid #f5c2c2;
+  color: #b30000;
+}
+
+
+
+     /* Estilo para a seção de carros similares */
+.similar-cars {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.similar-cars h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.car-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Estilo para cada card de carro */
+.car-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-info2 {
+    padding: 15px;
+}
+
+.car-info2 h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.car-info2 p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.car-link {
+    font-size: 16px;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.car-link:hover {
+    color: #ff66b2;
+}
+
+/* Efeito de hover no card */
+.car-card:hover {
+    transform: translateY(-10px);
+}
+
+
+/* Estilo opcional para melhorar o ícone */
+.action-icons i {
+    font-size: 20px;
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+.action-icons i:hover {
+    transform: scale(1.2);
+}
+
+
+     .contact-help {
+  background-color: #f4f8fb;
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+}
+
+.contact-box {
+  max-width: 600px;
+  margin: auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.contact-box h3 {
+  color: #0077cc;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.contact-box p {
+  font-size: 16px;
+  color: #333;
+}
+
+.contact-box a {
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-box a:hover {
+  text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/kV6P6KSb/ezgif-com-svg-to-png-converter.png" alt="entreposto" border="0" style="max-width: 250px; padding-top: 10px; background: transparent;"> <!-- Replace with your logo image -->
+        </a>
+    </header>
+
+    <main>
+        <section class="car-details">
+            <div class="car-gallery">
+                <div class="main-image">
+                    <img src="https://scontent.fmpm2-2.fna.fbcdn.net/v/t39.30808-6/490411403_1730911807529935_2029848646161288230_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=100&ccb=1-7&_nc_sid=454cf4&_nc_ohc=Z2TQEgRZNEIQ7kNvwHkPisb&_nc_oc=AdldW2pmPCsAlNloFzkYOPWBJ8_YyxNZr5j8zL8pbJTEfYSkiW4J1tKohbgsBooUFog&_nc_zt=23&_nc_ht=scontent.fmpm2-2.fna&_nc_gid=RpRrWw_XndHjNZWMsC9TZw&oh=00_AfHd571YA7woUMvjykLKqqR4Ke3PDn6CCc--vJDzoMMJ1Q&oe=68018A0B" alt="Carro Principal" id="main-car-image">
+                </div>
+                <div class="thumbnail-carousel">
+<img src="https://scontent.fmpm2-2.fna.fbcdn.net/v/t39.30808-6/490411403_1730911807529935_2029848646161288230_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=100&ccb=1-7&_nc_sid=454cf4&_nc_ohc=Z2TQEgRZNEIQ7kNvwHkPisb&_nc_oc=AdldW2pmPCsAlNloFzkYOPWBJ8_YyxNZr5j8zL8pbJTEfYSkiW4J1tKohbgsBooUFog&_nc_zt=23&_nc_ht=scontent.fmpm2-2.fna&_nc_gid=RpRrWw_XndHjNZWMsC9TZw&oh=00_AfHd571YA7woUMvjykLKqqR4Ke3PDn6CCc--vJDzoMMJ1Q&oe=68018A0B" alt="Carro 3" data-type="audio"  class="thumbnail" onclick="changeImage(this)">
+<img src="https://scontent.fmpm2-2.fna.fbcdn.net/v/t39.30808-6/491169415_1730908377530278_2810324429818788285_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=101&ccb=1-7&_nc_sid=946e27&_nc_ohc=QX1EQjBIFC0Q7kNvwGufvyZ&_nc_oc=AdkOx_vQyMZpS9bPk1qolpk1IyuNYtPGrdg8cNDHUbWbVhHCe2ny22VZxYVaxB_cXaM&_nc_zt=23&_nc_ht=scontent.fmpm2-2.fna&_nc_gid=RpRrWw_XndHjNZWMsC9TZw&oh=00_AfHLyUnfkks_t3iTJnp6K-qoMUMKxWjpxllougEklG7jng&oe=6801B1FD" alt="Carro 1" data-type="audio"  class="thumbnail" onclick="changeImage(this)">
+<img src="https://scontent.fmpm2-2.fna.fbcdn.net/v/t39.30808-6/491304731_1730907787530337_1615762051895664479_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=946e27&_nc_ohc=1BpgcRLNO08Q7kNvwFuF6_w&_nc_oc=AdnWnvvYD0tU6SST6H-lRnFJCtXHt9gkIFCXxMG3BzO6FotF576zBHKTBjTZJZQoJV8&_nc_zt=23&_nc_ht=scontent.fmpm2-2.fna&_nc_gid=RpRrWw_XndHjNZWMsC9TZw&oh=00_AfERbHCZQW4PACojpy8U7X32f81nRxk1uBxaa52Fztz_Gg&oe=6801AD55" alt="Carro 2" data-type="audio" class="thumbnail" onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/idgHV7rG06s/0.jpg" data-src="https://www.youtube.com/embed/idgHV7rG06s" data-type="video" class="thumbnail"  onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/dXPH7eL2tJI/0.jpg" data-src="https://www.youtube.com/embed/dXPH7eL2tJI" data-type="video" class="thumbnail"  onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/sxYHIQZkI4k/0.jpg" data-src="https://www.youtube.com/embed/sxYHIQZkI4k" data-type="video" class="thumbnail"  onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail"  onclick="changeImage(this)">
+<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/pfxRbzn/GIF-20250124-221811-970.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/dDcWfyN/GIF-20250124-210341-828.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            <div class="car-info">
+                <h4 class="fw-bold" style="padding-top: 10px;">Proton X50 1.5T (150 CV) CVT Executive</h4>
+  <div class="mb-2">
+    <span class="gray-box">Gasolina</span>
+    <span class="gray-box">2024</span>
+    <span class="gray-box">24899 km</span>
+    <span class="gray-box">114 CV</span>
+    <span class="gray-box">Automática</span>
+    <span class="gray-box">5 lugares</span>
+  </div>
+  <div class="price-box">
+    <div>
+      <div class="monthly">
+        * <strong class="highlight">321,46 MZN/mês</strong><br>
+        TAEG: <span class="highlight">12.3%</span><br>
+        Montante financiado: <strong class="highlight">20900,00 MZN</strong><br>
+        Entrada inicial: <strong class="highlight">5000,00 MZN</strong><br>
+        Prazo: <strong class="highlight">96 meses</strong>
+      </div>
+    </div>
+    <div>
+      <h3 class="fw-bold">580,000.00 MZN</h3>
+      <small class="text-muted" style="margin-left: 5px;">+ 850 MZN / LOGÍSTICA</small>
+    </div>
+  </div>
+
+<div class="d-flex mt-3">
+    <button id="btn-reserve" class="btn btn-reserve w-50" onclick="showContactNumber()">Marcar Test-drive</button>
+<button id="btn-garantia" class="btn btn-info w-50" onclick="showWarranty()"> <i class="fas fa-shield-alt" style="margin-right: 3px;"></i> Garantia</button>
+
+  </div>
+
+
+<div class="action-icons mt-3 text-secondary">
+    <span style="color: #dc3545;">
+        <i class="fas fa-eye"></i> <span id="viewer-count">8</span> pessoas a visualizar
+    </span>
+    <i class="fas fa-calendar-check" style="margin-left: 5px;"></i> Marcar Test-drive &nbsp;&nbsp;
+    <i class="fas fa-share-alt"></i> Partilhar
+  </div>
+
+
+     <div class="fomo-alert mt-3 p-3 rounded">
+  <div class="d-flex align-items-center">
+    <i class="fas fa-clock me-2 text-danger"></i>
+    <strong class="text-danger">Oferta por tempo limitado!</strong>
+  </div>
+  <small class="text-muted d-block mt-1">12 pessoas já marcaram visita nos últimos 5 dias.</small>
+  <small class="text-danger d-block mt-1 fw-semibold">Não perca esta oportunidade — últimas unidades disponíveis!</small>
+</div>
+
+                
+  
+  <div class="info-section">
+<div class="info-toggle" onclick="toggleInfo(this)">
+    <i class="fas fa-chevron-down"></i> Primeiros passos para a compra
+</div>
+<div class="info-content">
+    Escolha o carro, agende um test-drive, escolha a opção de financiamento, negocie o preço e finalize a compra. Após o pagamento, a documentação será transferida e o carro estará pronto para retirada ou entrega.
+</div>
+
+    <div class="info-toggle" onclick="toggleInfo(this)"><i class="fas fa-chevron-down"></i> Devolução da viatura</div>
+    <div class="info-content">Tem até 14 dias para devolver o carro, sem complicações e com total transparência.</div>
+
+    <div class="info-toggle" onclick="toggleInfo(this)"><i class="fas fa-chevron-down"></i> Métodos de pagamento disponíveis</div>
+    <div class="info-content">Aceitamos transferências bancárias, cartões de crédito, PayPal e financiamentos com parceiros.</div>
+
+    <div class="info-toggle" onclick="toggleInfo(this)"><i class="fas fa-chevron-down"></i> Entrega ao domicílio</div>
+    <div class="info-content">Receba o seu carro no conforto da sua casa com segurança e comodidade.</div>
+  </div>
+
+  </div>
+</div>
+    <p></p>             <!-- Botão para exibir a ficha técnica -->
+
+            </div>
+        </section>
+      <p></p>
+</div>
+<div>
+      <p></p>
+</div>
+<!-- Seção da Ficha Técnica (oculta por padrão) -->
+<div id="fichaTecnica" class="ficha-tecnica">
+    <h2>FICHA TÉCNICA</h2>
+    <div class="ficha-content">
+        <ul>
+            <li><strong>Categoria:</strong> SUV</li>
+            <li><strong>Ano de fabrico:</strong> 2008</li>
+            <li><strong>Cilindrada:</strong> 2972 cc</li>
+            <li><strong>Combustível:</strong> Gasolina</li>
+            <li><strong>Quilometragem:</strong> 87.000 Km</li>
+            <li><strong>Tração:</strong> 4WD</li>
+            <li><strong>Transmissão:</strong> Automática</li>
+            <li><strong>Cor:</strong> Branca</li>
+        </ul>
+        <ul>
+            <li><strong>Portas:</strong> 3</li>
+            <li><strong>Lotação:</strong> 5 Lugares</li>
+            <li><strong>Potência:</strong> 176 Hp @ 5240 rpm</li>
+            <li><strong>Torque:</strong> 261 Nm @ 4000 rpm</li>
+            <li><strong>Velocidade máxima:</strong> 220 km/h</li>
+            <li><strong>Aceleração:</strong> 0 a 100km/h – 11,5 segundos</li>
+            <li><strong>Consumo cidade (l/100 km):</strong> 15,9</li>
+            <li><strong>Consumo estrada (l/100 km):</strong> 10,6</li>
+        </ul>
+    </div>
+</div>  
+<div id="wrap-iframe-music" style="width: 100%; height: 600px; overflow: hidden; position: relative;">
+  <div style="position: absolute; top: -130px; left: -100px; width: calc(100% + 100px); height: 100%;">
+    <iframe class="showroom-iframe" allow="web-share" width="100%" height="100%" style="border:none;" 
+            src="https://carshow360.net/en/ssangyong/korando/iv-10231?iframe" 
+            title="BMW 360°">
+    </iframe>
+  </div>
+
+    </main>
+<section class="contact-help">
+  <div class="contact-box">
+    <h3><i class="fas fa-phone-alt"></i> Ainda tem dúvidas?</h3>
+    <p>Fale diretamente connosco. Ligue para <a href="tel:+258852136558">+258 85 213 6558</a> e tire todas as suas dúvidas sobre o processo de compra.</p>
+  </div>
+</section>
+
+<section class="similar-cars">
+    <h2>Carros Similares</h2>
+    <div class="car-cards">
+        <div class="car-card">
+            <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="BMW Série 3">
+            <div class="car-info2">
+                <h3>BMW Série 3</h3>
+                <p>A BMW Série 3 é um sedan de luxo que combina desempenho esportivo com conforto refinado. Equipado com um motor potente e tecnologia avançada, é ideal para quem busca uma experiência de condução dinâmica e de alta qualidade.</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/xmN6y66/IMG-20250105-235622.jpg/300" alt="Audi A4">
+            <div class="car-info2">
+                <h3>Audi A4</h3>
+                <p>O Audi A4 oferece um design sofisticado e tecnologias de ponta. Com uma experiência de condução confortável e motores eficientes, é perfeito para quem procura estilo e performance em um sedã premium.</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/7jCFMNT/IMG-20250123-091325.jpg/300" alt="Mercedes-Benz Classe C">
+            <div class="car-info2">
+                <h3>Mercedes-Benz Classe C</h3>
+                <p>O Mercedes-Benz Classe C é um sedã de luxo que combina elegância, conforto e desempenho. Ideal para quem busca uma condução suave e uma presença de rua imponente, com acabamentos refinados e tecnologias de última geração.</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.ibb.co/KVm2cDQ/IMG-20250106-000243.jpg/300" alt="BMW Série 5">
+            <div class="car-info2">
+                <h3>BMW Série 5</h3>
+                <p>A BMW Série 5 é uma fusão perfeita de luxo, performance e tecnologia. Seu motor potente e a condução refinada fazem dele uma excelente escolha para quem busca um sedã de alto desempenho com estilo e conforto.</p>
+                <a href="#" class="car-link">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Rodapé -->
+    
+<footer class="footer">
+      <div class="footer-column">
+  <div class="logo">
+        <img src="https://i.ibb.co/30zTBZD/Logopit-1737243668024.png" alt="Logo">
+    </div>
+            <h3 class="footer-title"></h3>
+            <p class="footer-slogan">"O carro dos seus sonhos está aqui!"</p>
+        </div>
+    </div>
+    <div class="footer-column">
+        <h3>VIATURAS</h3>
+        <p>Como líder de vendas de veículos em Maputo, Moçambique, temos certeza de que economizamos seu tempo e dinheiro. O Grupo Entreposto oferece uma ampla gama de veículos novos e seminovos, além de uma experiência de compra incomparável.</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>CONTATO <i class="fas fa-phone"></i></h3>
+        <p><b>Agendamento de Serviços:</b> +258 852136558</p>
+        <p><b>Atendimento ao Cliente:</b> +258 852136558</p>
+        <p><b>Email:</b> <a href="mailto:contato@mecanicaauto.com">contato@mecanicaauto.com</a></p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>HORÁRIO DE FUNCIONAMENTO</h3>
+        <p><b>Segunda a Sexta:</b> 08:00 – 18:00</p>
+        <p><b>Sábado:</b> 08:00 – 14:00</p>
+        <p><b>Domingo:</b> Fechado</p>
+    </div>
+    
+    <div class="footer-column">
+        <h3>REDES SOCIAIS</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <h3>ONDE ESTAMOS</h3>
+        <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
+    </div>
+</footer>
+
+<script>
+ const viewerCountElement = document.getElementById('viewer-count');
+let currentCount = getRandomInt(10, 20); // começa entre 10 e 20
+viewerCountElement.innerText = currentCount;
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomViewerUpdate() {
+  const direction = Math.random() < 0.5 ? -1 : 1; // aleatoriamente sobe ou desce
+  const variation = getRandomInt(1, 3); // muda de 1 a 3
+  const pause = getRandomInt(2000, 7000); // pausa entre 2s e 7s
+
+  // 20% de chance de não fazer nada (simula tráfego parado)
+  if (Math.random() < 0.2) {
+    setTimeout(randomViewerUpdate, pause);
+    return;
+  }
+
+  // aplica a variação de forma realista
+  let newCount = currentCount + direction * variation;
+
+  // limites
+  if (newCount < 5) newCount = 5;
+  if (newCount > 28) newCount = 28;
+
+  // atualiza visualmente
+  currentCount = newCount;
+  viewerCountElement.innerText = currentCount;
+
+  // próxima variação após pausa
+  setTimeout(randomViewerUpdate, pause);
+}
+
+randomViewerUpdate();
+
+</script>
+    
+<script>
+  // Criar o áudio uma vez para todos os botões
+  const audio = new Audio('https://www.tones7.com/media/-car_Lock-.mp3');
+
+  function toggleInfo(element) {
+    const icon = element.querySelector('i');
+    const content = element.nextElementSibling;
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    icon.classList.toggle('rotate');
+  }
+
+  function showContactNumber() {
+    const btn = document.getElementById('btn-reserve');
+    const originalText = 'Marcar Test-drive';
+    const phoneNumber = '+258 852136558';
+
+    // Tocar o som ao clicar
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+
+    if (btn.textContent === originalText) {
+      btn.textContent = phoneNumber;
+    } else {
+      btn.textContent = originalText;
+    }
+  }
+
+  function showWarranty() {
+    const button = document.getElementById('btn-garantia');
+    const isGarantia = button.innerText.trim().includes('Garantia');
+
+    // Tocar o som ao clicar
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+
+    if (isGarantia) {
+      button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> 1 Ano';
+    } else {
+      button.innerHTML = '<i class="fas fa-shield-alt" style="margin-right: 3px;"></i> Garantia';
+    }
+  }
+</script>
+
+
+
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    let isMouseDown = false; // Verifica se o botão do mouse está pressionado
+    let startX, scrollLeft;
+
+    // Impede o comportamento de "arraste e solte"
+    thumbnails.forEach(thumb => {
+        thumb.setAttribute('draggable', 'false'); // Impede o comportamento de "drag" nas miniaturas
+    });
+
+    thumbnailCarousel.addEventListener('mousedown', (e) => {
+        isMouseDown = true;
+        startX = e.pageX - thumbnailCarousel.offsetLeft; // Posição inicial do mouse
+        scrollLeft = thumbnailCarousel.scrollLeft; // Posição inicial do carrossel
+        thumbnailCarousel.style.userSelect = 'none'; // Desabilita a seleção de texto durante o arraste
+    });
+
+    thumbnailCarousel.addEventListener('mouseleave', () => {
+        isMouseDown = false;
+        thumbnailCarousel.style.userSelect = 'auto'; // Restaura o comportamento normal após o mouse sair
+    });
+
+    thumbnailCarousel.addEventListener('mouseup', () => {
+        isMouseDown = false;
+        thumbnailCarousel.style.userSelect = 'auto'; // Restaura o comportamento normal após o clique
+    });
+
+    thumbnailCarousel.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return; // Se o mouse não estiver pressionado, não faz nada
+        e.preventDefault(); // Impede o comportamento padrão de seleção de texto
+
+        const x = e.pageX - thumbnailCarousel.offsetLeft; // Posição atual do mouse
+        const walk = (x - startX) * 2; // Multiplica por 2 para tornar o movimento mais sensível
+        thumbnailCarousel.scrollLeft = scrollLeft - walk; // Move o carrossel com base no movimento
+    });
+});
+
+    </script>
+
+    <script>
+  function changeImage(img) {
+    document.getElementById('mainImg').src = img.src;
+  }
+
+  function toggleAccordion(element) {
+    const content = element.querySelector('.accordion-content');
+    const icon = element.querySelector('i');
+    const isOpen = content.style.display === 'block';
+    document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.accordion-item i').forEach(i => i.classList.remove('fa-chevron-up'));
+    document.querySelectorAll('.accordion-item i').forEach(i => i.classList.add('fa-chevron-down'));
+
+    if (!isOpen) {
+      content.style.display = 'block';
+      icon.classList.remove('fa-chevron-down');
+      icon.classList.add('fa-chevron-up');
+    }
+  }
+</script>
+
+             
+<script>
+    let currentAudio = null;
+
+    function changeImage(thumbnail) {
+        const mainContainer = document.querySelector('.main-image');
+        const newSrc = thumbnail.getAttribute('data-src') || thumbnail.src;
+        const isVideo = thumbnail.getAttribute('data-type') === 'video';
+
+        // Para o áudio anterior, se houver
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio = null;
+        }
+
+        // Limpa conteúdo anterior
+        mainContainer.innerHTML = '';
+
+        if (isVideo) {
+            const videoId = newSrc.split('/')[4];
+            const videoElement = document.createElement('iframe');
+            videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_lang_pref=en&cc_load_policy=1`;
+            videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+            videoElement.allowFullscreen = true;
+            videoElement.style.width = '100%';
+            videoElement.style.height = '100%';
+            videoElement.style.borderRadius = '15px';
+            videoElement.style.objectFit = 'cover';
+
+            const videoContainer = document.createElement('div');
+            videoContainer.style.width = '100%';
+            videoContainer.style.maxWidth = '520px';
+            videoContainer.style.height = '520px';
+            videoContainer.style.borderRadius = '8px';
+            videoContainer.style.overflow = 'hidden';
+            videoContainer.style.display = 'block';
+            videoContainer.style.margin = '0';
+            videoContainer.style.textAlign = 'left';
+            videoContainer.style.marginLeft = '20px';
+
+            if (window.innerWidth <= 600) {
+                videoContainer.style.height = '400px';
+            }
+
+            videoContainer.appendChild(videoElement);
+            mainContainer.appendChild(videoContainer);
+        } else {
+            const imgContainer = document.createElement('div');
+            imgContainer.style.width = '100%';
+            imgContainer.style.maxWidth = '520px';
+            imgContainer.style.height = '520px';
+            imgContainer.style.overflow = 'hidden';
+            imgContainer.style.borderRadius = '8px';
+            imgContainer.style.display = 'block';
+            imgContainer.style.margin = '0';
+            imgContainer.style.textAlign = 'left';
+            imgContainer.style.marginLeft = '20px';
+
+            if (window.innerWidth <= 600) {
+                imgContainer.style.height = '400px';
+            }
+
+            const imgElement = document.createElement('img');
+            imgElement.src = newSrc;
+            imgElement.id = 'main-car-image';
+            imgElement.style.width = '100%';
+            imgElement.style.height = '100%';
+            imgElement.style.objectFit = 'cover';
+
+            imgContainer.appendChild(imgElement);
+            mainContainer.appendChild(imgContainer);
+
+            // Toca o som quando trocar imagem
+            currentAudio = new Audio('https://www.myinstants.com//media/sounds/windows-logon-sound.MP3'); // <-- Troca aqui pelo nome do teu som
+            currentAudio.volume = 1;
+            currentAudio.play().catch(() => {});
+        }
+
+        // Remove classe ativa das miniaturas
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+        });
+
+        // Adiciona a classe ativa à miniatura clicada
+        thumbnail.classList.add('active');
+    }
+
+    window.onload = function () {
+        animateBar('km-bar', 60, 'km-label', '60.000 km');
+        animateBar('condition-bar', 80, 'condition-label', '80% de boa condição');
+        animateBar('fuel-bar', 40, 'fuel-label', '40% restante');
+    };
+
+    function animateBar(barId, percentage, labelId, labelText) {
+        let bar = document.getElementById(barId);
+        let label = document.getElementById(labelId);
+        bar.style.width = '0%';
+        setTimeout(() => {
+            bar.style.width = percentage + '%';
+            label.textContent = labelText;
+        }, 500);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const thumbnailCarousel = document.querySelector('.thumbnail-carousel');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnailCarousel.style.overflowX = 'auto';
+        thumbnailCarousel.style.display = 'flex';
+        thumbnailCarousel.style.gap = '15px';
+        thumbnailCarousel.style.scrollBehavior = 'smooth';
+
+        thumbnails.forEach(thumb => {
+            thumb.style.flexShrink = '0';
+            thumb.style.cursor = 'pointer';
+        });
+    });
+</script>
+
+
+
+
+       <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    gifs.forEach((gif) => {
+        const gifURL = gif.src;
+
+        // Força o carregamento criando múltiplas requisições
+        const aggressivePreload = new Image();
+        aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+        aggressivePreload.onload = () => {
+            loadedGifs++;
+            if (loadedGifs === gifs.length) {
+                // Todos os GIFs carregados
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        aggressivePreload.onerror = () => {
+            loadedGifs++;
+            console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+            if (loadedGifs === gifs.length) {
+                // Mesmo com erro, consideramos o carregamento concluído
+                loadingWheel.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }
+        };
+
+        // "Empurra" o GIF a carregar forçando múltiplos acessos ao cache
+        gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+});
+ </script>
+</body>
+</html>
