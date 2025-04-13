@@ -2897,50 +2897,37 @@ setInterval(scrollReviews, 3000);  // A cada 3 segundos
 
 </script>
     
- <script>
+<script>
 const images = [
     'https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg',
-    'https://cdn.motor1.com/images/mgl/0AN0J/s1/bmw-i7-xdrive60.jpg',
-    'https://cdn.motor1.com/images/mgl/1xXjo/s1/bmw-serie-3-2023.jpg'
+    'https://cdn.motor1.com/images/mgl/0ANJk/s1/bmw-x6-m-competition.jpg',
+    'https://cdn.motor1.com/images/mgl/y9VZ0/s1/bmw-x5-m-competition.webp'
 ];
 
-let currentIndex = 0;
-let currentSlide = document.querySelector('.slider-image.current');
-let nextSlide = document.querySelector('.slider-image.next');
+let currentImageIndex = 0;
+const currentSlide = document.querySelector('.slider-image.current');
+const nextSlide = document.querySelector('.slider-image.next');
 
-// Inicializa a primeira imagem
-currentSlide.style.backgroundImage = `url(${images[currentIndex]})`;
+currentSlide.style.backgroundImage = `url(${images[currentImageIndex]})`;
 
 function changeImage() {
-    const nextIndex = (currentIndex + 1) % images.length;
-
-    // Prepara o próximo slide
+    const nextIndex = (currentImageIndex + 1) % images.length;
     nextSlide.style.backgroundImage = `url(${images[nextIndex]})`;
-    nextSlide.classList.remove('hidden');
-    nextSlide.style.transform = 'translateX(0)';
 
-    // Anima o slide atual para fora
-    currentSlide.classList.add('slide-out-left');
+    // Move current image to the left
+    currentSlide.classList.add('slide-out');
 
+    // Após a animação (1s), troca e reinicia
     setTimeout(() => {
-        // Reset o anterior
-        currentSlide.classList.remove('current', 'slide-out-left');
-        currentSlide.classList.add('hidden');
+        currentSlide.style.backgroundImage = `url(${images[nextIndex]})`;
+        currentSlide.classList.remove('slide-out');
 
-        // Atualiza o novo slide como atual
-        nextSlide.classList.remove('next');
-        nextSlide.classList.add('current');
-
-        // Troca as referências
-        let temp = currentSlide;
-        currentSlide = nextSlide;
-        nextSlide = temp;
-
-        nextSlide.classList.remove('current');
-        nextSlide.classList.add('next');
-    }, 1000); // mesmo tempo do CSS
+        // Alterna o índice
+        currentImageIndex = nextIndex;
+    }, 1000);
 }
 
+// Troca a imagem a cada 5s
 setInterval(changeImage, 3000);
 </script>
 
