@@ -784,7 +784,7 @@ p {
         if (isVideo) {
             const videoId = newSrc.split('/')[4];
             const videoElement = document.createElement('iframe');
-            videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=en`;
+            videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&cc_lang_pref=en&cc_load_policy=1`;
             videoElement.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
             videoElement.allowFullscreen = true;
             videoElement.style.width = '100%';
