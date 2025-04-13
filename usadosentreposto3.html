@@ -2905,31 +2905,45 @@ const images = [
 ];
 
 let currentImageIndex = 0;
+
 const currentSlide = document.querySelector('.slider-image.current');
 const nextSlide = document.querySelector('.slider-image.next');
 
+// Inicializa com a primeira imagem
 currentSlide.style.backgroundImage = `url(${images[currentImageIndex]})`;
 
 function changeImage() {
     const nextIndex = (currentImageIndex + 1) % images.length;
+
+    // Atualiza a imagem da próxima
     nextSlide.style.backgroundImage = `url(${images[nextIndex]})`;
 
-    // Move current image to the left
+    // Aplica a animação de saída na imagem atual
     currentSlide.classList.add('slide-out');
 
-    // Após a animação (1s), troca e reinicia
     setTimeout(() => {
-        currentSlide.style.backgroundImage = `url(${images[nextIndex]})`;
-        currentSlide.classList.remove('slide-out');
+        // Troca os papéis entre current e next
+        currentSlide.classList.remove('current', 'slide-out');
+        nextSlide.classList.remove('next');
+        
+        // O que era next vira current
+        currentSlide.classList.add('next');
+        nextSlide.classList.add('current');
 
-        // Alterna o índice
+        // Atualiza os elementos
+        const temp = currentSlide;
+        currentSlide = nextSlide;
+        nextSlide = temp;
+
+        // Atualiza o índice
         currentImageIndex = nextIndex;
     }, 1000);
 }
 
-// Troca a imagem a cada 5s
+// Troca de imagem a cada 3 segundos
 setInterval(changeImage, 3000);
 </script>
+
 
 
 
