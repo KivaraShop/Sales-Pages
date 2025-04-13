@@ -892,37 +892,34 @@ p {
 </footer>
 
 <script>
-   function updateViewerCount() {
-    // Gera um número aleatório entre 5 e 15 para o número de visualizações
-    const targetCount = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+  const viewerCountElement = document.getElementById('viewer-count');
+let currentCount = parseInt(viewerCountElement.innerText);
 
-    // Seleciona o elemento que contém o número de visualizações
-    const viewerCountElement = document.getElementById('viewer-count');
-
-    // Obtém o número atual de visualizações
-    let currentCount = parseInt(viewerCountElement.innerText);
-
-    // Controla a diferença máxima permitida para uma alteração realista
-    const maxDifference = 2;
-
-    // Calcula a nova direção para a oscilação (aumento ou diminuição)
-    let difference = targetCount - currentCount;
-    difference = Math.max(-maxDifference, Math.min(difference, maxDifference));
-
-    // Atualiza o número com um efeito de oscilação mais controlado
-    const interval = setInterval(() => {
-        currentCount += Math.sign(difference); // Incrementa ou decrementa de forma controlada
-        viewerCountElement.innerText = currentCount;
-
-        // Se a diferença atingir o valor alvo, para a animação
-        if (Math.abs(targetCount - currentCount) <= 1) {
-            clearInterval(interval);
-        }
-    }, 100); // A cada 100ms o número é atualizado, mais suave
+function getRandomTarget(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Atualiza o número de visualizações a cada 2 segundos
-setInterval(updateViewerCount, 2000);
+function updateViewerCount() {
+  const target = getRandomTarget(5, 28);
+  const maxStep = 1; // para não mudar muito de uma vez
+
+  const interval = setInterval(() => {
+    if (currentCount === target) {
+      clearInterval(interval);
+      // Pausa aleatória antes de tentar outra oscilação
+      const pauseDuration = getRandomTarget(3000, 8000); // entre 3 e 8 segundos
+      setTimeout(updateViewerCount, pauseDuration);
+    } else {
+      if (currentCount < target) currentCount += maxStep;
+      else currentCount -= maxStep;
+
+      viewerCountElement.innerText = currentCount;
+    }
+  }, 300); // velocidade da transição
+}
+
+// Iniciar
+updateViewerCount();
 
 </script>
     
