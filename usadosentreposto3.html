@@ -2897,53 +2897,52 @@ setInterval(scrollReviews, 3000);  // A cada 3 segundos
 
 </script>
     
-  <script>
+ <script>
 const images = [
     'https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg',
-    'https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg',
-    'https://revistacarro.com.br/wp-content/uploads/2021/06/BMW-X3-M-Competition-e-X4-M-Competition-1080x675.jpg'
+    'https://cdn.motor1.com/images/mgl/0AN0J/s1/bmw-i7-xdrive60.jpg',
+    'https://cdn.motor1.com/images/mgl/1xXjo/s1/bmw-serie-3-2023.jpg'
 ];
 
-let currentImageIndex = 0;
+let currentIndex = 0;
+let currentSlide = document.querySelector('.slider-image.current');
+let nextSlide = document.querySelector('.slider-image.next');
 
-const currentSlide = document.querySelector('.slider-image.current');
-const nextSlide = document.querySelector('.slider-image.next');
-
-// Inicializa com a primeira imagem
-currentSlide.style.backgroundImage = `url(${images[currentImageIndex]})`;
+// Inicializa a primeira imagem
+currentSlide.style.backgroundImage = `url(${images[currentIndex]})`;
 
 function changeImage() {
-    const nextIndex = (currentImageIndex + 1) % images.length;
+    const nextIndex = (currentIndex + 1) % images.length;
 
-    // Atualiza a imagem da próxima
+    // Prepara o próximo slide
     nextSlide.style.backgroundImage = `url(${images[nextIndex]})`;
+    nextSlide.classList.remove('hidden');
+    nextSlide.style.transform = 'translateX(0)';
 
-    // Aplica a animação de saída na imagem atual
-    currentSlide.classList.add('slide-out');
+    // Anima o slide atual para fora
+    currentSlide.classList.add('slide-out-left');
 
     setTimeout(() => {
-        // Troca os papéis entre current e next
-        currentSlide.classList.remove('current', 'slide-out');
+        // Reset o anterior
+        currentSlide.classList.remove('current', 'slide-out-left');
+        currentSlide.classList.add('hidden');
+
+        // Atualiza o novo slide como atual
         nextSlide.classList.remove('next');
-        
-        // O que era next vira current
-        currentSlide.classList.add('next');
         nextSlide.classList.add('current');
 
-        // Atualiza os elementos
-        const temp = currentSlide;
+        // Troca as referências
+        let temp = currentSlide;
         currentSlide = nextSlide;
         nextSlide = temp;
 
-        // Atualiza o índice
-        currentImageIndex = nextIndex;
-    }, 1000);
+        nextSlide.classList.remove('current');
+        nextSlide.classList.add('next');
+    }, 1000); // mesmo tempo do CSS
 }
 
-// Troca de imagem a cada 3 segundos
 setInterval(changeImage, 3000);
 </script>
-
 
 
 
