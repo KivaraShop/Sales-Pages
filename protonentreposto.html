@@ -649,6 +649,34 @@ p {
 </div>
     </main>
 
+    <script>
+  const iframe = document.getElementById('iframe-showroom');
+  const audioIframe = new Audio('https://www.tones7.com/media/see_you_again.mp3');
+  let playCount = 0;
+  let audioPlaying = false;
+
+  iframe.addEventListener('click', () => {
+    if (audioPlaying || playCount >= 2) return;
+
+    audioPlaying = true;
+    playCount++;
+
+    audioIframe.currentTime = 0;
+    audioIframe.play();
+
+    // Após terminar o primeiro play
+    audioIframe.onended = () => {
+      if (playCount < 2) {
+        playCount++;
+        audioIframe.currentTime = 0;
+        audioIframe.play();
+      } else {
+        audioPlaying = false;
+      }
+    };
+  });
+</script>
+    
 <script>
   // Criar o áudio uma vez para todos os botões
   const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
