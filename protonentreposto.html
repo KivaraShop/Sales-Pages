@@ -523,16 +523,16 @@ p {
                     <img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro Principal" id="main-car-image">
                 </div>
                 <div class="thumbnail-carousel">
-<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3"  class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="thumbnail" onclick="changeImage(this)">
-<img src="https://img.youtube.com/vi/idgHV7rG06s/0.jpg" data-src="https://www.youtube.com/embed/idgHV7rG06s" data-type="video" class="thumbnail"  onclick="changeImage(this)">
-<img src="https://img.youtube.com/vi/dXPH7eL2tJI/0.jpg" data-src="https://www.youtube.com/embed/dXPH7eL2tJI" data-type="video" class="thumbnail"  onclick="changeImage(this)">
-<img src="https://img.youtube.com/vi/sxYHIQZkI4k/0.jpg" data-src="https://www.youtube.com/embed/sxYHIQZkI4k" data-type="video" class="thumbnail"  onclick="changeImage(this)">
-<img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="thumbnail"  onclick="changeImage(this)">
-<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/pfxRbzn/GIF-20250124-221811-970.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
-<img src="https://i.ibb.co/dDcWfyN/GIF-20250124-210341-828.gif" alt="Carro 3" class="thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/pdK2crJ/IMG-20250105-235948.jpg" alt="Carro 3" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/xST8Tv4/IMG-20250105-235724.jpg" alt="Carro 1" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/X35hdrd/IMG-20250105-235715.jpg" alt="Carro 2" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/idgHV7rG06s/0.jpg" data-src="https://www.youtube.com/embed/idgHV7rG06s" data-type="video" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/dXPH7eL2tJI/0.jpg" data-src="https://www.youtube.com/embed/dXPH7eL2tJI" data-type="video" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/sxYHIQZkI4k/0.jpg" data-src="https://www.youtube.com/embed/sxYHIQZkI4k" data-type="video" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://img.youtube.com/vi/c-JtBaX3H3A/0.jpg" data-src="https://www.youtube.com/embed/c-JtBaX3H3A" data-type="video" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/QF1gDjR/IMG-20250105-235705.jpg" alt="Carro 3" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/pfxRbzn/GIF-20250124-221811-970.gif" alt="Carro 3" class="car-thumbnail" onclick="changeImage(this)">
+<img src="https://i.ibb.co/dDcWfyN/GIF-20250124-210341-828.gif" alt="Carro 3" class="car-thumbnail" onclick="changeImage(this)">
                 </div>
             </div>
             <div class="car-info">
@@ -655,6 +655,31 @@ p {
 </div>
     </main>
 
+    
+<script>
+  let currentAudio = null; // Variável global para controlar o áudio atual
+
+  // Função para trocar a imagem e tocar o som
+  function changeImage(imageElement) {
+    // Verifica se o src não pertence a um vídeo do YouTube
+    if (!imageElement.src.includes('youtube.com') && !imageElement.src.includes('img.youtube.com')) {
+      
+      // Se já houver um áudio tocando, pausa-o
+      if (currentAudio && !currentAudio.paused) {
+        currentAudio.pause();
+      }
+
+      // Cria um novo áudio e define-o como o áudio atual
+      currentAudio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
+      currentAudio.play();
+    }
+
+    // Aqui você pode adicionar o código para trocar a imagem. Exemplo:
+    console.log('Imagem de carro clicada:', imageElement.alt);
+    // Se você quiser alterar a imagem em outro lugar, pode usar o código abaixo:
+    // document.getElementById("imageDisplay").src = imageElement.src;
+  }
+</script>
 <script>
   const overlayMusicBtn = document.getElementById('click-overlay-music');
   const musicPlayer = new Audio('https://www.tones7.com/media/see_you_again.mp3');
