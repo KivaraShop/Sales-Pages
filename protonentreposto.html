@@ -656,58 +656,72 @@ p {
 
 
 
-/* Estilo da seção do guia de compra */
+/* Estilos principais do guia */
 .car-purchase-guide {
-    padding: 40px 10px;
-    margin: 0 auto;
-    max-width: 1200px;
-    font-family: 'Arial', sans-serif;
+    max-width: 1100px;
+    margin: 50px auto;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    padding: 0 15px;
 }
 
-/* Título principal da seção */
+/* Título da seção */
 .car-purchase-guide h2 {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 700;
     color: #4a004e;
+    text-align: center;
     margin-bottom: 20px;
 }
 
-/* Parágrafo de introdução */
-.car-purchase-guide p {
+/* Introdução */
+.car-purchase-guide .intro {
     font-size: 18px;
     color: #555;
-    line-height: 1.6;
-    margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* Estilo das etapas do processo */
-.purchase-step {
-    margin-bottom: 30px;
+/* Passos individuais */
+.step {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.purchase-step h3 {
+.step:hover {
+    transform: translateY(-5px);
+}
+
+/* Títulos dos passos */
+.step h3 {
     font-size: 24px;
     color: #4a004e;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.purchase-step p {
+/* Descrição dos passos */
+.step p {
     font-size: 16px;
     color: #777;
     line-height: 1.6;
 }
 
-/* Responsividade: Ajustes para telas menores */
+/* Responsividade */
 @media (max-width: 768px) {
     .car-purchase-guide h2 {
         font-size: 28px;
     }
 
-    .purchase-step h3 {
+    .step h3 {
         font-size: 20px;
     }
 
-    .purchase-step p {
+    .step p {
         font-size: 14px;
     }
 }
@@ -861,38 +875,39 @@ p {
 
 <section class="car-purchase-guide">
     <h2>Guia Detalhado para a Compra do Seu Veículo</h2>
-    <p>Para ajudá-lo a entender melhor o processo de compra do seu veículo, aqui está um passo a passo detalhado. Siga os passos abaixo para realizar sua compra de forma tranquila e rápida.</p>
+    <p class="intro">Siga nosso guia passo a passo para garantir uma experiência de compra tranquila, desde a escolha do carro até a entrega do veículo.</p>
 
-    <div class="purchase-step">
+    <div class="step">
         <h3>1. Escolha o Carro Ideal</h3>
-        <p>Antes de mais nada, explore os carros disponíveis em nossa página e escolha aquele que melhor atende às suas necessidades. Clique em “Saiba mais” para obter detalhes completos sobre cada modelo.</p>
+        <p>Explore nossas opções de carros disponíveis. Encontre o modelo que melhor atenda às suas necessidades. Detalhes completos estão disponíveis para cada modelo.</p>
     </div>
 
-    <div class="purchase-step">
+    <div class="step">
         <h3>2. Verifique o Estado do Veículo</h3>
-        <p>Confira o estado de conservação do veículo, incluindo quilometragem, ano de fabricação, histórico de manutenção e qualquer dano existente. Isso garantirá que você tome uma decisão informada.</p>
+        <p>Certifique-se de verificar a quilometragem, ano de fabricação, histórico de manutenção e o estado geral do carro. Transparência total para sua confiança.</p>
     </div>
 
-    <div class="purchase-step">
+    <div class="step">
         <h3>3. Reserve o Seu Veículo</h3>
-        <p>Após escolher o carro, faça uma reserva através do nosso sistema de reservas online. Este processo assegura que o carro escolhido estará disponível para você quando for realizar a compra.</p>
+        <p>Fazendo a reserva, você assegura que o veículo estará disponível para você. O processo é simples e rápido, sem complicações.</p>
     </div>
 
-    <div class="purchase-step">
+    <div class="step">
         <h3>4. Escolha a Forma de Pagamento</h3>
-        <p>Escolha a forma de pagamento que melhor se adapta às suas necessidades. Aceitamos pagamentos à vista, financiamentos e até mesmo trocas de veículos. Consulte nossas opções de financiamento e veja qual delas se encaixa no seu orçamento.</p>
+        <p>Oferecemos diversas opções de pagamento: à vista, parcelamento, ou até troca de veículo. Consulte a opção que melhor se adapta ao seu orçamento.</p>
     </div>
 
-    <div class="purchase-step">
+    <div class="step">
         <h3>5. Finalize a Compra</h3>
-        <p>Com a reserva feita e a forma de pagamento definida, basta finalizar o processo de compra. Nossa equipe cuidará de toda a documentação e entrega do veículo. O processo é rápido e sem complicação.</p>
+        <p>Com o pagamento definido, finalize a compra. A nossa equipe cuidará de toda a documentação, tornando o processo rápido e sem burocracia.</p>
     </div>
 
-    <div class="purchase-step">
+    <div class="step">
         <h3>6. Receba o Seu Veículo</h3>
-        <p>Após a compra ser concluída, agendaremos a entrega do seu veículo em sua casa ou no local de sua preferência. Você estará pronto para pegar a estrada com seu novo carro!</p>
+        <p>Após a finalização da compra, agendaremos a entrega do seu carro no local desejado. Tudo pronto para você curtir seu novo veículo!</p>
     </div>
 </section>
+
 
 
 <section class="similar-cars">
