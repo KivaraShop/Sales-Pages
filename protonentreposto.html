@@ -498,7 +498,13 @@ p {
       transform: rotate(180deg);
     }
 
-     
+
+     .fomo-alert {
+  background-color: #fff3f3;
+  border: 1px solid #f5c2c2;
+  color: #b30000;
+}
+
 </style>
 </head>
 <body>
@@ -565,6 +571,17 @@ p {
     <i class="fas fa-share-alt"></i> Partilhar
   </div>
 
+
+     <div class="fomo-alert mt-3 p-3 rounded">
+  <div class="d-flex align-items-center">
+    <i class="fas fa-clock me-2 text-danger"></i>
+    <strong class="text-danger">Oferta por tempo limitado!</strong>
+  </div>
+  <small class="text-muted d-block mt-1">12 pessoas adicionaram este carro à lista nos últimos 2 dias.</small>
+  <small class="text-danger d-block mt-1 fw-semibold">Não perca esta oportunidade — últimas unidades disponíveis!</small>
+</div>
+
+                
   
   <div class="info-section">
     <div class="info-toggle" onclick="toggleInfo(this)"><i class="fas fa-chevron-down"></i> Primeiros passos para a compra</div>
