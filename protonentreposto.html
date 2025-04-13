@@ -639,39 +639,40 @@ p {
         </ul>
     </div>
 </div>  
-<div style="width: 100%; height: 600px; overflow: hidden; position: relative;">
+<div id="iframe-container" style="width: 100%; height: 600px; overflow: hidden; position: relative;">
   <div style="position: absolute; top: -130px; left: -100px; width: calc(100% + 100px); height: 100%;">
-    <iframe id="iframe-showroom" class="showroom-iframe" allow="web-share" width="100%" height="100%" style="border:none;" 
+    <iframe class="showroom-iframe" allow="web-share" width="100%" height="100%" style="border:none;" 
             src="https://carshow360.net/en/ssangyong/korando/iv-10231?iframe" 
             title="BMW 360°">
     </iframe>
   </div>
+  <!-- Camada invisível para detectar o clique -->
+  <div id="iframe-click-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
 </div>
     </main>
 
-    <script>
-  const iframe = document.getElementById('iframe-showroom');
-  const audioIframe = new Audio('https://www.tones7.com/media/see_you_again.mp3');
+   <script>
+  const clickLayer = document.getElementById('iframe-click-layer');
+  const audio = new Audio('https://www.tones7.com/media/see_you_again.mp3');
   let playCount = 0;
-  let audioPlaying = false;
+  let playing = false;
 
-  iframe.addEventListener('click', () => {
-    if (audioPlaying || playCount >= 2) return;
+  clickLayer.addEventListener('click', () => {
+    if (playing || playCount >= 2) return;
 
-    audioPlaying = true;
+    playing = true;
+    audio.currentTime = 0;
+    audio.play();
+
     playCount++;
 
-    audioIframe.currentTime = 0;
-    audioIframe.play();
-
-    // Após terminar o primeiro play
-    audioIframe.onended = () => {
+    audio.onended = () => {
       if (playCount < 2) {
         playCount++;
-        audioIframe.currentTime = 0;
-        audioIframe.play();
+        audio.currentTime = 0;
+        audio.play();
       } else {
-        audioPlaying = false;
+        playing = false;
       }
     };
   });
