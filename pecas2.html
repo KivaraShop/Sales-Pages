@@ -3859,6 +3859,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function showNextButtons() {
         cartPopupContent.innerHTML = '';
 
+ // Criar logo no topo
+        const logoContainer = document.createElement('div');
+        logoContainer.style.display = 'flex';
+        logoContainer.style.justifyContent = 'center';
+        logoContainer.style.marginBottom = '40px';
+
+        const logoImg = document.createElement('img');
+        logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png'; // Altere para o caminho correto do logo
+        logoImg.alt = 'Logo';
+        logoImg.style.height = '35px';
+        logoImg.style.width = 'auto';
+        logoContainer.appendChild(logoImg);
+        
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
         totalElement.style.fontWeight = 'bold';
