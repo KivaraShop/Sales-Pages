@@ -1491,6 +1491,43 @@ details p:hover {
 }
 
 
+        .popup-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.popup-content iframe {
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 28px;
+    color: #fff;
+    background: #000;
+    border-radius: 50%;
+    padding: 0 10px;
+    cursor: pointer;
+    line-height: 30px;
+}
+
     </style>
 </head>
 <body>
@@ -2653,6 +2690,13 @@ details p:hover {
     </div>
 </section>
 
+<!-- Popup Modal -->
+<div id="tiktok-popup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+</div>
 
 
 <!-- Rodapé -->
@@ -2690,13 +2734,36 @@ details p:hover {
         <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         <h3>ONDE ESTAMOS</h3>
         <p>Av. do Trabalho, Nº 1856, CP 1153, Cidade de Maputo, Moçambique</p>
     </div>
 </footer>
+
+    <script>
+    const tiktokIcon = document.querySelector('.fab.fa-tiktok');
+    const popup = document.getElementById('tiktok-popup');
+    const closeBtn = document.querySelector('.close-btn');
+
+    tiktokIcon.addEventListener('click', function(e) {
+        e.preventDefault(); // impede o link de redirecionar
+        popup.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(e) {
+        if (e.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+</script>
+
+    
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     let categories = document.querySelectorAll('.category');
