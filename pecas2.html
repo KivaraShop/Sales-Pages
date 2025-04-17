@@ -3798,50 +3798,50 @@ document.addEventListener('DOMContentLoaded', () => {
         showMpesapayOption();
     }
 
-    // Função para exibir o botão do M-Pesa
-    function showMpesapayOption() {
-        const mpesaContainer = document.createElement('div');
-        cartPopupContent.appendChild(mpesaContainer);
+  // Função para exibir o botão do M-Pesa
+function showMpesapayOption() {
+    // Verificar se o botão M-Pesa já foi exibido para evitar duplicação
+    const existingMpesaButton = document.querySelector('.mpesa-button');
+    if (existingMpesaButton) return; // Se o botão já existe, não adiciona novamente
 
-        // Verificar se o número do M-Pesa já foi exibido para evitar duplicação
-        const existingMpesaNumber = document.querySelector('.mpesa-number');
-        if (existingMpesaNumber) return; // Se o número já existe, não adiciona novamente
+    const mpesaContainer = document.createElement('div');
+    mpesaContainer.classList.add('mpesa-button'); // Adiciona uma classe para identificação
+    cartPopupContent.appendChild(mpesaContainer);
 
-        // Criar o botão de pagamento M-Pesa
-        const mpesaButton = document.createElement('button');
-        mpesaButton.textContent = 'Pagamento M-Pesa';
-        mpesaButton.style.backgroundColor = '#8B0000'; // Cor vermelha mais escura
-        mpesaButton.style.color = 'white'; // Texto branco
-        mpesaButton.style.border = 'none';
-        mpesaButton.style.padding = '10px';
-        mpesaButton.style.fontSize = '16px';
-        mpesaButton.style.cursor = 'pointer';
-        mpesaButton.style.width = '100%';
-        mpesaButton.style.marginTop = '10px'; // Adicionar um espaçamento
-        mpesaButton.style.transition = 'opacity 0.5s ease'; // Adicionar transição de desvanecimento
-        mpesaContainer.appendChild(mpesaButton);
+    // Criar o botão de pagamento M-Pesa
+    const mpesaButton = document.createElement('button');
+    mpesaButton.textContent = 'Pagamento M-Pesa';
+    mpesaButton.style.backgroundColor = '#8B0000'; // Cor vermelha mais escura
+    mpesaButton.style.color = 'white'; // Texto branco
+    mpesaButton.style.border = 'none';
+    mpesaButton.style.padding = '10px';
+    mpesaButton.style.fontSize = '16px';
+    mpesaButton.style.cursor = 'pointer';
+    mpesaButton.style.width = '100%';
+    mpesaButton.style.marginTop = '10px'; // Adicionar um espaçamento
+    mpesaButton.style.transition = 'opacity 0.5s ease'; // Adicionar transição de desvanecimento
+    mpesaContainer.appendChild(mpesaButton);
 
-        // Evento de clique do botão M-Pesa
-        mpesaButton.addEventListener('click', () => {
-            // Desvanecer o botão
-            mpesaButton.style.opacity = '0';
+    // Evento de clique do botão M-Pesa
+    mpesaButton.addEventListener('click', () => {
+        // Desvanecer o botão
+        mpesaButton.style.opacity = '0';
 
-            // Após a transição de desvanecimento, exibir o número do M-Pesa
-            setTimeout(() => {
-                mpesaButton.style.display = 'none'; // Esconde o botão após desvanecer
+        // Após a transição de desvanecimento, exibir o número do M-Pesa
+        setTimeout(() => {
+            mpesaButton.style.display = 'none'; // Esconde o botão após desvanecer
 
-                // Mostrar o número de transferência do M-Pesa
-                const mpesaNumber = document.createElement('div');
-                mpesaNumber.textContent = 'Transferência: 85 21 36 558'; // Número a ser exibido
-                mpesaNumber.style.fontSize = '18px';
-                mpesaNumber.style.fontWeight = 'bold';
-                mpesaNumber.style.marginTop = '10px'; // Manter o espaçamento
-                mpesaNumber.style.textAlign = 'center'; // Centralizar o número
-                mpesaNumber.classList.add('mpesa-number'); // Adicionar classe para verificação
-                mpesaContainer.appendChild(mpesaNumber);
-            }, 500); // Tempo para combinar com a transição de desvanecimento
-        });
-    }
+            // Mostrar o número de transferência do M-Pesa
+            const mpesaNumber = document.createElement('div');
+            mpesaNumber.textContent = 'Transferência: 85 21 36 558'; // Número a ser exibido
+            mpesaNumber.style.fontSize = '18px';
+            mpesaNumber.style.fontWeight = 'bold';
+            mpesaNumber.style.marginTop = '10px'; // Manter o espaçamento
+            mpesaNumber.style.textAlign = 'center'; // Centralizar o número
+            mpesaContainer.appendChild(mpesaNumber);
+        }, 500); // Tempo para combinar com a transição de desvanecimento
+    });
+}
 
     // Função para gerar a mensagem para o WhatsApp
     function generateWhatsappMessage() {
