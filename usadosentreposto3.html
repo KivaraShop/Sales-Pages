@@ -1491,7 +1491,7 @@ details p:hover {
 }
 
 
-      .popup-overlay {
+        .popup-overlay {
     display: none;
     position: fixed;
     z-index: 9999;
@@ -1502,23 +1502,17 @@ details p:hover {
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
 }
 
 .popup-content {
     position: relative;
     background-color: #fff;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    max-width: 1000px;
-    margin: 40px auto;
 }
 
-.multi-video .videos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+.popup-content iframe {
+    display: block;
 }
 
 .close-btn {
@@ -2696,18 +2690,14 @@ details p:hover {
     </div>
 </section>
 
-
-<!-- Popup com vários vídeos -->
+<!-- Popup Modal -->
 <div id="tiktok-popup" class="popup-overlay">
-    <div class="popup-content multi-video">
+    <div class="popup-content">
         <span class="close-btn">&times;</span>
-        <div class="videos-grid">
-                <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
-       <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
-            <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
-        </div>
+        <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
     </div>
 </div>
+
 
 <!-- Rodapé -->
     
@@ -2752,15 +2742,17 @@ details p:hover {
     </div>
 </footer>
 
-   <script>
-    const tiktokIcon = document.querySelector('.fab.fa-tiktok');
+    <script>
+    const tiktokBtn = document.getElementById('tiktok-btn');
     const popup = document.getElementById('tiktok-popup');
     const closeBtn = document.querySelector('.close-btn');
 
-    tiktokIcon.parentElement.addEventListener('click', function(e) {
-        e.preventDefault();
-        popup.style.display = 'flex';
-    });
+    if (tiktokBtn) {
+        tiktokBtn.addEventListener('click', function (e) {
+            e.preventDefault(); // impede de seguir o link
+            popup.style.display = 'flex';
+        });
+    }
 
     closeBtn.addEventListener('click', function () {
         popup.style.display = 'none';
