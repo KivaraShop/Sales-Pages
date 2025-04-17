@@ -403,6 +403,20 @@ button:hover {
     background-color: #012063; /* Azul escuro da marca para efeito hover */
 }
 
+/* Popup do Modo Noturno */
+.dark-mode {
+    background-color: #121212;
+    color: #FFFF; /* Branco */
+}
+
+.dark-mode header {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .toggle-theme {
+    color: #2AA7E7; /* Azul claro da marca para o ícone no modo noturno */
+}
+
 
 @media (max-width: 768px) {
     .product-grid {
@@ -1830,18 +1844,7 @@ z-index: 1000;
         <span class="cart-badge">3</span>
     </a>
 </div>
- <div class="search-bar">
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
-      oninput="filterProducts(this.value)" 
-    />
-    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
-      🔍
-    </button>
-  </div>
-</div>
+
 <!-- Pop-up do Carrinho FORA da navigation-buttons -->
 <div class="cart-popup">
     <div class="cart-popup-content">
@@ -1859,6 +1862,18 @@ z-index: 1000;
     </div>
 </div>
       
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Pesquisar Marca, Modelo, Transmissão ..."
+      oninput="filterProducts(this.value)" 
+    />
+    <button id="search-btn" onclick="filterProducts(document.getElementById('search-input').value)">
+      🔍
+    </button>
+  </div>
+</div>
         
 <!-- Área de Resultados -->
 <div id="search-results"></div>
@@ -1868,6 +1883,7 @@ z-index: 1000;
   <p>Sem resultados, diga-nos por favor qual peça está a procura no botão abaixo.</p>
   <button id="order-car-btn" onclick="window.location.href='https://wa.me/258852136558?text=Boa%20tarde,%20quero%20encomendar%20uma%20viatura'">Encomendar viatura</button>
 </div>
+  </div>
     
  <div class="content-container">
     <div class="sidebar">
@@ -3420,6 +3436,8 @@ function changeImage() {
 // Troca a imagem automaticamente a cada 5 segundos
 setInterval(changeImage, 5000);
      </script>
+    </script>
+
 <!-- Inclua a biblioteca Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
@@ -3552,6 +3570,51 @@ searchInput.addEventListener('input', function() {
 
 
 
+<script>
+    // Contador inicial de notificações no localStorage
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([true, true, true]));
+    }
+
+    // Atualiza o contador no sininho
+    function updateNotificationBadge() {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      const unreadCount = notifications.filter(n => n).length;
+      const badge = document.getElementById('notification-badge');
+      badge.textContent = unreadCount;
+
+      // Esconde o badge se todas notificações foram lidas
+      badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+      // Atualiza o estilo das notificações
+      const notificationItems = document.querySelectorAll('.notification-item');
+      notifications.forEach((isUnread, index) => {
+        if (isUnread) {
+          notificationItems[index].classList.remove('read');
+        } else {
+          notificationItems[index].classList.add('read');
+        }
+      });
+    }
+
+    // Alterna o menu de notificações
+    function toggleNotificationMenu() {
+      const menu = document.getElementById('notification-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Marca notificações como lidas
+    function markAsRead(index) {
+      const notifications = JSON.parse(localStorage.getItem('notifications'));
+      notifications[index] = false;
+      localStorage.setItem('notifications', JSON.stringify(notifications));
+      updateNotificationBadge();
+    }
+
+    // Atualiza o contador ao carregar a página
+    window.onload = updateNotificationBadge;
+  </script>
+
      <script>
     document.addEventListener("DOMContentLoaded", () => {
     const gifs = document.querySelectorAll('.card img'); // Seleciona todos os GIFs
@@ -3590,8 +3653,8 @@ searchInput.addEventListener('input', function() {
     });
 });
  </script>
-       <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
-   <script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=BRL"></script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartIcon = document.querySelector('.cart-icon');
@@ -3764,79 +3827,66 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         cartPopupContent.appendChild(falarButton);
 
-      // Function to generate the message for WhatsApp
-function generateWhatsappMessage() {
-    let message = 'Pedido de compra:\n\n';
-    cart.forEach(item => {
-        message += `${item.name} - ${item.price}\n`;
-    });
-    message += `\nTotal: R$ ${calculateTotal().toFixed(2)}\n\n`;
-    message += 'Aguardo confirmação do pedido.';
-    return message;
-}
+        // M-Pesa payment option with effects and no duplication
+        function showMpesapayOption() {
+            const mpesaContainer = document.createElement('div');
+            cartPopupContent.appendChild(mpesaContainer);
 
-// M-Pesa payment option with effects and no duplication
-function showMpesapayOption() {
-    const mpesaContainer = document.createElement('div');
-    cartPopupContent.appendChild(mpesaContainer);
+            // Check if the M-Pesa number has already been displayed to avoid duplication
+            const existingMpesaNumber = document.querySelector('.mpesa-number');
+            if (existingMpesaNumber) return; // Exit the function if the number already exists
 
-    // Check if the M-Pesa number has already been displayed to avoid duplication
-    const existingMpesaNumber = document.querySelector('.mpesa-number');
-    if (existingMpesaNumber) return; // Exit the function if the number already exists
+            // Create the M-Pesa payment button
+            const mpesaButton = document.createElement('button');
+            mpesaButton.textContent = 'Pagamento M-Pesa';
+            mpesaButton.style.backgroundColor = '#8B0000'; // Darker red background
+            mpesaButton.style.color = 'white'; // White text
+            mpesaButton.style.border = 'none';
+            mpesaButton.style.padding = '10px';
+            mpesaButton.style.fontSize = '16px';
+            mpesaButton.style.cursor = 'pointer';
+            mpesaButton.style.width = '100%';
+            mpesaButton.style.marginTop = '10px'; // Add some spacing
+            mpesaButton.style.transition = 'opacity 0.5s ease'; // Add fade-out transition
+            mpesaContainer.appendChild(mpesaButton);
 
-    // Create the M-Pesa payment button
-    const mpesaButton = document.createElement('button');
-    mpesaButton.textContent = 'Pagamento M-Pesa';
-    mpesaButton.style.backgroundColor = '#8B0000'; // Darker red background
-    mpesaButton.style.color = 'white'; // White text
-    mpesaButton.style.border = 'none';
-    mpesaButton.style.padding = '10px';
-    mpesaButton.style.fontSize = '16px';
-    mpesaButton.style.cursor = 'pointer';
-    mpesaButton.style.width = '100%';
-    mpesaButton.style.marginTop = '10px'; // Add some spacing
-    mpesaButton.style.transition = 'opacity 0.5s ease'; // Add fade-out transition
-    mpesaContainer.appendChild(mpesaButton);
+            // Add event listener for the M-Pesa button click
+            mpesaButton.addEventListener('click', () => {
+                // Fade out the button
+                mpesaButton.style.opacity = '0';
 
-    // Add event listener for the M-Pesa button click
-    mpesaButton.addEventListener('click', () => {
-        // Fade out the button
-        mpesaButton.style.opacity = '0';
+                // Wait for the fade-out effect to finish, then replace the button with the number
+                setTimeout(() => {
+                    mpesaButton.style.display = 'none'; // Hide the button after fade-out
 
-        // Wait for the fade-out effect to finish, then replace the button with the number
-        setTimeout(() => {
-            mpesaButton.style.display = 'none'; // Hide the button after fade-out
+                    // Show the M-Pesa transfer number
+                    const mpesaNumber = document.createElement('div');
+                    mpesaNumber.textContent = 'Transferência: 85 21 36 558'; // Number to display
+                    mpesaNumber.style.fontSize = '18px';
+                    mpesaNumber.style.fontWeight = 'bold';
+                    mpesaNumber.style.marginTop = '10px'; // Maintain spacing
+                    mpesaNumber.style.textAlign = 'center'; // Center the number
+                                      mpesaNumber.classList.add('mpesa-number'); // Add a class to easily check if number already exists
+                    mpesaContainer.appendChild(mpesaNumber);
+                }, 500); // Match the transition duration
+            });
+        }
 
-            // Show the M-Pesa transfer number
-            const mpesaNumber = document.createElement('div');
-            mpesaNumber.textContent = 'Transferência: 85 21 36 558'; // Number to display
-            mpesaNumber.style.fontSize = '18px';
-            mpesaNumber.style.fontWeight = 'bold';
-            mpesaNumber.style.marginTop = '10px'; // Maintain spacing
-            mpesaNumber.style.textAlign = 'center'; // Center the number
-            mpesaNumber.classList.add('mpesa-number'); // Add a class to easily check if number already exists
-            mpesaContainer.appendChild(mpesaNumber);
-        }, 500); // Match the transition duration
-    });
-}
-
-
-// Pagar Conta button logic
-const pagarButton = document.createElement('button');
-pagarButton.textContent = 'Efetuar Pagamento';
-pagarButton.style.background = '#0070ba';
-pagarButton.style.color = 'white';
-pagarButton.style.border = 'none';
-pagarButton.style.padding = '10px';
-pagarButton.style.width = '100%';
-pagarButton.style.cursor = 'pointer';
-pagarButton.style.marginTop = '10px';
-pagarButton.addEventListener('click', () => {
-    showPaypalButton();
-    showMpesapayOption(); // Show M-Pesa payment option below PayPal
-});
-cartPopupContent.appendChild(pagarButton);
-
+        // Pagar Conta button logic
+        const pagarButton = document.createElement('button');
+        pagarButton.textContent = 'Efetuar Pagamento';
+        pagarButton.style.background = '#0070ba';
+        pagarButton.style.color = 'white';
+        pagarButton.style.border = 'none';
+        pagarButton.style.padding = '10px';
+        pagarButton.style.width = '100%';
+        pagarButton.style.cursor = 'pointer';
+        pagarButton.style.marginTop = '10px';
+        pagarButton.addEventListener('click', () => {
+            showPaypalButton();
+            showMpesapayOption(); // Show M-Pesa payment option below PayPal
+        });
+        cartPopupContent.appendChild(pagarButton);
     }
 
     function showPaypalButton() {
@@ -3929,10 +3979,6 @@ cartPopupContent.appendChild(pagarButton);
     updateCartCount();
 });
 </script>
-
-
-
-
 
 </body>
 </html>
