@@ -153,7 +153,6 @@ nav ul li a:hover {
     background: #FFA500; /* Laranja no hover */
 }
      body {
-         height: 100%;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -404,20 +403,7 @@ button:hover {
     background-color: #012063; /* Azul escuro da marca para efeito hover */
 }
 
-/* Popup do Modo Noturno */
-.dark-mode {
-    background-color: #121212;
-    color: #FFFF; /* Branco */
-}
-
-.dark-mode header {
-    background-color: #1e1e1e;
-}
-
-.dark-mode .toggle-theme {
-    color: #2AA7E7; /* Azul claro da marca para o ícone no modo noturno */
-}
-
+/
 
 @media (max-width: 768px) {
     .product-grid {
@@ -1338,6 +1324,7 @@ header .cart-icon.pulse {
     position: fixed;
     top: 66%;
     left: 50%;
+    bottom: 10%; 
     width: 90vw; /* 80% da largura da tela */
     height: 90vh; /* 80% da altura da tela */
     max-width: 800px; /* Para evitar que fique muito largo em telas grandes */
