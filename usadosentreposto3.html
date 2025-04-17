@@ -2734,7 +2734,7 @@ details p:hover {
         <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#" id="tiktok-btn"><i class="fab fa-tiktok"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         <h3>ONDE ESTAMOS</h3>
@@ -2743,25 +2743,28 @@ details p:hover {
 </footer>
 
     <script>
-    const tiktokIcon = document.querySelector('.fab.fa-tiktok');
+    const tiktokBtn = document.getElementById('tiktok-btn');
     const popup = document.getElementById('tiktok-popup');
     const closeBtn = document.querySelector('.close-btn');
 
-    tiktokIcon.addEventListener('click', function(e) {
-        e.preventDefault(); // impede o link de redirecionar
-        popup.style.display = 'flex';
-    });
+    if (tiktokBtn) {
+        tiktokBtn.addEventListener('click', function (e) {
+            e.preventDefault(); // impede de seguir o link
+            popup.style.display = 'flex';
+        });
+    }
 
-    closeBtn.addEventListener('click', function() {
+    closeBtn.addEventListener('click', function () {
         popup.style.display = 'none';
     });
 
-    window.addEventListener('click', function(e) {
+    window.addEventListener('click', function (e) {
         if (e.target === popup) {
             popup.style.display = 'none';
         }
     });
 </script>
+
 
     
 <script>
