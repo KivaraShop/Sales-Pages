@@ -3856,21 +3856,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Função para exibir os botões de pagamento após o "Fazer pedido"
-    function showNextButtons() {
-        cartPopupContent.innerHTML = '';
+function showNextButtons() {
+    console.log("showNextButtons chamada");
 
- // Criar logo no topo
-        const logoContainer = document.createElement('div');
-        logoContainer.style.display = 'flex';
-        logoContainer.style.justifyContent = 'center';
-        logoContainer.style.marginBottom = '40px';
+    cartPopupContent.innerHTML = '';  // Limpar o conteúdo atual
 
-        const logoImg = document.createElement('img');
-        logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png'; // Altere para o caminho correto do logo
-        logoImg.alt = 'Logo';
-        logoImg.style.height = '35px';
-        logoImg.style.width = 'auto';
-        logoContainer.appendChild(logoImg);
+    // Criar logo no topo
+    const logoContainer = document.createElement('div');
+    logoContainer.style.display = 'flex';
+    logoContainer.style.justifyContent = 'center';
+    logoContainer.style.marginBottom = '40px';
+
+    const logoImg = document.createElement('img');
+    logoImg.src = 'https://i.ibb.co/TxQQRg6P/MB-PARTS-Logo-horizontal.png'; // Verifique o caminho do logo
+    logoImg.alt = 'Logo';
+    logoImg.style.height = '35px';
+    logoImg.style.width = 'auto';
+
+    console.log("Logo sendo adicionado");
+
+    logoContainer.appendChild(logoImg);
+    cartPopupContent.appendChild(logoContainer); // Adiciona o logo ao conteúdo
         
         const totalElement = document.createElement('div');
         totalElement.classList.add('cart-total');
