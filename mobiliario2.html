@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Móveis Clássicos</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Menu */
+        header {
+            background-color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            font-size: 18px;
+            color: #333;
+        }
+
+        nav ul li:hover {
+            color: #b38b6d; /* Dourado */
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background: url('https://via.placeholder.com/1920x800') center/cover no-repeat;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #b38b6d;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #a47e5f;
+        }
+
+        /* Products Section */
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 50px;
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+
+        .product-card p {
+            font-size: 18px;
+            color: #b38b6d;
+            margin-bottom: 15px;
+        }
+
+        .buy-button {
+            background-color: #b38b6d;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #a47e5f;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: #333;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .testimonials p {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        footer .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer .footer-content div {
+            width: 30%;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        footer ul li:hover {
+            color: #b38b6d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Produtos</li>
+                <li>Sobre</li>
+                <li>Contato</li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Seu Lar, Seu Estilo</h1>
+            <p>Transforme seu ambiente com móveis de qualidade e design exclusivo</p>
+            <button class="cta-button">Descubra a Coleção</button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/280x200" alt="Produto 1">
+            <h3>Sofá Clássico</h3>
+            <p>₣ 2.500</p>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/280x200" alt="Produto 2">
+            <h3>Poltrona Elegante</h3>
+            <p>₣ 1.800</p>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/280x200" alt="Produto 3">
+            <h3>Mesa de Jantar</h3>
+            <p>₣ 3.200</p>
+            <button class="buy-button">Comprar</button>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>O que nossos clientes dizem</h2>
+        <p>"A experiência de compra foi incrível! A qualidade dos móveis é excepcional. Recomendo a todos!"</p>
+        <p>- João da Silva</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Sobre Nós</h3>
+                <p>Somos uma loja especializada em móveis clássicos e de luxo para transformar sua casa.</p>
+            </div>
+            <div>
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li>Política de Privacidade</li>
+                    <li>Termos de Serviço</li>
+                    <li>Ajuda</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contato</h3>
+                <ul>
+                    <li>Telefone: (XX) XXXX-XXXX</li>
+                    <li>Email: contato@lojamoveis.com</li>
+                    <li>Endereço: Rua Exemplo, 123</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
