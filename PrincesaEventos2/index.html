@@ -88,6 +88,37 @@ h1.display-2 {
     font-family: 'Arial', sans-serif; /* Fonte normal (ou outra que preferir) */
     font-size: 16px; /* Tamanho do texto padrão */
     color: black; /* Cor do texto */
+
+
+
+            /*** Footer Start ***/
+.footer {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/footer-bg.jpg) center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.footer .footer-item a.btn-link,
+.footer .footer-item p {
+    line-height: 35px;
+    font-size: 17px;
+    color: var(--bs-light);
+    transition: 0.5s;
+}
+
+.footer .footer-item a.btn-link:hover {
+    color: var(--bs-primary);
+    letter-spacing: 2px;
+}
+
+@media (max-width: 992px) {
+    .footer .text-start,
+    .footer .text-center,
+    .footer .text-end {
+        text-align: center !important;
+    }
+}
+/*** Footer End ***/
      </style>
     
 </head>
@@ -662,75 +693,49 @@ h1.display-2 {
     </section>
     <!-- ##### Contact Area End ##### -->
 
-    <!-- ##### Footer Area Start ##### -->
-<footer class="footer-area">
-    <div class="container">
-        <div class="row">
-
-            <!-- Footer Logo & About -->
-            <div class="col-12 col-lg-4">
-                <div class="footer-widget-area mt-50">
-                    <a href="#" class="d-block mb-4"><img src="img/core-img/logo.png" alt=""></a>
-                    <p>Oferecemos um salão de eventos versátil e elegante para casamentos, festas e eventos corporativos. Qualidade, conforto e sofisticação para tornar seus momentos inesquecíveis.</p>
-                    <p><strong>Endereço:</strong> Rua Exemplo, 123 – Cidade, País<br>
-                    <strong>Telefone:</strong> (00) 1234-5678<br>
-                    <strong>Email:</strong> contato@princesaeventos.com</p>
+<!-- Footer Start -->
+<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5 justify-content-center">
+            <div class="col-lg-4 text-start">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Links</h4>
+                    <a href="#" class="btn-link"> Sobre Nós</a>
+                    <a href="#" class="btn-link"> Galeria</a>
+                    <a href="#" class="btn-link"> Nossa História</a>
+                    <a href="#" class="btn-link"> Linha do Tempo</a>
+                    <a href="#" class="btn-link"> RSVP</a>
+                    <a href="#" class="btn-link"> Fale Conosco</a>
+                    <a href="#" class="btn-link"> Data do Evento</a>
                 </div>
             </div>
-
-            <!-- Links Rápidos -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="footer-widget-area mt-50">
-                    <h6 class="widget-title mb-4">Navegação</h6>
-                    <ul class="footer-nav">
-                        <li><a href="#">Início</a></li>
-                        <li><a href="#">Sobre Nós</a></li>
-                        <li><a href="#">Serviços</a></li>
-                        <li><a href="#">Galeria</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
+            <div class="col-lg-4 text-center">
+                <div class="footer-item">
+                    <h4 class="mb-4 text-white">Princesa Eventos<strong class="text-primary">&</strong>Serviços</h4>
+                    <p class="text-white">O nosso salão foi pensado para ser o cenário perfeito, onde cada detalhe é cuidadosamente planejado para transformar o seu sonho em realidade. Seja para celebrar o amor, as conquistas ou os momentos especiais da vida, estamos aqui para proporcionar uma experiência incomparável. Cada festa, cada evento, cada sorriso que nasce aqui, é um reflexo da nossa paixão em fazer do seu momento algo inesquecível. Venha viver a magia conosco e deixar que sua história seja eternizada no nosso espaço.</p>
+                    <div class="btn-link d-flex justify-content-center">
+                        <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-0"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Redes Sociais -->
-            <div class="col-12 col-md-6 col-lg-2">
-                <div class="footer-widget-area mt-50">
-                    <h6 class="widget-title mb-4">Redes Sociais</h6>
-                    <ul class="footer-nav">
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">WhatsApp</a></li>
-                        <li><a href="#">YouTube</a></li>
-                    </ul>
+            <div class="col-lg-4 text-end">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Siga-nos</h4>
+                    <a href="#" class="btn-link"> Facebook</a>
+                    <a href="#" class="btn-link"> Instagram</a>
+                    <a href="#" class="btn-link"> Twitter</a>
+                    <h4 class="my-4 text-white">Fale Conosco</h4>
+                    <a href="#" class="btn-link"><i class="fas fa-envelope text-secondary me-2"></i> agenda@princesaeventos.com</a>
+                    <a href="#" class="btn-link"><i class="fas fa-phone text-secondary me-2"></i> (+258) 852136558</a>
                 </div>
             </div>
-
-            <!-- Newsletter -->
-            <div class="col-12 col-lg-3">
-                <div class="footer-widget-area mt-50">
-                    <h6 class="widget-title mb-4">Assine nossa newsletter</h6>
-                    <form action="#" method="post" class="subscribe-form">
-                        <input type="email" name="subscribe-email" id="subscribeemail" placeholder="Seu e-mail">
-                        <button type="submit">Assinar</button>
-                    </form>
-                    <small>Receba novidades, promoções e dicas para seus eventos diretamente no seu e-mail.</small>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="col-12">
-                <div class="copywrite-text mt-40 text-center">
-                    <p>
-                        &copy; <script>document.write(new Date().getFullYear());</script> Princesa Eventos. Todos os direitos reservados. Desenvolvido com ❤️ por <a href="https://colorlib.com" target="_blank">Colorlib</a>.
-                    </p>
-                </div>
-            </div>
-
         </div>
     </div>
-</footer>
-<!-- ##### Footer Area End ##### -->
-
+</div>
+<!-- Footer End -->
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
