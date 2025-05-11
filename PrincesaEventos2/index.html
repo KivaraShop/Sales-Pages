@@ -17,6 +17,65 @@
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        /*** Gallery Start ***/
+.gallery .gallery-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery .gallery-img .hover-style {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 1s;
+}
+
+.gallery .gallery-img:hover .hover-style {
+    width: auto;
+    height: auto;
+    border: 600px solid rgba(255, 255, 255, 0.3);
+    opacity: 1;
+}
+
+.gallery .gallery-img img {
+    transition: 0.5s;
+}
+
+.gallery .gallery-img:hover img {
+    transform: scale(1.3);
+}
+
+.gallery .gallery-item .gallery-overlay {
+    transition: 0.5s;
+}
+
+.gallery .gallery-item:hover .gallery-overlay {
+    background: transparent !important;
+    border: 0 !important;
+}
+
+.gallery .gallery-img .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+    opacity: 0;
+    z-index: 2;
+}
+
+.gallery .gallery-img:hover .search-icon {
+    opacity: 1;
+}
+/*** Gallery End ***/
+
+ </style>
+
+     </style>
 </head>
 
 <body>
