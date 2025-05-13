@@ -803,9 +803,10 @@ h1.display-2 {
                                 </div>
                             </div>
                             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-                                 <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" onclick="mostrarMensagem()">
-      Agendar Agora
-    </button>
+                       <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" onclick="mostrarMensagem(event)">
+  Agendar Agora
+</button>
+
 
                           <!-- Mensagem  de confirmação -->
     <div id="mensagem-confirmacao" class="alert alert-success shadow-lg rounded mt-4" role="alert">
@@ -934,11 +935,14 @@ h1.display-2 {
 <!-- Footer End -->
 
   <script>
-    function mostrarMensagem() {
-      const mensagem = document.getElementById('mensagem-confirmacao');
-      mensagem.style.display = 'block';
-      window.scrollTo({ top: mensagem.offsetTop - 100, behavior: 'smooth' });
-    }
+  function mostrarMensagem(event) {
+  event.preventDefault(); // Impede recarregamento ou scroll automático
+
+  const mensagem = document.getElementById('mensagem-confirmacao');
+  mensagem.style.display = 'block';
+  window.scrollTo({ top: mensagem.offsetTop - 100, behavior: 'smooth' });
+}
+
   </script>
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
