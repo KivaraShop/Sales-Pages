@@ -934,22 +934,24 @@ h1.display-2 {
 <!-- Footer End -->
 
   <script>
-  function mostrarMensagem() {
-    const mensagem = document.getElementById('mensagem-confirmacao');
+function mostrarMensagem() {
+  const mensagem = document.getElementById('mensagem-confirmacao');
 
-    if (mensagem.style.display !== 'block') {
-      mensagem.style.display = 'block';
-    }
+  // Mostrar a mensagem
+  mensagem.style.display = 'block';
 
-    // Corrige a posição para parar um pouco acima da mensagem
-    const offsetTop = mensagem.getBoundingClientRect().top + window.scrollY;
-    const paddingOffset = 100; // ajustável
+  // Calcular posição para centralizar verticalmente
+  const mensagemTop = mensagem.getBoundingClientRect().top + window.scrollY;
+  const mensagemAltura = mensagem.offsetHeight;
+  const viewportAltura = window.innerHeight;
 
-    window.scrollTo({
-      top: offsetTop - paddingOffset,
-      behavior: 'smooth'
-    });
-  }
+  const scrollPara = mensagemTop - (viewportAltura / 2) + (mensagemAltura / 2);
+
+  window.scrollTo({
+    top: scrollPara,
+    behavior: 'smooth'
+  });
+}
   </script>
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
