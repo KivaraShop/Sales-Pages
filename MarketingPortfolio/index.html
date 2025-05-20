@@ -27,13 +27,64 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+ <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .video {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 10px;
+    }
+
+    .video iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+      }
+
+      .video iframe {
+        height: 450px;
+      }
+    }
+  </style>
 </head>
 
 <body class="index-page">
@@ -103,6 +154,33 @@
 
     </section><!-- /Hero Section -->
 
+
+    <header>
+    <h1>Marketing Highlights</h1>
+    <p>Creative. Viral. Effective.</p>
+  </header>
+
+  <section class="gallery">
+    <div class="video">
+      <iframe src="https://www.tiktok.com/embed/7416039686587665670" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+    <div class="video">
+      <iframe src="https://www.tiktok.com/embed/7476589462055685381" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+    <div class="video">
+      <iframe src="https://www.tiktok.com/embed/7403982507034709254" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+    <!-- Add more videos here -->
+        <div class="video">
+      <iframe src="https://www.tiktok.com/embed/7485686187726802182" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+    <div class="video">
+      <iframe src="https://www.tiktok.com/embed/7413370960901950726" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+    <div class="video">
+      <iframe src="https://www.tiktok.com/embed/7365806469024845062" width="325" height="580" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+  </section>
     <!-- About Section -->
     <section id="about" class="about section">
 
