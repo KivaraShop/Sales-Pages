@@ -582,45 +582,58 @@ header .cart-icon.pulse {
                 font-size: 1.0em;
             }
 
-            @media (max-width: 768px) {
+        @media (max-width: 768px) {
   .product-grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 12px;
     padding: 10px;
   }
 
   .product-card {
-    padding: 8px;
-    max-height: 320px;
-    font-size: 0.9em;
+    padding: 6px;
+    border-radius: 8px;
+    max-height: none;
+    height: auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
   .product-card img {
-    height: 120px;
+    height: 100px;
     object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 6px;
   }
 
   .product-card h3 {
-    font-size: 1em;
-    max-height: 2.2em;
+    font-size: 0.95em;
+    max-height: 2em;
+    overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
   }
 
   .product-card p {
-    font-size: 0.9em;
-    max-height: 2.2em;
+    font-size: 0.85em;
+    max-height: 2em;
+    overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
   }
 
   .product-card .price {
-    font-size: 1em;
+    font-size: 0.95em;
+    margin-bottom: 6px;
   }
 
   .product-card .cta-button {
-    font-size: 0.95em;
-    padding: 6px 10px;
+    font-size: 0.9em;
+    padding: 6px 8px;
   }
 }
+
 
     </style>
 </head>
