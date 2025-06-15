@@ -582,58 +582,66 @@ header .cart-icon.pulse {
                 font-size: 1.0em;
             }
 
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
   .product-grid {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    padding: 10px;
+    gap: 8px;
+    padding: 8px;
   }
 
   .product-card {
     padding: 6px;
     border-radius: 8px;
-    max-height: none;
-    height: auto;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 160px;    /* largura pequena */
+    height: 220px;       /* altura pequena */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
   }
 
   .product-card img {
-    height: 100px;
+    width: 100%;
+    height: 110px;       /* altura da imagem reduzida */
     object-fit: cover;
     border-radius: 6px;
     margin-bottom: 6px;
   }
 
   .product-card h3 {
-    font-size: 0.95em;
-    max-height: 2em;
-    overflow: hidden;
+    font-size: 0.85em;
+    margin: 0 0 4px 0;
+    line-height: 1.1em;
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 4px;
   }
 
   .product-card p {
-    font-size: 0.85em;
-    max-height: 2em;
+    font-size: 0.75em;
+    margin: 0 0 6px 0;
+    color: #555;
+    line-height: 1.1em;
+    height: 30px;       /* limita altura do texto */
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    margin-bottom: 6px;
   }
 
   .product-card .price {
-    font-size: 0.95em;
+    font-size: 0.85em;
+    color: #ff5e00;
+    font-weight: bold;
     margin-bottom: 6px;
   }
 
   .product-card .cta-button {
-    font-size: 0.9em;
-    padding: 6px 8px;
+    font-size: 0.8em;
+    padding: 5px;
+    border-radius: 5px;
   }
 }
-
 
     </style>
 </head>
