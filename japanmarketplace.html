@@ -529,11 +529,6 @@ header .cart-icon.pulse {
     gap: 10px;
   }
 
-     .cart-popup, /* ou o seletor do seu cart */
-  .cart-icon {
-    display: none !important;
-  }
-}
   .product-grid {
     grid-template-columns: 1fr !important;
     gap: 10px;
@@ -619,6 +614,12 @@ header .cart-icon.pulse {
   }
 }
 
+@media (max-width: 768px) {
+  .cart-popup, /* ou o seletor do seu cart */
+  .cart-icon {
+    display: none !important;
+  }
+}
 
 
     </style>
