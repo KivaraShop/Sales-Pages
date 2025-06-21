@@ -7,149 +7,157 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 
-    <style>
-        body {
-           font-family: 'Noto Sans JP', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(120deg, #ffe6f7, #fff3fc);
-            color: #4a004e;
-            text-align: center;
-        }
-        p {
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
+   <style>
+    body {
+        font-family: 'Noto Sans JP', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(120deg, #ffffff, #f7f9fa);
+        color: #0f1419; /* Twitter default text color */
+        text-align: center;
+    }
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
 
-        header h1 {
-            font-size: 28px;
-            font-weight: bold;
-            color: #d63384;
-        }
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-        header p {
-            font-size: 16px;
-            color: #5c005c;
-            margin: 10px 0 30px;
-        }
+    header h1 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #1DA1F2; /* Twitter blue */
+    }
 
-        .product-mockup img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
+    header p {
+        font-size: 16px;
+        color: #536471; /* Twitter secondary text */
+        margin: 10px 0 30px;
+    }
 
-        .product-description {
-            text-align: left;
-            margin-bottom: 30px;
-        }
+    .product-mockup img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
 
-        .product-description h2 {
-            font-size: 20px;
-            color: #d63384;
-            margin-bottom: 10px;
-        }
+    .product-description {
+        text-align: left;
+        margin-bottom: 30px;
+    }
 
-        .product-description p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #4a004e;
-        }
+    .product-description h2 {
+        font-size: 20px;
+        color: #1DA1F2;
+        margin-bottom: 10px;
+    }
 
-        .trust-badges {
-            margin: 30px 0;
-        }
+    .product-description p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #0f1419;
+    }
 
-        .trust-badges img {
-            width: 100%;
-            max-width: 250px;
-            margin: 10px 0;
-        }
+    .trust-badges {
+        margin: 30px 0;
+    }
 
-        .cta-button {
-            display: block;
-            background: linear-gradient(90deg, #ff66b2, #ff0099);
-            color: white;
-            font-size: 20px;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 30px;
-            margin: 30px auto;
-            box-shadow: 0 4px 15px rgba(255, 51, 153, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-            max-width: 300px;
-        }
+    .trust-badges img {
+        width: 100%;
+        max-width: 250px;
+        margin: 10px 0;
+    }
 
-        .cta-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 51, 153, 0.8);
-        }
+    .cta-button {
+        display: block;
+        background: linear-gradient(90deg, #1DA1F2, #0d8de0);
+        color: white;
+        font-size: 20px;
+        padding: 15px 40px;
+        text-decoration: none;
+        border-radius: 30px;
+        margin: 30px auto;
+        box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
+        transition: transform 0.3s, box-shadow 0.3s;
+        max-width: 300px;
+    }
 
-        footer {
-            margin-top: 40px;
-            font-size: 12px;
-            color: #660066;
-        }
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(29, 161, 242, 0.6);
+    }
 
+    footer {
+        margin-top: 40px;
+        font-size: 12px;
+        color: #536471;
+    }
 
-          .testimonial-wrapper {
-    background-color: #F3F6F9;
-    border-radius: 12px;
-    padding: 20px;
-    max-width: 600px;
-    margin: 30px auto 0;
-    font-family: 'Noto Sans JP', sans-serif;
-    color: #333;
-  }
-  .testimonial-slide {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-  .testimonial-slide img {
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    object-fit: cover;
-    flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .testimonial-text {
-    flex: 1;
-  }
-  .testimonial-name {
-    margin-top: 6px;
-    font-size: 13px;
-    color: gray;
-  }
-  .tns-nav {
-    text-align: center;
-    margin-top: 15px;
-  }
-  .tns-nav button {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    margin: 0 6px;
-    background-color: #ccc;
-    opacity: 0.7;
-    transition: background-color 0.3s, opacity 0.3s;
-  }
-  .tns-nav button.tns-nav-active {
-    background-color: #d63384;
-    opacity: 1;
-  }
-    </style>
+    .testimonial-wrapper {
+        background-color: #f7f9fa;
+        border-radius: 12px;
+        padding: 20px;
+        max-width: 600px;
+        margin: 30px auto 0;
+        font-family: 'Noto Sans JP', sans-serif;
+        color: #0f1419;
+    }
+
+    .testimonial-slide {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .testimonial-slide img {
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .testimonial-text {
+        flex: 1;
+    }
+
+    .testimonial-name {
+        margin-top: 6px;
+        font-size: 13px;
+        color: gray;
+    }
+
+    .tns-nav {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .tns-nav button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        margin: 0 6px;
+        background-color: #ccc;
+        opacity: 0.7;
+        transition: background-color 0.3s, opacity 0.3s;
+    }
+
+    .tns-nav button.tns-nav-active {
+        background-color: #1DA1F2;
+        opacity: 1;
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
