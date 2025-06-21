@@ -475,21 +475,21 @@
 
 <!-- Botão para abrir o popup -->
 <!-- Botão para abrir o popup -->
-<button onclick="document.getElementById('contactPopup').style.display='flex'" style="background-color: #1DA1F2; color: white; padding: 10px 25px; border: none; border-radius: 25px; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;">
-  お問い合わせ
-</button>
+<p style="text-align: center; margin-top: 30px; font-size: 14px; color: #657786; cursor: pointer; text-decoration: underline;"
+   onclick="document.getElementById('contactPopup').style.display='flex'">
+  お問い合わせはこちら
+</p>
 
-
-<!-- POPUP -->
+<!-- Formulário popup -->
 <div id="contactPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 20, 25, 0.5); justify-content: center; align-items: center; z-index: 9999; font-family: 'Noto Sans JP', sans-serif;">
   <div style="background: #ffffff; padding: 30px 25px; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); position: relative;">
-
+    
     <!-- Botão fechar -->
-    <button onclick="document.getElementById('contactPopup').style.display='none'" style="position: absolute; top: 12px; right: 15px; background: none; border: none; font-size: 20px; color: #657786; cursor: pointer;">✕</button>
+    <button onclick="closePopup()" style="position: absolute; top: 12px; right: 15px; background: none; border: none; font-size: 20px; color: #657786; cursor: pointer;">✕</button>
 
     <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 20px; color: #0f1419;">ご質問・ご相談はこちら</h3>
 
-    <form action="https://formsubmit.co/info@kivara.shop" method="POST">
+    <form id="contactForm" style="display: flex; flex-direction: column;" >
       <input type="text" name="name" placeholder="お名前" required
         style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px; box-sizing: border-box;">
 
@@ -499,9 +499,7 @@
       <textarea name="message" placeholder="メッセージを入力してください" required
         style="width: 100%; padding: 12px; height: 120px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px; resize: vertical; box-sizing: border-box;"></textarea>
 
-      <!-- Configurações extras -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://kivara.shop/obrigado.html">
+      <!-- Esses campos serão adicionados via JS -->
 
       <button type="submit" style="background-color: #1DA1F2; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-size: 16px; margin-top: 15px; width: 100%; cursor: pointer;">
         送信する
@@ -509,6 +507,71 @@
     </form>
   </div>
 </div>
+
+<!-- Popup de confirmação -->
+<div id="thankYouPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 20, 25, 0.5); justify-content: center; align-items: center; z-index: 10000; font-family: 'Noto Sans JP', sans-serif;">
+  <div style="background: #ffffff; padding: 30px 25px; border-radius: 12px; width: 90%; max-width: 350px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); text-align: center;">
+    <div style="font-size: 48px; color: #1DA1F2; margin-bottom: 15px;">✓</div>
+    <h3 style="margin-bottom: 10px; color: #0f1419;">メッセージを受け取りました！</h3>
+    <p style="color: #536471; font-size: 16px;">ご連絡ありがとうございます。できるだけ早く返信いたします。</p>
+  </div>
+</div>
+
+<script>
+  function closePopup() {
+    document.getElementById('contactPopup').style.display = 'none';
+  }
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Adiciona campos extras necessários para FormSubmit
+    const form = e.target;
+    if (!form.querySelector('input[name="_captcha"]')) {
+      let captchaInput = document.createElement('input');
+      captchaInput.type = 'hidden';
+      captchaInput.name = '_captcha';
+      captchaInput.value = 'false';
+      form.appendChild(captchaInput);
+    }
+    if (!form.querySelector('input[name="_next"]')) {
+      let nextInput = document.createElement('input');
+      nextInput.type = 'hidden';
+      nextInput.name = '_next';
+      nextInput.value = window.location.href; // Não redireciona, fica na mesma página
+      form.appendChild(nextInput);
+    }
+
+    // Envia via fetch
+    fetch('https://formsubmit.co/ajax/eugenioalbertocumbane02@gmail.com', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        // Fecha o form popup
+        closePopup();
+
+        // Mostra o popup de agradecimento
+        const thankYou = document.getElementById('thankYouPopup');
+        thankYou.style.display = 'flex';
+
+        // Fecha o popup de agradecimento após 4 segundos
+        setTimeout(() => {
+          thankYou.style.display = 'none';
+        }, 4000);
+
+        // Limpa o formulário
+        form.reset();
+      } else {
+        alert("送信中にエラーが発生しました。もう一度お試しください。");
+      }
+    }).catch(() => {
+      alert("送信中にエラーが発生しました。もう一度お試しください。");
+    });
+  });
+</script>
+
 
         
     <!-- Script para Expandir FAQ -->
