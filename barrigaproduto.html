@@ -156,6 +156,94 @@
         background-color: #1DA1F2;
         opacity: 1;
     }
+
+
+
+    /* Estilo do container principal */
+.price-wishlist-table {
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Estilo da tabela */
+.price-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #e6f2fb; /* soft blue background */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 10px;
+}
+
+/* Células da tabela */
+.wishlist-cell,
+.price-cell {
+    padding: 10px 15px;
+    vertical-align: middle;
+    position: relative;
+}
+
+/* Estilo do botão de lista de desejos */
+.wishlist-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo do coração */
+.heart {
+    font-size: 20px;
+    color: #657786; /* Twitter's muted icon color */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Estilo da mensagem "Adorei!" */
+.wishlist-message {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1DA1F2; /* Twitter blue for highlight */
+    position: absolute;
+    top: -30px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.wishlist-message.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Animação de bolhas */
+.heart.bubble {
+    animation: bubble-animation 0.5s ease;
+}
+
+@keyframes bubble-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Estilo do preço */
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0f1419; /* Twitter primary text color */
+}
+
 </style>
 
 
@@ -189,93 +277,6 @@
         </tr>
     </table>
 </div>
-
-<style>
-    /* Estilo do container principal */
-    .price-wishlist-table {
-        width: 100%;
-        margin: 20px auto;
-        text-align: center;
-    }
-
-    /* Estilo da tabela */
-    .price-table {
-        margin: 0 auto;
-        border-collapse: collapse;
-        background: #ffe6f7;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-    }
-
-    /* Células da tabela */
-    .wishlist-cell,
-    .price-cell {
-        padding: 10px 15px;
-        vertical-align: middle;
-        position: relative;
-    }
-
-    /* Estilo do botão de lista de desejos */
-    .wishlist-btn {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-    }
-
-    /* Estilo do coração */
-    .heart {
-        font-size: 20px;
-        color: gray;
-        transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    /* Estilo da mensagem "Adorei!" */
-    .wishlist-message {
-        font-size: 14px;
-        font-weight: bold;
-        color: #ff66b2;
-        position: absolute;
-        top: -30px;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        opacity: 0;
-        transform: scale(0.5);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .wishlist-message.show {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    /* Animação de bolhas */
-    .heart.bubble {
-        animation: bubble-animation 0.5s ease;
-    }
-
-    @keyframes bubble-animation {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.5);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    /* Estilo do preço */
-    .product-price {
-        font-size: 18px;
-        font-weight: bold;
-        color: #4a004e;
-    }
-</style>
 
 <script>
     // Função para alternar o estado do coração com animação e mostrar "Adorei!"
