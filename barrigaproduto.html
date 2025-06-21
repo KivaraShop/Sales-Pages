@@ -468,6 +468,37 @@
 </div>
 
 
+<!-- Botão para abrir o popup -->
+<button onclick="document.getElementById('contactPopup').style.display='flex'" style="background-color: #1DA1F2; color: white; padding: 10px 25px; border: none; border-radius: 25px; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;">
+  お問い合わせ
+</button>
+
+<!-- POPUP -->
+<div id="contactPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 20, 25, 0.5); justify-content: center; align-items: center; z-index: 9999; font-family: 'Noto Sans JP', sans-serif;">
+  <div style="background: #ffffff; padding: 30px 25px; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); position: relative;">
+
+    <!-- Botão fechar -->
+    <button onclick="document.getElementById('contactPopup').style.display='none'" style="position: absolute; top: 12px; right: 15px; background: none; border: none; font-size: 20px; color: #657786; cursor: pointer;">✕</button>
+
+    <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 20px; color: #0f1419;">ご質問・ご相談はこちら</h3>
+
+    <form action="https://formsubmit.co/info@kivara.shop" method="POST">
+      <input type="text" name="name" placeholder="お名前" required style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px;">
+      
+      <input type="email" name="email" placeholder="メールアドレス" required style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px;">
+      
+      <textarea name="message" placeholder="メッセージを入力してください" required style="width: 100%; padding: 12px; height: 120px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px; resize: vertical;"></textarea>
+      
+      <!-- Configurações extras -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://kivara.shop/obrigado.html">
+
+      <button type="submit" style="background-color: #1DA1F2; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-size: 16px; margin-top: 15px; width: 100%; cursor: pointer;">
+        送信する
+      </button>
+    </form>
+  </div>
+</div>
 
         
     <!-- Script para Expandir FAQ -->
