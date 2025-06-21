@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English For Japanese Professionals</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+
     <style>
         body {
            font-family: 'Noto Sans JP', sans-serif;
@@ -95,6 +97,58 @@
             font-size: 12px;
             color: #660066;
         }
+
+
+          .testimonial-wrapper {
+    background-color: #F3F6F9;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 30px auto 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #333;
+  }
+  .testimonial-slide {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .testimonial-slide img {
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .testimonial-text {
+    flex: 1;
+  }
+  .testimonial-name {
+    margin-top: 6px;
+    font-size: 13px;
+    color: gray;
+  }
+  .tns-nav {
+    text-align: center;
+    margin-top: 15px;
+  }
+  .tns-nav button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 6px;
+    background-color: #ccc;
+    opacity: 0.7;
+    transition: background-color 0.3s, opacity 0.3s;
+  }
+  .tns-nav button.tns-nav-active {
+    background-color: #d63384;
+    opacity: 1;
+  }
     </style>
 </head>
 <body>
@@ -300,11 +354,26 @@
     }
 </style>
             
-<div style="background-color:#F3F6F9; padding:15px; border-radius:8px; margin-top:30px; font-size:14px;">
-  <strong>お客様の声：</strong><br>
-  「仕事で英語のメールを書くのが楽になりました！必要な表現だけがまとまっていて助かります。」<br>
-  <span style="font-size:13px; color:gray;">ー 山田真由美（営業職）</span>
+<div class="testimonial-wrapper">
+  <strong>お客様の声：</strong>
+  <div class="my-slider">
+    <div class="testimonial-slide">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="山田真由美">
+      <div class="testimonial-text">
+        「仕事で英語のメールを書くのが楽になりました！必要な表現だけがまとまっていて助かります。」
+        <div class="testimonial-name">ー 山田真由美（営業職）</div>
+      </div>
+    </div>
+    <div class="testimonial-slide">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="佐藤あかり">
+      <div class="testimonial-text">
+        「このガイドのおかげで、自信を持って英語で話せるようになりました。おすすめです！」
+        <div class="testimonial-name">ー 佐藤あかり（マーケティング担当）</div>
+      </div>
+    </div>
+  </div>
 </div>
+
 
             <p style="color:red; font-size:13px; margin-bottom:10px;">
 ※6月末までの特別価格です。お早めにどうぞ！
@@ -388,3 +457,20 @@
             }
         }
     </script>
+
+            <!-- Tiny Slider JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+<script>
+  var slider = tns({
+    container: '.my-slider',
+    items: 1,
+    slideBy: 'page',
+    autoplay: true,
+    controls: false,
+    nav: true,
+    autoplayButtonOutput: false,
+    speed: 400,
+    autoplayTimeout: 7000,
+    mouseDrag: true,
+  });
+</script>
