@@ -469,6 +469,7 @@
 
 
 <!-- Botão para abrir o popup -->
+<!-- Botão para abrir o popup -->
 <button onclick="document.getElementById('contactPopup').style.display='flex'" style="background-color: #1DA1F2; color: white; padding: 10px 25px; border: none; border-radius: 25px; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;">
   お問い合わせ
 </button>
@@ -483,12 +484,15 @@
     <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 20px; color: #0f1419;">ご質問・ご相談はこちら</h3>
 
     <form action="https://formsubmit.co/info@kivara.shop" method="POST">
-      <input type="text" name="name" placeholder="お名前" required style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px;">
-      
-      <input type="email" name="email" placeholder="メールアドレス" required style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px;">
-      
-      <textarea name="message" placeholder="メッセージを入力してください" required style="width: 100%; padding: 12px; height: 120px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px; resize: vertical;"></textarea>
-      
+      <input type="text" name="name" placeholder="お名前" required
+        style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px; box-sizing: border-box;">
+
+      <input type="email" name="email" placeholder="メールアドレス" required
+        style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px; box-sizing: border-box;">
+
+      <textarea name="message" placeholder="メッセージを入力してください" required
+        style="width: 100%; padding: 12px; height: 120px; border-radius: 8px; border: 1px solid #ccd6dd; font-size: 14px; resize: vertical; box-sizing: border-box;"></textarea>
+
       <!-- Configurações extras -->
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://kivara.shop/obrigado.html">
