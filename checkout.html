@@ -138,12 +138,18 @@
 
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=JPY"></script>
 <script>
+    // Get the price text from the page
+    const priceText = document.querySelector('.price').textContent;  // "合計: ¥1,800"
+
+    // Extract the numeric part (remove non-digit and non-dot chars)
+    const priceNumber = priceText.replace(/[^\d.]/g, '');  // "1800"
+
     paypal.Buttons({
         createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '2400'
+                        value: priceNumber  // dynamically set price here
                     }
                 }]
             });
