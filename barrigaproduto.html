@@ -631,11 +631,11 @@
 </script>
             
             
-         <script>
+       <script>
   const images = [
     "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",     // 1ª imagem
     "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",           // 2ª imagem
-    "https://i.ibb.co/M5P9KYf3/jap-Cover.png"      // 3ª imagem
+    "https://i.ibb.co/M5P9KYf3/jap-Cover.png"               // 3ª imagem (substituída)
   ];
 
   let index = 0;
@@ -645,13 +645,13 @@
     // Fade-out
     imgElement.style.opacity = 0;
 
-    // Espera a opacidade sumir antes de trocar a imagem
+    // Espera o fade-out antes de trocar a imagem
     setTimeout(() => {
       index = (index + 1) % images.length;
       imgElement.src = images[index];
 
       // Fade-in
       imgElement.style.opacity = 1;
-    }, 800); // mesmo tempo do transition (0.8s = 800ms)
-  }, 3000);
+    }, 800); // tempo de transição
+  }, 3000); // troca a cada 3 segundos
 </script>
