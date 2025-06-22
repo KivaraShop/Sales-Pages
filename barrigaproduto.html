@@ -608,3 +608,37 @@
     imgElement.src = images[index];
   }, 3000); // troca a cada 3 segundos
 </script>
+
+
+            <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Lista de URLs dos GIFs que você quer forçar carregar
+    const gifList = [
+      "https://i.ibb.co/35BWW8Cw/Create-a-commercial-202506221404-e9d5c-ezgif-com-video-to-gif-converter.gif"
+      // Adicione mais GIFs aqui se quiser
+    ];
+
+    let loadedGifs = 0;
+
+    gifList.forEach((gifURL) => {
+      const aggressivePreload = new Image();
+      aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+      aggressivePreload.onload = () => {
+        loadedGifs++;
+        console.log(`✅ GIF carregado: ${gifURL}`);
+      };
+
+      aggressivePreload.onerror = () => {
+        loadedGifs++;
+        console.warn(`⚠️ Erro ao carregar o GIF: ${gifURL}`);
+      };
+
+      // Se o GIF já estiver visível na página, força atualização do src também
+      const matchingImgs = document.querySelectorAll(`img[src*="${gifURL.split('/').pop().split('?')[0]}"]`);
+      matchingImgs.forEach(img => {
+        img.src = gifURL + `?refresh=${Math.random()}`;
+      });
+    });
+  });
+</script>
