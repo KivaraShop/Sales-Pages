@@ -261,7 +261,7 @@
 <div class="product-mockup">
   <img id="mockupImage" 
        src="https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png" 
-       alt="Mockup do Produto">
+       alt="Mockup do Produto" style="transition: opacity 0.8s ease-in-out; opacity: 1;">
 </div>
 <!-- Container do preço e lista de desejos -->
 <div class="price-wishlist-table">
@@ -631,7 +631,7 @@
 </script>
             
             
-            <script>
+         <script>
   const images = [
     "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",     // 1ª imagem
     "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",           // 2ª imagem
@@ -642,7 +642,16 @@
   const imgElement = document.getElementById('mockupImage');
 
   setInterval(() => {
-    index = (index + 1) % images.length;
-    imgElement.src = images[index];
-  }, 3000); // Troca a cada 3 segundos
+    // Fade-out
+    imgElement.style.opacity = 0;
+
+    // Espera a opacidade sumir antes de trocar a imagem
+    setTimeout(() => {
+      index = (index + 1) % images.length;
+      imgElement.src = images[index];
+
+      // Fade-in
+      imgElement.style.opacity = 1;
+    }, 800); // mesmo tempo do transition (0.8s = 800ms)
+  }, 3000);
 </script>
