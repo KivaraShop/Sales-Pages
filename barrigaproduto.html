@@ -629,11 +629,11 @@
     mouseDrag: true,
   });
 </script>
-            
-<script>
+            <script>
   const images = [
-    "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png", // primeira imagem
-    "https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" // segunda imagem
+    "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",     // 1ª imagem (Japão)
+    "https://i.ibb.co/djKYtmV/IMG-20241116-194443.png",     // 2ª imagem
+    "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png"            // 3ª imagem
   ];
 
   let index = 0;
@@ -642,5 +642,5 @@
   setInterval(() => {
     index = (index + 1) % images.length;
     imgElement.src = images[index];
-  }, 3000); // troca a cada 3 segundos
+  }, 3000); // Troca a cada 3 segundos
 </script>
