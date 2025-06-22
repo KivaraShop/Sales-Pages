@@ -258,9 +258,12 @@
         </header>
 <img alt="Ícone de Certificação" src="https://i.ibb.co/2N8sT3S/IMG-20241106-102247.png" alt="IMG-20241106-102247" border="0" style="; border: none; background: none; width: auto; height: 40px; display: inline-block;"></p>
         <!-- Mockup do Produto -->
-        <div class="product-mockup">
-            <img src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" alt="IMG-20241116-194443" border="0/500x300" alt="Mockup do Produto">
-        </div>
+<div class="product-mockup">
+  <img id="mockupImage" 
+       src="https://i.ibb.co/djKYtmV/IMG-20241116-194443.png" 
+       alt="Mockup do Produto" 
+       width="500" height="300">
+</div>
 <!-- Container do preço e lista de desejos -->
 <div class="price-wishlist-table">
     <table class="price-table">
@@ -626,4 +629,19 @@
     autoplayTimeout: 7000,
     mouseDrag: true,
   });
+</script>
+
+<script>
+  const images = [
+    "https://i.ibb.co/djKYtmV/IMG-20241116-194443.png",
+    "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png"
+  ];
+
+  let index = 0;
+  const imgElement = document.getElementById('mockupImage');
+
+  setInterval(() => {
+    index = (index + 1) % images.length;
+    imgElement.src = images[index];
+  }, 3000); // troca a cada 3 segundos
 </script>
