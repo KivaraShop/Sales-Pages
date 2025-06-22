@@ -513,59 +513,28 @@
 </div>
 
 <script>
+  // Fechar o popup principal
   function closePopup() {
     document.getElementById('contactPopup').style.display = 'none';
   }
 
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+  // Captura o envio do formulário
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // evita envio real
 
-    // Adiciona campos extras necessários para FormSubmit
-    const form = e.target;
-    if (!form.querySelector('input[name="_captcha"]')) {
-      let captchaInput = document.createElement('input');
-      captchaInput.type = 'hidden';
-      captchaInput.name = '_captcha';
-      captchaInput.value = 'false';
-      form.appendChild(captchaInput);
-    }
-    if (!form.querySelector('input[name="_next"]')) {
-      let nextInput = document.createElement('input');
-      nextInput.type = 'hidden';
-      nextInput.name = '_next';
-      nextInput.value = window.location.href; // Não redireciona, fica na mesma página
-      form.appendChild(nextInput);
-    }
+    // Fecha o popup do formulário
+    document.getElementById('contactPopup').style.display = 'none';
 
-    // Envia via fetch
-    fetch('https://formsubmit.co/ajax/eugenioalbertocumbane02@gmail.com', {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        // Fecha o form popup
-        closePopup();
+    // Exibe o popup de agradecimento
+    document.getElementById('thankYouPopup').style.display = 'flex';
 
-        // Mostra o popup de agradecimento
-        const thankYou = document.getElementById('thankYouPopup');
-        thankYou.style.display = 'flex';
-
-        // Fecha o popup de agradecimento após 4 segundos
-        setTimeout(() => {
-          thankYou.style.display = 'none';
-        }, 4000);
-
-        // Limpa o formulário
-        form.reset();
-      } else {
-        alert("送信中にエラーが発生しました。もう一度お試しください。");
-      }
-    }).catch(() => {
-      alert("送信中にエラーが発生しました。もう一度お試しください。");
-    });
+    // Oculta automaticamente após alguns segundos (opcional)
+    setTimeout(() => {
+      document.getElementById('thankYouPopup').style.display = 'none';
+    }, 2000); // 5 segundos
   });
 </script>
+
 
 
 
