@@ -572,13 +572,14 @@
     mouseDrag: true,
   });
 </script>
-            
+        
 
 <script>
   const images = [
     "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",     // 1ª imagem
     "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",           // 2ª imagem
-    "https://i.ibb.co/M5P9KYf3/jap-Cover.png"               // 3ª imagem (nova)
+    "https://i.ibb.co/V0RCV6sy/gifff-2.gif",                // 3ª imagem (novo GIF)
+    "https://i.ibb.co/M5P9KYf3/jap-Cover.png"               // 4ª imagem
   ];
 
   let index = 0;
@@ -586,6 +587,17 @@
 
   setInterval(() => {
     index = (index + 1) % images.length;
-    imgElement.src = images[index];
-  }, 3000); // troca a cada 3 segundos
+
+    const currentImage = images[index];
+    const isGif = currentImage.toLowerCase().endsWith('.gif');
+
+    // Força reload se for GIF para garantir animação
+    if (isGif) {
+      imgElement.src = currentImage + `?reload=${Math.random()}`;
+    } else {
+      imgElement.src = currentImage;
+    }
+  }, 3000);
 </script>
+
+            
