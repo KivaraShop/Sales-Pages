@@ -592,12 +592,12 @@
   });
 </script>
             
- <script>
+<script>
   const images = [
-    "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",
-    "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",
-    "https://i.ibb.co/35BWW8Cw/Create-a-commercial-202506221404-e9d5c-ezgif-com-video-to-gif-converter.gif",
-    "https://i.ibb.co/M5P9KYf3/jap-Cover.png"
+    "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",     // 1ª imagem
+    "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",           // 2ª imagem
+    "https://i.postimg.cc/brrqzT9Y/gifff.gif",               // 3ª imagem (novo GIF)
+    "https://i.ibb.co/M5P9KYf3/jap-Cover.png"               // 4ª imagem
   ];
 
   let index = 0;
@@ -606,7 +606,6 @@
   setInterval(() => {
     index = (index + 1) % images.length;
 
-    // Se for GIF, força atualização
     const currentImage = images[index];
     const isGif = currentImage.toLowerCase().endsWith('.gif');
 
@@ -616,24 +615,4 @@
       imgElement.src = currentImage;
     }
   }, 3000);
-</script>
-
-
-          <script>
-  // Lista de GIFs que você quer forçar o carregamento rápido
-  const gifList = [
-    "https://i.ibb.co/35BWW8Cw/Create-a-commercial-202506221404-e9d5c-ezgif-com-video-to-gif-converter.gif"
-  ];
-
-  // Pré-carregar cada GIF
-  gifList.forEach(gifSrc => {
-    const gif = new Image();
-    gif.src = gifSrc;
-
-    // Força a renderização na memória
-    const dummy = document.createElement('div');
-    dummy.style.display = 'none';
-    dummy.appendChild(gif);
-    document.body.appendChild(dummy);
-  });
 </script>
