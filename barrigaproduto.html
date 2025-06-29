@@ -244,6 +244,97 @@
     color: #0f1419; /* Twitter primary text color */
 }
 
+
+
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+.twitter-testimonials {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.twitter-testimonials strong {
+  font-size: 16px;
+  color: #1da1f2;
+  display: block;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.tweet {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 8px;
+  border-top: 1px solid #e6ecf0;
+}
+
+.tweet:first-of-type {
+  border-top: none;
+}
+
+.tweet img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.tweet-content {
+  flex: 1;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.tweet-name {
+  font-weight: bold;
+  color: #14171a;
+}
+
+.tweet-role {
+  color: #657786;
+  font-size: 14px;
+}
+
+.tweet-text {
+  font-size: 15px;
+  color: #0f1419;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.tweet-meta {
+  font-size: 13px;
+  color: #657786;
+  margin-bottom: 8px;
+}
+
+.tweet-actions {
+  display: flex;
+  gap: 20px;
+  color: #657786;
+  font-size: 14px;
+}
+
+.tweet-actions i {
+  margin-right: 5px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tweet-actions i:hover {
+  color: #1da1f2;
+}
+
 </style>
 
 
@@ -401,7 +492,91 @@
   </div>
 </div>
 
+<div class="twitter-testimonials">
+  <strong>お客様の声：</strong>
 
+  <div class="tweet">
+    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="山田真由美">
+    <div class="tweet-content">
+      <div class="tweet-header">
+        <span class="tweet-name">山田真由美</span>
+        <span class="tweet-role">@営業職 · 6月10日</span>
+      </div>
+      <div class="tweet-text">
+        仕事で英語のメールを書くのが楽になりました！必要な表現だけがまとまっていて助かります。
+      </div>
+      <div class="tweet-meta">午前9:13・2025年6月10日・閲覧 3,254回</div>
+      <div class="tweet-actions">
+        <span><i class="fa-regular fa-comment"></i> 5</span>
+        <span><i class="fa-solid fa-retweet"></i> 12</span>
+        <span><i class="fa-regular fa-heart"></i> 58</span>
+        <span><i class="fa-solid fa-share-from-square"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tweet">
+    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="佐藤あかり">
+    <div class="tweet-content">
+      <div class="tweet-header">
+        <span class="tweet-name">佐藤あかり</span>
+        <span class="tweet-role">@マーケティング · 6月8日</span>
+      </div>
+      <div class="tweet-text">
+        このガイドのおかげで、自信を持って英語で話せるようになりました。おすすめです！
+      </div>
+      <div class="tweet-meta">午後2:47・2025年6月8日・閲覧 4,019回</div>
+      <div class="tweet-actions">
+        <span><i class="fa-regular fa-comment"></i> 3</span>
+        <span><i class="fa-solid fa-retweet"></i> 7</span>
+        <span><i class="fa-regular fa-heart"></i> 34</span>
+        <span><i class="fa-solid fa-share-from-square"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tweet">
+    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="鈴木美咲">
+    <div class="tweet-content">
+      <div class="tweet-header">
+        <span class="tweet-name">鈴木美咲</span>
+        <span class="tweet-role">@学生 · 6月6日</span>
+      </div>
+      <div class="tweet-text">
+        短期間で効果を感じられ、毎日の学習が楽しくなりました。続けて本当に良かったです。
+      </div>
+      <div class="tweet-meta">午後6:20・2025年6月6日・閲覧 2,887回</div>
+      <div class="tweet-actions">
+        <span><i class="fa-regular fa-comment"></i> 6</span>
+        <span><i class="fa-solid fa-retweet"></i> 10</span>
+        <span><i class="fa-regular fa-heart"></i> 41</span>
+        <span><i class="fa-solid fa-share-from-square"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tweet">
+    <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="高橋健太">
+    <div class="tweet-content">
+      <div class="tweet-header">
+        <span class="tweet-name">高橋健太</span>
+        <span class="tweet-role">@営業マネージャー · 6月5日</span>
+      </div>
+      <div class="tweet-text">
+        仕事での英語プレゼンがスムーズになり、周囲からの評価も上がりました。感謝しています。
+      </div>
+      <div class="tweet-meta">午後8:02・2025年6月5日・閲覧 5,128回</div>
+      <div class="tweet-actions">
+        <span><i class="fa-regular fa-comment"></i> 9</span>
+        <span><i class="fa-solid fa-retweet"></i> 14</span>
+        <span><i class="fa-regular fa-heart"></i> 63</span>
+        <span><i class="fa-solid fa-share-from-square"></i></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+            
             <p style="color:red; font-size:13px; margin-bottom:10px;">
 ※6月末までの特別価格です。お早めにどうぞ！
 </p>
