@@ -741,7 +741,7 @@
     "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",
     "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",
     "https://i.ibb.co/qYFqVTv8/Make-video-with-202506291332.gif",
-    "https://i.ibb.co/q8NZw1w/Make-video-with-202506291401.gif"
+    "https://i.ibb.co/q8NZw1w/Make-video-with-202506291401.gif" // novo GIF
   ];
 
   let index = 0;
@@ -755,26 +755,24 @@
   function showNextImage() {
     index = (index + 1) % images.length;
     const currentImage = images[index];
+    imgElement.src = currentImage;
 
-    // Força reload do GIF adicionando um parâmetro aleatório (evita cache)
-    const imageSrc = currentImage.endsWith(".gif")
-      ? currentImage + "?t=" + new Date().getTime()
-      : currentImage;
-
-    imgElement.src = imageSrc;
-
-    // Tempo estimado: 3s para PNG/JPG, 5s para GIF
-    const isGif = currentImage.endsWith(".gif");
-    const duration = isGif ? 5000 : 3000;
-
-    setTimeout(showNextImage, duration);
+    if (currentImage.endsWith('.gif')) {
+      const tempGif = document.createElement('img');
+      tempGif.src = currentImage;
+      tempGif.onload = () => {
+        setTimeout(showNextImage, 4000); // tempo estimado de reprodução do GIF
+      };
+    } else {
+      setTimeout(showNextImage, 3000);
+    }
   }
 
-  // Inicia com a primeira imagem
-  const firstImage = images[index];
-  imgElement.src = firstImage;
-  setTimeout(showNextImage, firstImage.endsWith(".gif") ? 5000 : 3000);
+  // Inicia rotação
+  imgElement.src = images[index];
+  setTimeout(showNextImage, 3000);
 </script>
+
 
 
 
