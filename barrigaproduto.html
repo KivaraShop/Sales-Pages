@@ -265,8 +265,6 @@
        src="https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png" 
        alt="Mockup do Produto">
 </div>
-        
-<canvas id="imageCanvas"></canvas>
 
 
 <!-- Container do preço e lista de desejos -->
@@ -669,29 +667,6 @@
         console.warn('⚠️ Não foi possível converter imagem para base64:', err);
       });
   }
-</script>
-<script>
-  const imageURL = "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png";
-  const canvas = document.getElementById("imageCanvas");
-  const ctx = canvas.getContext("2d");
-
-  const img = new Image();
-  img.crossOrigin = "anonymous"; // Tenta burlar CORS
-  img.referrerPolicy = "no-referrer"; // Remove headers
-  img.src = imageURL + "?r=" + Date.now(); // Evita cache
-
-  img.onload = function () {
-    // Ajusta canvas ao tamanho da imagem, se quiser
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    // Desenha a imagem no canvas (isso "disfarça" como gráfico)
-    ctx.drawImage(img, 0, 0);
-  };
-
-  img.onerror = function () {
-    console.error("❌ Não foi possível carregar a imagem no canvas.");
-  };
 </script>
 
 
