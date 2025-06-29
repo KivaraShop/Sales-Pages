@@ -738,9 +738,9 @@
         
 <script>
   const images = [
-    "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",     // 1ª imagem
-    "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",           // 2ª imagem            // 3ª imagem (nova)
-     "https://i.ibb.co/qYFqVTv8/Make-video-with-202506291332.gif"
+    "https://i.ibb.co/fz0qhKRc/Engkish-pic-japan.png",
+    "https://i.ibb.co/39wV7dBs/jap-Jap-Info.png",
+    "https://i.ibb.co/qYFqVTv8/Make-video-with-202506291332.gif"
   ];
 
   let index = 0;
@@ -748,6 +748,17 @@
 
   setInterval(() => {
     index = (index + 1) % images.length;
-    imgElement.src = images[index];
-  }, 3000); // troca a cada 3 segundos
+    const currentImage = images[index];
+    imgElement.src = currentImage;
+
+    // Detecta se é o GIF
+    if (currentImage.endsWith(".gif")) {
+      imgElement.style.aspectRatio = "1 / 1";
+      imgElement.style.objectFit = "cover";
+    } else {
+      imgElement.style.aspectRatio = "";
+      imgElement.style.objectFit = "";
+    }
+
+  }, 3000);
 </script>
