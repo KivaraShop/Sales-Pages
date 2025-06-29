@@ -639,5 +639,31 @@
   });
 </script>
 
+<script>
+  const mockupImage = document.getElementById('mockupImage');
+  const imageURL = mockupImage.src;
+
+  // Verifica se está no Chrome
+  const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg|OPR/.test(navigator.userAgent);
+
+  // Tenta converter para base64 (se for Chrome)
+  if (isChrome) {
+    fetch(imageURL)
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao buscar imagem.');
+        return res.blob();
+      })
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          mockupImage.src = reader.result;
+        };
+        reader.readAsDataURL(blob);
+      })
+      .catch(err => {
+        console.warn('⚠️ Não foi possível converter imagem para base64:', err);
+      });
+  }
+</script>
 
 
