@@ -611,6 +611,49 @@
   setTimeout(showNextImage, 3000);
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const gifs = document.querySelectorAll('img[src$=".gif"]'); // Agora seleciona todos os GIFs da página
+    const loadingWheel = document.getElementById('loadingWheel');
+    const contentContainer = document.getElementById('contentContainer');
+    let loadedGifs = 0;
+
+    if (gifs.length === 0) {
+      // Nenhum GIF encontrado, mostra o conteúdo imediatamente
+      loadingWheel.style.display = 'none';
+      contentContainer.style.display = 'block';
+      return;
+    }
+
+    gifs.forEach((gif) => {
+      const gifURL = gif.src;
+
+      // Força o carregamento criando uma nova requisição
+      const aggressivePreload = new Image();
+      aggressivePreload.src = gifURL + `?cache-bust=${Date.now()}`;
+
+      aggressivePreload.onload = () => {
+        loadedGifs++;
+        if (loadedGifs === gifs.length) {
+          loadingWheel.style.display = 'none';
+          contentContainer.style.display = 'block';
+        }
+      };
+
+      aggressivePreload.onerror = () => {
+        loadedGifs++;
+        console.warn(`Erro ao carregar o GIF: ${gifURL}`);
+        if (loadedGifs === gifs.length) {
+          loadingWheel.style.display = 'none';
+          contentContainer.style.display = 'block';
+        }
+      };
+
+      // Força nova requisição para evitar cache
+      gif.src = gifURL + `?cache-force=${Math.random()}`;
+    });
+  });
+</script>
 
 
 
