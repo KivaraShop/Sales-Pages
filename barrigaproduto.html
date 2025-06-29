@@ -746,19 +746,34 @@
   let index = 0;
   const imgElement = document.getElementById('mockupImage');
 
-  setInterval(() => {
+  // Força proporção quadrada e object-fit via JS
+  imgElement.style.width = "300px"; // defina um valor fixo para altura/largura iguais
+  imgElement.style.height = "300px";
+  imgElement.style.objectFit = "cover";
+
+  function showNextImage() {
     index = (index + 1) % images.length;
     const currentImage = images[index];
     imgElement.src = currentImage;
 
-    // Detecta se é o GIF
-    if (currentImage.endsWith(".gif")) {
-      imgElement.style.aspectRatio = "1 / 1";
-      imgElement.style.objectFit = "cover";
-    } else {
-      imgElement.style.aspectRatio = "";
-      imgElement.style.objectFit = "";
-    }
+    if (currentImage.endsWith('.gif')) {
+      // Cria uma imagem temporária para detectar a duração
+      const tempGif = document.createElement('img');
+      tempGif.src = currentImage;
 
-  }, 3000);
+      tempGif.onload = () => {
+        // Estimativa grosseira com base no tempo total do GIF via repetição (usaremos fallback de tempo)
+        // Como JS não lê duração real do GIF diretamente, vamos forçar uma pausa maior
+        // Alternativa melhor seria usar um <video> ou canvas, mas estamos limitados a só JS direto
+        setTimeout(showNextImage, 5000); // tempo estimado da reprodução do GIF
+      };
+    } else {
+      setTimeout(showNextImage, 3000);
+    }
+  }
+
+  // Inicia rotação
+  imgElement.src = images[index];
+  setTimeout(showNextImage, 3000);
 </script>
+
