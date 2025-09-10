@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>児童の性的搾取および虐待（AESI）対策ポリシー | Kivara & Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kivara & Co. による児童の性的搾取および虐待（AESI）対策ポリシー。ゼロトレランス、違反通報、対応方針、法執行機関との連携。">
+  <style>
+    :root {
+      --fg: #222;
+      --muted: #666;
+      --brand: #E53935;
+      --bg: #fff;
+      --card: #fafafa;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+                   "Noto Sans JP", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.75;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    h1 { font-size: 1.8rem; margin: 0 0 8px; }
+    h2 { font-size: 1.25rem; margin-top: 28px; }
+    p, li { font-size: 1rem; }
+    .muted { color: var(--muted); }
+    .card {
+      background: var(--card);
+      border-left: 4px solid var(--brand);
+      padding: 14px 16px;
+      margin: 16px 0;
+      border-radius: 8px;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .footer { margin-top: 40px; font-size: 0.92rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>児童の性的搾取および虐待（AESI）対策ポリシー</h1>
+      <p class="muted">最終更新日：2025-01-01｜運営：<strong>Kivara &amp; Co.</strong></p>
+    </header>
+
+    <section>
+      <div class="card">
+        <p><strong>Kivara &amp; Co.</strong>（以下、「当社」）は、児童（18歳未満）の性的搾取および虐待（以下「AESI」）に対し、<strong>いかなる形態も一切容認しません（ゼロトレランス）</strong>。当社のアプリ、ウェブサイト、関連サービスを利用するすべてのユーザーは、本ポリシーに同意し、順守する必要があります。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>1. 定義</h2>
+      <ul>
+        <li><strong>児童：</strong>18歳未満の個人。</li>
+        <li><strong>AESI：</strong>児童に対する性的搾取、虐待、またはそれを助長・描写・示唆・扇動する一切の行為・コンテンツ（画像、動画、音声、テキスト、リンク、生成物を含む）。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>2. 禁止事項</h2>
+      <p>当社サービスでは、下記の行為・コンテンツを<strong>厳格に禁止</strong>します。</p>
+      <ul>
+        <li>児童性虐待コンテンツ（CSAM/CSE）またはそれに該当/類似/示唆するあらゆる表現の作成、所持、配布、共有、表示、リンク。</li>
+        <li>児童との性的行為の誘引、勧誘、援助、指南、取引の示唆（いわゆるグルーミング行為を含む）。</li>
+        <li>年齢の偽装、年齢確認の回避、または児童を性的対象として扱うこと。</li>
+        <li>生成AI等を用いた児童の性的イメージの創作、写実的描写、ディープフェイク、若年化表現の利用。</li>
+        <li>上記の行為を容認・称賛・正常化するコンテンツの投稿、共有、推奨。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. 監視・検知・年齢確認</h2>
+      <ul>
+        <li>当社は、法令および適用ポリシーの範囲で、違反の疑いがある行為・コンテンツを検知・審査する措置を講じます。</li>
+        <li>必要に応じて、年齢確認や本人確認を求める場合があります。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. 通報（レポート）手順</h2>
+      <p>本ポリシー違反が疑われるコンテンツやユーザーを発見した場合、以下の方法で通報してください。</p>
+      <ul>
+        <li>アプリ内の通報手段（提供されている場合）。</li>
+        <li>メール：<a href="mailto:support@kivara.co">support@kivara.co</a>（※貴社のサポート窓口に差し替え可）</li>
+      </ul>
+      <p class="muted">緊急性が高い場合は、直ちにお住まいの地域の警察・児童相談所・ホットラインにも連絡してください。</p>
+    </section>
+
+    <section>
+      <h2>5. 当社の対応</h2>
+      <ul>
+        <li>違反の疑いがあるコンテンツの<strong>即時削除/非表示</strong>、アカウントの<strong>一時停止/永久停止</strong>を行います。</li>
+        <li>必要に応じて、<strong>法執行機関・関連団体</strong>（例：各国のホットライン、NCMEC 等）と連携し、適法な情報提供を行います。</li>
+        <li>濫用的/悪意的な通報を防ぐため、通報の妥当性を審査します。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. 教育と継続的改善</h2>
+      <ul>
+        <li>当社チームは AESI 防止に関する方針・手順・最新情報を学習し、運用を継続的に改善します。</li>
+        <li>技術的・運用的対策（キーワード検知、ワークフロー、監査）を必要に応じて更新します。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. 年齢層と利用制限</h2>
+      <p>当社アプリは成人（18歳以上）を対象とした恋愛ガイドです。児童の利用は認められません。</p>
+    </section>
+
+    <section>
+      <h2>8. プライバシーとデータ保護</h2>
+      <p>当社は、適用法令および当社の<a href="https://kivarashop.github.io/Sales-Pages/Policy" target="_blank" rel="noopener">プライバシーポリシー</a>に従い、ユーザーデータを適切に取り扱います。</p>
+    </section>
+
+    <section>
+      <h2>9. 政策違反の結果</h2>
+      <p>本ポリシー違反が確認された場合、コンテンツ削除、アカウント停止、利用契約の終了、必要に応じた通報・法的手続などの措置を講じます。</p>
+    </section>
+
+    <section>
+      <h2>10. 本ポリシーの更新</h2>
+      <p>法令・業界ガイドラインの変更、運用改善に合わせて本ポリシーを改定することがあります。改定は本ページで告知します。</p>
+    </section>
+
+    <footer class="footer">
+      <p>運営：Kivara &amp; Co.｜お問い合わせ：<a href="mailto:eugenioalbertocumbane02@gmail.com">support@kivara.co</a></p>
+      <p>© 2025 Kivara &amp; Co. All rights reserved.</p>
+    </footer>
+  </main>
+</body>
+</html>
