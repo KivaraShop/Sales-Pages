@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Puzzle Game — Privacy Policy</title>
+<meta name="color-scheme" content="dark">
+<style>
+  :root{
+    --bg-top:#1C0F40;
+    --bg-bottom:#0E0524;
+    --card:#1a1237cc; /* translucent */
+    --text:#ffffff;
+    --muted:#BEE3FF;
+    --link:#8AC7FF;
+    --accent1:#FF7BC8;
+    --accent2:#8AC7FF;
+    --accent3:#FFD36E;
+    --ok:#80E27E;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    color:var(--text);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,Noto Sans;
+    background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+    background-attachment: fixed;
+  }
+  header.appbar{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,#1c0f40f2,#1c0f40b0 60%,#0000);backdrop-filter:blur(8px);border-bottom:1px solid #ffffff12}
+  .brand{display:flex;align-items:center;gap:12px;padding:14px 24px}
+  .coin{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff4bd,var(--accent3));box-shadow:0 0 0 2px #0003,0 0 18px #ffd36e66 inset}
+  .brand h1{font-size:20px;margin:0;font-weight:900;letter-spacing:.3px;text-shadow:0 2px 18px #0006,0 0 18px var(--accent2)}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:6px 10px;border-radius:999px;background:#ffffff14;border:1px solid #ffffff22}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+  .wrap{max-width:900px;margin:0 auto;padding:24px}
+  main{background:var(--card);border:1px solid #ffffff1a;border-radius:16px;padding:24px;box-shadow:0 20px 50px #0006}
+  h2{margin:18px 0 8px 0;font-size:22px;font-weight:900;text-shadow:0 0 18px #0006,0 0 20px var(--accent1)}
+  p{color:#e9f2ff}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#0d0722;font-weight:800;letter-spacing:.2px;box-shadow:0 6px 18px #8ac7ff44,0 0 0 1px #ffffff22 inset}
+  .callout{border-left:4px solid var(--accent1);padding:12px 14px;background:#ffffff0d;border-radius:12px}
+  .footer{margin-top:24px;padding-top:16px;border-top:1px solid #ffffff1a;font-size:13px;color:#cfe8ff}
+  a.cta{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#0b061c;font-weight:900;letter-spacing:.3px;box-shadow:0 10px 28px #8ac7ff44,0 2px 0 #000 inset;text-decoration:none}
+</style>
+</head>
+<body>
+  <header class="appbar">
+    <div class="brand">
+      <div class="coin" aria-hidden="true"></div>
+      <h1>Puzzle Game • Privacy Policy</h1>
+      <span class="badge"><span class="dot"></span> Updated: <span id="updated-date">2025-09-30</span></span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <main>
+      <p class="pill">We collect <strong>no data</strong>. Period.</p>
+
+      <section id="intro">
+        <h2>🔒 Introduction</h2>
+        <p>This Privacy Policy is short because our approach is simple: <strong>Puzzle Game does not collect, store, or transmit any personal data</strong>. We don’t run accounts, we don’t track you, and we don’t use analytics.</p>
+        <div class="callout"><strong>Summary:</strong> No personal data collected. No analytics. No ads SDK. Local gameplay only.</div>
+      </section>
+
+      <section id="local">
+        <h2>📱 Local Gameplay Only</h2>
+        <p>Your coins, unlocks, and progress are saved <em>on your device</em> so the game works offline. Clearing app data or uninstalling the app removes this local progress.</p>
+      </section>
+
+      <section id="purchases">
+        <h2>🛒 Purchases</h2>
+        <p>In-app purchases (like premium tiers) are processed by <strong>Google Play Billing</strong>. <em>We do not receive or store any of your payment information.</em> You can manage purchases and receipts in your Google account.</p>
+      </section>
+
+      <section id="permissions">
+        <h2>🔧 Device Permissions</h2>
+        <p>Puzzle Game does not request sensitive permissions. If a permission is ever requested for a feature, it will be used only for that feature and never for tracking.</p>
+      </section>
+
+      <section id="contact">
+        <h2>✉️ Contact</h2>
+        <p>If you have questions, email us at <a class="cta" href="mailto:eugenioalbertocumbane02@gmail.com">eugenioalbertocumbane02@gmail.com</a>.</p>
+        <p class="footer">If we ever change this Policy, we’ll update this page and the “Updated” date above.</p>
+      </section>
+    </main>
+  </div>
+
+<script>
+  // auto-set today's date for "Updated:"
+  const el = document.getElementById('updated-date');
+  if (el){
+    const d = new Date();
+    el.textContent = d.toISOString().slice(0,10);
+  }
+</script>
+</body>
+</html>
