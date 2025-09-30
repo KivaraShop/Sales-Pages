@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Puzzle Game — Security</title>
+<meta name="color-scheme" content="dark">
+<style>
+  :root{
+    --bg-top:#1C0F40;
+    --bg-bottom:#0E0524;
+    --card:#1a1237cc; /* translucent */
+    --text:#ffffff;
+    --muted:#BEE3FF;
+    --link:#8AC7FF;
+    --accent1:#FF7BC8;
+    --accent2:#8AC7FF;
+    --accent3:#FFD36E;
+    --ok:#80E27E;
+    --danger:#FF6B6B;
+    --border:#3B2BA3;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    color:var(--text);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,Noto Sans;
+    background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+    background-attachment: fixed;
+  }
+
+  /* App bar */
+  header.appbar{
+    position:sticky; top:0; z-index:10;
+    background:linear-gradient(180deg,#1c0f40f2,#1c0f40b0 60%,#0000);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid #ffffff12;
+  }
+  .brand{display:flex;align-items:center;gap:12px;padding:14px 24px}
+  .shield{
+    width:28px;height:28px;border-radius:8px;
+    background: conic-gradient(from 0deg, var(--accent1), var(--accent2));
+    box-shadow: 0 0 0 2px #0003, 0 0 18px #8ac7ff66 inset;
+  }
+  .brand h1{
+    font-size:20px;margin:0;font-weight:900;letter-spacing:.3px;
+    text-shadow: 0 2px 18px #0006, 0 0 18px var(--accent2);
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;padding:6px 10px;border-radius:999px;
+    background:#ffffff14;border:1px solid #ffffff22;
+  }
+  .badge .dot{ width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok) }
+
+  /* Layout */
+  .wrap{max-width:900px;margin:0 auto;padding:24px}
+  main{
+    background:var(--card);
+    border:1px solid #ffffff1a;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 20px 50px #0006;
+  }
+
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:999px;
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#0d0722;font-weight:800;letter-spacing:.2px;
+    box-shadow:0 6px 18px #8ac7ff44,0 0 0 1px #ffffff22 inset;
+  }
+
+  h2{margin:18px 0 8px 0;font-size:22px;font-weight:900;text-shadow:0 0 18px #0006,0 0 20px var(--accent1)}
+  p, li{color:#e9f2ff}
+  .muted{color:var(--muted)}
+  .callout{
+    border-left:4px solid var(--accent2);
+    padding:12px 14px;background:#ffffff0d;border-radius:12px
+  }
+
+  .grid{
+    display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    margin:12px 0;
+  }
+  .card{
+    background:#120a2a;border:1px solid #ffffff14;border-radius:14px;padding:16px
+  }
+  .card h3{margin:.2rem 0 .5rem 0;font-size:16px}
+
+  .kv{display:grid;grid-template-columns: 180px 1fr;gap:10px;align-items:center}
+  .kv .k{color:var(--muted)}
+  .kv + .kv{margin-top:10px;padding-top:10px;border-top:1px dashed #ffffff1a}
+
+  .footer{margin-top:24px;padding-top:16px;border-top:1px solid #ffffff1a;font-size:13px;color:#cfe8ff}
+
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:12px 16px;border:none;border-radius:14px;
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#0b061c;font-weight:900;letter-spacing:.3px;
+    box-shadow: 0 10px 28px #8ac7ff44, 0 2px 0 #000 inset;
+    text-decoration:none;
+  }
+
+  /* Mobile polish */
+  @media (max-width: 600px){
+    .wrap{ padding:12px; }
+    main{ border-radius: 0; }
+    .kv{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <header class="appbar">
+    <div class="brand">
+      <div class="shield" aria-hidden="true"></div>
+      <h1>Puzzle Game • Security</h1>
+      <span class="badge"><span class="dot"></span> Updated: <span id="updated-date">2025-09-30</span></span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <main>
+      <p class="pill">Simple game. Strong basics. No data collection.</p>
+
+      <section id="overview">
+        <h2>🛡️ Overview</h2>
+        <p>Security in <strong>Puzzle Game</strong> focuses on a minimal attack surface. We do not run accounts, do not collect personal data, and keep gameplay entirely on your device. Purchases are handled by Google Play Billing.</p>
+        <div class="callout"><strong>TL;DR:</strong> No personal data, no analytics, local progress, and platform billing. We keep things small and secure.</div>
+      </section>
+
+      <section id="collection">
+        <h2>❌ Personal Data Collection</h2>
+        <p><strong>We collect no personal data.</strong> There are no in-app trackers or analytics SDKs. Game state (coins, unlocks) is stored locally on your device only.</p>
+      </section>
+
+      <section id="purchases">
+        <h2>💳 Purchases</h2>
+        <div class="kv">
+          <div class="k">Processor</div>
+          <div>Google Play Billing handles all payments. We never receive your card details.</div>
+        </div>
+        <div class="kv">
+          <div class="k">Receipts</div>
+          <div>Manage receipts/subscriptions in your Google account. Keep them for your records.</div>
+        </div>
+      </section>
+
+      <section id="app-integrity">
+        <h2>🔐 App Integrity</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Signed Releases</h3>
+            <p>We ship signed release builds through Google Play to ensure authenticity and tamper resistance.</p>
+          </div>
+          <div class="card">
+            <h3>Least Privilege</h3>
+            <p>No unnecessary runtime permissions. Any permission added in the future will be used only for its feature.</p>
+          </div>
+          <div class="card">
+            <h3>Local-Only Progress</h3>
+            <p>Game progress is stored locally. Clearing app data or uninstalling removes this data.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="secure-coding">
+        <h2>🧰 Secure Development Practices</h2>
+        <ul>
+          <li>Release builds with minified/optimized code.</li>
+          <li>Dependency updates to incorporate upstream security fixes.</li>
+          <li>Input validation and defensive coding in critical paths.</li>
+          <li>No embedding of secrets in client code (keys, tokens).</li>
+        </ul>
+      </section>
+
+      <section id="vuln-reporting">
+        <h2>🐞 Vulnerability Reporting</h2>
+        <p>If you discover a potential issue, please report it responsibly. Provide steps to reproduce and device details so we can verify and fix quickly.</p>
+        <p><a class="cta" href="mailto:eugenioalbertocumbane02@gmail.com">Report a security issue</a></p>
+      </section>
+
+      <section id="updates">
+        <h2>🔄 Updates & Patching</h2>
+        <p>We periodically ship updates through Google Play to fix bugs, improve performance, and maintain compatibility with Android and Play Billing.</p>
+      </section>
+
+      <section id="contact">
+        <h2>✉️ Contact</h2>
+        <p>Questions or concerns? Email us at <a class="cta" href="mailto:eugenioalbertocumbane02@gmail.com">eugenioalbertocumbane02@gmail.com</a>.</p>
+        <p class="footer">We may update this Security page as the app evolves. We’ll revise the “Updated” date above when we do.</p>
+      </section>
+    </main>
+  </div>
+
+<script>
+  // auto-set today's date for "Updated:"
+  const el = document.getElementById('updated-date');
+  if (el){
+    const d = new Date();
+    el.textContent = d.toISOString().slice(0,10);
+  }
+</script>
+</body>
+</html>
