@@ -11,8 +11,8 @@
     font-family: 'Noto Sans JP', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #c1d4f7; /* pale pastel blue */
-    color: #203864; /* deep navy blue */
+    background-color: #c1d4f7;
+    color: #203864;
 }
 
 .container {
@@ -21,7 +21,7 @@
     padding: 25px 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(32, 56, 100, 0.1); /* navy shadow */
+    box-shadow: 0 4px 10px rgba(32, 56, 100, 0.1);
 }
 
 header {
@@ -31,15 +31,15 @@ header {
 
 header h1 {
     font-size: 24px;
-    color: #375a9b; /* medium indigo-blue */
+    color: #375a9b;
     font-weight: 700;
 }
 
 .order-summary {
-    border: 1px solid #a9c0e8; /* soft light blue border */
+    border: 1px solid #a9c0e8;
     border-radius: 8px;
     padding: 20px;
-    background-color: #f0f5ff; /* very light blue background */
+    background-color: #f0f5ff;
     margin-bottom: 30px;
     text-align: left;
     line-height: 1.6;
@@ -118,141 +118,437 @@ footer {
     }
 }
 
+
+/* =========================
+   CTA BUTTONS
+   ========================= */
+
+.cta-area {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    min-width: 220px;
+    padding: 17px 30px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ff66b2, #ff0099);
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+        0 6px 20px rgba(255, 51, 153, 0.55),
+        0 0 18px rgba(255, 102, 178, 0.45);
+
+    animation: strongPulse 1.15s infinite;
+    transition: transform 0.15s ease;
+}
+
+/* Strong continuous pulse */
+@keyframes strongPulse {
+    0% {
+        transform: scale(1);
+        box-shadow:
+            0 6px 20px rgba(255, 51, 153, 0.45),
+            0 0 12px rgba(255, 102, 178, 0.35);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow:
+            0 10px 32px rgba(255, 51, 153, 0.75),
+            0 0 28px rgba(255, 102, 178, 0.75);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 6px 20px rgba(255, 51, 153, 0.45),
+            0 0 12px rgba(255, 102, 178, 0.35);
+    }
+}
+
+/* Hard bounce when clicked */
+@keyframes hardBounce {
+    0% {
+        transform: scale(1);
+    }
+
+    20% {
+        transform: scale(1.22) translateY(-12px);
+    }
+
+    40% {
+        transform: scale(0.88) translateY(7px);
+    }
+
+    60% {
+        transform: scale(1.12) translateY(-5px);
+    }
+
+    80% {
+        transform: scale(0.96) translateY(2px);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cta-button.bounce {
+    animation: hardBounce 0.65s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+}
+
+#enjoy-button-wrapper {
+    display: none;
+    margin-top: 25px;
+}
+
+
+/* =========================
+   PAYPAL
+   ========================= */
+
+#paypal-section {
+    display: none;
+    margin-top: 25px;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
 </style>
 
 <body>
-    <main class="container">
-        <header>
-            <h1>FOMO Leaks</h1>
-        </header>
 
-<!--
-<div class="confirmation-text">
-    Please review your pre-order details below before completing your payment.
-</div>
--->
-        
+
+<main class="container">
+
+    <header>
+        <h1>FOMO Leaks</h1>
+    </header>
+
+
+    <!-- Order Summary -->
+
     <section class="order-summary" aria-label="Order summary">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRrKCG12c0AEx0QHQFJjws8qTAUYTS6Bg5jcvf95U1_g&s=10" alt="MOFO Album">
+
+        <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRrKCG12c0AEx0QHQFJjws8qTAUYTS6Bg5jcvf95U1_g&s=10"
+            alt="FOMO Album">
+
         <h2>Order Summary</h2>
-        <p><strong>Product:</strong> FOMO 2026 — Unreleased</p>
-        <p><strong>Quantity:</strong> 1</p>
-        <p class="price">Total: $5.00 USD</p>
+
+        <p>
+            <strong>Product:</strong> FOMO 2026 — Unreleased
+        </p>
+
+        <p>
+            <strong>Quantity:</strong> 1
+        </p>
+
+        <p class="price">
+            Total: $5.00 USD
+        </p>
+
     </section>
 
-    <!--
-<img src="https://i.ibb.co/6FKTS3H/IMG-20241113-193244.jpg" alt="Secure Payment" style="display:block; margin: 0 auto 20px; height: 65px;">
--->
-    <section id="paypal-button-container" aria-label="Payment via PayPal">
-        <!-- PayPal button will appear here -->
+
+    <!-- First CTA -->
+
+    <div class="cta-area">
+
+        <button
+            id="download-button"
+            class="cta-button"
+            type="button"
+            onclick="showEnjoyButton(this)">
+
+            Download
+
+        </button>
+
+    </div>
+
+
+    <!-- Second CTA -->
+
+    <div
+        id="enjoy-button-wrapper"
+        class="cta-area">
+
+        <button
+            id="enjoy-button"
+            class="cta-button"
+            type="button"
+            onclick="showPayPal(this)">
+
+            Enjoy for 5 USD
+
+        </button>
+
+    </div>
+
+
+    <!-- PayPal Section -->
+
+    <section
+        id="paypal-section"
+        aria-label="Payment via PayPal">
+
+        <div id="paypal-button-container">
+            <!-- PayPal button will appear here -->
+        </div>
+
     </section>
+
 
     <footer>
-        <p>© 2026 Kivara. Secure payment processing.</p>
+        <p>
+            © 2026 Kivara. Secure payment processing.
+        </p>
     </footer>
+
 </main>
 
-       <!-- PayPal Button -->
+
+<!-- PayPal Button -->
+```
 
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=USD"></script>
 
 <script>
-    // Get the price text from the page
-    const priceText = document.querySelector('.price').textContent;  // "Total: $5.00 USD"
 
-    // Extract the numeric part (remove non-digit and non-dot chars)
-    const priceNumber = priceText.replace(/[^\d.]/g, '');  // "5.00"
+    /*
+     * Get the price from the page
+     */
+
+    const priceText = document.querySelector('.price').textContent;
+
+    const priceNumber = priceText.replace(/[^\d.]/g, '');
+
+
+    /*
+     * Download button
+     *
+     * Reveals the second CTA.
+     */
+
+    function showEnjoyButton(button) {
+
+        button.classList.remove('bounce');
+
+        void button.offsetWidth;
+
+        button.classList.add('bounce');
+
+        const enjoyWrapper =
+            document.getElementById('enjoy-button-wrapper');
+
+        enjoyWrapper.style.display = 'block';
+
+        setTimeout(function() {
+
+            enjoyWrapper.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+
+        }, 150);
+
+    }
+
+
+    /*
+     * Enjoy button
+     *
+     * Reveals PayPal.
+     */
+
+    function showPayPal(button) {
+
+        button.classList.remove('bounce');
+
+        void button.offsetWidth;
+
+        button.classList.add('bounce');
+
+        const paypalSection =
+            document.getElementById('paypal-section');
+
+        paypalSection.style.display = 'block';
+
+        setTimeout(function() {
+
+            paypalSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+
+        }, 150);
+
+    }
+
+
+    /*
+     * PayPal payment
+     */
 
     paypal.Buttons({
+
         createOrder: function(data, actions) {
+
             return actions.order.create({
+
                 purchase_units: [{
+
                     amount: {
-                        value: priceNumber  // dynamically set price here
+
+                        value: priceNumber
+
                     }
+
                 }]
+
             });
+
         },
+
+
         onApprove: function(data, actions) {
+
             return actions.order.capture().then(function(details) {
-                alert('Payment completed successfully by ' + details.payer.name.given_name);
+
+                alert(
+                    'Payment completed successfully by ' +
+                    details.payer.name.given_name
+                );
+
                 window.location.href = "Obrigado.html";
+
             });
+
         }
+
     }).render('#paypal-button-container');
+
 </script>
-
-    </div>
-  
-
 
 <!-- Spinner and message -->
 
 <div id="loading-overlay">
-    <div id="spinner"></div>
-    <p>Please wait...</p>
+
+```
+<div id="spinner"></div>
+
+<p>Please wait...</p>
+```
+
 </div>
 
 <!-- Spinner Style -->
 
 <style>
+
     #loading-overlay {
+
         position: fixed;
+
         top: 0;
+
         left: 0;
+
         width: 100%;
+
         height: 100%;
+
         background-color: rgba(255, 255, 255, 0.9);
+
         z-index: 9999;
+
         display: flex;
+
         flex-direction: column;
+
         align-items: center;
+
         justify-content: center;
+
     }
+
 
     #spinner {
+
         border: 6px solid #f3f3f3;
+
         border-top: 6px solid #ff66b2;
+
         border-radius: 50%;
+
         width: 50px;
+
         height: 50px;
+
         animation: spin 1s linear infinite;
+
     }
+
 
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+
     }
+
 
     #loading-overlay p {
+
         margin-top: 15px;
+
         font-size: 16px;
+
         color: #4a004e;
+
     }
+
 </style>
 
-<!-- Script -->
+<!-- Loading Script -->
 
 <script>
-    // Function to check if PayPal elements have loaded
-    function checkPayPalLoaded() {
-        const paypalButton = document.querySelector("#paypal-button-container iframe");
-        const paypalCreditCard = document.querySelector(".paypal-buttons-context-iframe");
 
-        // Check if both elements exist
-        if (paypalButton && paypalButton.offsetParent !== null && paypalCreditCard && paypalCreditCard.offsetParent !== null) {
-            // Remove spinner when elements are available
-            document.getElementById("loading-overlay").style.display = "none";
-        } else {
-            // Keep checking until PayPal loads
-            setTimeout(checkPayPalLoaded, 500); // Adjusted for mobile devices
-        }
-    }
+    /*
+     * The page no longer waits for the hidden
+     * PayPal buttons before removing the spinner.
+     *
+     * This allows the page to become usable immediately.
+     */
 
-    // Wait until the page has fully loaded before starting the check
-    window.onload = function () {
-        checkPayPalLoaded();
-    };
+    window.addEventListener('load', function() {
+
+        setTimeout(function() {
+
+            document.getElementById('loading-overlay').style.display = 'none';
+
+        }, 700);
+
+    });
+
 </script>
 
 </body>
