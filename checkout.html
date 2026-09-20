@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
 <style>
-   body {
+body {
     font-family: 'Noto Sans JP', sans-serif;
     margin: 0;
     padding: 0;
@@ -109,7 +109,8 @@ footer {
         font-size: 20px;
     }
 
-    .order-summary p, .order-summary h2 {
+    .order-summary p,
+    .order-summary h2 {
         font-size: 14px;
     }
 
@@ -139,6 +140,7 @@ footer {
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
+
     box-shadow:
         0 6px 20px rgba(255, 51, 153, 0.55),
         0 0 18px rgba(255, 102, 178, 0.45);
@@ -147,8 +149,11 @@ footer {
     transition: transform 0.15s ease;
 }
 
+
 /* Strong continuous pulse */
+
 @keyframes strongPulse {
+
     0% {
         transform: scale(1);
         box-shadow:
@@ -171,8 +176,11 @@ footer {
     }
 }
 
+
 /* Hard bounce when clicked */
+
 @keyframes hardBounce {
+
     0% {
         transform: scale(1);
     }
@@ -206,123 +214,119 @@ footer {
     transform: scale(1.1);
 }
 
+
+/* Second button initially hidden */
+
 #enjoy-button-wrapper {
     display: none;
     margin-top: 25px;
 }
 
 
-/* =========================
-   PAYPAL
-   ========================= */
+/* PayPal initially hidden */
 
 #paypal-section {
     display: none;
     margin-top: 25px;
 }
 
-
-/* =========================
-   FOOTER
-   ========================= */
-
 </style>
+
+</head>
 
 <body>
 
-
 <main class="container">
 
-    <header>
-        <h1>FOMO Leaks</h1>
-    </header>
+<header>
+    <h1>FOMO Leaks</h1>
+</header>
 
 
-    <!-- Order Summary -->
+<!-- Order Summary -->
 
-    <section class="order-summary" aria-label="Order summary">
+<section class="order-summary" aria-label="Order summary">
 
-        <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRrKCG12c0AEx0QHQFJjws8qTAUYTS6Bg5jcvf95U1_g&s=10"
-            alt="FOMO Album">
+    <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRrKCG12c0AEx0QHQFJjws8qTAUYTS6Bg5jcvf95U1_g&s=10"
+        alt="FOMO Album">
 
-        <h2>Order Summary</h2>
+    <h2>Order Summary</h2>
 
-        <p>
-            <strong>Product:</strong> FOMO 2026 — Unreleased
-        </p>
+    <p>
+        <strong>Product:</strong> FOMO 2026 — Unreleased
+    </p>
 
-        <p>
-            <strong>Quantity:</strong> 1
-        </p>
+    <p>
+        <strong>Quantity:</strong> 1
+    </p>
 
-        <p class="price">
-            Total: $5.00 USD
-        </p>
+    <p class="price">
+        Total: $5.00 USD
+    </p>
 
-    </section>
+</section>
 
 
-    <!-- First CTA -->
+<!-- CTA -->
 
-    <div class="cta-area">
+<div class="cta-area">
 
-        <button
-            id="download-button"
-            class="cta-button"
-            type="button"
-            onclick="showEnjoyButton(this)">
+    <button
+        id="download-button"
+        class="cta-button"
+        type="button"
+        onclick="showEnjoyButton(this)">
 
-            Download
+        Download
 
-        </button>
+    </button>
 
+</div>
+
+
+<!-- Enjoy Button -->
+
+<div
+    id="enjoy-button-wrapper"
+    class="cta-area">
+
+    <button
+        id="enjoy-button"
+        class="cta-button"
+        type="button"
+        onclick="showPayPal(this)">
+
+        Enjoy for 5 USD
+
+    </button>
+
+</div>
+
+
+<!-- PayPal Section -->
+
+<section
+    id="paypal-section"
+    aria-label="Payment via PayPal">
+
+    <div id="paypal-button-container">
+        <!-- PayPal button will appear here -->
     </div>
 
-
-    <!-- Second CTA -->
-
-    <div
-        id="enjoy-button-wrapper"
-        class="cta-area">
-
-        <button
-            id="enjoy-button"
-            class="cta-button"
-            type="button"
-            onclick="showPayPal(this)">
-
-            Enjoy for 5 USD
-
-        </button>
-
-    </div>
+</section>
 
 
-    <!-- PayPal Section -->
-
-    <section
-        id="paypal-section"
-        aria-label="Payment via PayPal">
-
-        <div id="paypal-button-container">
-            <!-- PayPal button will appear here -->
-        </div>
-
-    </section>
-
-
-    <footer>
-        <p>
-            © 2026 Kivara. Secure payment processing.
-        </p>
-    </footer>
+<footer>
+    <p>
+        © 2026 Kivara. Secure payment processing.
+    </p>
+</footer>
+```
 
 </main>
 
-
 <!-- PayPal Button -->
-```
 
 <script src="https://www.paypal.com/sdk/js?client-id=AdLR3TPeggfb34nl3xX9eqr6thnqQHrKsZKR-ATlE6vBcp45q4MygaGm-_U7ytZ8meom-gmXOxXYGFgC&currency=USD"></script>
 
@@ -332,15 +336,20 @@ footer {
      * Get the price from the page
      */
 
-    const priceText = document.querySelector('.price').textContent;
+    const priceText =
+        document.querySelector('.price').textContent;
 
-    const priceNumber = priceText.replace(/[^\d.]/g, '');
+    const priceNumber =
+        priceText.replace(/[^\d.]/g, '');
 
 
     /*
      * Download button
      *
-     * Reveals the second CTA.
+     * When clicked:
+     * 1. Button bounces
+     * 2. Download disappears
+     * 3. Enjoy for 5 USD appears
      */
 
     function showEnjoyButton(button) {
@@ -351,10 +360,25 @@ footer {
 
         button.classList.add('bounce');
 
+
         const enjoyWrapper =
             document.getElementById('enjoy-button-wrapper');
 
+
+        /*
+         * Hide Download
+         */
+
+        button.style.display = 'none';
+
+
+        /*
+         * Show Enjoy for 5 USD
+         * in the same CTA area
+         */
+
         enjoyWrapper.style.display = 'block';
+
 
         setTimeout(function() {
 
@@ -371,7 +395,9 @@ footer {
     /*
      * Enjoy button
      *
-     * Reveals PayPal.
+     * When clicked:
+     * 1. Button bounces
+     * 2. PayPal appears
      */
 
     function showPayPal(button) {
@@ -382,10 +408,13 @@ footer {
 
         button.classList.add('bounce');
 
+
         const paypalSection =
             document.getElementById('paypal-section');
 
+
         paypalSection.style.display = 'block';
+
 
         setTimeout(function() {
 
@@ -533,10 +562,8 @@ footer {
 <script>
 
     /*
-     * The page no longer waits for the hidden
-     * PayPal buttons before removing the spinner.
-     *
-     * This allows the page to become usable immediately.
+     * Remove the spinner shortly after
+     * the page has loaded.
      */
 
     window.addEventListener('load', function() {
